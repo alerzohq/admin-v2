@@ -6,7 +6,7 @@ import Content from "../../components/dashboard-contents";
 
 const Dashboard: React.FC = () => {
 
-  const [isCollapsed,setIsCollapsed] =useState(false)
+  const [isCollapsed,setIsCollapsed] =useState(true)
 
   const collapseBar= () => {
     setIsCollapsed(!isCollapsed)
