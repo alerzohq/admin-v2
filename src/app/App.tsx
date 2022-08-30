@@ -1,54 +1,71 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-// css import
-import { Container } from "./App.styled";
-
-// components
-import { Sidebar } from "../components/common/sidebar/Sidebar";
+// import { Sidebar } from "../components/common/sidebar/Sidebar";
 import ErrorBoundary from "../components/common/ErrorBoundary";
 import ScrollToTop from "../utils/ScrollTo";
+import Login from "../pages/login";
+import Transactions from "../pages/dashboard/transactions";
+import Dashboard from "../pages/dashboard";
+import Overview from "../pages/dashboard/overview";
+import { Path } from "../constants/route-path";
+import Users from "../pages/dashboard/users";
+import {  IsUserRedirect, ProtectedRoutes } from "../configs/private-route";
+import NotFound from "../pages/404/not-found";
+import TransactionDetails from "../pages/dashboard/transactions/transaction-details";
 
-const TransactionHistory = React.lazy(
-  () => import("../pages/transaction-history-page/index")
-);
-const Dashboard = React.lazy(() => import("../pages/dashboard-page/index"));
+// const Dashboard = React.lazy(() => import("../pages/dashboard"));
 
 function App() {
+
+let user={};
+
   let routes = (
-    <Container>
-      <Sidebar />
+    <>
       <ScrollToTop />
       <ErrorBoundary fallback="Sorry.. there was an error">
+
         <Routes>
-          <Route
-            path="/dashboard"
+          <Route element={<IsUserRedirect user={user} />}>
+           <Route
+            path={Path.LOGIN}
+            element={
+                <Login />
+            }
+          />
+          </Route>
+          {/* <Route
+            path="dashboard"
             element={
               <Suspense fallback={<h1>Loading dashboard</h1>}>
                 <Dashboard />
               </Suspense>
             }
+          >
+             <Route path="transactions" element={<Transactions /> }
           />
-          <Route
-            path="/history"
-            element={
-              <Suspense fallback={<h1>Loading History</h1>}>
-                <TransactionHistory />
-              </Suspense>
-            }
-          />
+          </Route> */}
+          
+          <Route element={<ProtectedRoutes user={user} />}>          
+              <Route path={Path.DASHBOARD} element={<Dashboard />} >
+                <Route index element={<Overview />}/>
+                <Route path={Path.USERS} element={<Users /> }/>
+                <Route path={Path.TRANSACTION} element={<Transactions /> }/>
+                <Route path={Path.TRANSACTIONDETAIL} element={<TransactionDetails /> }/>
+              </Route>
+          </Route>
+
+         
           {/* replace with not found component */}
           <Route
             path="*"
-            element={
-              <Suspense fallback={<h1>Loading dashboard</h1>}>
-                <Dashboard />
-              </Suspense>
+            element={         
+              <NotFound user={user} />
             }
           />
         </Routes>
       </ErrorBoundary>
-    </Container>
+    </>
   );
 
   return routes;
