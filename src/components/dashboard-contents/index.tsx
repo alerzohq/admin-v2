@@ -1,10 +1,8 @@
 import React,{} from 'react'
 import { ContentWrapper} from './styles/dashboard-contents.styles';
+import { contentProps } from './type';
 
 
-type contentProps={
-    isCollapsed?:boolean;
-}&React.ComponentProps<'div'>
 
 const Content = ({isCollapsed,children}:contentProps) => {
 

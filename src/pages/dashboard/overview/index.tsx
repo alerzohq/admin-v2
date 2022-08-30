@@ -3,7 +3,7 @@ import { Container } from '../../../components/layout'
 
 const Overview = () => {
   return (
-    <Container>
+    <Container title={'Dashboard'}>
          overview
     </Container>
   )

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme';
 
 
@@ -17,6 +17,8 @@ type formProps = {
 }
 
 export const FormContainer = styled.form<formProps>`
+display: flex;
+flex-direction: column;
 width:${({width})=>width ? width :'100%'};
 padding:${({padding})=>padding} ;
 background:${({bgColor}) => bgColor};
@@ -30,22 +32,6 @@ padding:${({padding})=>padding?'2rem .2rem': ''} ;
 
 `
 
-export const Input = styled.div`
-width:100%;
-input{
-border: 1px solid ${Color.alerzoWhite};
-border-radius: 7px;
-height: 45px;
-width:100%;
-padding:.5rem 1rem ;
-outline: none;
-&::placeholder{
-    color:${Color.alerzoWhite};
-    font-size:.8rem ;
-}
-}
-
-`
 export const Group = styled.div<formProps>`
 display: flex;
 gap: ${({gap})=>gap?gap:'10px'};
@@ -77,6 +63,7 @@ padding-bottom:${({pb})=>pb};
 padding:${({padding})=>padding} ;
 width: 100%;
 
+
 `
 export const Label = styled.label<formProps>`
 padding-top:${({pt})=>pt};
@@ -84,8 +71,28 @@ padding-left:${({pl})=>pl};
 padding-right:${({pr})=>pr};
 padding-bottom:${({pb})=>pb ? pb:'.5rem'};
 padding:${({padding})=>padding} ;
-font-size:.8rem;
+font-size:.9rem;
+color: #001928;
+font-weight: 600;
 
+`
+export const Input = styled.div`
+width:100%;
+display: flex;
+position:'relative';
+input{
+    height: 45px;
+    border: 1px solid rgba(193, 202, 207, 0.5);
+    border-radius: 6px;
+    padding: 0 2.5rem;
+    outline: none;
+    width:100%;
+}
+svg{
+    position: absolute;
+    padding: 1rem;
+    margin:0 !important;
+}
 `
 export const Error = styled.p`
 
@@ -96,7 +103,7 @@ display: flex;
 justify-content:space-between; 
 padding :3rem 0 ;
 a{
-    color:${Color.alerzoWhite};
+    color:${Color.alerzoBlue};
 }
 
 `

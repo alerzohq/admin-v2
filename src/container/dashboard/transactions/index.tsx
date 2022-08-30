@@ -4,7 +4,7 @@ import { Container } from '../../../components/layout'
 
 const TransactionContainer = () => {
   return (
-    <Container>
+    <Container  title="History">
       Transaction
     </Container>
   )

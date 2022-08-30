@@ -18,6 +18,7 @@ margin:2rem 2rem 0 2rem;
 export const AuthColumn = styled.div<Props>`
 width:50%;
 background:${({bgColor})=>bgColor};
+justify-content:center;
 @media (max-width:992px){
     display:${({hideOnMobile})=>hideOnMobile ? 'none' : 'flex'};
     width: 100%;

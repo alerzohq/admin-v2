@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormContainer, Input, Group,Control, Label,Tags, Error,Footer } from './styles/form.style'
+import { FormContainer,  Group,Control, Label,Tags, Error,Footer,Input } from './styles/form.style'
 import { FormProps,InputProps } from './type'
 
 const Form = ({children, ...restProps}:FormProps) => {
@@ -20,10 +20,9 @@ Form.Control = function FormControl({children,...restProps}:FormProps){
 }
 
 
-Form.Input = function FormInput({onChange,...restProps}:InputProps){
-    return <Input>
-               <input onChange={onChange} {...restProps} />
-          </Input>
+Form.Input = function FormInput({Icon, onChange,...restProps}:InputProps){
+
+    return <Input>{Icon && <Icon />} <input onChange={onChange} {...restProps} /></Input>
 }
 
 Form.Label = function FormLabel({children,...restProps}:FormProps){

@@ -1,5 +1,5 @@
 export type State ={
-    isCollapsed: any;
+    isCollapsed: boolean;
     user:{} | null
 }
 

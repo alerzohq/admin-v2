@@ -10,13 +10,16 @@ type sidebarStyleProps={
 }
 
 export const SidebarWrapper = styled.div<sidebarStyleProps>`
-width: ${({isCollapsed})=>isCollapsed?'6rem':'18rem'};
+width: ${({isCollapsed})=>isCollapsed?'6rem':'17rem'};
 transition: all .3s ease;
 position:fixed;
 height:100vh;
 z-index:1;
 box-shadow: ${Color.alerzoLightGray};
 overflow:hidden;
+@media (max-width:992px){
+    transform: translateX(-17rem)
+}
     
 `
 export const Inner = styled.div<sidebarStyleProps>`
@@ -49,9 +52,9 @@ flex-direction: column;
 align-items: ${({isCollapsed})=>isCollapsed?'center':'flex-start'};
 padding: .5rem;
 margin-bottom: 1rem;
-svg{
-    padding-left:${({ isActive, isCollapsed}) => isActive && isCollapsed? `0`:'.5rem'};
-}
+/* svg{
+    padding-left:${({ isActive, isCollapsed}) => isActive && isCollapsed? `0`:'0rem'};
+} */
    
 p{
 

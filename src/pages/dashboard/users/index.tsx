@@ -4,7 +4,9 @@ import { Container } from '../../../components/layout'
 
 const Users = () => {
   return (
-    <Container>Users</Container>
+    <Container title="Users">
+      Users
+    </Container>
   )
 }
 

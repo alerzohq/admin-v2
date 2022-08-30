@@ -7,6 +7,7 @@ import {Text} from '../../../components'
 
 
 
+
 const AuthLayout = ({children}:React.ComponentProps<'div'>) => {
   return (
     <AuthContainer>
@@ -29,7 +30,11 @@ const AuthLayout = ({children}:React.ComponentProps<'div'>) => {
             </AuthContent>
         </AuthColumn>
         <AuthColumn>
+          <AuthContent>
+            <AuthInner>
             {children}
+            </AuthInner>
+          </AuthContent>
         </AuthColumn>
     </AuthContainer>
   )
