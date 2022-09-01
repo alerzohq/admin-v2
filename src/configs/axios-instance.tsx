@@ -6,24 +6,23 @@ import { getStorageItem, logOut } from '../utils/session-storage';
 // AxiosRequestConfig<any>
 
 let baseURL=process.env.REACT_APP_API_BASE_URL
-let getUser = getStorageItem('user') || null
+let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : null
 
 
 
 export const axiosInstance = axios.create({ 
     baseURL,
-    headers: {Authorization: `Bearer ${getUser?.data?.token}`},
+    headers: {Authorization: `Bearer ${token}`},
   });
 
 
   axiosInstance.interceptors.request.use(async(req:any)=>{
- 
-    if(!getUser?.data?.token){
+     token = getStorageItem('user')?.data?.token;
 
-        getUser = getStorageItem('user')
-        req.headers.Authorization =  `Bearer ${getUser?.data?.token}`;
+    if(token){    
+        req.headers.Authorization =  `Bearer ${token}`;
     }
-       const user:any = jwt_decode(getUser?.data?.token);
+       const user:any = jwt_decode(token);
        const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
 
        if(!isExpired) return req
