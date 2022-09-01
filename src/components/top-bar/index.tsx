@@ -7,9 +7,9 @@ import { ArrowBackIcon } from '../../assets/icons'
 
 const TopBar = ({title}:TopBarProps) => {
 
-  const params = useParams();
+  let params = useParams();
   let navigate = useNavigate();
-  console.log({params})
+
   return (
     <TopbarWrapper>
      <>
