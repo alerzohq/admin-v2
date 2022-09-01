@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+
+import React, { useState,useEffect} from "react";
 import { EmailIcon, LockIcon } from "../../../assets/icons";
 import { Color } from "../../../assets/theme";
 import { Button, Form, Loader, Stack, Text } from "../../../components";
+import { useAppContext } from "../../../context";
 import { useMutation } from "../../../hooks";
 import { validEmail } from "../../../utils/formatValue";
 import AuthLayout from "../layout";
 import { formValue } from "./formValues";
+import { Action } from '../../../context/actions'
+import { setStorage } from "../../../utils/session-storage";
+import { useNavigate } from "react-router-dom";
+import { Path } from "../../../constants/route-path";
+import toast from "react-hot-toast";
 
 const LoginContainer = () => {
 
+const navigate = useNavigate() 
+const {dispatch} = useAppContext()  
 const [isTriggerSubmit, setIsTriggerSubmit] = useState(false);
-
 const [values, setValues] = useState(formValue);
-
 const { email, password } = values;
- let payload = {
-    email,
-    password,
- };
 
-const [loginUser, { data, error, loading }] = useMutation({pathUrl: "login", payload, methodType: "post"});
+
+const [loginUser, { data, error, loading }] = useMutation({pathUrl: "login", payload:values, methodType: "post"});
+
+
+
+useEffect(() => {
+  if(data){ 
+    dispatch({type:Action.LOGIN,
+      payload:data
+    });
+    setStorage('user',data,()=>{
+      navigate(Path.DASHBOARD)
+    })
+  }else if(error){
+    toast.error(`${error}`)
+  }
+
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+},[error,data])
+
+console.log({error})
+  
+
+ 
 
 
 
@@ -30,8 +56,8 @@ const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
       setIsTriggerSubmit(false);
       await loginUser();
     }
+   
 };
-
 
 const handleChange =(name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
   setValues({...values, [name]: e.target.value.trim()});
