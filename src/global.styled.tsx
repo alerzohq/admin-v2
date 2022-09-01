@@ -4,6 +4,7 @@ import GlimmerHeavy from "./assets/fonts/GilmerFont2/Gilmer-Heavy.otf";
 import GlimmerLight from "./assets/fonts/GilmerFont2/Gilmer-light.otf";
 import GlimmerMedium from "./assets/fonts/GilmerFont2/Gilmer-Medium.otf";
 import GlimmerRegular from "./assets/fonts/GilmerFont2/Gilmer-Regular.otf";
+import { Color } from "./assets/theme";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -87,16 +88,40 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: #c1cacf;
+  background: #fff;
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   scroll-behavior: smooth;
 }
-
+h1,h2,h3,h4,h5,h6,p {
+  margin: 2px;
+  padding:2px;
+}
 a {
   color: inherit;
   text-decoration: none;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: ${Color.alerzoWhite};
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${Color.alerzoBlue};
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: ${Color.alerzoOrange};
+}
+
 `;
 
 export default GlobalStyle;
