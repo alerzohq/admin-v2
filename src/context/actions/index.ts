@@ -1,0 +1,7 @@
+export enum Action {
+    LOGIN='LOGIN',
+    LOGOUT='LOGOUT',
+    ERROR='ERROR',
+    COLLAPSED_SIDEBAR='COLLAPSED_SIDEBAR'
+    
+}

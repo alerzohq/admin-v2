@@ -1,0 +1,115 @@
+import React, { useState } from "react";
+import { EmailIcon, LockIcon } from "../../../assets/icons";
+import { Color } from "../../../assets/theme";
+import { Button, Form, Loader, Stack, Text } from "../../../components";
+import { useMutation } from "../../../hooks";
+import { validEmail } from "../../../utils/formatValue";
+import AuthLayout from "../layout";
+import { formValue } from "./formValues";
+
+const LoginContainer = () => {
+
+const [isTriggerSubmit, setIsTriggerSubmit] = useState(false);
+
+const [values, setValues] = useState(formValue);
+
+const { email, password } = values;
+ let payload = {
+    email,
+    password,
+ };
+
+const [loginUser, { data, error, loading }] = useMutation({pathUrl: "login", payload, methodType: "post"});
+
+
+
+const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setIsTriggerSubmit(true);
+    if (email && validEmail(email) && password && password.length >= 8) {
+      setIsTriggerSubmit(false);
+      await loginUser();
+    }
+};
+
+
+const handleChange =(name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  setValues({...values, [name]: e.target.value.trim()});
+};
+
+
+
+
+
+return (
+    <AuthLayout>
+      <Stack alignItems={"center"} padding={"5rem 0 0 0"}>
+        <Form width={"65%"}>
+          <Text
+            margin={"auto"}
+            as={"h1"}
+            color={Color.alerzoDarkGray}
+            padding={"1rem 0"}
+          >
+            {`Admin Login`}
+          </Text>
+          <Text
+            as={"p"}
+            padding={"0 1rem"}
+            align={"center"}
+            weight={"500"}
+            color={Color.alerzoDarkGray}
+          >
+            {" Enter email address and password to acccess admin dashboard"}
+          </Text>
+          <Form.Control pb={"1rem"}>
+            <Form.Label>Email address</Form.Label>
+            <Form.Input
+              Icon={EmailIcon}
+              type="text"
+              onChange={handleChange("email")}
+              placeholder="Enter your email address"
+              
+            />
+            {isTriggerSubmit && (
+              <Text as={"small"} weight={"500"} color={Color.alerzoDanger}>
+                {isTriggerSubmit && email === ""
+                  ? "Email address is required*"
+                  : email !== "" && !validEmail(email)
+                  ? "Please provide a valid alerzo email"
+                  : ""}
+              </Text>
+            )}
+          </Form.Control>
+
+          <Form.Control pb={"1rem"}>
+            <Form.Label> Password</Form.Label>
+            <Form.Input
+              Icon={LockIcon}
+              type="password"
+              onChange={handleChange("password")}
+              placeholder="Enter your password"
+            />
+            {isTriggerSubmit && (
+              <Text as={"small"} weight={"500"} color={Color.alerzoDanger}>
+                {isTriggerSubmit && password === ""
+                  ? "Password is required*"
+                  : password !== "" && password.length < 8
+                  ? "Password must be 8 characters long"
+                  : ""}
+              </Text>
+            )}
+          </Form.Control>
+
+          <Form.Control>
+            <Button onClick={submitForm}>
+              {loading ? <Loader /> : "Login"}
+            </Button>
+          </Form.Control>
+        </Form>
+      </Stack>
+    </AuthLayout>
+  );
+};
+
+export default LoginContainer;
