@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
 export const TopbarWrapper=styled.div`
-height:80px; 
+height:90px; 
 background:${Color.alerzoWhite}; 
 display:flex; 
 align-items:center; 
@@ -15,7 +15,7 @@ svg{
 }
 h3{
     color:${Color.alerzoBlack}; 
-    font-size:1.4rem;
+    font-size:1.3rem;
 }
 @media(max-width:640px){
     font-size:1.2rem; 
