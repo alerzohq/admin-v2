@@ -21,7 +21,7 @@ const [error, setError] = useState<unknown>();
 
 const postData = async() => {
   setLoading(true);
-
+  setError('')
   try{
     const {data} = await axios[methodType](`${BASE_URL}/${pathUrl}`,payload,{...token &&
       {
@@ -29,14 +29,19 @@ const postData = async() => {
           'Authorization' : `Bearer ${token}`
         }
       }
-    }
-      
+    }     
   )
       setData(data)
       setLoading(false)
-    }catch(error) {
+    }catch(error:any) {
+       if(error.response.data){
         setLoading(false);
-        setError(error);
+        setError(error.response.data.message);
+       }else if(error.message === 'Network Error' ){
+        setError('Please check your network connection')
+       }else{
+        setError('Something went wrong, please try again')
+       }
     }
   }
 

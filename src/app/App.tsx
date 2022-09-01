@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // import { Sidebar } from "../components/common/sidebar/Sidebar";
@@ -11,14 +11,16 @@ import Overview from "../pages/dashboard/overview";
 import { Path } from "../constants/route-path";
 import Users from "../pages/dashboard/users";
 import {  IsUserRedirect, ProtectedRoutes } from "../configs/private-route";
-import NotFound from "../pages/404/not-found";
+import NotFound from "../pages/404";
 import TransactionDetails from "../pages/dashboard/transactions/transaction-details";
+import { useAppContext } from "../context";
+import { getStorageItem } from "../utils/session-storage";
 
 // const Dashboard = React.lazy(() => import("../pages/dashboard"));
 
 function App() {
-
-let user={};
+const {state} = useAppContext()  
+const user = getStorageItem('user') || state.user;
 
   let routes = (
     <>
