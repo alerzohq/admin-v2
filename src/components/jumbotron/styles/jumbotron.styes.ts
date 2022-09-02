@@ -37,7 +37,7 @@ display: flex;
 background: ${({bgColor})=>bgColor? bgColor : Color.alerzoWhite};
 border-radius:20px;
 justify-content:${({justifyContent})=>justifyContent};
-padding:${({padding})=>padding?padding :'2rem 1rem'};
+padding:${({padding})=>padding?padding :'2rem'};
 gap:${({gap})=>gap};
 flex:${({flex})=>flex};
 margin-top:2rem;

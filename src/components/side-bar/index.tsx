@@ -10,7 +10,7 @@ import {
   SidebarItem,
   SidebarList,
 } from "./styles/sidebar.styles";
-import { sidebarProps } from "./type";
+import { sidebarMenuProp, sidebarProps } from "./type";
 import Text from "../text";
 import { Link, useLocation } from "react-router-dom";
 import Stack from "../stack";
@@ -43,7 +43,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
         )}
         <SidebarList>
           {sideBarData.map(
-            ({ subMenu, title, Icon, path, activeIconColor }, i) => (
+            ({ title, Icon, path, activeIconColor, subMenu }:sidebarMenuProp, i) => (
               <SidebarItem
                 isActive={path === location.pathname}
                 isCollapsed={isCollapsed}
@@ -72,7 +72,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
                   </Stack>
                 </Link>
 
-                {subMenu?.map(({ name, subPath }) => (
+                {subMenu?.map(({name,subPath}) => (
                   <SidebarDropdown key={name} isShown={show === i}>
                     <Link to={subPath}>
                       <DropdownItem>{name}</DropdownItem>

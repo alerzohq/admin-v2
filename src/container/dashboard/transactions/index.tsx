@@ -1,33 +1,39 @@
 import React from 'react'
 import { FallBack, Jumbotron, Table } from '../../../components';
 import { Container } from '../../../components/layout'
-import { useFetch } from '../../../hooks'
+import { getResource } from '../../../utils/apiRequest';
 import CardWidget from '../widget/card';
+import { useQuery } from 'react-query';
+import { transHeaderList } from '../../../data/table-headers';
 
 
 
 const TransactionContainer = () => {
 
-  const {data,loading, error} = useFetch({pathUrl:'transactions?count=10'});
+ const getTransactions=() => {
+    return getResource('transactions?count=10')
+ }
 
+ const {isLoading, data, isError,error, isFetching} = useQuery('transactions',getTransactions);
+console.log({isFetching})
+  
   let component;
-
-   if(loading){
+   if(isLoading){
 
    }
-   else if(error){
-
-  }
-    else if(data ){
-      component= <FallBack
-      title={"You have no transaction yet. "}
+   else if(isError){
+    console.log({error})
+   }
+    else if(data?.data.length < 1 ){
+    component= <FallBack
+    title={"You have no transaction yet. "}
       
-    />
-       
+    />   
     }else{
       component=<Table
-       tableData={[{name:'Gabriel'},{name:'Gabriel'},]} 
-      tableHeaders={['Name']}  
+       tableName="transaction"
+       tableData={data?.data} 
+       tableHeaders={transHeaderList}  
         /> 
     }
 
@@ -36,8 +42,7 @@ const TransactionContainer = () => {
      <CardWidget />
       <Jumbotron>
       {component}
-      </Jumbotron>
-    
+      </Jumbotron>  
     </Container>
   )
 }

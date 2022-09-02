@@ -1,10 +1,11 @@
 export type TableProps={
     tableData:{}[];
-    tableHeaders:string[];
+    tableHeaders:string[]; 
     hideFilter?:boolean;
     hideCheckInput?:boolean;
     hideSort?:boolean;
-    hideSortIcon?:boolean;
+    tableName:string;
+
     onClick?:(item:{}) => void;
 }
 

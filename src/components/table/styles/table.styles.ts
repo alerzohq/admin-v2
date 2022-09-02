@@ -10,7 +10,8 @@ type Props = {
 
 export const TableWrapper = styled.div`
   position: relative;
-  @media (max-width: 768px) {
+  width:100%;
+
     overflow-x: scroll;
     overflow-y: hidden;
     scrollbar-width: none; 
@@ -19,25 +20,27 @@ export const TableWrapper = styled.div`
     width: 0;
     height: 0;
      }
-  }
+  
 `;
 export const DataTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   thead {
-    background: #f4f4f4;
-    color: #373737;
-    height: 65px;
+    background: ${Color.alerzoWhite};
+    color: #A5B0B7;
+    height: 60px;
     tr {
       text-align: left;
       font-size: 0.8rem;
+    
       th {
         padding: 1rem;
         white-space: nowrap;
+        font-weight: 500;
       }
       td {
         padding: 1rem;
-        font-weight: 600;
+        
         white-space: nowrap;
         
         svg{
@@ -49,53 +52,20 @@ export const DataTable = styled.table`
   tbody{
 
     tr {
-    border-bottom: 1px solid ${Color.alerzoLightGray};
-    height: 65px;
+    border: 0.8px solid #E8EBEE;
+    border-right: none;
+    border-left: 0;
+    height: 60px;
     color: #373737;
-    
     td {
       white-space: nowrap;
-      font-size: 1rem;
+      font-size: .9rem;
+      font-weight: 500;
       padding: .5rem 1rem;
-      .live-product{
-          display:flex;
-          align-items: center;
-          justify-content: center;
-          width:70px;
-          height:25px;
-          background:${Color.alerzoSuccess};
-          border-radius:20px;
-          font-size:.9rem;
-          &:before{
-            content: "";
-            height:6px;
-            width:6px;
-            border-radius:50%;
-            background:${Color.alerzoBlack};
-            margin-right:.5rem;
-          }
-        }
-        .draft-product{
-          display:flex;
-          align-items: center;
-          justify-content: center;
-          width:70px;
-          height:25px;
-          font-size:.9rem;
-          background:${Color.alerzoLightGray};
-          border-radius:20px;
-          &:before{
-            content: "";
-            height:6px;
-            width:6px;
-            border-radius:50%;
-            background:${Color.alerzoBlack};
-            margin-right:.5rem;
-          }
-        }
-        svg{
-          cursor: pointer;
-        }
+      div{
+        text-transform: capitalize;
+      }
+
     }
   }
   }

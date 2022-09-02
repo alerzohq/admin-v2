@@ -10,6 +10,7 @@ padding:0 1.8rem;
 box-shadow: 0px 6px 60px rgba(0, 0, 0, 0.08);
 position: sticky;
 top: 0;
+z-index:1;
 svg{
     cursor: pointer;
 }

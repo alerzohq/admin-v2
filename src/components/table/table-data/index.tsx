@@ -1,36 +1,49 @@
+import moment from "moment";
 import React,{useState} from "react";
+import { Color } from "../../../assets/theme";
+import { transformData } from "../../../helper/table.helper";
+import { formatDate } from "../../../utils/formatValue";
 
 // import { TableProps } from "../type";
 
 type dataProps = {
   tableData: {}[];
+  name:string;
 
 };
-type dataList = string[];
+type dataList = string[] | undefined;
 
 export type selectedDataType = {
     [key: string]: any;
 }[];
 
 
-const TableData = ({ tableData}: dataProps) => {
+const TableData = ({ tableData, name}: dataProps) => {
 
-  const [tableD,] = useState<selectedDataType>(tableData) ;
+const [tableD,] = useState<selectedDataType>(tableData) ;
  
+const linkStyle={
+  cursor: 'pointer',
+  color:Color.alerzoBlue,
+  textUnderline: 'underline',
 
+}
 
 
   return (
     <tbody>
       {tableD?.map((item, i) => { 
-        let dataList: dataList = item && Object.values(item);  
+
+        let newObj = transformData({item, name});
+        let dataList: dataList = newObj && Object.values(newObj);  
         return (
-          <tr key={i}>
-            
-            {dataList.map((data, i) => (
+          <tr key={i}>        
+            {dataList?.map((data, i) => ( 
               <td key={i}>
-                  <div className={data==='Live'?'live-product':data==='Draft'?'draft-product':''}>
-                  {data?.includes('/assets') ? <img src={data} alt={'product-images'}/>:data}
+                  <div   className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':` ` }>
+                  {moment(data, true).isValid()?
+                  formatDate(data, 'lll'):
+                   data}
                   </div>
               </td>
             ))}

@@ -122,6 +122,46 @@ a {
   background: ${Color.alerzoOrange};
 }
 
+
+.success{
+  background: #34a8531a;
+  color:#34A853;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+.pending{
+  background: #f1a85a1a;
+  color:#F1A85A;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+.failed{
+  background: #ea43361a;
+  color:#EA4336;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+.active{
+  background: #34a8531a;
+  color:#34A853;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
 `;
 
 export default GlobalStyle;
