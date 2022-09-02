@@ -13,3 +13,4 @@ export {default as Pagination} from './pagination'
 export {default as SelectInput} from './select-input'
 export { default as Notification} from './notification';
 export { default as TabsPage} from './tab';
+export { default as FlexTableWrapper} from './flex-table';

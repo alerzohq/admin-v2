@@ -14,6 +14,7 @@ export type TabsProps = {
     setActive: (e: number)=>void;
     active: number;
     color?: string;
+    component?: React.ReactNode;
 }
 export type TabItem = {
     label: string;

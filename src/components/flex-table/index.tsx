@@ -9,17 +9,17 @@ const FlexTableWrapper = ({ children }: FlexTableProps) => {
     )
 }
 export default FlexTableWrapper;
-FlexTableWrapper.FlexTableColumn = function TableColumns({ rowCount, rbColor, children }: FlexTableColumnProps) {
+FlexTableWrapper.FlexTableColumn = function TableColumns({ width, rbColor, children, bgColor }: FlexTableColumnProps) {
     return (
-        <FlexTableColumn rbColor={rbColor} rowCount={rowCount}>
+        <FlexTableColumn rbColor={rbColor} width={width}  bgColor={bgColor}>
             {children} 
         </FlexTableColumn>
     )
 }
 
-FlexTableWrapper.FlexTableRow = function TableRow({ color, bgColor, children }: FlexTableRowProps) {
+FlexTableWrapper.FlexTableRow = function TableRow({ children }: FlexTableRowProps) {
     return (
-        <FlexTableRow color={color} bgColor={bgColor}>
+        <FlexTableRow>
          {children}      
         </FlexTableRow>
     )

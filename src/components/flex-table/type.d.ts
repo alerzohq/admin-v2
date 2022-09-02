@@ -2,15 +2,15 @@ import React from "react"
 
 export type FlexTableProps = {
     children: React.ReactNode;
+
 }
 export type FlexTableRowProps = {
-   color: string;
-   bgColor: string;
-   children: React.ReactNode;
+    children?: string | React.Node;
 
 }
 export type FlexTableColumnProps = {
-    rowCount?: number;
+    width?: string;
     rbColor?: string;
+    bgColor: string;
     children?: string | React.Node;
- }
+}
