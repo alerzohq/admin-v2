@@ -1,0 +1,1 @@
+export const transHeaderList =['Reference','Amount', 'Type','Narration','Biller', 'Status','Date']

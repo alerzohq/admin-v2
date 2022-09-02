@@ -22,13 +22,13 @@ export const sideBarData=[
      title: "Transactions",
      Icon: UserIcon,
      activeIconColor:'',
-     path:`/${Path.DASHBOARD}/${Path.TRANSACTION}`,
+     path:`/${Path.DASHBOARD}/${Path.TRANSACTION}`
      
-     subMenu:[
-         {name: "All Transactions",
-          subPath:`/${Path.DASHBOARD}/${Path.TRANSACTION}`
-          }, 
-     ]
+    //  subMenu:[
+    //      {name: "All Transactions",
+    //       subPath:`/${Path.DASHBOARD}/${Path.TRANSACTION}`
+    //       }, 
+    //  ]
     },
 
  ]
