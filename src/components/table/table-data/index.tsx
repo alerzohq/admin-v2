@@ -1,6 +1,6 @@
 import moment from "moment";
 import React,{useState} from "react";
-import { Color } from "../../../assets/theme";
+
 import { transformData } from "../../../helper/table.helper";
 import { formatDate } from "../../../utils/formatValue";
 
@@ -22,12 +22,6 @@ const TableData = ({ tableData, name}: dataProps) => {
 
 const [tableD,] = useState<selectedDataType>(tableData) ;
  
-const linkStyle={
-  cursor: 'pointer',
-  color:Color.alerzoBlue,
-  textUnderline: 'underline',
-
-}
 
 
   return (
@@ -40,7 +34,7 @@ const linkStyle={
           <tr key={i}>        
             {dataList?.map((data, i) => ( 
               <td key={i}>
-                  <div   className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':` ` }>
+                  <div   className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
                   {moment(data, true).isValid()?
                   formatDate(data, 'lll'):
                    data}

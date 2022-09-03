@@ -91,6 +91,7 @@ body {
   background: #fff;
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
   scroll-behavior: smooth;
 }
 h1,h2,h3,h4,h5,h6,p {
@@ -160,7 +161,12 @@ a {
   font-weight: 500;
   cursor: pointer;
 }
+.tableLink{
+  text-decoration:underline;
+  cursor: pointer;
+  color:${Color.alerzoBlue}
 
+}
 
 `;
 
