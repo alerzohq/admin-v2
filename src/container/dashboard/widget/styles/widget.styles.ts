@@ -27,6 +27,9 @@ small{
     padding:0 .5rem;
     text-align:center;
 }
+h3{
+    font-weight:700 ;
+}
 
 @media(max-width:768px){
 flex:0 0 48%; 

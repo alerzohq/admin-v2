@@ -1,5 +1,5 @@
 import React from 'react'
-import { FallBack, Jumbotron, Table } from '../../../components';
+import { FallBack, Jumbotron, Loader, Table, } from '../../../components';
 import { Container } from '../../../components/layout'
 import { getResource } from '../../../utils/apiRequest';
 import CardWidget from '../widget/card';
@@ -14,22 +14,27 @@ const TransactionContainer = () => {
     return getResource('transactions?count=10')
  }
 
- const {isLoading, data, isError,error, isFetching} = useQuery('transactions',getTransactions);
+ const {isLoading, data, isError,isFetching} = useQuery('transactions',getTransactions);
 console.log({isFetching})
   
   let component;
    if(isLoading){
-
+    component = <Loader text={'Loading'}/>
    }
    else if(isError){
-    console.log({error})
+    component= <FallBack
+    error
+    title={"Failed to load transaction history. "}
+      
+    /> 
+
    }
-    else if(data?.data.length < 1 ){
+    else if(data?.data?.length < 1 ){
     component= <FallBack
     title={"You have no transaction yet. "}
       
     />   
-    }else{
+    }else{ 
       component=<Table
        tableName="transaction"
        tableData={data?.data} 
@@ -38,7 +43,8 @@ console.log({isFetching})
     }
 
   return (
-    <Container  title="History">    
+    <Container showFilters title="History" isFetching={isFetching}> 
+    
      <CardWidget />
       <Jumbotron>
       {component}

@@ -1,16 +1,22 @@
 import React from 'react'
-import { LoaderWrapper } from './styles/loader.styles'
+import { LoaderWrapper,LoaderIndicator } from './styles/loader.styles'
+import { LoaderProps } from './type'
+import Text from '../text'
 
-const Loader = () => {
+const Loader = ({color,text}:LoaderProps) => {
   return (
-    <LoaderWrapper>
+    <LoaderWrapper >
+     {text &&  <Text as={'h4'} padding={'0 0 .5rem 0'}>{text}</Text>}
+    <LoaderIndicator color={color}>
+
         <div className="lds-ellipsis">
           <div>
             </div>
             <div>
               </div>
               <div></div></div>
-    </LoaderWrapper>
+    </LoaderIndicator>
+   </LoaderWrapper>
   )
 }
 

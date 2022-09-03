@@ -1,9 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-query';
 
-
-
-
 type queryProps = {
     onSuccess?:()=>void;
     onError?:()=>void;

@@ -42,7 +42,7 @@ useEffect(() => {
    // eslint-disable-next-line react-hooks/exhaustive-deps
 },[error,data])
 
-console.log({error})
+
   
 
  
@@ -69,7 +69,7 @@ const handleChange =(name: string) => (e: React.ChangeEvent<HTMLInputElement>) =
 
 return (
     <AuthLayout>
-      <Stack alignItems={"center"} padding={"5rem 0 0 0"}>
+      <Stack alignItems={"center"} padding={"8rem 0 0 0"}>
         <Form width={"65%"}>
           <Text
             margin={"auto"}
@@ -102,7 +102,7 @@ return (
                 {isTriggerSubmit && email === ""
                   ? "Email address is required*"
                   : email !== "" && !validEmail(email)
-                  ? "Please provide a valid alerzo email"
+                  ? "Please provide an alerzo email"
                   : ""}
               </Text>
             )}
@@ -129,7 +129,7 @@ return (
 
           <Form.Control>
             <Button onClick={submitForm}>
-              {loading ? <Loader /> : "Login"}
+              {loading ? <Loader color={Color.alerzoWhite}/> : "Login"}
             </Button>
           </Form.Control>
         </Form>

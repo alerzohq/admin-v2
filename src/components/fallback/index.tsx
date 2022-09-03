@@ -7,11 +7,11 @@ import { Wrapper } from './styles/fallback.styles'
 import { Color } from '../../assets/theme'
 import { InfoIcon } from '../../assets/icons'
 
-const FallBack: React.FC<fallbackProps>= ({title, description, }) => {
+const FallBack: React.FC<fallbackProps>= ({title, description,error }) => {
 
   return (
     <Wrapper>
-    <InfoIcon color={Color.alerzoOrange} /> 
+    <InfoIcon color={error ? Color.alerzoDanger : Color.alerzoOrange} /> 
        <Stack padding={'1rem 0'} alignItems={'center'}>
           <Text
           as={"h4"}

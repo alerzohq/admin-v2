@@ -33,7 +33,7 @@ align-items:center;
 justify-content:center;
 
 @media (max-width:640px){
-padding:.5rem;
+padding: 0 2.5rem;
 }
 
 `

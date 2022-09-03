@@ -1,6 +1,18 @@
 import styled from 'styled-components/macro'
+import { Color } from '../../../assets/theme'
+
+type LineStyleProps = {
+  color?: string
+}
 
 export const LoaderWrapper = styled.div`
+display:flex; 
+align-items: center; 
+justify-content:center;
+width:100%;
+`
+
+export const LoaderIndicator = styled.div<LineStyleProps>`
 .lds-ellipsis {
   display: inline-block;
   position: relative;
@@ -13,7 +25,7 @@ export const LoaderWrapper = styled.div`
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #fff;
+  background: ${({color})=>color?color :Color.alerzoBlue};
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
