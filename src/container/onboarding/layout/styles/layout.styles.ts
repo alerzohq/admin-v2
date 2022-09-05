@@ -12,6 +12,14 @@ min-height: 100vh;
 svg{
 margin:2rem 2rem 0 2rem;
 }
+#login{
+    padding:6rem 0 0 0;
+    @media(max-width:992px){
+    padding:2rem 0 0 0; 
+}
+
+}
+
 
 `
 
