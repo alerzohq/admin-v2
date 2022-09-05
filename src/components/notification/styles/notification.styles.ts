@@ -11,10 +11,10 @@ export const NotificationContainer = styled.div<tabProps>`
 width: 100%;
 display: flex;
 align-items: center;
-font-weight: 700;
+font-weight: 600;
 font-size: 14px;
 justify-content: center;
-padding: 1.2% 0;
+padding: 0.8em 0;
 border-top-left-radius: 12px;
 border-top-right-radius: 12px;
 background-color: ${({bgColor}) => bgColor}

@@ -1,23 +1,25 @@
 import { useLocation } from "react-router-dom";
+import { useFetch } from "../../../../../hooks";
+import { getStorageItem } from "../../../../../utils/session-storage";
 import DetailsContent from "./transaction-details";
+import { Transaction } from "./type";
 
-const TabsContentContainer = () => {
-    const location = useLocation();
-    const thePath = location.pathname;
-    const activeTab = thePath.substring(thePath.lastIndexOf('/') + 1)
-    console.log(activeTab)
+const TabsContentContainer = ({data}:Transaction) => {
+
+
+    console.log(getStorageItem('user'))
+    const search = useLocation().search;
+    const queryParam = new URLSearchParams(search).get('status');
     const renderSwitch = () => {
-        switch (activeTab) {
+        switch (queryParam) {
             case 'other':
                 return <div>Others</div>
             case 'receipt':
                 return <div>Receipt</div>
             case 'notes':
                 return <div>Notes</div>
-            case 'details':
-                return <DetailsContent />
             default:
-                return null
+                return  <DetailsContent data={data} />
         }
     }
     return (

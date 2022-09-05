@@ -11,6 +11,8 @@ type textProps = {
     opacity?: string;
     bgColor?: string;
     cursor?:string;
+    radius?:string;
+    textAlign?: string;
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -25,7 +27,8 @@ text-align:${({align})=>align};
 max-width: ${({width})=>width};
 opacity: ${({opacity})=>opacity};
 background:${({bgColor})=>bgColor};
-border-radius: 5px;
+border-radius: ${({radius})=>radius || "5px"};
 cursor:${({cursor})=>cursor};
+text-align:${({textAlign})=> textAlign};
 
 `

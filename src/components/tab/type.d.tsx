@@ -19,6 +19,7 @@ export type TabsProps = {
 export type TabItem = {
     label: string;
     value: string;
+    title?: string;
 
 
 }

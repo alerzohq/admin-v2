@@ -70,12 +70,12 @@ const user = getStorageItem('user') || state.user;
 
          
           {/* replace with not found component */}
-          <Route
+          {/* <Route
             path="*"
             element={         
               <NotFound user={user} />
             }
-          />
+          /> */}
         </Routes>
       </ErrorBoundary>
     </>
