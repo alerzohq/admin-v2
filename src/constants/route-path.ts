@@ -3,5 +3,6 @@ export enum Path{
   DASHBOARD='dashboard',
   TRANSACTION='transactions',
   USERS='users',
-  TRANSACTIONDETAIL='transactions/:transID'
+  TRANSACTIONDETAIL='transactions/:transID',
+  TRANSACTIONDETAILSLUG='slug'
 }

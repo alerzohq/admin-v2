@@ -37,7 +37,7 @@ useEffect(() => {
       navigate(Path.DASHBOARD)
     })
   }else if(error){
-    toast.error(`${error}`)
+    toast.error(`Invalid Credentials`)
   }
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +70,7 @@ const handleChange =(name: string) => (e: React.ChangeEvent<HTMLInputElement>) =
 
 return (
     <AuthLayout>
-      <Stack alignItems={"center"} padding={"8rem 0 0 0"}>
+      <Stack alignItems={"center"} id='login' >
         <Form width={"65%"}>
           <Text
             margin={"auto"}
