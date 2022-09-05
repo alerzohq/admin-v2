@@ -15,7 +15,7 @@ const TransactionContainer = () => {
  }
 
  const {isLoading, data, isError,isFetching} = useQuery('transactions',getTransactions);
-console.log({isFetching})
+
   
   let component;
    if(isLoading){

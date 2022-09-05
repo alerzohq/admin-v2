@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { Path } from "../../../constants/route-path";
 import toast from "react-hot-toast";
 
+
 const LoginContainer = () => {
 
 const navigate = useNavigate() 
@@ -39,7 +40,7 @@ useEffect(() => {
     toast.error(`${error}`)
   }
 
-   // eslint-disable-next-line react-hooks/exhaustive-deps
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[error,data])
 
 
@@ -86,7 +87,7 @@ return (
             weight={"500"}
             color={Color.alerzoDarkGray}
           >
-            {" Enter email address and password to acccess admin dashboard"}
+            {" Enter email address and password to access admin dashboard"}
           </Text>
           <Form.Control pb={"1rem"}>
             <Form.Label>Email address</Form.Label>
@@ -102,7 +103,7 @@ return (
                 {isTriggerSubmit && email === ""
                   ? "Email address is required*"
                   : email !== "" && !validEmail(email)
-                  ? "Please provide an alerzo email"
+                  ? "Please provide an alerzo email*"
                   : ""}
               </Text>
             )}
