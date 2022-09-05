@@ -17,7 +17,7 @@ gap:.3rem;
 flex:0 0 23%;
 border-radius:20px; 
 box-shadow:0px 6px 60px rgba(0, 0, 0, 0.04);
-height:170px;
+height:150px;
 width:200px;
 background:${Color.alerzoWhite};
 svg{
@@ -26,6 +26,9 @@ svg{
 small{
     padding:0 .5rem;
     text-align:center;
+}
+small{
+color:${Color.alerzoDarkGray};
 }
 h3{
     font-weight:700 ;

@@ -3,6 +3,7 @@ export enum Color {
   alerzoLightBlue='#006ce891',
   alerzoWhite='#ffffff',
   alerzoGray='#E5E5E5',
+  alerzoBgColor='#F9FAFC',
   alerzoGray2='#A5B0B7',
   alerzoDarkGray='#374B58',
   alerzoLightGray='0px 6px 60px rgba(0, 0, 0, 0.08)',
