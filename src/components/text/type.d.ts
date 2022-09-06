@@ -15,6 +15,7 @@ type TextOwnProps<E extends React.ElementType>= {
     cursor?:string,
     radius?:string,
     textAlign?: string,
+    whiteSpace?: string,
     as?:E,
 
 }

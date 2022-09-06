@@ -13,12 +13,14 @@ type textProps = {
     cursor?:string;
     radius?:string;
     textAlign?: string;
+    whiteSpace?: string;
 }
 
 export const TextStyle = styled.div<textProps>`
 display:flex;
 align-items:center;
 color:${({color})=>color};
+white-space:${({whiteSpace})=>whiteSpace};
 font-size:${({size})=>size};
 font-weight:${({weight})=>weight};
 padding:${({padding})=>padding};
@@ -30,5 +32,6 @@ background:${({bgColor})=>bgColor};
 border-radius: ${({radius})=>radius || "5px"};
 cursor:${({cursor})=>cursor};
 text-align:${({textAlign})=> textAlign};
+
 
 `

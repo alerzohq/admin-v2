@@ -1,11 +1,11 @@
-import { TabContentContainer } from "./styles/tab-content.styles";
+import { Content, TabContentContainer } from "./styles/tab-content.styles";
 import { FlexTableWrapper } from "../../../../../components";
 import { DETAILSTABLE, RECIPIENTTABLE, SESSIONTABLE } from "../../../../../data/tab-data";
 
 
 const DetailsContent = ({ data }: any) => {
     return (
-        <>
+        <Content>
             <FlexTableWrapper.Row
                 data={data}
                 header={DETAILSTABLE}
@@ -28,7 +28,7 @@ const DetailsContent = ({ data }: any) => {
                 />
             </TabContentContainer>
 
-        </>
+        </Content>
     )
 
 }

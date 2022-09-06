@@ -42,7 +42,7 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
     const renderSwitch = (param: string) => {
         switch (param) {
             case 'large':
-                return "2";
+                return "1";
             default:
                 return "1"
         }
@@ -61,6 +61,7 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                                 color={Color.alerzoGrayTwo}
                                 size="14px"
                                 textAlign="left"
+                                whiteSpace="nowrap"
                                 align={'center'}>
                                 {detail.label}
                             </Text>

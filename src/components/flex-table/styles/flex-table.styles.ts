@@ -24,12 +24,25 @@ width: 100%;
 margin-top: 1em;
 background-color: white;
 border-radius: 12px;
+overflow-x: scroll;
+overflow-y: hidden;
+scrollbar-width: 12px; 
+-ms-overflow-style: none;
+::-webkit-scrollbar { 
+height: 2px;
+
+ }
+ ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: 3px solid ${Color.alerzoGray};
+}
 `
 export const CardContainer = styled.div<columnProps>`
 flex: ${({ flex }) => flex ? flex : 1};
 display: flex;
 flex-direction:column;
 flex-wrap: wrap; 
+
 
 `
 export const CardItem = styled.div<columnProps>`

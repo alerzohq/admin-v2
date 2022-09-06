@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Color } from '../../../../assets/theme';
-import { TabsPage, Notification, Text } from '../../../../components';
+import { TabsPage, Notification, Text, Jumbotron } from '../../../../components';
 import { TABS, transaction } from '../../../../data/tab-data';
 import { capitalizeFirstLetter } from '../../../../utils/formatValue';
 import TabsContentContainer from './tab-content';
@@ -32,15 +32,17 @@ const TabsContainer = () => {
     return (
         <>
             <Notification label={`${capitalizeFirstLetter(transaction?.status)} Transaction!`} color={Color.alerzoTableSuccess} bgColor={Color.alerzoTableSuccessBg} />
+
             <TabsPage.Tabs color={Color.alerzoGreyTint} tabs={TABS} active={active} setActive={setActive} />
             {title && <Text as={'p'}
-                padding={'.8em 0 0 0'}
-                color={Color.alerzoBlack}
-                weight='600'
-                align={'center'}>
-                {title}
-            </Text>}
-            {renderSwitch()}
+                    padding={'.8em 0 0 0'}
+                    color={Color.alerzoBlack}
+                    weight='600'
+                    align={'center'}>
+                    {title}
+                </Text>}
+                {renderSwitch()}
+
         </>
 
     )

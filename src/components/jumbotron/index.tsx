@@ -3,10 +3,10 @@ import { Container, JumbotronItem,Pane, Inner, } from './styles/jumbotron.styes'
 
 import { JumbotronProps} from './type'
 
-const Jumbotron = ({children,socialPosition, direction = 'row',  ...restProps }:JumbotronProps) => {
+const Jumbotron = ({children,socialPosition, gap, direction = 'row',  ...restProps }:JumbotronProps) => {
     return (
         <JumbotronItem  {...restProps} >  
-            <Inner direction={direction} socialPosition={socialPosition} >
+            <Inner direction={direction} socialPosition={socialPosition} gap={gap} >
                 {children}
             </Inner>
         </JumbotronItem>
