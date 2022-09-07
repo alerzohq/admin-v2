@@ -6,7 +6,7 @@ width:100%;
 
 `
 export const Content = styled.div`
-overflow: scroll;
+overflow-x: scroll;
 width: 100%;
 
 `

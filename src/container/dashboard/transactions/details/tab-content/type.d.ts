@@ -3,7 +3,7 @@ export type TransactionData = {
     name: string;
     amount: string;
     type: string;
-    total: string;
+    balance: string;
     summary:string;
 
 
@@ -11,4 +11,6 @@ export type TransactionData = {
 
 export type Transaction = {
     data:TransactionData;
+    slug: string;
+    tab: string;
 }

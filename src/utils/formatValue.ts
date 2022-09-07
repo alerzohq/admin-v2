@@ -34,9 +34,19 @@ export const formIsValid = (payload: { [key: string]: any }) => {
 }
 export const capitalizeFirstLetter = (s: string) => {
   if (typeof s !== 'string') return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
+
+  return s?.charAt(0).toUpperCase() + s.slice(1);
 };
 
 export const numberWithCommas = (x: string) => {
   return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+export const capitalizeFirstLetterInSentence = (mySentence: string) => {
+  if (typeof mySentence !== 'string') return '';
+  const arr = mySentence?.split(' ');
+  for (var i = 0; i < arr.length; i++) {
+  arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+  return arr.join(" ");
+
+}
 };

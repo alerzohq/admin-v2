@@ -1,6 +1,7 @@
 import { Text } from "..";
 import { Color } from "../../assets/theme";
-import { capitalizeFirstLetter, numberWithCommas } from "../../utils/formatValue";
+import { capitalizeFirstLetter, capitalizeFirstLetterInSentence, numberWithCommas } from "../../utils/formatValue";
+import { resolveColor } from "../../utils/resolveColors";
 import { CardItem, CardWrapper, CardContainer } from "./styles/flex-table.styles"
 import { FlexTableProps, FlexTableRowProps } from "./type";
 
@@ -42,7 +43,9 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
     const renderSwitch = (param: string) => {
         switch (param) {
             case 'large':
-                return "1";
+                return "2";
+                case 'extraLarge':
+                    return "4";
             default:
                 return "1"
         }
@@ -51,8 +54,16 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
         <CardWrapper>
             {header.map((detail, index) => {
                 const field = header[index]?.value as string;
-                const amt = field as keyof typeof data === "amount"  ? `₦${numberWithCommas(data[field as keyof typeof data])}` : capitalizeFirstLetter(data[field as keyof typeof data]);
-                console.log(field, data[field as keyof typeof data], "valll")
+                const amt = field as keyof typeof data === "amount"  ||  field as keyof typeof data === "balance"? `₦${numberWithCommas(data[field as keyof typeof data])}` : (capitalizeFirstLetterInSentence(data[field as keyof typeof data]));
+             let color:string = '';
+             let bgColor:string = '';
+                if(field as keyof typeof data === "status" ){
+                 const resolveData = resolveColor(data[field as keyof typeof data]);
+                 color =  resolveData.textColor;
+                 bgColor =  resolveData.bgColor;
+
+
+             }
                 return (
                     <CardContainer flex={renderSwitch(detail.columnWidth || "small")}>
                         <CardItem padding={".7em 1.2em"} flex={"0"} topLeftRadius={index === 0 ? "12px" : "0"} topRightRadius={header.length - 1 === index ? "12px" : "0"}>
@@ -69,7 +80,9 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                         <CardItem margin="2em 0" showBorder={header.length - 1 !== index} padding="0 1em" flex={"3"} bgColor={bgBottomColor} bottomLeftRadius={index === 0 ? "12px" : "0"} bottomRightRadius={header.length - 1 === index ? "12px" : "0"}>
                             <Text as={'p'}
                                 padding={'0 .1em'}
-                                color={Color.alerzoBlack}
+                                color={field as keyof typeof data === "status" ? color : Color.alerzoBlack}
+                                bgColor={field as keyof typeof data === "status" ? bgColor : "transparent"}
+                                justifyContent={field as keyof typeof data === "status" ? "center" : "left"}
                                 textAlign="left"
                                 size="14px"
                                 align={'center'}>

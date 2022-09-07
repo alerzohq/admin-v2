@@ -20,5 +20,8 @@ export enum Color {
   alerzoMediumGray="rgba(121, 136, 146, 1)",
   alerzoGrayTwo= "#798892",
   alerzoGrayBorder = "#E8EBEE",
+  alerzoErrorBg="#F3DDDD",
+  alerzoWarningText="#F1A85A",
+  alerzoWarningBg="rgba(241, 168, 90, 0.1)",
  
 }

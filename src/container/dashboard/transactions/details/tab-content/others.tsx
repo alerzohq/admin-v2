@@ -1,21 +1,20 @@
 import { Content, TabContentContainer } from "./styles/tab-content.styles";
 import { FlexTableWrapper } from "../../../../../components";
 import { DETAILSTABLE, RECIPIENTTABLE, SESSIONTABLE } from "../../../../../data/tab-data";
-import { detailsHelper } from "../../../../../data/tab-data-helper";
-import { TableData } from "../../../../../components/flex-table/type";
+import { detailsHelper, otherHelper } from "../../../../../data/tab-data-helper";
 
 
-const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
-    console.log(resolvedData, "resolved")
+const OthersContent = ({ data, slug }: { data: any, slug: string }) => {
+    const resolveData = otherHelper(data);
     return (
         <Content>
-            {resolvedData?.map((item) => {
+            {resolveData?.map((item) => {
                 if (item?.spacing === true) {
                     return (
                         <TabContentContainer>
                             <FlexTableWrapper.Row
                                 data={item?.data}
-                                header={item?.header}
+                                header={item.header}
                                 bgBottomColor="#FFFFFF"
                             />
                         </TabContentContainer>
@@ -38,4 +37,4 @@ const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
 
 }
 
-export default DetailsContent;
+export default OthersContent;

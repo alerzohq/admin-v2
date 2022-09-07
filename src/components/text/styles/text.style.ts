@@ -14,6 +14,7 @@ type textProps = {
     radius?:string;
     textAlign?: string;
     whiteSpace?: string;
+    justifyContent?: string;
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -32,6 +33,7 @@ background:${({bgColor})=>bgColor};
 border-radius: ${({radius})=>radius || "5px"};
 cursor:${({cursor})=>cursor};
 text-align:${({textAlign})=> textAlign};
+justify-content:${({justifyContent})=> justifyContent};
 
 
 `
