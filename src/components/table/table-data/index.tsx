@@ -5,29 +5,32 @@ import { transformData } from "../../../helper/table.helper";
 import { formatDate } from "../../../utils/formatValue";
 
 // import { TableProps } from "../type";
+export type selectedDataType = {
+  [key: string]: any;
+};
 
 type dataProps = {
-  tableData: {}[];
+  tableData: selectedDataType[];
   name:string;
 
 };
 type dataList = string[] | undefined;
 
-export type selectedDataType = {
-    [key: string]: any;
-}[];
+// export type selectedDataType = {
+//     [key: string]: any;
+// }[];
 
 
 const TableData = ({ tableData, name}: dataProps) => {
 const navigate = useNavigate();
-const [tableD,] = useState<selectedDataType>(tableData) ;
+
 
 
   return (
     <tbody>
-      {tableD?.map((item, i) => { 
+      {tableData?.map((item, i) => { 
 
-        console.log(item)
+        
 
         let newObj = transformData({item, name});
         let dataList: dataList = newObj && Object.values(newObj);  

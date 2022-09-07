@@ -12,7 +12,7 @@ const AuthLayout = ({children}:React.ComponentProps<'div'>) => {
   return (
     <AuthContainer>
         <AuthColumn bgColor={Color.alerzoBlue} hideOnMobile>
-        <AlerzoLogo />
+        <AlerzoLogo className={'logo-svg'}/>
             <AuthContent>        
                <AuthInner >
                <img src={authImage} alt={'auth-img'} width={'80%'}/>

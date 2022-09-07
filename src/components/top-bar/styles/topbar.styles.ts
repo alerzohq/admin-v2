@@ -32,17 +32,40 @@ overflow-x: scroll;
 overflow-y: hidden;
 scrollbar-width: none; 
 -ms-overflow-style: none;
-::-webkit-scrollbar { 
-width: 0;
-height: 0;
-    }
-input{    
+#download-btn{
+align-items: center;
+display: flex;
+justify-content: space-between;
 background: ${Color.alerzoWhite};
 border: 1px solid rgba(193, 202, 207, 0.5);
 border-radius: 10px;
 height: 45px;
 padding:0 1rem ;
-max-width:120px;
+width:200px; 
+font-family: 'Gilmer';   
+font-style: normal;
+font-size: 12px;
+line-height: 17px;
+color: ${Color.alerzoGray2};
+text-align: left;
+cursor: pointer;
+}
+::-webkit-scrollbar { 
+width: 0;
+height: 0;
+    }
+
+@media(max-width:768px){
+gap:10px;
+}
+`
+export const Filter = styled.input` 
+background: ${Color.alerzoWhite};
+border: 1px solid rgba(193, 202, 207, 0.5);
+border-radius: 10px;
+height: 45px;
+padding:0 1rem ;
+max-width:200px;
 ::placeholder{
 font-family: 'Gilmer';   
 font-style: normal;
@@ -50,12 +73,12 @@ font-size: 12px;
 line-height: 17px;
 color: ${Color.alerzoGray2};
 }
+
 outline: none;
 @media(max-width:1240px){
     max-width:100px;
 }
-}
-@media(max-width:768px){
-gap:10px;
-}
+
+
 `
+

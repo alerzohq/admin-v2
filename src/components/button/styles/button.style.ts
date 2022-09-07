@@ -9,11 +9,13 @@ type Props = {
     height?:string;
     color?:string;
     borderColor?:string;
+    weight?:string;
     fontSize?:string,
     noborder?:boolean;
     align?:string;
     gap?:string;
     margin?:string;
+    radius?:string;
 }
 
 export const ButtonContainer = styled.button<Props>` 
@@ -25,11 +27,13 @@ cursor:${({disabled})=>disabled? 'not-allowed': 'pointer' };
 width:${({width})=>width? width: '100%'};
 height:${({height})=>height? height: '3rem'};
 color: ${({color})=>color ? color:`${Color.alerzoWhite}`};
-border:none;
+border:${({borderColor})=>borderColor? `2px solid ${borderColor}`: '2px solid transparent'};
 font-size:${({fontSize})=>fontSize};
-border-radius:.4rem;
+border-radius: ${({radius})=>radius?radius:'.4rem'};
+font-weight:${({weight})=>weight};
 transition: background-color .5s linear;
-
+font-family: "Gilmer";
+letter-spacing:1px;
 gap:.2rem;
 
 `

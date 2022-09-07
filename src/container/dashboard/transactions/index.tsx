@@ -1,45 +1,42 @@
 import React,{ useState} from 'react'
-import { FallBack, Jumbotron, Loader, Table, } from '../../../components';
+import { FallBack, Jumbotron, Loader, Pagination, Table, } from '../../../components';
 import { Container } from '../../../components/layout'
 import { getResource } from '../../../utils/apiRequest';
 import CardWidget from '../widget/card';
 import { useQuery } from 'react-query';
 import { transHeaderList } from '../../../data/table-headers';
-import { DateRangePicker } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css';
+
 
 
 
 const TransactionContainer = () => {
 
-const [selectionRange, setSelectionRange] =useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
+const [count,] = useState(10);
+const [pageNumber,setPageNumber] = useState(0);
+const [status,] = useState('successful')
+const [selectionRange, ] =useState({
+      startDate: new Date().getTime(),
+      endDate: new Date().getTime(),
+      key: 'selection',
   })
+const {startDate, endDate}= selectionRange
 
- const getTransactions=() => {
-    return getResource('transactions?count=10')
+// &from=${startDate}&to=${endDate}
+
+ const getTransactions=(count:number,pageNumber:number,startDate:number ,endDate:number,status: string ) => {
+    return getResource(`transactions?count=${count}&pageNumber=${pageNumber || null}&status=${status || null}`)
  }
 
- const {isLoading, data, isError,isFetching} = useQuery('transactions',getTransactions);
+ const {isLoading, data, isError,isFetching,isPreviousData} = useQuery(['transactions',count,pageNumber,startDate,endDate,status],
+  ()=>getTransactions(count,pageNumber,startDate,endDate,status),
+  { keepPreviousData : true }
+  );
 
- const  handleSelect =({selection}: any)=>{
-  //  console.log(selection)
-   setSelectionRange({...selectionRange,startDate:selection?.startDate,
-    endDate:selection?.endDate
-  })
- };
 
- const handlePreviewChange=(DateRange:any) => {
-  console.log({DateRange})
 
- }
-  
   let component;
    if(isLoading){
-    component = <Loader text={'Loading'}/>
+    component = <Loader />
    }
    else if(isError){
     component= <FallBack
@@ -63,18 +60,15 @@ const [selectionRange, setSelectionRange] =useState({
     }
 
   return (
-    <Container showFilters title="History" isFetching={isFetching}> 
+    <Container showFilters title="History"  isFetching={isFetching}> 
     
      <CardWidget />
       <Jumbotron>
       {component}
-      </Jumbotron>  
-
-      <DateRangePicker
-        ranges={[selectionRange]}
-        onChange={handleSelect}
-        onPreviewChange={handlePreviewChange}
-      />
+      </Jumbotron> 
+     
+      <Pagination data={data} setPageNumber={setPageNumber } pageNumber={pageNumber} isPreviousData={isPreviousData} />
+     
     </Container>
   )
 }
