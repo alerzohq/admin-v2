@@ -24,7 +24,7 @@ const {startDate, endDate}= selectionRange
 // &from=${startDate}&to=${endDate}
 
  const getTransactions=(count:number,pageNumber:number,startDate:number ,endDate:number,status: string ) => {
-    return getResource(`transactions?count=${count}&pageNumber=${pageNumber}&status=${status}`)
+    return getResource(`transactions?count=${count}&pageNumber=${pageNumber || null}&status=${status || null}`)
  }
 
  const {isLoading, data, isError,isFetching,isPreviousData} = useQuery(['transactions',count,pageNumber,startDate,endDate,status],
@@ -33,7 +33,7 @@ const {startDate, endDate}= selectionRange
   );
 
 
-  console.log({isFetching})
+
   let component;
    if(isLoading){
     component = <Loader />
