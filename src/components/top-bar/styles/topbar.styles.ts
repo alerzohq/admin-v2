@@ -81,4 +81,22 @@ outline: none;
 
 
 `
+export const SelectInput= styled.select`
+background: ${Color.alerzoWhite};
+border: 1px solid rgba(193, 202, 207, 0.5);
+border-radius: 10px;
+height: 45px;
+padding:0 1rem ;
+max-width:200px;
+::placeholder{
+font-family: 'Gilmer';   
+font-style: normal;
+font-size: 12px;
+line-height: 17px;
+color: ${Color.alerzoGray2};
+}
+
+outline: none;
+
+`
 

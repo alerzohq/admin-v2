@@ -1,16 +1,20 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import LineLoader from '../../line-loader'
 import TopBar from '../../top-bar'
 import { ContainerProps } from '../type'
 import { ContainerWrapper } from './styles/container.styles'
 
-const Container:React.FC<ContainerProps> = ({title,isFetching, showFilters, children,...restProps}) => {
+const Container:React.FC<ContainerProps> = ({title,isFetching,setFilterValues, showFilters, children,...restProps}) => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [isFetching]);
  
   return (
     <>
-    <TopBar title={title} showFilters={showFilters}  {...restProps}/>
+    
+    <TopBar title={title} showFilters={showFilters} setFilterValues={setFilterValues}  {...restProps}/>
      {isFetching ? <LineLoader/>: ''}
     <ContainerWrapper {...restProps}>
         {children}

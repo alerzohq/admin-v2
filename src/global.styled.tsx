@@ -167,6 +167,10 @@ a {
   color:${Color.alerzoBlue}
 
 }
+.select-placeholder{
+    color:${Color.alerzoGray2} !important;
+    font-size:.8rem ;
+}
 
 `;
 
