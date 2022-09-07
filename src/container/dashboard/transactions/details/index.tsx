@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { Color } from '../../../../assets/theme';
 import { TabsPage, Notification, Text, Jumbotron, Loader } from '../../../../components';
 import { encrypt } from '../../../../configs/secure-data';
-import { TABS } from '../../../../data/tab-data';
 import { useQuery } from 'react-query';
 import { getResource } from '../../../../utils/apiRequest';
 import { capitalizeFirstLetter } from '../../../../utils/formatValue';
 import DetailsContent from './tab-content/transaction-details';
-import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper';
 import { resolveColor } from '../../../../utils/resolveColors';
+import { TABS } from '../../../../data/tab-data';
+import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper';
 
 
 

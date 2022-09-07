@@ -84,6 +84,8 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                                 bgColor={field as keyof typeof data === "status" ? bgColor : "transparent"}
                                 justifyContent={field as keyof typeof data === "status" ? "center" : "left"}
                                 textAlign="left"
+
+                                width={ field as keyof typeof data === "status" ? "fit-content" : "auto"}
                                 size="14px"
                                 align={'center'}>
                              {data[field as keyof typeof data] ? amt : ''}

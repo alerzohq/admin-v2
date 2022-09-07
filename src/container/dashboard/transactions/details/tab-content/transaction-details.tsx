@@ -1,8 +1,9 @@
-import { Content, TabContentContainer } from "./styles/tab-content.styles";
+import {  TabContentContainer } from "./styles/tab-content.styles";
 import { FlexTableWrapper } from "../../../../../components";
 import { DETAILSTABLE, RECIPIENTTABLE, SESSIONTABLE } from "../../../../../data/tab-data";
 import { detailsHelper } from "../../../../../data/tab-data-helper";
 import { TableData } from "../../../../../components/flex-table/type";
+import Content from "../../../../../components/dashboard-contents";
 
 
 const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {

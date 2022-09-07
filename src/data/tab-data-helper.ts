@@ -227,10 +227,10 @@ export const otherHelper = (data: any) => {
             spacing: false,
             header: CUSTOMERTABLE,
             data: {
-                customerId: recipientObject?.customerId,
-                customerName: recipientObject?.accountName,
-                phoneNumber: data?.phoneNumber,
-                dob: data?.dob,
+                customerId: recipientObject?.customerId || data?.userId,
+                customerName: recipientObject?.accountName || recipientObject?.customerName,
+                phoneNumber: recipientObject?.phoneNumber,
+                dob: recipientObject?.dateOfBirth,
                 email: recipientObject?.email
             },
         },
