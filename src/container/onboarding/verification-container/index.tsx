@@ -1,5 +1,5 @@
 
-import React, { useState,useEffect} from "react";
+import React,{ useState,useEffect} from "react";
 import { Color } from "../../../assets/theme";
 import { Button, Form, Loader, Stack, Text } from "../../../components";
 import { useAppContext } from "../../../context";
@@ -12,24 +12,30 @@ import { Path } from "../../../constants/route-path";
 import toast from "react-hot-toast";
 import OtpInput from 'react-otp-input';
 import { TimerIcon } from "../../../assets/icons";
+import { useCountdownTimer } from "../../../hooks/useCountdownTimer";
+
+
 
 
 const VerificationContainer = () => {
-
+const {minutes, seconds}=useCountdownTimer();
 const navigate = useNavigate() 
 const {state:{userOtp}, dispatch} = useAppContext()  
 const [otp, setOtp] = useState('');
+const [otpError,setOtpError] = useState(false);
 
 let payload={
-   otp,
+   otp, 
    token: userOtp?.token,
    email:userOtp?.email
 }
 const [authenticateUser, { data, error, loading }] = useMutation({pathUrl: "login/complete", payload, methodType: "post"});
 
 const handleChange =(otp: string) =>  {
-  setOtp(otp)
+  setOtp(otp);
+  setOtpError(false)
 }
+
 
 
 useEffect(() => {
@@ -59,10 +65,16 @@ useEffect(() => {
 
 const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (userOtp?.email && otp && userOtp?.token) {
+
+    if (userOtp?.email && otp && otp?.length >=6 && userOtp?.token) {
+      setOtpError(false)
       await authenticateUser();
-    }  
+      
+    } else{
+      setOtpError(true)
+    } 
 };
+
 
 
 
@@ -94,7 +106,11 @@ return (
                 value={otp}
                 onChange={handleChange}
                 numInputs={6}
+                hasErrored={otpError}
                 separator={<span> </span>}
+                errorStyle={{
+                  border:`0.8px solid ${Color.alerzoDanger}`
+                }}
                 focusStyle={{
                   border:`1px solid ${Color.alerzoBlue}`
                 }}
@@ -116,7 +132,7 @@ return (
             <Text as={'small'}
                weight={'600'}
               color={'#7890B5'}
-            >  Expires In : 0:13</Text>
+            >  Expires In : {minutes} : {seconds} </Text>
             </Stack>
 
            
@@ -131,7 +147,7 @@ return (
             <Text as={'p'}
                weight={'500'}
               color={'#7890B5'}
-            > Didn’t get a code?
+            > Didn’t get a code? 
               
             </Text>
             <Text as={'p'}

@@ -26,7 +26,7 @@ background:${({disabled})=>disabled? Color.alerzoLightBlue :({variant})=>variant
 cursor:${({disabled})=>disabled? 'not-allowed': 'pointer' };
 width:${({width})=>width? width: '100%'};
 height:${({height})=>height? height: '3rem'};
-color: ${({color})=>color ? color:`${Color.alerzoWhite}`};
+color: ${({color,disabled})=>color ? color: `${Color.alerzoWhite}`};
 border:${({borderColor})=>borderColor? `2px solid ${borderColor}`: '2px solid transparent'};
 font-size:${({fontSize})=>fontSize};
 border-radius: ${({radius})=>radius?radius:'.4rem'};

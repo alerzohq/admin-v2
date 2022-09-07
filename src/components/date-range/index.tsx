@@ -5,7 +5,7 @@ import 'react-date-range/dist/theme/default.css';
 import { CalenderIcon } from '../../assets/icons';
 import { formatDate } from '../../utils/formatValue';
 import { DateRangeContainer, DateRangeWrapper } from './styles/date-range.styles';
-import { DateRangeProps } from './type';
+
 
 // {selectionRange,handleSelect}:DateRangeProps
 const DateRange = () => {
