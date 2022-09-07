@@ -6,10 +6,12 @@ import { ContainerProps } from '../type'
 import { ContainerWrapper } from './styles/container.styles'
 
 const Container:React.FC<ContainerProps> = ({title,isFetching, showFilters, children,...restProps}) => {
+
+ 
   return (
     <>
-    <TopBar title={title} showFilters={showFilters} {...restProps}/>
-     {isFetching && <LineLoader/>}
+    <TopBar title={title} showFilters={showFilters}  {...restProps}/>
+     {isFetching ? <LineLoader/>: ''}
     <ContainerWrapper {...restProps}>
         {children}
     </ContainerWrapper>

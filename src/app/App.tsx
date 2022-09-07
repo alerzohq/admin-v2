@@ -15,6 +15,7 @@ import NotFound from "../pages/404";
 import TransactionDetails from "../pages/dashboard/transactions/transaction-details";
 import { useAppContext } from "../context";
 import { getStorageItem } from "../utils/session-storage";
+import Verification from "../pages/verification";
 
 // const Dashboard = React.lazy(() => import("../pages/dashboard"));
 
@@ -36,6 +37,16 @@ const user = getStorageItem('user') || state.user;
             }
           />
           </Route>
+          <Route element={<IsUserRedirect user={user} />}>
+           <Route
+            path={Path.VERIFY_OTP}
+            element={
+                <Verification />
+            }
+          />
+          </Route>
+         
+
           {/* <Route
             path="dashboard"
             element={

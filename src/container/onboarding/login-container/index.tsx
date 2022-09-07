@@ -9,10 +9,10 @@ import { validEmail } from "../../../utils/formatValue";
 import AuthLayout from "../layout";
 import { formValue } from "./formValues";
 import { Action } from '../../../context/actions'
-import { setStorage } from "../../../utils/session-storage";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../../../constants/route-path";
 import toast from "react-hot-toast";
+
 
 
 const LoginContainer = () => {
@@ -30,12 +30,15 @@ const [loginUser, { data, error, loading }] = useMutation({pathUrl: "login", pay
 
 useEffect(() => {
   if(data){ 
-    dispatch({type:Action.LOGIN,
-      payload:data
+    let userInfo={
+      token:data?.data?.token,
+      email,
+    };
+    dispatch({type:Action.VERIFY_OTP,
+      payload:userInfo
     });
-    setStorage('user',data,()=>{
-      navigate(Path.DASHBOARD)
-    })
+    navigate(Path.VERIFY_OTP)
+
   }else if(error){
     toast.error(`Invalid Credentials`)
   }
@@ -86,6 +89,7 @@ return (
             align={"center"}
             weight={"500"}
             color={Color.alerzoDarkGray}
+            size={'14px'}
           >
             {" Enter email address and password to access admin dashboard"}
           </Text>
@@ -133,6 +137,7 @@ return (
               {loading ? <Loader color={Color.alerzoWhite}/> : "Login"}
             </Button>
           </Form.Control>
+         
         </Form>
       </Stack>
     </AuthLayout>

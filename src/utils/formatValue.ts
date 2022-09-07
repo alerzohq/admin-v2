@@ -8,6 +8,11 @@ export function validEmail(email: string){
         return true
     }
   }
-export const formatDate =(date:string,type:string)=>{
+export const formatDate =(date:any,type:string)=>{
 return moment(date).format(type); 
+}
+
+export const maskValue=(value:string)=>{      
+     let maskValue= value.slice(4).replace(/\d(?=.* )/g, '*')
+    return maskValue;
 }

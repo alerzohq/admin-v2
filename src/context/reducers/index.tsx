@@ -8,6 +8,8 @@ export const rootReducer = (state:State, action:ActionTypes)=>{
     switch (action.type) {
         case Action.LOGIN:
             return {...state, user:action.payload,error:{}};
+        case Action.VERIFY_OTP:
+            return {...state, userOtp:action.payload};
         case Action.LOGOUT :
               return {...state, user: null,error:{}};
         case Action.ERROR:
