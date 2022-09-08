@@ -1,7 +1,6 @@
 import { AIRTIMEDETAILSTABLE, AIRTIMEMORETABLE, BETTINGUSERTABLE, CABLEPRODUCTDETAILSTABLE, CUSTOMERMORETABLE, CUSTOMERTABLE, DATAMORETABLE, DETAILSTABLE, ELECTRICITYPRODUCTTABLE, INTERNETDETAILSTABLE, RECIPIENTTABLE, SESSIONTABLE, TOKENDETAILSTABLE, VASDETAILSTABLE } from "./tab-data"
 
 export const detailsHelper = (slug: string, data: any) => {
-    console.log(data, slug);
     const type = data?.type;
     const metaData = data?.metadata?.reduce((o: any, {
         key,

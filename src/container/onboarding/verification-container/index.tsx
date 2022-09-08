@@ -50,8 +50,6 @@ useEffect(() => {
     dispatch({type:Action.LOGIN,
       payload:data
     });
-
-    console.log({data})
     setStorage('user',data,()=>{
       navigate(Path.DASHBOARD)
     })

@@ -22,7 +22,7 @@ TabPage.Title = function TabsTitle({ active, item, color, onClick }: TabsTitlePr
 }
 
 TabPage.Tabs = function TabList({ active, tabs, color, setActive }: TabsProps) {
-    const[queryParams, setQueryParams] = useSearchParams();
+    const[, setQueryParams] = useSearchParams();
     return (
         <>
         <TabWrapper>

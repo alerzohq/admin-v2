@@ -1,6 +1,6 @@
 import { Text } from "..";
 import { Color } from "../../assets/theme";
-import { capitalizeFirstLetter, capitalizeFirstLetterInSentence, numberWithCommas } from "../../utils/formatValue";
+import { capitalizeFirstLetterInSentence, numberWithCommas } from "../../utils/formatValue";
 import { resolveTableColor } from "../../utils/resolveColors";
 import { CardItem, CardWrapper, CardContainer } from "./styles/flex-table.styles"
 import { FlexTableProps, FlexTableRowProps } from "./type";

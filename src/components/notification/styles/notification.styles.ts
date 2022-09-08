@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components/macro';
-import { Color } from '../../../assets/theme';
+import styled from 'styled-components/macro';
 
 
 type tabProps = {

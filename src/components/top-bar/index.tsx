@@ -48,7 +48,7 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
   // const handleSearch =()=>{
 
   // }
-console.log(showFilters, "showwwwww");
+
   return (
     <>
     <TopbarWrapper>
