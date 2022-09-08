@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Color } from '../../../../assets/theme';
-import { TabsPage, Notification, Text, Loader, LineLoader } from '../../../../components';
+import { TabsPage, Notification, Text, Loader, LineLoader, FallBack } from '../../../../components';
 import { useQuery } from 'react-query';
 import { getResource } from '../../../../utils/apiRequest';
 import { capitalizeFirstLetter } from '../../../../utils/formatValue';
@@ -40,8 +40,8 @@ const TabsContainer = () => {
                 return <DetailsContent resolvedData={detailsHelper(slug, data?.data?.[0])!} />;
         }
     }
-  
-    const status: string = data?.data[0]?.status; 
+
+    const status: string = data?.data[0]?.status;
     const resolveColor = (status: string) => {
         if (status === "successful") {
             return {
@@ -53,21 +53,21 @@ const TabsContainer = () => {
                 color: Color.alerzoDanger,
                 bg: Color.alerzoErrorBg,
             }
-        } else  {
+        } else {
             return {
                 color: Color.alerzoWarningText,
                 bg: Color.alerzoWarningBg,
             }
         }
-    
+
     }
     let colors = resolveColor(status);
 
     return (
-        
+
         <Container showFilters={false} title={'Transaction Details'}>
-            {!isLoading  && <Notification label={status ? `${capitalizeFirstLetter(status)} Transaction!` : ''} color={colors?.color} bgColor={colors?.bg} />}
-            {isFetching && !isLoading && <LineLoader /> }
+            {!isLoading && <Notification label={status ? `${capitalizeFirstLetter(status)} Transaction!` : ''} color={colors?.color} bgColor={colors?.bg} />}
+            {isFetching && !isLoading && <LineLoader />}
             {isLoading ? <Loader /> :
                 <>
                     <TabsPage.Tabs color={Color.alerzoGreyTint} tabs={TABS} active={active} setActive={setActive} />
@@ -78,13 +78,18 @@ const TabsContainer = () => {
                         align={'center'}>
                         {title}
                     </Text>}
-                    {renderSwitch()}
+                    {isError ?
+                        <FallBack
+                            error
+                            title={"Failed to load transaction. "}
+
+                        /> : renderSwitch()}
                 </>
             }
 
 
-</Container>
-       
+        </Container>
+
 
     )
 }
