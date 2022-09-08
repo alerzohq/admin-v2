@@ -38,7 +38,7 @@ const navigate = useNavigate();
           <tr key={i}>        
             {dataList?.map((data, i) => ( 
               <td key={i}>
-                  <div onClick={()=>{i===0 && navigate(`${item?.product?.slug}`,{state:{ detail:item }})}}  className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
+                  <div onClick={()=>{i===0 && navigate(`${item?.id}/${item?.product?.slug}`,{state:{ detail:item }})}}  className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
                   {moment(data, true).isValid()?
                   formatDate(data, 'lll'):
                    data}
