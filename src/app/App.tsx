@@ -26,7 +26,7 @@ const user = getStorageItem('user') || state.user;
   let routes = (
     <>
       <ScrollToTop />
-      <ErrorBoundary fallback="Sorry.. there was an error">
+      <ErrorBoundary fallback="Sorry.. something went wrong">
 
         <Routes>
           <Route element={<IsUserRedirect user={user} />}>
