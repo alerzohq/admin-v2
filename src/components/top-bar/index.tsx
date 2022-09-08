@@ -26,7 +26,7 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
   
 
   useEffect(() => {
-    setFilterValues(search);
+    // setFilterValues(search);
       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[search])
 

@@ -102,6 +102,7 @@ return (
             <>A 6 digit OTP Sent to <strong>{userOtp?.email}</strong>, please check your email adress and enter OTP below</>
           </Text>
           <Form.Control pb={"2rem"} pt={"2rem"}>
+            
           <OtpInput
                 value={otp}
                 onChange={handleChange}
@@ -111,6 +112,7 @@ return (
                 errorStyle={{
                   border:`0.8px solid ${Color.alerzoDanger}`
                 }}
+                isInputNum={true}
                 focusStyle={{
                   border:`1px solid ${Color.alerzoBlue}`
                 }}
