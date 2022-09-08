@@ -27,6 +27,10 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
 
   useEffect(() => {
     // setFilterValues(search);
+    if(showFilters){
+      setFilterValues(search);
+    }
+ 
       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[search])
 
@@ -44,7 +48,7 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
   // const handleSearch =()=>{
 
   // }
-
+console.log(showFilters, "showwwwww");
   return (
     <>
     <TopbarWrapper>

@@ -15,7 +15,6 @@ type Props = {
     margin?:string;
     gap?:string;
     flex?:string;
-    marginTop?: string;
   
 }
 
@@ -41,7 +40,7 @@ justify-content:${({justifyContent})=>justifyContent};
 padding:${({padding})=>padding?padding :'2rem'};
 gap:${({gap})=>gap};
 flex:${({flex})=>flex};
-margin-top:${({marginTop})=>marginTop ? marginTop : "0"};
+margin-top:2rem;
 min-height:300px;
 
 @media(max-width:768px){
@@ -53,7 +52,7 @@ padding:2rem 0;
 export const Inner=styled.div<Props>`
 display: flex;
 flex-direction:${({direction})=> direction};
-gap:${({gap})=>gap ? gap : "30px"};
+gap:30px;
 width: 100%;
 
 @media(max-width:768px){

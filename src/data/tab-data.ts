@@ -59,10 +59,10 @@ export const VASDETAILSTABLE = [
 ];
 export const CABLEPRODUCTDETAILSTABLE = [
     { label: "Smart Card Number", value: "cardNumber", columnWidth: 'small' },
-    { label: "Biller", value: "biller", columnWidth: 'small' },
-    { label: "Status", value: "status", columnWidth: 'small' },
-    { label: "Channel", value: "channel", columnWidth: 'small' },
     { label:"Bouquet", value: "bouquet",  columnWidth: 'large' },
+    { label: "Status", value: "status", columnWidth: 'small' },
+    { label: "Biller", value: "biller", columnWidth: 'small' },
+    { label: "Channel", value: "channel", columnWidth: 'large' },
 ];
 export const ELECTRICITYPRODUCTTABLE = [
     { label: "Meter Number", value: "meterNumber", columnWidth: 'small' },

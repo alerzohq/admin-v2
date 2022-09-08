@@ -1,15 +1,16 @@
 import { Color } from "../assets/theme"
 
-export const resolveColor = (status) => {
+
+export const resolveTableColor = (status) => {
     if (status === "successful") {
         return {
             textColor: Color.alerzoTableSuccess,
-            bgColor: Color.alerzoTableSuccessBg,
+            bgColor: Color.alerzoStatusSuccess,
         }
     } else if (status === "failed") {
         return {
             textColor: Color.alerzoDanger,
-            bgColor: Color.alerzoErrorBg,
+            bgColor: Color.alerzoStatusFailed,
         }
     } else  {
         return {

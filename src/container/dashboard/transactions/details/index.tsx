@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Color } from '../../../../assets/theme';
-import { TabsPage, Notification, Text, Jumbotron, Loader } from '../../../../components';
+import { TabsPage, Notification, Text, Jumbotron, Loader, LineLoader } from '../../../../components';
 import { encrypt } from '../../../../configs/secure-data';
 import { useQuery } from 'react-query';
 import { getResource } from '../../../../utils/apiRequest';
 import { capitalizeFirstLetter } from '../../../../utils/formatValue';
 import DetailsContent from './tab-content/transaction-details';
-import { resolveColor } from '../../../../utils/resolveColors';
+// import { resolveColor } from '../../../../utils/resolveColors';
 import { TABS } from '../../../../data/tab-data';
 import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper';
+import { Container } from '../../../../components/layout';
 
 
 
@@ -43,13 +44,33 @@ const TabsContainer = () => {
     }
   
     const status: string = data?.data[0]?.status; 
+    const resolveColor = (status: string) => {
+        if (status === "successful") {
+            return {
+                color: Color.alerzoTableSuccess,
+                bg: Color.alerzoTableSuccessBg,
+            }
+        } else if (status === "failed") {
+            return {
+                color: Color.alerzoDanger,
+                bg: Color.alerzoErrorBg,
+            }
+        } else  {
+            return {
+                color: Color.alerzoWarningText,
+                bg: Color.alerzoWarningBg,
+            }
+        }
+    
+    }
     let colors = resolveColor(status);
 
     return (
-        <>
-            {!isLoading && !isFetching && <Notification label={status ? `${capitalizeFirstLetter(status)} Transaction!` : ''} color={colors?.textColor} bgColor={colors?.bgColor} />}
-
-            {isLoading || isFetching ? <Loader /> :
+        
+        <Container showFilters={false} title={'Transaction Details'}>
+            {!isLoading  && <Notification label={status ? `${capitalizeFirstLetter(status)} Transaction!` : ''} color={colors?.color} bgColor={colors?.bg} />}
+            {isFetching && !isLoading && <LineLoader /> }
+            {isLoading ? <Loader /> :
                 <>
                     <TabsPage.Tabs color={Color.alerzoGreyTint} tabs={TABS} active={active} setActive={setActive} />
                     {title && <Text as={'p'}
@@ -64,8 +85,8 @@ const TabsContainer = () => {
             }
 
 
-
-        </>
+</Container>
+       
 
     )
 }
