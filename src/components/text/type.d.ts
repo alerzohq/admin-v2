@@ -13,6 +13,10 @@ type TextOwnProps<E extends React.ElementType>= {
     bgColor?:string,
     margin?:string,
     cursor?:string,
+    radius?:string,
+    textAlign?: string,
+    justifyContent?:string,
+    whiteSpace?: string,
     as?:E,
 
 }

@@ -11,7 +11,20 @@ export enum Color {
   alerzoLight='#fafafa99',
   alerzoDanger='#EA4336',
   alerzoSuccess='#EA4336', 
-  alerzoBlack= '#001928'
-
-
+  alerzoBlack= '#001928',
+  alerzoBlueTint= '#0077FF',
+  alerzoGreyTint= '#879AA5',
+  alerzoGreyBg="#F6F6F6",
+  alerzoTableSuccessBg="#DDF3E3",
+  alerzoTableSuccess="#34A853",
+  alerzoMediumGray="rgba(121, 136, 146, 1)",
+  alerzoGrayTwo= "#798892",
+  alerzoGrayBorder = "#E8EBEE",
+  alerzoErrorBg="rgba(243, 221, 221, 1)",
+  alerzoWarningText="#F1A85A",
+  alerzoWarningBg="rgba(241, 168, 90, 0.1)",
+  alerzoStatusSuccess ="rgba(52, 168, 83, 0.1)",
+  alerzoStatusPending ="rgba(241, 168, 90, 0.1)",
+  alerzoStatusFailed ="rgba(234, 67, 54, 0.1)",
+ 
 }
