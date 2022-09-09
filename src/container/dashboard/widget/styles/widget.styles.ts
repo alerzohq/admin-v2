@@ -16,10 +16,10 @@ flex-direction:column;
 gap:.3rem;
 flex:0 0 23%;
 border-radius:20px; 
-box-shadow:0px 6px 60px rgba(0, 0, 0, 0.04);
 height:150px;
 width:200px;
-background:${Color.alerzoWhite};
+background:${Color.alerzoGray3};
+border: 1px solid ${Color.alerzoGray3};
 svg{
     margin-bottom:.7rem;
 }

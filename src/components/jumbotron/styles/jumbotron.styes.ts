@@ -42,6 +42,7 @@ gap:${({gap})=>gap};
 flex:${({flex})=>flex};
 margin-top:2rem;
 min-height:300px;
+border:1px solid ${Color.alerzoGrayBorder};
 
 @media(max-width:768px){
 padding:2rem 0;

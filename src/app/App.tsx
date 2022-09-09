@@ -23,6 +23,8 @@ function App() {
 const {state} = useAppContext()  
 const user = getStorageItem('user') || state.user;
 
+console.log({user})
+
   let routes = (
     <>
       <ScrollToTop />

@@ -45,18 +45,16 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
     console.log(selectedOption)
   };
 
-  // const handleSearch =()=>{
 
-  // }
 
   return (
     <>
     <TopbarWrapper>
      <Stack  justifyContent={'space-between'} direction={'row'}>
-       <Stack direction={'row'} width={'auto'} alignItems={'center'}>  {Object.entries(params)?.length > 0 && (<ArrowBackIcon onClick={()=>navigate(-1)}/>)} <Text as={'h3'}>{title}</Text></Stack>
+       <Stack direction={'row'} width={'auto'} alignItems={'center'}>  {Object.entries(params)?.length > 0 && (<ArrowBackIcon onClick={()=>navigate(-2)}/>)} <Text as={'h3'}>{title}</Text></Stack>
        {showFilters &&(
         <TopbarFilters>
-        <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search'}/>
+        <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search by reference number..'}/>
         <DateRange />
         <SelectInput placeholder={'All Platform'}
           onChange={handleChange}
@@ -67,8 +65,8 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
           onChange={handleChange}
          value={status} options={options}/> 
          
-        <button id={'download-btn'}>
-           {'Download'}
+         <button id={'download-btn'}>
+           {'Download CSV'}
          </button>
         </TopbarFilters>
  

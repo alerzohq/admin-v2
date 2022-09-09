@@ -2,7 +2,7 @@ import moment from "moment";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { transformData } from "../../../helper/table.helper";
-import { formatDate } from "../../../utils/formatValue";
+import { formatDate, numberWithCommas } from "../../../utils/formatValue";
 
 // import { TableProps } from "../type";
 export type selectedDataType = {
@@ -12,6 +12,7 @@ export type selectedDataType = {
 type dataProps = {
   tableData: selectedDataType[];
   name:string;
+  amountIndex?:number
 
 };
 type dataList = string[] | undefined;
@@ -21,9 +22,8 @@ type dataList = string[] | undefined;
 // }[];
 
 
-const TableData = ({ tableData, name}: dataProps) => {
+const TableData = ({ tableData, name,amountIndex}: dataProps) => {
 const navigate = useNavigate();
-
 
 
   return (
@@ -37,11 +37,11 @@ const navigate = useNavigate();
         return (
           <tr key={i}>        
             {dataList?.map((data, i) => ( 
-              <td key={i}>
-                  <div onClick={()=>{i===0 && navigate(`${item?.id}/${item?.product?.slug}`,{state:{ detail:item }})}}  className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
+              <td key={i} id='td-hover'>
+                  <div onClick={()=>{navigate(`${item?.product?.slug}`,{state:{ detail:item }})}}  className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
                   {moment(data, true).isValid()?
-                  formatDate(data, 'lll'):
-                   data}
+                  formatDate(data, 'lll'): i===amountIndex ? `₦${numberWithCommas(data)}`
+                    : data}
                   </div>
               </td>
             ))}

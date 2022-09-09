@@ -5,6 +5,7 @@ export type TableProps={
     hideCheckInput?:boolean;
     hideSort?:boolean;
     tableName:string;
+    amountIndex?:number
 
     onClick?:(item:{}) => void;
 }

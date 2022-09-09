@@ -64,6 +64,7 @@ const onSuccess=(value:any)=>{
        tableName="transaction"
        tableData={data?.data} 
        tableHeaders={transHeaderList}  
+       amountIndex={1}
         /> 
     }
 
@@ -71,15 +72,10 @@ const onSuccess=(value:any)=>{
 
   return (
     <Container showFilters title="History" setFilterValues={setFilter} isFetching={isFetching}> 
-
-    
      <CardWidget />
-      <Jumbotron>
+      <Jumbotron padding={'0'}>
       {component}
       </Jumbotron> 
-
-  
-     
       <Pagination data={data} setPageNumber={setPageNumber } pageNumber={pageNumber} isPreviousData={isPreviousData} />
      
     </Container>

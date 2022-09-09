@@ -14,9 +14,9 @@ padding:0 1rem ;
 width:200px; 
 font-family: 'Gilmer';   
 font-style: normal;
-font-size: 12px;
+font-size: 14px;
 line-height: 17px;
-color: ${Color.alerzoGray2};
+color: ${Color.alerzoDarkGray2};
 text-align: left;
 cursor: pointer;
 }
