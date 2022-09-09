@@ -1,6 +1,6 @@
 import { Content, TabContentContainer } from "./styles/tab-content.styles";
 import { FlexTableWrapper } from "../../../../../components";
-import { DETAILSTABLE, RECIPIENTTABLE, SESSIONTABLE } from "../../../../../data/tab-data";
+// import { DETAILSTABLE, RECIPIENTTABLE, SESSIONTABLE } from "../../../../../data/tab-data";
 import { detailsHelper, otherHelper } from "../../../../../data/tab-data-helper";
 
 

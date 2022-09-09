@@ -26,17 +26,24 @@ export const DataTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   thead {
-    background: ${Color.alerzoWhite};
-    color: #A5B0B7;
+    background: ${Color.alerzoGray3};
+    color: #001928;
     height: 60px;
+   
     tr {
       text-align: left;
-      font-size: 0.8rem;
+      font-size: .9rem;
     
       th {
         padding: 1rem;
         white-space: nowrap;
-        font-weight: 500;
+        font-weight: 600;
+        &:first-child{
+          border-top-left-radius:20px;   
+        }
+        &:last-child{
+          border-top-right-radius: 20px;
+        }
       }
       td {
         padding: 1rem;
@@ -50,16 +57,17 @@ export const DataTable = styled.table`
     }
   }
   tbody{
-
+    margin:0 2rem;
     tr {
     border: 0.8px solid #E8EBEE;
     border-right: none;
     border-left: 0;
     height: 60px;
+   
     color: #373737;
     td {
       white-space: nowrap;
-      font-size: .9rem;
+      font-size: 1rem;
       font-weight: 500;
       padding: .5rem 1rem;
       div{

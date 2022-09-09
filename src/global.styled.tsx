@@ -164,11 +164,15 @@ a {
 .tableLink{
   text-decoration:underline;
   cursor: pointer;
-  color:${Color.alerzoBlue}
+  color:${Color.alerzoBlue};
+  font-weight:600;
 
 }
+#td-hover{
+  cursor: pointer;
+}
 .select-placeholder{
-    color:${Color.alerzoGray2} !important;
+    color:${Color.alerzoDarkGray2} !important;
     font-size:.8rem ;
 }
 

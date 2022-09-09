@@ -1,6 +1,7 @@
 import {  TabContentContainer } from "./styles/tab-content.styles";
 import { FlexTableWrapper } from "../../../../../components";
 import { TableData } from "../../../../../components/flex-table/type";
+import { Color } from "../../../../../assets/theme";
 
 
 const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
@@ -13,7 +14,7 @@ const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
                             <FlexTableWrapper.Row
                                 data={item?.data}
                                 header={item?.header}
-                                bgBottomColor="#FFFFFF"
+                                bgBottomColor={Color.alerzoWhite}
                             />
                         </TabContentContainer>
                     )
@@ -23,7 +24,7 @@ const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
                     <FlexTableWrapper.Row
                         data={item?.data}
                         header={item.header}
-                        bgBottomColor="#FFFFFF"
+                        bgBottomColor={Color.alerzoWhite}
                     />
 
 

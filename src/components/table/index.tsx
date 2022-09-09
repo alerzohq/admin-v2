@@ -6,7 +6,7 @@ import { TableProps } from './type'
 
 
 
-const Table = ({tableHeaders,tableData,tableName}:TableProps) => {
+const Table = ({tableHeaders,tableData,tableName,amountIndex}:TableProps) => {
 
 
   return (
@@ -15,7 +15,7 @@ const Table = ({tableHeaders,tableData,tableName}:TableProps) => {
       <TableWrapper>
           <DataTable>
             <TableHeader  headers={tableHeaders} />
-            <TableData name={tableName}  tableData={tableData}/>  
+            <TableData name={tableName} amountIndex={amountIndex}  tableData={tableData}/>  
           </DataTable>
       </TableWrapper>
 

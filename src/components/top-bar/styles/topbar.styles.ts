@@ -35,19 +35,20 @@ scrollbar-width: none;
 #download-btn{
 align-items: center;
 display: flex;
-justify-content: space-between;
+justify-content: center;
 background: ${Color.alerzoWhite};
-border: 1px solid rgba(193, 202, 207, 0.5);
+border: 1px solid ${Color.alerzoBlue};
 border-radius: 10px;
 height: 45px;
 padding:0 1rem ;
 width:200px; 
+text-align: center;
 font-family: 'Gilmer';   
 font-style: normal;
-font-size: 12px;
+font-size: 14px;
 line-height: 17px;
-color: ${Color.alerzoGray2};
-text-align: left;
+color: ${Color.alerzoBlue};
+font-weight: 500;
 cursor: pointer;
 }
 ::-webkit-scrollbar { 
@@ -65,13 +66,13 @@ border: 1px solid rgba(193, 202, 207, 0.5);
 border-radius: 10px;
 height: 45px;
 padding:0 1rem ;
-max-width:200px;
+width:250px;
 ::placeholder{
 font-family: 'Gilmer';   
 font-style: normal;
-font-size: 12px;
+font-size: 14px;
 line-height: 17px;
-color: ${Color.alerzoGray2};
+color: ${Color.alerzoDarkGray2};
 }
 
 outline: none;
