@@ -9,11 +9,11 @@ import DetailsContent from './tab-content/transaction-details';
 import { TABS } from '../../../../data/tab-data';
 import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper';
 import { Container } from '../../../../components/layout';
+import NotesContent from './tab-content/notes';
 
 
 
 const TabsContainer = () => {
-    const [active, setActive] = useState(0);
     const location = useLocation();
     const thePath = location.pathname;
     var result = thePath.split('/');
@@ -21,7 +21,8 @@ const TabsContainer = () => {
     const id = result[3];
     const search = useLocation().search;
     const queryParam = new URLSearchParams(search).get('status');
-    const title = TABS[active]?.title;
+    const found = TABS.find(element => element.value === queryParam);
+    const title = found ? found?.title : TABS[0]?.title;
     const getTransactions = () => {
         return getResource(`transactions?query=${id}`)
     }
@@ -35,7 +36,7 @@ const TabsContainer = () => {
             case 'receipt':
                 return <div>Receipt</div>
             case 'notes':
-                return <div>Notes</div>
+                return <NotesContent />
             default:
                 return <DetailsContent resolvedData={detailsHelper(slug, data?.data?.[0])!} />;
         }
@@ -70,11 +71,12 @@ const TabsContainer = () => {
             {isFetching && !isLoading && <LineLoader />}
             {isLoading ? <Loader /> :
                 <>
-                    <TabsPage.Tabs color={Color.alerzoGreyTint} tabs={TABS} active={active} setActive={setActive} />
+                    <TabsPage.Tabs color={Color.alerzoGreyTint} tabs={TABS} currentValue={found?.value || 'details'}  />
                     {title && <Text as={'p'}
                         padding={'.8em 0 0 0'}
                         color={Color.alerzoBlack}
                         weight='600'
+                        
                         align={'center'}>
                         {title}
                     </Text>}

@@ -100,8 +100,7 @@ export const Error = styled.p`
 `
 export const Footer = styled.div`
 display: flex;
-justify-content:space-between; 
-padding :3rem 0 ;
+justify-content:center; 
 a{
     color:${Color.alerzoBlue};
 }
