@@ -109,6 +109,7 @@ export type HeaderData = {
 
 export type TableData = {
     spacing?: boolean;
+    currentValue? :boolean
     header: HeaderData[];
     data: TransactionData | BillerData | RecipientData | CustomerData | CustomerMoreData | VASData | CableData | ElectricityData | TokenData | BettingData | InternetData | AirtimeData | AirtimeMoreData | MobileData;
    

@@ -41,7 +41,7 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
 
                 }
                 return (
-                    <CardContainer flex={renderSwitch(detail.columnWidth || "small")}>
+                    <CardContainer key={index} flex={renderSwitch(detail.columnWidth || "small")}>
                         <CardItem padding={".7em 1.2em"} flex={"0"} topLeftRadius={index === 0 ? "12px" : "0"} topRightRadius={header.length - 1 === index ? "12px" : "0"}>
                             <Text as={'p'}
                                 padding={'0'}
