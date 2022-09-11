@@ -66,9 +66,9 @@ const TabsContainer = () => {
 
     return (
 
-        <Container showFilters={false} title={'Transaction Details'}>
+        <Container showFilters={false} isFetching={isFetching} title={'Transaction Details'} routePath={'/dashboard/transactions'}>
             {!isLoading && <Notification label={status ? `${capitalizeFirstLetter(status)} Transaction!` : ''} color={colors?.color} bgColor={colors?.bg} />}
-            {isFetching && !isLoading && <LineLoader />}
+   
             {isLoading ? <Loader /> :
                 <>
                     <TabsPage.Tabs color={Color.alerzoGreyTint} tabs={TABS} currentValue={found?.value || 'details'}  />

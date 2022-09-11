@@ -173,7 +173,7 @@ a {
 }
 .select-placeholder{
     color:${Color.alerzoDarkGray2} !important;
-    font-size:.8rem ;
+    font-size:.8rem !important;
 }
 
 `;

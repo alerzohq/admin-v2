@@ -15,8 +15,6 @@ import { TimerIcon } from "../../../assets/icons";
 import { useCountdownTimer } from "../../../hooks/useCountdownTimer";
 
 
-
-
 const VerificationContainer = () => {
 const {minutes, seconds}=useCountdownTimer();
 const navigate = useNavigate() 
@@ -97,7 +95,7 @@ return (
             size={'14px'}
             color={Color.alerzoBlack}
           >
-            <>A 6 digit OTP Sent to <strong>{userOtp?.email}</strong>, please check your email adress and enter OTP below</>
+            <>A 6 digit OTP sent to <strong>{userOtp?.email}</strong>, please check your email adress and enter OTP below</>
           </Text>
           <Form.Control pb={"2rem"} pt={"2rem"}>
             

@@ -5,6 +5,7 @@ import { getResource } from '../../../utils/apiRequest';
 import CardWidget from '../widget/card';
 import { useQuery } from 'react-query';
 import { transHeaderList } from '../../../data/table-headers';
+import { filterProps } from '../../../@types';
 
 
 
@@ -21,20 +22,18 @@ const [selectionRange, ] =useState({
   })
 const {startDate, endDate}= selectionRange
 
-// &from=${startDate}&to=${endDate}
-// &status=${status || null}
 const onSuccess=(value:any)=>{
   console.log({value})
 }
 
+// &from=${startDate}&to=${endDate}&status=${status}
 
-
- const getTransactions=(count:number,pageNumber:number,status: string,startDate:number ,endDate:number, ) => {
+ const getTransactions=({count,pageNumber,status,startDate,endDate}:filterProps) => {
     return getResource(`transactions?count=${count}&pageNumber=${pageNumber}`)
  }
 
  const {isLoading, data, isError,isFetching,isPreviousData} = useQuery(['transactions',count,pageNumber,status,startDate,endDate],
-  ()=>getTransactions(count,pageNumber,status,startDate,endDate),
+  ()=>getTransactions({count,pageNumber,status,startDate,endDate}),
   { keepPreviousData : true ,
     onSuccess:onSuccess
   }

@@ -5,7 +5,7 @@ import TopBar from '../../top-bar'
 import { ContainerProps } from '../type'
 import { ContainerWrapper } from './styles/container.styles'
 
-const Container:React.FC<ContainerProps> = ({title,isFetching,setFilterValues, showFilters, children,...restProps}) => {
+const Container:React.FC<ContainerProps> = ({title,isFetching,setFilterValues, showFilters,routePath, children,...restProps}) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,7 +14,7 @@ const Container:React.FC<ContainerProps> = ({title,isFetching,setFilterValues, s
   return (
     <>
     
-    <TopBar title={title} showFilters={showFilters} setFilterValues={setFilterValues}  {...restProps}/>
+    <TopBar title={title} showFilters={showFilters} routePath={routePath} setFilterValues={setFilterValues}  {...restProps}/>
      {isFetching ? <LineLoader/>: ''}
     <ContainerWrapper {...restProps}>
         {children}
