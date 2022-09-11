@@ -4,4 +4,5 @@ export type TopBarProps={
     isFetching?:boolean;
     // setFilterValues?:{[key:string]:any}
     setFilterValues?:any
+    routePath?:string;
 }

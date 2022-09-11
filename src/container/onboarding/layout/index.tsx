@@ -16,16 +16,10 @@ const AuthLayout = ({children}:React.ComponentProps<'div'>) => {
             <AuthContent>        
                <AuthInner >
                <img src={authImage} alt={'auth-img'} width={'80%'}/>
-                <Text as={'h2'} color={Color.alerzoWhite} >
-                   Monitor Record and Reconcile
+                <Text as={'h2'} size={'1.1rem'} padding={'1.5rem 5rem'} textAlign={"center"} color={Color.alerzoWhite} >
+                  {'Manage all transactions in one secured place'}
                </Text>
-               <Text as={'p'} 
-                    padding={'0 2rem'}
-                    color={Color.alerzoWhite} align={'center'}>
-                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Risus at ultrices mi tempus.`}
-               </Text>              
+        
              </AuthInner>        
             </AuthContent>
         </AuthColumn>

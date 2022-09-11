@@ -21,6 +21,7 @@ white-space: nowrap;
 overflow-x: scroll;
 overflow-y: hidden;
 scrollbar-width: 12px; 
+gap:20px;
 -ms-overflow-style: none;
 ::-webkit-scrollbar { 
 height: 2px;
@@ -30,7 +31,7 @@ height: 2px;
     border-radius: 20px;
     border: 3px solid ${Color.alerzoGray};
 }
-flex-direction: ${({flexDirection}) => flexDirection ? flexDirection : "row"}
+flex-direction: ${({flexDirection}) => flexDirection ? flexDirection : "row"};
 
 `
 export const transition = css`
@@ -42,11 +43,12 @@ display: flex;
 `
 export const TabTitle = styled.button<tabProps>`
 color: ${({ color, active, activeColor }) => active ? activeColor : color};
-font-weight: 400;
+font-weight: 500;
 background-color: transparent;
-font-size: 14px;
+font-size: 16px;
 border: none;
-margin: 0 3em 0 2em;
+font-family: Gilmer;
+/* margin: 0 3em 0 2em; */
 
 cursor: pointer;
 padding:0 0 .3em 0;

@@ -28,8 +28,8 @@ h3{
 `
 export const TopbarFilters = styled.div`
 display:flex; gap:20px;
-/* overflow-x: scroll; */
-overflow-y: visible !important;
+overflow-y: visible;
+overflow-x: clip;
 scrollbar-width: none; 
 -ms-overflow-style: none;
 #download-btn{

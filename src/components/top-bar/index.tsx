@@ -9,10 +9,11 @@ import Stack from '../stack'
 import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
 import { options, optionsAllPlatform } from '../../data/select-data'
+import { Path } from '../../constants/route-path'
 
 
 
-const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
+const TopBar = ({title,showFilters,setFilterValues,routePath}:TopBarProps) => {
 
   let params = useParams();
   let navigate = useNavigate();
@@ -45,7 +46,7 @@ const TopBar = ({title,showFilters,setFilterValues}:TopBarProps) => {
     <>
     <TopbarWrapper>
      <Stack  justifyContent={'space-between'} direction={'row'}>
-       <Stack direction={'row'} width={'auto'} alignItems={'center'}>  {Object.entries(params)?.length > 0 && (<ArrowBackIcon onClick={()=>navigate(-1)}/>)} <Text as={'h3'}>{title}</Text></Stack>
+       <Stack direction={'row'} width={'auto'} alignItems={'center'}>  {Object.entries(params)?.length > 0 && (<ArrowBackIcon onClick={()=>{routePath ?navigate(`${routePath}`):navigate(-1)}}/>)} <Text as={'h3'}>{title}</Text></Stack>
        {showFilters &&(
         <TopbarFilters>
         <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search by reference number..'}/>
