@@ -11,9 +11,8 @@ export type TabsTitleProps = {
 }
 export type TabsProps = {
     tabs:TabItem[];
-    setActive: (e: number)=>void;
-    active: number;
     color?: string;
+    currentValue?: string;
     component?: React.ReactNode;
 }
 export type TabItem = {
