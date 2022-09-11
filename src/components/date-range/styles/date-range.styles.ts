@@ -11,7 +11,7 @@ border: 1px solid rgba(193, 202, 207, 0.5);
 border-radius: 10px;
 height: 45px;
 padding:0 1rem ;
-width:200px; 
+width:220px; 
 font-family: 'Gilmer';   
 font-style: normal;
 font-size: 14px;

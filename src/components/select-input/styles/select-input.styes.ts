@@ -22,23 +22,25 @@ export const colourStyles: StylesConfig<Coptions> = {
   ) => ({
     ...styles,
     border: state?.isFocused
-      ? `1px solid rgba(193, 202, 207, 0.5)`
-      : `1px solid rgba(193, 202, 207, 0.5);`,
+      ? `1px solid ${Color.alerzoLightGray}`
+      : `1px solid ${Color.alerzoLightGray}`,
     height: 45,
     width:200,
     borderRadius: 7,
+    fontSize:14,
     boxShadow:Color.alerzoDarkGray,
     "&:hover": {
-      border: `1px solid rgba(193, 202, 207, 0.5) !important`,
+      border: `1px solid ${Color.alerzoLightGray} !important`,
     },
   }),
 
   option: (styles, { isFocused }: selectStyleProps) => {
     return {
       ...styles,
-      backgroundColor: isFocused ? `${Color.alerzoBlue}` : `${Color.alerzoWhite}`,
+      backgroundColor: isFocused ? `${Color.alerzoDarkGray}` : `${Color.alerzoWhite}`,
       color: isFocused ? `${Color.alerzoWhite}` : ``,
-      borderBottom: `1px solid ${Color.alerzoDarkGray}`,
+      borderBottom: `1px solid ${Color.alerzoLightGray}`,
+      fontSize:14,
       "&:last-child": {
         border: "none",
       },

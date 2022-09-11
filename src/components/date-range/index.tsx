@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { CalenderIcon } from '../../assets/icons';
 import { formatDate } from '../../utils/formatValue';
 import { DateRangeContainer, DateRangeWrapper } from './styles/date-range.styles';
@@ -28,6 +29,7 @@ const handleSelect = ({selection}: any)=>{
 };
 
   return (
+    <OutsideClickHandler  onOutsideClick={() => {setShow(false)}}>
     <DateRangeWrapper>
 
         <button className={'btn'} onClick={()=>setShow(!show)}>
@@ -45,6 +47,7 @@ const handleSelect = ({selection}: any)=>{
         
    
     </DateRangeWrapper>
+    </OutsideClickHandler>
   )
 }
 
