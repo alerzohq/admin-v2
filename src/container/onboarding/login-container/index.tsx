@@ -40,13 +40,7 @@ useEffect(() => {
     navigate(Path.VERIFY_OTP)
 
   }else if(error){
-    if(error==='Something went wrong'){
-      toast.error('Something went wrong')
-    }else{
-     toast.error(`Invalid Credentials`)
-    }
-    
-    
+    toast.error(`${error}`)  
   }
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
