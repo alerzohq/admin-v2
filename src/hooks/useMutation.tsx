@@ -39,9 +39,13 @@ const postData = async() => {
         setError(error.response.data.message);
        }else if(error.message === 'Network Error' ){
         setError('Please check your network connection')
+        setLoading(false);
        }else{
         setError('Something went wrong, please try again')
+        setLoading(false);
        }
+       setError('Something went wrong, please try again')
+       setLoading(false);
     }
   }
 
