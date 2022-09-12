@@ -40,7 +40,7 @@ const TopBar = ({title,showFilters,setFilterValues,routePath}:TopBarProps) => {
 
   const handleChange = (selectedOption:{[key: string]:any}) => {
     setValues({...values,status:selectedOption?.value});
-    console.log({selectedOption})
+
     setFilterValues((prev:any)=>({...prev,status:selectedOption !==null ? selectedOption.value:''}));
   };
 
