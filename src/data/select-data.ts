@@ -1,7 +1,7 @@
 export const options = [
     { value: 'successful', label: 'Successful' }, 
-    { value: 'Pending', label: 'Pending' },
-    { value: 'Failed', label: 'Failed' },
+    { value: 'pending', label: 'Pending' },
+    { value: 'failed', label: 'Failed' },
   ];
   
  export const optionsAllPlatform = [

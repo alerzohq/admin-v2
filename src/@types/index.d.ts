@@ -4,10 +4,11 @@ export type SelectInputProps={
 } | null | undefined;
 
 export type filterProps={
-count?:number,
-pageNumber?:number,
-status?: string,
-startDate?:number,
-endDate?:number,
+count:number;
+pageNumber:number;
+status?: string;
+from?:number;
+to?:number;
+query?:string;
 
 }
