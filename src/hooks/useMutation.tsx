@@ -34,9 +34,9 @@ const postData = async() => {
       setData(data)
       setLoading(false)
     }catch(error:any) {
-       if(error.response.data){
+       if(error.response.data?.message==='Incorrect password'){
         setLoading(false);
-        setError(error.response.data.message);
+        setError('Invalid credentials');
        }else if(error.message === 'Network Error' ){
         setError('Please check your network connection')
         setLoading(false);
@@ -44,7 +44,7 @@ const postData = async() => {
         setError('Something went wrong, please try again')
         setLoading(false);
        }
-       setError('Something went wrong, please try again')
+       
        setLoading(false);
     }
   }

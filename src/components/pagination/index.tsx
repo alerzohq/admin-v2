@@ -9,7 +9,7 @@ const Pagination = ({
 }: PaginationProps) => {
 
 const handlePageClick =({selected}:{selected: number})=>{
-  setPageNumber(selected)
+  setPageNumber((prev)=>({...prev,pageNumber: selected}))
 }
 
   return (

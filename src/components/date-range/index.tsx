@@ -9,7 +9,7 @@ import { DateRangeContainer, DateRangeWrapper } from './styles/date-range.styles
 
 
 // {selectionRange,handleSelect}:DateRangeProps
-const DateRange = () => {
+const DateRange = ({filterDate}:any) => {
 
     const [dateValue,setDateValue]= useState('')
     const [show,setShow]= useState(false)
@@ -25,7 +25,8 @@ const handleSelect = ({selection}: any)=>{
     })
     let start_date=formatDate(selection?.startDate,'l')
     let end_date=formatDate(selection?.endDate,'l')
-    setDateValue(`${start_date} - ${end_date}`)
+    setDateValue(`${start_date} - ${end_date}`);
+    filterDate((prev:any)=>({...prev, from:selection?.startDate.getTime(),to:selection?.endDate.getTime()}))
 };
 
   return (

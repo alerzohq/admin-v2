@@ -1,43 +1,30 @@
 import React,{ useState} from 'react'
 import { FallBack, Jumbotron, Loader, Pagination,Table, } from '../../../components';
 import { Container } from '../../../components/layout'
-import { getResource } from '../../../utils/apiRequest';
+import { getFilterResource} from '../../../utils/apiRequest';
 import CardWidget from '../widget/card';
 import { useQuery } from 'react-query';
 import { transHeaderList } from '../../../data/table-headers';
 import { filterProps } from '../../../@types';
+import { filterValue } from '../../../data/filter-data';
 
 
 
 
 const TransactionContainer = () => {
 
-const [count,] = useState(10);
-const [pageNumber,setPageNumber] = useState(0);
-const [status,setFilter] = useState('Cable Purchase')
-const [selectionRange, ] =useState({
-      startDate: new Date().getTime(),
-      endDate: new Date().getTime(),
-      key: 'selection',
-  })
-const {startDate, endDate}= selectionRange
+const [values,setValues] = useState(filterValue);
 
-const onSuccess=(value:any)=>{
-  console.log({value})
+
+const getTransactions=(filterValue:filterProps) => {
+    return getFilterResource(`transactions`,filterValue)
 }
 
-// &from=${startDate}&to=${endDate}&status=${status}
-
- const getTransactions=({count,pageNumber,status,startDate,endDate}:filterProps) => {
-    return getResource(`transactions?count=${count}&pageNumber=${pageNumber}`)
- }
-
- const {isLoading, data, isError,isFetching,isPreviousData} = useQuery(['transactions',count,pageNumber,status,startDate,endDate],
-  ()=>getTransactions({count,pageNumber,status,startDate,endDate}),
+ const {isLoading, data, isError,isFetching} = useQuery(['transactions',values],
+  ()=>getTransactions(values),
   { keepPreviousData : true ,
-    onSuccess:onSuccess
   }
-  );
+);
 
 
 
@@ -70,12 +57,12 @@ const onSuccess=(value:any)=>{
 
 
   return (
-    <Container showFilters title="History" setFilterValues={setFilter} isFetching={isFetching}> 
+    <Container showFilters title="History" setFilterValues={setValues} isFetching={isFetching}> 
      <CardWidget />
       <Jumbotron padding={'0'}>
       {component}
       </Jumbotron> 
-      <Pagination data={data} setPageNumber={setPageNumber } pageNumber={pageNumber} isPreviousData={isPreviousData} />
+      <Pagination data={data} setPageNumber={setValues } />
      
     </Container>
   )

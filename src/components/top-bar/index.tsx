@@ -9,7 +9,7 @@ import Stack from '../stack'
 import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
 import { options, optionsAllPlatform } from '../../data/select-data'
-import { Path } from '../../constants/route-path'
+
 
 
 
@@ -25,19 +25,23 @@ const TopBar = ({title,showFilters,setFilterValues,routePath}:TopBarProps) => {
   })
  
   const {search,} = values
+
+ 
   
 
   useEffect(() => {
     if(showFilters){
-      setFilterValues(search);
+      setFilterValues((prev:any)=>({...prev,query:search}));
+
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[search])
+  },[search,status])
 
 
   const handleChange = (selectedOption:{[key: string]:any}) => {
-    // setStatus(selectedOption)
-    console.log(selectedOption)
+    setValues({...values,status:selectedOption?.value});
+    console.log({selectedOption})
+    setFilterValues((prev:any)=>({...prev,status:selectedOption !==null ? selectedOption.value:''}));
   };
 
 
@@ -50,12 +54,10 @@ const TopBar = ({title,showFilters,setFilterValues,routePath}:TopBarProps) => {
        {showFilters &&(
         <TopbarFilters>
         <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search by reference number..'}/>
-        <DateRange />
+        <DateRange filterDate={setFilterValues}/>
         <SelectInput placeholder={'All Platform'}
-          onChange={handleChange}
+          onChange={()=>{}}
          value={''} options={optionsAllPlatform}/> 
-
-
          <SelectInput placeholder={'Status'}
           onChange={handleChange}
          value={status} options={options}/> 

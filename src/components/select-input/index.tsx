@@ -24,6 +24,7 @@ const SelectInput=({placeholder,options,value,onChange}:SelectProps)=>{
         onChange={onChange}
         options={options}
         styles={colourStyles}
+        isClearable={true}
       
         placeholder={<div className="select-placeholder">{placeholder}</div>}
 
