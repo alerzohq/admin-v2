@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Color } from '../../../../assets/theme';
-import { TabsPage, Notification, Text, Loader, LineLoader, FallBack } from '../../../../components';
+import { TabsPage, Notification, Text, Loader, FallBack } from '../../../../components';
 import { useQuery } from 'react-query';
 import { getResource } from '../../../../utils/apiRequest';
 import { capitalizeFirstLetter } from '../../../../utils/formatValue';
@@ -10,6 +9,7 @@ import { TABS } from '../../../../data/tab-data';
 import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper';
 import { Container } from '../../../../components/layout';
 import NotesContent from './tab-content/notes';
+import Receipt from './tab-content/receipt';
 
 
 
@@ -34,7 +34,7 @@ const TabsContainer = () => {
             case 'other':
                 return <DetailsContent resolvedData={otherHelper(data?.data?.[0])!} />;
             case 'receipt':
-                return <div>Receipt</div>
+                return <Receipt />
             case 'notes':
                 return <NotesContent />
             default:
@@ -87,8 +87,8 @@ const TabsContainer = () => {
 
                         /> : renderSwitch()}
                 </>
-            }
-
+            
+                    }
 
         </Container>
 

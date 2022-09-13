@@ -29,6 +29,7 @@ export enum Color {
   alerzoStatusPending ="rgba(241, 168, 90, 0.1)",
   alerzoStatusFailed ="rgba(234, 67, 54, 0.1)",
   alerzoBlue2="#F3F9FF",
-  alerzoBlue3="#CBE5FF"
+  alerzoBlue3="#CBE5FF",
+  alerzoGray4="#C1CACF",
  
 }
