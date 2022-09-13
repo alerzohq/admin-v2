@@ -7,17 +7,9 @@ export type PaginationProps={
         pageNumber: number;
         status: string;
         query: string;
-        from: number;
-        to: number;
+        from: string;
+        to: string;
     }>>
 
 } 
 
-// React.Dispatch<React.SetStateAction<{
-//     count: number;
-//     pageNumber: number;
-//     status: string;
-//     query: string;
-//     from: number;
-//     to: number;
-// }>>

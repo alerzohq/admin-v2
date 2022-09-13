@@ -3,7 +3,7 @@ export const filterValue={
     pageNumber:0,
     status:'',
     query:'',
-    from:0,
-    to:0
+    from:'',
+    to:''
 
 }
