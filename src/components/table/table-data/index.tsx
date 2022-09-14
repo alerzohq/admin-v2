@@ -1,10 +1,10 @@
-import moment from "moment";
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { transformData } from "../../../helper/table.helper";
 import { formatDate, numberWithCommas } from "../../../utils/formatValue";
+import moment from "moment";
 
-// import { TableProps } from "../type";
 export type selectedDataType = {
   [key: string]: any;
 };
@@ -29,7 +29,7 @@ const navigate = useNavigate();
       {tableData?.map((item, i) => { 
         let newObj = transformData({item, name});
         let dataList: dataList = newObj && Object.values(newObj);  
-        {console.log('NEW DATA',dataList)}
+    
         return (
           <tr key={i}>        
             {dataList?.map((data, i) => ( 

@@ -67,7 +67,7 @@ export const DataTable = styled.table`
     color: #373737;
     td {
       white-space: nowrap;
-      font-size: 1rem;
+      font-size: .9rem;
       font-weight: 500;
       padding: .5rem 1rem;
       div{
