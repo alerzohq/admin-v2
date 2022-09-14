@@ -2,7 +2,7 @@ import { Text } from "..";
 import { Color } from "../../assets/theme";
 import { capitalizeFirstLetterInSentence, numberWithCommas } from "../../utils/formatValue";
 import { resolveTableColor } from "../../utils/resolveColors";
-import { CardItem, CardWrapper, CardContainer } from "./styles/flex-table.styles"
+import { CardItem, CardWrapper, CardContainer, CardBorderWrapper } from "./styles/flex-table.styles"
 import { FlexTableProps, FlexTableRowProps } from "./type";
 
 const FlexTableWrapper = ({ children }: FlexTableProps) => {
@@ -26,8 +26,10 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                 return "1"
         }
     }
+    
     return (
-        <CardWrapper>
+       
+             <CardWrapper>
             {header.map((detail, index) => {
                 const field = header[index]?.value as string;
                 const amt = field as keyof typeof data === "amount" || field as keyof typeof data === "balance" ? `₦${numberWithCommas(data[field as keyof typeof data])}` : (capitalizeFirstLetterInSentence(data[field as keyof typeof data]));
@@ -45,7 +47,7 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                         <CardItem padding={".7em 1.2em"} flex={"0"} topLeftRadius={index === 0 ? "12px" : "0"} topRightRadius={header.length - 1 === index ? "12px" : "0"}>
                             <Text as={'p'}
                                 padding={'0'}
-                                color={Color.alerzoGrayTwo}
+                                color={Color.alerzoBlack}
                                 size="14px"
                                 textAlign="left"
                                 whiteSpace="nowrap"
@@ -54,7 +56,8 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                                 {detail.label}
                             </Text>
                         </CardItem>
-                        <CardItem margin="2em 0" showBorder={header.length - 1 !== index} padding="0 1em" flex={"3"} bgColor={bgBottomColor} bottomLeftRadius={index === 0 ? "12px" : "0"} bottomRightRadius={header.length - 1 === index ? "12px" : "0"}>
+                        <CardBorderWrapper showLeftBorder={index === 0} showBorder={header.length - 1 === index} bottomLeftRadius={index === 0 ? "12px" : "0"} bottomRightRadius={header.length - 1 === index ? "12px" : "0"}>
+                        <CardItem margin="2em 0" showBorder={header.length - 1 !== index} padding="0 1em" flex={"3"} bgColor={bgBottomColor} >
                             <Text as={'p'}
                                 padding={'0 .1em'}
                                 color={field as keyof typeof data === "status" ? color : Color.alerzoBlack}
@@ -68,10 +71,13 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                                 {data[field as keyof typeof data] ? amt : ''}
                             </Text>
                         </CardItem>
+
+        </CardBorderWrapper>
                     </ CardContainer>
                 )
             })}
 
-        </CardWrapper>
+        </CardWrapper> 
+      
     )
 }

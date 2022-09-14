@@ -7,7 +7,7 @@ background:${Color.alerzoWhite};
 display:flex; 
 align-items:center; 
 padding:0 1.8rem;
-box-shadow: 0px 6px 60px rgba(0, 0, 0, 0.08);
+border-bottom: 0.8px solid #E8EBEE;
 position: sticky;
 top: 0;
 z-index:1;

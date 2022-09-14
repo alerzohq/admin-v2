@@ -23,12 +23,13 @@ export const sideBarData=[
      Icon: UserIcon,
      activeIconColor:'',
      path:`/${Path.DASHBOARD}/${Path.TRANSACTION}`
-     
-    //  subMenu:[
-    //      {name: "All Transactions",
-    //       subPath:`/${Path.DASHBOARD}/${Path.TRANSACTION}`
-    //       }, 
-    //  ]
+    },
+    {
+        id:4,
+        title: "Terminals",
+        Icon: UserIcon,
+        activeIconColor:'',
+        path:`/${Path.DASHBOARD}/${Path.TERMINAL}`
     },
 
  ]

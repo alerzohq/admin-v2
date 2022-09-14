@@ -111,10 +111,10 @@ export default CenteredCard;
 CenteredCard.ButtonRow = function CardRow({ leftButtonClick, rightButtonClick }: ButtonRowProps) {
     return (
         <ButtonWrapper>
-            <Button  onClick={leftButtonClick}>
+            <Button  height="2.5rem" onClick={leftButtonClick}>
                 Download Receipt
             </Button>
-            <Button color={Color.alerzoBlueTint} borderSize="1px" borderColor={Color.alerzoBlueTint} variant="transparent" onClick={rightButtonClick}>
+            <Button  height="2.5rem" color={Color.alerzoBlueTint} borderSize="1px" borderColor={Color.alerzoBlueTint} variant="transparent" onClick={rightButtonClick}>
                 Send to Customer
             </Button>
         </ButtonWrapper>
