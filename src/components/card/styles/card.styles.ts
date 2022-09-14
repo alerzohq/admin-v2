@@ -14,7 +14,7 @@ border-radius: 12px;
 box-shadow: 0px 6px 60px rgba(0, 0, 0, 0.04);
 padding: 5% 5%;
 height: auto;
-border: 1px solid #E8EBEE;
+border: 1px solid ${Color.alerzoGrayBorder};
 
 flex-direction: row;
 

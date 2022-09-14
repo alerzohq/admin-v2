@@ -16,6 +16,8 @@ import TransactionDetails from "../pages/dashboard/transactions/transaction-deta
 import { useAppContext } from "../context";
 import { getStorageItem } from "../utils/session-storage";
 import Verification from "../pages/verification";
+import Terminals from "../pages/dashboard/terminals";
+import TerminalDetails from "../pages/dashboard/terminals/details";
 
 // const Dashboard = React.lazy(() => import("../pages/dashboard"));
 
@@ -67,6 +69,8 @@ const user = getStorageItem('user') || state.user;
                 <Route path={Path.USERS} element={<Users /> }/>
                 <Route path={Path.TRANSACTION} element={<Transactions /> }/>
                 <Route path={Path.TRANSACTIONDETAIL} element={<TransactionDetails /> }/>
+                <Route path={Path.TERMINAL} element={<Terminals /> }/>
+                <Route path={Path.TERMINALDETAIL} element={<TerminalDetails /> }/>
               </Route>
           </Route>
 

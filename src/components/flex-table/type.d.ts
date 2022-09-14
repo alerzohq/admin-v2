@@ -13,6 +13,7 @@ export type TransactionData = {
     balance: string;
     summary:string;
 }
+
 export type BillerData = {
     sessionId?: string;
     displayName: string;
@@ -99,6 +100,22 @@ export type VASData = {
    status: string;
     channel: string;
   }
+  export type TerminalMoreData = {
+    model: string,
+    accountNumber: string,
+    accountName: string,
+    references: string,
+    date: string,
+    sessionId: string
+  }
+  export type TerminalData = {
+    tid: string,
+    serialNumber: string,
+    amount: string,
+    status: string,
+    updatedAt: string,
+    createdAt: string
+  }
 
 export type HeaderData = {
     label: string;
@@ -111,7 +128,7 @@ export type TableData = {
     spacing?: boolean;
     currentValue? :boolean
     header: HeaderData[];
-    data: TransactionData | BillerData | RecipientData | CustomerData | CustomerMoreData | VASData | CableData | ElectricityData | TokenData | BettingData | InternetData | AirtimeData | AirtimeMoreData | MobileData;
+    data: TransactionData | TerminalData | TerminalMoreData | BillerData | RecipientData | CustomerData | CustomerMoreData | VASData | CableData | ElectricityData | TokenData | BettingData | InternetData | AirtimeData | AirtimeMoreData | MobileData;
    
 }
 export type FlexTableRowProps = {
@@ -123,7 +140,7 @@ export type FlexTableRowProps = {
     bottomRightRadius?:string;
     selfAlign?:string;
     bgTopColor? :string;
-    data: TransactionData | BillerData | RecipientData | CustomerData | CustomerMoreData | VASData | CableData | ElectricityData | TokenData | BettingData | InternetData | AirtimeData | AirtimeMoreData | MobileData;
+    data: TransactionData | TerminalMoreData | TerminalData | BillerData | RecipientData | CustomerData | CustomerMoreData | VASData | CableData | ElectricityData | TokenData | BettingData | InternetData | AirtimeData | AirtimeMoreData | MobileData;
     header:HeaderData[];
     bgBottomColor?: string;
 }

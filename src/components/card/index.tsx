@@ -1,6 +1,6 @@
 import { AddNoteContainer, Card, CardContent, CardImage, CardRowRapper, NotesPage } from "./styles/card.styles";
 import { CardContainerProps, CardRowProps } from "./type";
-import { Form, Text } from "..";
+import { Text } from "..";
 import { Color } from "../../assets/theme";
 import AddIcon from "../../assets/icons/add-icon";
 import Modal from "../modal";
