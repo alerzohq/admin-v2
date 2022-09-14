@@ -1,10 +1,11 @@
-import { TabContentContainer } from "./styles/tab-content.styles";
-import { FlexTableWrapper } from "../../../../../components";
-import { TableData } from "../../../../../components/flex-table/type";
-import { Color } from "../../../../../assets/theme";
+import { Color } from "../../../../assets/theme";
+import { FlexTableWrapper } from "../../../../components";
+import { TableData } from "../../../../components/flex-table/type";
+import { TabContentContainer } from "../../transactions/details/tab-content/styles/tab-content.styles";
 
 
-const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
+
+const DetailsContentWidget = ({ resolvedData }: { resolvedData: TableData[] }) => {
     return (
         <>
             {resolvedData?.map((item, index) => {
@@ -37,4 +38,5 @@ const DetailsContent = ({ resolvedData }: { resolvedData: TableData[] }) => {
 
 }
 
-export default DetailsContent;
+export default DetailsContentWidget;
+

@@ -114,7 +114,7 @@ return (
                 }}
                 inputStyle={{padding:'1rem',
                 background:' rgba(255, 255, 255, 0.5)',
-                border:' 0.8px solid #E8EBEE',
+                border: `0.8px solid ${Color.alerzoGrayBorder}`,
                 borderRadius:'10px',
                 fontSize:'1.5rem',
                 color:`${Color.alerzoDarkGray}`,

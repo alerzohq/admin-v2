@@ -9,6 +9,7 @@ export type ButtonProps = {
     weight?:string;
     radius?:string;
     fontSize?:string;
+    borderSize?:string;
     color?:string;
     position?:string;
     noborder?:boolean;

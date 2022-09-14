@@ -21,11 +21,11 @@ TabPage.Title = function TabsTitle({ active, item, color, onClick }: TabsTitlePr
     )
 }
 
-TabPage.Tabs = function TabList({ tabs, color, currentValue}: TabsProps) {
+TabPage.Tabs = function TabList({ tabs, color, currentValue, hideStatus}: TabsProps) {
     const [queryParam, setQueryParams] = useSearchParams();
     return (
         <>
-            <TabWrapper>
+            <TabWrapper hideStatus={hideStatus}>
                 {tabs.map((item, index) => {
                     return (
                         <TabPage.Title key={index} item={item} color={color} active={item?.value === currentValue} onClick={() => {

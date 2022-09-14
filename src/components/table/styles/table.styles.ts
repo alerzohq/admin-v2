@@ -59,7 +59,7 @@ export const DataTable = styled.table`
   tbody{
     margin:0 2rem;
     tr {
-    border: 0.8px solid #E8EBEE;
+    border: 0.8px solid ${Color.alerzoGrayBorder};
     border-right: none;
     border-left: 0;
     height: 60px;

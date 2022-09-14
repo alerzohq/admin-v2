@@ -15,7 +15,8 @@ transition: all .3s ease;
 position:fixed;
 height:100vh;
 z-index:1;
-box-shadow: ${Color.alerzoLightGray};
+box-shadow: ${({isCollapsed})=>!isCollapsed ? Color.alerzoLightGray:'none'};
+border-right: ${({isCollapsed})=> isCollapsed ? `0.8px solid ${Color.alerzoGrayBorder}` : "none"};
 overflow:hidden;
 @media (max-width:992px){
     transform: translateX(-17rem)

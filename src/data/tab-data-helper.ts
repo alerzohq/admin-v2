@@ -37,7 +37,7 @@ export const detailsHelper = (slug: string, data: any) => {
                     product: data?.product?.displayName,
                     package: data?.product?.displayName,
                     reference: data?.billerReference,
-                    userId: type === "credit" ?`${data?.actionPayload?.craccount}/${data?.userId}`: `${data?.actionPayload?.accountNumber}/${data?.userId}`
+                    userId: type === "credit" ?`${data?.actionPayload?.craccount ? `${data?.actionPayload?.craccount} / ` : ''}/${data?.userId || ''}`: `${data?.actionPayload?.accountNumber ? `${data?.actionPayload?.accountNumber} / ` : ''}${data?.userId || ''}`
                 }
             }
         ];
@@ -70,7 +70,7 @@ export const detailsHelper = (slug: string, data: any) => {
 
         ];
     }
-    if (slug === "ikeja-electric-prepaid" || slug === "portharcourt-electric-postpaid") {
+    if (slug === "ikeja-electric-prepaid" || "abuja-electric-prepaid" || slug === "portharcourt-electric-postpaid") {
         return [
             {
                 spacing: false,

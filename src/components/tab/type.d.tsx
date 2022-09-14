@@ -13,6 +13,7 @@ export type TabsProps = {
     tabs:TabItem[];
     color?: string;
     currentValue?: string;
+    hideStatus?: boolean;
     component?: React.ReactNode;
 }
 export type TabItem = {

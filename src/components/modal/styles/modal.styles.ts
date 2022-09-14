@@ -56,8 +56,8 @@ export const StyledModal = styled.div<modalProps>`
   position: relative;
   margin: auto;
   border-radius: 20px;
-  min-height: 325px;
-  width:40%;
+  min-height: 290px;
+  width:35%;
   padding: 2em 1.5em;
   display: ${({isShown}) => isShown ? "block" : "none"};
   transform: ${({isShown}) => isShown ? "scale(1)" : "scale(0)"};
