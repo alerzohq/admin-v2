@@ -26,21 +26,15 @@ const TopBar = ({title,showFilters,setFilterValues,routePath}:TopBarProps) => {
  
   const {search,} = values
 
- 
-  
-
   useEffect(() => {
     if(showFilters){
       setFilterValues((prev:any)=>({...prev,query:search}));
-
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[search,status])
 
-
   const handleChange = (selectedOption:{[key: string]:any}) => {
     setValues({...values,status:selectedOption?.value});
-
     setFilterValues((prev:any)=>({...prev,status:selectedOption !==null ? selectedOption.value:''}));
   };
 

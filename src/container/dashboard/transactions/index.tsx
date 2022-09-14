@@ -15,6 +15,7 @@ const TransactionContainer = () => {
 
 const [values,setValues] = useState(filterValue);
 
+console.log({values})
 
 const getTransactions=(filterValue:filterProps) => {
     return getFilterResource(`transactions`,filterValue)

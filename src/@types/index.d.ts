@@ -7,8 +7,8 @@ export type filterProps={
 count:number;
 pageNumber:number;
 status?: string;
-from?:number;
-to?:number;
+from?:string;
+to?:string;
 query?:string;
 
 }

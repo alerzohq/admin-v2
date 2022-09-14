@@ -17,9 +17,7 @@ type dataProps = {
 };
 type dataList = string[] | undefined;
 
-// export type selectedDataType = {
-//     [key: string]: any;
-// }[];
+
 
 
 const TableData = ({ tableData, name,amountIndex}: dataProps) => {
@@ -29,17 +27,15 @@ const navigate = useNavigate();
   return (
     <tbody>
       {tableData?.map((item, i) => { 
-
-        
-
         let newObj = transformData({item, name});
         let dataList: dataList = newObj && Object.values(newObj);  
+        {console.log('NEW DATA',dataList)}
         return (
           <tr key={i}>        
             {dataList?.map((data, i) => ( 
-              <td key={i} id='td-hover'>
+              <td key={i} id='td-hover'>             
                   <div onClick={()=>{navigate(`${item?.id}/${item?.product?.slug}`,{state:{ detail:item }})}}  className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
-                  {moment(data, true).isValid()?
+                  {moment(data, true).isValid() ?
                   formatDate(data, 'lll'): i===amountIndex ? `₦${numberWithCommas(data)}`
                     : data}
                   </div>
