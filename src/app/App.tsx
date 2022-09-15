@@ -64,7 +64,7 @@ const user = getStorageItem('user') || state.user;
           </Route> */}
           
           <Route element={<ProtectedRoutes user={user} />}>          
-              <Route path={Path.DASHBOARD} element={<Dashboard />} >
+              <Route path={Path.DASHBOARD} element={<Dashboard />} > 
                 <Route index element={<Overview />}/>
                 <Route path={Path.USERS} element={<Users /> }/>
                 <Route path={Path.TRANSACTION} element={<Transactions /> }/>

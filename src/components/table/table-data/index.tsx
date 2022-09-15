@@ -28,14 +28,15 @@ const navigate = useNavigate();
     <tbody>
       {tableData?.map((item, i) => { 
         let newObj = transformData({item, name});
-        let dataList: dataList = newObj && Object.values(newObj);  
+        let dataList: dataList = newObj && Object.values(newObj); 
+        const lastItem = dataList?.[dataList?.length - 1]; 
     
         return (
           <tr key={i}>        
             {dataList?.map((data, i) => ( 
               <td key={i} id='td-hover'>             
                   <div onClick={()=>{navigate(`${item?.id}/${item?.product?.slug}`,{state:{ detail:item }})}}  className={data==='successful'?'success':data==='pending'?'pending':data==='failed'?'failed':'' + (i===0 && 'tableLink') }>
-                  {moment(data, true).isValid() ?
+                  {lastItem===data ?
                   formatDate(data, 'lll'): i===amountIndex ? `₦${numberWithCommas(data)}`
                     : data}
                   </div>
