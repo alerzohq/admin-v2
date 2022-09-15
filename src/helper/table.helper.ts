@@ -10,6 +10,11 @@ export const transformData=({item,name}:props)=>{
     let displayName = biller?.displayName || ''
     return {reference, amount,type,action,displayName,status,created_at}
   }
+  if(item && name === 'terminals'){
+    console.log(item)
+    const {id,amount,type,action,status,created_at} = item;
+    return {id, amount,type,action,status,created_at}
+  }
  
 
 }

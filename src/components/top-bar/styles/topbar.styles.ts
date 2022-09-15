@@ -32,7 +32,7 @@ overflow-y: visible;
 overflow-x: clip;
 scrollbar-width: none; 
 -ms-overflow-style: none;
-#download-btn{
+.download-btn{
 align-items: center;
 display: flex;
 justify-content: center;
