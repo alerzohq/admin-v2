@@ -1,6 +1,6 @@
-export type SelectProps={
-    placeholder?:string;
-    options?:{}[];
-    onChange:React.Dispatch<SetStateAction<any>>;
-    value:SelectInputProps
+export type SelectProps = {
+  placeholder?: string
+  options?: {}[]
+  onChange: React.Dispatch<SetStateAction<any>>
+  value: SelectInputProps
 }

@@ -1,4 +1,4 @@
-export type LoaderProps={
-    color?: string;
-    text?:string
+export type LoaderProps = {
+  color?: string
+  text?: string
 }

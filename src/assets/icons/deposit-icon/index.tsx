@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function DepositIcon() {
   return (
@@ -27,7 +27,7 @@ function DepositIcon() {
         d="M14.19 15.83c.371.383.74.763 1.113 1.145L17.08 18.8l.411.422h-.98l1.112-1.141 1.781-1.83.407-.418c.256-.263.728-.282.98 0 .254.285.275.726 0 1.006l-1.112 1.142-1.781 1.83-.407.418a.688.688 0 01-.98 0l-1.113-1.144-1.777-1.826-.412-.422c-.256-.263-.275-.747 0-1.006.275-.261.705-.283.98 0z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default DepositIcon;
+export default DepositIcon

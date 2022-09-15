@@ -4,9 +4,9 @@ import { TransactionContainer } from '../../../container/dashboard'
 const Transactions = () => {
   return (
     <>
-    <TransactionContainer />
+      <TransactionContainer />
     </>
-  ) 
+  )
 }
 
 export default Transactions

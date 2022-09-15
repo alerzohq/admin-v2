@@ -1,9 +1,8 @@
-import CardRow from "../../../../../components/card";
-import { noteDAta } from "../../../../../data/note-data";
+import CardRow from '../../../../../components/card'
+import { noteDAta } from '../../../../../data/note-data'
 
 const NotesContent = () => {
-    return <CardRow.Container data={noteDAta} />
-
+  return <CardRow.Container data={noteDAta} />
 }
 
-export default NotesContent;
+export default NotesContent

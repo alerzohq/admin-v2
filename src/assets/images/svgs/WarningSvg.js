@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export const WarningIcon =()=> {
+export const WarningIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,5 +31,5 @@ export const WarningIcon =()=> {
         ></image>
       </defs>
     </svg>
-  );
+  )
 }

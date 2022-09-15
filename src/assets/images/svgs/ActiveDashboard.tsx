@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ActiveDashboard = () => {
   return (
@@ -18,7 +18,7 @@ const ActiveDashboard = () => {
         fill="#80BCFF"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default ActiveDashboard;
+export default ActiveDashboard

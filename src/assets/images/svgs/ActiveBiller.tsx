@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ActiveBillers = () => {
   return (
@@ -12,7 +12,7 @@ const ActiveBillers = () => {
         fill="#C1CACF"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default ActiveBillers;
+export default ActiveBillers
