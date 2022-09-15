@@ -57,7 +57,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src --ext .ts,.tsx ",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "precommit": "npm run format && npm run lint && npx pretty-quick --staged"
   },
   "eslintConfig": {
     "extends": [

@@ -50,6 +50,7 @@ const Details = () => {
       tabs={TABS}
       hideStatus
       routePath={'/dashboard/terminals'}
+      
     />
   )
 }
