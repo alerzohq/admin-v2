@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function TimerIcon() {
   return (
@@ -26,7 +26,7 @@ function TimerIcon() {
         d="M1.417 5.083c.333-.417.75-.833 1.166-1.167l-.75-.75a.806.806 0 00-1.166 0 .806.806 0 000 1.167l.75.75zm10.5 0l.75-.75a.806.806 0 000-1.167.806.806 0 00-1.167 0l-.75.75c.416.334.833.75 1.166 1.167zM6.667 10.416a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default TimerIcon;
+export default TimerIcon

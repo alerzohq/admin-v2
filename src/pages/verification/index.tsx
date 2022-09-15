@@ -1,13 +1,10 @@
 import React from 'react'
 import { VerificationContainer } from '../../container/onboarding'
 
-
-const Verification: React.FC = ()=> {
- 
-
+const Verification: React.FC = () => {
   return (
     <>
-     <VerificationContainer />
+      <VerificationContainer />
     </>
   )
 }

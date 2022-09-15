@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const BillerSvg = () => {
   return (
@@ -19,7 +19,7 @@ const BillerSvg = () => {
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default BillerSvg;
+export default BillerSvg

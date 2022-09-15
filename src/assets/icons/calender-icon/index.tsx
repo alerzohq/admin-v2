@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function CalenderIcon() {
   return (
@@ -18,7 +18,7 @@ function CalenderIcon() {
         d="M19 4h-1v3a1 1 0 11-2 0V4H8v3a1 1 0 01-2 0V4H5a3 3 0 00-3 3v3h20V7a3 3 0 00-3-3z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default CalenderIcon;
+export default CalenderIcon

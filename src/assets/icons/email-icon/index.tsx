@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function EmailIcon() {
   return (
@@ -18,7 +18,7 @@ function EmailIcon() {
         d="M1.355.643a1.345 1.345 0 00-1.208.768L9.11 8.635a.679.679 0 00.845.005l8.967-7.03A1.32 1.32 0 0017.89.693L9.544 7.24 1.354.643z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default EmailIcon;
+export default EmailIcon

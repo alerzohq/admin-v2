@@ -1,14 +1,11 @@
-import CenteredCard from "../../../../../components/centered-card";
+import CenteredCard from '../../../../../components/centered-card'
 
 const Receipt = () => {
-    return (
-        <>
-         <CenteredCard />
-         
-        </>
-   
-    );
-
+  return (
+    <>
+      <CenteredCard />
+    </>
+  )
 }
 
-export default Receipt;
+export default Receipt

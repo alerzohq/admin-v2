@@ -1,9 +1,7 @@
-import Details from "../../../../container/dashboard/terminals/details";
+import Details from '../../../../container/dashboard/terminals/details'
 
 const TerminalDetails = () => {
-    return (
-     <Details/>
-    ) 
-  }
-  
-  export default TerminalDetails;
+  return <Details />
+}
+
+export default TerminalDetails

@@ -1,10 +1,9 @@
-import { Line } from "./styles/line-loader.styles"
-
+import { Line } from './styles/line-loader.styles'
 
 const LineLoader = () => {
   return (
     <Line>
-         <div className="loader-element"></div>
+      <div className="loader-element"></div>
     </Line>
   )
 }
