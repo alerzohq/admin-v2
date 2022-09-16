@@ -1,4 +1,3 @@
-
-export type contentProps={
-    isCollapsed?:boolean;
-}&React.ComponentProps<'div'>
+export type contentProps = {
+  isCollapsed?: boolean
+} & React.ComponentProps<'div'>

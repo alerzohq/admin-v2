@@ -1,15 +1,15 @@
-export type TableProps={
-    tableData:{}[];
-    tableHeaders:string[]; 
-    hideFilter?:boolean;
-    hideCheckInput?:boolean;
-    hideSort?:boolean;
-    tableName:string;
-    amountIndex?:number
+export type TableProps = {
+  tableData: {}[]
+  tableHeaders: string[]
+  hideFilter?: boolean
+  hideCheckInput?: boolean
+  hideSort?: boolean
+  tableName: string
+  amountIndex?: number
 
-    onClick?:(item:{}) => void;
+  onClick?: (item: {}) => void
 }
 
-export type PopupProps={
-    show?:boolean;
+export type PopupProps = {
+  show?: boolean
 }

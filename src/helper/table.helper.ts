@@ -1,20 +1,12 @@
-type props={
-    item :{[key: string]:any} | null ,
-    name?:string;
+type props = {
+  item: { [key: string]: any } | null
+  name?: string
 }
 
-export const transformData=({item,name}:props)=>{
-
-  if(item && name === 'transaction'){
-    const {reference,amount,type,action,status,biller,created_at} = item;
+export const transformData = ({ item, name }: props) => {
+  if (item && name === 'transaction') {
+    const { reference, amount, type, action, status, biller, created_at } = item
     let displayName = biller?.displayName || ''
-    return {reference, amount,type,action,displayName,status,created_at}
+    return { reference, amount, type, action, displayName, status, created_at }
   }
-  if(item && name === 'terminals'){
-    console.log(item)
-    const {id,amount,type,action,status,created_at} = item;
-    return {id, amount,type,action,status,created_at}
-  }
- 
-
 }

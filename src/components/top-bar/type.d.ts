@@ -15,27 +15,7 @@ export type TopBarProps = {
     }[];
   };
   isFetching?: boolean;
-  // setFilterValues?:{[key:string]:any}
   setFilterValues?: any;
   routePath?: string;
 };
 
-// {
-
-//     search: { placeholder: string };
-//     date: boolean;
-//     [key: string]:
-//       | {
-//           placeholder?: string;
-//           values?: any[];
-//           label: never;
-//           type: "select";
-//         }
-//       | {
-//           placeholder?: never;
-//           values?: never;
-//           label?: string;
-//           type: "button";
-//         };
-//     // status: boolean;
-//     // CSV: boolean;

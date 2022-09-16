@@ -8,7 +8,6 @@ import DateRange from "../date-range";
 import Stack from "../stack";
 import { SelectInputProps } from "../../@types";
 import SelectInput from "../select-input";
-// import { options, optionsAllPlatform } from "../../data/select-data";
 
 const TopBar = ({
   title,
@@ -25,17 +24,7 @@ const TopBar = ({
     allPlatform: "",
   });
 
-  // useEffect(() => {
-  //   if(showFilters){
-  //     setFilterValues((prev:any)=>({...prev,query:search}));
-  //   }
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[search,status])
 
-  // const handleChange = (selectedOption:{[key: string]:any}) => {
-  //   setValues({...values,status:selectedOption?.value});
-  //   setFilterValues((prev:any)=>({...prev,status:selectedOption !==null ? selectedOption.value:''}));
-  // };
   const { search } = values;
 
   useEffect(() => {
@@ -44,15 +33,6 @@ const TopBar = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status]);
-
-  // const handleChange = (selectedOption: { [key: string]: any }) => {
-  //   setValues({ ...values, status: selectedOption?.value });
-
-  //   setFilterValues((prev: any) => ({
-  //     ...prev,
-  //     status: selectedOption !== null ? selectedOption.value : "",
-  //   }));
-  // };
 
   return (
     <>

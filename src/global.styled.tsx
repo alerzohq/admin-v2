@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
-import GlimmerBold from "./assets/fonts/GilmerFont2/Gilmer-Bold.otf";
-import GlimmerHeavy from "./assets/fonts/GilmerFont2/Gilmer-Heavy.otf";
-import GlimmerLight from "./assets/fonts/GilmerFont2/Gilmer-light.otf";
-import GlimmerMedium from "./assets/fonts/GilmerFont2/Gilmer-Medium.otf";
-import GlimmerRegular from "./assets/fonts/GilmerFont2/Gilmer-Regular.otf";
-import { Color } from "./assets/theme";
+import { createGlobalStyle } from 'styled-components'
+import GlimmerBold from './assets/fonts/GilmerFont2/Gilmer-Bold.otf'
+import GlimmerHeavy from './assets/fonts/GilmerFont2/Gilmer-Heavy.otf'
+import GlimmerLight from './assets/fonts/GilmerFont2/Gilmer-light.otf'
+import GlimmerMedium from './assets/fonts/GilmerFont2/Gilmer-Medium.otf'
+import GlimmerRegular from './assets/fonts/GilmerFont2/Gilmer-Regular.otf'
+import { Color } from './assets/theme'
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -176,6 +176,6 @@ a {
     font-size:.8rem !important;
 }
 
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

@@ -1,5 +1,3 @@
-const Remarks = () => {
+const Remarks = () => {}
 
-}
-
-export default Remarks;
+export default Remarks

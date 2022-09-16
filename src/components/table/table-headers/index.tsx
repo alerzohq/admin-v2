@@ -1,19 +1,17 @@
-
 import React from 'react'
 
- type HeaderProps ={
-  headers?: string[];
- }
+type HeaderProps = {
+  headers?: string[]
+}
 
-const TableHeader = ({headers}:HeaderProps) => {
+const TableHeader = ({ headers }: HeaderProps) => {
   return (
-        <thead>
-           <tr> 
-            {headers?.map((header, i) => (
-            <th key={i}>{header}</th>
-            ))}
-           
-        </tr>
+    <thead>
+      <tr>
+        {headers?.map((header, i) => (
+          <th key={i}>{header}</th>
+        ))}
+      </tr>
     </thead>
   )
 }
