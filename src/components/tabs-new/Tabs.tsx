@@ -1,7 +1,7 @@
 import React from "react";
 import { Tab, ITabProps, TabLinks } from "./Tab";
 import { Panel, IPanelProps } from "./Panel";
-import { TabsContainer } from "./Tabs.styles";
+import { TabsContainer } from "./styles/Tabs.styles";
 
 interface ITabsComposition {
   Tab: React.FC<ITabProps>;
@@ -20,7 +20,7 @@ export const TabsContext = React.createContext<ITabsContext>(
 
 const Tabs: React.FC<{
   children: React.ReactNode;
-  activeTab: string
+  activeTab: string;
 }> &
   ITabsComposition = (props) => {
   const [activeTab, setActiveTab] = React.useState(props.activeTab);

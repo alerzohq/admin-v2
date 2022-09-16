@@ -1,12 +1,8 @@
-import React from 'react'
-import TerminalsContainer from '../../../container/dashboard/terminals'
+import React from "react";
+import TerminalsContainer from "../../../container/dashboard/terminals";
 
 const TransactionDetails = () => {
-  return (
+  return <TerminalsContainer />;
+};
 
-     <TerminalsContainer />
-
-  )
-}
-
-export default TransactionDetails
+export default TransactionDetails;

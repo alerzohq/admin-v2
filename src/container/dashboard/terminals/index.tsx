@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FallBack,
-  Jumbotron,
-  Loader,
-  Pagination,
-  Table,
-} from "../../../components";
+import { FallBack, Jumbotron, Loader, Pagination } from "../../../components";
 import { Container } from "../../../components/layout";
 import {
   getTerminalsData,
@@ -13,19 +7,17 @@ import {
 } from "../../../utils/apiRequest";
 import CardWidget from "../widget/card";
 import { useQuery } from "react-query";
-import {
-  requestsTerminalsHeaderList,
-  terminalsHeaderList,
-} from "../../../data/table-headers";
 import { filterValue } from "../../../data/filter-data";
 import { Tabs, TabsContext } from "../../../components/tabs-new/Tabs";
+import DynamicTable from "../../../components/react-table";
+import { terminalsTableMapper } from "./tableConfig";
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue);
   const { setActiveTab } = React.useContext(TabsContext);
 
   useEffect(() => {
-    setActiveTab && setActiveTab("Existing Terminals")
+    setActiveTab && setActiveTab("Existing Terminals");
   }, []);
 
   const getTerminalsHandler = (count: number) => {
@@ -67,11 +59,9 @@ const TransactionContainer = () => {
     existingTerrminals = <FallBack title={"You have no terminals yet. "} />;
   } else {
     existingTerrminals = (
-      <Table
-        tableName="terminals"
-        tableData={existingTerrminalsData?.data}
-        tableHeaders={terminalsHeaderList}
-        amountIndex={1}
+      <DynamicTable
+        data={existingTerrminalsData?.data}
+        mappers={terminalsTableMapper}
       />
     );
   }
@@ -88,11 +78,9 @@ const TransactionContainer = () => {
     );
   } else {
     requestsTerrminals = (
-      <Table
-        tableName="Requests Terrminals"
-        tableData={terrminalsRequestsData?.data}
-        tableHeaders={requestsTerminalsHeaderList}
-        amountIndex={1}
+      <DynamicTable
+        data={terrminalsRequestsData?.data}
+        mappers={terminalsTableMapper}
       />
     );
   }

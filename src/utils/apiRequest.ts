@@ -6,23 +6,31 @@ export const getResource = async (pathUrl: string) => {
   return data;
 };
 
-
-
-export const getFilterResource = async(pathUrl:string, filterValue:filterProps)=>{
-  const {data} = await axiosInstance.get(`/${pathUrl}?count=${filterValue.count}&pageNumber=${filterValue.pageNumber}${filterValue?.query !== "" ? `&query=${filterValue?.query}` : ""}${filterValue?.status !=="" ? `&status=${filterValue?.status}` : ""}${filterValue?.from !=="" ? `&from=${filterValue?.from}` : ""}${filterValue?.to !=="" ? `&to=${filterValue?.to}` : ""}`)
-    return data
-  }
-
-export const getTerminalsData = async (pathUrl: string, count: number) => {
+export const getFilterResource = async (
+  pathUrl: string,
+  filterValue: filterProps
+) => {
   const { data } = await axiosInstance.get(
-    `/${pathUrl}?count=${count}&cursor`
+    `/${pathUrl}?count=${filterValue.count}&pageNumber=${
+      filterValue.pageNumber
+    }${filterValue?.query !== "" ? `&query=${filterValue?.query}` : ""}${
+      filterValue?.status !== "" ? `&status=${filterValue?.status}` : ""
+    }${filterValue?.from !== "" ? `&from=${filterValue?.from}` : ""}${
+      filterValue?.to !== "" ? `&to=${filterValue?.to}` : ""
+    }`
   );
   return data;
 };
 
-export const getTerminalsRequestsData = async (pathUrl: string, count: number) => {
-  const { data } = await axiosInstance.get(
-    `/${pathUrl}?count=${count}&cursor`
-  );
+export const getTerminalsData = async (pathUrl: string, count: number) => {
+  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`);
+  return data;
+};
+
+export const getTerminalsRequestsData = async (
+  pathUrl: string,
+  count: number
+) => {
+  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`);
   return data;
 };
