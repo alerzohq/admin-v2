@@ -11,8 +11,11 @@ import { filterValue } from '../../../data/filter-data'
 import { Tabs, TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
 import { terminalsTableMapper } from './tableConfig'
+import { useNavigate } from 'react-router-dom'
 
 const TransactionContainer = () => {
+  const navigate = useNavigate()
+
   const [values, setValues] = useState(filterValue)
   const { setActiveTab } = React.useContext(TabsContext)
 
@@ -60,6 +63,9 @@ const TransactionContainer = () => {
       <DynamicTable
         data={existingTerrminalsData?.data}
         mappers={terminalsTableMapper}
+        handleClick={(item) => {
+          navigate(item?.id)
+        }}
       />
     )
   }

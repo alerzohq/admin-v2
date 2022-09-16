@@ -6,6 +6,7 @@ export const terminalsTableMapper = [
     title: 'Id',
     key: 'id',
     render: (data: { id: any }) => data.id,
+    className: 'tableLink',
   },
   {
     title: 'Serial number,',

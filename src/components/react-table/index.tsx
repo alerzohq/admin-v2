@@ -1,35 +1,48 @@
-import React, { ReactNode } from 'react'
-import { DataTable } from './Table.styles'
+import { ReactNode } from 'react'
+import {
+  DataTable,
+  DataTableTHead,
+  DataTableHeadRow,
+  DataTableHead,
+  DataTableBody,
+  DataTableBodyRow,
+} from './Table.styles'
 import { DynamicTableProps } from './types'
 
 const DynamicTable = (props: DynamicTableProps) => {
   return (
     <DataTable>
-      <thead>
-        <tr>
+      <DataTableTHead>
+        <DataTableHeadRow>
           {props.mappers?.map((mapper, index: number) => {
             return (
-              <th
+              <DataTableHead
                 style={mapper.sortable ? { cursor: 'pointer' } : {}}
                 key={index}
               >
                 {typeof mapper.title === 'string'
                   ? mapper.title
                   : mapper.title()}
-              </th>
+              </DataTableHead>
             )
           })}
-        </tr>
-      </thead>
-      <tbody>
+        </DataTableHeadRow>
+      </DataTableTHead>
+      <DataTableBody>
         {props.data.map((item, index: number) => {
           return (
-            <tr key={index}>
+            <DataTableBodyRow
+              key={index}
+              onClick={(e) => {
+                e.preventDefault()
+                props.handleClick?.(item)
+              }}
+            >
               {props.mappers?.map((mapper, i: number) => {
                 return (
-                  <td key={i}>
+                  <td key={i} className={mapper.className}>
                     {
-                      (mapper.render || ((data) => data[mapper.key]))(
+                      (mapper.render || ((rowData) => rowData[mapper.key]))(
                         item,
                         i
                       ) as ReactNode
@@ -37,10 +50,10 @@ const DynamicTable = (props: DynamicTableProps) => {
                   </td>
                 )
               })}
-            </tr>
+            </DataTableBodyRow>
           )
         })}
-      </tbody>
+      </DataTableBody>
     </DataTable>
   )
 }

@@ -5,10 +5,12 @@ export interface TableMapperItem<T = any> {
   key: string
   sortable?: boolean
   render?: (data: T, i?: number) => ReactNode
+  className?: string
 }
 
 export interface DynamicTableProps<T = any> {
   mappers: TableMapperItem<any>[]
   loading?: boolean
   data: T[]
+  handleClick?: (item: T) => void
 }
