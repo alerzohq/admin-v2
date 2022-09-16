@@ -1,8 +1,8 @@
-import React from "react";
-import { TableWrapper, DataTable } from "./styles/table.styles";
-import TableData from "./table-data";
-import TableHeader from "./table-headers";
-import { TableProps } from "./type";
+import React from 'react'
+import { TableWrapper, DataTable } from './styles/table.styles'
+import TableData from './table-data'
+import TableHeader from './table-headers'
+import { TableProps } from './type'
 
 const Table = ({
   tableHeaders,
@@ -23,7 +23,7 @@ const Table = ({
         </DataTable>
       </TableWrapper>
     </>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table

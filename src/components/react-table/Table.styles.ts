@@ -1,5 +1,5 @@
-import styled from "styled-components/macro";
-import { Color } from "../../assets/theme";
+import styled from 'styled-components/macro'
+import { Color } from '../../assets/theme'
 
 export const DataTable = styled.table`
   width: 100%;
@@ -61,4 +61,4 @@ export const DataTable = styled.table`
       }
     }
   }
-`;
+`

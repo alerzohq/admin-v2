@@ -26,34 +26,35 @@ export const TopbarWrapper = styled.div`
   }
 `
 export const TopbarFilters = styled.div`
-display:flex; gap:20px;
-overflow-y: visible;
-overflow-x: clip;
-scrollbar-width: none; 
--ms-overflow-style: none;
-.download-btn{
-align-items: center;
-display: flex;
-justify-content: center;
-background: ${Color.alerzoWhite};
-border: 1px solid ${Color.alerzoBlue};
-border-radius: 10px;
-height: 45px;
-padding:0 1rem ;
-width:200px; 
-text-align: center;
-font-family: 'Gilmer';   
-font-style: normal;
-font-size: 14px;
-line-height: 17px;
-color: ${Color.alerzoBlue};
-font-weight: 500;
-cursor: pointer;
-}
-::-webkit-scrollbar { 
-width: 0;
-height: 0;
-    }
+  display: flex;
+  gap: 20px;
+  overflow-y: visible;
+  overflow-x: clip;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  .download-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: ${Color.alerzoWhite};
+    border: 1px solid ${Color.alerzoBlue};
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 1rem;
+    width: 200px;
+    text-align: center;
+    font-family: 'Gilmer';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: ${Color.alerzoBlue};
+    font-weight: 500;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 
   @media (max-width: 768px) {
     gap: 10px;

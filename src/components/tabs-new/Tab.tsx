@@ -1,14 +1,14 @@
-import React from "react";
-import { TabButton, TabLinksContainer } from "./styles/Tab.styles";
-import { TabsContext } from "./Tabs";
+import React from 'react'
+import { TabButton, TabLinksContainer } from './styles/Tab.styles'
+import { TabsContext } from './Tabs'
 
 export interface ITabProps {
-  label: string;
-  children: React.ReactNode;
+  label: string
+  children: React.ReactNode
 }
 
 export const Tab: React.FC<ITabProps> = (props) => {
-  const { setActiveTab, activeTab } = React.useContext(TabsContext);
+  const { setActiveTab, activeTab } = React.useContext(TabsContext)
   return (
     <div>
       <TabButton
@@ -18,11 +18,11 @@ export const Tab: React.FC<ITabProps> = (props) => {
         {props.children}
       </TabButton>
     </div>
-  );
-};
+  )
+}
 
 export const TabLinks: React.FC<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }> = (props) => {
-  return <TabLinksContainer>{props.children}</TabLinksContainer>;
-};
+  return <TabLinksContainer>{props.children}</TabLinksContainer>
+}

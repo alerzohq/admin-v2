@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import { DataTable } from "./Table.styles";
-import { DynamicTableProps } from "./types";
+import React, { ReactNode } from 'react'
+import { DataTable } from './Table.styles'
+import { DynamicTableProps } from './types'
 
 const DynamicTable = (props: DynamicTableProps) => {
   return (
@@ -10,14 +10,14 @@ const DynamicTable = (props: DynamicTableProps) => {
           {props.mappers?.map((mapper, index: number) => {
             return (
               <th
-                style={mapper.sortable ? { cursor: "pointer" } : {}}
+                style={mapper.sortable ? { cursor: 'pointer' } : {}}
                 key={index}
               >
-                {typeof mapper.title === "string"
+                {typeof mapper.title === 'string'
                   ? mapper.title
                   : mapper.title()}
               </th>
-            );
+            )
           })}
         </tr>
       </thead>
@@ -35,13 +35,13 @@ const DynamicTable = (props: DynamicTableProps) => {
                       ) as ReactNode
                     }
                   </td>
-                );
+                )
               })}
             </tr>
-          );
+          )
         })}
       </tbody>
     </DataTable>
-  );
-};
-export default DynamicTable;
+  )
+}
+export default DynamicTable

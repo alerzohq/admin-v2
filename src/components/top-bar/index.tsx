@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { TopBarProps } from "./type";
-import Text from "../text";
-import { TopbarWrapper, TopbarFilters, Filter } from "./styles/topbar.styles";
-import { useNavigate, useParams } from "react-router-dom";
-import { ArrowBackIcon } from "../../assets/icons";
-import DateRange from "../date-range";
-import Stack from "../stack";
-import { SelectInputProps } from "../../@types";
-import SelectInput from "../select-input";
+import React, { useEffect, useState } from 'react'
+import { TopBarProps } from './type'
+import Text from '../text'
+import { TopbarWrapper, TopbarFilters, Filter } from './styles/topbar.styles'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ArrowBackIcon } from '../../assets/icons'
+import DateRange from '../date-range'
+import Stack from '../stack'
+import { SelectInputProps } from '../../@types'
+import SelectInput from '../select-input'
 
 const TopBar = ({
   title,
@@ -15,45 +15,44 @@ const TopBar = ({
   setFilterValues,
   routePath,
 }: TopBarProps) => {
-  let params = useParams();
-  let navigate = useNavigate();
-  const [status] = useState<SelectInputProps>(null);
+  let params = useParams()
+  let navigate = useNavigate()
+  const [status] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
-    search: "",
-    status: "",
-    allPlatform: "",
-  });
+    search: '',
+    status: '',
+    allPlatform: '',
+  })
 
-
-  const { search } = values;
+  const { search } = values
 
   useEffect(() => {
     if (showFilters) {
-      setFilterValues((prev: any) => ({ ...prev, query: search }));
+      setFilterValues((prev: any) => ({ ...prev, query: search }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, status]);
+  }, [search, status])
 
   return (
     <>
       <TopbarWrapper>
-        <Stack justifyContent={"space-between"} direction={"row"}>
-          <Stack direction={"row"} width={"auto"} alignItems={"center"}>
+        <Stack justifyContent={'space-between'} direction={'row'}>
+          <Stack direction={'row'} width={'auto'} alignItems={'center'}>
             {Object.entries(params)?.length > 0 && (
               <ArrowBackIcon
                 onClick={() => {
-                  routePath ? navigate(`${routePath}`) : navigate(-1);
+                  routePath ? navigate(`${routePath}`) : navigate(-1)
                 }}
               />
-            )}{" "}
-            <Text as={"h3"}>{title}</Text>
+            )}{' '}
+            <Text as={'h3'}>{title}</Text>
           </Stack>
           <TopbarFilters>
             {showFilters?.search && (
               <Filter
                 value={search}
                 onChange={(e) => {
-                  setValues({ ...values, search: e.target.value });
+                  setValues({ ...values, search: e.target.value })
                 }}
                 placeholder={showFilters.search.placeholder}
               />
@@ -70,7 +69,7 @@ const TopBar = ({
               ))}
             {showFilters?.buttons?.length >= 1 &&
               showFilters.buttons.map((button) => (
-                <button onClick={button.onClick} className={"download-btn"}>
+                <button onClick={button.onClick} className={'download-btn'}>
                   {button.label}
                 </button>
               ))}
@@ -95,7 +94,7 @@ const TopBar = ({
         </Stack>
       </TopbarWrapper>
     </>
-  );
-};
+  )
+}
 
-export default TopBar;
+export default TopBar

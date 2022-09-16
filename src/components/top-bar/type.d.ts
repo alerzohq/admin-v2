@@ -1,21 +1,20 @@
 export type TopBarProps = {
-  title: string;
+  title: string
   showFilters: {
-    search: { type: string; placeholder: string };
-    date:boolean;
+    search: { type: string; placeholder: string }
+    date: boolean
     selects: {
-      values: any[];
-      placeholder: string;
-      onChange: () => void;
-      value:string
-    }[];
+      values: any[]
+      placeholder: string
+      onChange: () => void
+      value: string
+    }[]
     buttons: {
-      label: string;
-      onClick: () => void;
-    }[];
-  };
-  isFetching?: boolean;
-  setFilterValues?: any;
-  routePath?: string;
-};
-
+      label: string
+      onClick: () => void
+    }[]
+  }
+  isFetching?: boolean
+  setFilterValues?: any
+  routePath?: string
+}

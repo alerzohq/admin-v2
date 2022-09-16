@@ -58,7 +58,7 @@ function App() {
                 path={Path.TRANSACTIONDETAIL}
                 element={<TransactionDetails />}
               />
-                <Route path={Path.TERMINALS} element={<Terminals /> }/>
+              <Route path={Path.TERMINALS} element={<Terminals />} />
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
             </Route>
           </Route>
