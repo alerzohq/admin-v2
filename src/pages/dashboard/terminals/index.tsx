@@ -1,20 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
+import TerminalsContainer from '../../../container/dashboard/terminals'
 
-const Terminals = () => {
-  const navigate = useNavigate()
-  return (
-    <>
-      <div>Teminals</div>
-      <button
-        type="button"
-        onClick={() => {
-          navigate('02aae9f9-c692-41aa-803d-3c0c0d3fc9e2')
-        }}
-      >
-        Navigate
-      </button>
-    </>
-  )
+const TransactionDetails = () => {
+  return <TerminalsContainer />
 }
 
-export default Terminals
+export default TransactionDetails
