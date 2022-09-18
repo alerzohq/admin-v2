@@ -1,18 +1,18 @@
-import { IconProps } from "../types";
+import { IconProps } from '../types'
 
 const UserIcon = ({ width, height, color, className }: IconProps) => {
   return (
     <>
       <svg
-        width={width?width:"24"}
-        height={height?height:"24"}
+        width={width ? width : '24'}
+        height={height ? height : '24'}
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M12 14C14.2091 14 16 12.2091 16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10C8 12.2091 9.79086 14 12 14Z"
-          fill={color?color:"#374B58"}
+          fill={color ? color : '#374B58'}
         />
         <path
           d="M14.9755 12.6504C14.2429 13.4724 13.1877 14.0002 12 14.0002C10.8124 14.0002 9.75726 13.4725 9.02466 12.6506C6.62628 13.6121 4.80951 15.6855 4.21002 18.2502C6.10425 20.6162 8.96924 21.9953 12 22.0002C15.0308 21.9953 17.8958 20.6162 19.79 18.2502C19.173 15.611 17.3129 13.59 14.9755 12.6504Z"
@@ -24,7 +24,7 @@ const UserIcon = ({ width, height, color, className }: IconProps) => {
         />
       </svg>
     </>
-  );
-};
+  )
+}
 
-export default UserIcon;
+export default UserIcon

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { AlerzoLogo, FavIcon } from "../../assets/icons";
-import { Color } from "../../assets/theme";
-import { sideBarData } from "../../data/sidebar-data";
+import React, { useState } from 'react'
+import { AlerzoLogo, FavIcon } from '../../assets/icons'
+import { Color } from '../../assets/theme'
+import { sideBarData } from '../../data/sidebar-data'
 import {
   SidebarWrapper,
   Inner,
@@ -9,23 +9,23 @@ import {
   DropdownItem,
   SidebarItem,
   SidebarList,
-} from "./styles/sidebar.styles";
-import { sidebarMenuProp, sidebarProps } from "./type";
-import Text from "../text";
-import { Link, useLocation } from "react-router-dom";
-import Stack from "../stack";
+} from './styles/sidebar.styles'
+import { sidebarMenuProp, sidebarProps } from './type'
+import Text from '../text'
+import { Link, useLocation } from 'react-router-dom'
+import Stack from '../stack'
 
 const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
-  const location = useLocation();
-  const [show, setShow] = useState<number | null>();
+  const location = useLocation()
+  const [show, setShow] = useState<number | null>()
 
   const handleToggle = (index: number) => {
     if (show === index) {
-      return setShow(null);
+      return setShow(null)
     }
 
-    setShow(index);
-  };
+    setShow(index)
+  }
 
   return (
     <SidebarWrapper isCollapsed={isCollapsed}>
@@ -34,16 +34,19 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
           <FavIcon onClick={collapseBar} />
         ) : (
           <AlerzoLogo
-            className={"logo"}
+            className={'logo'}
             onClick={collapseBar}
-            height={"25"}
-            width={"150"}
+            height={'25'}
+            width={'150'}
             color={Color.alerzoBlue}
           />
         )}
         <SidebarList>
           {sideBarData.map(
-            ({ title, Icon, path, activeIconColor, subMenu }:sidebarMenuProp, i) => (
+            (
+              { title, Icon, path, activeIconColor, subMenu }: sidebarMenuProp,
+              i
+            ) => (
               <SidebarItem
                 isActive={path === location.pathname}
                 isCollapsed={isCollapsed}
@@ -51,28 +54,28 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
               >
                 <Link to={path}>
                   <Stack
-                    direction={"row"}
-                    gap={"10px"}
-                    alignItems={"center"}
+                    direction={'row'}
+                    gap={'10px'}
+                    alignItems={'center'}
                     onClick={() => {
-                      handleToggle(i);
+                      handleToggle(i)
                     }}
                   >
-                    <Stack justifyContent={"center"} alignItems={"center"}>
+                    <Stack justifyContent={'center'} alignItems={'center'}>
                       {Icon && (
                         <Icon
                           color={
-                            path === location.pathname ? activeIconColor : ""
+                            path === location.pathname ? activeIconColor : ''
                           }
-                          height={path === location.pathname ? "20" : ""}
+                          height={path === location.pathname ? '20' : ''}
                         />
                       )}
-                    </Stack>{" "}
-                    {!isCollapsed && <Text as={"p"}>{title}</Text>}
+                    </Stack>{' '}
+                    {!isCollapsed && <Text as={'p'}>{title}</Text>}
                   </Stack>
                 </Link>
 
-                {subMenu?.map(({name,subPath}) => (
+                {subMenu?.map(({ name, subPath }) => (
                   <SidebarDropdown key={name} isShown={show === i}>
                     <Link to={subPath}>
                       <DropdownItem>{name}</DropdownItem>
@@ -85,7 +88,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
         </SidebarList>
       </Inner>
     </SidebarWrapper>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

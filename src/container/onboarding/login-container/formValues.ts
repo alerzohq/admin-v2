@@ -1,8 +1,8 @@
-export const formValue={
-    email: "",
-    password: "",
-  }
-export const otpformValue={
-  email: "",
-  token: "",
+export const formValue = {
+  email: '',
+  password: '',
+}
+export const otpformValue = {
+  email: '',
+  token: '',
 }

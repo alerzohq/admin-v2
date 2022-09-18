@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function LockIcon() {
   return (
@@ -26,7 +26,7 @@ function LockIcon() {
         d="M7.944 13H5.056l.46-1.843a1.43 1.43 0 01-.46-1.046c0-.796.648-1.444 1.444-1.444.796 0 1.444.648 1.444 1.444a1.43 1.43 0 01-.46 1.046L7.944 13z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default LockIcon;
+export default LockIcon

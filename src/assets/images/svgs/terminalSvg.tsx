@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-const TerminalSvg=()=> {
+const TerminalSvg = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ const TerminalSvg=()=> {
         d="M16.5 9.75h-9v3h9v-3zM16.875 7.125h-9.75v1.5h9.75v-1.5zM10.125 14.625h-1.5v1.5h1.5v-1.5zM12.75 14.625h-1.5v1.5h1.5v-1.5zM15.375 14.625h-1.5v1.5h1.5v-1.5zM10.125 17.25h-1.5v1.5h1.5v-1.5zM12.75 17.25h-1.5v1.5h1.5v-1.5zM15.375 17.25h-1.5v1.5h1.5v-1.5zM10.125 19.875h-1.5v1.5h1.5v-1.5zM12.75 19.875h-1.5v1.5h1.5v-1.5zM15.375 19.875h-1.5v1.5h1.5v-1.5z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default TerminalSvg;
+export default TerminalSvg

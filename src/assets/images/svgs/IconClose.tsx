@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const IconClose = () => {
   return (
@@ -8,6 +8,6 @@ const IconClose = () => {
         fill="#fff"
       />
     </svg>
-  );
-};
-export default IconClose;
+  )
+}
+export default IconClose
