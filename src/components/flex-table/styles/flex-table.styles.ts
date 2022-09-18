@@ -59,6 +59,7 @@ flex-direction:column;
 flex-wrap: wrap; 
 `
 export const CardItem = styled.div<columnProps>`
+display: flex;
 flex: ${({ flex }) => flex ? flex : 1};
 padding: ${({padding})=>padding}; 
 margin: ${({margin})=>margin}; 

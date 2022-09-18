@@ -34,9 +34,6 @@ const handlePageClick =({selected}:{selected: number})=>{
 
       />
     </PaginationWrapper>)}
-
-
-
     </>
   );
 };

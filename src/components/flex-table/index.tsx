@@ -44,7 +44,7 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                 }
                 return (
                     <CardContainer key={index} flex={renderSwitch(detail.columnWidth || "small")}>
-                        <CardItem padding={".7em 1.2em"} flex={"0"} topLeftRadius={index === 0 ? "12px" : "0"} topRightRadius={header.length - 1 === index ? "12px" : "0"}>
+                        <CardItem padding={".7rem 1.2rem"} flex={"0"} topLeftRadius={index === 0 ? "12px" : "0"} topRightRadius={header.length - 1 === index ? "12px" : "0"}>
                             <Text as={'p'}
                                 padding={'0'}
                                 color={Color.alerzoBlack}
@@ -57,9 +57,9 @@ FlexTableWrapper.Row = function CardRow({ data, header, bgBottomColor }: FlexTab
                             </Text>
                         </CardItem>
                         <CardBorderWrapper showLeftBorder={index === 0} showBorder={header.length - 1 === index} bottomLeftRadius={index === 0 ? "12px" : "0"} bottomRightRadius={header.length - 1 === index ? "12px" : "0"}>
-                        <CardItem margin="2em 0" showBorder={header.length - 1 !== index} padding="0 1em" flex={"3"} bgColor={bgBottomColor} >
+                        <CardItem margin="1rem 0" showBorder={header.length - 1 !== index} padding="0 1em" flex={"3"} bgColor={bgBottomColor} >
                             <Text as={'p'}
-                                padding={'0 .1em'}
+                                padding={'0 .1rem'}
                                 color={field as keyof typeof data === "status" ? color : Color.alerzoBlack}
                                 bgColor={field as keyof typeof data === "status" ? bgColor : "transparent"}
                                 justifyContent={field as keyof typeof data === "status" ? "center" : "left"}
