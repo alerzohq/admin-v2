@@ -8,7 +8,6 @@ import DateRange from '../date-range'
 import Stack from '../stack'
 import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
-import { options, optionsAllPlatform } from '../../data/select-data'
 
 const TopBar = ({
   title,
@@ -34,20 +33,11 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
 
-  const handleChange = (selectedOption: { [key: string]: any }) => {
-    setValues({ ...values, status: selectedOption?.value })
-    setFilterValues((prev: any) => ({
-      ...prev,
-      status: selectedOption !== null ? selectedOption.value : '',
-    }))
-  }
-
   return (
     <>
       <TopbarWrapper>
         <Stack justifyContent={'space-between'} direction={'row'}>
           <Stack direction={'row'} width={'auto'} alignItems={'center'}>
-            {' '}
             {Object.entries(params)?.length > 0 && (
               <ArrowBackIcon
                 onClick={() => {
@@ -57,32 +47,50 @@ const TopBar = ({
             )}{' '}
             <Text as={'h3'}>{title}</Text>
           </Stack>
-          {showFilters && (
-            <TopbarFilters>
+          <TopbarFilters>
+            {showFilters?.search && (
               <Filter
                 value={search}
                 onChange={(e) => {
                   setValues({ ...values, search: e.target.value })
                 }}
-                placeholder={'Search by reference number..'}
+                placeholder={showFilters.search.placeholder}
               />
-              <DateRange filterDate={setFilterValues} />
-              <SelectInput
-                placeholder={'All Platform'}
-                onChange={() => {}}
-                value={''}
-                options={optionsAllPlatform}
-              />
-              <SelectInput
-                placeholder={'Status'}
-                onChange={handleChange}
-                value={status}
-                options={options}
-              />
-
-              <button id={'download-btn'}>{'Download CSV'}</button>
-            </TopbarFilters>
-          )}
+            )}
+            {showFilters?.date && <DateRange filterDate={setFilterValues} />}
+            {showFilters?.selects?.length >= 1 &&
+              showFilters.selects.map((select) => (
+                <SelectInput
+                  placeholder={select.placeholder}
+                  onChange={select.onChange}
+                  value={select.value}
+                  options={select.values}
+                />
+              ))}
+            {showFilters?.buttons?.length >= 1 &&
+              showFilters.buttons.map((button) => (
+                <button onClick={button.onClick} className={'download-btn'}>
+                  {button.label}
+                </button>
+              ))}
+          </TopbarFilters>
+          {/* {showFilters &&(
+        <TopbarFilters>
+        <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search by reference number..'}/>
+        <DateRange filterDate={setFilterValues}/>
+        <SelectInput placeholder={'All Platform'}
+          onChange={()=>{}}
+         value={''} options={optionsAllPlatform}/> 
+         <SelectInput placeholder={'Status'}
+          onChange={handleChange}
+         value={status} options={options}/> 
+         
+         <button id={'download-btn'}>
+           {'Download CSV'}
+         </button>
+        </TopbarFilters>
+ 
+       )} */}
         </Stack>
       </TopbarWrapper>
     </>

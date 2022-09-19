@@ -29,6 +29,6 @@ export const sideBarData = [
     title: 'Terminals',
     Icon: UserIcon,
     activeIconColor: '',
-    path: `/${Path.DASHBOARD}/${Path.TERMINAL}`,
+    path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
   },
 ]

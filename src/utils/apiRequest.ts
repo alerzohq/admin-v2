@@ -21,3 +21,16 @@ export const getFilterResource = async (
   )
   return data
 }
+
+export const getTerminalsData = async (pathUrl: string, count: number) => {
+  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`)
+  return data
+}
+
+export const getTerminalsRequestsData = async (
+  pathUrl: string,
+  count: number
+) => {
+  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`)
+  return data
+}

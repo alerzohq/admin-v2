@@ -13,13 +13,15 @@ import { useQuery } from 'react-query'
 import { transHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
+import { optionsAllPlatform } from '../../../data/select-data'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
 
-  const getTransactions = (filterValue: filterProps) => {
-    return getFilterResource(`transactions`, filterValue)
-  }
+const getTransactions=(filterValue:filterProps) => {
+    return getFilterResource(`transactions`,filterValue)
+}
+
 
   const { isLoading, data, isError, isFetching } = useQuery(
     ['transactions', values],
@@ -49,7 +51,26 @@ const TransactionContainer = () => {
 
   return (
     <Container
-      showFilters
+      showFilters={{
+        search: {
+          placeholder: 'Search by reference number..',
+        },
+        date: true,
+        selects: [
+          {
+            placeholder: 'All Platform',
+            values: optionsAllPlatform,
+            value: '',
+          },
+          { placeholder: 'status', values: [], value: '' },
+        ],
+        buttons: [
+          {
+            label: 'Download CSV',
+            onClick: () => console.log('first'),
+          },
+        ],
+      }}
       title="History"
       setFilterValues={setValues}
       isFetching={isFetching}
