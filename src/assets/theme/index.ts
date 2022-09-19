@@ -9,6 +9,7 @@ export enum Color {
   alerzoDarkGray = '#374B58',
   alerzoLightGray = '0px 6px 60px rgba(0, 0, 0, 0.08)',
   alerzoOrange = 'rgba(241, 168, 90, 1)',
+
   alerzoLight = '#fafafa99',
   alerzoDanger = '#EA4336',
   alerzoSuccess = '#EA4336',
@@ -30,5 +31,6 @@ export enum Color {
   alerzoStatusFailed = 'rgba(234, 67, 54, 0.1)',
   alerzoBlue2 = '#F3F9FF',
   alerzoBlue3 = '#CBE5FF',
+  alerzoBlue4 = 'rgba(209, 231, 255, 0.5)',
   alerzoGray4 = '#C1CACF',
 }

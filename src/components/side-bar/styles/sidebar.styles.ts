@@ -10,7 +10,9 @@ type sidebarStyleProps = {
 }
 
 export const SidebarWrapper = styled.div<sidebarStyleProps>`
-  width: ${({ isCollapsed }) => (isCollapsed ? '6rem' : '17rem')};
+display: flex;
+flex-direction:column;
+  width: ${({ isCollapsed }) => (isCollapsed ? '6rem' : '16rem')};
   transition: all 0.3s ease;
   position: fixed;
   height: 100vh;
@@ -28,9 +30,10 @@ export const Inner = styled.div<sidebarStyleProps>`
   display: flex;
   flex-direction: column;
   padding: ${({ isCollapsed }) => (isCollapsed ? '2rem 1rem' : '2rem ')};
+  height:100%;
   svg {
     cursor: pointer;
-    margin: ${({ isCollapsed }) => (isCollapsed ? 'auto' : '0')};
+    margin: ${({ isCollapsed }) => (isCollapsed ? '0 auto' : '0')};
   }
   .logo {
     padding-left: 1rem;
@@ -41,6 +44,17 @@ export const SidebarList = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 2.5rem;
+  p{
+    white-space: nowrap;
+  }
+`
+export const SidebarFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top:auto;
+  p{
+    white-space: nowrap;
+  }
 `
 
 export const SidebarItem = styled.div<sidebarStyleProps>`
@@ -57,21 +71,17 @@ export const SidebarItem = styled.div<sidebarStyleProps>`
 } */
 
   p {
-    font-size: ${({ isActive }) => isActive && `.9rem`};
-    font-weight: ${({ isActive }) => isActive && `700`};
+    font-size: ${({ isActive }) => isActive && `1rem`};
+    font-weight: ${({ isActive }) => isActive && `600`};
   }
   ${({ isActive }) =>
     isActive &&
     `
     display: flex;
     justify-content: center;
-    color: #fff;
-    background-size: 200% 200%;
-    background-image: linear-gradient(90deg,rgba(0,121,255,.4) 50%,#07f 0);
-    background-position: 100%;
+    color: ${Color.alerzoBlue};
+    background: ${Color.alerzoBlue4};
     border-radius: 10px;
-    fill: #fff;
-    box-shadow: 0 5px 2px rgb(0 121 255 / 40%);
     flex-direction: column;
    
 `}
@@ -88,4 +98,21 @@ export const DropdownItem = styled.div<sidebarStyleProps>`
   padding: 0.5rem;
   color: ${({ color }) => (color ? color : Color.alerzoLight)};
   padding-left: 2.5rem;
+`
+
+export const Profile = styled.div`
+background:${Color.alerzoBlue};
+display:flex;
+align-items: center;
+justify-content:center;
+color:${Color.alerzoWhite};
+font-size:.8rem;
+font-weight: 600;
+margin:1rem 0;
+cursor: pointer;
+text-transform:uppercase;
+height:40px;
+width:40px;
+border-radius:50%;
+
 `

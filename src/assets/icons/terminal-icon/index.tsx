@@ -1,9 +1,46 @@
 import { IconProps } from '../types'
 
-const UserIcon = ({ width, height, color, className }: IconProps) => {
+const TerminalIcon = ({ width, height, color,fill, className }: IconProps) => {
   return (
     <>
-      <svg
+       <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="21"
+      fill="none"
+      viewBox="0 0 20 21"
+    >
+      <rect
+        width="12"
+        height="16"
+        x="2"
+        y="2.451"
+        stroke={color?color:"#374B58"}
+        fill={fill ? fill : ""}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        rx="3"
+      ></rect>
+      <rect
+        width="8"
+        height="3"
+        x="4"
+        y="5.451"
+        stroke={color?color:"#374B58"}
+        fill={fill ? fill : ""}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        rx="1"
+      ></rect>
+      <path
+        stroke={color?color:"#374B58"}
+        fill={fill ? fill : ""}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M14 5.451h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v-10z"
+      ></path>
+    </svg>
+      {/* <svg
         width={width ? width : '24'}
         height={height ? height : '24'}
         viewBox="0 0 24 24"
@@ -22,9 +59,13 @@ const UserIcon = ({ width, height, color, className }: IconProps) => {
           d="M9.02467 12.6506C8.39454 11.9437 8.00001 11.0218 8.00001 10.0002C8.00001 7.79107 9.79084 6.00024 12 6.00024C14.2092 6.00024 16 7.79107 16 10.0002C16 11.0217 15.6055 11.9435 14.9755 12.6504C17.3062 13.5873 19.1611 15.6 19.7834 18.2283C21.155 16.5191 21.98 14.3522 21.98 11.9902C21.98 6.47845 17.5118 2.01025 12 2.01025C6.48822 2.01025 2.02002 6.47845 2.02002 11.9902C2.02002 14.3522 2.84497 16.519 4.21661 18.2283C4.82142 15.674 6.63331 13.6093 9.02467 12.6506Z"
           fill="white"
         />
-      </svg>
+      </svg> */}
     </>
   )
 }
 
-export default UserIcon
+export default TerminalIcon
+
+
+
+
