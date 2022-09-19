@@ -1,23 +1,36 @@
 import { Color } from '../assets/theme'
 
 export const resolveTableColor = (status) => {
-  if (status === 'successful' || status.toLowerCase() === 'active') {
-    return {
-      textColor: Color.alerzoTableSuccess,
-      bgColor: Color.alerzoStatusSuccess,
+    if (status.toLowerCase() === "verified" || status.toLowerCase() === "set") {
+        return {
+            textColor: Color.alerzoTableSuccess,
+            bgColor: '',
+        }
+    } 
+    if (status.toLowerCase() === "not verified" || status.toLowerCase() === "not set") {
+        return {
+            textColor: Color.alerzoDanger,
+            bgColor: '',
+        }
+    } 
+    if (status === "successful" || status.toLowerCase() === "active") {
+        return {
+            textColor: Color.alerzoTableSuccess,
+            bgColor: Color.alerzoStatusSuccess,
+        }
+    } else if (status === "failed" || status.toLowerCase() === "disabled") {
+        return {
+            textColor: Color.alerzoDanger,
+            bgColor: Color.alerzoStatusFailed,
+        }
+    } else  {
+        return {
+            textColor: Color.alerzoWarningText,
+            bgColor: Color.alerzoWarningBg,
+        }
     }
-  } else if (status === 'failed' || status.toLowerCase() === 'disabled') {
-    return {
-      textColor: Color.alerzoDanger,
-      bgColor: Color.alerzoStatusFailed,
-    }
-  } else {
-    return {
-      textColor: Color.alerzoWarningText,
-      bgColor: Color.alerzoWarningBg,
-    }
-  }
 }
+
 export const resolveColor = (status) => {
   if (status === 'successful') {
     return {

@@ -33,7 +33,6 @@ FlexTableWrapper.Row = function CardRow({
         return '1'
     }
   }
-
   return (
     <CardWrapper>
       {header.map((detail, index) => {
@@ -42,10 +41,12 @@ FlexTableWrapper.Row = function CardRow({
           (field as keyof typeof data) === 'amount' ||
           (field as keyof typeof data) === 'balance'
             ? `₦${numberWithCommas(data[field as keyof typeof data])}`
-            : capitalizeFirstLetterInSentence(data[field as keyof typeof data])
+            : (field as keyof typeof data) !== 'email'
+            ? capitalizeFirstLetterInSentence(data[field as keyof typeof data])
+            : data[field as keyof typeof data]
         let color: string = ''
         let bgColor: string = ''
-        if ((field as keyof typeof data) === 'status') {
+        if (field.toLowerCase().includes('status')) {
           const resolveData = resolveTableColor(
             data[field as keyof typeof data]
           )
@@ -93,26 +94,24 @@ FlexTableWrapper.Row = function CardRow({
                   as={'p'}
                   padding={'0 .1em'}
                   color={
-                    (field as keyof typeof data) === 'status'
+                    field.toLowerCase().includes('status')
                       ? color
                       : Color.alerzoBlack
                   }
                   bgColor={
-                    (field as keyof typeof data) === 'status'
+                    field.toLowerCase().includes('status')
                       ? bgColor
                       : 'transparent'
                   }
                   justifyContent={
-                    (field as keyof typeof data) === 'status'
-                      ? 'center'
-                      : 'left'
+                    field.toLowerCase().includes('status') ? 'center' : 'left'
                   }
                   textAlign="left"
                   weight={
-                    (field as keyof typeof data) === 'status' ? '600' : '400'
+                    field.toLowerCase().includes('status') ? '600' : '400'
                   }
                   width={
-                    (field as keyof typeof data) === 'status'
+                    field.toLowerCase().includes('status')
                       ? 'fit-content'
                       : 'auto'
                   }
