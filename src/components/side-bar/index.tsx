@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AlerzoLogo, FavIcon } from '../../assets/icons'
+import { AlerzoLogo, FavIcon, LogoutIcon, SettingsIcon } from '../../assets/icons'
 import { Color } from '../../assets/theme'
 import { sideBarData } from '../../data/sidebar-data'
 import {
@@ -9,15 +9,23 @@ import {
   DropdownItem,
   SidebarItem,
   SidebarList,
+  SidebarFooter,
+  Profile,
 } from './styles/sidebar.styles'
 import { sidebarMenuProp, sidebarProps } from './type'
 import Text from '../text'
 import { Link, useLocation } from 'react-router-dom'
 import Stack from '../stack'
+import { useAppContext } from '../../context'
+import { logOut } from '../../utils/session-storage'
+import { Action } from '../../context/actions'
 
 const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const location = useLocation()
-  const [show, setShow] = useState<number | null>()
+  const [show, setShow] = useState<number | null>();
+  const {
+    state: { user },dispatch
+  } = useAppContext()
 
   const handleToggle = (index: number) => {
     if (show === index) {
@@ -26,6 +34,12 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
 
     setShow(index)
   }
+
+const handleLogout =()=>{
+ logOut(()=>{
+  dispatch({type:Action.LOGOUT});
+ })
+}
 
   return (
     <SidebarWrapper isCollapsed={isCollapsed}>
@@ -44,7 +58,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
         <SidebarList>
           {sideBarData.map(
             (
-              { title, Icon, path, activeIconColor, subMenu }: sidebarMenuProp,
+              { title, ActiveIcon, path, InActiveIcon, subMenu }: sidebarMenuProp,
               i
             ) => (
               <SidebarItem
@@ -53,7 +67,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
                 key={i}
               >
                 <Link to={path}>
-                  <Stack
+                  <Stack 
                     direction={'row'}
                     gap={'10px'}
                     alignItems={'center'}
@@ -61,20 +75,25 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
                       handleToggle(i)
                     }}
                   >
-                    <Stack justifyContent={'center'} alignItems={'center'}>
-                      {Icon && (
-                        <Icon
-                          color={
-                            path === location.pathname ? activeIconColor : ''
-                          }
-                          height={path === location.pathname ? '20' : ''}
-                        />
+                    <Stack justifyContent={'center'}
+                      width={'auto'}
+                      alignItems={'center'}>
+                      { path === location.pathname ?
+                      <>
+                       {ActiveIcon && ( 
+                        <ActiveIcon />
                       )}
+                      </>:
+                      <>
+                      {InActiveIcon && (
+                        <InActiveIcon/>
+                      )}
+                      </>}
+                      
                     </Stack>{' '}
                     {!isCollapsed && <Text as={'p'}>{title}</Text>}
                   </Stack>
                 </Link>
-
                 {subMenu?.map(({ name, subPath }) => (
                   <SidebarDropdown key={name} isShown={show === i}>
                     <Link to={subPath}>
@@ -86,6 +105,42 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
             )
           )}
         </SidebarList>
+        <SidebarFooter>
+          <SidebarItem>
+           <Profile>
+            {user?.data?.firstName?.charAt(0)}
+            {user?.data?.lastName?.charAt(0)}
+           
+            </Profile>
+             <Link to={''}>
+                  <Stack 
+                    direction={'row'}               
+                    padding={'0 0 1rem 0'}
+                    alignItems={'center'}>
+                    <Stack justifyContent={'center'}
+                      width={'auto'}
+                      alignItems={'center'} >
+                           <SettingsIcon />               
+                    </Stack>{' '}
+                    {!isCollapsed && <Text as={'p'}>Settings</Text>}
+                  </Stack>
+                </Link>
+               
+                  <Stack 
+                    onClick={handleLogout}
+                    direction={'row'}                 
+                    alignItems={'center'}>
+                    <Stack justifyContent={'center'}
+                      width={'auto'}  
+                      alignItems={'center'}>
+                    <LogoutIcon />                     
+                    </Stack>{' '}
+                    {!isCollapsed && <Text as={'p'}>Log out</Text>}
+                  </Stack>
+                
+          </SidebarItem>
+        
+        </SidebarFooter>
       </Inner>
     </SidebarWrapper>
   )
