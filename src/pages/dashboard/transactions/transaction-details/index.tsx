@@ -1,4 +1,4 @@
-import { TransactionDetailContainer } from "../../../../container/dashboard"
+import { TransactionDetailContainer } from '../../../../container/dashboard'
 
 const TransactionDetails = () => {
   return <TransactionDetailContainer />

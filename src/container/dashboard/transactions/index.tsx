@@ -18,10 +18,9 @@ import { optionsAllPlatform } from '../../../data/select-data'
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
 
-const getTransactions=(filterValue:filterProps) => {
-    return getFilterResource(`transactions`,filterValue)
-}
-
+  const getTransactions = (filterValue: filterProps) => {
+    return getFilterResource(`transactions`, filterValue)
+  }
 
   const { isLoading, data, isError, isFetching } = useQuery(
     ['transactions', values],

@@ -63,10 +63,7 @@ function App() {
               <Route path={Path.TERMINALS} element={<Terminals />} />
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
               <Route path={Path.BUSINESSES} element={<Businesses />} />
-              <Route
-                path={Path.BUSINESSDETAIL}
-                element={<BusinessDetails />}
-              />
+              <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
             </Route>
           </Route>
 

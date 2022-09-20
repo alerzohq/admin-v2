@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function LogoutIcon() {
   return (
@@ -14,7 +14,7 @@ function LogoutIcon() {
         <path d="M14.005 19.63a.834.834 0 01-1.178 1.179L9.91 17.892a.833.833 0 010-1.178l2.917-2.917a.833.833 0 011.178 1.178l-1.494 1.494H20.5a.833.833 0 110 1.667h-7.988l1.494 1.494z"></path>
       </g>
     </svg>
-  );
+  )
 }
 
-export default LogoutIcon;
+export default LogoutIcon

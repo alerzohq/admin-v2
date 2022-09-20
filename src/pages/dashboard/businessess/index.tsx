@@ -1,5 +1,5 @@
 import React from 'react'
-import { BusinessContainer} from '../../../container/dashboard'
+import { BusinessContainer } from '../../../container/dashboard'
 
 const Businesses = () => {
   return (
@@ -9,4 +9,4 @@ const Businesses = () => {
   )
 }
 
-export default Businesses;
+export default Businesses

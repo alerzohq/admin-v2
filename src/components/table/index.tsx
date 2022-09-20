@@ -10,9 +10,8 @@ const Table = ({
   tableName,
   amountIndex,
   dateFormat,
-  withSlug
+  withSlug,
 }: TableProps) => {
-
   return (
     <>
       <TableWrapper>

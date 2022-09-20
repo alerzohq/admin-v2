@@ -13,15 +13,13 @@ import { useQuery } from 'react-query'
 import { busHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
-import { optionsAllPlatform } from '../../../data/select-data'
 
 const BusinessContainer = () => {
   const [values, setValues] = useState(filterValue)
 
-const getBusinesses =(filterValue:filterProps) => {
-    return getFilterResource(`businesses`,filterValue)
-}
-
+  const getBusinesses = (filterValue: filterProps) => {
+    return getFilterResource(`businesses`, filterValue)
+  }
 
   const { isLoading, data, isError, isFetching } = useQuery(
     ['businesses', values],
@@ -33,9 +31,7 @@ const getBusinesses =(filterValue:filterProps) => {
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = (
-      <FallBack error title={'Failed to load businesses. '} />
-    )
+    component = <FallBack error title={'Failed to load businesses. '} />
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no business yet. '} />
   } else {
@@ -78,4 +74,4 @@ const getBusinesses =(filterValue:filterProps) => {
   )
 }
 
-export default BusinessContainer;
+export default BusinessContainer

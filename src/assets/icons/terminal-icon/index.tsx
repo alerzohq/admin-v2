@@ -1,45 +1,45 @@
 import { IconProps } from '../types'
 
-const TerminalIcon = ({ width, height, color,fill, className }: IconProps) => {
+const TerminalIcon = ({ width, height, color, fill, className }: IconProps) => {
   return (
     <>
-       <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="21"
-      fill="none"
-      viewBox="0 0 20 21"
-    >
-      <rect
-        width="12"
-        height="16"
-        x="2"
-        y="2.451"
-        stroke={color?color:"#374B58"}
-        fill={fill ? fill : ""}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        rx="3"
-      ></rect>
-      <rect
-        width="8"
-        height="3"
-        x="4"
-        y="5.451"
-        stroke={color?color:"#374B58"}
-        fill={fill ? fill : ""}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        rx="1"
-      ></rect>
-      <path
-        stroke={color?color:"#374B58"}
-        fill={fill ? fill : ""}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M14 5.451h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v-10z"
-      ></path>
-    </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="21"
+        fill="none"
+        viewBox="0 0 20 21"
+      >
+        <rect
+          width="12"
+          height="16"
+          x="2"
+          y="2.451"
+          stroke={color ? color : '#374B58'}
+          fill={fill ? fill : ''}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          rx="3"
+        ></rect>
+        <rect
+          width="8"
+          height="3"
+          x="4"
+          y="5.451"
+          stroke={color ? color : '#374B58'}
+          fill={fill ? fill : ''}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          rx="1"
+        ></rect>
+        <path
+          stroke={color ? color : '#374B58'}
+          fill={fill ? fill : ''}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M14 5.451h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v-10z"
+        ></path>
+      </svg>
       {/* <svg
         width={width ? width : '24'}
         height={height ? height : '24'}
@@ -65,7 +65,3 @@ const TerminalIcon = ({ width, height, color,fill, className }: IconProps) => {
 }
 
 export default TerminalIcon
-
-
-
-

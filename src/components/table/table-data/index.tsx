@@ -11,13 +11,19 @@ type dataProps = {
   tableData: selectedDataType[]
   name: string
   amountIndex?: number
-  withSlug? : boolean
+  withSlug?: boolean
   dateFormat?: string
 }
 type dataList = string[] | undefined
 
-const TableData = ({ tableData, name, amountIndex, withSlug, dateFormat }: dataProps) => {
-  const navigate = useNavigate();
+const TableData = ({
+  tableData,
+  name,
+  amountIndex,
+  withSlug,
+  dateFormat,
+}: dataProps) => {
+  const navigate = useNavigate()
 
   return (
     <tbody>
@@ -28,13 +34,17 @@ const TableData = ({ tableData, name, amountIndex, withSlug, dateFormat }: dataP
         return (
           <tr key={i}>
             {dataList?.map((data, i) => (
-           
               <td key={i} id="td-hover">
                 <div
                   onClick={() => {
-                    navigate( withSlug ? `${item?.id}/${item?.product?.slug}`: `${item?.id}`, {
-                      state: { detail: item },
-                    })
+                    navigate(
+                      withSlug
+                        ? `${item?.id}/${item?.product?.slug}`
+                        : `${item?.id}`,
+                      {
+                        state: { detail: item },
+                      }
+                    )
                   }}
                   className={
                     data === 'successful' || data === 'Active'
