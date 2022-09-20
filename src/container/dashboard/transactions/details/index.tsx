@@ -43,25 +43,24 @@ const TabsContainer = () => {
     }
   }
 
-    const status: string = data?.data[0]?.status;
- 
+  const status: string = data?.data[0]?.status
 
-    return (
-        <TabsContentWidget
-        isFetching={isFetching}
-        isLoading={isLoading}
-        status={status}
-        containerTitle='Transaction Details'
-        title={found ? found?.title : TABS[0]?.title}
-        type="Transaction!"
-        isError={isError}
-        errorMessage='Failed to load transaction.'
-        currentValue={found?.value || 'details'}
-        renderSwitch={renderSwitch}
-        tabs={TABS}
-        routePath={'/dashboard/transactions'}
-         />
-    )
+  return (
+    <TabsContentWidget
+      isFetching={isFetching}
+      isLoading={isLoading}
+      status={status}
+      containerTitle="Transaction Details"
+      title={found ? found?.title : TABS[0]?.title}
+      type="Transaction!"
+      isError={isError}
+      errorMessage="Failed to load transaction."
+      currentValue={found?.value || 'details'}
+      renderSwitch={renderSwitch}
+      tabs={TABS}
+      routePath={'/dashboard/transactions'}
+    />
+  )
 }
 
 export default TabsContainer

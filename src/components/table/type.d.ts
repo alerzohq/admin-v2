@@ -6,6 +6,8 @@ export type TableProps = {
   hideSort?: boolean
   tableName: string
   amountIndex?: number
+  dateFormat?: string
+  withSlug?: boolean
 
   onClick?: (item: {}) => void
 }

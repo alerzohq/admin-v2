@@ -1,5 +1,4 @@
-import React from 'react'
-import axios, { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 import dayjs from 'dayjs'
 import jwt_decode from 'jwt-decode'
 

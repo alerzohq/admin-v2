@@ -59,7 +59,7 @@ const TopBar = ({
             )}
             {showFilters?.date && <DateRange filterDate={setFilterValues} />}
             {showFilters?.selects?.length >= 1 &&
-              showFilters.selects.map((select,i) => (
+              showFilters.selects.map((select, i) => (
                 <SelectInput
                   key={i}
                   placeholder={select.placeholder}
@@ -68,9 +68,13 @@ const TopBar = ({
                   options={select.values}
                 />
               ))}
-            {showFilters?.buttons?.length >= 1 && 
-              showFilters.buttons.map((button,i) => (
-                <button key={i} onClick={button.onClick} className={'download-btn'}>
+            {showFilters?.buttons?.length >= 1 &&
+              showFilters.buttons.map((button, i) => (
+                <button
+                  key={i}
+                  onClick={button.onClick}
+                  className={'download-btn'}
+                >
                   {button.label}
                 </button>
               ))}

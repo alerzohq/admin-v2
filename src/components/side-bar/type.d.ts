@@ -11,8 +11,8 @@ type subMenuData = {
 export type sidebarMenuProp = {
   id: number
   title: string
-  ActiveIcon?: React.JSXElement;
-  InActiveIcon?:React.JSXElement;
+  ActiveIcon?: React.JSXElement
+  InActiveIcon?: React.JSXElement
   activeIconColor: string
   path: string
   subMenu?: subMenuData[]

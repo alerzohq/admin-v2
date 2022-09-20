@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function SettingsIcon() {
   return (
@@ -22,7 +22,7 @@ function SettingsIcon() {
         <path d="M18.5 19.631a2.223 2.223 0 100-4.446 2.223 2.223 0 000 4.446z"></path>
       </g>
     </svg>
-  );
+  )
 }
 
-export default SettingsIcon;
+export default SettingsIcon

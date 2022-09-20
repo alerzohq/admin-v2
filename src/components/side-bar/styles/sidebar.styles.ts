@@ -10,8 +10,8 @@ type sidebarStyleProps = {
 }
 
 export const SidebarWrapper = styled.div<sidebarStyleProps>`
-display: flex;
-flex-direction:column;
+  display: flex;
+  flex-direction: column;
   width: ${({ isCollapsed }) => (isCollapsed ? '6rem' : '16rem')};
   transition: all 0.3s ease;
   position: fixed;
@@ -30,7 +30,7 @@ export const Inner = styled.div<sidebarStyleProps>`
   display: flex;
   flex-direction: column;
   padding: ${({ isCollapsed }) => (isCollapsed ? '2rem 1rem' : '2rem ')};
-  height:100%;
+  height: 100%;
   svg {
     cursor: pointer;
     margin: ${({ isCollapsed }) => (isCollapsed ? '0 auto' : '0')};
@@ -44,15 +44,15 @@ export const SidebarList = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 2.5rem;
-  p{
+  p {
     white-space: nowrap;
   }
 `
 export const SidebarFooter = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top:auto;
-  p{
+  margin-top: auto;
+  p {
     white-space: nowrap;
   }
 `
@@ -101,18 +101,17 @@ export const DropdownItem = styled.div<sidebarStyleProps>`
 `
 
 export const Profile = styled.div`
-background:${Color.alerzoBlue};
-display:flex;
-align-items: center;
-justify-content:center;
-color:${Color.alerzoWhite};
-font-size:.8rem;
-font-weight: 600;
-margin:1rem 0;
-cursor: pointer;
-text-transform:uppercase;
-height:40px;
-width:40px;
-border-radius:50%;
-
+  background: ${Color.alerzoBlue};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${Color.alerzoWhite};
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 `

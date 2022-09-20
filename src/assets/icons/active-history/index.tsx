@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ActiveHistoryIcon() {
   return (
@@ -25,7 +25,7 @@ function ActiveHistoryIcon() {
         d="M3.5 12.5L7.5 12.5"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default ActiveHistoryIcon;
+export default ActiveHistoryIcon

@@ -7,4 +7,6 @@ export enum Path {
   TRANSACTIONDETAIL = 'transactions/:transID/:slug',
   TERMINALS = 'terminals',
   TERMINALDETAIL = 'terminals/:terminalId',
+  BUSINESSES = 'businesses',
+  BUSINESSDETAIL = 'businesses/:businessId',
 }

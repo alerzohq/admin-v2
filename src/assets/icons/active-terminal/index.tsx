@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ActiveTerminalIcon() {
   return (
@@ -29,7 +29,7 @@ function ActiveTerminalIcon() {
       ></rect>
       <rect width="8" height="3" x="4" y="5" fill="#F9FAFC" rx="1"></rect>
     </svg>
-  );
+  )
 }
 
-export default ActiveTerminalIcon;
+export default ActiveTerminalIcon

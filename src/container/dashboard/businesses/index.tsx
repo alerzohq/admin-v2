@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   FallBack,
   Jumbotron,
@@ -10,21 +10,20 @@ import { Container } from '../../../components/layout'
 import { getFilterResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
-import { transHeaderList } from '../../../data/table-headers'
+import { busHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
-import { optionsAllPlatform } from '../../../data/select-data'
 
-const TransactionContainer = () => {
+const BusinessContainer = () => {
   const [values, setValues] = useState(filterValue)
 
-  const getTransactions = (filterValue: filterProps) => {
-    return getFilterResource(`transactions`, filterValue)
+  const getBusinesses = (filterValue: filterProps) => {
+    return getFilterResource(`businesses`, filterValue)
   }
 
   const { isLoading, data, isError, isFetching } = useQuery(
-    ['transactions', values],
-    () => getTransactions(values),
+    ['businesses', values],
+    () => getBusinesses(values),
     { keepPreviousData: true }
   )
 
@@ -32,19 +31,16 @@ const TransactionContainer = () => {
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = (
-      <FallBack error title={'Failed to load transaction history. '} />
-    )
+    component = <FallBack error title={'Failed to load businesses. '} />
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no transaction yet. '} />
+    component = <FallBack title={'You have no business yet. '} />
   } else {
     component = (
       <Table
-        tableName="transaction"
+        tableName="business"
         tableData={data?.data}
-        tableHeaders={transHeaderList}
-        amountIndex={1}
-        withSlug
+        tableHeaders={busHeaderList}
+        dateFormat="YYYY-MM-DD HH:mm:ss"
       />
     )
   }
@@ -53,16 +49,12 @@ const TransactionContainer = () => {
     <Container
       showFilters={{
         search: {
-          placeholder: 'Search by reference number..',
+          placeholder: 'Search by reference no..',
         },
         date: true,
         selects: [
-          {
-            placeholder: 'All Platform',
-            values: optionsAllPlatform,
-            value: '',
-          },
-          { placeholder: 'status', values: [], value: '' },
+          { placeholder: 'Status', values: [], value: '' },
+          { placeholder: 'KYC Level', values: [], value: '' },
         ],
         buttons: [
           {
@@ -71,7 +63,7 @@ const TransactionContainer = () => {
           },
         ],
       }}
-      title="History"
+      title="Businesses"
       setFilterValues={setValues}
       isFetching={isFetching}
     >
@@ -82,4 +74,4 @@ const TransactionContainer = () => {
   )
 }
 
-export default TransactionContainer
+export default BusinessContainer
