@@ -44,6 +44,7 @@ const TransactionContainer = () => {
         tableData={data?.data}
         tableHeaders={transHeaderList}
         amountIndex={1}
+        withSlug
       />
     )
   }
