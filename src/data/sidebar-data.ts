@@ -58,12 +58,12 @@ export const sideBarData = [
   //   activeIconColor: Color.alerzoBlue,
   // },
 
-  {
-    id: 6,
-    title: 'Terminals',
-    InActiveIcon: TerminalIcon,
-    ActiveIcon: ActiveTerminalIcon,
-    activeIconColor: Color.alerzoBlue,
-    path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
-  },
+  // {
+  //   id: 6,
+  //   title: 'Terminals',
+  //   InActiveIcon: TerminalIcon,
+  //   ActiveIcon: ActiveTerminalIcon,
+  //   activeIconColor: Color.alerzoBlue,
+  //   path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
+  // },
 ]
