@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
-import { formatDate, numberWithCommas } from '../../../utils/formatValue'
+import { formatDate, amountConverter } from '../../../utils/formatValue'
 
 export type selectedDataType = {
   [key: string]: any
@@ -59,7 +59,7 @@ const TableData = ({
                   {lastItem && lastItem === data
                     ? formatDate(data, dateFormat || 'lll')
                     : i === amountIndex
-                    ? `₦${numberWithCommas(data)}`
+                    ? `₦${amountConverter(data)}`
                     : data}
                 </div>
               </td>

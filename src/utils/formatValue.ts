@@ -39,7 +39,15 @@ export const capitalizeFirstLetter = (s: string) => {
 }
 
 export const numberWithCommas = (x: string) => {
+
+
   return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
+export const amountConverter = (x: string) => {
+  let amount = Number(x)/100
+
+  return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 export const capitalizeFirstLetterInSentence = (mySentence: string) => {
   if (typeof mySentence !== 'string') return ''
