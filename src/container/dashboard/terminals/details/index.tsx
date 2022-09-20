@@ -2,17 +2,13 @@ import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getResource } from '../../../../utils/apiRequest';
 import TabsContentWidget from '../../widget/tabs/tab-content';
-import { TABS, terminalHelper, data, merchantHelper } from '../../../../data/terminal-data';
+import { TABS, data, merchantHelper } from '../../../../data/terminal-data';
 import DetailsContentWidget from '../../widget/tabs/tab-content-details';
 import TerminalDetails from './tab-content/terminal-details';
 
 
 
 const Details = () => {
-    const location = useLocation();
-    const thePath = location.pathname;
-    var result = thePath.split('/');
-    const id = result[3];
     const search = useLocation().search;
     const queryParam = new URLSearchParams(search).get('status');
     const found = TABS.find(element => element.value === queryParam);

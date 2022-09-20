@@ -7,3 +7,11 @@ export const transHeaderList = [
   'Status',
   'Date',
 ]
+export const busHeaderList = [
+  'Full Name',
+  'Phone Number',
+  'Email Address',
+  'KYC Level',
+  'Status',
+  'Date Registered',
+]

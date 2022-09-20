@@ -1,4 +1,16 @@
-import { Dashboard, UserIcon,HistoryIcon, BusinessIcon, TerminalIcon, DigitalbankIcon, ActiveHistoryIcon, ActiveDashboardIcon, ActiveBusinessIcon, ActiveDigitalIcon, ActiveUserIcon, ActiveTerminalIcon } from '../assets/icons'
+import { Dashboard, 
+  // UserIcon,
+  // DigitalbankIcon,
+  // ActiveDigitalIcon, 
+  // ActiveUserIcon,
+  HistoryIcon, 
+  BusinessIcon, 
+  TerminalIcon,  
+  ActiveHistoryIcon, 
+  ActiveDashboardIcon, 
+  ActiveBusinessIcon, 
+   
+  ActiveTerminalIcon } from '../assets/icons'
 import { Color } from '../assets/theme'
 import { Path } from '../constants/route-path'
 
@@ -19,14 +31,14 @@ export const sideBarData = [
     activeIconColor: Color.alerzoBlue,
     path: `/${Path.DASHBOARD}/${Path.TRANSACTION}`,
   },
-  // {
-  //   id: 3,
-  //   title: 'Businesses',
-  //   InActiveIcon: BusinessIcon,
-  //   ActiveIcon:ActiveBusinessIcon,
-  //   path: `/${Path.DASHBOARD}/${Path.USERS}`,
-  //   activeIconColor: Color.alerzoBlue,
-  // },
+  {
+    id: 3,
+    title: 'Businesses',
+    InActiveIcon: BusinessIcon,
+    ActiveIcon:ActiveBusinessIcon,
+    path: `/${Path.DASHBOARD}/${Path.BUSINESSES}`,
+    activeIconColor: Color.alerzoBlue,
+  },
  
   // {
   //   id: 4,

@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { Color } from "../../../../assets/theme";
 import { FallBack, Loader, Notification, TabsPage, Text } from "../../../../components";
 import { Container } from "../../../../components/layout";

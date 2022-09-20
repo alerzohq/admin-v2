@@ -11,11 +11,13 @@ type dataProps = {
   tableData: selectedDataType[]
   name: string
   amountIndex?: number
+  withSlug? : boolean
+  dateFormat?: string
 }
 type dataList = string[] | undefined
 
-const TableData = ({ tableData, name, amountIndex }: dataProps) => {
-  const navigate = useNavigate()
+const TableData = ({ tableData, name, amountIndex, withSlug, dateFormat }: dataProps) => {
+  const navigate = useNavigate();
 
   return (
     <tbody>
@@ -23,29 +25,29 @@ const TableData = ({ tableData, name, amountIndex }: dataProps) => {
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.[dataList?.length - 1]
-
         return (
           <tr key={i}>
             {dataList?.map((data, i) => (
+           
               <td key={i} id="td-hover">
                 <div
                   onClick={() => {
-                    navigate(`${item?.id}/${item?.product?.slug}`, {
+                    navigate( withSlug ? `${item?.id}/${item?.product?.slug}`: `${item?.id}`, {
                       state: { detail: item },
                     })
                   }}
                   className={
-                    data === 'successful'
+                    data === 'successful' || data === 'Active'
                       ? 'success'
                       : data === 'pending'
                       ? 'pending'
-                      : data === 'failed'
+                      : data === 'failed' || data === 'Inactive'
                       ? 'failed'
                       : '' + (i === 0 && 'tableLink')
                   }
                 >
                   {lastItem && lastItem === data
-                    ? formatDate(data, 'lll')
+                    ? formatDate(data, dateFormat || 'lll')
                     : i === amountIndex
                     ? `₦${numberWithCommas(data)}`
                     : data}
