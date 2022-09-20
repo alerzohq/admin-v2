@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ActiveBusinessIcon() {
   return (
@@ -39,7 +39,7 @@ function ActiveBusinessIcon() {
         d="M8 12a1 1 0 011-1h2a1 1 0 011 1v1a1 1 0 01-1 1H9a1 1 0 01-1-1v-1z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default ActiveBusinessIcon;
+export default ActiveBusinessIcon

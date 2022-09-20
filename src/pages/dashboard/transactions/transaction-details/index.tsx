@@ -1,8 +1,7 @@
-import React from 'react'
-import TabsContainer from '../../../../container/dashboard/transactions/details'
+import { TransactionDetailContainer } from '../../../../container/dashboard'
 
 const TransactionDetails = () => {
-  return <TabsContainer />
+  return <TransactionDetailContainer />
 }
 
 export default TransactionDetails

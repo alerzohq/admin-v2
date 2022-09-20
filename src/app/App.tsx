@@ -18,6 +18,8 @@ import { getStorageItem } from '../utils/session-storage'
 import Verification from '../pages/verification'
 import Terminals from '../pages/dashboard/terminals'
 import TerminalDetails from '../pages/dashboard/terminals/details'
+import Businesses from '../pages/dashboard/businessess'
+import BusinessDetails from '../pages/dashboard/businessess/business-detail'
 
 // const Dashboard = React.lazy(() => import("../pages/dashboard"));
 
@@ -60,6 +62,8 @@ function App() {
               />
               <Route path={Path.TERMINALS} element={<Terminals />} />
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
+              <Route path={Path.BUSINESSES} element={<Businesses />} />
+              <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
             </Route>
           </Route>
 

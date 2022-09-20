@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ActiveDigitalIcon() {
   return (
@@ -47,7 +47,7 @@ function ActiveDigitalIcon() {
         rx="1"
       ></rect>
     </svg>
-  );
+  )
 }
 
-export default ActiveDigitalIcon;
+export default ActiveDigitalIcon

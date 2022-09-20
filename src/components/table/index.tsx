@@ -9,6 +9,8 @@ const Table = ({
   tableData,
   tableName,
   amountIndex,
+  dateFormat,
+  withSlug,
 }: TableProps) => {
   return (
     <>
@@ -19,6 +21,8 @@ const Table = ({
             name={tableName}
             amountIndex={amountIndex}
             tableData={tableData}
+            dateFormat={dateFormat}
+            withSlug={withSlug}
           />
         </DataTable>
       </TableWrapper>
