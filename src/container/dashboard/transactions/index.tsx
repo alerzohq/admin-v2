@@ -63,7 +63,15 @@ const TransactionContainer = () => {
             values: optionsAllPlatform,
             value: '',
           },
-          { placeholder: 'status', values: [], value: '' },
+          {
+            placeholder: 'Status',
+            values: [
+              { label: 'Successful', value: 'successful' },
+              { label: 'Pending', value: 'pending' },
+              { label: 'Failed', value: 'failed' },
+            ],
+            value: '',
+          },
         ],
         buttons: [
           {

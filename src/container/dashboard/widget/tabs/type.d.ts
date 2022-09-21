@@ -1,6 +1,6 @@
 type TabWidgetItemProps = {
-  isLoading: boolean
-  isFetching: boolean
+  isLoading?: boolean
+  isFetching?: boolean
   hideStatus?: boolean
   title?: string
   routePath?: string
@@ -8,7 +8,7 @@ type TabWidgetItemProps = {
   tabs: TabItem[]
   currentValue?: string
   isError?: boolean
-  errorMessage: string
+  errorMessage?: string
   type?: string
   containerTitle: string
   renderSwitch: React.JSXElement

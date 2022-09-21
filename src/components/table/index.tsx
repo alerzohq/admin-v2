@@ -11,6 +11,7 @@ const Table = ({
   amountIndex,
   dateFormat,
   withSlug,
+  hideActive,
 }: TableProps) => {
   return (
     <>
@@ -23,6 +24,7 @@ const Table = ({
             tableData={tableData}
             dateFormat={dateFormat}
             withSlug={withSlug}
+            hideActive={hideActive}
           />
         </DataTable>
       </TableWrapper>

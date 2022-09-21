@@ -73,6 +73,7 @@ FlexTableWrapper.Row = function CardRow({
                 whiteSpace="nowrap"
                 weight="600"
                 align={'center'}
+                visibility={field === 'empty' ? 'hidden' : 'visible'}
               >
                 {detail.label}
               </Text>

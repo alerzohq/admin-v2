@@ -16,6 +16,7 @@ type TextOwnProps<E extends React.ElementType> = {
   textAlign?: string
   justifyContent?: string
   whiteSpace?: string
+  visibility?: string
   as?: E
 }
 

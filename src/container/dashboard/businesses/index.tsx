@@ -41,6 +41,7 @@ const BusinessContainer = () => {
         tableData={data?.data}
         tableHeaders={busHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
+        hideActive
       />
     )
   }
@@ -49,11 +50,18 @@ const BusinessContainer = () => {
     <Container
       showFilters={{
         search: {
-          placeholder: 'Search by reference no..',
+          placeholder: 'Search...',
         },
         date: true,
         selects: [
-          { placeholder: 'Status', values: [], value: '' },
+          {
+            placeholder: 'Status',
+            values: [
+              { label: 'Active', value: true },
+              { label: 'Inactive', value: false },
+            ],
+            value: '',
+          },
           { placeholder: 'KYC Level', values: [], value: '' },
         ],
         buttons: [
