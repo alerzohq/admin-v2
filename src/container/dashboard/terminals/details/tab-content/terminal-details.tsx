@@ -16,7 +16,6 @@ const TerminalDetails = (data: any) => {
   const [value, setValue] = useState({ reason: '' })
   const toggleEnable = () => setIsEnabled(!enabled)
   const toggleAssigned = () => setIsAssigned(!assigned)
-  console.log(data?.data?.data)
   const buttonEnabledText = data?.data?.data?.active
     ? 'Disable Terminal'
     : 'Enable Terminal'

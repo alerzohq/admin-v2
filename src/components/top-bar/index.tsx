@@ -17,7 +17,7 @@ const TopBar = ({
 }: TopBarProps) => {
   let params = useParams()
   let navigate = useNavigate()
-  const [status] = useState<SelectInputProps>(null)
+  const [status, setStatus] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
     status: '',
@@ -27,9 +27,13 @@ const TopBar = ({
   const { search } = values
 
   useEffect(() => {
+    if (showFilters && status !== null) {
+      setFilterValues((prev: any) => ({ ...prev, status }))
+    }
     if (showFilters) {
       setFilterValues((prev: any) => ({ ...prev, query: search }))
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
 
@@ -63,7 +67,9 @@ const TopBar = ({
                 <SelectInput
                   key={i}
                   placeholder={select.placeholder}
-                  onChange={select.onChange}
+                  onChange={(e) => {
+                    setStatus(e.value)
+                  }}
                   value={select.value}
                   options={select.values}
                 />

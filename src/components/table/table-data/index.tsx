@@ -13,6 +13,7 @@ type dataProps = {
   amountIndex?: number
   withSlug?: boolean
   dateFormat?: string
+  hideActive?: boolean
 }
 type dataList = string[] | undefined
 
@@ -22,6 +23,7 @@ const TableData = ({
   amountIndex,
   withSlug,
   dateFormat,
+  hideActive,
 }: dataProps) => {
   const navigate = useNavigate()
 
@@ -53,7 +55,7 @@ const TableData = ({
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
-                      : '' + (i === 0 && 'tableLink')
+                      : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
                   {lastItem && lastItem === data

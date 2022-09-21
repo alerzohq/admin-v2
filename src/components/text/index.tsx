@@ -17,6 +17,7 @@ const Text = <E extends React.ElementType = 'div'>({
   opacity,
   children,
   whiteSpace,
+  visibility,
   as,
 }: TextProps<E>) => {
   let Component = as || 'div'
@@ -28,6 +29,7 @@ const Text = <E extends React.ElementType = 'div'>({
       radius={radius}
       opacity={opacity}
       textAlign={textAlign}
+      visibility={visibility}
       color={color}
       width={width}
       align={align}
