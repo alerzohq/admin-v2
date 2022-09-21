@@ -5,6 +5,8 @@ import DetailsContent from '../../widget/tabs/tab-content-details'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import {} from '../../../../data/terminal-data'
 import { getResource } from '../../../../utils/apiRequest'
+import TransactionHistory from './transaction-history'
+import Members from './members'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -27,7 +29,7 @@ const BusinessDetailContainer = () => {
   const renderSwitch = () => {
     switch (queryParam) {
       case 'transaction':
-        return <div>Transaction</div>
+        return <TransactionHistory />
       case 'products':
         return <div>Products</div>
       case 'kyc':
@@ -35,7 +37,7 @@ const BusinessDetailContainer = () => {
       case 'terminals':
         return <div>Terminals</div>
       case 'members':
-        return <div>Members</div>
+        return  <Members />
       case 'api-keys':
         return <div>Api Keys</div>
       default:

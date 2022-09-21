@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
+type Props = {
+  isTop?:boolean;
+}
+
 export const DateRangeWrapper = styled.div`
   .btn {
     align-items: center;
@@ -21,9 +25,9 @@ export const DateRangeWrapper = styled.div`
     cursor: pointer;
   }
 `
-export const DateRangeContainer = styled.div`
+export const DateRangeContainer = styled.div<Props>`
   position: absolute;
   z-index: 5;
-  top: 5.7rem;
+  top: ${({isTop})=>isTop ?'': '5.7rem'}; 
   border: 1px solid ${Color.alerzoGray};
 `

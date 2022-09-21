@@ -17,7 +17,7 @@ export const TabWrapper = styled.div<tabProps>`
   border-bottom-right-radius: 5px;
   border: ${({ hideStatus }) => (hideStatus ? 'none' : '1px solid #E8EBEE')};
   border-top: none;
-  border-radius: '5px';
+  border-radius: 10px;
   background-color: ${({ hideStatus }) =>
     hideStatus ? Color.alerzoGray3 : Color.alerzoWhite};
   white-space: nowrap;
