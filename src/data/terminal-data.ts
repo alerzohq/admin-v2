@@ -114,7 +114,6 @@ export const merchant = {
   ],
 }
 export const terminalHelper = (data: any) => {
-  console.log(data, data?.tid)
   return [
     {
       spacing: false,

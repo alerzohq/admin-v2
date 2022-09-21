@@ -8,6 +8,7 @@ export type TableProps = {
   amountIndex?: number
   dateFormat?: string
   withSlug?: boolean
+  hideActive?: boolean
 
   onClick?: (item: {}) => void
 }
