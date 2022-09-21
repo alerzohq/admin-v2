@@ -15,7 +15,7 @@ type textProps = {
   textAlign?: string
   whiteSpace?: string
   justifyContent?: string
-  visibility?: string;
+  visibility?: string
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -31,7 +31,7 @@ export const TextStyle = styled.div<textProps>`
   max-width: ${({ width }) => width};
   opacity: ${({ opacity }) => opacity};
   background: ${({ bgColor }) => bgColor};
-  visibility: ${({ visibility}) => visibility};
+  visibility: ${({ visibility }) => visibility};
   border-radius: ${({ radius }) => radius || '5px'};
   cursor: ${({ cursor }) => cursor};
   text-align: ${({ textAlign }) => textAlign};

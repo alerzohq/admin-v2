@@ -3,12 +3,12 @@ import React from 'react'
 export type FlexTableProps = {
   children: React.ReactNode
 }
- export type BasicData = {
+export type BasicData = {
   amount: string
- }
+}
 export type TransactionData = {
   name?: string
-  
+
   type?: string
   balance?: string
   summary?: string
@@ -71,7 +71,7 @@ export type TerminalData = {
   customerSegment?: string
   gender?: string
 }
-export type BusinessData  = {
+export type BusinessData = {
   address?: string
   empty?: string
   id?: string
@@ -104,12 +104,7 @@ export type TableData = {
   title?: string
   currentValue?: boolean
   header: HeaderData[]
-  data:
-    | TransactionData
-    | TerminalData
-    | BusinessData
-    | BasicData
-    
+  data: TransactionData | TerminalData | BusinessData | BasicData
 }
 export type FlexTableRowProps = {
   children?: string | React.Node
@@ -120,12 +115,7 @@ export type FlexTableRowProps = {
   bottomRightRadius?: string
   selfAlign?: string
   bgTopColor?: string
-  data:
-    | TransactionData
-    | TerminalData
-    | BusinessData
-    | BasicData
+  data: TransactionData | TerminalData | BusinessData | BasicData
   header: HeaderData[]
   bgBottomColor?: string
 }
-

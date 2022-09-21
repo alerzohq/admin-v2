@@ -46,7 +46,6 @@ export const PASSCODETABLE = [
 ]
 
 export const businessDetailsHelper = (data: any) => {
-
   return [
     {
       spacing: false,
@@ -64,21 +63,21 @@ export const businessDetailsHelper = (data: any) => {
       },
     },
     {
-        spacing: false,
-        header: ADDRESSTABLE,
-        data: {
-          address: data?.address,
-          empty: '',
-          
-        },
+      spacing: false,
+      header: ADDRESSTABLE,
+      data: {
+        address: data?.address,
+        empty: '',
       },
+    },
     {
-
       title: 'Business Owner  Details',
       spacing: false,
       header: OWNERTABLE,
       data: {
-        ownerName: `${data?.business_owner?.first_name} ${data?.business_owner?.last_name}` || '',
+        ownerName:
+          `${data?.business_owner?.first_name} ${data?.business_owner?.last_name}` ||
+          '',
         ownerPhone: data?.business_owner?.phone_number,
         kyc: data?.kyc_level.toString(),
         bvn: data?.bvn,

@@ -39,7 +39,11 @@ const BusinessDetailContainer = () => {
       case 'api-keys':
         return <div>Api Keys</div>
       default:
-        return  <DetailsContent resolvedData={businessDetailsHelper(data?.data?.[0])!} />
+        return (
+          <DetailsContent
+            resolvedData={businessDetailsHelper(data?.data?.[0])!}
+          />
+        )
     }
   }
 

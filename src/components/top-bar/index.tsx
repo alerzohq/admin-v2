@@ -33,7 +33,7 @@ const TopBar = ({
     if (showFilters) {
       setFilterValues((prev: any) => ({ ...prev, query: search }))
     }
-   
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
 
@@ -68,7 +68,7 @@ const TopBar = ({
                   key={i}
                   placeholder={select.placeholder}
                   onChange={(e) => {
-                    setStatus( e.value )
+                    setStatus(e.value)
                   }}
                   value={select.value}
                   options={select.values}

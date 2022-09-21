@@ -24,23 +24,23 @@ const DetailsContentWidget = ({
         }
         return (
           <>
-           {item?.title && (
-            <Text
-              as={'p'}
-              padding={'1.5em 0 0 0'}
-              color={Color.alerzoBlack}
-              weight="600"
-              align={'center'}
-            >
-              {item?.title}
-            </Text>
-          )}
-          <FlexTableWrapper.Row
-            key={index}
-            data={item?.data}
-            header={item.header}
-            bgBottomColor={Color.alerzoWhite}
-          />
+            {item?.title && (
+              <Text
+                as={'p'}
+                padding={'1.5em 0 0 0'}
+                color={Color.alerzoBlack}
+                weight="600"
+                align={'center'}
+              >
+                {item?.title}
+              </Text>
+            )}
+            <FlexTableWrapper.Row
+              key={index}
+              data={item?.data}
+              header={item.header}
+              bgBottomColor={Color.alerzoWhite}
+            />
           </>
         )
       })}
