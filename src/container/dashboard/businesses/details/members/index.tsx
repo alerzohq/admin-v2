@@ -2,7 +2,7 @@ import React from 'react'
 import { Filter, Jumbotron } from '../../../../../components'
 
 
-const TransactionHistory = () => {
+const Members = () => {
   return (
     <>
     <Jumbotron padding={'0'}> 
@@ -28,4 +28,4 @@ const TransactionHistory = () => {
   )
 }
 
-export default TransactionHistory
+export default Members

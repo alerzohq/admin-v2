@@ -8,7 +8,7 @@ export const FilterWrapper = styled.div`
   justify-content:space-between;
   width:100%;
   padding: 0 1rem;
-  border-bottom: 0.8px solid #e8ebee;
+  /* border-bottom: 0.8px solid #e8ebee; */
   svg {
     cursor: pointer;
   }
