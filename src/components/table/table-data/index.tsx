@@ -53,7 +53,7 @@ const TableData = ({
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
-                      : '' + (i === 0 && 'tableLink')
+                      : '' + ( i === 0 && 'tableLink')
                   }
                 >
                   {lastItem && lastItem === data

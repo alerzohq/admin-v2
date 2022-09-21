@@ -1,16 +1,14 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
-export const TopbarWrapper = styled.div`
+export const FilterWrapper = styled.div`
   height: 90px;
-  background: ${Color.alerzoWhite};
   display: flex;
   align-items: center;
-  padding: 0 1.8rem;
+  justify-content:space-between;
+  width:100%;
+  padding: 0 1rem;
   border-bottom: 0.8px solid #e8ebee;
-  position: sticky;
-  top: 0;
-  z-index: 1;
   svg {
     cursor: pointer;
   }
@@ -25,11 +23,12 @@ export const TopbarWrapper = styled.div`
     padding: 0 1rem;
   }
 `
-export const TopbarFilters = styled.div`
+export const FilterItems = styled.div`
   display: flex;
   gap: 20px;
+  justify-content:space-between;
   overflow-y: visible;
-  overflow-x: clip;
+  overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
   .download-btn {
@@ -61,7 +60,7 @@ export const TopbarFilters = styled.div`
     gap: 10px;
   }
 `
-export const Filter = styled.input`
+export const FilterInput = styled.input`
   background: ${Color.alerzoWhite};
   border: 1px solid rgba(193, 202, 207, 0.5);
   border-radius: 10px;
@@ -87,6 +86,7 @@ export const SelectInput = styled.select`
   border-radius: 10px;
   height: 45px;
   padding: 0 1rem;
+  white-space: nowrap;
   max-width: 200px;
   ::placeholder {
     font-family: 'Gilmer';

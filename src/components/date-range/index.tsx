@@ -10,7 +10,7 @@ import {
   DateRangeWrapper,
 } from './styles/date-range.styles'
 
-const DateRange = ({ filterDate }: any) => {
+const DateRange = ({ filterDate,isTop }: any) => {
   const [dateValue, setDateValue] = useState('')
   const [show, setShow] = useState(false)
   const [selectionRange, setSelectionRange] = useState({
@@ -47,7 +47,7 @@ const DateRange = ({ filterDate }: any) => {
           <CalenderIcon />
         </button>
         {show && (
-          <DateRangeContainer>
+          <DateRangeContainer isTop={isTop}>
             <DateRangePicker
               ranges={[selectionRange]}
               onChange={handleSelect}

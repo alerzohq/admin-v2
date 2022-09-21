@@ -1,5 +1,9 @@
+import TransactionHistory from "./transaction-history"
+
 const BusinessDetailContainer = () => {
-  return <h1>Details</h1>
+  return (
+    <TransactionHistory />
+  )
 }
 
 export default BusinessDetailContainer
