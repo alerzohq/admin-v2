@@ -9,6 +9,12 @@ export const transformData = ({ item, name }: props) => {
     let displayName = biller?.display_name || ''
     return { reference, amount, type, action, displayName, status, created_at }
   }
+  
+  if (item && name === 'business-transactions') {
+    const { reference, amount, type, action, status, biller, created_at } = item
+    let displayName = biller?.display_name || ''
+    return { reference, amount, type, action, displayName, status, created_at }
+  }
   if (item && name === 'business') {
     const { name, business_owner, kyc_level, created_at } = item
     let phoneNumber = business_owner?.phone_number || ''

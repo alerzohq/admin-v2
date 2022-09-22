@@ -2,9 +2,10 @@ import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
 type Props = {
-  show?: boolean
-  isChecked?: boolean
-  pb?: string
+  show?: boolean;
+  isChecked?: boolean;
+  pb?: string;
+  bgColor?: string;
 }
 
 export const TableWrapper = styled.div`
@@ -20,17 +21,17 @@ export const TableWrapper = styled.div`
     height: 0;
   }
 `
-export const DataTable = styled.table`
+export const DataTable = styled.table<Props>`
   width: 100%;
   border-collapse: collapse;
   thead {
-    background: ${Color.alerzoGray3};
+    background: ${({bgColor})=>bgColor ? bgColor : Color.alerzoGray3};
     color: #001928;
     height: 60px;
 
     tr {
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
 
       th {
         padding: 1rem;

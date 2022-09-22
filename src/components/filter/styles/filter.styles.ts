@@ -7,7 +7,8 @@ export const FilterWrapper = styled.div`
   align-items: center;
   justify-content:space-between;
   width:100%;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
+  overflow: scroll;
   /* border-bottom: 0.8px solid #e8ebee; */
   svg {
     cursor: pointer;
@@ -20,7 +21,7 @@ export const FilterWrapper = styled.div`
 
   @media (max-width: 640px) {
     font-size: 1.2rem;
-    padding: 0 1rem;
+   
   }
 `
 export const FilterItems = styled.div`
