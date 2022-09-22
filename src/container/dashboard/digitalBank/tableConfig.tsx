@@ -1,22 +1,17 @@
 import moment, { MomentInput } from 'moment'
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-} from 'react'
+import React from 'react'
 
 //TO DO REMOVE ANY TYPE
 export const digitalBankTableMapper = [
   {
-    title: 'full name',
+    title: 'Full name',
     key: 'name',
     render: (data: { [x: string]: any }) =>
       `${data['first_name']} ${data['last_name']}`,
     className: 'tableLink',
   },
   {
-    title: 'phone number',
+    title: 'Phone number',
     key: 'phone_number',
   },
   {
@@ -43,6 +38,6 @@ export const digitalBankTableMapper = [
     title: 'Date Registered',
     key: 'created_at',
     render: (data: { createdAt: MomentInput }) =>
-      moment(data.createdAt).format('YYYY-MM-DD'),
+      moment(data.createdAt).format('YYYY-MM-DD HH:mm:ss'),
   },
 ]
