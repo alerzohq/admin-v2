@@ -1,10 +1,4 @@
 import moment, { MomentInput } from 'moment'
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-} from 'react'
 
 //TO DO REMOVE ANY TYPE
 export const digitalBankTableMapper = [
@@ -34,7 +28,7 @@ export const digitalBankTableMapper = [
     title: 'Status',
     key: 'status',
     render: (data: any) => (
-      <div className={data.disabled ? 'success' : 'failed'}>
+      <div className={data.disabled ? 'failed' : 'success'}>
         {data.disabled ? 'Inactive' : 'Active'}
       </div>
     ),
@@ -43,6 +37,6 @@ export const digitalBankTableMapper = [
     title: 'Date Registered',
     key: 'created_at',
     render: (data: { createdAt: MomentInput }) =>
-      moment(data.createdAt).format('YYYY-MM-DD'),
+      moment(data.createdAt).format('YYYY-MM-DD HH:MM:SS'),
   },
 ]
