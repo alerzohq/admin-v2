@@ -21,20 +21,19 @@ tr {
   font-size: 0.9rem;
 `
 export const DataTableHead = styled.th`
-  th {
-    &:first-child {
-      padding-left: 1rem;
-    }
-    &:last-child {
-      padding-right: 1rem;
-    }
-    font-weight: 600;
-    &:first-child {
-      border-top-left-radius: 20px;
-    }
-    &:last-child {
-      border-top-right-radius: 20px;
-    }
+  text-align: left;
+  &:first-child {
+    padding-left: 1rem;
+  }
+  &:last-child {
+    padding-right: 1rem;
+  }
+  font-weight: 600;
+  &:first-child {
+    border-top-left-radius: 20px;
+  }
+  &:last-child {
+    border-top-right-radius: 20px;
   }
 `
 export const DataTableBody = styled.tbody`

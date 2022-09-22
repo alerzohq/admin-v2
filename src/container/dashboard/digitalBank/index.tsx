@@ -2,21 +2,24 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { filterProps } from '../../../@types'
-import { FallBack, Jumbotron, Loader } from '../../../components'
+import { FallBack, Jumbotron, Loader, Pagination } from '../../../components'
 import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
 import { filterValue } from '../../../data/filter-data'
 import { getFilterResource } from '../../../utils/apiRequest'
+import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
 
 const DigitalBankContainer = () => {
   const navigate = useNavigate()
+
   const [values, setValues] = useState(filterValue)
+
   const getDigitalBanksHandler = (filterValue: filterProps) => {
     return getFilterResource(`customers`, filterValue)
   }
   const { isLoading, data, isError, isFetching } = useQuery(
-    ['terminals', values.count],
+    ['terminals', values],
     () => getDigitalBanksHandler(values),
     { keepPreviousData: true }
   )
@@ -44,8 +47,9 @@ const DigitalBankContainer = () => {
     <Container
       showFilters={{
         search: {
-          placeholder: 'Search',
+          placeholder: 'Search by reference no...',
         },
+        date: true,
         selects: [
           { placeholder: 'All Platofrms', values: [], value: '' },
           { placeholder: 'status', values: [], value: '' },
@@ -58,7 +62,9 @@ const DigitalBankContainer = () => {
       setFilterValues={setValues}
       isFetching={isFetching}
     >
+      <CardWidget />
       <Jumbotron padding={'0'}>{digitalBankComponent}</Jumbotron>
+      <Pagination data={data} setPageNumber={setValues} />
     </Container>
   )
 }
