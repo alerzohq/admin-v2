@@ -39,13 +39,11 @@ export const capitalizeFirstLetter = (s: string) => {
 }
 
 export const numberWithCommas = (x: string | number) => {
-
-
   return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 export const amountConverter = (x: string | number) => {
-  let amount = Number(x)/100
+  let amount = Number(x) / 100
 
   return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }

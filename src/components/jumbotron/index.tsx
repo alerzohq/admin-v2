@@ -11,7 +11,11 @@ const Jumbotron = ({
 }: JumbotronProps) => {
   return (
     <JumbotronItem {...restProps}>
-      <Inner direction={direction} socialPosition={socialPosition} {...restProps}>
+      <Inner
+        direction={direction}
+        socialPosition={socialPosition}
+        {...restProps}
+      >
         {children}
       </Inner>
     </JumbotronItem>

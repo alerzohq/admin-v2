@@ -10,11 +10,8 @@ interface IAppState {
 }
 
 class AppComponent extends Component<IAppProps, IAppState> {
-  
-  render (): ReactNode {
-    return (
-      <>{this.props.children}</>
-    )
+  render(): ReactNode {
+    return <>{this.props.children}</>
   }
 }
 

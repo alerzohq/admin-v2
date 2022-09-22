@@ -18,7 +18,7 @@ const Table = ({
     <>
       <TableWrapper>
         <DataTable bgColor={headerbgColor}>
-          <TableHeader headers={tableHeaders}/>
+          <TableHeader headers={tableHeaders} />
           <TableData
             name={tableName}
             amountIndex={amountIndex}
