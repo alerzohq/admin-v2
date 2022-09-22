@@ -26,10 +26,15 @@ const BusinessDetailContainer = () => {
     getBusinessDetails
   )
 
+let walletId=data?.data?.[0]?.wallet_id
+let userId=data?.data?.[0]?.business_owner?.id
+
+
+
   const renderSwitch = () => {
     switch (queryParam) {
       case 'transaction':
-        return <TransactionHistory />
+        return <TransactionHistory walletId={walletId}/>
       case 'products':
         return <div>Products</div>
       case 'kyc':
@@ -37,7 +42,7 @@ const BusinessDetailContainer = () => {
       case 'terminals':
         return <div>Terminals</div>
       case 'members':
-        return  <Members />
+        return  <Members userId={userId} />
       case 'api-keys':
         return <div>Api Keys</div>
       default:

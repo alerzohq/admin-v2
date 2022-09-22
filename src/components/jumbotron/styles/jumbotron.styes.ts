@@ -40,14 +40,14 @@ export const JumbotronItem = styled.div<Props>`
   border: 1px solid ${Color.alerzoGrayBorder};
 
   @media (max-width: 768px) {
-    padding: 2rem 0;
+    padding: 1rem;
   }
 `
 
 export const Inner = styled.div<Props>`
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  gap: 30px;
+  gap: ${({ gap }) =>gap};
   width: 100%;
 
   @media (max-width: 768px) {

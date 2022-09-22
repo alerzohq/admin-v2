@@ -30,7 +30,7 @@ export const DataTable = styled.table`
 
     tr {
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
 
       th {
         padding: 1rem;

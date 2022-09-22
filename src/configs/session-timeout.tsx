@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useAppContext } from '../context'
 import { Action } from '../context/actions'
 import { logOut } from '../utils/session-storage'
 import { IdleTimer } from './HOC/idle-timer'
 
-type TimeoutProps = React.ComponentProps<'div'>
+type TimeoutProps = {
+  children:ReactNode
+}
 
 const SessionTimeout = ({ children}:TimeoutProps) => {
 const {dispatch}= useAppContext()
@@ -23,7 +25,7 @@ const onIdle =()=>{
   return (
     <IdleTimer
         ref={ref => {idleTimer = ref }}
-        timeout={1000 * 60}
+        timeout={100000 * 60}
         promptTimeout={1000 * 30}
         onIdle={onIdle}
      >

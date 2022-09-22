@@ -6,11 +6,11 @@ import {
   // ActiveUserIcon,
   HistoryIcon,
   BusinessIcon,
-  TerminalIcon,
+  // TerminalIcon,
   ActiveHistoryIcon,
   ActiveDashboardIcon,
   ActiveBusinessIcon,
-  ActiveTerminalIcon,
+  // ActiveTerminalIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
 import { Path } from '../constants/route-path'
