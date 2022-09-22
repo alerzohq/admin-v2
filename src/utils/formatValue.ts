@@ -38,13 +38,13 @@ export const capitalizeFirstLetter = (s: string) => {
   return s?.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export const numberWithCommas = (x: string) => {
+export const numberWithCommas = (x: string | number) => {
 
 
   return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-export const amountConverter = (x: string) => {
+export const amountConverter = (x: string | number) => {
   let amount = Number(x)/100
 
   return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')

@@ -7,7 +7,7 @@ import {
   Table,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getFilterResource } from '../../../utils/apiRequest'
+import { getFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { transHeaderList } from '../../../data/table-headers'
@@ -22,11 +22,20 @@ const TransactionContainer = () => {
     return getFilterResource(`transactions`, filterValue)
   }
 
+  const getTranStats = () => {
+    return getResource(`transactions/statistics`)
+  }
+
+  const { isLoading:loading, data:Stats, } = useQuery('trans-stats',getTranStats);
+  const Statistics = Stats?.data?.[0]
+
   const { isLoading, data, isError, isFetching } = useQuery(
     ['transactions', values],
     () => getTransactions(values),
     { keepPreviousData: true }
   )
+
+ 
 
   let component
   if (isLoading) {
@@ -84,7 +93,7 @@ const TransactionContainer = () => {
       setFilterValues={setValues}
       isFetching={isFetching}
     >
-      <CardWidget />
+      <CardWidget stats={Statistics} loading={loading}/>
       <Jumbotron padding={'0'}>{component}</Jumbotron>
       <Pagination data={data} setPageNumber={setValues} />
     </Container>
