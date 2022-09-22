@@ -29,7 +29,7 @@ export const digitalBankTableMapper = [
     title: 'Status',
     key: 'status',
     render: (data: any) => (
-      <div className={data.disabled ? 'success' : 'failed'}>
+      <div className={data.disabled ? 'failed' : 'success'}>
         {data.disabled ? 'Inactive' : 'Active'}
       </div>
     ),
@@ -38,6 +38,6 @@ export const digitalBankTableMapper = [
     title: 'Date Registered',
     key: 'created_at',
     render: (data: { createdAt: MomentInput }) =>
-      moment(data.createdAt).format('YYYY-MM-DD HH:mm:ss'),
+      moment(data.createdAt).format('YYYY-MM-DD HH:MM:SS'),
   },
 ]

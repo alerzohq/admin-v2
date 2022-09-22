@@ -22,6 +22,7 @@ tr {
 `
 export const DataTableHead = styled.th`
   text-align: left;
+  text-transform: capitalize;
   &:first-child {
     padding-left: 1rem;
   }
