@@ -27,6 +27,7 @@ const Members = ({userId}:{ userId: string}) => {
   } else {
     component = (
       <Table
+      headerbgColor={'transparent'}
       tableName="transaction"
       tableData={data?.data}
       tableHeaders={transHeaderList}

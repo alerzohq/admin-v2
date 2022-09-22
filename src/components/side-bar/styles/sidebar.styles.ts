@@ -12,7 +12,7 @@ type sidebarStyleProps = {
 export const SidebarWrapper = styled.div<sidebarStyleProps>`
   display: flex;
   flex-direction: column;
-  width: ${({ isCollapsed }) => (isCollapsed ? '6rem' : '16rem')};
+  width: ${({ isCollapsed }) => (isCollapsed ? '6rem' : '15rem')};
   transition: all 0.3s ease;
   position: fixed;
   height: 100vh;

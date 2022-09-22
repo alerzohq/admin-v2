@@ -7,6 +7,7 @@ import { TableProps } from './type'
 const Table = ({
   tableHeaders,
   tableData,
+  headerbgColor,
   tableName,
   amountIndex,
   dateFormat,
@@ -16,8 +17,8 @@ const Table = ({
   return (
     <>
       <TableWrapper>
-        <DataTable>
-          <TableHeader headers={tableHeaders} />
+        <DataTable bgColor={headerbgColor}>
+          <TableHeader headers={tableHeaders}/>
           <TableData
             name={tableName}
             amountIndex={amountIndex}

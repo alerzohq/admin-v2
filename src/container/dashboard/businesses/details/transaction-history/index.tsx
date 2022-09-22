@@ -28,6 +28,7 @@ const TransactionHistory = ({walletId}:{ walletId: string}) => {
   } else {
     component = (
       <Table
+      headerbgColor={'transparent'}
       tableName="transaction"
       tableData={data?.data}
       tableHeaders={transHeaderList}
