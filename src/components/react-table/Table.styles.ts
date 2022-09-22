@@ -27,6 +27,7 @@ export const DataTableHead = styled.th`
   }
   &:last-child {
     padding-right: 1rem;
+    text-align: center;
   }
   font-weight: 600;
   &:first-child {
@@ -55,6 +56,7 @@ td {
   }
   &:last-child {
     padding-right: 1rem;
+    text-align: center;
   }
   div {
     text-transform: capitalize;
