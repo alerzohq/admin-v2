@@ -17,7 +17,8 @@ export const getFilterResource = async (
       filterValue?.status !== '' ? `&status=${filterValue?.status}` : ''
     }${filterValue?.from !== '' ? `&from=${filterValue?.from}` : ''}${
       filterValue?.to !== '' ? `&to=${filterValue?.to}` : ''
-    }`
+    }
+    `
   )
   return data
 }
@@ -34,3 +35,8 @@ export const getTerminalsRequestsData = async (
   const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`)
   return data
 }
+
+
+// ${
+//   filterValue?.channel !== '' ? `&channel=${filterValue?.channel}` : ''
+// }
