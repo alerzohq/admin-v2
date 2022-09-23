@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom'
 import { useQuery } from 'react-query'
-import { TABS, customerHelper } from '../../../data/digital-bank-data'
-import { getResource } from '../../../utils/apiRequest'
-import DetailsContent from '../widget/tabs/tab-content-details'
-import TabsContentWidget from '../widget/tabs/tab-content'
+import { TABS, customerHelper } from '../../../../data/digital-bank-data'
+import { getResource } from '../../../../utils/apiRequest'
+import DetailsContent from '../../widget/tabs/tab-content-details'
+import TabsContentWidget from '../../widget/tabs/tab-content'
 
 const DigitalBankDetailContainer = () => {
   const location = useLocation()
@@ -43,7 +43,6 @@ const DigitalBankDetailContainer = () => {
       isFetching={isFetching}
       isLoading={isLoading}
       containerTitle="Customer Information"
-      type="Transaction!"
       isError={isError}
       title={title}
       errorMessage="Failed to load customer details."

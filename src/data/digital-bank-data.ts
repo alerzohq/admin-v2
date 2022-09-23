@@ -24,7 +24,7 @@ export const CUSTOMERTABLE = [
   { label: 'Customer Name', value: 'name', columnWidth: 'small' },
   { label: 'Account Number', value: 'accountNumber', columnWidth: 'small' },
   { label: 'Phone Number', value: 'phoneNumber', columnWidth: 'small' },
-  { label: 'BVN', value: 'bvn', columnWidth: 'small' },
+  { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
   { label: 'Date Registered', value: 'date', columnWidth: 'small' },
   { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
@@ -32,9 +32,9 @@ export const CUSTOMERTABLE = [
 export const CUSTOMERSEGMENTTABLE = [
   { label: 'Customer Segment', value: 'customerSegment', columnWidth: 'small' },
   { label: 'Gender', value: 'gender', columnWidth: 'small' },
-  { label: 'Passcode', value: 'passcode', columnWidth: 'small' },
+  { label: 'Passcode', value: 'passcodeStatus', columnWidth: 'small' },
   { label: 'KYC Level', value: 'kyc', columnWidth: 'small' },
-  { label: 'Transaction PIN', value: 'pin', columnWidth: 'small' },
+  { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
   { label: 'Status', value: 'status', columnWidth: 'large' },
 ]
 export const customerHelper = (data: any) => {
@@ -46,7 +46,7 @@ export const customerHelper = (data: any) => {
         name: `${data?.first_name} ${data?.last_name}`,
         accountNumber: data?.account_numberr,
         phoneNumber: data?.phone_number,
-        bvn: data?.bvn_set ? 'Set' : 'Not Set',
+        bvnStatus: data?.bvn_set ? 'Verified' : 'Not verified',
         date: data?.created_at
           ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
           : '',
@@ -59,9 +59,10 @@ export const customerHelper = (data: any) => {
       data: {
         customerSegment: data?.customer_segment,
         gender: data?.gender,
-        kyc: data?.kyc_level,
-        passcode: data?.passcode_set ? 'Set' : 'Not Set',
-        pin: data?.transaction_pin_set ? 'Set' : 'Not Set',
+        passcodeStatus: data?.passcode_set ? 'Set' : 'Not Set',
+
+        kyc: data?.kyc_level.toString(),
+        pinStatus: data?.transaction_pin_set ? 'Set' : 'Not Set',
         status: data?.disabled ? 'Inactive' : 'Active',
       },
     },

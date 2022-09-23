@@ -11,8 +11,6 @@ import {
   ActiveDashboardIcon,
   ActiveBusinessIcon,
   // ActiveTerminalIcon,
-  DigitalbankIcon,
-  ActiveDigitalBankIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
 import { Path } from '../constants/route-path'
@@ -46,17 +44,8 @@ export const sideBarData = [
     id: 4,
     title: 'Digital Bank',
     InActiveIcon: DigitalbankIcon,
-    ActiveIcon: ActiveDigitalBankIcon,
-    path: `/${Path.DASHBOARD}/${Path.DigitalBank}`,
-    activeIconColor: Color.alerzoBlue,
-  },
-
-  {
-    id: 4,
-    title: 'Digital Bank',
-    InActiveIcon: DigitalbankIcon,
     ActiveIcon: ActiveDigitalIcon,
-    path: `/${Path.DASHBOARD}/${Path.DIGITALBANK}`,
+    path: `/${Path.DASHBOARD}/${Path.DigitalBank}`,
     activeIconColor: Color.alerzoBlue,
   },
   // {
