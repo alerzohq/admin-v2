@@ -35,7 +35,7 @@ export const digitalBankTableMapper = [
     ),
   },
   {
-    title: 'Date Registered',
+    title: 'Date Registered ',
     key: 'created_at',
     render: (data: { createdAt: MomentInput }) =>
       moment(data.createdAt).format('YYYY-MM-DD HH:MM:SS'),
