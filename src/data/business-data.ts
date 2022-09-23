@@ -92,9 +92,9 @@ export const businessDetailsHelper = (data: any) => {
       spacing: false,
       header: PASSCODETABLE,
       data: {
-        pinStatus: 'Set',
+        pinStatus: data?.business_owner.transaction_pin ? 'Set' : 'Not Set',
         gender: data?.business_owner?.gender,
-        passcodeStatus: 'Not Set',
+        passcodeStatus: data?.business_owner.passcode ? 'Set' : 'Not Set',
         empty: '',
       },
     },
