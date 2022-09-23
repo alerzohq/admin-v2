@@ -13,11 +13,11 @@ const SessionTimeout = ({ children }: TimeoutProps) => {
 
   let idleTimer = null
   const onIdle = () => {
-    //  logOut(() => {
-    //     dispatch({
-    //         type:Action.LOGOUT
-    //     })
-    //  })
+    logOut(() => {
+      dispatch({
+        type: Action.LOGOUT,
+      })
+    })
   }
 
   return (
