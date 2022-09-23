@@ -4,6 +4,7 @@ import { TABS, customerHelper } from '../../../../data/digital-bank-data'
 import { getResource } from '../../../../utils/apiRequest'
 import DetailsContent from '../../widget/tabs/tab-content-details'
 import TabsContentWidget from '../../widget/tabs/tab-content'
+import TransactionHistory from './transaction-history'
 
 const DigitalBankDetailContainer = () => {
   const location = useLocation()
@@ -25,7 +26,7 @@ const DigitalBankDetailContainer = () => {
   const renderSwitch = () => {
     switch (queryParam) {
       case 'transHistory':
-        return <div>History</div>
+        return <TransactionHistory userId={id} />
       case 'cards':
         return <div>Cards</div>
       case 'expensesLens':

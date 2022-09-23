@@ -4,6 +4,8 @@ import { Color } from '../../assets/theme'
 export const DataTable = styled.table`
   width: 100%;
   border-collapse: collapse;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `
 export const DataTableTHead = styled.thead`
   background: ${Color.alerzoGray3};
@@ -23,19 +25,17 @@ export const DataTableHead = styled.th`
   font-size: 0.8rem;
   text-transform: capitalize;
   font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
   &:first-child {
+    border-top-left-radius: 20px;
     padding-left: 1rem;
   }
   &:last-child {
-    padding-right: 1rem;
-    text-align: center;
-  }
-  font-weight: 600;
-  &:first-child {
-    border-top-left-radius: 20px;
-  }
-  &:last-child {
     border-top-right-radius: 20px;
+    text-align: left;
+    padding-left: 2rem;
+    padding-right: 1rem;
   }
 `
 export const DataTableBody = styled.tbody`
@@ -53,12 +53,14 @@ export const DataTableBodyRow = styled.tr`
     font-weight: 500;
     max-width: 200px;
     text-transform: capitalize;
+    white-space: nowrap;
     &:first-child {
       padding-left: 1rem;
     }
     &:last-child {
       padding-right: 1rem;
-      text-align: center;
+      text-align: left;
+      padding-left: 2rem;
     }
     div {
       text-transform: capitalize;
