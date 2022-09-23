@@ -47,7 +47,7 @@ export const JumbotronItem = styled.div<Props>`
 export const Inner = styled.div<Props>`
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  gap: ${({ gap }) =>gap};
+  gap: ${({ gap }) => gap};
   width: 100%;
 
   @media (max-width: 768px) {

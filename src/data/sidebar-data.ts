@@ -1,8 +1,8 @@
 import {
   Dashboard,
   // UserIcon,
-  // DigitalbankIcon,
-  // ActiveDigitalIcon,
+  DigitalbankIcon,
+  ActiveDigitalIcon,
   // ActiveUserIcon,
   HistoryIcon,
   BusinessIcon,
@@ -40,15 +40,14 @@ export const sideBarData = [
     path: `/${Path.DASHBOARD}/${Path.BUSINESSES}`,
     activeIconColor: Color.alerzoBlue,
   },
-
-  // {
-  //   id: 4,
-  //   title: 'Digital Bank',
-  //   InActiveIcon:  DigitalbankIcon,
-  //   ActiveIcon:ActiveDigitalIcon,
-  //   path: `/${Path.DASHBOARD}/${Path.USERS}`,
-  //   activeIconColor: Color.alerzoBlue,
-  // },
+  {
+    id: 4,
+    title: 'Digital Bank',
+    InActiveIcon: DigitalbankIcon,
+    ActiveIcon: ActiveDigitalIcon,
+    path: `/${Path.DASHBOARD}/${Path.DigitalBank}`,
+    activeIconColor: Color.alerzoBlue,
+  },
   // {
   //   id: 5,
   //   title: 'Employee  Mgt',

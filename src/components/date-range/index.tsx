@@ -10,7 +10,7 @@ import {
   DateRangeWrapper,
 } from './styles/date-range.styles'
 
-const DateRange = ({ filterDate,isTop }: any) => {
+const DateRange = ({ filterDate, isTop }: any) => {
   const [dateValue, setDateValue] = useState('')
   const [show, setShow] = useState(false)
   const [selectionRange, setSelectionRange] = useState({

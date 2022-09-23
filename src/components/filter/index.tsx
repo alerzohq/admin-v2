@@ -6,11 +6,7 @@ import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
 import { FilterInput, FilterItems, FilterWrapper } from './styles/filter.styles'
 
-const Filter = ({
-  showFilters,
-  setFilterValues,
-}: FilterProps) => {
-
+const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
   const [status] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
@@ -28,45 +24,44 @@ const Filter = ({
   }, [search, status])
 
   return (
- 
-      <FilterWrapper>
-        <Stack justifyContent={'space-between'} direction={'row'}>        
-          <FilterItems>
-            {showFilters?.search && (
-              <FilterInput
-                value={search}
-                onChange={(e:any) => {
-                  setValues({ ...values, search: e.target.value })
-                }}
-                placeholder={showFilters.search.placeholder}
+    <FilterWrapper>
+      <Stack justifyContent={'space-between'} direction={'row'}>
+        <FilterItems>
+          {showFilters?.search && (
+            <FilterInput
+              value={search}
+              onChange={(e: any) => {
+                setValues({ ...values, search: e.target.value })
+              }}
+              placeholder={showFilters.search.placeholder}
+            />
+          )}
+          {showFilters?.date && (
+            <DateRange isTop filterDate={setFilterValues && setFilterValues} />
+          )}
+          {showFilters?.selects?.length >= 1 &&
+            showFilters.selects.map((select, i) => (
+              <SelectInput
+                key={i}
+                placeholder={select.placeholder}
+                onChange={select.onChange}
+                value={select.value}
+                options={select.values}
               />
-            )}
-            {showFilters?.date && <DateRange isTop filterDate={setFilterValues && setFilterValues} />}
-            {showFilters?.selects?.length >= 1 &&
-              showFilters.selects.map((select, i) => (
-                <SelectInput
-                  key={i}
-                  placeholder={select.placeholder}
-                  onChange={select.onChange}
-                  value={select.value}
-                  options={select.values}
-                />
-              ))}
-            {showFilters?.buttons?.length >= 1 &&
-              showFilters.buttons.map((button, i) => (
-                <button
-                  key={i}
-                  onClick={button.onClick}
-                  className={'download-btn'}
-                >
-                  {button.label}
-                </button>
-              ))}
-          </FilterItems>
-     
-        </Stack>
-      </FilterWrapper>
-
+            ))}
+          {showFilters?.buttons?.length >= 1 &&
+            showFilters.buttons.map((button, i) => (
+              <button
+                key={i}
+                onClick={button.onClick}
+                className={'download-btn'}
+              >
+                {button.label}
+              </button>
+            ))}
+        </FilterItems>
+      </Stack>
+    </FilterWrapper>
   )
 }
 

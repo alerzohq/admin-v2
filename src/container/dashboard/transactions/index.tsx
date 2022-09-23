@@ -26,7 +26,10 @@ const TransactionContainer = () => {
     return getResource(`transactions/statistics`)
   }
 
-  const { isLoading:loading, data:Stats, } = useQuery('trans-stats',getTranStats);
+  const { isLoading: loading, data: Stats } = useQuery(
+    'trans-stats',
+    getTranStats
+  )
   const Statistics = Stats?.data?.[0]
 
   const { isLoading, data, isError, isFetching } = useQuery(
@@ -34,8 +37,6 @@ const TransactionContainer = () => {
     () => getTransactions(values),
     { keepPreviousData: true }
   )
-
- 
 
   let component
   if (isLoading) {
@@ -93,7 +94,7 @@ const TransactionContainer = () => {
       setFilterValues={setValues}
       isFetching={isFetching}
     >
-      <CardWidget stats={Statistics} loading={loading}/>
+      <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{component}</Jumbotron>
       <Pagination data={data} setPageNumber={setValues} />
     </Container>

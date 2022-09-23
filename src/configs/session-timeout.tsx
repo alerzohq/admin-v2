@@ -5,32 +5,32 @@ import { logOut } from '../utils/session-storage'
 import { IdleTimer } from './HOC/idle-timer'
 
 type TimeoutProps = {
-  children:ReactNode
+  children: ReactNode
 }
 
-const SessionTimeout = ({ children}:TimeoutProps) => {
-const {dispatch}= useAppContext()
+const SessionTimeout = ({ children }: TimeoutProps) => {
+  const { dispatch } = useAppContext()
 
-    
-let idleTimer = null
-const onIdle =()=>{
-  
- logOut(() => {
-    dispatch({
-        type:Action.LOGOUT
+  let idleTimer = null
+  const onIdle = () => {
+    logOut(() => {
+      dispatch({
+        type: Action.LOGOUT,
+      })
     })
- })
-}
+  }
 
   return (
     <IdleTimer
-        ref={ref => {idleTimer = ref }}
-        timeout={100000 * 60}
-        promptTimeout={1000 * 30}
-        onIdle={onIdle}
-     >
-       {children}
-     </IdleTimer>   
+      ref={(ref) => {
+        idleTimer = ref
+      }}
+      timeout={100000 * 60}
+      promptTimeout={1000 * 30}
+      onIdle={onIdle}
+    >
+      {children}
+    </IdleTimer>
   )
 }
 

@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
-import { FallBack, Filter, Jumbotron, Loader, Pagination, Table } from '../../../../../components'
+import {
+  FallBack,
+  Filter,
+  Jumbotron,
+  Loader,
+  Pagination,
+  Table,
+} from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { transHeaderList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
 
-
-const Members = ({userId}:{ userId: string}) => {
-
+const Members = ({ userId }: { userId: string }) => {
   const getMembers = () => {
     return getResource(`transactions?userId=${userId}`)
   }
@@ -17,7 +22,7 @@ const Members = ({userId}:{ userId: string}) => {
     'members',
     getMembers
   )
-  let component;
+  let component
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
@@ -27,42 +32,50 @@ const Members = ({userId}:{ userId: string}) => {
   } else {
     component = (
       <Table
-      headerbgColor={'transparent'}
-      tableName="transaction"
-      tableData={data?.data}
-      tableHeaders={transHeaderList}
-      dateFormat="YYYY-MM-DD HH:mm:ss"
-      amountIndex={1}
-      withSlug
+        headerbgColor={'transparent'}
+        tableName="transaction"
+        tableData={data?.data}
+        tableHeaders={transHeaderList}
+        dateFormat="YYYY-MM-DD HH:mm:ss"
+        amountIndex={1}
+        withSlug
       />
     )
   }
 
   return (
     <>
-        <Jumbotron padding={'.5rem 1rem'} direction={'column'} > 
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           showFilters={{
             search: {
               placeholder: 'Search',
-              type: 'text'
-            }, 
-            date:true,
+              type: 'text',
+            },
+            date: true,
             selects: [
-              { placeholder: 'All Platform', values: [], value: '' , onChange:()=>{}},
-              { placeholder: 'Status', values: [], value: '', onChange:()=>{} }     
+              {
+                placeholder: 'All Platform',
+                values: [],
+                value: '',
+                onChange: () => {},
+              },
+              {
+                placeholder: 'Status',
+                values: [],
+                value: '',
+                onChange: () => {},
+              },
             ],
             buttons: [
               { label: 'Download CSV', onClick: () => console.log('first') },
             ],
           }}
-          />    
-            {component}     
-        </Jumbotron>
-        {data?.data &&(
-          <Pagination data={data} setPageNumber={setValues} />
-        )}
-      </>
+        />
+        {component}
+      </Jumbotron>
+      {data?.data && <Pagination data={data} setPageNumber={setValues} />}
+    </>
   )
 }
 

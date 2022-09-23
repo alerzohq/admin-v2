@@ -21,6 +21,14 @@ const BusinessContainer = () => {
     return getFilterResource(`businesses`, filterValue)
   }
 
+  const getTranStats = () => {
+    return getResource(`transactions/statistics`)
+  }
+  const { isLoading: loading, data: Stats } = useQuery(
+    'trans-stats',
+    getTranStats
+  )
+  const Statistics = Stats?.data?.[0]
 
   const { isLoading, data, isError, isFetching } = useQuery(
     ['businesses', values],
@@ -28,12 +36,7 @@ const BusinessContainer = () => {
     { keepPreviousData: true }
   )
 
-  const getTranStats = () => {
-    return getResource(`transactions/statistics`)
-  }
 
-  const { isLoading:loading, data:Stats, } = useQuery('trans-stats',getTranStats);
-  const Statistics = Stats?.data?.[0]
 
   let component
   if (isLoading) {
