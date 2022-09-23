@@ -26,7 +26,7 @@ const DetailsContentWidget = ({
           <>
             {item?.title && (
               <Text
-              key={index}
+                key={index}
                 as={'p'}
                 padding={'1.5em 0 0 0'}
                 color={Color.alerzoBlack}
