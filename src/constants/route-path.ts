@@ -10,4 +10,5 @@ export enum Path {
   BUSINESSES = 'businesses',
   BUSINESSDETAIL = 'businesses/:businessId',
   DigitalBank = 'digitalbank',
+  DIGITALBANKDETAIL = 'digital-bank/:dbId',
 }
