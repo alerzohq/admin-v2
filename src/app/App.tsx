@@ -20,6 +20,7 @@ import Terminals from '../pages/dashboard/terminals'
 import TerminalDetails from '../pages/dashboard/terminals/details'
 import Businesses from '../pages/dashboard/businessess'
 import BusinessDetails from '../pages/dashboard/businessess/business-detail'
+import DigitalBank from '../pages/dashboard/digitalBank'
 
 // const Dashboard = React.lazy(() => import("../pages/dashboard"));
 
@@ -64,6 +65,7 @@ function App() {
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
               <Route path={Path.BUSINESSES} element={<Businesses />} />
               <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
+              <Route path={Path.DigitalBank} element={<DigitalBank />} />
             </Route>
           </Route>
 

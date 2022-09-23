@@ -2,10 +2,10 @@ import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
 type Props = {
-  show?: boolean;
-  isChecked?: boolean;
-  pb?: string;
-  bgColor?: string;
+  show?: boolean
+  isChecked?: boolean
+  pb?: string
+  bgColor?: string
 }
 
 export const TableWrapper = styled.div`
@@ -25,7 +25,7 @@ export const DataTable = styled.table<Props>`
   width: 100%;
   border-collapse: collapse;
   thead {
-    background: ${({bgColor})=>bgColor ? bgColor : Color.alerzoGray3};
+    background: ${({ bgColor }) => (bgColor ? bgColor : Color.alerzoGray3)};
     color: #001928;
     height: 60px;
 

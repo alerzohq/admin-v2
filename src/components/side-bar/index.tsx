@@ -27,12 +27,12 @@ import { Action } from '../../context/actions'
 
 const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const location = useLocation()
-  const [show, setShow] = useState<number | null>();
+  const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
- 
+
   const paths = '/dashboard/transactions/new'
   // console.log(paths.includes(pathname))
-  
+
   const {
     state: { user },
     dispatch,

@@ -5,8 +5,8 @@ export const FilterWrapper = styled.div`
   height: 90px;
   display: flex;
   align-items: center;
-  justify-content:space-between;
-  width:100%;
+  justify-content: space-between;
+  width: 100%;
   /* padding: 0 1rem; */
   overflow: scroll;
   /* border-bottom: 0.8px solid #e8ebee; */
@@ -21,13 +21,12 @@ export const FilterWrapper = styled.div`
 
   @media (max-width: 640px) {
     font-size: 1.2rem;
-   
   }
 `
 export const FilterItems = styled.div`
   display: flex;
   gap: 20px;
-  justify-content:space-between;
+  justify-content: space-between;
   overflow-y: visible;
   overflow-x: scroll;
   scrollbar-width: none;

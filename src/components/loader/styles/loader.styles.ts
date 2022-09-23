@@ -13,10 +13,10 @@ export const LoaderWrapper = styled.div`
 `
 
 export const LoaderIndicator = styled.div<LineStyleProps>`
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .lds-ellipsis {
     display: inline-block;
     position: relative;
