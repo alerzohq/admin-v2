@@ -59,6 +59,7 @@ export const TopbarFilters = styled.div`
 
   @media (max-width: 768px) {
     gap: 10px;
+    overflow: scroll;
   }
 `
 export const Filter = styled.input`

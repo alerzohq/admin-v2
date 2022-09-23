@@ -30,4 +30,11 @@ export const DateRangeContainer = styled.div<Props>`
   z-index: 5;
   top: ${({ isTop }) => (isTop ? '' : '5.7rem')};
   border: 1px solid ${Color.alerzoGray};
+  @media (max-width:768px){
+  left:0;
+  .rdrDateRangePickerWrapper {
+    display: flex !important;
+    flex-direction: column;
+    background: ${Color.alerzoWhite};}
+  };
 `

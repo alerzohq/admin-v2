@@ -6,7 +6,7 @@ import { FallBack, Jumbotron, Loader, Pagination } from '../../../components'
 import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
 import { filterValue } from '../../../data/filter-data'
-import { getFilterResource } from '../../../utils/apiRequest'
+import { getFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
 
@@ -18,20 +18,35 @@ const DigitalBankContainer = () => {
   const getDigitalBanksHandler = (filterValue: filterProps) => {
     return getFilterResource(`customers`, filterValue)
   }
+
+  const getTranStats = () => {
+    return getResource(`transactions/statistics`)
+  }
+
+  const { isLoading: loading, data: Stats } = useQuery(
+    'trans-stats',
+    getTranStats
+  )
+  const Statistics = Stats?.data?.[0]
+
   const { isLoading, data, isError, isFetching } = useQuery(
-    ['terminals', values],
+    ['digital-bank', values],
     () => getDigitalBanksHandler(values),
     { keepPreviousData: true }
   )
-  let digitalBankComponent
+
+
+
+  let digitalBankComponent;
+
   if (isLoading) {
     digitalBankComponent = <Loader />
   } else if (isError) {
     digitalBankComponent = (
-      <FallBack error title={'Failed to load terminals. '} />
+      <FallBack error title={'Failed to load transactions. '} />
     )
   } else if (data?.data?.length < 1) {
-    digitalBankComponent = <FallBack title={'You have no terminals yet. '} />
+    digitalBankComponent = <FallBack title={'You have no transactions yet. '} />
   } else {
     digitalBankComponent = (
       <DynamicTable
@@ -52,7 +67,7 @@ const DigitalBankContainer = () => {
         date: true,
         selects: [
           { placeholder: 'All Platofrms', values: [], value: '' },
-          { placeholder: 'status', values: [], value: '' },
+          { placeholder: 'Status', values: [], value: '' },
         ],
         buttons: [
           { label: 'Download CSV', onClick: () => console.log('first') },
@@ -62,7 +77,7 @@ const DigitalBankContainer = () => {
       setFilterValues={setValues}
       isFetching={isFetching}
     >
-      <CardWidget />
+      <CardWidget stats={Statistics} loading={loading}/>
       <Jumbotron padding={'0'}>{digitalBankComponent}</Jumbotron>
       <Pagination data={data} setPageNumber={setValues} />
     </Container>
