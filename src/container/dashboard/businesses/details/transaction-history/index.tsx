@@ -9,6 +9,7 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
+import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
 
@@ -57,7 +58,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
             selects: [
               {
                 placeholder: 'All Platform',
-                values: [],
+                values:optionsAllPlatform,
                 value: '',
                 onChange: () => {},
               },
