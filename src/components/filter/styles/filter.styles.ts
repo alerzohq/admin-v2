@@ -52,7 +52,7 @@ export const FilterItems = styled.div`
     font-weight: 500;
     cursor: pointer;
   }
-  .add-button{
+  .add-button {
     align-items: center;
     display: flex;
     justify-content: center;

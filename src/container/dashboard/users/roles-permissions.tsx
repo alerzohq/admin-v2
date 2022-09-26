@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
-import { filterValue } from '../../../data/filter-data'
 import { rolesPermList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 
@@ -9,7 +7,7 @@ const RolesPermissions = () => {
   const getRoles = () => {
     return getResource('roles')
   }
-  
+
   const { isLoading, isError, data } = useQuery('roles-permissions', getRoles)
   let component
   if (isLoading) {
@@ -51,7 +49,11 @@ const RolesPermissions = () => {
             },
           ],
           buttons: [
-            { label: 'Add New Role', onClick: () => console.log('first'), buttonClass:'add-button' },
+            {
+              label: 'Add New Role',
+              onClick: () => console.log('first'),
+              buttonClass: 'add-button',
+            },
           ],
         }}
       />
