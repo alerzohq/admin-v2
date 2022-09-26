@@ -10,6 +10,8 @@ import {
   ActiveHistoryIcon,
   ActiveDashboardIcon,
   ActiveBusinessIcon,
+  UserIcon,
+  ActiveUserIcon,
   // ActiveTerminalIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
@@ -48,14 +50,14 @@ export const sideBarData = [
     path: `/${Path.DASHBOARD}/${Path.DigitalBank}`,
     activeIconColor: Color.alerzoBlue,
   },
-  // {
-  //   id: 5,
-  //   title: 'Employee  Mgt',
-  //   InActiveIcon: UserIcon,
-  //   ActiveIcon:ActiveUserIcon,
-  //   path: `/${Path.DASHBOARD}/${Path.USERS}`,
-  //   activeIconColor: Color.alerzoBlue,
-  // },
+  {
+    id: 5,
+    title: 'Employee  Mgt',
+    InActiveIcon: UserIcon,
+    ActiveIcon:ActiveUserIcon,
+    path: `/${Path.DASHBOARD}/${Path.USERS}`,
+    activeIconColor: Color.alerzoBlue,
+  },
 
   // {
   //   id: 6,

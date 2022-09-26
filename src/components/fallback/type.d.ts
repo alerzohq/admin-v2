@@ -4,5 +4,6 @@ export type fallbackProps = {
   hideBtn?: boolean
   routeLink?: string | undefined
   btnText?: string
-  description?: string
+  description?: string;
+  refetch?:()=>void;
 }

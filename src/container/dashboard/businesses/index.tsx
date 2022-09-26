@@ -30,7 +30,7 @@ const BusinessContainer = () => {
   )
   const Statistics = Stats?.data?.[0]
 
-  const { isLoading, data, isError, isFetching } = useQuery(
+  const { isLoading, data, isError, isFetching,refetch } = useQuery(
     ['businesses', values],
     () => getBusinesses(values),
     { keepPreviousData: true }
@@ -42,9 +42,15 @@ const BusinessContainer = () => {
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = <FallBack error title={'Failed to load businesses. '} />
+    component = <FallBack error
+     title={'Failed to load businesses. '} 
+     refetch={refetch}
+     />
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no business yet. '} />
+    component = <FallBack 
+    title={'You have no business yet.'}
+    refetch={refetch}
+    />
   } else {
     component = (
       <Table
