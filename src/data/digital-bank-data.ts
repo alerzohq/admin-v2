@@ -9,7 +9,6 @@ export const TABS = [
   {
     label: 'Transaction History',
     value: 'transHistory',
-    title: 'Merchant Details',
   },
   { label: 'Cards', value: 'cards', title: '' },
   {

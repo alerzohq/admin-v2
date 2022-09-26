@@ -5,6 +5,7 @@ import { filterProps } from '../../../@types'
 import { FallBack, Jumbotron, Loader, Pagination } from '../../../components'
 import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
+import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
 import { getFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
@@ -35,9 +36,7 @@ const DigitalBankContainer = () => {
     { keepPreviousData: true }
   )
 
-
-
-  let digitalBankComponent;
+  let digitalBankComponent
 
   if (isLoading) {
     digitalBankComponent = <Loader />
@@ -49,13 +48,15 @@ const DigitalBankContainer = () => {
     digitalBankComponent = <FallBack title={'You have no transactions yet. '} />
   } else {
     digitalBankComponent = (
-      <DynamicTable
-        data={data?.data}
-        mappers={digitalBankTableMapper}
-        handleClick={(item) => {
-          navigate(item?.id)
-        }}
-      />
+      <TableWrapper>
+        <DynamicTable
+          data={data?.data}
+          mappers={digitalBankTableMapper}
+          handleClick={(item) => {
+            navigate(item?.id)
+          }}
+        />
+      </TableWrapper>
     )
   }
   return (
@@ -77,7 +78,7 @@ const DigitalBankContainer = () => {
       setFilterValues={setValues}
       isFetching={isFetching}
     >
-      <CardWidget stats={Statistics} loading={loading}/>
+      <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{digitalBankComponent}</Jumbotron>
       <Pagination data={data} setPageNumber={setValues} />
     </Container>
