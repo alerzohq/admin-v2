@@ -18,7 +18,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     return getResource(`transactions?walletId=${walletId}`)
   }
 
-  const [values, setValues] = useState(filterValue)
+  const [, setValues] = useState(filterValue)
   const { isLoading, isError, data, refetch } = useQuery(
     'transaction-history',
     getTransactionsHistory

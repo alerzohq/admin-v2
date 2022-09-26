@@ -42,7 +42,7 @@ export const FilterItems = styled.div`
     border-radius: 10px;
     height: 45px;
     padding: 0 1rem;
-    width: 200px;
+    width: 170px;
     text-align: center;
     font-family: 'Gilmer';
     font-style: normal;
@@ -62,7 +62,7 @@ export const FilterItems = styled.div`
     border-radius: 10px;
     height: 45px;
     padding: 0 1rem;
-    width: 200px;
+    width: 170px;
     text-align: center;
     font-family: 'Gilmer';
     font-style: normal;

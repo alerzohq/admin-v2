@@ -11,8 +11,9 @@ type formProps = {
   alignItems: string
   bgColor?: string
   gap?: string
-  smDirections?: string
-  xsDirections?: string
+  smDirections?: string;
+  xsDirections?: string;
+
 }
 
 export const FormContainer = styled.form<formProps>`
@@ -68,7 +69,7 @@ export const Label = styled.label<formProps>`
   padding: ${({ padding }) => padding};
   font-size: 0.9rem;
   color: #001928;
-  font-weight: 600;
+  font-weight: 500;
 `
 export const Input = styled.div`
   width: 100%;

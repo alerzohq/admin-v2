@@ -1,4 +1,4 @@
-import { Button, Text } from '..'
+import { Button, Loader, Text } from '..'
 import CloseIcon from '../../assets/icons/close-icon'
 import { Color } from '../../assets/theme'
 import { Footer } from '../form/styles/form.style'
@@ -46,7 +46,7 @@ const Modal = ({
                 padding="0"
                 weight="600"
                 color={Color.alerzoBlack}
-                size="22px"
+                size="18px"
                 align="center"
               >
                 {headerText}
@@ -56,7 +56,7 @@ const Modal = ({
                   as="p"
                   padding="0"
                   color={Color.alerzoBlack}
-                  size="16px"
+                  size="14px"
                   align="center"
                 >
                   {subTitle}
@@ -68,13 +68,13 @@ const Modal = ({
           <Footer>
             <Button.Group align="center">
               <Button
-                width="40%"
+                width="50%"
                 radius="10px"
                 fontSize="15px"
-                weight="600"
+                weight="500"
                 onClick={() => {}}
               >
-                {loading ? 'Loading...' : `${buttonText}`}
+                {loading ? <Loader /> : `${buttonText}`}
               </Button>
             </Button.Group>
           </Footer>
