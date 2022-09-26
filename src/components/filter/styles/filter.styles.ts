@@ -25,8 +25,9 @@ export const FilterWrapper = styled.div`
 `
 export const FilterItems = styled.div`
   display: flex;
+  width: 100%;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: start;
   overflow-y: visible;
   overflow-x: scroll;
   scrollbar-width: none;
@@ -50,6 +51,27 @@ export const FilterItems = styled.div`
     color: ${Color.alerzoBlue};
     font-weight: 500;
     cursor: pointer;
+  }
+  .add-button{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    background: ${Color.alerzoBlue};
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 1rem;
+    width: 200px;
+    text-align: center;
+    font-family: 'Gilmer';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: ${Color.alerzoWhite};
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: auto;
   }
   ::-webkit-scrollbar {
     width: 0;

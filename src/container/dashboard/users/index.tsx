@@ -4,7 +4,7 @@ import { TabsPage } from '../../../components'
 import { Container } from '../../../components/layout'
 import { TABS } from '../../../data/user-data'
 import Employees from './employees'
-import Roles from './roles-permissions'
+import RolesPermissions from './roles-permissions'
 
 const UsersContainer = () => {
   const location = useLocation()
@@ -17,7 +17,7 @@ const UsersContainer = () => {
   const renderSwitch = () => {
     switch (queryParam) {
       case 'roles-permissions':
-        return <Roles />
+        return <RolesPermissions />
       default:
         return <Employees />
     }

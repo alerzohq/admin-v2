@@ -15,3 +15,9 @@ export const busHeaderList = [
   'Status',
   'Date Registered',
 ]
+export const rolesPermList = [
+  'Roles',
+  'Permissions',
+  'No of Members',
+  'Status',
+]

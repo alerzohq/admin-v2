@@ -52,6 +52,7 @@ export const TopbarFilters = styled.div`
     font-weight: 500;
     cursor: pointer;
   }
+  
   ::-webkit-scrollbar {
     width: 0;
     height: 0;

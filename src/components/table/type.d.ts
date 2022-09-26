@@ -9,6 +9,7 @@ export type TableProps = {
   dateFormat?: string
   withSlug?: boolean
   hideActive?: boolean
+  hideDate?: boolean
   headerbgColor?: string
 
   onClick?: (item: {}) => void
