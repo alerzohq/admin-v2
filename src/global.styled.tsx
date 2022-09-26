@@ -162,7 +162,7 @@ a {
   cursor: pointer;
 }
 .tableLink{
-  text-decoration:underline;
+  /* text-decoration:underline; */
   cursor: pointer;
   color:${Color.alerzoBlue};
   font-weight:600;
