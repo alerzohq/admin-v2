@@ -11,6 +11,7 @@ export type FilterProps = {
     buttons: {
       label: string
       onClick: () => void
+      buttonClass?: string
     }[]
   }
   isFetching?: boolean

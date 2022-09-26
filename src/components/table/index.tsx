@@ -13,6 +13,7 @@ const Table = ({
   dateFormat,
   withSlug,
   hideActive,
+  hideDate,
 }: TableProps) => {
   return (
     <>
@@ -26,6 +27,7 @@ const Table = ({
             dateFormat={dateFormat}
             withSlug={withSlug}
             hideActive={hideActive}
+            hideDate={hideDate}
           />
         </DataTable>
       </TableWrapper>

@@ -22,4 +22,10 @@ export const transformData = ({ item, name }: props) => {
     let status = business_owner?.status ? 'Active' : 'Inactive'
     return { name, phoneNumber, email, kyc_level, status, created_at }
   }
+  if (item && name === 'user-roles-permission') {
+    const { name, permissions, status, numberOfMembers } = item
+    let statusVal = status ? 'Active' : 'Inactive'
+    let perm = permissions || []
+    return { name, permission: perm.toString(), numberOfMembers, statusVal }
+  }
 }

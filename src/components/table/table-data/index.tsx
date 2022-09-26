@@ -14,6 +14,7 @@ type dataProps = {
   withSlug?: boolean
   dateFormat?: string
   hideActive?: boolean
+  hideDate?: boolean
 }
 type dataList = string[] | undefined
 
@@ -24,6 +25,7 @@ const TableData = ({
   withSlug,
   dateFormat,
   hideActive,
+  hideDate,
 }: dataProps) => {
   const navigate = useNavigate()
 
@@ -58,7 +60,7 @@ const TableData = ({
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
-                  {lastItem && lastItem === data
+                  {lastItem && lastItem === data && !hideDate
                     ? formatDate(data, dateFormat || 'lll')
                     : i === amountIndex
                     ? `₦${amountConverter(data)}`
