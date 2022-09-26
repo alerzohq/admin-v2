@@ -92,7 +92,7 @@ const BusinessContainer = () => {
       setFilterValues={setValues}
       isFetching={isFetching}
     >
-      <CardWidget stats={Statistics} loading={loading}/>
+      <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{component}</Jumbotron>
       <Pagination data={data} setPageNumber={setValues} />
     </Container>

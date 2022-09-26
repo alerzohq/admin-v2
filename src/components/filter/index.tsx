@@ -54,7 +54,7 @@ const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
               <button
                 key={i}
                 onClick={button.onClick}
-                className={'download-btn'}
+                className={button?.buttonClass || 'download-btn'}
               >
                 {button.label}
               </button>

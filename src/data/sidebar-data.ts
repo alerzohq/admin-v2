@@ -1,17 +1,15 @@
 import {
   Dashboard,
-  // UserIcon,
+  UserIcon,
   DigitalbankIcon,
   ActiveDigitalIcon,
-  // ActiveUserIcon,
+  ActiveUserIcon,
   HistoryIcon,
   BusinessIcon,
   // TerminalIcon,
   ActiveHistoryIcon,
   ActiveDashboardIcon,
   ActiveBusinessIcon,
-  UserIcon,
-  ActiveUserIcon,
   // ActiveTerminalIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
@@ -54,7 +52,7 @@ export const sideBarData = [
     id: 5,
     title: 'Employee  Mgt',
     InActiveIcon: UserIcon,
-    ActiveIcon:ActiveUserIcon,
+    ActiveIcon: ActiveUserIcon,
     path: `/${Path.DASHBOARD}/${Path.USERS}`,
     activeIconColor: Color.alerzoBlue,
   },

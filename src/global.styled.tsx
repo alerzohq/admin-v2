@@ -162,7 +162,10 @@ a {
   cursor: pointer;
 }
 .tableLink{
+<<<<<<< HEAD
   /* text-decoration:underline; */
+=======
+>>>>>>> 4631953c769df7715e478509ad8275f73d1c0f2b
   cursor: pointer;
   color:${Color.alerzoBlue};
   font-weight:600;

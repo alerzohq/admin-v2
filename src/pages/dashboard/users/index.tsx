@@ -1,8 +1,6 @@
 import React from 'react'
-import { Container } from '../../../components/layout'
+import { UsersContainer } from '../../../container/dashboard'
 
-const Users = () => {
-  return <Container title="Employee Roles & Permission">Users</Container>
-}
+const Users = () => <UsersContainer />
 
 export default Users
