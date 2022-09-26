@@ -52,7 +52,7 @@ export const sideBarData = [
     id: 5,
     title: 'Employee  Mgt',
     InActiveIcon: UserIcon,
-    ActiveIcon:ActiveUserIcon,
+    ActiveIcon: ActiveUserIcon,
     path: `/${Path.DASHBOARD}/${Path.USERS}`,
     activeIconColor: Color.alerzoBlue,
   },
