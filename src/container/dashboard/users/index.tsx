@@ -11,8 +11,8 @@ const UsersContainer = () => {
   const search = location.search
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
-  const title = found ? found?.title : TABS[0]?.title
-  const thePath = location.pathname
+  // const title = found ? found?.title : TABS[0]?.title
+  // const thePath = location.pathname
 
   const renderSwitch = () => {
     switch (queryParam) {

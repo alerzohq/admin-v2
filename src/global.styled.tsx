@@ -150,6 +150,7 @@ a {
   padding: 0.5rem;
   text-align: center;
   font-weight: 500;
+  max-width:120px;
 }
 .active{
   background: #34a8531a;
@@ -162,6 +163,7 @@ a {
   cursor: pointer;
 }
 .tableLink{
+  /* text-decoration:underline; */
   cursor: pointer;
   color:${Color.alerzoBlue};
   font-weight:600;

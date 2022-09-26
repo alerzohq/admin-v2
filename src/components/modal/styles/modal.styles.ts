@@ -64,9 +64,10 @@ export const StyledModal = styled.div<props>`
   position: relative;
   margin: auto;
   border-radius: 20px;
+  transition: all 0.5 ease;
   min-height: ${({ modalHeight }) => (modalHeight ? modalHeight : '290px')};
-  width: ${({ modalWidth }) => (modalWidth ? modalWidth : '35%')};
-  padding: ${({ modalPadding }) => (modalPadding ? modalPadding : '2em 1.5em')};
+  width: ${({ modalWidth }) => (modalWidth ? modalWidth : '25%')};
+  padding: ${({ modalPadding }) => (modalPadding ? modalPadding : '2rem 1.5rem')};
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   transform: ${({ isShown }) => (isShown ? 'scale(1)' : 'scale(0)')};
   opacity: ${({ isShown }) => (isShown ? '1' : '0')};
@@ -77,7 +78,7 @@ export const StyledModal = styled.div<props>`
 export const Content = styled.div<props>`
   display: flex;
   flex-direction: column;
-  align-item: center;
+  align-items: center;
   padding: ${({ contentPadding }) =>
     contentPadding ? contentPadding : '2em 3.5em'};
   justify-content: start;

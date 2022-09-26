@@ -52,6 +52,7 @@ export const Inner = styled.div<Props>`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
   }
 `
 

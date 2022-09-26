@@ -70,6 +70,7 @@ CardRow.Container = function CardContainer({ data }: CardRowProps) {
                   color={Color.alerzoBlueTint}
                   size="14px"
                   align="start"
+                  weight='600'
                 >
                   {detail?.name}
                 </Text>

@@ -4,5 +4,5 @@ export type FormProps = React.ComponentProps<typeof FormContainer>
 
 export type InputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  Icon?: React.JSXElement
+  Icon?: React.JSXElement;
 } & React.ComponentProps<'input'>

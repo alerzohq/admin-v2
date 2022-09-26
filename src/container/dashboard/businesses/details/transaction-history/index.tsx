@@ -9,6 +9,7 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
+import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
 
@@ -17,8 +18,8 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     return getResource(`transactions?walletId=${walletId}`)
   }
 
-  const [values, setValues] = useState(filterValue)
-  const { isLoading, isError, data } = useQuery(
+  const [, setValues] = useState(filterValue)
+  const { isLoading, isError, data, refetch } = useQuery(
     'transaction-history',
     getTransactionsHistory
   )
@@ -27,9 +28,9 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = <FallBack error title={'Failed to load businesses history. '} />
+    component = <FallBack error refetch={refetch} title={'Failed to load businesses history. '} />
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no business history yet. '} />
+    component = <FallBack title={'You have no business history yet. '} refetch={refetch} />
   } else {
     component = (
       <Table
@@ -57,7 +58,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
             selects: [
               {
                 placeholder: 'All Platform',
-                values: [],
+                values:optionsAllPlatform,
                 value: '',
                 onChange: () => {},
               },
@@ -76,6 +77,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
 
         {component}
       </Jumbotron>
+
       {data?.data && <Pagination data={data} setPageNumber={setValues} />}
     </>
   )

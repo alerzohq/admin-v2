@@ -9,6 +9,7 @@ export type FilterProps = {
       value: string
     }[]
     buttons: {
+        buttonClass: string;
       label: string
       onClick: () => void
       buttonClass?: string
