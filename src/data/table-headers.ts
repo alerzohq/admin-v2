@@ -16,3 +16,13 @@ export const busHeaderList = [
   'Date Registered',
 ]
 export const rolesPermList = ['Roles', 'Permissions', 'No of Members', 'Status']
+
+export const DBtransHeaderList = [
+  'Reference No',
+  'Amount',
+  'Type',
+  'Biller',
+  'Action',
+  'Status',
+  'Date',
+]

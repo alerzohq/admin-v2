@@ -51,9 +51,9 @@ export const DataTableBodyRow = styled.tr`
   td {
     font-size: 0.9rem;
     font-weight: 500;
-    max-width: 200px;
     text-transform: capitalize;
     white-space: nowrap;
+    min-width: 200px;
     &:first-child {
       padding-left: 1rem;
     }

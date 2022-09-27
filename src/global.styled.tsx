@@ -176,7 +176,12 @@ a {
     color:${Color.alerzoDarkGray2} !important;
     font-size:.8rem !important;
 }
-
+.underline{
+  text-decoration: underline;
+}
+.w-50{
+  width: 50% !important
+}
 `
 
 export default GlobalStyle

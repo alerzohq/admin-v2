@@ -14,6 +14,7 @@ const TopBar = ({
   showFilters,
   setFilterValues,
   routePath,
+  whiteSpace,
 }: TopBarProps) => {
   let params = useParams()
   let navigate = useNavigate()
@@ -49,7 +50,9 @@ const TopBar = ({
                 }}
               />
             )}{' '}
-            <Text as={'h3'}>{title}</Text>
+            <Text whiteSpace={whiteSpace} as={'h3'}>
+              {title}
+            </Text>
           </Stack>
           <TopbarFilters>
             {showFilters?.search && (
