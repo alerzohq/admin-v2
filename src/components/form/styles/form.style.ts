@@ -11,9 +11,8 @@ type formProps = {
   alignItems: string
   bgColor?: string
   gap?: string
-  smDirections?: string;
-  xsDirections?: string;
-
+  smDirections?: string
+  xsDirections?: string
 }
 
 export const FormContainer = styled.form<formProps>`

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  button{
-    margin-top:1rem;
+  button {
+    margin-top: 1rem;
   }
 `

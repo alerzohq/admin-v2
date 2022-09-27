@@ -67,7 +67,8 @@ export const StyledModal = styled.div<props>`
   transition: all 0.5 ease;
   min-height: ${({ modalHeight }) => (modalHeight ? modalHeight : '290px')};
   width: ${({ modalWidth }) => (modalWidth ? modalWidth : '25%')};
-  padding: ${({ modalPadding }) => (modalPadding ? modalPadding : '2rem 1.5rem')};
+  padding: ${({ modalPadding }) =>
+    modalPadding ? modalPadding : '2rem 1.5rem'};
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   transform: ${({ isShown }) => (isShown ? 'scale(1)' : 'scale(0)')};
   opacity: ${({ isShown }) => (isShown ? '1' : '0')};

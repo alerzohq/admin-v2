@@ -22,11 +22,11 @@ export const PaginationWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition:all 0.5s ease;
-    &:hover{
-    color: ${Color.alerzoBlue};
-    background: #e6eeff;
-    border-radius: 50%;
+    transition: all 0.5s ease;
+    &:hover {
+      color: ${Color.alerzoBlue};
+      background: #e6eeff;
+      border-radius: 50%;
     }
   }
   .page-link {

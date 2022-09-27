@@ -1,26 +1,39 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 // import { Color } from '../../../assets/theme'
-import { FallBack, Filter, Form, Jumbotron, Loader, Table, } from '../../../components'
+import {
+  FallBack,
+  Filter,
+  Form,
+  Jumbotron,
+  Loader,
+  Table,
+} from '../../../components'
 import Modal from '../../../components/modal'
 import { rolesPermList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 
 const RolesPermissions = () => {
-const [isShown, setIsShown] = useState(false);
-
+  const [isShown, setIsShown] = useState(false)
 
   const getRoles = () => {
     return getResource('roles')
   }
 
-  const { isLoading, isError, data, refetch } = useQuery('roles-permissions', getRoles)
+  const { isLoading, isError, data, refetch } = useQuery(
+    'roles-permissions',
+    getRoles
+  )
   let component
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={'Failed to load roles and permission. '} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={'Failed to load roles and permission. '}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = (
@@ -38,27 +51,26 @@ const [isShown, setIsShown] = useState(false);
     )
   }
 
-const toggle= () => {
-  setIsShown(!isShown)
-}
+  const toggle = () => {
+    setIsShown(!isShown)
+  }
 
   return (
-
     <>
       <Modal
         showModal={isShown}
         subTitle={'Enter employee email adree and assign role'}
         setShowModal={toggle}
         buttonText="Send Invite"
-        headerText="Add New Employer" 
+        headerText="Add New Employer"
         contentPadding={'0'}
       >
-     <Form>
-     <Form.Control pb={'1rem'}>
+        <Form>
+          <Form.Control pb={'1rem'}>
             <Form.Label>Email address</Form.Label>
             <Form.Input
               type="text"
-              onChange={()=>{}}
+              onChange={() => {}}
               placeholder="Enter your email address"
             />
             {/* {isTriggerSubmit && (
@@ -75,7 +87,7 @@ const toggle= () => {
             <Form.Label>Select Role</Form.Label>
             <Form.Input
               type="text"
-              onChange={()=>{}}
+              onChange={() => {}}
               placeholder="Enter your email address"
             />
             {/* {isTriggerSubmit && (
@@ -88,35 +100,35 @@ const toggle= () => {
               </Text>
             )} */}
           </Form.Control>
-     </Form>
-  </Modal>
-    <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
-      <Filter
-        showFilters={{
-          search: {
-            placeholder: 'Search',
-            type: 'text',
-          },
-          date: false,
-          selects: [
-            {
-              placeholder: 'Status',
-              values: [],
-              value: '',
-              onChange: () => {},
+        </Form>
+      </Modal>
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+        <Filter
+          showFilters={{
+            search: {
+              placeholder: 'Search',
+              type: 'text',
             },
-          ],
-          buttons: [
-            {
-              label: 'Add New Role',
-              onClick: () => toggle(),
-              buttonClass: 'add-button',
-            },
-          ],
-        }}
-      />
-      {component}
-    </Jumbotron>
+            date: false,
+            selects: [
+              {
+                placeholder: 'Status',
+                values: [],
+                value: '',
+                onChange: () => {},
+              },
+            ],
+            buttons: [
+              {
+                label: 'Add New Role',
+                onClick: () => toggle(),
+                buttonClass: 'add-button',
+              },
+            ],
+          }}
+        />
+        {component}
+      </Jumbotron>
     </>
   )
 }
