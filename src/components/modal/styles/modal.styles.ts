@@ -21,6 +21,7 @@ export const ModalWrapper = styled.div<props>`
   outline: 0;
   width: 100%;
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
+ 
 `
 export const BackDrop = styled.div<props>`
   position: ${({ isShown }) => (isShown ? 'fixed' : null)};
@@ -71,6 +72,21 @@ export const StyledModal = styled.div<props>`
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   transform: ${({ isShown }) => (isShown ? 'scale(1)' : 'scale(0)')};
   opacity: ${({ isShown }) => (isShown ? '1' : '0')};
+  animation-name: grow-box;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+
+  @keyframes grow-box{
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
   @media (max-width: 1024px) {
     width: 80%;
   } ;
