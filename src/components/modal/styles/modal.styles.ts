@@ -21,7 +21,6 @@ export const ModalWrapper = styled.div<props>`
   outline: 0;
   width: 100%;
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
- 
 `
 export const BackDrop = styled.div<props>`
   position: ${({ isShown }) => (isShown ? 'fixed' : null)};
@@ -76,12 +75,12 @@ export const StyledModal = styled.div<props>`
   animation-duration: 0.4s;
   animation-timing-function: ease-in-out;
 
-  @keyframes grow-box{
+  @keyframes grow-box {
     from {
       transform: translateY(100%);
       opacity: 0;
     }
-  
+
     to {
       transform: translateY(0);
       opacity: 1;

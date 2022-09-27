@@ -28,8 +28,8 @@ const Modal = ({
 }: ModalProps) => {
   return (
     <>
-      <BackDrop isShown={showModal}/>
-      <ModalWrapper isShown={showModal}  onClick={setShowModal}>
+      <BackDrop isShown={showModal} />
+      <ModalWrapper isShown={showModal} onClick={setShowModal}>
         <StyledModal
           isShown={showModal}
           modalWidth={modalWidth}
