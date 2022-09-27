@@ -77,6 +77,7 @@ const DigitalBankContainer = () => {
       title="Digital Bank"
       setFilterValues={setValues}
       isFetching={isFetching}
+      whiteSpace={'nowrap'}
     >
       <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{digitalBankComponent}</Jumbotron>

@@ -11,6 +11,7 @@ const Container: React.FC<ContainerProps> = ({
   showFilters,
   routePath,
   children,
+  whiteSpace,
   ...restProps
 }) => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const Container: React.FC<ContainerProps> = ({
         showFilters={showFilters}
         routePath={routePath}
         setFilterValues={setFilterValues}
+        whiteSpace={whiteSpace}
         {...restProps}
       />
       {isFetching ? <LineLoader /> : ''}

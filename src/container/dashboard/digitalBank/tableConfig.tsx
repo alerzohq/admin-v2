@@ -8,7 +8,7 @@ export const digitalBankTableMapper = [
     key: 'name',
     render: (data: { [x: string]: any }) =>
       `${data['first_name']} ${data['last_name']}`,
-    className: 'tableLink',
+    className: 'tableLink underline',
   },
   {
     title: 'Phone number',
@@ -17,6 +17,7 @@ export const digitalBankTableMapper = [
   {
     title: 'Email Address',
     key: 'email',
+    render: (data: any) => <span>{data['email']?.toLowerCase()}</span>,
   },
   {
     title: 'KYC Level',
@@ -29,7 +30,7 @@ export const digitalBankTableMapper = [
     title: 'Status',
     key: 'status',
     render: (data: any) => (
-      <div className={data.disabled ? 'failed' : 'success'}>
+      <div className={`w-50 ${data.disabled ? 'failed' : 'success'}`}>
         {data.disabled ? 'Inactive' : 'Active'}
       </div>
     ),

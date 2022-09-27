@@ -9,7 +9,7 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
-import { transHeaderList } from '../../../../../data/table-headers'
+import { DBtransHeaderList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
@@ -36,7 +36,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
         headerbgColor={'transparent'}
         tableName="transaction"
         tableData={data?.data}
-        tableHeaders={transHeaderList}
+        tableHeaders={DBtransHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={1}
         withSlug
