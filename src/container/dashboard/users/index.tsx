@@ -11,12 +11,16 @@ const UsersContainer = () => {
   const location = useLocation()
   const search = location.search
   const queryParam = new URLSearchParams(search).get('status')
-  const data:any = location.state;
+  const data: any = location.state
   const found = TABS.find((element) => element.value === queryParam)
   const renderSwitch = () => {
     switch (queryParam) {
       case 'roles-permissions':
-        return data ? <RolePermissionDetailsContainer data={data?.detail}/> : <RolesPermissions />
+        return data ? (
+          <RolePermissionDetailsContainer data={data?.detail} />
+        ) : (
+          <RolesPermissions />
+        )
       default:
         return <Employees />
     }
@@ -25,9 +29,9 @@ const UsersContainer = () => {
     <Container
       showFilters={false}
       isFetching={false}
-      title={data ? data?.detail?.name : "Employee Roles & Permission"}
+      title={data ? data?.detail?.name : 'Employee Roles & Permission'}
       withParams={data !== null}
-      routePath={data &&`/dashboard/users?status=${queryParam}`}
+      routePath={data && `/dashboard/users?status=${queryParam}`}
     >
       <TabsPage.Tabs
         hideStatus={true}

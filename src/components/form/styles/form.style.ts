@@ -67,7 +67,7 @@ export const Label = styled.label<formProps>`
   padding-right: ${({ pr }) => pr};
   padding-bottom: ${({ pb }) => (pb ? pb : '.5rem')};
   padding: ${({ padding }) => padding};
-  font-size: ${({ labelFontSize }) => labelFontSize || "0.9rem"};
+  font-size: ${({ labelFontSize }) => labelFontSize || '0.9rem'};
   color: #001928;
   font-weight: 500;
 `
@@ -84,7 +84,7 @@ export const Input = styled.div`
     outline: none;
     width: 100%;
   }
-  input[type="text"]:disabled {
+  input[type='text']:disabled {
     background: transparent;
     color: ${Color.alerzoGray2};
   }

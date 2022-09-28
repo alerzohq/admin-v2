@@ -70,13 +70,13 @@ export const ButtonWrapper = styled.div`
   margin-top: 1rem;
   column-gap: 1rem;
   margin-top: 1rem;
-  button{
-    font-weight:600;
-    letter-spacing:0;
+  button {
+    font-weight: 600;
+    letter-spacing: 0;
   }
-  @media (max-width:420px){
-    flex-direction:column;
-    gap:20px ;
+  @media (max-width: 420px) {
+    flex-direction: column;
+    gap: 20px;
   }
 `
 export const Item = styled.div`

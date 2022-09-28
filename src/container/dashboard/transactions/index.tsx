@@ -32,7 +32,7 @@ const TransactionContainer = () => {
   )
   const Statistics = Stats?.data?.[0]
 
-  const { isLoading, data, isError, isFetching,refetch } = useQuery(
+  const { isLoading, data, isError, isFetching, refetch } = useQuery(
     ['transactions', values],
     () => getTransactions(values),
     { keepPreviousData: true }
@@ -43,15 +43,16 @@ const TransactionContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error 
-      title={'Failed to load transaction history.'} 
-      refetch={refetch} />
+      <FallBack
+        error
+        title={'Failed to load transaction history.'}
+        refetch={refetch}
+      />
     )
   } else if (data?.data?.length < 1) {
-    component = <FallBack
-     title={'You have no transaction yet.'}
-     refetch={refetch} 
-     />
+    component = (
+      <FallBack title={'You have no transaction yet.'} refetch={refetch} />
+    )
   } else {
     component = (
       <Table

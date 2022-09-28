@@ -14,7 +14,7 @@ const Table = ({
   withSlug,
   hideActive,
   hideDate,
-  setParams
+  setParams,
 }: TableProps) => {
   return (
     <>

@@ -32,5 +32,5 @@ export enum Color {
   alerzoBlue3 = '#CBE5FF',
   alerzoBlue4 = 'rgba(209, 231, 255, 0.5)',
   alerzoGray4 = '#C1CACF',
-  alerzoBlue5="#E7F2FF",
+  alerzoBlue5 = '#E7F2FF',
 }

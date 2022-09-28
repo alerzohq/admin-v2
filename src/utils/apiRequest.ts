@@ -36,7 +36,6 @@ export const getTerminalsRequestsData = async (
   return data
 }
 
-
 // ${
 //   filterValue?.channel !== '' ? `&channel=${filterValue?.channel}` : ''
 // }

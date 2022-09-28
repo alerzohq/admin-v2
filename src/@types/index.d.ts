@@ -7,11 +7,11 @@ export type SelectInputProps =
   | undefined
 
 export type filterProps = {
-  count: number;
-  pageNumber: number;
-  status?: string;
-  from?: string;
-  to?: string;
-  query?: string;
-  channel?: string;
+  count: number
+  pageNumber: number
+  status?: string
+  from?: string
+  to?: string
+  query?: string
+  channel?: string
 }
