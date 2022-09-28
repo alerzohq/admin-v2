@@ -18,4 +18,5 @@ export type TopBarProps = {
   setFilterValues?: any
   routePath?: string
   whiteSpace?: string
+  withParams?: boolean
 }

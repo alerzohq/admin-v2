@@ -11,9 +11,9 @@ type formProps = {
   alignItems: string
   bgColor?: string
   gap?: string
-  smDirections?: string;
-  xsDirections?: string;
-
+  smDirections?: string
+  xsDirections?: string
+  labelFontSize?: string
 }
 
 export const FormContainer = styled.form<formProps>`
@@ -67,7 +67,7 @@ export const Label = styled.label<formProps>`
   padding-right: ${({ pr }) => pr};
   padding-bottom: ${({ pb }) => (pb ? pb : '.5rem')};
   padding: ${({ padding }) => padding};
-  font-size: 0.9rem;
+  font-size: ${({ labelFontSize }) => labelFontSize || '0.9rem'};
   color: #001928;
   font-weight: 500;
 `
@@ -78,10 +78,15 @@ export const Input = styled.div`
   input {
     height: 45px;
     border: 1px solid rgba(193, 202, 207, 0.5);
+    opacity: 0.5;
     border-radius: 6px;
-    padding: 0 2.5rem;
+    padding: 0 1rem;
     outline: none;
     width: 100%;
+  }
+  input[type='text']:disabled {
+    background: transparent;
+    color: ${Color.alerzoGray2};
   }
   svg {
     position: absolute;

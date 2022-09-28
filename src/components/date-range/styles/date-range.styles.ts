@@ -20,7 +20,7 @@ export const DateRangeWrapper = styled.div`
     font-style: normal;
     font-size: 14px;
     line-height: 17px;
-    color: ${Color.alerzoDarkGray2};
+    color: ${Color.alerzoDarkGray};
     text-align: left;
     cursor: pointer;
   }

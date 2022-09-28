@@ -16,6 +16,7 @@ type textProps = {
   whiteSpace?: string
   justifyContent?: string
   visibility?: string
+  lineHeight?: string
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -35,5 +36,6 @@ export const TextStyle = styled.div<textProps>`
   border-radius: ${({ radius }) => radius || '5px'};
   cursor: ${({ cursor }) => cursor};
   text-align: ${({ textAlign }) => textAlign};
+  line-height: ${({ lineHeight }) => lineHeight};
   justify-content: ${({ justifyContent }) => justifyContent};
 `

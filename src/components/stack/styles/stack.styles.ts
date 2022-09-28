@@ -12,6 +12,9 @@ type stackProps = {
   justifyContent: string
   gap: string
   minDirection: string
+  flexWrap?: string
+  rowGap?: string
+  columnGap?: string
 }
 
 export const StackWrapper = styled.div<stackProps>`
@@ -26,6 +29,9 @@ export const StackWrapper = styled.div<stackProps>`
   align-items: ${({ alignItems }) => alignItems};
   justify-content: ${({ justifyContent }) => justifyContent};
   gap: ${({ gap }) => gap};
+  column-gap: ${({ columnGap }) => columnGap};
+  row-gap: ${({ rowGap }) => rowGap};
+  flex-wrap: ${({ flexWrap }) => flexWrap};
 
   @media (max-width: 768px) {
     h1 {
