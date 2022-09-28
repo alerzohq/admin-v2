@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { RolePermissionDetailsContainer } from '..'
 import { Color } from '../../../assets/theme'
 import { TabsPage } from '../../../components'
 import { Container } from '../../../components/layout'
@@ -10,24 +11,23 @@ const UsersContainer = () => {
   const location = useLocation()
   const search = location.search
   const queryParam = new URLSearchParams(search).get('status')
+  const data:any = location.state;
   const found = TABS.find((element) => element.value === queryParam)
-  // const title = found ? found?.title : TABS[0]?.title
-  // const thePath = location.pathname
-
   const renderSwitch = () => {
     switch (queryParam) {
       case 'roles-permissions':
-        return <RolesPermissions />
+        return data ? <RolePermissionDetailsContainer data={data?.detail}/> : <RolesPermissions />
       default:
         return <Employees />
     }
   }
-
   return (
     <Container
       showFilters={false}
       isFetching={false}
-      title="Employee Roles & Permission"
+      title={data ? data?.detail?.name : "Employee Roles & Permission"}
+      withParams={data !== null}
+      routePath={data &&`/dashboard/users?status=${queryParam}`}
     >
       <TabsPage.Tabs
         hideStatus={true}

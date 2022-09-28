@@ -34,6 +34,7 @@ const [isShown, setIsShown] = useState(false);
         tableData={data?.data}
         tableHeaders={rolesPermList}
         hideDate
+        setParams
       />
     )
   }

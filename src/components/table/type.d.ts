@@ -11,6 +11,7 @@ export type TableProps = {
   hideActive?: boolean
   hideDate?: boolean
   headerbgColor?: string
+  setParams?: boolean
 
   onClick?: (item: {}) => void
 }

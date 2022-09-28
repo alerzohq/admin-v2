@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
 
@@ -15,6 +15,7 @@ type dataProps = {
   dateFormat?: string
   hideActive?: boolean
   hideDate?: boolean
+  setParams?: boolean
 }
 type dataList = string[] | undefined
 
@@ -26,30 +27,43 @@ const TableData = ({
   dateFormat,
   hideActive,
   hideDate,
+  setParams,
 }: dataProps) => {
   const navigate = useNavigate()
-
+  const [searchParams, setQueryParams] = useSearchParams()
+  const params = Object.fromEntries(searchParams)
   return (
     <tbody>
-      {tableData?.map((item, i) => {
+      {tableData?.map((item, index) => {
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.[dataList?.length - 1]
         return (
-          <tr key={i}>
+          <tr key={index}>
             {dataList?.map((data, i) => (
               <td key={i} id="td-hover">
                 <div
-                  onClick={() => {
-                    navigate(
-                      withSlug
-                        ? `${item?.id}/${item?.product?.slug}`
-                        : `${item?.id}`,
-                      {
-                        state: { detail: item },
-                      }
-                    )
-                  }}
+                  onClick={
+                    setParams
+                      ? () => {
+                          setQueryParams(
+                            { ...params },
+                            {
+                              state: { detail: item },
+                            }
+                          )
+                        }
+                      : () => {
+                          navigate(
+                            withSlug
+                              ? `${item?.id}/${item?.product?.slug}`
+                              : `${item?.id}`,
+                            {
+                              state: { detail: item },
+                            }
+                          )
+                        }
+                  }
                   className={
                     data === 'successful' || data === 'Active'
                       ? 'success'
