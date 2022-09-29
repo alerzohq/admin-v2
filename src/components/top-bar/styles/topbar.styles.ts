@@ -75,7 +75,7 @@ export const Filter = styled.input`
     font-style: normal;
     font-size: 14px;
     line-height: 17px;
-    color: ${Color.alerzoDarkGray2};
+    color: ${Color.alerzoDarkGray};
   }
 
   outline: none;

@@ -173,7 +173,7 @@ a {
   cursor: pointer;
 }
 .select-placeholder{
-    color:${Color.alerzoDarkGray2} !important;
+    color:${Color.alerzoDarkGray} !important;
     font-size:.8rem !important;
 }
 .underline{

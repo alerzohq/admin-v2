@@ -19,6 +19,7 @@ const Text = <E extends React.ElementType = 'div'>({
   whiteSpace,
   visibility,
   as,
+  lineHeight,
 }: TextProps<E>) => {
   let Component = as || 'div'
   return (

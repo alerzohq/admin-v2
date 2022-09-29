@@ -15,6 +15,7 @@ const TopBar = ({
   setFilterValues,
   routePath,
   whiteSpace,
+  withParams,
 }: TopBarProps) => {
   let params = useParams()
   let navigate = useNavigate()
@@ -43,7 +44,7 @@ const TopBar = ({
       <TopbarWrapper>
         <Stack justifyContent={'space-between'} direction={'row'}>
           <Stack direction={'row'} width={'auto'} alignItems={'center'}>
-            {Object.entries(params)?.length > 0 && (
+            {(Object.entries(params)?.length > 0 || withParams) && (
               <ArrowBackIcon
                 onClick={() => {
                   routePath ? navigate(`${routePath}`) : navigate(-1)

@@ -47,6 +47,7 @@ const RolesPermissions = () => {
         tableData={data?.data}
         tableHeaders={rolesPermList}
         hideDate
+        setParams
       />
     )
   }
