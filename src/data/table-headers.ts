@@ -26,3 +26,10 @@ export const DBtransHeaderList = [
   'Status',
   'Date',
 ]
+export const employeesHeader = [
+  'Name',
+  'Email Address',
+  'Phone Number',
+  'Roles',
+  'Status',
+]
