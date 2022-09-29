@@ -8,7 +8,7 @@ export const digitalBankTableMapper = [
     key: 'name',
     render: (data: { [x: string]: any }) =>
       `${data['first_name']} ${data['last_name']}`,
-    className: 'tableLink underline',
+    className: 'tableLink',
   },
   {
     title: 'Phone number',

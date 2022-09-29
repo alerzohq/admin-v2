@@ -176,9 +176,7 @@ a {
     color:${Color.alerzoDarkGray} !important;
     font-size:.8rem !important;
 }
-.underline{
-  text-decoration: underline;
-}
+
 .w-50{
   width: 50% !important
 }
