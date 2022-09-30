@@ -1,35 +1,39 @@
-import {useEffect, useState} from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { axiosInstance } from '../configs/axios-instance'
 
-const BASE_URL= process.env.REACT_APP_API_BASE_URL
+const useFetch = ({ pathUrl }: { pathUrl: string }) => {
+  const [data, setData] = useState<any>()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<unknown>()
 
-const useFetch = ({pathUrl}:{pathUrl:string}) => {
-
-const [data, setData] =useState<any>()
-const [loading, setLoading] = useState(false);
-const [error, setError] = useState<unknown>()
-
-
-
-useEffect(() => {
-  const getData = async() => {
-    setLoading(true);
-  
-    try{
-      const {data} = await axios.get(`${BASE_URL}/${pathUrl}`,
-      { headers: { 'api-key': "secret" }})
-        setData(data)
-        setLoading(false)
-      }catch(error) {
-        setLoading(false);
-        setError(error);
-      }  
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true)
+      setError('')
+      try {
+        const { data } = await axiosInstance.get(`/${pathUrl}`)
+        if (data) {
+          setData(data)
+          setLoading(false)
+        }
+      } catch (error: any) {
+        if (error.response.data) {
+          setLoading(false)
+          setError(error.response.data.message)
+        } else if (error.message === 'Network Error') {
+          setError('Please check your network connection')
+        } else {
+          setError('Something went wrong, please try again')
+        }
+      }
     }
-    getData();
-},[pathUrl])
- 
+    getData()
+  }, [pathUrl])
+
   return {
-    data,loading, error
+    data,
+    loading,
+    error,
   }
 }
 export default useFetch

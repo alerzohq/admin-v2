@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
-import GlimmerBold from "./assets/fonts/GilmerFont2/Gilmer-Bold.otf";
-import GlimmerHeavy from "./assets/fonts/GilmerFont2/Gilmer-Heavy.otf";
-import GlimmerLight from "./assets/fonts/GilmerFont2/Gilmer-light.otf";
-import GlimmerMedium from "./assets/fonts/GilmerFont2/Gilmer-Medium.otf";
-import GlimmerRegular from "./assets/fonts/GilmerFont2/Gilmer-Regular.otf";
-import { Color } from "./assets/theme";
+import { createGlobalStyle } from 'styled-components'
+import GlimmerBold from './assets/fonts/GilmerFont2/Gilmer-Bold.otf'
+import GlimmerHeavy from './assets/fonts/GilmerFont2/Gilmer-Heavy.otf'
+import GlimmerLight from './assets/fonts/GilmerFont2/Gilmer-light.otf'
+import GlimmerMedium from './assets/fonts/GilmerFont2/Gilmer-Medium.otf'
+import GlimmerRegular from './assets/fonts/GilmerFont2/Gilmer-Regular.otf'
+import { Color } from './assets/theme'
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -91,6 +91,7 @@ body {
   background: #fff;
   font-family: Gilmer, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
   scroll-behavior: smooth;
 }
 h1,h2,h3,h4,h5,h6,p {
@@ -122,6 +123,63 @@ a {
   background: ${Color.alerzoOrange};
 }
 
-`;
 
-export default GlobalStyle;
+.success{
+  background: #34a8531a;
+  color:#34A853;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+.pending{
+  background: #f1a85a1a;
+  color:#F1A85A;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+.failed{
+  background: #ea43361a;
+  color:#EA4336;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  max-width:120px;
+}
+.active{
+  background: #34a8531a;
+  color:#34A853;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+.tableLink{
+  /* text-decoration:underline; */
+  cursor: pointer;
+  color:${Color.alerzoBlue};
+  font-weight:600;
+
+}
+#td-hover{
+  cursor: pointer;
+}
+.select-placeholder{
+    color:${Color.alerzoDarkGray} !important;
+    font-size:.8rem !important;
+}
+
+.w-50{
+  width: 50% !important
+}
+`
+
+export default GlobalStyle
