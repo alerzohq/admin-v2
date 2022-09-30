@@ -83,7 +83,7 @@ export const Input = styled.div`
     border: 1px solid rgba(193, 202, 207, 0.5);
     opacity: 0.5;
     border-radius: 6px;
-    padding: 0 1rem;
+    padding: 0 2.5rem;
     outline: none;
     width: 100%;
   }
