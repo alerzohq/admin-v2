@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query'
+import { useSearchParams } from 'react-router-dom'
 import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
 import { employeesHeader } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
@@ -29,9 +30,12 @@ const Employees = () => {
         tableData={data?.data}
         tableHeaders={employeesHeader}
         hideDate
+        setParams
       />
     )
   }
+  // const [searchParams, setQueryParams] = useSearchParams()
+  // const params = Object.fromEntries(searchParams)
 
   return (
     <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
@@ -54,6 +58,12 @@ const Employees = () => {
             {
               label: 'Add New Employee',
               onClick: () => console.log('first'),
+              // setQueryParams(
+              //   { ...params },
+              //   {
+              //     state: { detail: {}, newEmployee: true },
+              //   }
+              // ),
               buttonClass: 'add-button',
             },
           ],
