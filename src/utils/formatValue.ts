@@ -56,7 +56,8 @@ export const capitalizeFirstLetterInSentence = (mySentence: string) => {
   }
 }
 
-export const mapBillers= (arr:any) => arr?.map((obj:any) => ({
-  label: `${obj?.displayName}`,
-  value: obj?.slug
-}));
+export const mapBillers = (arr: any) =>
+  arr?.map((obj: any) => ({
+    label: `${obj?.displayName}`,
+    value: obj?.slug,
+  }))

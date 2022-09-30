@@ -20,7 +20,7 @@ type dataProps = {
   setParams?: boolean
   selectIndex?: number
   options?: any[]
-  handleSelectChange?: (e:string)=>void
+  handleSelectChange?: (e: string) => void
 }
 type dataList = string[] | undefined
 
@@ -90,23 +90,28 @@ const CustomTableData = ({
               </td>
             ))}
             <td id="td-hover">
-              <div   onClick={() =>{ 
-                setQueryParams(
+              <div
+                onClick={() => {
+                  setQueryParams(
                     { ...params },
                     {
                       state: { selectData: item },
                     }
-                  )}
-                 } className='select-wrap'>
-              <SelectInput
-                placeholder="Change Biller"
-                onChange={(e)=>{handleSelectChange?.(e.value)}}
-                placeholderStyle='blue-select-placeholder'
-                value={"Change Biller"}
-                styles={blueColorStyles}
-                options={options}
-                isClearable={false}
-              />
+                  )
+                }}
+                className="select-wrap"
+              >
+                <SelectInput
+                  placeholder="Change Biller"
+                  onChange={(e) => {
+                    handleSelectChange?.(e.value)
+                  }}
+                  placeholderStyle="blue-select-placeholder"
+                  value={'Change Biller'}
+                  styles={blueColorStyles}
+                  options={options}
+                  isClearable={false}
+                />
               </div>
             </td>
           </tr>

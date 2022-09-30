@@ -10,7 +10,7 @@ import {
   ActiveHistoryIcon,
   ActiveDashboardIcon,
   ActiveBusinessIcon,
-  ProductIcon ,
+  ProductIcon,
   ActiveProductIcon,
   // ActiveTerminalIcon,
 } from '../assets/icons'

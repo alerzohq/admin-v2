@@ -13,7 +13,7 @@ type useMutationProps = {
 const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const useMutation = ({ pathUrl, payload, methodType }: useMutationProps) => {
-  let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : '';
+  let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : ''
   console.log(token)
   const [data, setData] = useState<any>()
   const [loading, setLoading] = useState<boolean>(false)

@@ -31,11 +31,11 @@ export const colourStyles: StylesConfig<Coptions> = {
   }),
   placeholder: (defaultStyles, { isFocused }: selectStyleProps) => {
     return {
-        ...defaultStyles,
-        fontSize: '.8rem',
-        color: isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoDarkGray}`,
+      ...defaultStyles,
+      fontSize: '.8rem',
+      color: isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoDarkGray}`,
     }
-},
+  },
   option: (styles, { isFocused }: selectStyleProps) => {
     return {
       ...styles,
@@ -57,28 +57,23 @@ export const blueColorStyles: StylesConfig<Coptions> = {
     state?: ControlProps<Coptions, boolean, GroupBase<Coptions>>
   ) => ({
     ...styles,
-    border: state?.isFocused
-      ? 'none'
-      : `1px solid ${Color.alerzoBlueBorder}`,
-      height: 30,
-      minHeight: 30,
+    border: state?.isFocused ? 'none' : `1px solid ${Color.alerzoBlueBorder}`,
+    height: 30,
+    minHeight: 30,
     borderRadius: 3,
-    backgroundColor:state?.isFocused
-    ? `${Color.alerzoBlue8}`
-    : `${Color.alerzoBlue7}`,
-    color:state?.isFocused
-    ? `${Color.alerzoWhite}`
-    : `${Color.alerzoBlue6}`,
+    backgroundColor: state?.isFocused
+      ? `${Color.alerzoBlue8}`
+      : `${Color.alerzoBlue7}`,
+    color: state?.isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoBlue6}`,
     fontSize: 12,
-    
   }),
   placeholder: (defaultStyles, { isFocused }: selectStyleProps) => {
     return {
-        ...defaultStyles,
-        fontSize: '0.75rem',
-        color: isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoBlue6}`,
+      ...defaultStyles,
+      fontSize: '0.75rem',
+      color: isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoBlue6}`,
     }
-},
+  },
   option: (styles, { isFocused }: selectStyleProps) => {
     return {
       ...styles,
@@ -97,11 +92,11 @@ export const blueColorStyles: StylesConfig<Coptions> = {
     ...provided,
     color: 'green',
   }),
-  dropdownIndicator:(defaultStyles, { isFocused }: selectStyleProps) => {
+  dropdownIndicator: (defaultStyles, { isFocused }: selectStyleProps) => {
     return {
-        ...defaultStyles,
-        padding: '0',
-        color: isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoBlue6}`,
+      ...defaultStyles,
+      padding: '0',
+      color: isFocused ? `${Color.alerzoWhite}` : `${Color.alerzoBlue6}`,
     }
-},
+  },
 }

@@ -1,9 +1,9 @@
 export type SelectProps = {
   placeholder?: string
   placeholderStyle?: string
-  isClearable?:boolean
+  isClearable?: boolean
   options?: {}[]
   onChange: React.Dispatch<SetStateAction<any>>
   value: SelectInputProps
-  styles?:StylesConfig<Coptions>
+  styles?: StylesConfig<Coptions>
 }

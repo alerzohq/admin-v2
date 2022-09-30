@@ -35,7 +35,7 @@ const ProductsContainer = () => {
     payload: { billerSlug: newBiller },
     methodType: 'post',
   })
-  console.log(updatedData, loadingUpdate, "dara")
+  console.log(updatedData, loadingUpdate, 'dara')
   useEffect(() => {
     if (newBiller !== null && newBiller !== undefined) {
       changeBiller()
@@ -61,9 +61,9 @@ const ProductsContainer = () => {
     setOptions(mapBillers(billers?.data))
   }, [billers])
   useEffect(() => {
-  if(updatedData?.status){
-    refetch()
-  }
+    if (updatedData?.status) {
+      refetch()
+    }
   }, [updatedData])
   let component
   if (isLoading) {

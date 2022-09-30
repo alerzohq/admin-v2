@@ -24,9 +24,13 @@ const SelectInput = ({
       defaultValue={value}
       onChange={onChange}
       options={options}
-      styles={styles ? styles :colourStyles}
+      styles={styles ? styles : colourStyles}
       isClearable={isClearable}
-      placeholder={<div className={placeholderStyle || "select-placeholder"}>{placeholder}</div>}
+      placeholder={
+        <div className={placeholderStyle || 'select-placeholder'}>
+          {placeholder}
+        </div>
+      }
     />
   )
 }

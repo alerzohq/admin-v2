@@ -1,4 +1,4 @@
-import { ProductsContainer } from "../../../container/dashboard"
+import { ProductsContainer } from '../../../container/dashboard'
 
 const Products = () => {
   return <ProductsContainer />
