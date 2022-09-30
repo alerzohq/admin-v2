@@ -14,11 +14,14 @@ type formProps = {
   smDirections?: string
   xsDirections?: string
   labelFontSize?: string
+  direction?: 'column' | 'row'
+  wrap?: 'string'
 }
 
 export const FormContainer = styled.form<formProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ direction }) => direction ?? 'column'};
+  flex-wrap: ${({ wrap }) => wrap ?? 'nowrap'};
   width: ${({ width }) => (width ? width : '100%')};
   padding: ${({ padding }) => padding};
   background: ${({ bgColor }) => bgColor};
@@ -59,7 +62,7 @@ export const Control = styled.div<formProps>`
   padding-right: ${({ pr }) => pr};
   padding-bottom: ${({ pb }) => pb};
   padding: ${({ padding }) => padding};
-  width: 100%;
+  width: ${({ width }) => width};
 `
 export const Label = styled.label<formProps>`
   padding-top: ${({ pt }) => pt};
