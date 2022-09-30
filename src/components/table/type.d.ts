@@ -12,6 +12,7 @@ export type TableProps = {
   hideDate?: boolean
   headerbgColor?: string
   setParams?: boolean
+  custom?:boolean
 
   onClick?: (item: {}) => void
 }

@@ -7,8 +7,12 @@ const SelectInput = ({
   placeholder,
   options,
   value,
+  styles,
+  placeholderStyle,
+  isClearable,
   onChange,
 }: SelectProps) => {
+  console.log(isClearable, 'cleae')
   return (
     <Select
       components={{
@@ -20,9 +24,9 @@ const SelectInput = ({
       defaultValue={value}
       onChange={onChange}
       options={options}
-      styles={colourStyles}
-      isClearable={true}
-      placeholder={<div className="select-placeholder">{placeholder}</div>}
+      styles={styles ? styles :colourStyles}
+      isClearable={isClearable}
+      placeholder={<div className={placeholderStyle || "select-placeholder"}>{placeholder}</div>}
     />
   )
 }

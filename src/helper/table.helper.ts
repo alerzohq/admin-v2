@@ -1,3 +1,5 @@
+import { SelectInput } from '../components'
+
 type props = {
   item: { [key: string]: any } | null
   name?: string
@@ -38,5 +40,10 @@ export const transformData = ({ item, name }: props) => {
       roleName,
       statusVal,
     }
+  }
+  if (item && name === 'products') {
+    const { displayName, billerSlug } = item
+
+    return { name: displayName, biller: billerSlug }
   }
 }

@@ -55,3 +55,8 @@ export const capitalizeFirstLetterInSentence = (mySentence: string) => {
     return arr.join(' ')
   }
 }
+
+export const mapBillers= (arr:any) => arr?.map((obj:any) => ({
+  label: `${obj?.displayName}`,
+  value: obj?.slug
+}));

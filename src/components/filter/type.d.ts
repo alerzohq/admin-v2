@@ -3,7 +3,7 @@ export type FilterProps = {
     search: { type: string; placeholder: string }
     date: boolean
     selects: {
-      values: any[]
+      values: options
       placeholder: string
       onChange: () => void
       value: string

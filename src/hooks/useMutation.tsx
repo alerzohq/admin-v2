@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { getStorageItem } from '../utils/session-storage'
 
 type Methods = 'put' | 'post' | 'patch' | 'delete'
 
@@ -12,8 +13,8 @@ type useMutationProps = {
 const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const useMutation = ({ pathUrl, payload, methodType }: useMutationProps) => {
-  let token = ''
-
+  let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : '';
+  console.log(token)
   const [data, setData] = useState<any>()
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<unknown>()
