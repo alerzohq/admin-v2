@@ -6,4 +6,5 @@ export type SelectProps = {
   onChange: React.Dispatch<SetStateAction<any>>
   value: SelectInputProps
   styles?: StylesConfig<Coptions>
+  hideValue?: boolean
 }

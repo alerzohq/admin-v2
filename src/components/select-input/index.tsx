@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { colourStyles } from './styles/select-input.styes'
+import { styles } from './styles/select-input.styes'
 import { SelectProps } from './styles/type'
 
 const SelectInput = ({
@@ -10,9 +10,10 @@ const SelectInput = ({
   styles,
   placeholderStyle,
   isClearable,
+  hideValue,
   onChange,
 }: SelectProps) => {
-  console.log(isClearable, 'cleae')
+  console.log(options, hideValue, 'opt', 'cleae')
   return (
     <Select
       components={{
@@ -24,8 +25,9 @@ const SelectInput = ({
       defaultValue={value}
       onChange={onChange}
       options={options}
-      styles={styles ? styles : colourStyles}
+      styles={styles ? styles : styles()}
       isClearable={isClearable}
+      controlShouldRenderValue={!hideValue}
       placeholder={
         <div className={placeholderStyle || 'select-placeholder'}>
           {placeholder}

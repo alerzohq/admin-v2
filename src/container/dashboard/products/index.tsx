@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
@@ -9,7 +10,6 @@ import {
 } from '../../../components/table/styles/table.styles'
 import CustomTableData from '../../../components/table/table-data/custom-table-data'
 import TableHeader from '../../../components/table/table-headers'
-import { filterValue } from '../../../data/filter-data'
 import { productsHeaderList } from '../../../data/table-headers'
 import { useMutation } from '../../../hooks'
 import { getResource } from '../../../utils/apiRequest'
@@ -19,14 +19,15 @@ const ProductsContainer = () => {
   const [slug, setSlug] = useState()
   const [newBiller, setNewBiller] = useState<string>()
   const location = useLocation()
+  const [options, setOptions] = useState([{label: '', options:{ label: '', value: '' }}])
+  const stateValue: any = location.state
+
   const getProducts = () => {
     return getResource('products')
   }
-  const stateValue: any = location.state
-  const { isLoading, isError, data, refetch } = useQuery(
-    'products',
-    getProducts
-  )
+  const getBillers = () => {
+    return getResource(`products/${slug}/billers`)
+  }
   const [
     changeBiller,
     { data: updatedData, error: updateError, loading: loadingUpdate },
@@ -35,28 +36,31 @@ const ProductsContainer = () => {
     payload: { billerSlug: newBiller },
     methodType: 'post',
   })
-  console.log(updatedData, loadingUpdate, 'dara')
+
+  const { isLoading, isError, error, data, refetch } = useQuery(
+    'products',
+    getProducts
+  )
+  const {
+    isLoading: loadingBillers,
+    isRefetching,
+    isError: isBillerError,
+    error: billerError,
+    data: billers,
+  } = useQuery(`queryKey${slug}`, getBillers, {
+    enabled: !!slug,
+  })
+  
   useEffect(() => {
     if (newBiller !== null && newBiller !== undefined) {
       changeBiller()
       setNewBiller(undefined)
     }
-  }, [newBiller])
-  const getBillers = () => {
-    return getResource(`products/${slug}/billers`)
-  }
-  const [values, setValues] = useState(filterValue)
-  const [options, setOptions] = useState([{ label: '', value: '' }])
+  }, [newBiller, changeBiller])
+ 
   useEffect(() => {
     setSlug(stateValue?.selectData?.slug)
   }, [stateValue?.selectData])
-  const {
-    isLoading: loadingBillers,
-    isRefetching,
-    data: billers,
-  } = useQuery(`queryKey${slug}`, getBillers, {
-    enabled: !!slug,
-  })
   useEffect(() => {
     setOptions(mapBillers(billers?.data))
   }, [billers])
@@ -64,7 +68,20 @@ const ProductsContainer = () => {
     if (updatedData?.status) {
       refetch()
     }
-  }, [updatedData])
+  }, [updatedData, refetch])
+  useEffect(() => {
+   if (isError) {
+      toast.error(`${error}`)
+    }
+    if (isBillerError) {
+      toast.error(`${billerError}`)
+    }
+    if (updateError) {
+      toast.error(`${updateError}`)
+    }
+  }, [isError, isBillerError, updateError, error, billerError])
+
+  
   let component
   if (isLoading) {
     component = <Loader />
@@ -86,8 +103,18 @@ const ProductsContainer = () => {
             handleSelectChange={setNewBiller}
             options={
               loadingBillers || isRefetching
-                ? [{ label: 'Loading...', value: '', disabled: true }]
-                : options
+                ? [
+                  {
+                    label: 'Loading...',
+                    options: [{ label: '', value: ''}],
+                  },
+                ]
+                : [
+                    {
+                      label: 'Select New Biller',
+                      options: options ||[{ label: '', value: ''}],
+                    },
+                  ]
             }
           />
         </DataTable>
@@ -99,7 +126,6 @@ const ProductsContainer = () => {
       isFetching={loadingUpdate || isRefetching}
       showFilters={false}
       title="Product"
-      setFilterValues={setValues}
     >
       <Jumbotron padding={'0 1rem'} direction={'column'}>
         <Filter
