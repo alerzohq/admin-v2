@@ -152,6 +152,10 @@ a {
   font-weight: 500;
   max-width:120px;
 }
+.select-wrap{
+  display:flex;
+  justify-content:end;
+}
 .active{
   background: #34a8531a;
   color:#34A853;
@@ -172,11 +176,10 @@ a {
 #td-hover{
   cursor: pointer;
 }
-.select-placeholder{
-    color:${Color.alerzoDarkGray} !important;
-    font-size:.8rem !important;
-}
 
+.underline{
+  text-decoration: underline;
+}
 .w-50{
   width: 50% !important
 }

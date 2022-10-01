@@ -1,12 +1,14 @@
-import React from 'react'
 import Select from 'react-select'
-import { colourStyles } from './styles/select-input.styes'
 import { SelectProps } from './styles/type'
 
 const SelectInput = ({
   placeholder,
   options,
   value,
+  styles,
+  placeholderStyle,
+  isClearable,
+  hideValue,
   onChange,
 }: SelectProps) => {
   return (
@@ -20,9 +22,14 @@ const SelectInput = ({
       defaultValue={value}
       onChange={onChange}
       options={options}
-      styles={colourStyles}
-      isClearable={true}
-      placeholder={<div className="select-placeholder">{placeholder}</div>}
+      styles={styles ? styles : styles()}
+      isClearable={isClearable}
+      controlShouldRenderValue={!hideValue}
+      placeholder={
+        <div className={placeholderStyle || 'select-placeholder'}>
+          {placeholder}
+        </div>
+      }
     />
   )
 }

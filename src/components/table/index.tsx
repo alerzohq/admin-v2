@@ -14,7 +14,6 @@ const Table = ({
   withSlug,
   hideActive,
   hideDate,
-  setParams,
 }: TableProps) => {
   return (
     <>
@@ -29,7 +28,6 @@ const Table = ({
             withSlug={withSlug}
             hideActive={hideActive}
             hideDate={hideDate}
-            setParams={setParams}
           />
         </DataTable>
       </TableWrapper>

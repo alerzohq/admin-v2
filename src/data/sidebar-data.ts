@@ -10,6 +10,8 @@ import {
   ActiveHistoryIcon,
   ActiveDashboardIcon,
   ActiveBusinessIcon,
+  ProductIcon,
+  ActiveProductIcon,
   // ActiveTerminalIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
@@ -56,7 +58,14 @@ export const sideBarData = [
     path: `/${Path.DASHBOARD}/${Path.USERS}`,
     activeIconColor: Color.alerzoBlue,
   },
-
+  {
+    id: 6,
+    title: 'Product',
+    InActiveIcon: ProductIcon,
+    ActiveIcon: ActiveProductIcon,
+    path: `/${Path.DASHBOARD}/${Path.PRODUCTS}`,
+    activeIconColor: Color.alerzoBlue,
+  },
   // {
   //   id: 6,
   //   title: 'Terminals',

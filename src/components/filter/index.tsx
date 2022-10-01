@@ -47,6 +47,7 @@ const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
                 onChange={select.onChange}
                 value={select.value}
                 options={select.values}
+                isClearable
               />
             ))}
           {showFilters?.buttons?.length >= 1 &&
