@@ -19,7 +19,9 @@ const ProductsContainer = () => {
   const [slug, setSlug] = useState()
   const [newBiller, setNewBiller] = useState<string>()
   const location = useLocation()
-  const [options, setOptions] = useState([{label: '', options:{ label: '', value: '' }}])
+  const [options, setOptions] = useState([
+    { label: '', options: { label: '', value: '' } },
+  ])
   const stateValue: any = location.state
 
   const getProducts = () => {
@@ -50,14 +52,14 @@ const ProductsContainer = () => {
   } = useQuery(`queryKey${slug}`, getBillers, {
     enabled: !!slug,
   })
-  
+
   useEffect(() => {
     if (newBiller !== null && newBiller !== undefined) {
       changeBiller()
       setNewBiller(undefined)
     }
   }, [newBiller, changeBiller])
- 
+
   useEffect(() => {
     setSlug(stateValue?.selectData?.slug)
   }, [stateValue?.selectData])
@@ -70,7 +72,7 @@ const ProductsContainer = () => {
     }
   }, [updatedData, refetch])
   useEffect(() => {
-   if (isError) {
+    if (isError) {
       toast.error(`${error}`)
     }
     if (isBillerError) {
@@ -81,7 +83,6 @@ const ProductsContainer = () => {
     }
   }, [isError, isBillerError, updateError, error, billerError])
 
-  
   let component
   if (isLoading) {
     component = <Loader />
@@ -104,15 +105,15 @@ const ProductsContainer = () => {
             options={
               loadingBillers || isRefetching
                 ? [
-                  {
-                    label: 'Loading...',
-                    options: [{ label: '', value: ''}],
-                  },
-                ]
+                    {
+                      label: 'Loading...',
+                      options: [{ label: '', value: '' }],
+                    },
+                  ]
                 : [
                     {
                       label: 'Select New Biller',
-                      options: options ||[{ label: '', value: ''}],
+                      options: options || [{ label: '', value: '' }],
                     },
                   ]
             }

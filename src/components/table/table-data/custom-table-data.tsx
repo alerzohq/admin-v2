@@ -41,28 +41,28 @@ const CustomTableData = ({
           <tr key={index}>
             {dataList?.map((data, i) => (
               <td key={i} id="td-hover">
-                  <div
-                    onClick={
-                      i === 0
-                        ? () => {
-                            navigate(`${item?.id}`, {
-                              state: { detail: item },
-                            })
-                          }
-                        : () => {}
-                    }
-                    className={
-                      data === 'successful' || data === 'Active'
-                        ? 'success'
-                        : data === 'pending'
-                        ? 'pending'
-                        : data === 'failed' || data === 'Inactive'
-                        ? 'failed'
-                        : '' + (i === 0 && !hideActive && 'tableLink')
-                    }
-                  >
-                    {data}
-                  </div>
+                <div
+                  onClick={
+                    i === 0
+                      ? () => {
+                          navigate(`${item?.id}`, {
+                            state: { detail: item },
+                          })
+                        }
+                      : () => {}
+                  }
+                  className={
+                    data === 'successful' || data === 'Active'
+                      ? 'success'
+                      : data === 'pending'
+                      ? 'pending'
+                      : data === 'failed' || data === 'Inactive'
+                      ? 'failed'
+                      : '' + (i === 0 && !hideActive && 'tableLink')
+                  }
+                >
+                  {data}
+                </div>
               </td>
             ))}
             <td id="td-hover">

@@ -1,6 +1,4 @@
-import React from 'react'
 import Select from 'react-select'
-import { styles } from './styles/select-input.styes'
 import { SelectProps } from './styles/type'
 
 const SelectInput = ({
@@ -13,7 +11,6 @@ const SelectInput = ({
   hideValue,
   onChange,
 }: SelectProps) => {
-  console.log(options, hideValue, 'opt', 'cleae')
   return (
     <Select
       components={{
