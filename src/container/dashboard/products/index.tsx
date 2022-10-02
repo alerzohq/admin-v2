@@ -129,7 +129,7 @@ const ProductsContainer = () => {
       title="Products"
       padding="1rem 2rem"
     >
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'}  width='98%' >
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
         <Filter
           showFilters={{
             search: {

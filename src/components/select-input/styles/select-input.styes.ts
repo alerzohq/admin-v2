@@ -1,8 +1,4 @@
-import {
-  CSSObjectWithLabel,
-  ControlProps,
-  GroupBase,
-} from 'react-select'
+import { CSSObjectWithLabel, ControlProps, GroupBase } from 'react-select'
 import { Color } from '../../../assets/theme'
 
 type selectStyleProps = {

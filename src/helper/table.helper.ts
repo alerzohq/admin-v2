@@ -1,4 +1,3 @@
-
 type props = {
   item: { [key: string]: any } | null
   name?: string
