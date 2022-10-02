@@ -1,4 +1,3 @@
-import { SelectInput } from '../components'
 
 type props = {
   item: { [key: string]: any } | null

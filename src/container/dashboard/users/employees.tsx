@@ -38,7 +38,7 @@ const Employees = () => {
   // const params = Object.fromEntries(searchParams)
 
   return (
-    <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+    <Jumbotron padding={'.5rem 1rem'} direction={'column'}width='98%'>
       <Filter
         showFilters={{
           search: {

@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { SelectInput } from '../..'
 import { transformData } from '../../../helper/table.helper'
-import { styles } from '../../select-input/styles/select-input.styes'
+import { selectStyles } from '../../select-input/styles/select-input.styes'
 
 export type selectedDataType = {
   [key: string]: any
@@ -83,7 +83,7 @@ const CustomTableData = ({
                     handleSelectChange?.(e.value)
                   }}
                   value={'Change Biller'}
-                  styles={styles(true)}
+                  styles={selectStyles(true)}
                   options={options}
                   isClearable={false}
                   hideValue

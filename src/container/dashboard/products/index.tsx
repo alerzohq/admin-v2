@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
+import { FallBack, Filter, Jumbotron, Loader } from '../../../components'
 import { Container } from '../../../components/layout'
 import {
   DataTable,
@@ -126,9 +126,10 @@ const ProductsContainer = () => {
     <Container
       isFetching={loadingUpdate || isRefetching}
       showFilters={false}
-      title="Product"
+      title="Products"
+      padding="1rem 2rem"
     >
-      <Jumbotron padding={'0 1rem'} direction={'column'}>
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}  width='98%' >
         <Filter
           showFilters={{
             search: {

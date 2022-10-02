@@ -1,5 +1,4 @@
 import {
-  StylesConfig,
   CSSObjectWithLabel,
   ControlProps,
   GroupBase,
@@ -10,7 +9,7 @@ type selectStyleProps = {
   isFocused?: boolean
 }
 type Coptions = {}
-export const styles = (isBlue?: boolean) => {
+export const selectStyles = (isBlue?: boolean) => {
   return isBlue
     ? {
         control: (

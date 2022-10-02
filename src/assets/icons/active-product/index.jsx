@@ -18,13 +18,13 @@ function ActiveProductIcon() {
         d="M13 9.30273L10 6.30273L7 9.30273L7 2.30273L13 2.30273L13 9.30273Z"
         fill="#005FCB"
         stroke="#005FCB"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M8.5 10.3027L10 8.80273L11.5 10.3027"
         stroke="white"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
