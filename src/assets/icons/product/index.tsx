@@ -16,7 +16,7 @@ function ProductIcon() {
       <path
         d="M13 9.0957L10 6.0957L7 9.0957L7 2.0957L13 2.0957L13 9.0957Z"
         stroke="#374B58"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   )

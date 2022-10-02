@@ -71,7 +71,7 @@ export const Label = styled.label<formProps>`
   padding-bottom: ${({ pb }) => (pb ? pb : '.5rem')};
   padding: ${({ padding }) => padding};
   font-size: ${({ labelFontSize }) => labelFontSize || '0.9rem'};
-  color: #001928;
+  color: #a5b0b7;
   font-weight: 500;
 `
 export const Input = styled.div`

@@ -1,5 +1,6 @@
 import Select from 'react-select'
 import { SelectProps } from './styles/type'
+import { selectStyles } from './styles/select-input.styes'
 
 const SelectInput = ({
   placeholder,
@@ -22,7 +23,7 @@ const SelectInput = ({
       defaultValue={value}
       onChange={onChange}
       options={options}
-      styles={styles ? styles : styles()}
+      styles={styles ? styles : selectStyles()}
       isClearable={isClearable}
       controlShouldRenderValue={!hideValue}
       placeholder={

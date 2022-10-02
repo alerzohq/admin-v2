@@ -1,16 +1,11 @@
-import {
-  StylesConfig,
-  CSSObjectWithLabel,
-  ControlProps,
-  GroupBase,
-} from 'react-select'
+import { CSSObjectWithLabel, ControlProps, GroupBase } from 'react-select'
 import { Color } from '../../../assets/theme'
 
 type selectStyleProps = {
   isFocused?: boolean
 }
 type Coptions = {}
-export const styles = (isBlue?: boolean) => {
+export const selectStyles = (isBlue?: boolean) => {
   return isBlue
     ? {
         control: (
