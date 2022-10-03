@@ -39,7 +39,8 @@ const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
           {showFilters?.date && (
             <DateRange isTop filterDate={setFilterValues && setFilterValues} />
           )}
-          {showFilters?.selects?.length >= 1 &&
+          {showFilters?.selects &&
+            showFilters?.selects?.length >= 1 &&
             showFilters.selects.map((select, i) => (
               <SelectInput
                 key={i}
@@ -50,8 +51,9 @@ const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
                 isClearable
               />
             ))}
-          {showFilters?.buttons?.length >= 1 &&
-            showFilters.buttons.map((button, i) => (
+          {showFilters?.buttons &&
+            showFilters?.buttons?.length >= 1 &&
+            showFilters.buttons?.map((button, i) => (
               <button
                 key={i}
                 onClick={button.onClick}

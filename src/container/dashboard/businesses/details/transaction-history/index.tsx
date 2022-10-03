@@ -79,9 +79,12 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
                 value: '',
                 onChange: () => {},
               },
-            ],
-            buttons: [
-              { label: 'Download CSV', onClick: () => console.log('first') },
+              {
+                placeholder: 'Download CSV',
+                values: [],
+                value: '',
+                onChange: () => {},
+              },
             ],
           }}
         />
