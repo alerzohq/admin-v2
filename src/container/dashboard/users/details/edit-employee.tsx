@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Color } from '../../../../assets/theme'
 import { Button, Form, Jumbotron, Stack } from '../../../../components'
 
-const RolePermissionDetails = ({ data }: any) => {
+const EditEmployees = ({ data }: any) => {
   const [isEditing, setIsEditing] = useState(false)
   return (
     <>
@@ -83,4 +83,4 @@ const RolePermissionDetails = ({ data }: any) => {
     </>
   )
 }
-export default RolePermissionDetails
+export default EditEmployees

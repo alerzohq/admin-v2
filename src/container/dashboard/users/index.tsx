@@ -19,6 +19,7 @@ const UsersContainer = () => {
   if (!queryParam) queryParam = 'employees'
 
   const renderSwitch = () => {
+    console.log(queryParam, data)
     switch (queryParam) {
       case 'roles-permissions':
         return data ? (
