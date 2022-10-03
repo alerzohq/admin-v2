@@ -1,7 +1,7 @@
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
-  { label: 'Business  Details', value: 'details', title: 'Business  Details' },
+  { label: 'Customer Details', value: 'details', title: 'Customer Details' },
   { label: 'Transaction History', value: 'transaction', title: '' },
   { label: 'Members', value: 'members', title: '' },
   { label: 'Products', value: 'products', title: '' },
