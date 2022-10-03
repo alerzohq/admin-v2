@@ -58,12 +58,6 @@ const Employees = () => {
             {
               label: 'Add New Employee',
               onClick: () => console.log('first'),
-              // setQueryParams(
-              //   { ...params },
-              //   {
-              //     state: { detail: {}, newEmployee: true },
-              //   }
-              // ),
               buttonClass: 'add-button',
             },
           ],
