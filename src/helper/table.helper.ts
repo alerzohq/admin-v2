@@ -33,10 +33,15 @@ export const transformData = ({ item, name }: props) => {
     let statusVal = disabled ? 'Active' : 'Inactive'
     return {
       name: `${firstName} ${lastName}`,
+      email: email.toLowerCase(),
       phoneNumber,
-      email,
       roleName,
       statusVal,
     }
+  }
+  if (item && name === 'products') {
+    const { displayName, billerSlug } = item
+
+    return { name: displayName, biller: billerSlug }
   }
 }

@@ -14,11 +14,14 @@ type formProps = {
   smDirections?: string
   xsDirections?: string
   labelFontSize?: string
+  direction?: 'column' | 'row'
+  wrap?: 'string'
 }
 
 export const FormContainer = styled.form<formProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ direction }) => direction ?? 'column'};
+  flex-wrap: ${({ wrap }) => wrap ?? 'nowrap'};
   width: ${({ width }) => (width ? width : '100%')};
   padding: ${({ padding }) => padding};
   background: ${({ bgColor }) => bgColor};
@@ -59,7 +62,7 @@ export const Control = styled.div<formProps>`
   padding-right: ${({ pr }) => pr};
   padding-bottom: ${({ pb }) => pb};
   padding: ${({ padding }) => padding};
-  width: 100%;
+  width: ${({ width }) => width};
 `
 export const Label = styled.label<formProps>`
   padding-top: ${({ pt }) => pt};
@@ -68,7 +71,7 @@ export const Label = styled.label<formProps>`
   padding-bottom: ${({ pb }) => (pb ? pb : '.5rem')};
   padding: ${({ padding }) => padding};
   font-size: ${({ labelFontSize }) => labelFontSize || '0.9rem'};
-  color: #001928;
+  color: #a5b0b7;
   font-weight: 500;
 `
 export const Input = styled.div`
@@ -80,7 +83,7 @@ export const Input = styled.div`
     border: 1px solid rgba(193, 202, 207, 0.5);
     opacity: 0.5;
     border-radius: 6px;
-    padding: 0 1rem;
+    padding: 0 2.5rem;
     outline: none;
     width: 100%;
   }

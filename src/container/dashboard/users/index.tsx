@@ -6,14 +6,20 @@ import { Container } from '../../../components/layout'
 import { TABS } from '../../../data/user-data'
 import Employees from './employees'
 import RolesPermissions from './roles-permissions'
+import EditEmployee from './details/edit-employee'
 
 const UsersContainer = () => {
   const location = useLocation()
   const search = location.search
-  const queryParam = new URLSearchParams(search).get('status')
+  let queryParam = new URLSearchParams(search).get('status')
   const data: any = location.state
   const found = TABS.find((element) => element.value === queryParam)
+  console.log(search, queryParam, data)
+
+  if (!queryParam) queryParam = 'employees'
+
   const renderSwitch = () => {
+    console.log(queryParam, data)
     switch (queryParam) {
       case 'roles-permissions':
         return data ? (
@@ -21,24 +27,31 @@ const UsersContainer = () => {
         ) : (
           <RolesPermissions />
         )
-      default:
-        return <Employees />
+      case 'employees':
+        return data ? <EditEmployee data={data?.detail} /> : <Employees />
     }
   }
   return (
     <Container
       showFilters={false}
       isFetching={false}
-      title={data ? data?.detail?.name : 'Employee Roles & Permission'}
+      title={
+        data
+          ? data?.detail?.name ??
+            `${data.detail?.firstName} ${data.detail?.lastName}`
+          : 'Employee Roles & Permission'
+      }
       withParams={data !== null}
       routePath={data && `/dashboard/users?status=${queryParam}`}
     >
-      <TabsPage.Tabs
-        hideStatus={true}
-        color={Color.alerzoBlack}
-        tabs={TABS}
-        currentValue={found?.value || 'employees'}
-      />
+      {queryParam === 'employees' && data ? null : (
+        <TabsPage.Tabs
+          hideStatus={true}
+          color={Color.alerzoBlack}
+          tabs={TABS}
+          currentValue={found?.value || 'employees'}
+        />
+      )}
       {renderSwitch()}
     </Container>
   )

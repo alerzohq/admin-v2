@@ -22,6 +22,8 @@ import Businesses from '../pages/dashboard/businessess'
 import BusinessDetails from '../pages/dashboard/businessess/business-detail'
 import DigitalBank from '../pages/dashboard/digitalBank'
 import DigitalBankDetails from '../pages/dashboard/digitalBank/details'
+import Products from '../pages/dashboard/products'
+import ProductDetails from '../pages/dashboard/products/details'
 
 function App() {
   const { state } = useAppContext()
@@ -55,6 +57,7 @@ function App() {
             <Route path={Path.DASHBOARD} element={<Dashboard />}>
               <Route index element={<Overview />} />
               <Route path={Path.USERS} element={<Users />} />
+              <Route path={Path.USERSDETAILS} element={<Users />} />
               <Route path={Path.TRANSACTION} element={<Transactions />} />
               <Route
                 path={Path.TRANSACTIONDETAIL}
@@ -69,6 +72,8 @@ function App() {
                 path={Path.DIGITALBANKDETAIL}
                 element={<DigitalBankDetails />}
               />
+              <Route path={Path.PRODUCTS} element={<Products />} />
+              <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
             </Route>
           </Route>
 

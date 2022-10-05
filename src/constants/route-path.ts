@@ -4,6 +4,7 @@ export enum Path {
   DASHBOARD = 'dashboard',
   TRANSACTION = 'transactions',
   USERS = 'users',
+  USERSDETAILS = 'users/:userid',
   TRANSACTIONDETAIL = 'transactions/:transID/:slug',
   TERMINALS = 'terminals',
   TERMINALDETAIL = 'terminals/:terminalId',
@@ -11,4 +12,6 @@ export enum Path {
   BUSINESSDETAIL = 'businesses/:businessId',
   DigitalBank = 'digital-bank',
   DIGITALBANKDETAIL = 'digital-bank/:dbId',
+  PRODUCTS = 'products',
+  PRODUCTDETAIL = 'products/:productId',
 }

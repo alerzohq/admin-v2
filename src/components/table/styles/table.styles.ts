@@ -69,9 +69,6 @@ export const DataTable = styled.table<Props>`
         font-size: 0.9rem;
         font-weight: 500;
         padding: 0.5rem 1rem;
-        div {
-          text-transform: capitalize;
-        }
       }
     }
   }

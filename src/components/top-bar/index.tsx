@@ -76,6 +76,7 @@ const TopBar = ({
                   }}
                   value={select.value}
                   options={select.values}
+                  isClearable
                 />
               ))}
             {showFilters?.buttons?.length >= 1 &&
