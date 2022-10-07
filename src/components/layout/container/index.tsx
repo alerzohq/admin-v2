@@ -12,11 +12,15 @@ const Container: React.FC<ContainerProps> = ({
   routePath,
   children,
   whiteSpace,
+  noScroll,
   ...restProps
 }) => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [isFetching])
+    if(!noScroll){
+      window.scrollTo(0, 0)
+    }
+    
+  }, [isFetching, noScroll])
 
   return (
     <>
