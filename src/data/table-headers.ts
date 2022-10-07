@@ -34,3 +34,4 @@ export const employeesHeader = [
   'Status',
 ]
 export const productsHeaderList = ['Product Name', 'Active Biller', '']
+export const productBillersHeaderList = ['Biller', 'Commission', 'Date']

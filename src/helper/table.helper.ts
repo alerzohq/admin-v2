@@ -1,3 +1,5 @@
+import { generateCommission } from "../utils/formatValue"
+
 type props = {
   item: { [key: string]: any } | null
   name?: string
@@ -43,5 +45,13 @@ export const transformData = ({ item, name }: props) => {
     const { displayName, billerSlug } = item
 
     return { name: displayName, biller: billerSlug }
+  }
+  if (item && name === 'product-billers') {
+    const { displayName, commission, createdAt } = item
+    const type = commission?.rate?.type;
+    const percentage = commission?.rate?.percentage;
+    const cap = commission?.rate?.cap;
+const rates =  generateCommission(type, percentage, cap )
+    return { displayName, rates, createdAt }
   }
 }
