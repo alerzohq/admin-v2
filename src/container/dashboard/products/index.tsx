@@ -94,7 +94,7 @@ const ProductsContainer = () => {
     component = <FallBack title={'No products list available. '} />
   } else {
     component = (
-      <TableWrapper>
+      <TableWrapper wrapperPb="5rem">
         <DataTable bgColor={'transparent'}>
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
@@ -127,7 +127,8 @@ const ProductsContainer = () => {
       isFetching={loadingUpdate || isRefetching}
       showFilters={false}
       title="Products"
-      padding="1rem 2rem"
+      padding="0 2rem"
+      noScroll
     >
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
         <Filter

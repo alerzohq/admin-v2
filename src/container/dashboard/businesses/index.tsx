@@ -7,7 +7,7 @@ import {
   Table,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getFilterResource, getResource } from '../../../utils/apiRequest'
+import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { busHeaderList } from '../../../data/table-headers'
@@ -18,7 +18,7 @@ const BusinessContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   const getBusinesses = (filterValue: filterProps) => {
-    return getFilterResource(`businesses`, filterValue)
+    return getNewFilterResource(`businesses`, filterValue)
   }
 
   const getTranStats = () => {
@@ -59,6 +59,7 @@ const BusinessContainer = () => {
     )
   }
 
+  console.log(filterValue, 'pool')
   return (
     <Container
       showFilters={{
@@ -68,6 +69,7 @@ const BusinessContainer = () => {
         date: true,
         selects: [
           {
+            searchQuery: 'isLive',
             placeholder: 'Status',
             values: [
               { label: 'Active', value: true },
@@ -75,7 +77,16 @@ const BusinessContainer = () => {
             ],
             value: '',
           },
-          { placeholder: 'KYC Level', values: [], value: '' },
+          {
+            placeholder: 'KYC Level',
+            shouldSetQuery: true,
+            values: [
+              { label: '1', value: '1 ' },
+              { label: '2', value: '2' },
+              { label: '3', value: '3' },
+            ],
+            value: '',
+          },
         ],
         buttons: [
           {

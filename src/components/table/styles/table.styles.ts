@@ -6,12 +6,13 @@ type Props = {
   isChecked?: boolean
   pb?: string
   bgColor?: string
+  wrapperPb?: string
 }
 
-export const TableWrapper = styled.div`
+export const TableWrapper = styled.div<Props>`
   position: relative;
   width: 100%;
-
+  padding-bottom: ${({ wrapperPb }) => wrapperPb};
   overflow-x: scroll;
   overflow-y: hidden;
   scrollbar-width: none;
