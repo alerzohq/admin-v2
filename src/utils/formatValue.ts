@@ -47,14 +47,18 @@ export const amountConverter = (x: string | number) => {
 
   return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
-export const generateCommission = (type: string, amount: string | number, cap?: string) => {
+export const generateCommission = (
+  type: string,
+  amount: string | number,
+  cap?: string
+) => {
   const amountToNaira = amountConverter(amount)
 
-  if(type === 'percentage'){
-    const capToNaira = amountConverter(cap!);
-    return`${amountToNaira}% @ ₦${capToNaira}`
+  if (type === 'percentage') {
+    const capToNaira = amountConverter(cap!)
+    return `${amountToNaira}% @ ₦${capToNaira}`
   }
-  if(type === 'flat'){
+  if (type === 'flat') {
     return `₦${amountToNaira} FLAT`
   }
 }

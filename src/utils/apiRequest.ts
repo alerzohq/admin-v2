@@ -11,7 +11,6 @@ export const getNewFilterResource = async (
   pathUrl: string,
   filterValue: filterProps
 ) => {
-  console.log(filterValue, "value")
   const payload = cleanPayload(filterValue)
   const filterQuery = queryString.stringify(payload)
   const { data } = await axiosInstance.get(`/${pathUrl}?${filterQuery}`)
