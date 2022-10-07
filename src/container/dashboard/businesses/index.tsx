@@ -58,8 +58,6 @@ const BusinessContainer = () => {
       />
     )
   }
-
-  console.log(filterValue, 'pool')
   return (
     <Container
       showFilters={{

@@ -63,11 +63,11 @@ const DigitalBankContainer = () => {
     <Container
       showFilters={{
         search: {
-          placeholder: 'Search by reference no...',
+          placeholder: 'Search...',
         },
         date: true,
         selects: [
-          { placeholder: 'All Platofrms', values: [], value: '' },
+          { placeholder: 'All Platforms', values: [], value: '' },
           { placeholder: 'Status', values: [], value: '' },
         ],
         buttons: [
