@@ -7,10 +7,10 @@ type CardWidgetItemProps = {
 
 type StatsProps = {
   stats?: {
-    totalDeposits: number
+    totalAmountDeposited: number
+    totalAmountWithdrawn: number
+    totalUsers: number
     totalTransactions: number
-    totalUniqueUsers: number
-    totalWithrawals: number
   }
   loading?: boolean
 }

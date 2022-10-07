@@ -13,13 +13,16 @@ import { CardWidgetWrapper } from '../styles/widget.styles'
 import CardWidgetBox from './card.widget'
 
 const CardWidget = ({ stats, loading }: StatsProps) => {
+  console.log(stats, 'tics')
   return (
     <CardWidgetWrapper>
       <CardWidgetBox
         Icon={DepositIcon}
         text={' Total Amount Deposited'}
         value={`N${
-          stats?.totalDeposits ? amountConverter(stats?.totalDeposits) : '0'
+          stats?.totalAmountDeposited
+            ? amountConverter(stats?.totalAmountDeposited)
+            : '0'
         }`}
         loading={loading}
       />
@@ -27,7 +30,9 @@ const CardWidget = ({ stats, loading }: StatsProps) => {
         Icon={WithDrawIcon}
         text={' Total Amount Withdrawn'}
         value={`N${
-          stats?.totalWithrawals ? amountConverter(stats?.totalWithrawals) : '0'
+          stats?.totalAmountWithdrawn
+            ? amountConverter(stats?.totalAmountWithdrawn)
+            : '0'
         }`}
         loading={loading}
       />
@@ -45,9 +50,7 @@ const CardWidget = ({ stats, loading }: StatsProps) => {
         Icon={UsersSolidIcon}
         text={' Total Number of Users'}
         value={`${
-          stats?.totalUniqueUsers
-            ? numberWithCommas(stats?.totalUniqueUsers)
-            : '0'
+          stats?.totalUsers ? numberWithCommas(stats?.totalUsers) : '0'
         }`}
         loading={loading}
       />
