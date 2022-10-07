@@ -28,7 +28,7 @@ const DigitalBankContainer = () => {
     'trans-stats',
     getTranStats
   )
-  const Statistics = Stats?.data?.[0]
+  const Statistics = Stats?.data
 
   const { isLoading, data, isError, isFetching } = useQuery(
     ['digital-bank', values],
