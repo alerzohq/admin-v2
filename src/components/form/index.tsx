@@ -24,7 +24,12 @@ Form.Control = function FormControl({ children, ...restProps }: FormProps) {
   return <Control {...restProps}>{children}</Control>
 }
 
-Form.Input = function FormInput({ Icon, inputPadding, onChange, ...restProps }: InputProps) {
+Form.Input = function FormInput({
+  Icon,
+  inputPadding,
+  onChange,
+  ...restProps
+}: InputProps) {
   return (
     <Input inputPadding={inputPadding}>
       {Icon && <Icon />} <input onChange={onChange} {...restProps} />

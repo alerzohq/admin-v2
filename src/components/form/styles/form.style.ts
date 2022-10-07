@@ -16,9 +16,8 @@ type formProps = {
   labelFontSize?: string
   direction?: 'column' | 'row'
   wrap?: 'string'
- 
 }
-type inputProps ={
+type inputProps = {
   inputPadding?: string
 }
 
@@ -87,7 +86,7 @@ export const Input = styled.div<inputProps>`
     border: 1px solid rgba(193, 202, 207, 0.5);
     color: #001928;
     border-radius: 6px;
-    padding: ${({inputPadding})=>inputPadding || "0 2.5rem"};
+    padding: ${({ inputPadding }) => inputPadding || '0 2.5rem'};
     outline: none;
     width: 100%;
   }

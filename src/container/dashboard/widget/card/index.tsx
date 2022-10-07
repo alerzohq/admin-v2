@@ -20,7 +20,9 @@ const CardWidget = ({ stats, loading }: StatsProps) => {
         Icon={DepositIcon}
         text={' Total Amount Deposited'}
         value={`N${
-          stats?.totalAmountDeposited ? amountConverter(stats?.totalAmountDeposited) : '0'
+          stats?.totalAmountDeposited
+            ? amountConverter(stats?.totalAmountDeposited)
+            : '0'
         }`}
         loading={loading}
       />
@@ -28,7 +30,9 @@ const CardWidget = ({ stats, loading }: StatsProps) => {
         Icon={WithDrawIcon}
         text={' Total Amount Withdrawn'}
         value={`N${
-          stats?.totalAmountWithdrawn ? amountConverter(stats?.totalAmountWithdrawn) : '0'
+          stats?.totalAmountWithdrawn
+            ? amountConverter(stats?.totalAmountWithdrawn)
+            : '0'
         }`}
         loading={loading}
       />
@@ -46,9 +50,7 @@ const CardWidget = ({ stats, loading }: StatsProps) => {
         Icon={UsersSolidIcon}
         text={' Total Number of Users'}
         value={`${
-          stats?.totalUsers
-            ? numberWithCommas(stats?.totalUsers)
-            : '0'
+          stats?.totalUsers ? numberWithCommas(stats?.totalUsers) : '0'
         }`}
         loading={loading}
       />
