@@ -12,7 +12,7 @@ type Props = {
 export const TableWrapper = styled.div<Props>`
   position: relative;
   width: 100%;
-  padding-bottom:${({ wrapperPb })=> wrapperPb};
+  padding-bottom: ${({ wrapperPb }) => wrapperPb};
   overflow-x: scroll;
   overflow-y: hidden;
   scrollbar-width: none;

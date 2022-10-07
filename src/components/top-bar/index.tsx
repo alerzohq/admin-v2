@@ -39,11 +39,10 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
   useEffect(() => {
-   
-    if(Object.keys(newObj).length > 0){
+    if (Object.keys(newObj).length > 0) {
       setFilterValues((prev: any) => ({ ...prev, ...newObj }))
     }
- 
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
   return (
@@ -79,14 +78,17 @@ const TopBar = ({
                   key={i}
                   placeholder={select.placeholder}
                   onChange={(e, a) => {
-                    if(select.shouldSetQuery){
-                      return setFilterValues((prev: any) => ({ ...prev, query: e?.value }))
+                    if (select.shouldSetQuery) {
+                      return setFilterValues((prev: any) => ({
+                        ...prev,
+                        query: e?.value,
+                      }))
                     }
-                    if(select?.searchQuery){
-                      const key:string = select?.searchQuery;
-                    const dataObj:any = {};
-                    dataObj[key] = e?.value.toString() || '';
-                    const ne = {...newObj, ...dataObj}
+                    if (select?.searchQuery) {
+                      const key: string = select?.searchQuery
+                      const dataObj: any = {}
+                      dataObj[key] = e?.value.toString() || ''
+                      const ne = { ...newObj, ...dataObj }
                       return setnewObj(ne)
                     }
                     setStatus(e?.value)

@@ -16,10 +16,9 @@ const Container: React.FC<ContainerProps> = ({
   ...restProps
 }) => {
   useEffect(() => {
-    if(!noScroll){
+    if (!noScroll) {
       window.scrollTo(0, 0)
     }
-    
   }, [isFetching, noScroll])
 
   return (

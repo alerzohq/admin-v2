@@ -69,7 +69,7 @@ const BusinessContainer = () => {
         date: true,
         selects: [
           {
-            searchQuery: "isLive",
+            searchQuery: 'isLive',
             placeholder: 'Status',
             values: [
               { label: 'Active', value: true },
@@ -80,12 +80,12 @@ const BusinessContainer = () => {
           {
             placeholder: 'KYC Level',
             shouldSetQuery: true,
-             values: [
-              { label: '1', value: "1 "},
-              { label: '2', value: "2"}, 
-              { label: '3', value: "3" }
-          ], 
-            value: ''
+            values: [
+              { label: '1', value: '1 ' },
+              { label: '2', value: '2' },
+              { label: '3', value: '3' },
+            ],
+            value: '',
           },
         ],
         buttons: [
