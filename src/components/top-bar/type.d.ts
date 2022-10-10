@@ -4,6 +4,8 @@ export type TopBarProps = {
     search: { type: string; placeholder: string }
     date: boolean
     selects: {
+      searchQuery?: string
+      shouldSetQuery?: boolean
       values: any[]
       placeholder: string
       onChange: () => void
@@ -14,6 +16,7 @@ export type TopBarProps = {
       onClick: () => void
     }[]
   }
+
   isFetching?: boolean
   setFilterValues?: any
   routePath?: string

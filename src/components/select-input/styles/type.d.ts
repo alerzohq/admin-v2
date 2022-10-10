@@ -3,7 +3,7 @@ export type SelectProps = {
   placeholderStyle?: string
   isClearable?: boolean
   options?: {}[]
-  onChange: React.Dispatch<SetStateAction<any>>
+  onChange: (e: any, a: any) => void
   value: SelectInputProps
   styles?: StylesConfig<Coptions>
   hideValue?: boolean

@@ -23,7 +23,7 @@ function ActiveProductIcon() {
       <path
         d="M8.5 10.3027L10 8.80273L11.5 10.3027"
         stroke="white"
-        stroke-linecap="round"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>

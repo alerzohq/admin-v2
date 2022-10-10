@@ -14,12 +14,9 @@ const UsersContainer = () => {
   let queryParam = new URLSearchParams(search).get('status')
   const data: any = location.state
   const found = TABS.find((element) => element.value === queryParam)
-  console.log(search, queryParam, data)
-
   if (!queryParam) queryParam = 'employees'
 
   const renderSwitch = () => {
-    console.log(queryParam, data)
     switch (queryParam) {
       case 'roles-permissions':
         return data ? (

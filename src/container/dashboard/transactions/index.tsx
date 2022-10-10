@@ -30,7 +30,7 @@ const TransactionContainer = () => {
     'trans-stats',
     getTranStats
   )
-  const Statistics = Stats?.data?.[0]
+  const Statistics = Stats?.data
 
   const { isLoading, data, isError, isFetching, refetch } = useQuery(
     ['transactions', values],
@@ -65,7 +65,6 @@ const TransactionContainer = () => {
       />
     )
   }
-
   return (
     <Container
       showFilters={{

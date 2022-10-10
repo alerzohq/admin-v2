@@ -1,11 +1,21 @@
 import { filterProps } from '../@types'
 import { axiosInstance } from '../configs/axios-instance'
+import { cleanPayload } from '../helper/api-helper'
+import queryString from 'query-string'
 
 export const getResource = async (pathUrl: string) => {
   const { data } = await axiosInstance.get(`/${pathUrl}`)
   return data
 }
-
+export const getNewFilterResource = async (
+  pathUrl: string,
+  filterValue: filterProps
+) => {
+  const payload = cleanPayload(filterValue)
+  const filterQuery = queryString.stringify(payload)
+  const { data } = await axiosInstance.get(`/${pathUrl}?${filterQuery}`)
+  return data
+}
 export const getFilterResource = async (
   pathUrl: string,
   filterValue: filterProps
