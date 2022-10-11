@@ -83,7 +83,7 @@ export const Input = styled.div`
     border: 1px solid rgba(193, 202, 207, 0.5);
     opacity: 0.5;
     border-radius: 6px;
-    padding: 0 2.5rem;
+    padding: 0 1rem;
     outline: none;
     width: 100%;
   }
@@ -120,5 +120,23 @@ export const Tags = styled.div`
     border-radius: 30px;
     align-items: center;
     gap: 5px;
+  }
+`
+export const Select = styled.div`
+  width: 100%;
+  display: flex;
+  position: 'relative';
+  select {
+    height: 45px;
+    border: 1px solid rgba(193, 202, 207, 0.5);
+    opacity: 0.5;
+    border-radius: 6px;
+    padding: 0 1rem;
+    outline: none;
+    width: 100%;
+  }
+  select:disabled {
+    background: transparent;
+    color: ${Color.alerzoGray2};
   }
 `

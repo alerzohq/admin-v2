@@ -1,5 +1,7 @@
+import React, { ReactNode } from 'react'
+
 export type ModalProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
   showModal: bool
   loading?: boolean
   headerText: React.ReactNode
@@ -10,4 +12,6 @@ export type ModalProps = {
   contentPadding?: string
   subTitle?: string
   setShowModal: () => void
+  handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  icon?: ReactNode
 }

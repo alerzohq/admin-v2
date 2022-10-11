@@ -1,8 +1,13 @@
 import { filterProps } from '../@types'
-import { axiosInstance } from '../configs/axios-instance'
+import {
+  axiosInstance,
+  axiosInstanceWithoutToken,
+} from '../configs/axios-instance'
 
-export const getResource = async (pathUrl: string) => {
-  const { data } = await axiosInstance.get(`/${pathUrl}`)
+export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
+  const { data } = withoutToken
+    ? await axiosInstanceWithoutToken.get(`/${pathUrl}`)
+    : await axiosInstance.get(`/${pathUrl}`)
   return data
 }
 

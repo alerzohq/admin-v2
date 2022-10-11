@@ -75,6 +75,11 @@ export const StyledModal = styled.div<props>`
   animation-name: grow-box;
   animation-duration: 0.4s;
   animation-timing-function: ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-content: inherit;
+  height: 100%;
+  justify-content: space-between;
 
   @keyframes grow-box {
     from {
