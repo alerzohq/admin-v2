@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { FallBack, Jumbotron, Loader, Pagination } from '../../../components'
+import {
+  FallBack,
+  Jumbotron,
+  Loader,
+  Pagination,
+  Table,
+} from '../../../components'
 import { Container } from '../../../components/layout'
 import {
   getTerminalsData,
@@ -12,6 +18,7 @@ import { Tabs, TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
 import { terminalsTableMapper } from './tableConfig'
 import { useNavigate } from 'react-router-dom'
+import { terminalsHeaderList } from '../../../data/table-headers'
 
 const TransactionContainer = () => {
   const navigate = useNavigate()
@@ -50,7 +57,13 @@ const TransactionContainer = () => {
     () => getTerminalsRequestsHandler(values.count),
     { keepPreviousData: true }
   )
-
+  //   <DynamicTable
+  //   data={existingTerrminalsData?.data}
+  //   mappers={terminalsTableMapper}
+  //   handleClick={(item) => {
+  //     navigate(item?.id)
+  //   }}
+  // />
   let existingTerrminals
   if (isLoadingExistingTerrminals) {
     existingTerrminals = <Loader />
@@ -60,12 +73,12 @@ const TransactionContainer = () => {
     existingTerrminals = <FallBack title={'You have no terminals yet. '} />
   } else {
     existingTerrminals = (
-      <DynamicTable
-        data={existingTerrminalsData?.data}
-        mappers={terminalsTableMapper}
-        handleClick={(item) => {
-          navigate(item?.id)
-        }}
+      <Table
+        tableName="existTerminal"
+        tableData={existingTerrminalsData?.data}
+        tableHeaders={terminalsHeaderList}
+        dateFormat="YYYY-MM-DD HH:mm:ss"
+        hideActive
       />
     )
   }

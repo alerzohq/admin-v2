@@ -7,7 +7,8 @@ import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
 import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
-import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
+import { optionsAllPlatform } from '../../../data/select-data'
+import { getFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
 
@@ -17,7 +18,7 @@ const DigitalBankContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   const getDigitalBanksHandler = (filterValue: filterProps) => {
-    return getNewFilterResource(`customers`, filterValue)
+    return getFilterResource(`digitalBank`, filterValue)
   }
 
   const getTranStats = () => {
@@ -67,8 +68,21 @@ const DigitalBankContainer = () => {
         },
         date: true,
         selects: [
-          { placeholder: 'All Platforms', values: [], value: '' },
-          { placeholder: 'Status', values: [], value: '' },
+          {
+            placeholder: 'All Platforms',
+            values: optionsAllPlatform,
+            value: '',
+            searchQuery: 'platform',
+          },
+          {
+            searchQuery: 'status',
+            placeholder: 'Status',
+            values: [
+              { label: 'Active', value: true },
+              { label: 'Inactive', value: false },
+            ],
+            value: '',
+          },
         ],
         buttons: [
           { label: 'Download CSV', onClick: () => console.log('first') },

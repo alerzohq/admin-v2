@@ -35,3 +35,11 @@ export const employeesHeader = [
 ]
 export const productsHeaderList = ['Product Name', 'Active Biller', '']
 export const productBillersHeaderList = ['Biller', 'Commission', 'Date']
+export const terminalsHeaderList = [
+  'Terminal ID',
+  'Serial No',
+  'Variant',
+  'Status',
+  'Date Created',
+  'Date Updated',
+]
