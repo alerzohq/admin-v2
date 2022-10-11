@@ -47,6 +47,21 @@ export const amountConverter = (x: string | number) => {
 
   return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
+export const generateCommission = (
+  type: string,
+  amount: string | number,
+  cap?: string
+) => {
+  const amountToNaira = amountConverter(amount)
+
+  if (type === 'percentage') {
+    const capToNaira = amountConverter(cap!)
+    return `${amountToNaira}% @ ₦${capToNaira}`
+  }
+  if (type === 'flat') {
+    return `₦${amountToNaira} FLAT`
+  }
+}
 export const capitalizeFirstLetterInSentence = (mySentence: string) => {
   if (typeof mySentence !== 'string') return ''
   const arr = mySentence?.split(' ')

@@ -17,6 +17,9 @@ type formProps = {
   direction?: 'column' | 'row'
   wrap?: 'string'
 }
+type inputProps = {
+  inputPadding?: string
+}
 
 export const FormContainer = styled.form<formProps>`
   display: flex;
@@ -71,19 +74,20 @@ export const Label = styled.label<formProps>`
   padding-bottom: ${({ pb }) => (pb ? pb : '.5rem')};
   padding: ${({ padding }) => padding};
   font-size: ${({ labelFontSize }) => labelFontSize || '0.9rem'};
-  color: #a5b0b7;
+  color: ${Color.alerzoBlack};
   font-weight: 500;
 `
-export const Input = styled.div`
+export const Input = styled.div<inputProps>`
   width: 100%;
   display: flex;
   position: 'relative';
   input {
     height: 45px;
     border: 1px solid rgba(193, 202, 207, 0.5);
-    opacity: 0.5;
+    color: #001928;
     border-radius: 6px;
     padding: 0 1rem;
+    padding: ${({ inputPadding }) => inputPadding || '0 1rem'};
     outline: none;
     width: 100%;
   }

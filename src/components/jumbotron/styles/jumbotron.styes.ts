@@ -50,7 +50,7 @@ export const Inner = styled.div<Props>`
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => gap};
   width: 100%;
-
+  margin: ${({ margin }) => margin};
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;

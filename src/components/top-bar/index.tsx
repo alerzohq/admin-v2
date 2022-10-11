@@ -19,6 +19,7 @@ const TopBar = ({
 }: TopBarProps) => {
   let params = useParams()
   let navigate = useNavigate()
+  const [newObj, setnewObj] = useState({})
   const [status, setStatus] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
@@ -30,15 +31,20 @@ const TopBar = ({
 
   useEffect(() => {
     if (showFilters && status !== null) {
-      setFilterValues((prev: any) => ({ ...prev, status }))
+      return setFilterValues((prev: any) => ({ ...prev, status }))
     }
     if (showFilters) {
       setFilterValues((prev: any) => ({ ...prev, query: search }))
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
+  useEffect(() => {
+    if (Object.keys(newObj).length > 0) {
+      setFilterValues((prev: any) => ({ ...prev, ...newObj }))
+    }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newObj])
   return (
     <>
       <TopbarWrapper>
@@ -71,8 +77,21 @@ const TopBar = ({
                 <SelectInput
                   key={i}
                   placeholder={select.placeholder}
-                  onChange={(e) => {
-                    setStatus(e.value)
+                  onChange={(e, a) => {
+                    if (select.shouldSetQuery) {
+                      return setFilterValues((prev: any) => ({
+                        ...prev,
+                        query: e?.value,
+                      }))
+                    }
+                    if (select?.searchQuery) {
+                      const key: string = select?.searchQuery
+                      const dataObj: any = {}
+                      dataObj[key] = e?.value.toString() || ''
+                      const ne = { ...newObj, ...dataObj }
+                      return setnewObj(ne)
+                    }
+                    setStatus(e?.value)
                   }}
                   value={select.value}
                   options={select.values}

@@ -3,7 +3,7 @@ import { FallBack, Form, Jumbotron, Stack, Text } from '../../../../components'
 
 const RolePermissionDetails = ({ data }: any) => {
   return (
-    <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+    <Jumbotron padding={'.5rem .5rem'} margin="0 1rem" direction={'column'}>
       <Form width={'100%'}>
         <Form.Control pb={'1rem'} width="30%">
           <Form.Label labelFontSize="1rem">Role Name</Form.Label>
@@ -11,6 +11,7 @@ const RolePermissionDetails = ({ data }: any) => {
             type="text"
             value={data?.name}
             onChange={() => {}}
+            inputPadding="0 1rem"
             disabled
           />
         </Form.Control>

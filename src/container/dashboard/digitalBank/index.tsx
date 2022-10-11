@@ -7,6 +7,7 @@ import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
 import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
+import { optionsAllPlatform } from '../../../data/select-data'
 import { getFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
@@ -17,18 +18,18 @@ const DigitalBankContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   const getDigitalBanksHandler = (filterValue: filterProps) => {
-    return getFilterResource(`customers`, filterValue)
+    return getFilterResource(`digitalBank`, filterValue)
   }
 
   const getTranStats = () => {
-    return getResource(`transactions/statistics`)
+    return getResource(`customers/statistics`)
   }
 
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
     getTranStats
   )
-  const Statistics = Stats?.data?.[0]
+  const Statistics = Stats?.data
 
   const { isLoading, data, isError, isFetching } = useQuery(
     ['digital-bank', values],
@@ -63,12 +64,25 @@ const DigitalBankContainer = () => {
     <Container
       showFilters={{
         search: {
-          placeholder: 'Search by reference no...',
+          placeholder: 'Search...',
         },
         date: true,
         selects: [
-          { placeholder: 'All Platofrms', values: [], value: '' },
-          { placeholder: 'Status', values: [], value: '' },
+          {
+            placeholder: 'All Platforms',
+            values: optionsAllPlatform,
+            value: '',
+            searchQuery: 'platform',
+          },
+          {
+            searchQuery: 'status',
+            placeholder: 'Status',
+            values: [
+              { label: 'Active', value: true },
+              { label: 'Inactive', value: false },
+            ],
+            value: '',
+          },
         ],
         buttons: [
           { label: 'Download CSV', onClick: () => console.log('first') },
