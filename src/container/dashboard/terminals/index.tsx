@@ -78,7 +78,6 @@ const TransactionContainer = () => {
         tableData={existingTerrminalsData?.data}
         tableHeaders={terminalsHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        hideActive
       />
     )
   }
