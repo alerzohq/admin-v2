@@ -8,7 +8,7 @@ import DynamicTable from '../../../components/react-table'
 import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
 import { optionsAllPlatform } from '../../../data/select-data'
-import { getFilterResource, getResource } from '../../../utils/apiRequest'
+import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
 
@@ -18,7 +18,7 @@ const DigitalBankContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   const getDigitalBanksHandler = (filterValue: filterProps) => {
-    return getFilterResource(`digitalBank`, filterValue)
+    return getNewFilterResource(`customers`, filterValue)
   }
 
   const getTranStats = () => {
