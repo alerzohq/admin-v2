@@ -101,10 +101,10 @@ const TopBar = ({
             {showFilters?.buttons?.length >= 1 &&
               showFilters.buttons.map((button, i) => (
                 <button
-                key={i}
-                onClick={button.onClick}
-                className={button?.buttonClass || 'download-btn'}
-              >
+                  key={i}
+                  onClick={button.onClick}
+                  className={button?.buttonClass || 'download-btn'}
+                >
                   {button.label}
                 </button>
               ))}
