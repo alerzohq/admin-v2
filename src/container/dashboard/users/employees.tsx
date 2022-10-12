@@ -40,10 +40,6 @@ const Employees = () => {
       onSuccess: () => {
         toggle()
         toggle('sendInvite')
-        setValues({
-          email: '',
-          role: '',
-        })
       },
     }
   )
@@ -100,12 +96,24 @@ const Employees = () => {
     <>
       <Modal
         showModal={showSuucessInvite}
-        setShowModal={() => toggle('sendInvite')}
+        setShowModal={() => {
+          toggle('sendInvite')
+          setValues({
+            email: '',
+            role: '',
+          })
+        }}
         headerText="Employee Invite Sent"
         contentPadding={'0'}
         icon={<InviteSent />}
         subTitle={`You have invited ${values.email}`}
-        handleSubmit={() => toggle('sendInvite')}
+        handleSubmit={() => {
+          toggle('sendInvite')
+          setValues({
+            email: '',
+            role: '',
+          })
+        }}
         buttonText="Back To Employees"
       />
 
