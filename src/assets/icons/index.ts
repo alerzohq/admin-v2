@@ -28,3 +28,8 @@ export { ActiveDigitalBankIcon } from './digital-bank'
 export { default as ProductIcon } from './product'
 export { default as ActiveProductIcon } from './active-product'
 export { InviteSent } from './invites'
+export { default as ActiveTerminalsIcon} from './active-terminals'
+export { default as DefectiveTerminalsIcon} from './defective-terminals'
+export { default as InactiveTerminalsIcon} from './inactive-terminals'
+export { default as UnassignedTerminalsIcon} from './unassigned-terminals'
+

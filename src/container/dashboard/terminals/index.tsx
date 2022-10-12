@@ -8,7 +8,8 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import {
-  getTerminalsData,
+  getNewFilterResource,
+  getResource,
   getTerminalsRequestsData,
 } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
@@ -18,7 +19,9 @@ import { Tabs, TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
 import { terminalsTableMapper } from './tableConfig'
 import { useNavigate } from 'react-router-dom'
-import { terminalsHeaderList } from '../../../data/table-headers'
+import { terminalHeader } from '../../../data/table-headers'
+import { filterProps } from '../../../@types'
+import { ActiveTerminalsIcon, DefectiveTerminalsIcon, InactiveTerminalsIcon, UnassignedTerminalsIcon } from '../../../assets/icons'
 
 const TransactionContainer = () => {
   const navigate = useNavigate()
@@ -30,23 +33,29 @@ const TransactionContainer = () => {
     setActiveTab && setActiveTab('Existing Terminals')
   }, [])
 
-  const getTerminalsHandler = (count: number) => {
-    return getTerminalsData(`terminals`, filterValue.count)
+  const getTerminalStats = () => {
+    return getResource(`terminals/statistics`)
+  }
+  const { isLoading: loading, data: Stats } = useQuery(
+    'terminal-stats',
+    getTerminalStats
+  )
+  const Statistics = Stats?.data
+  const getTerminalsHandler = (filterValue: filterProps) => {
+    return getNewFilterResource(`terminals`, filterValue)
   }
   const getTerminalsRequestsHandler = (count: number) => {
     return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
   }
-
-  const {
-    isLoading: isLoadingExistingTerrminals,
+  const { isLoading: isLoadingExistingTerrminals,
     data: existingTerrminalsData,
     isError: isErrorExistingTerrminals,
-    isFetching: isFetchingExistingTerrminals,
-  } = useQuery(
-    ['terminals', values.count],
-    () => getTerminalsHandler(values.count),
-    { keepPreviousData: true }
-  )
+    isFetching: isFetchingExistingTerrminals, refetch } = useQuery(
+      ['terminals', values],
+      () => getTerminalsHandler(values),
+      { keepPreviousData: true }
+    )
+
   const {
     isLoading: isLoadingTerrminalsRequests,
     data: terrminalsRequestsData,
@@ -57,26 +66,23 @@ const TransactionContainer = () => {
     () => getTerminalsRequestsHandler(values.count),
     { keepPreviousData: true }
   )
-  //   <DynamicTable
-  //   data={existingTerrminalsData?.data}
-  //   mappers={terminalsTableMapper}
-  //   handleClick={(item) => {
-  //     navigate(item?.id)
-  //   }}
-  // />
   let existingTerrminals
   if (isLoadingExistingTerrminals) {
     existingTerrminals = <Loader />
   } else if (isErrorExistingTerrminals) {
-    existingTerrminals = <FallBack error title={'Failed to load terminals. '} />
+    existingTerrminals = (
+      <FallBack error title={'Failed to load terminals. '} refetch={refetch} />
+    )
   } else if (existingTerrminalsData?.data?.length < 1) {
-    existingTerrminals = <FallBack title={'You have no terminals yet. '} />
+    existingTerrminals = (
+      <FallBack title={'You have no terminals yet.'} refetch={refetch} />
+    )
   } else {
     existingTerrminals = (
       <Table
         tableName="existTerminal"
         tableData={existingTerrminalsData?.data}
-        tableHeaders={terminalsHeaderList}
+        tableHeaders={terminalHeader}
         dateFormat="YYYY-MM-DD HH:mm:ss"
       />
     )
@@ -98,6 +104,24 @@ const TransactionContainer = () => {
       />
     )
   }
+const statistics ={
+  card1: Statistics?.activeTerminals,
+  card2: Statistics?.inactiveTerminals,
+  card3: Statistics?.defectiveTerminals,
+  card4: Statistics?.unassignedTerminals,
+}
+const labels ={
+  card1: 'Active Terminals',
+  card2: 'Inactive Terminals',
+  card3: 'Defective Terminals',
+  card4: 'Unassigned Terminals',
+}
+const icons ={
+  card1: ActiveTerminalsIcon,
+  card2: InactiveTerminalsIcon,
+  card3: DefectiveTerminalsIcon,
+  card4: UnassignedTerminalsIcon,
+}
 
   return (
     <Container
@@ -107,7 +131,15 @@ const TransactionContainer = () => {
         },
         selects: [
           { placeholder: 'models', values: [], value: '' },
-          { placeholder: 'status', values: [], value: '' },
+          {
+            searchQuery: 'active',
+            placeholder: 'Status',
+            values: [
+              { label: 'Active', value: true },
+              { label: 'Inactive', value: false },
+            ],
+            value: '',
+          },
         ],
         buttons: [
           { label: 'Add new terminal', onClick: () => console.log('first') },
@@ -124,7 +156,7 @@ const TransactionContainer = () => {
         </Tabs.TabLinks>
         <div>
           <Tabs.Panel label="Existing Terminals">
-            <CardWidget />
+            <CardWidget statistics={statistics} loading={loading}  labels={labels} icons={icons}/>
             <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron>
             <Pagination
               data={existingTerrminalsData}
