@@ -51,7 +51,6 @@ export const RegistrationInvite = () => {
       setValues({ ...values, [name]: e.target.value.trim() })
     }
   const isValidInvite = (id?: string) => {
-    console.log('first', id)
     return getResource(`members/invites/${id}`, true)
   }
 
@@ -88,7 +87,6 @@ export const RegistrationInvite = () => {
         navigate('/')
       },
       onError: (e) => {
-        console.log(e)
         toast.error(`${e}`)
       },
     }
