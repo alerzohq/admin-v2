@@ -1,4 +1,4 @@
-import { generateCommission } from '../utils/formatValue'
+import { formatDate, generateCommission } from '../utils/formatValue'
 
 type props = {
   item: { [key: string]: any } | null
@@ -55,8 +55,18 @@ export const transformData = ({ item, name }: props) => {
     return { displayName, rates, createdAt }
   }
   if (item && name === 'existTerminal') {
-    const { tid, serial_number, variant, active, created_at, updated_at } = item
-    let statusVal = active ? 'Active' : 'Inactive'
-    return { tid, serial_number, variant, statusVal, created_at, updated_at }
+    const {
+      serial_number,
+      tid,
+      model,
+      active,
+      created_at,
+      updated_at,
+      user_id,
+    } = item
+    const statusVal =
+      user_id === null ? 'Unassigned' : active ? 'Active' : 'Inactive'
+    const updatedDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
+    return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
 }
