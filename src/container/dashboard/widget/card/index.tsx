@@ -19,7 +19,6 @@ const CardWidget = ({
   statistics,
   loading,
 }: StatsProps) => {
-  console.log(statistics?.card1, statistics)
   return (
     <CardWidgetWrapper>
       <CardWidgetBox

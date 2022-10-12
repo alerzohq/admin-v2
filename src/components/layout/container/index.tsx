@@ -20,7 +20,6 @@ const Container: React.FC<ContainerProps> = ({
       window.scrollTo(0, 0)
     }
   }, [isFetching, noScroll])
-
   return (
     <>
       <TopBar

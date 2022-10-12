@@ -52,7 +52,27 @@ export const TopbarFilters = styled.div`
     font-weight: 500;
     cursor: pointer;
   }
-
+  .add-button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    background: ${Color.alerzoBlue};
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 1rem;
+    width: 170px;
+    text-align: center;
+    font-family: 'Gilmer';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: ${Color.alerzoWhite};
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: auto;
+  }
   ::-webkit-scrollbar {
     width: 0;
     height: 0;
