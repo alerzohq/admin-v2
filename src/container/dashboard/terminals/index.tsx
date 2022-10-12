@@ -136,7 +136,6 @@ const TransactionContainer = () => {
           placeholder: 'Search',
         },
         selects: [
-          { placeholder: 'models', values: [], value: '' },
           {
             searchQuery: 'active',
             placeholder: 'Status',
@@ -148,7 +147,11 @@ const TransactionContainer = () => {
           },
         ],
         buttons: [
-          { label: 'Add new terminal', onClick: () => console.log('first') },
+          {
+            label: 'Register New terminal',
+            onClick: () => console.log('first'),
+            buttonClass: 'add-button',
+          },
         ],
       }}
       title="Terminals"
