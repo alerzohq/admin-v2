@@ -14,4 +14,5 @@ export type ModalProps = {
   setShowModal: () => void
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   icon?: ReactNode
+  withoutFooter?: boolean
 }
