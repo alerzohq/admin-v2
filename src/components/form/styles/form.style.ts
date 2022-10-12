@@ -86,7 +86,6 @@ export const Input = styled.div<inputProps>`
     border: 1px solid rgba(193, 202, 207, 0.5);
     color: #001928;
     border-radius: 6px;
-    padding: 0 1rem;
     padding: ${({ inputPadding }) => inputPadding || '0 1rem'};
     outline: none;
     width: 100%;

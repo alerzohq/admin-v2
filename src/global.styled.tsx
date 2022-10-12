@@ -133,6 +133,15 @@ a {
   text-align: center;
   font-weight: 500;
 }
+.unassigned{
+  background: #D7E2E9;
+  color:#000000;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
 .pending{
   background: #f1a85a1a;
   color:#F1A85A;

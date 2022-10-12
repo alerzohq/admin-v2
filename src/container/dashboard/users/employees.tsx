@@ -40,10 +40,6 @@ const Employees = () => {
       onSuccess: () => {
         toggle()
         toggle('sendInvite')
-        setValues({
-          email: '',
-          role: '',
-        })
       },
     }
   )
@@ -100,13 +96,25 @@ const Employees = () => {
     <>
       <Modal
         showModal={showSuucessInvite}
-        setShowModal={() => toggle('sendInvite')}
-        headerText="Employee Invite Sent"
+        setShowModal={() => {
+          toggle('sendInvite')
+          setValues({
+            email: '',
+            role: '',
+          })
+        }}
+        headerText="Employee invitation sent"
         contentPadding={'0'}
         icon={<InviteSent />}
         subTitle={`You have invited ${values.email}`}
-        handleSubmit={() => toggle('sendInvite')}
-        buttonText="Back To Employees"
+        handleSubmit={() => {
+          toggle('sendInvite')
+          setValues({
+            email: '',
+            role: '',
+          })
+        }}
+        buttonText="Close"
       />
 
       <Modal
@@ -114,7 +122,7 @@ const Employees = () => {
         subTitle={'Enter employee email address and assign role'}
         setShowModal={toggle}
         buttonText="Send Invite"
-        headerText="Add New Employer"
+        headerText="Add New Employee"
         contentPadding={'0'}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
@@ -131,7 +139,7 @@ const Employees = () => {
               <Form.Input
                 type="text"
                 onChange={handleChange('email')}
-                placeholder="Enter your email address"
+                placeholder="Enter email address"
                 value={values.email}
               />
               {isTriggerSubmit && (
@@ -153,11 +161,11 @@ const Employees = () => {
               <Form.Label>Select Role</Form.Label>
               {!isLoadingRoles && (
                 <Form.Select
-                  placeholder="Enter a role"
+                  placeholder="Select a role"
                   options={[
                     {
                       value: '',
-                      label: 'Enter a role',
+                      label: 'Select a role',
                       disabled: true,
                     },
                     ...roles?.data?.map((role: { name: string }) => {
