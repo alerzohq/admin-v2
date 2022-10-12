@@ -21,7 +21,12 @@ import { terminalsTableMapper } from './tableConfig'
 import { useNavigate } from 'react-router-dom'
 import { terminalHeader } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
-import { ActiveTerminalsIcon, DefectiveTerminalsIcon, InactiveTerminalsIcon, UnassignedTerminalsIcon } from '../../../assets/icons'
+import {
+  ActiveTerminalsIcon,
+  DefectiveTerminalsIcon,
+  InactiveTerminalsIcon,
+  UnassignedTerminalsIcon,
+} from '../../../assets/icons'
 
 const TransactionContainer = () => {
   const navigate = useNavigate()
@@ -47,14 +52,15 @@ const TransactionContainer = () => {
   const getTerminalsRequestsHandler = (count: number) => {
     return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
   }
-  const { isLoading: isLoadingExistingTerrminals,
+  const {
+    isLoading: isLoadingExistingTerrminals,
     data: existingTerrminalsData,
     isError: isErrorExistingTerrminals,
-    isFetching: isFetchingExistingTerrminals, refetch } = useQuery(
-      ['terminals', values],
-      () => getTerminalsHandler(values),
-      { keepPreviousData: true }
-    )
+    isFetching: isFetchingExistingTerrminals,
+    refetch,
+  } = useQuery(['terminals', values], () => getTerminalsHandler(values), {
+    keepPreviousData: true,
+  })
 
   const {
     isLoading: isLoadingTerrminalsRequests,
@@ -104,24 +110,24 @@ const TransactionContainer = () => {
       />
     )
   }
-const statistics ={
-  card1: Statistics?.activeTerminals,
-  card2: Statistics?.inactiveTerminals,
-  card3: Statistics?.defectiveTerminals,
-  card4: Statistics?.unassignedTerminals,
-}
-const labels ={
-  card1: 'Active Terminals',
-  card2: 'Inactive Terminals',
-  card3: 'Defective Terminals',
-  card4: 'Unassigned Terminals',
-}
-const icons ={
-  card1: ActiveTerminalsIcon,
-  card2: InactiveTerminalsIcon,
-  card3: DefectiveTerminalsIcon,
-  card4: UnassignedTerminalsIcon,
-}
+  const statistics = {
+    card1: Statistics?.activeTerminals,
+    card2: Statistics?.inactiveTerminals,
+    card3: Statistics?.defectiveTerminals,
+    card4: Statistics?.unassignedTerminals,
+  }
+  const labels = {
+    card1: 'Active Terminals',
+    card2: 'Inactive Terminals',
+    card3: 'Defective Terminals',
+    card4: 'Unassigned Terminals',
+  }
+  const icons = {
+    card1: ActiveTerminalsIcon,
+    card2: InactiveTerminalsIcon,
+    card3: DefectiveTerminalsIcon,
+    card4: UnassignedTerminalsIcon,
+  }
 
   return (
     <Container
@@ -156,7 +162,12 @@ const icons ={
         </Tabs.TabLinks>
         <div>
           <Tabs.Panel label="Existing Terminals">
-            <CardWidget statistics={statistics} loading={loading}  labels={labels} icons={icons}/>
+            <CardWidget
+              statistics={statistics}
+              loading={loading}
+              labels={labels}
+              icons={icons}
+            />
             <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron>
             <Pagination
               data={existingTerrminalsData}

@@ -54,7 +54,6 @@ export const transformData = ({ item, name }: props) => {
     const rates = generateCommission(type, percentage, cap)
     return { displayName, rates, createdAt }
   }
-
   if (item && name === 'existTerminal') {
     const { serial_number, tid, model, active, created_at, updated_at, user_id } = item
     const statusVal = user_id === null ? "Unassigned" : active ? 'Active' : "Inactive";

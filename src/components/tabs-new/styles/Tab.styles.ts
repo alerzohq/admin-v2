@@ -3,7 +3,7 @@ import { Color } from '../../../assets/theme'
 
 export const TabButton = styled.button`
   margin-right: 1rem;
-  color:${Color.alerzoBlack};
+  color: ${Color.alerzoBlack};
   font-weight: 600;
   background: transparent;
   border: none;
