@@ -62,6 +62,7 @@ const TransactionContainer = () => {
       onSuccess: () => {
         toast.success('Terminal add successfully')
         setAddMethod('')
+        setAddValues({ serialNumber: '', specification: '' })
       },
     }
   )
@@ -183,16 +184,30 @@ const TransactionContainer = () => {
         headerText="Select Preferred Option"
         contentPadding={'0'}
         withoutFooter
-        modalHeight="250px"
+        modalHeight="270px"
       >
         <TerminalModal>
-          <TerminalModalChild onClick={() => setAddMethod('manual')}>
+          <TerminalModalChild
+            onClick={() => {
+              setIsShown(false)
+              setAddMethod('manual')
+            }}
+          >
             <TerminalManualAdd width="100%" />
-            Manually Enter Information
+            <Text weight={'600'} padding={'8px 2rem'}>
+              Manually Enter Information
+            </Text>
           </TerminalModalChild>
-          <TerminalModalChild onClick={() => setAddMethod('manual')}>
+          <TerminalModalChild
+            onClick={() => {
+              setIsShown(false)
+              setAddMethod('manual')
+            }}
+          >
             <TerminalManualAdd width="100%" />
-            Manually Enter Information
+            <Text weight={'600'} padding={'8px 2rem'}>
+              Manually Enter Information
+            </Text>
           </TerminalModalChild>
         </TerminalModal>
       </Modal>
