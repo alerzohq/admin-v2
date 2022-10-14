@@ -87,7 +87,6 @@ export const RegistrationInvite = () => {
         navigate('/')
       },
       onError: (e) => {
-        console.log(e)
         toast.error(`${e}`)
       },
     }

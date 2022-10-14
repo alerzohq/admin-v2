@@ -103,7 +103,7 @@ const Employees = () => {
             role: '',
           })
         }}
-        headerText="Employee Invite Sent"
+        headerText="Employee invitation sent"
         contentPadding={'0'}
         icon={<InviteSent />}
         subTitle={`You have invited ${values.email}`}
@@ -114,7 +114,7 @@ const Employees = () => {
             role: '',
           })
         }}
-        buttonText="Back To Employees"
+        buttonText="Close"
       />
 
       <Modal

@@ -13,6 +13,7 @@ export type TopBarProps = {
     }[]
     buttons: {
       label: string
+      buttonClass?: string
       onClick: () => void
     }[]
   }
