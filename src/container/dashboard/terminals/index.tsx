@@ -315,7 +315,13 @@ const TransactionContainer = () => {
               value: '',
             },
           ],
-          buttons: [{ label: 'Add new terminal', onClick: () => toggle() }],
+          buttons: [
+            {
+              label: 'Register New Terminal',
+              onClick: () => toggle(),
+              buttonClass: 'add-button',
+            },
+          ],
         }}
         title="Terminals"
         setFilterValues={setValues}
