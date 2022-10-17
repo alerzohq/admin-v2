@@ -17,6 +17,7 @@ type textProps = {
   justifyContent?: string
   visibility?: string
   lineHeight?: string
+  alignSelf?: string
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -35,6 +36,7 @@ export const TextStyle = styled.div<textProps>`
   visibility: ${({ visibility }) => visibility};
   border-radius: ${({ radius }) => radius || '5px'};
   cursor: ${({ cursor }) => cursor};
+  align-self: ${({ alignSelf }) => alignSelf};
   text-align: ${({ textAlign }) => textAlign};
   line-height: ${({ lineHeight }) => lineHeight};
   justify-content: ${({ justifyContent }) => justifyContent};

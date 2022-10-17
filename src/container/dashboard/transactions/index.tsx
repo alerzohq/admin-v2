@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   FallBack,
   Jumbotron,
@@ -7,7 +7,7 @@ import {
   Table,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getFilterResource, getResource } from '../../../utils/apiRequest'
+import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { transHeaderList } from '../../../data/table-headers'
@@ -17,9 +17,8 @@ import { optionsAllPlatform } from '../../../data/select-data'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
-
   const getTransactions = (filterValue: filterProps) => {
-    return getFilterResource(`transactions`, filterValue)
+    return getNewFilterResource(`transactions`, filterValue)
   }
 
   const getTranStats = () => {
@@ -65,6 +64,7 @@ const TransactionContainer = () => {
       />
     )
   }
+
   return (
     <Container
       showFilters={{
@@ -74,6 +74,7 @@ const TransactionContainer = () => {
         date: true,
         selects: [
           {
+            searchQuery: 'channel',
             placeholder: 'All Platform',
             values: optionsAllPlatform,
             value: '',
@@ -97,6 +98,7 @@ const TransactionContainer = () => {
       }}
       title="History"
       setFilterValues={setValues}
+      shouldSetQuery
       isFetching={isFetching}
     >
       <CardWidget stats={Statistics} loading={loading} />

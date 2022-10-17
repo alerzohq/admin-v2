@@ -2,21 +2,29 @@ import { useLocation } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getResource } from '../../../../utils/apiRequest'
 import TabsContentWidget from '../../widget/tabs/tab-content'
-import { TABS, data, merchantHelper } from '../../../../data/terminal-data'
+import { TABS, merchantHelper } from '../../../../data/terminal-data'
 import DetailsContentWidget from '../../widget/tabs/tab-content-details'
 import TerminalDetails from './tab-content/terminal-details'
 
 const Details = () => {
+  const location = useLocation()
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
   const title = found ? found?.title : TABS[0]?.title
-  const getTerminals = () => {
-    return getResource(`terminals?count=10&cursor`)
+  const thePath = location.pathname
+  var result = thePath.split('/')
+  const id = result[3]
+
+  const getTerminalDetails = () => {
+    return getResource(`terminals?id=${id}`)
   }
 
-  const { isLoading, isError, isFetching } = useQuery('terminals', getTerminals)
-
+  const { isLoading, isError, data, isFetching } = useQuery(
+    'terminal',
+    getTerminalDetails
+  )
+  console.log('data', data?.data[0])
   const renderSwitch = () => {
     switch (queryParam) {
       case 'stats-history':
@@ -30,7 +38,7 @@ const Details = () => {
           />
         )
       default:
-        return <TerminalDetails data={data?.data} />
+        return <TerminalDetails data={data?.data[0]} />
     }
   }
 

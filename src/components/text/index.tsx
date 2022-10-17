@@ -20,6 +20,7 @@ const Text = <E extends React.ElementType = 'div'>({
   visibility,
   as,
   lineHeight,
+  alignSelf,
 }: TextProps<E>) => {
   let Component = as || 'div'
   return (
@@ -38,6 +39,7 @@ const Text = <E extends React.ElementType = 'div'>({
       bgColor={bgColor}
       weight={weight}
       padding={padding}
+      alignSelf={alignSelf}
     >
       <Component>{children}</Component>
     </TextStyle>

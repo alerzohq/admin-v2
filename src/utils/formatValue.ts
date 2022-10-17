@@ -76,3 +76,8 @@ export const mapBillers = (arr: any) =>
     label: `${obj?.displayName}`,
     value: obj?.slug,
   }))
+export const mapMerchants = (arr: any) =>
+  arr?.map((obj: any) => ({
+    label: `${obj?.first_name} ${obj?.last_name}`,
+    value: obj?.business_id,
+  }))

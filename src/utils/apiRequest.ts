@@ -3,7 +3,6 @@ import {
   axiosInstance,
   axiosInstanceWithoutToken,
 } from '../configs/axios-instance'
-import { cleanPayload } from '../helper/api-helper'
 import queryString from 'query-string'
 
 export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
@@ -16,8 +15,10 @@ export const getNewFilterResource = async (
   pathUrl: string,
   filterValue: filterProps
 ) => {
-  const payload = cleanPayload(filterValue)
-  const filterQuery = queryString.stringify(payload)
+  const filterQuery = queryString.stringify(filterValue, {
+    skipNull: true,
+    skipEmptyString: true,
+  })
   const { data } = await axiosInstance.get(`/${pathUrl}?${filterQuery}`)
   return data
 }
@@ -51,6 +52,12 @@ export const getTerminalsRequestsData = async (
   return data
 }
 
-// ${
-//   filterValue?.channel !== '' ? `&channel=${filterValue?.channel}` : ''
-// }
+export const postRequest = async (
+  pathUrl: string,
+  payload: {
+    [key: string]: any
+  }
+) => {
+  const { data } = await axiosInstance.post(pathUrl, payload)
+  return data
+}
