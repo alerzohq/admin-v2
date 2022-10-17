@@ -114,13 +114,11 @@ export const TextArea = styled.textarea<props>`
   border: 1px solid rgba(193, 202, 207, 0.5);
   height: ${({ textAreaHeight }) =>
     textAreaHeight ? textAreaHeight : '300px'};
-  width: ${({ textAreaWidth }) =>
-    textAreaWidth};
+  width: ${({ textAreaWidth }) => textAreaWidth};
   border-radius: 0.6rem;
   margin-top: ${({ textAreaTopMargin }) =>
     textAreaTopMargin ? textAreaTopMargin : '1rem'};
-    margin-bottom: ${({ textAreaBottomMargin }) =>
-    textAreaBottomMargin};
+  margin-bottom: ${({ textAreaBottomMargin }) => textAreaBottomMargin};
   padding: 0.5rem;
   outline: none;
   resize: none;

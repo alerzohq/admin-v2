@@ -13,43 +13,51 @@ import { useMutation, useQuery } from 'react-query'
 import { getResource, postRequest } from '../../../../../utils/apiRequest'
 
 const TerminalDetails = ({ data }: any) => {
-
   const getMerchants = () => {
     return getResource('business-users')
   }
 
-
-  const { isLoading, data: merchants, isFetching } = useQuery(
-    'merchants',
-    getMerchants
-  )
+  const {
+    isLoading,
+    data: merchants,
+    isFetching,
+  } = useQuery('merchants', getMerchants)
   const [enabled, setIsEnabled] = useState<boolean>(false)
   const [assigned, setIsAssigned] = useState<boolean>(false)
-  const [value, setValue] = useState<{ reassignmentReason?: string, tid?: string, businessId?: string }>({ reassignmentReason: '', businessId: '', tid: '' })
+  const [value, setValue] = useState<{
+    reassignmentReason?: string
+    tid?: string
+    businessId?: string
+  }>({ reassignmentReason: '', businessId: '', tid: '' })
 
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
   const toggle = (type?: 'assign') => {
-    type === 'assign'
-      ? setIsAssigned(!assigned)
-      : setIsEnabled(!enabled)
+    type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
   type payloadType = {
     [key: string]: any
   }
-  const useReAssignMutation = () => useMutation((payload: payloadType) => postRequest('terminals/reassign', payload))
-  const useReqMutation = () => useMutation((payload: payloadType) => postRequest('terminals/assign', payload))
-  const {
-    isLoading: loadingAssign, mutate,
-  } = useReqMutation();
-  const {
-    isLoading: loadingReAssign, mutate: reassign,
-  } = useReAssignMutation();
-  const buttonEnabledText = data?.active ? 'Disable Terminal' : 'Enable Terminal'
-  const assignBtnText = data?.user_id !== null ? 'Reassign Terminal' : 'Assign Terminal'
-  console.log(value, "latest")
+  const useReAssignMutation = () =>
+    useMutation((payload: payloadType) =>
+      postRequest('terminals/reassign', payload)
+    )
+  const useReqMutation = () =>
+    useMutation((payload: payloadType) =>
+      postRequest('terminals/assign', payload)
+    )
+  const { isLoading: loadingAssign, mutate } = useReqMutation()
+  const { isLoading: loadingReAssign, mutate: reassign } = useReAssignMutation()
+  const buttonEnabledText = data?.active
+    ? 'Disable Terminal'
+    : 'Enable Terminal'
+  const assignBtnText =
+    data?.user_id !== null ? 'Reassign Terminal' : 'Assign Terminal'
+  console.log(value, 'latest')
   return (
     <TerminalDetailWrapper>
-      <EnableTerminalWidget data={data} isShown={enabled}
+      <EnableTerminalWidget
+        data={data}
+        isShown={enabled}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
           if (value?.businessId && value?.reassignmentReason) {
@@ -67,8 +75,12 @@ const TerminalDetails = ({ data }: any) => {
           toggle()
         }}
         value={value}
-        setValue={setValue} />
-      <ReassignTerminalWidget data={data} triggerSubmit={isTriggerSubmit} isShown={assigned}
+        setValue={setValue}
+      />
+      <ReassignTerminalWidget
+        data={data}
+        triggerSubmit={isTriggerSubmit}
+        isShown={assigned}
         loadingOptions={isLoading || isFetching}
         loading={loadingAssign || loadingReAssign}
         handleSubmit={async () => {
@@ -83,11 +95,13 @@ const TerminalDetails = ({ data }: any) => {
           setValue({
             reassignmentReason: '',
             tid: '',
-            businessId: ''
+            businessId: '',
           })
           toggle('assign')
         }}
-        value={value} setValue={setValue} />
+        value={value}
+        setValue={setValue}
+      />
       <DetailsContentWidget resolvedData={terminalHelper(data)!} />
       <ButtonWrapper>
         <Button

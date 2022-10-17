@@ -5,7 +5,7 @@ type selectStyleProps = {
   isFocused?: boolean
 }
 type Coptions = {}
-export const selectStyles = (isBlue?: boolean, fullWidth?:boolean) => {
+export const selectStyles = (isBlue?: boolean, fullWidth?: boolean) => {
   return isBlue
     ? {
         control: (
@@ -82,12 +82,10 @@ export const selectStyles = (isBlue?: boolean, fullWidth?:boolean) => {
         }),
       }
     : {
-      container: (
-        styles?: CSSObjectWithLabel,
-      )=>({
-        ...styles,
-        width: fullWidth ? "100%" : "auto"
-      }),
+        container: (styles?: CSSObjectWithLabel) => ({
+          ...styles,
+          width: fullWidth ? '100%' : 'auto',
+        }),
         control: (
           styles?: CSSObjectWithLabel,
           state?: ControlProps<Coptions, boolean, GroupBase<Coptions>>
@@ -97,7 +95,7 @@ export const selectStyles = (isBlue?: boolean, fullWidth?:boolean) => {
             ? `1px solid ${Color.alerzoLightGray}`
             : `1px solid ${Color.alerzoLightGray}`,
           height: 45,
-          width: fullWidth ? "100%" : 200,
+          width: fullWidth ? '100%' : 200,
           borderRadius: 7,
           fontSize: 14,
           boxShadow: Color.alerzoDarkGray,

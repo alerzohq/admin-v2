@@ -19,7 +19,6 @@ export const DETAILSTABLE = [
 export const OTHERDETAILSTABLE = [
   { label: 'Terminal Model', value: 'model', columnWidth: 'small' },
   { label: 'noVisibility', value: 'empty', columnWidth: 'extraLarge' },
-  
 ]
 
 export const MERCHANTDETAILSTABLE = [
@@ -66,7 +65,7 @@ export const merchant = {
   ],
 }
 export const terminalHelper = (data: any) => {
-  console.log(data, "rool")
+  console.log(data, 'rool')
   return [
     {
       spacing: false,
@@ -74,7 +73,12 @@ export const terminalHelper = (data: any) => {
       data: {
         tid: data?.tid,
         serialNumber: data?.serial_number,
-        status: data?.user_id === null ? 'Unassigned' : data?.active ? 'Active' : 'Inactive',
+        status:
+          data?.user_id === null
+            ? 'Unassigned'
+            : data?.active
+            ? 'Active'
+            : 'Inactive',
         variant: data?.model,
         updatedAt: data?.updated_at
           ? formatDate(data?.updated_at, 'YYYY-MM-DD HH:mm:ss')

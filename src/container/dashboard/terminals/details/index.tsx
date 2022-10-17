@@ -15,11 +15,10 @@ const Details = () => {
   const thePath = location.pathname
   var result = thePath.split('/')
   const id = result[3]
- 
+
   const getTerminalDetails = () => {
     return getResource(`terminals?id=${id}`)
   }
-  
 
   const { isLoading, isError, data, isFetching } = useQuery(
     'terminal',

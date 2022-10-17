@@ -15,7 +15,10 @@ export const getNewFilterResource = async (
   pathUrl: string,
   filterValue: filterProps
 ) => {
-  const filterQuery = queryString.stringify(filterValue,{skipNull: true, skipEmptyString: true, })
+  const filterQuery = queryString.stringify(filterValue, {
+    skipNull: true,
+    skipEmptyString: true,
+  })
   const { data } = await axiosInstance.get(`/${pathUrl}?${filterQuery}`)
   return data
 }
@@ -49,9 +52,12 @@ export const getTerminalsRequestsData = async (
   return data
 }
 
-export const postRequest = async (pathUrl:string, payload:{
-  [key: string]: any
-}) => {
-  const { data } = await axiosInstance.post(pathUrl, payload);
-  return data;
-};
+export const postRequest = async (
+  pathUrl: string,
+  payload: {
+    [key: string]: any
+  }
+) => {
+  const { data } = await axiosInstance.post(pathUrl, payload)
+  return data
+}
