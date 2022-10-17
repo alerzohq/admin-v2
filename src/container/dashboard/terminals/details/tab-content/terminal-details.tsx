@@ -1,92 +1,106 @@
 import { useState } from 'react'
 import { Color } from '../../../../../assets/theme'
-import { Button, Form, Text } from '../../../../../components'
-import Modal from '../../../../../components/modal'
-import { TextArea } from '../../../../../components/modal/styles/modal.styles'
+import { Button } from '../../../../../components'
 import { terminalHelper } from '../../../../../data/terminal-data'
 import DetailsContentWidget from '../../../widget/tabs/tab-content-details'
+import ReassignTerminalWidget from '../../../widget/terminal-modal-content/reassign'
+import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
 import {
   ButtonWrapper,
   TerminalDetailWrapper,
 } from './styles/tab-content.styles'
+import { useMutation, useQuery } from 'react-query'
+import { getResource, postRequest } from '../../../../../utils/apiRequest'
 
-const TerminalDetails = (data: any) => {
+const TerminalDetails = ({ data }: any) => {
+
+  const getMerchants = () => {
+    return getResource('business-users')
+  }
+
+
+  const { isLoading, data: merchants, isFetching } = useQuery(
+    'merchants',
+    getMerchants
+  )
   const [enabled, setIsEnabled] = useState<boolean>(false)
   const [assigned, setIsAssigned] = useState<boolean>(false)
-  const [value, setValue] = useState({ reason: '' })
-  const toggleEnable = () => setIsEnabled(!enabled)
-  const toggleAssigned = () => setIsAssigned(!assigned)
-  const buttonEnabledText = data?.data?.data?.active
-    ? 'Disable Terminal'
-    : 'Enable Terminal'
-  const enabledSubTitle = data?.data?.data?.active
-    ? 'Disable this terminal'
-    : 'Enable this terminal'
-  const enabledPlaceholder = data?.data?.data?.active
-    ? 'Enter reason for disabling terminal'
-    : 'Enter reason for enabling terminal'
+  const [value, setValue] = useState<{ reassignmentReason?: string, tid?: string, businessId?: string }>({ reassignmentReason: '', businessId: '', tid: '' })
+
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+  const toggle = (type?: 'assign') => {
+    type === 'assign'
+      ? setIsAssigned(!assigned)
+      : setIsEnabled(!enabled)
+  }
+  type payloadType = {
+    [key: string]: any
+  }
+  const useReAssignMutation = () => useMutation((payload: payloadType) => postRequest('terminals/reassign', payload))
+  const useReqMutation = () => useMutation((payload: payloadType) => postRequest('terminals/assign', payload))
+  const {
+    isLoading: loadingAssign, mutate,
+  } = useReqMutation();
+  const {
+    isLoading: loadingReAssign, mutate: reassign,
+  } = useReAssignMutation();
+  const buttonEnabledText = data?.active ? 'Disable Terminal' : 'Enable Terminal'
+  const assignBtnText = data?.user_id !== null ? 'Reassign Terminal' : 'Assign Terminal'
+  console.log(value, "latest")
   return (
     <TerminalDetailWrapper>
-      <Modal
-        subTitle={
-          assigned
-            ? 'Reassign this terminal to a new merchant'
-            : enabledSubTitle
-        }
-        contentPadding="1rem 1rem 2.5rem 1rem"
-        modalHeight="auto"
-        modalWidth="30%"
-        modalPadding="1.2rem"
-        showModal={assigned || enabled}
-        setShowModal={assigned ? toggleAssigned : toggleEnable}
-        buttonText={assigned ? 'Reassign Terminal' : buttonEnabledText}
-        headerText={assigned ? 'Reassign Terminal' : buttonEnabledText}
-      >
-        {assigned && (
-          <>
-            <Text
-              as="p"
-              padding="0"
-              color={Color.alerzoBlack}
-              size="14px"
-              margin="0 0 .5rem 0"
-              align="start"
-            >
-              Select New Merchant
-            </Text>
-            <Form.Input
-              type="text"
-              onChange={() => {}}
-              placeholder="Enter to search for merchant"
-            />
-          </>
-        )}
-        <Text
-          as="p"
-          padding="0"
-          color={Color.alerzoBlack}
-          size="14px"
-          margin="1rem 0 .5rem 0"
-          align="start"
-        >
-          {assigned ? 'Reason for Reassigning' : 'Reason'}
-        </Text>
-        <TextArea
-          textAreaTopMargin="0"
-          placeholder={assigned ? 'Enter message' : enabledPlaceholder}
-          textAreaHeight="190px"
-          value={value.reason}
-          onChange={(e) => setValue({ ...value, reason: e.target.value })}
-        ></TextArea>
-      </Modal>
-      <DetailsContentWidget resolvedData={terminalHelper(data?.data?.[0])!} />
+      <EnableTerminalWidget data={data} isShown={enabled}
+        handleSubmit={async () => {
+          setIsTriggerSubmit(true)
+          if (value?.businessId && value?.reassignmentReason) {
+            setIsTriggerSubmit(false)
+            mutate({ ...value })
+          }
+        }}
+        toggleModal={() => {
+          setValue({
+            reassignmentReason: '',
+            tid: '',
+            businessId: '',
+          })
+
+          toggle()
+        }}
+        value={value}
+        setValue={setValue} />
+      <ReassignTerminalWidget data={data} triggerSubmit={isTriggerSubmit} isShown={assigned}
+        loadingOptions={isLoading || isFetching}
+        loading={loadingAssign || loadingReAssign}
+        handleSubmit={async () => {
+          setIsTriggerSubmit(true)
+          if (value?.businessId) {
+            setIsTriggerSubmit(false)
+            mutate({ ...value })
+          }
+        }}
+        merchants={merchants?.data}
+        toggleModal={() => {
+          setValue({
+            reassignmentReason: '',
+            tid: '',
+            businessId: ''
+          })
+          toggle('assign')
+        }}
+        value={value} setValue={setValue} />
+      <DetailsContentWidget resolvedData={terminalHelper(data)!} />
       <ButtonWrapper>
         <Button
           height="3.2rem"
           radius="10px"
           borderSize="1px"
           width="14%"
-          onClick={toggleEnable}
+          onClick={() => {
+            toggle()
+            setValue({
+              reassignmentReason: '',
+            })
+          }}
           color={Color.alerzoBlueTint}
           borderColor={Color.alerzoBlueTint}
           variant="transparent"
@@ -97,9 +111,14 @@ const TerminalDetails = (data: any) => {
           height="3.2rem"
           width="14%"
           radius="10px"
-          onClick={toggleAssigned}
+          onClick={() => {
+            toggle('assign')
+            setValue({
+              reassignmentReason: '',
+            })
+          }}
         >
-          Reassign Terminal
+          {assignBtnText}
         </Button>
       </ButtonWrapper>
     </TerminalDetailWrapper>

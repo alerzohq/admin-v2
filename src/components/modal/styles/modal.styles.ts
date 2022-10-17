@@ -9,6 +9,8 @@ type props = {
   modalHeight?: string
   modalWidth?: string
   textAreaTopMargin?: string
+  textAreaWidth?: string
+  textAreaBottomMargin?: string
 }
 
 export const ModalWrapper = styled.div<props>`
@@ -110,12 +112,15 @@ export const Content = styled.div<props>`
 
 export const TextArea = styled.textarea<props>`
   border: 1px solid rgba(193, 202, 207, 0.5);
-  height: 100px;
   height: ${({ textAreaHeight }) =>
     textAreaHeight ? textAreaHeight : '300px'};
+  width: ${({ textAreaWidth }) =>
+    textAreaWidth};
   border-radius: 0.6rem;
   margin-top: ${({ textAreaTopMargin }) =>
     textAreaTopMargin ? textAreaTopMargin : '1rem'};
+    margin-bottom: ${({ textAreaBottomMargin }) =>
+    textAreaBottomMargin};
   padding: 0.5rem;
   outline: none;
   resize: none;

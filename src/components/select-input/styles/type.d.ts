@@ -7,4 +7,5 @@ export type SelectProps = {
   value: SelectInputProps
   styles?: StylesConfig<Coptions>
   hideValue?: boolean
+  fullWidth?: boolean
 }
