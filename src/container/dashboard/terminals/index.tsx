@@ -36,6 +36,7 @@ import { TerminalModal, TerminalModalChild } from './terminalmodal.styles'
 import { AxiosResponse, AxiosError } from 'axios'
 import { axiosInstance } from '../../../configs/axios-instance'
 import toast from 'react-hot-toast'
+import { Edit, TerminalBulkAdd, Upload } from '../../../assets/icons/terminals'
 
 const TransactionContainer = () => {
   const navigate = useNavigate()
@@ -193,8 +194,11 @@ const TransactionContainer = () => {
               setAddMethod('manual')
             }}
           >
-            <TerminalManualAdd width="100%" />
-            <Text weight={'600'} padding={'8px 2rem'}>
+            <div className="svg-container">
+              <TerminalManualAdd width="100%" />
+              <Edit className="svg-icon" />
+            </div>
+            <Text weight={'600'} justifyContent="center" padding={'8px 2rem'}>
               Manually Enter Information
             </Text>
           </TerminalModalChild>
@@ -203,10 +207,19 @@ const TransactionContainer = () => {
               setIsShown(false)
               setAddMethod('manual')
             }}
+            className={'disabled'}
           >
-            <TerminalManualAdd width="100%" />
-            <Text weight={'600'} padding={'8px 2rem'}>
-              Manually Enter Information
+            <div className="svg-container ">
+              <TerminalBulkAdd width="100%" />
+              <Upload className="svg-icon" />
+            </div>
+            <Text
+              width="100%"
+              justifyContent="center"
+              weight={'600'}
+              padding={'8px 2rem'}
+            >
+              Upload Document
             </Text>
           </TerminalModalChild>
         </TerminalModal>
