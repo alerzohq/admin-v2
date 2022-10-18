@@ -70,19 +70,19 @@ const Modal = ({
           </Header>
           <Content contentPadding={contentPadding}>{children}</Content>
           {!withoutFooter && (
-            <Footer>
-              <Button.Group align="center">
-                <Button
-                  width="50%"
-                  radius="10px"
-                  fontSize="15px"
-                  weight="500"
-                  onClick={handleSubmit ?? setShowModal}
-                >
-                  {loading ? <Loader /> : `${buttonText}`}
-                </Button>
-              </Button.Group>
-            </Footer>
+             <Footer>
+             <Button.Group align="center">
+               <Button
+                 width="50%"
+                 radius="10px"
+                 fontSize="15px"
+                 weight="500"
+                 onClick={handleSubmit ?? setShowModal}
+               >
+                 {loading ?  <Loader color={Color.alerzoWhite} /> : `${buttonText}`}
+               </Button>
+             </Button.Group>
+           </Footer>
           )}
         </StyledModal>
       </ModalWrapper>

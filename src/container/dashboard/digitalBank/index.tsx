@@ -48,6 +48,7 @@ const DigitalBankContainer = () => {
   } else if (data?.data?.length < 1) {
     digitalBankComponent = <FallBack title={'You have no transactions yet. '} />
   } else {
+    console.log(data?.data, 'newtesttt')
     digitalBankComponent = (
       <TableWrapper>
         <DynamicTable
@@ -69,17 +70,17 @@ const DigitalBankContainer = () => {
         date: true,
         selects: [
           {
+            searchQuery: 'channel',
             placeholder: 'All Platforms',
             values: optionsAllPlatform,
             value: '',
-            searchQuery: 'platform',
           },
           {
-            searchQuery: 'status',
+            searchQuery: 'disabled',
             placeholder: 'Status',
             values: [
-              { label: 'Active', value: true },
-              { label: 'Inactive', value: false },
+              { label: 'Active', value: false },
+              { label: 'Inactive', value: true },
             ],
             value: '',
           },

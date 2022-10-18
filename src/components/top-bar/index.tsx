@@ -39,6 +39,7 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
   useEffect(() => {
+    console.log(newObj, 'loop')
     if (Object.keys(newObj).length > 0) {
       setFilterValues((prev: any) => ({ ...prev, ...newObj }))
     }
@@ -85,6 +86,7 @@ const TopBar = ({
                       }))
                     }
                     if (select?.searchQuery) {
+                      console.log('new', 'lo')
                       const key: string = select?.searchQuery
                       const dataObj: any = {}
                       dataObj[key] = e?.value.toString() || ''
