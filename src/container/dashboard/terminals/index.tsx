@@ -29,6 +29,7 @@ import {
   InactiveTerminalsIcon,
   TerminalManualAdd,
   UnassignedTerminalsIcon,
+  PendingTerminalsIcon,
 } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Modal from '../../../components/modal'
@@ -157,16 +158,34 @@ const TransactionContainer = () => {
     card3: Statistics?.defectiveTerminals,
     card4: Statistics?.unassignedTerminals,
   }
+  const requestStatistics = {
+    card1: Statistics?.activeTerminals,
+    card2: Statistics?.inactiveTerminals,
+    card3: Statistics?.defectiveTerminals,
+    card4: Statistics?.unassignedTerminals,
+  }
   const labels = {
     card1: 'Active Terminals',
     card2: 'Inactive Terminals',
     card3: 'Defective Terminals',
     card4: 'Unassigned Terminals',
   }
+  const requestLabels = {
+    card1: 'All Terminal Requests',
+    card2: 'Rejected Terminal Requests',
+    card3: 'Pending Terminal Requests',
+    card4: 'Approved Terminal Requests',
+  }
   const icons = {
     card1: ActiveTerminalsIcon,
     card2: InactiveTerminalsIcon,
     card3: DefectiveTerminalsIcon,
+    card4: UnassignedTerminalsIcon,
+  }
+  const requestIcons = {
+    card1: ActiveTerminalsIcon,
+    card2: InactiveTerminalsIcon,
+    card3: PendingTerminalsIcon,
     card4: UnassignedTerminalsIcon,
   }
   const toggle = () => {
@@ -362,7 +381,12 @@ const TransactionContainer = () => {
               />
             </Tabs.Panel>
             <Tabs.Panel label="Terminal Requests">
-              <CardWidget />
+              <CardWidget
+                statistics={requestStatistics}
+                loading={loading}
+                labels={requestLabels}
+                icons={requestIcons}
+              />
               <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron>
               <Pagination
                 data={terrminalsRequestsData}
