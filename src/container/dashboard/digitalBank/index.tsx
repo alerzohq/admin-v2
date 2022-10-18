@@ -70,12 +70,6 @@ const DigitalBankContainer = () => {
         date: true,
         selects: [
           {
-            searchQuery: 'channel',
-            placeholder: 'All Platforms',
-            values: optionsAllPlatform,
-            value: '',
-          },
-          {
             searchQuery: 'disabled',
             placeholder: 'Status',
             values: [
