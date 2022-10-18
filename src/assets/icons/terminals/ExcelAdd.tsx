@@ -1,6 +1,6 @@
 import { IconProps } from '../types'
 
-export const TerminalManualAdd = ({
+export const TerminalBulkAdd = ({
   width,
   height,
   color,
@@ -10,6 +10,7 @@ export const TerminalManualAdd = ({
   return (
     <>
       <svg
+        className={className}
         width={width ? width : '160'}
         height={height ? height : '116'}
         fill="none"
