@@ -10,6 +10,15 @@ export const ContentWrapper = styled.div<contentStyleProps>`
   transition: all 0.3s ease;
   background: ${Color.alerzoWhite};
   min-height: 100vh;
+  animation: fadeIn 2s;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   @media (max-width: 992px) {
     margin-left: 0;
   }

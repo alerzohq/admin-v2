@@ -48,7 +48,6 @@ const DigitalBankContainer = () => {
   } else if (data?.data?.length < 1) {
     digitalBankComponent = <FallBack title={'You have no transactions yet. '} />
   } else {
-    console.log(data?.data, 'newtesttt')
     digitalBankComponent = (
       <TableWrapper>
         <DynamicTable
@@ -78,9 +77,6 @@ const DigitalBankContainer = () => {
             ],
             value: '',
           },
-        ],
-        buttons: [
-          { label: 'Download CSV', onClick: () => console.log('first') },
         ],
       }}
       title="Digital Bank"
