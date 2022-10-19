@@ -6,7 +6,11 @@ import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
 import { FilterInput, FilterItems, FilterWrapper } from './styles/filter.styles'
 
-const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
+const Filter = ({
+  showFilters,
+  setFilterValues,
+  justifyContent = 'space-between',
+}: FilterProps) => {
   const [status] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
@@ -26,7 +30,7 @@ const Filter = ({ showFilters, setFilterValues }: FilterProps) => {
   return (
     <FilterWrapper>
       <Stack justifyContent={'space-between'} direction={'row'}>
-        <FilterItems>
+        <FilterItems justifyContent={justifyContent}>
           {showFilters?.search && (
             <FilterInput
               value={search}

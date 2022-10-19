@@ -23,11 +23,11 @@ export const FilterWrapper = styled.div`
     font-size: 1.2rem;
   }
 `
-export const FilterItems = styled.div`
+export const FilterItems = styled.div<{ justifyContent: string }>`
   display: flex;
   width: 100%;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: ${({ justifyContent }) => justifyContent};
   overflow-y: visible;
   overflow-x: scroll;
   scrollbar-width: none;

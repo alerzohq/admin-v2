@@ -56,12 +56,6 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
             date: true,
             selects: [
               {
-                placeholder: 'All Platform',
-                values: [],
-                value: '',
-                onChange: () => {},
-              },
-              {
                 placeholder: 'Status',
                 values: [],
                 value: '',
@@ -69,6 +63,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
               },
             ],
           }}
+          justifyContent={'flex-start'}
         />
 
         {component}

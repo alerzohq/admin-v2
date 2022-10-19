@@ -23,4 +23,5 @@ export type FilterProps = {
   isFetching?: boolean
   setFilterValues?: any
   routePath?: string
+  justifyContent?: string
 }
