@@ -8,4 +8,5 @@ export const optionsAllPlatform = [
   { value: 'web', label: 'Web' },
   { value: 'pos', label: 'POS' },
   { value: 'app', label: 'App' },
+  { value: 'api', label: 'Api' },
 ]

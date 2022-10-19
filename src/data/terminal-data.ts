@@ -1,3 +1,4 @@
+import { ActiveTerminalsIcon, DefectiveTerminalsIcon, InactiveTerminalsIcon, UnassignedTerminalsIcon } from '../assets/icons'
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
@@ -6,7 +7,10 @@ export const TABS = [
   { label: 'Terminal Status History', value: 'stats-history', title: '' },
   { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
 ]
-
+export const TERMINALTABS = [
+  { label: 'Existing Terminals', value: 'existing', title: '' },
+  { label: 'Terminal Requests', value: 'requests', title: '' },
+]
 export const DETAILSTABLE = [
   { label: 'Terminal ID', value: 'tid', columnWidth: 'small' },
   { label: 'Terminal Serial No', value: 'serialNumber', columnWidth: 'small' },
@@ -65,7 +69,6 @@ export const merchant = {
   ],
 }
 export const terminalHelper = (data: any) => {
-  console.log(data, 'rool')
   return [
     {
       spacing: false,
@@ -73,12 +76,9 @@ export const terminalHelper = (data: any) => {
       data: {
         tid: data?.tid,
         serialNumber: data?.serial_number,
-        status:
-          data?.user_id === null
-            ? 'Unassigned'
-            : data?.active
-            ? 'Active'
-            : 'Inactive',
+        status: data?.active
+            ? 'Enabled'
+            : 'Disabled',
         variant: data?.model,
         updatedAt: data?.updated_at
           ? formatDate(data?.updated_at, 'YYYY-MM-DD HH:mm:ss')
@@ -136,4 +136,17 @@ export const merchantHelper = (data: any) => {
       },
     },
   ]
+}
+
+export const terminalLabels = {
+  card1: 'Active Terminals',
+  card2: 'Inactive Terminals',
+  card3: 'Defective Terminals',
+  card4: 'Unassigned Terminals',
+}
+export const terminalIcons = {
+  card1: ActiveTerminalsIcon,
+  card2: InactiveTerminalsIcon,
+  card3: DefectiveTerminalsIcon,
+  card4: UnassignedTerminalsIcon,
 }

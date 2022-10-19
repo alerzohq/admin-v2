@@ -68,9 +68,6 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
                 onChange: () => {},
               },
             ],
-            buttons: [
-              { label: 'Download CSV', onClick: () => console.log('first') },
-            ],
           }}
         />
 

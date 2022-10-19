@@ -16,7 +16,7 @@ type Props = {
     React.SetStateAction<{
       reassignmentReason?: string
       businessId?: string
-      tid?: string
+      serialNumber?: string
     }>
   >
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
@@ -34,10 +34,7 @@ const ReassignTerminalWidget = ({
   loading,
   merchants,
 }: Props) => {
-  console.log(loading, loadingOptions, 'opk')
   const mappedMerchants = mapMerchants(merchants)
-  console.log(mappedMerchants, 'merchants')
-  console.log(data)
   const subtitle =
     data?.user_id === null
       ? 'Assign this terminal to a merchant'
@@ -69,25 +66,36 @@ const ReassignTerminalWidget = ({
       </Text>
       <SelectInput
         placeholder="Enter to search for merchant"
-        onChange={(e) => setValue({ businessId: e?.value, tid: data?.tid })}
+        onChange={(e) => setValue({ businessId: e?.value, serialNumber: data?.serial_number })}
         value={value?.businessId}
         fullWidth
         options={
           loadingOptions
             ? [
-                {
-                  label: 'Loading...',
-                  options: [{ label: '', value: '' }],
-                },
-              ]
+              {
+                label: 'Loading...',
+                options: [{ label: '', value: '' }],
+              },
+            ]
             : [
-                {
-                  label: 'Enter to search for merchant',
-                  options: mappedMerchants || [{ label: '', value: '' }],
-                },
-              ]
+              {
+                label: 'Enter to search for merchant',
+                options: mappedMerchants || [{ label: '', value: '' }],
+              },
+            ]
         }
       />
+      {triggerSubmit &&
+        !value?.businessId && (
+          <Text
+            padding="8px"
+            as={'small'}
+            weight={'500'}
+            color={Color.alerzoDanger}
+          >
+            Merchant is required*
+          </Text>
+        )}
       {data?.user_id !== null && (
         <>
           <Text
@@ -100,11 +108,12 @@ const ReassignTerminalWidget = ({
           >
             Reason for Reassigning
           </Text>
+
           <TextArea
             textAreaTopMargin="0"
             placeholder={'Enter message'}
             textAreaHeight="85px"
-            value={value.reassignmentReason}
+            value={value?.reassignmentReason}
             textAreaWidth="95%"
             onChange={(e) =>
               setValue({ ...value, reassignmentReason: e.target.value })
@@ -112,16 +121,15 @@ const ReassignTerminalWidget = ({
           ></TextArea>
         </>
       )}
-      {triggerSubmit &&
-        data?.user_id === null &&
-        value.reassignmentReason === '' && (
+      {triggerSubmit && data?.user_id &&
+        !value.reassignmentReason && (
           <Text
             padding="8px"
             as={'small'}
             weight={'500'}
             color={Color.alerzoDanger}
           >
-            'Reason is required*'
+            Reason is required*
           </Text>
         )}
     </Modal>

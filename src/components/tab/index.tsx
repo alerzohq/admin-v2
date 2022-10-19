@@ -1,28 +1,28 @@
 import { useSearchParams } from 'react-router-dom'
 import { Color } from '../../assets/theme'
-import { TabTitle, TabWrapper } from './styles/tab.styles'
+import { TabLink, Tabs } from './styles/tab.styles'
 import { TabsProps, TabsTitleProps, TabsPageProps } from './type.d'
 const TabPage = ({ children }: TabsPageProps) => {
-  return <TabWrapper>{children}</TabWrapper>
+  return <Tabs>{children}</Tabs>
 }
 
 export default TabPage
 
-TabPage.Title = function TabsTitle({
+TabPage.Link = function TabsLink({
   active,
   item,
   color,
   onClick,
 }: TabsTitleProps) {
   return (
-    <TabTitle
+    <TabLink
       activeColor={Color.alerzoBlueTint}
       active={active}
       color={color}
       onClick={() => onClick()}
     >
       {item.label}
-    </TabTitle>
+    </TabLink>
   )
 }
 
@@ -35,10 +35,10 @@ TabPage.Tabs = function TabList({
   const [queryParam, setQueryParams] = useSearchParams()
   return (
     <>
-      <TabWrapper hideStatus={hideStatus}>
+      <Tabs hideStatus={hideStatus}>
         {tabs.map((item, index) => {
           return (
-            <TabPage.Title
+            <TabPage.Link
               key={index}
               item={item}
               color={color}
@@ -49,7 +49,7 @@ TabPage.Tabs = function TabList({
             />
           )
         })}
-      </TabWrapper>
+      </Tabs>
     </>
   )
 }

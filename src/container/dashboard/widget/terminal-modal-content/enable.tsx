@@ -23,7 +23,6 @@ const EnableTerminalWidget = ({
   setValue,
   handleSubmit,
 }: Props) => {
-  console.log(isShown)
   const buttonEnabledText = data?.data?.active
     ? 'Disable Terminal'
     : 'Enable Terminal'

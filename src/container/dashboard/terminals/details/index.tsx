@@ -24,7 +24,6 @@ const Details = () => {
     'terminal',
     getTerminalDetails
   )
-  console.log('data', data?.data[0])
   const renderSwitch = () => {
     switch (queryParam) {
       case 'stats-history':

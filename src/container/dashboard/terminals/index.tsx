@@ -6,6 +6,7 @@ import {
   Loader,
   Pagination,
   Table,
+  TabsPage,
   Text,
 } from '../../../components'
 import { Container } from '../../../components/layout'
@@ -17,16 +18,13 @@ import {
 import CardWidget from '../widget/card'
 import { useMutation, useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import { Tabs, TabsContext } from '../../../components/tabs-new/Tabs'
+import { TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
 import { terminalsTableMapper } from './tableConfig'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { terminalHeader } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import {
-  ActiveTerminalsIcon,
-  DefectiveTerminalsIcon,
-  InactiveTerminalsIcon,
   TerminalManualAdd,
   UnassignedTerminalsIcon,
   PendingTerminalsIcon,
@@ -38,10 +36,12 @@ import { AxiosResponse, AxiosError } from 'axios'
 import { axiosInstance } from '../../../configs/axios-instance'
 import toast from 'react-hot-toast'
 import { Edit, TerminalBulkAdd, Upload } from '../../../assets/icons/terminals'
+import { terminalIcons, terminalLabels, TERMINALTABS } from '../../../data/terminal-data'
 
 const TransactionContainer = () => {
-  const navigate = useNavigate()
-
+  const search = useLocation().search
+  const queryParam = new URLSearchParams(search).get('status')
+  const found = TERMINALTABS.find((element) => element.value === queryParam)
   const [values, setValues] = useState(filterValue)
   const { setActiveTab } = React.useContext(TabsContext)
   const [isShown, setIsShown] = useState(false)
@@ -158,44 +158,14 @@ const TransactionContainer = () => {
     card3: Statistics?.defectiveTerminals,
     card4: Statistics?.unassignedTerminals,
   }
-  const requestStatistics = {
-    card1: Statistics?.activeTerminals,
-    card2: Statistics?.inactiveTerminals,
-    card3: Statistics?.defectiveTerminals,
-    card4: Statistics?.unassignedTerminals,
-  }
-  const labels = {
-    card1: 'Active Terminals',
-    card2: 'Inactive Terminals',
-    card3: 'Defective Terminals',
-    card4: 'Unassigned Terminals',
-  }
-  const requestLabels = {
-    card1: 'All Terminal Requests',
-    card2: 'Rejected Terminal Requests',
-    card3: 'Pending Terminal Requests',
-    card4: 'Approved Terminal Requests',
-  }
-  const icons = {
-    card1: ActiveTerminalsIcon,
-    card2: InactiveTerminalsIcon,
-    card3: DefectiveTerminalsIcon,
-    card4: UnassignedTerminalsIcon,
-  }
-  const requestIcons = {
-    card1: ActiveTerminalsIcon,
-    card2: InactiveTerminalsIcon,
-    card3: PendingTerminalsIcon,
-    card4: UnassignedTerminalsIcon,
-  }
   const toggle = () => {
     setIsShown(!isShown)
   }
   const handleChange =
     (name: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setAddValues({ ...addValues, [name]: e.target.value.trim() })
-    }
+      (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setAddValues({ ...addValues, [name]: e.target.value.trim() })
+      }
   return (
     <>
       <Modal
@@ -336,7 +306,15 @@ const TransactionContainer = () => {
             placeholder: 'Search',
           },
           selects: [
-            { placeholder: 'models', values: [], value: '' },
+            {
+              searchQuery: 'defective',
+              placeholder: 'Health Status',
+              values: [
+                { label: 'Faulty', value: true },
+                { label: 'Not Faulty', value: false },
+              ],
+              value: '',
+            },
             {
               searchQuery: 'active',
               placeholder: 'Status',
@@ -361,40 +339,30 @@ const TransactionContainer = () => {
           isFetchingExistingTerrminals || isFetchingTerrminalsRequests
         }
       >
-        <Tabs activeTab={'Existing Terminals'}>
-          <Tabs.TabLinks>
-            <Tabs.Tab label="Existing Terminals">Existing Terminals</Tabs.Tab>
-            <Tabs.Tab label="Terminal Requests">Terminal Requests</Tabs.Tab>
-          </Tabs.TabLinks>
-          <div>
-            <Tabs.Panel label="Existing Terminals">
-              <CardWidget
-                statistics={statistics}
-                loading={loading}
-                labels={labels}
-                icons={icons}
-              />
-              <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron>
-              <Pagination
-                data={existingTerrminalsData}
-                setPageNumber={setValues}
-              />
-            </Tabs.Panel>
-            <Tabs.Panel label="Terminal Requests">
-              <CardWidget
-                statistics={requestStatistics}
-                loading={loading}
-                labels={requestLabels}
-                icons={requestIcons}
-              />
-              <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron>
-              <Pagination
-                data={terrminalsRequestsData}
-                setPageNumber={setValues}
-              />
-            </Tabs.Panel>
-          </div>
-        </Tabs>
+        <TabsPage.Tabs
+          hideStatus
+          color={Color.alerzoBlack}
+          tabs={TERMINALTABS}
+          currentValue={found?.value || 'existing'}
+        />
+        {queryParam === "requests" ?
+          <>
+            <CardWidget />
+            <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron><Pagination
+              data={terrminalsRequestsData}
+              setPageNumber={setValues} />
+          </>
+          : <>
+            <CardWidget
+              statistics={statistics}
+              loading={loading}
+              labels={terminalLabels}
+              icons={terminalIcons} />
+            <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron><Pagination
+              data={existingTerrminalsData}
+              setPageNumber={setValues} />
+          </>}
+      
       </Container>
     </>
   )
