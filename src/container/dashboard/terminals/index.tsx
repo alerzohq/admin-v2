@@ -16,7 +16,7 @@ import {
   getTerminalsRequestsData,
 } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
 import { TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
@@ -36,7 +36,11 @@ import { AxiosResponse, AxiosError } from 'axios'
 import { axiosInstance } from '../../../configs/axios-instance'
 import toast from 'react-hot-toast'
 import { Edit, TerminalBulkAdd, Upload } from '../../../assets/icons/terminals'
-import { terminalIcons, terminalLabels, TERMINALTABS } from '../../../data/terminal-data'
+import {
+  terminalIcons,
+  terminalLabels,
+  TERMINALTABS,
+} from '../../../data/terminal-data'
 
 const TransactionContainer = () => {
   const search = useLocation().search
@@ -51,6 +55,8 @@ const TransactionContainer = () => {
     serialNumber: '',
     specification: '',
   })
+  const queryClient = useQueryClient()
+
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -63,6 +69,8 @@ const TransactionContainer = () => {
     {
       onSuccess: () => {
         toast.success('Terminal add successfully')
+        queryClient.invalidateQueries('terminal-stats')
+        queryClient.invalidateQueries('terminals')
         setAddMethod('')
         setAddValues({ serialNumber: '', specification: '' })
       },
@@ -163,9 +171,9 @@ const TransactionContainer = () => {
   }
   const handleChange =
     (name: string) =>
-      (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setAddValues({ ...addValues, [name]: e.target.value.trim() })
-      }
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      setAddValues({ ...addValues, [name]: e.target.value.trim() })
+    }
   return (
     <>
       <Modal
@@ -345,24 +353,30 @@ const TransactionContainer = () => {
           tabs={TERMINALTABS}
           currentValue={found?.value || 'existing'}
         />
-        {queryParam === "requests" ?
+        {queryParam === 'requests' ? (
           <>
             <CardWidget />
-            <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron><Pagination
+            <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron>
+            <Pagination
               data={terrminalsRequestsData}
-              setPageNumber={setValues} />
+              setPageNumber={setValues}
+            />
           </>
-          : <>
+        ) : (
+          <>
             <CardWidget
               statistics={statistics}
               loading={loading}
               labels={terminalLabels}
-              icons={terminalIcons} />
-            <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron><Pagination
+              icons={terminalIcons}
+            />
+            <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron>
+            <Pagination
               data={existingTerrminalsData}
-              setPageNumber={setValues} />
-          </>}
-      
+              setPageNumber={setValues}
+            />
+          </>
+        )}
       </Container>
     </>
   )
