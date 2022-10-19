@@ -44,7 +44,7 @@ export const transformData = ({ item, name }: props) => {
   if (item && name === 'products') {
     const { displayName, fallbackBillerSlug, billerSlug } = item
 
-    return { name: displayName, biller: billerSlug, fallbackBillerSlug,}
+    return { name: displayName, biller: billerSlug, fallbackBillerSlug }
   }
   if (item && name === 'product-billers') {
     const { displayName, commission, createdAt } = item

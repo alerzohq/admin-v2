@@ -66,36 +66,37 @@ const ReassignTerminalWidget = ({
       </Text>
       <SelectInput
         placeholder="Enter to search for merchant"
-        onChange={(e) => setValue({ businessId: e?.value, serialNumber: data?.serial_number })}
+        onChange={(e) =>
+          setValue({ businessId: e?.value, serialNumber: data?.serial_number })
+        }
         value={value?.businessId}
         fullWidth
         options={
           loadingOptions
             ? [
-              {
-                label: 'Loading...',
-                options: [{ label: '', value: '' }],
-              },
-            ]
+                {
+                  label: 'Loading...',
+                  options: [{ label: '', value: '' }],
+                },
+              ]
             : [
-              {
-                label: 'Enter to search for merchant',
-                options: mappedMerchants || [{ label: '', value: '' }],
-              },
-            ]
+                {
+                  label: 'Enter to search for merchant',
+                  options: mappedMerchants || [{ label: '', value: '' }],
+                },
+              ]
         }
       />
-      {triggerSubmit &&
-        !value?.businessId && (
-          <Text
-            padding="8px"
-            as={'small'}
-            weight={'500'}
-            color={Color.alerzoDanger}
-          >
-            Merchant is required*
-          </Text>
-        )}
+      {triggerSubmit && !value?.businessId && (
+        <Text
+          padding="8px"
+          as={'small'}
+          weight={'500'}
+          color={Color.alerzoDanger}
+        >
+          Merchant is required*
+        </Text>
+      )}
       {data?.user_id !== null && (
         <>
           <Text
@@ -121,17 +122,16 @@ const ReassignTerminalWidget = ({
           ></TextArea>
         </>
       )}
-      {triggerSubmit && data?.user_id &&
-        !value.reassignmentReason && (
-          <Text
-            padding="8px"
-            as={'small'}
-            weight={'500'}
-            color={Color.alerzoDanger}
-          >
-            Reason is required*
-          </Text>
-        )}
+      {triggerSubmit && data?.user_id && !value.reassignmentReason && (
+        <Text
+          padding="8px"
+          as={'small'}
+          weight={'500'}
+          color={Color.alerzoDanger}
+        >
+          Reason is required*
+        </Text>
+      )}
     </Modal>
   )
 }

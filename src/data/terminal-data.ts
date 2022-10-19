@@ -1,4 +1,9 @@
-import { ActiveTerminalsIcon, DefectiveTerminalsIcon, InactiveTerminalsIcon, UnassignedTerminalsIcon } from '../assets/icons'
+import {
+  ActiveTerminalsIcon,
+  DefectiveTerminalsIcon,
+  InactiveTerminalsIcon,
+  UnassignedTerminalsIcon,
+} from '../assets/icons'
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
@@ -76,9 +81,7 @@ export const terminalHelper = (data: any) => {
       data: {
         tid: data?.tid,
         serialNumber: data?.serial_number,
-        status: data?.active
-            ? 'Enabled'
-            : 'Disabled',
+        status: data?.active ? 'Enabled' : 'Disabled',
         variant: data?.model,
         updatedAt: data?.updated_at
           ? formatDate(data?.updated_at, 'YYYY-MM-DD HH:mm:ss')

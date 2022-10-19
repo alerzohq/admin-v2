@@ -17,8 +17,9 @@ const TerminalDetails = ({ data }: any) => {
   const queryClient = useQueryClient()
   const [enabled, setIsEnabled] = useState<boolean>(false)
   const [assigned, setIsAssigned] = useState<boolean>(false)
-  const pathUrl = data?.user_id !== null ? 'terminals/reassign' : 'terminals/assign';
-  const enablePath = data?.active ? 'deactivate' : 'activate';
+  const pathUrl =
+    data?.user_id !== null ? 'terminals/reassign' : 'terminals/assign'
+  const enablePath = data?.active ? 'deactivate' : 'activate'
   const buttonEnabledText = data?.active
     ? 'Disable Terminal'
     : 'Enable Terminal'
@@ -38,20 +39,27 @@ const TerminalDetails = ({ data }: any) => {
   const getMerchants = () => {
     return getResource('business-users')
   }
-  const useAssignMutation = () => useMutation(
-    (payload: { [key: string]: any }) => postRequest({ pathUrl, payload, methodType: 'post' }),
-  );
-  const useEnableTermMutation = () => useMutation(
-    (payload: { [key: string]: any }) => postRequest({ pathUrl: `terminals/${data?.id}/${enablePath}`, payload, methodType: 'patch' }),
-  );
+  const useAssignMutation = () =>
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({ pathUrl, payload, methodType: 'post' })
+    )
+  const useEnableTermMutation = () =>
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({
+        pathUrl: `terminals/${data?.id}/${enablePath}`,
+        payload,
+        methodType: 'patch',
+      })
+    )
 
   const {
     isLoading,
     data: merchants,
     isFetching,
   } = useQuery('merchants', getMerchants)
-  const { isLoading: loadingEnable, mutate: enableTerminal } = useEnableTermMutation();
-  const { isLoading: loadingAssign, mutate } = useAssignMutation();
+  const { isLoading: loadingEnable, mutate: enableTerminal } =
+    useEnableTermMutation()
+  const { isLoading: loadingAssign, mutate } = useAssignMutation()
 
   return (
     <TerminalDetailWrapper>
@@ -63,33 +71,43 @@ const TerminalDetails = ({ data }: any) => {
         loading={loadingAssign}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
-          if (data?.user_id !== null && value?.businessId !== undefined && value?.reassignmentReason !== undefined) {
+          if (
+            data?.user_id !== null &&
+            value?.businessId !== undefined &&
+            value?.reassignmentReason !== undefined
+          ) {
             setIsTriggerSubmit(false)
-            return mutate({ ...value }, {
-              onSuccess: () => {
-                toggle('assign')
-                toast.success(`Terminal reassigned successfully`);
-                queryClient.invalidateQueries('terminal')
-              },
-              onError: (err: any) => {
-                toggle('assign')
-                toast.error(`${err?.response?.data?.message}`)
-              },
-            })
+            return mutate(
+              { ...value },
+              {
+                onSuccess: () => {
+                  toggle('assign')
+                  toast.success(`Terminal reassigned successfully`)
+                  queryClient.invalidateQueries('terminal')
+                },
+                onError: (err: any) => {
+                  toggle('assign')
+                  toast.error(`${err?.response?.data?.message}`)
+                },
+              }
+            )
           }
           if (data?.user_id === null && value?.businessId !== undefined) {
             setIsTriggerSubmit(false)
-            return mutate({ ...value }, {
-              onSuccess: () => {
-                toggle('assign')
-                toast.success(`Terminal assigned successfully`);
-                queryClient.invalidateQueries('terminal')
-              },
-              onError: (err: any) => {
-                toggle('assign')
-                toast.error(`${err?.response?.data?.message}`)
-              },
-            })
+            return mutate(
+              { ...value },
+              {
+                onSuccess: () => {
+                  toggle('assign')
+                  toast.success(`Terminal assigned successfully`)
+                  queryClient.invalidateQueries('terminal')
+                },
+                onError: (err: any) => {
+                  toggle('assign')
+                  toast.error(`${err?.response?.data?.message}`)
+                },
+              }
+            )
           }
         }}
         merchants={merchants?.data}
@@ -114,21 +132,28 @@ const TerminalDetails = ({ data }: any) => {
           width="14%"
           onClick={async () => {
             setIsTriggerSubmit(true)
-            enableTerminal({}, {
-              onSuccess: () => {
-                toast.success(`Terminal updated successfully`);
-                queryClient.invalidateQueries('terminal')
-              },
-              onError: (error: any) => {
-                toast.error(`${error?.response?.data?.message}`)
-              },
-            })
+            enableTerminal(
+              {},
+              {
+                onSuccess: () => {
+                  toast.success(`Terminal updated successfully`)
+                  queryClient.invalidateQueries('terminal')
+                },
+                onError: (error: any) => {
+                  toast.error(`${error?.response?.data?.message}`)
+                },
+              }
+            )
           }}
           color={Color.alerzoBlueTint}
           borderColor={Color.alerzoBlueTint}
           variant="transparent"
         >
-          {loadingEnable ? <Loader color={Color.alerzoBlue} /> : buttonEnabledText}
+          {loadingEnable ? (
+            <Loader color={Color.alerzoBlue} />
+          ) : (
+            buttonEnabledText
+          )}
         </Button>
         <Button
           height="3.2rem"

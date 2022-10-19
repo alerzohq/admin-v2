@@ -24,7 +24,7 @@ const ProductsContainer = () => {
   const [options, setOptions] = useState([
     { label: '', options: { label: '', value: '' } },
   ])
- 
+
   const stateValue: any = location.state
 
   const getProducts = () => {
@@ -47,13 +47,17 @@ const ProductsContainer = () => {
     getProducts
   )
   const [dataArr, setDataArr] = useState(data?.data)
-  useEffect(()=>{
-  if(values?.query){
-    const dataVal = data?.data?.filter((val:any)=>val?.displayName === values?.query || val?.billerSlug === values?.query);
-    setDataArr(dataVal)
-  }else{
-    setDataArr(data?.data)
-  }
+  useEffect(() => {
+    if (values?.query) {
+      const dataVal = data?.data?.filter(
+        (val: any) =>
+          val?.displayName === values?.query ||
+          val?.billerSlug === values?.query
+      )
+      setDataArr(dataVal)
+    } else {
+      setDataArr(data?.data)
+    }
   }, [values, data])
   const {
     isLoading: loadingBillers,
@@ -144,7 +148,7 @@ const ProductsContainer = () => {
     >
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
         <Filter
-         setFilterValues={setValues}
+          setFilterValues={setValues}
           showFilters={{
             search: {
               placeholder: 'Search',
