@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   FallBack,
   Form,
@@ -18,7 +18,6 @@ import {
 import CardWidget from '../widget/card'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import { TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
 import { terminalsTableMapper } from './tableConfig'
 import { useLocation } from 'react-router-dom'
@@ -26,8 +25,6 @@ import { terminalHeader } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import {
   TerminalManualAdd,
-  UnassignedTerminalsIcon,
-  PendingTerminalsIcon,
 } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Modal from '../../../components/modal'
@@ -47,7 +44,7 @@ const TransactionContainer = () => {
   const queryParam = new URLSearchParams(search).get('status')
   const found = TERMINALTABS.find((element) => element.value === queryParam)
   const [values, setValues] = useState(filterValue)
-  const { setActiveTab } = React.useContext(TabsContext)
+  // const { setActiveTab } = React.useContext(TabsContext)
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
@@ -77,9 +74,9 @@ const TransactionContainer = () => {
     }
   )
 
-  useEffect(() => {
-    setActiveTab && setActiveTab('Existing Terminals')
-  }, [])
+  // useEffect(() => {
+  //   setActiveTab && setActiveTab('Existing Terminals')
+  // }, [])
 
   const getTerminalsSpecs = () => {
     return getResource(`terminal/specifications`)
