@@ -49,7 +49,7 @@ const DigitalBankContainer = () => {
       <FallBack
         title={
           Object.values(values).length >= 3
-            ? 'You have no transactions for this filter'
+            ? 'User cannot be found'
             : 'You have no transactions yet. '
         }
       />
