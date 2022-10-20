@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FilterProps } from './type'
 import DateRange from '../date-range'
 import Stack from '../stack'
@@ -26,7 +26,9 @@ const Filter = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
-
+  const ref = useRef<HTMLDivElement>(null);
+  const rectVal = ref?.current?.getBoundingClientRect()?.left;
+  const position = (rectVal && rectVal >= 600) && '20px';
   return (
     <FilterWrapper>
       <Stack justifyContent={'space-between'} direction={'row'}>
@@ -47,10 +49,14 @@ const Filter = ({
             width="auto"
           >
             {showFilters?.date && (
-              <DateRange
-                isTop
-                filterDate={setFilterValues && setFilterValues}
-              />
+              <div ref={ref}>
+                <DateRange
+                  isTop
+                  filterDate={setFilterValues && setFilterValues}
+                  ref={ref}
+                  right={position}
+                />
+              </div>
             )}
             {showFilters?.selects &&
               showFilters?.selects?.length >= 1 &&
