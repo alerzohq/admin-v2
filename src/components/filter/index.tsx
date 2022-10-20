@@ -26,9 +26,9 @@ const Filter = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
-  const ref = useRef<HTMLDivElement>(null);
-  const rectVal = ref?.current?.getBoundingClientRect()?.left;
-  const position = (rectVal && rectVal >= 600) && '20px';
+  const ref = useRef<HTMLDivElement>(null)
+  const rectVal = ref?.current?.getBoundingClientRect()?.left
+  const position = rectVal && rectVal >= 600 && '20px'
   return (
     <FilterWrapper>
       <Stack justifyContent={'space-between'} direction={'row'}>

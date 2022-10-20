@@ -28,9 +28,9 @@ const TopBar = ({
   })
 
   const { search } = values
-  const ref = useRef<HTMLDivElement>(null);
-  const rectVal = ref?.current?.getBoundingClientRect()?.left;
-  const position = (rectVal && rectVal >= 600) && '20px';
+  const ref = useRef<HTMLDivElement>(null)
+  const rectVal = ref?.current?.getBoundingClientRect()?.left
+  const position = rectVal && rectVal >= 600 && '20px'
   useEffect(() => {
     if (showFilters && status !== null) {
       return setFilterValues((prev: any) => ({ ...prev, status }))
@@ -73,7 +73,11 @@ const TopBar = ({
                 placeholder={showFilters.search.placeholder}
               />
             )}
-            {showFilters?.date && <div ref={ref}><DateRange right={position} filterDate={setFilterValues} /></div>}
+            {showFilters?.date && (
+              <div ref={ref}>
+                <DateRange right={position} filterDate={setFilterValues} />
+              </div>
+            )}
             {showFilters?.selects?.length >= 1 &&
               showFilters.selects.map((select, i) => (
                 <SelectInput
