@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -17,7 +17,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
     return getResource(`transactions?userId=${userId}`)
   }
 
-  const [values, setValues] = useState(filterValue)
+  const [, setValues] = useState(filterValue)
   const { isLoading, isError, data } = useQuery(
     'user-transaction-history',
     getTransactionsHistory
@@ -46,7 +46,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
 
   return (
     <>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
         <Filter
           showFilters={{
             search: {
