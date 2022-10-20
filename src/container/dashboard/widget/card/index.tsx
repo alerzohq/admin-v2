@@ -12,46 +12,62 @@ import {
 import { CardWidgetWrapper } from '../styles/widget.styles'
 import CardWidgetBox from './card.widget'
 
-const CardWidget = ({ stats, loading }: StatsProps) => {
-  console.log(stats, 'tics')
+const CardWidget = ({
+  stats,
+  labels,
+  icons,
+  statistics,
+  loading,
+}: StatsProps) => {
   return (
     <CardWidgetWrapper>
       <CardWidgetBox
-        Icon={DepositIcon}
-        text={' Total Amount Deposited'}
-        value={`N${
-          stats?.totalAmountDeposited
-            ? amountConverter(stats?.totalAmountDeposited)
-            : '0'
-        }`}
+        Icon={icons?.card1 || DepositIcon}
+        text={labels?.card1 || ' Total Amount Deposited'}
+        value={
+          stats
+            ? `N${
+                stats?.totalAmountDeposited
+                  ? amountConverter(stats?.totalAmountDeposited)
+                  : '0'
+              }`
+            : statistics?.card1 || 0
+        }
         loading={loading}
       />
       <CardWidgetBox
-        Icon={WithDrawIcon}
-        text={' Total Amount Withdrawn'}
-        value={`N${
-          stats?.totalAmountWithdrawn
-            ? amountConverter(stats?.totalAmountWithdrawn)
-            : '0'
-        }`}
+        Icon={icons?.card2 || WithDrawIcon}
+        text={labels?.card2 || ' Total Amount Withdrawn'}
+        value={
+          statistics?.card2 ||
+          `N${
+            stats?.totalAmountWithdrawn
+              ? amountConverter(stats?.totalAmountWithdrawn)
+              : '0'
+          }`
+        }
         loading={loading}
       />
       <CardWidgetBox
-        Icon={TransCountIcon}
-        text={'Total Number of Transactions'}
-        value={`${
-          stats?.totalTransactions
-            ? numberWithCommas(stats?.totalTransactions)
-            : '0'
-        }`}
+        Icon={icons?.card3 || TransCountIcon}
+        text={labels?.card3 || 'Total Number of Transactions'}
+        value={
+          statistics?.card3 ||
+          `${
+            stats?.totalTransactions
+              ? numberWithCommas(stats?.totalTransactions)
+              : '0'
+          }`
+        }
         loading={loading}
       />
       <CardWidgetBox
-        Icon={UsersSolidIcon}
-        text={' Total Number of Users'}
-        value={`${
-          stats?.totalUsers ? numberWithCommas(stats?.totalUsers) : '0'
-        }`}
+        Icon={icons?.card4 || UsersSolidIcon}
+        text={labels?.card4 || ' Total Number of Users'}
+        value={
+          statistics?.card4 ||
+          `${stats?.totalUsers ? numberWithCommas(stats?.totalUsers) : '0'}`
+        }
         loading={loading}
       />
     </CardWidgetWrapper>

@@ -11,6 +11,12 @@ export const resolveTableColor = (status) => {
       bgColor: '',
     }
   }
+  if (status?.toLowerCase() === 'unassigned') {
+    return {
+      textColor: Color.alerzoPureBlack,
+      bgColor: Color.alerzoBlackishBlue,
+    }
+  }
   if (
     status?.toLowerCase() === 'not verified' ||
     status?.toLowerCase() === 'not set' ||
@@ -23,7 +29,8 @@ export const resolveTableColor = (status) => {
   }
   if (
     status?.toLowerCase() === 'successful' ||
-    status?.toLowerCase() === 'active'
+    status?.toLowerCase() === 'active' ||
+    status?.toLowerCase() === 'enabled'
   ) {
     return {
       textColor: Color.alerzoTableSuccess,

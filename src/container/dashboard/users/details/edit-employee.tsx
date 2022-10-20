@@ -65,7 +65,7 @@ const EditEmployees = ({ data }: any) => {
           >
             Cancel
           </Button>
-          <Button onClick={() => console.log('sss')}>Save changes</Button>
+          <Button onClick={() => {}}>Save changes</Button>
         </Stack>
       ) : (
         <Stack gap="1rem" width="35%" direction="row" pt="2rem">
@@ -73,7 +73,7 @@ const EditEmployees = ({ data }: any) => {
             borderColor={Color.alerzoBlue}
             color={Color.alerzoBlue}
             variant="transparent"
-            onClick={() => console.log('sss')}
+            onClick={() => {}}
           >
             Reset Password
           </Button>

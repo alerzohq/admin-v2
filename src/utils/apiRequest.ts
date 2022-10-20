@@ -1,18 +1,29 @@
 import { filterProps } from '../@types'
-import { axiosInstance } from '../configs/axios-instance'
-import { cleanPayload } from '../helper/api-helper'
+import {
+  axiosInstance,
+  axiosInstanceWithoutToken,
+} from '../configs/axios-instance'
 import queryString from 'query-string'
-
-export const getResource = async (pathUrl: string) => {
-  const { data } = await axiosInstance.get(`/${pathUrl}`)
+type Methods = 'put' | 'post' | 'patch' | 'delete'
+type useMutationProps = {
+  pathUrl: string
+  methodType: Methods
+  payload: { [key: string]: any }
+}
+export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
+  const { data } = withoutToken
+    ? await axiosInstanceWithoutToken.get(`/${pathUrl}`)
+    : await axiosInstance.get(`/${pathUrl}`)
   return data
 }
 export const getNewFilterResource = async (
   pathUrl: string,
   filterValue: filterProps
 ) => {
-  const payload = cleanPayload(filterValue)
-  const filterQuery = queryString.stringify(payload)
+  const filterQuery = queryString.stringify(filterValue, {
+    skipNull: true,
+    skipEmptyString: true,
+  })
   const { data } = await axiosInstance.get(`/${pathUrl}?${filterQuery}`)
   return data
 }
@@ -46,6 +57,11 @@ export const getTerminalsRequestsData = async (
   return data
 }
 
-// ${
-//   filterValue?.channel !== '' ? `&channel=${filterValue?.channel}` : ''
-// }
+export const postRequest = async ({
+  pathUrl,
+  payload,
+  methodType,
+}: useMutationProps) => {
+  const { data } = await axiosInstance[methodType](pathUrl, payload)
+  return data
+}

@@ -45,7 +45,15 @@ const DigitalBankContainer = () => {
       <FallBack error title={'Failed to load transactions. '} />
     )
   } else if (data?.data?.length < 1) {
-    digitalBankComponent = <FallBack title={'You have no transactions yet. '} />
+    digitalBankComponent = (
+      <FallBack
+        title={
+          Object.values(values).length >= 3
+            ? 'User cannot be found'
+            : 'You have no transactions yet. '
+        }
+      />
+    )
   } else {
     digitalBankComponent = (
       <TableWrapper>
@@ -67,11 +75,15 @@ const DigitalBankContainer = () => {
         },
         date: true,
         selects: [
-          { placeholder: 'All Platforms', values: [], value: '' },
-          { placeholder: 'Status', values: [], value: '' },
-        ],
-        buttons: [
-          { label: 'Download CSV', onClick: () => console.log('first') },
+          {
+            searchQuery: 'disabled',
+            placeholder: 'Status',
+            values: [
+              { label: 'Active', value: false },
+              { label: 'Inactive', value: true },
+            ],
+            value: '',
+          },
         ],
       }}
       title="Digital Bank"

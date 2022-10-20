@@ -1,4 +1,5 @@
 import React from 'react'
+import { options } from '../../data/select-data'
 import {
   FormContainer,
   Group,
@@ -8,8 +9,9 @@ import {
   Error,
   Footer,
   Input,
+  Select,
 } from './styles/form.style'
-import { FormProps, InputProps } from './type'
+import { FormProps, InputProps, SelectProps } from './type'
 
 const Form = ({ children, ...restProps }: FormProps) => {
   return <FormContainer {...restProps}>{children}</FormContainer>
@@ -51,4 +53,22 @@ Form.Footer = function FormFooter({ children, ...restProps }: FormProps) {
 
 Form.Tags = function FormTags({ children, ...restProps }: FormProps) {
   return <Tags {...restProps}>{children}</Tags>
+}
+Form.Select = function FormSelect({
+  children,
+  onChange,
+  options,
+  ...restProps
+}: SelectProps) {
+  return (
+    <Select>
+      <select onChange={onChange} {...restProps}>
+        {options?.map((option) => (
+          <option disabled={option?.disabled} value={option?.value}>
+            {option?.label}
+          </option>
+        ))}
+      </select>
+    </Select>
+  )
 }

@@ -10,6 +10,7 @@ import {
 } from '../../../components/table/styles/table.styles'
 import CustomTableData from '../../../components/table/table-data/custom-table-data'
 import TableHeader from '../../../components/table/table-headers'
+import { filterValue } from '../../../data/filter-data'
 import { productsHeaderList } from '../../../data/table-headers'
 import { useMutation } from '../../../hooks'
 import { getResource } from '../../../utils/apiRequest'
@@ -17,11 +18,13 @@ import { mapBillers } from '../../../utils/formatValue'
 
 const ProductsContainer = () => {
   const [slug, setSlug] = useState()
+  const [values, setValues] = useState(filterValue)
   const [newBiller, setNewBiller] = useState<string>()
   const location = useLocation()
   const [options, setOptions] = useState([
     { label: '', options: { label: '', value: '' } },
   ])
+
   const stateValue: any = location.state
 
   const getProducts = () => {
@@ -43,6 +46,19 @@ const ProductsContainer = () => {
     'products',
     getProducts
   )
+  const [dataArr, setDataArr] = useState(data?.data)
+  useEffect(() => {
+    if (values?.query) {
+      const dataVal = data?.data?.filter(
+        (val: any) =>
+          val?.displayName === values?.query ||
+          val?.billerSlug === values?.query
+      )
+      setDataArr(dataVal)
+    } else {
+      setDataArr(data?.data)
+    }
+  }, [values, data])
   const {
     isLoading: loadingBillers,
     isRefetching,
@@ -99,8 +115,8 @@ const ProductsContainer = () => {
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
             name="products"
-            selectIndex={2}
-            tableData={data?.data}
+            selectIndex={3}
+            tableData={dataArr}
             handleSelectChange={setNewBiller}
             options={
               loadingBillers || isRefetching
@@ -132,6 +148,7 @@ const ProductsContainer = () => {
     >
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
         <Filter
+          setFilterValues={setValues}
           showFilters={{
             search: {
               placeholder: 'Search',

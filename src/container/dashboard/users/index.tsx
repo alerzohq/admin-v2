@@ -14,6 +14,7 @@ const UsersContainer = () => {
   let queryParam = new URLSearchParams(search).get('status')
   const data: any = location.state
   const found = TABS.find((element) => element.value === queryParam)
+
   if (!queryParam) queryParam = 'employees'
 
   const renderSwitch = () => {

@@ -5,7 +5,7 @@ type Props = {
   hideOnMobile?: boolean
 }
 
-export const AuthContainer = styled.div`
+export const AuthContainer = styled.div<{ p?: string }>`
   display: flex;
   width: 100%;
   min-height: 100vh;
@@ -13,7 +13,7 @@ export const AuthContainer = styled.div`
     margin: 2rem 2rem 0 2rem;
   }
   #login {
-    padding: 6rem 0 0 0;
+    padding: ${({ p }) => p ?? '6rem 0 0 0'};
     @media (max-width: 992px) {
       padding: 2rem 0 0 0;
     }

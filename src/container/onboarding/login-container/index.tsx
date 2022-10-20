@@ -74,7 +74,7 @@ const LoginContainer = () => {
             color={Color.alerzoDarkGray}
             size={'14px'}
           >
-            {' Enter email address and password to access admin dashboard'}
+            {'Enter email address and password to access admin dashboard'}
           </Text>
           <Form.Control pb={'1rem'}>
             <Form.Label>Email address</Form.Label>
@@ -83,6 +83,7 @@ const LoginContainer = () => {
               type="text"
               onChange={handleChange('email')}
               placeholder="Enter your email address"
+              inputPadding="0 2.5rem"
             />
             {isTriggerSubmit && (
               <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
@@ -102,6 +103,7 @@ const LoginContainer = () => {
               type="password"
               onChange={handleChange('password')}
               placeholder="Enter your password"
+              inputPadding="0 2.5rem"
             />
             {isTriggerSubmit && (
               <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>

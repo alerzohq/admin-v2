@@ -67,9 +67,6 @@ const Members = ({ userId }: { userId: string }) => {
                 onChange: () => {},
               },
             ],
-            buttons: [
-              { label: 'Download CSV', onClick: () => console.log('first') },
-            ],
           }}
         />
         {component}

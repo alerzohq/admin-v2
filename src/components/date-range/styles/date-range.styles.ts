@@ -15,7 +15,7 @@ export const DateRangeWrapper = styled.div`
     border-radius: 10px;
     height: 45px;
     padding: 0 1rem;
-    width: 220px;
+    width: 250px;
     font-family: 'Gilmer';
     font-style: normal;
     font-size: 14px;

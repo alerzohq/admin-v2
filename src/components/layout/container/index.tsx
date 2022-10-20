@@ -12,6 +12,7 @@ const Container: React.FC<ContainerProps> = ({
   routePath,
   children,
   whiteSpace,
+
   noScroll,
   ...restProps
 }) => {
@@ -20,7 +21,6 @@ const Container: React.FC<ContainerProps> = ({
       window.scrollTo(0, 0)
     }
   }, [isFetching, noScroll])
-
   return (
     <>
       <TopBar

@@ -24,6 +24,7 @@ import DigitalBank from '../pages/dashboard/digitalBank'
 import DigitalBankDetails from '../pages/dashboard/digitalBank/details'
 import Products from '../pages/dashboard/products'
 import ProductDetails from '../pages/dashboard/products/details'
+import RegisterInvitation from '../pages/invitation'
 
 function App() {
   const { state } = useAppContext()
@@ -40,7 +41,10 @@ function App() {
           <Route element={<IsUserRedirect user={user} />}>
             <Route path={Path.VERIFY_OTP} element={<Verification />} />
           </Route>
-
+          <Route
+            path={Path.INVITATIONREGISTER}
+            element={<RegisterInvitation />}
+          />
           {/* <Route
             path="dashboard"
             element={

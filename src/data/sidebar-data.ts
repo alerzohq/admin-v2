@@ -6,13 +6,13 @@ import {
   ActiveUserIcon,
   HistoryIcon,
   BusinessIcon,
-  // TerminalIcon,
+  TerminalIcon,
   ActiveHistoryIcon,
   ActiveDashboardIcon,
   ActiveBusinessIcon,
   ProductIcon,
   ActiveProductIcon,
-  // ActiveTerminalIcon,
+  ActiveTerminalIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
 import { Path } from '../constants/route-path'
@@ -66,12 +66,12 @@ export const sideBarData = [
     path: `/${Path.DASHBOARD}/${Path.PRODUCTS}`,
     activeIconColor: Color.alerzoBlue,
   },
-  // {
-  //   id: 6,
-  //   title: 'Terminals',
-  //   InActiveIcon: TerminalIcon,
-  //   ActiveIcon: ActiveTerminalIcon,
-  //   activeIconColor: Color.alerzoBlue,
-  //   path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
-  // },
+  {
+    id: 6,
+    title: 'Terminals',
+    InActiveIcon: TerminalIcon,
+    ActiveIcon: ActiveTerminalIcon,
+    activeIconColor: Color.alerzoBlue,
+    path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
+  },
 ]

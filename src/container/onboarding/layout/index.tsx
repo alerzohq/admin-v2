@@ -10,9 +10,12 @@ import {
 import authImage from '../../../assets/images/svgs/auth-img.svg'
 import { Text } from '../../../components'
 
-const AuthLayout = ({ children }: React.ComponentProps<'div'>) => {
+const AuthLayout = ({
+  children,
+  p,
+}: React.ComponentProps<'div'> & { p?: string }) => {
   return (
-    <AuthContainer>
+    <AuthContainer p={p}>
       <AuthColumn bgColor={Color.alerzoBlue} hideOnMobile>
         <AlerzoLogo className={'logo-svg'} />
         <AuthContent>

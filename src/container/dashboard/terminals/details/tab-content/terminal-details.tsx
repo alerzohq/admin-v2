@@ -1,105 +1,174 @@
 import { useState } from 'react'
 import { Color } from '../../../../../assets/theme'
-import { Button, Form, Text } from '../../../../../components'
-import Modal from '../../../../../components/modal'
-import { TextArea } from '../../../../../components/modal/styles/modal.styles'
+import { Button, Loader } from '../../../../../components'
 import { terminalHelper } from '../../../../../data/terminal-data'
 import DetailsContentWidget from '../../../widget/tabs/tab-content-details'
+import ReassignTerminalWidget from '../../../widget/terminal-modal-content/reassign'
+import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
 import {
   ButtonWrapper,
   TerminalDetailWrapper,
 } from './styles/tab-content.styles'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { getResource, postRequest } from '../../../../../utils/apiRequest'
+import { toast } from 'react-hot-toast'
 
-const TerminalDetails = (data: any) => {
+const TerminalDetails = ({ data }: any) => {
+  const queryClient = useQueryClient()
   const [enabled, setIsEnabled] = useState<boolean>(false)
   const [assigned, setIsAssigned] = useState<boolean>(false)
-  const [value, setValue] = useState({ reason: '' })
-  const toggleEnable = () => setIsEnabled(!enabled)
-  const toggleAssigned = () => setIsAssigned(!assigned)
-  const buttonEnabledText = data?.data?.data?.active
+  const pathUrl =
+    data?.user_id !== null ? 'terminals/reassign' : 'terminals/assign'
+  const enablePath = data?.active ? 'deactivate' : 'activate'
+  const buttonEnabledText = data?.active
     ? 'Disable Terminal'
     : 'Enable Terminal'
-  const enabledSubTitle = data?.data?.data?.active
-    ? 'Disable this terminal'
-    : 'Enable this terminal'
-  const enabledPlaceholder = data?.data?.data?.active
-    ? 'Enter reason for disabling terminal'
-    : 'Enter reason for enabling terminal'
+  const assignBtnText =
+    data?.user_id !== null ? 'Reassign Terminal' : 'Assign Terminal'
+
+  const [value, setValue] = useState<{
+    reassignmentReason?: string
+    serial_number?: string
+    businessId?: string
+  }>({ reassignmentReason: '', businessId: '', serial_number: '' })
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+  const toggle = (type?: 'assign') => {
+    type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
+  }
+
+  const getMerchants = () => {
+    return getResource('business-users')
+  }
+  const useAssignMutation = () =>
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({ pathUrl, payload, methodType: 'post' })
+    )
+  const useEnableTermMutation = () =>
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({
+        pathUrl: `terminals/${data?.id}/${enablePath}`,
+        payload,
+        methodType: 'patch',
+      })
+    )
+
+  const {
+    isLoading,
+    data: merchants,
+    isFetching,
+  } = useQuery('merchants', getMerchants)
+  const { isLoading: loadingEnable, mutate: enableTerminal } =
+    useEnableTermMutation()
+  const { isLoading: loadingAssign, mutate } = useAssignMutation()
+
   return (
     <TerminalDetailWrapper>
-      <Modal
-        subTitle={
-          assigned
-            ? 'Reassign this terminal to a new merchant'
-            : enabledSubTitle
-        }
-        contentPadding="1rem 1rem 2.5rem 1rem"
-        modalHeight="auto"
-        modalWidth="30%"
-        modalPadding="1.2rem"
-        showModal={assigned || enabled}
-        setShowModal={assigned ? toggleAssigned : toggleEnable}
-        buttonText={assigned ? 'Reassign Terminal' : buttonEnabledText}
-        headerText={assigned ? 'Reassign Terminal' : buttonEnabledText}
-      >
-        {assigned && (
-          <>
-            <Text
-              as="p"
-              padding="0"
-              color={Color.alerzoBlack}
-              size="14px"
-              margin="0 0 .5rem 0"
-              align="start"
-            >
-              Select New Merchant
-            </Text>
-            <Form.Input
-              type="text"
-              onChange={() => {}}
-              placeholder="Enter to search for merchant"
-            />
-          </>
-        )}
-        <Text
-          as="p"
-          padding="0"
-          color={Color.alerzoBlack}
-          size="14px"
-          margin="1rem 0 .5rem 0"
-          align="start"
-        >
-          {assigned ? 'Reason for Reassigning' : 'Reason'}
-        </Text>
-        <TextArea
-          textAreaTopMargin="0"
-          placeholder={assigned ? 'Enter message' : enabledPlaceholder}
-          textAreaHeight="190px"
-          value={value.reason}
-          onChange={(e) => setValue({ ...value, reason: e.target.value })}
-        ></TextArea>
-      </Modal>
-      <DetailsContentWidget resolvedData={terminalHelper(data?.data?.[0])!} />
+      <ReassignTerminalWidget
+        data={data}
+        triggerSubmit={isTriggerSubmit}
+        isShown={assigned}
+        loadingOptions={isLoading || isFetching}
+        loading={loadingAssign}
+        handleSubmit={async () => {
+          setIsTriggerSubmit(true)
+          if (
+            data?.user_id !== null &&
+            value?.businessId !== undefined &&
+            value?.reassignmentReason !== undefined
+          ) {
+            setIsTriggerSubmit(false)
+            return mutate(
+              { ...value },
+              {
+                onSuccess: () => {
+                  toggle('assign')
+                  toast.success(`Terminal reassigned successfully`)
+                  queryClient.invalidateQueries('terminal')
+                },
+                onError: (err: any) => {
+                  toggle('assign')
+                  toast.error(`${err?.response?.data?.message}`)
+                },
+              }
+            )
+          }
+          if (data?.user_id === null && value?.businessId !== undefined) {
+            setIsTriggerSubmit(false)
+            return mutate(
+              { ...value },
+              {
+                onSuccess: () => {
+                  toggle('assign')
+                  toast.success(`Terminal assigned successfully`)
+                  queryClient.invalidateQueries('terminal')
+                },
+                onError: (err: any) => {
+                  toggle('assign')
+                  toast.error(`${err?.response?.data?.message}`)
+                },
+              }
+            )
+          }
+        }}
+        merchants={merchants?.data}
+        toggleModal={() => {
+          setIsTriggerSubmit(false)
+          setValue({
+            reassignmentReason: '',
+            serial_number: '',
+            businessId: '',
+          })
+          toggle('assign')
+        }}
+        value={value}
+        setValue={setValue}
+      />
+      <DetailsContentWidget resolvedData={terminalHelper(data)!} />
       <ButtonWrapper>
         <Button
           height="3.2rem"
           radius="10px"
           borderSize="1px"
           width="14%"
-          onClick={toggleEnable}
+          onClick={async () => {
+            setIsTriggerSubmit(true)
+            enableTerminal(
+              {},
+              {
+                onSuccess: () => {
+                  toast.success(`Terminal updated successfully`)
+                  queryClient.invalidateQueries('terminal')
+                },
+                onError: (error: any) => {
+                  toast.error(`${error?.response?.data?.message}`)
+                },
+              }
+            )
+          }}
           color={Color.alerzoBlueTint}
           borderColor={Color.alerzoBlueTint}
           variant="transparent"
         >
-          {buttonEnabledText}
+          {loadingEnable ? (
+            <Loader color={Color.alerzoBlue} />
+          ) : (
+            buttonEnabledText
+          )}
         </Button>
         <Button
           height="3.2rem"
           width="14%"
           radius="10px"
-          onClick={toggleAssigned}
+          onClick={() => {
+            toggle('assign')
+            setValue({
+              reassignmentReason: '',
+              serial_number: '',
+              businessId: '',
+            })
+          }}
         >
-          Reassign Terminal
+          {assignBtnText}
         </Button>
       </ButtonWrapper>
     </TerminalDetailWrapper>

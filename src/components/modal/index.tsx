@@ -25,11 +25,14 @@ const Modal = ({
   setShowModal,
   buttonText,
   subTitle,
+  handleSubmit,
+  icon,
+  withoutFooter,
 }: ModalProps) => {
   return (
     <>
       <BackDrop isShown={showModal} />
-      <ModalWrapper isShown={showModal} onClick={setShowModal}>
+      <ModalWrapper isShown={showModal}>
         <StyledModal
           isShown={showModal}
           modalWidth={modalWidth}
@@ -41,6 +44,7 @@ const Modal = ({
               <CloseIcon onClick={setShowModal} />
             </CloseButton>
             <HeaderText>
+              {icon}
               <Text
                 as="p"
                 padding="0"
@@ -65,19 +69,25 @@ const Modal = ({
             </HeaderText>
           </Header>
           <Content contentPadding={contentPadding}>{children}</Content>
-          <Footer>
-            <Button.Group align="center">
-              <Button
-                width="50%"
-                radius="10px"
-                fontSize="15px"
-                weight="500"
-                onClick={() => {}}
-              >
-                {loading ? <Loader /> : `${buttonText}`}
-              </Button>
-            </Button.Group>
-          </Footer>
+          {!withoutFooter && (
+            <Footer>
+              <Button.Group align="center">
+                <Button
+                  width="50%"
+                  radius="10px"
+                  fontSize="15px"
+                  weight="500"
+                  onClick={handleSubmit ?? setShowModal}
+                >
+                  {loading ? (
+                    <Loader color={Color.alerzoWhite} />
+                  ) : (
+                    `${buttonText}`
+                  )}
+                </Button>
+              </Button.Group>
+            </Footer>
+          )}
         </StyledModal>
       </ModalWrapper>
     </>

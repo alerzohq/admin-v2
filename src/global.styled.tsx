@@ -132,6 +132,17 @@ a {
   padding: 0.5rem;
   text-align: center;
   font-weight: 500;
+  max-width:120px;
+}
+.unassigned{
+  background: #D7E2E9;
+  color:#000000;
+  font-size: .8rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  max-width:120px;
 }
 .pending{
   background: #f1a85a1a;
@@ -140,6 +151,7 @@ a {
   border-radius: 5px;
   padding: 0.5rem;
   font-weight: 500;
+  max-width:120px;
   text-align: center;
 }
 .failed{

@@ -1,4 +1,4 @@
-import { generateCommission } from '../utils/formatValue'
+import { formatDate, generateCommission } from '../utils/formatValue'
 
 type props = {
   item: { [key: string]: any } | null
@@ -42,9 +42,9 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'products') {
-    const { displayName, billerSlug } = item
+    const { displayName, fallbackBillerSlug, billerSlug } = item
 
-    return { name: displayName, biller: billerSlug }
+    return { name: displayName, biller: billerSlug, fallbackBillerSlug }
   }
   if (item && name === 'product-billers') {
     const { displayName, commission, createdAt } = item
@@ -53,5 +53,20 @@ export const transformData = ({ item, name }: props) => {
     const cap = commission?.rate?.cap
     const rates = generateCommission(type, percentage, cap)
     return { displayName, rates, createdAt }
+  }
+  if (item && name === 'existTerminal') {
+    const {
+      serial_number,
+      tid,
+      model,
+      active,
+      created_at,
+      updated_at,
+      user_id,
+    } = item
+    const statusVal =
+      user_id === null ? 'Unassigned' : active ? 'Active' : 'Inactive'
+    const updatedDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
+    return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
 }

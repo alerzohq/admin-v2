@@ -30,9 +30,6 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
 
-  // const paths = '/dashboard/transactions/new'
-  // console.log(paths.includes(pathname))
-
   const {
     state: { user },
     dispatch,

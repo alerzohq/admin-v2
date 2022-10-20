@@ -75,22 +75,16 @@ const BusinessContainer = () => {
             ],
             value: '',
           },
-          {
-            placeholder: 'KYC Level',
-            shouldSetQuery: true,
-            values: [
-              { label: '1', value: '1 ' },
-              { label: '2', value: '2' },
-              { label: '3', value: '3' },
-            ],
-            value: '',
-          },
-        ],
-        buttons: [
-          {
-            label: 'Download CSV',
-            onClick: () => console.log('first'),
-          },
+          // {
+          //   placeholder: 'KYC Level',
+          //   shouldSetQuery: true,
+          //   values: [
+          //     { label: '1', value: '1 ' },
+          //     { label: '2', value: '2' },
+          //     { label: '3', value: '3' },
+          //   ],
+          //   value: '',
+          // },
         ],
       }}
       title="Businesses"
