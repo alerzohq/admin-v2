@@ -23,9 +23,7 @@ import { terminalsTableMapper } from './tableConfig'
 import { useLocation } from 'react-router-dom'
 import { terminalHeader } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
-import {
-  TerminalManualAdd,
-} from '../../../assets/icons'
+import { TerminalManualAdd } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Modal from '../../../components/modal'
 import { TerminalModal, TerminalModalChild } from './terminalmodal.styles'

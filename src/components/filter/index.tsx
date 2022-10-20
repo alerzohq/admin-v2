@@ -6,7 +6,11 @@ import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
 import { FilterInput, FilterItems, FilterWrapper } from './styles/filter.styles'
 
-const Filter = ({ showFilters, setFilterValues, justifyContent }: FilterProps) => {
+const Filter = ({
+  showFilters,
+  setFilterValues,
+  justifyContent,
+}: FilterProps) => {
   const [status] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
@@ -36,9 +40,17 @@ const Filter = ({ showFilters, setFilterValues, justifyContent }: FilterProps) =
               placeholder={showFilters.search.placeholder}
             />
           )}
-          <Stack justifyContent={justifyContent} columnGap="20px" direction={'row'} width="auto">
+          <Stack
+            justifyContent={justifyContent}
+            columnGap="20px"
+            direction={'row'}
+            width="auto"
+          >
             {showFilters?.date && (
-              <DateRange isTop filterDate={setFilterValues && setFilterValues} />
+              <DateRange
+                isTop
+                filterDate={setFilterValues && setFilterValues}
+              />
             )}
             {showFilters?.selects &&
               showFilters?.selects?.length >= 1 &&
@@ -64,7 +76,6 @@ const Filter = ({ showFilters, setFilterValues, justifyContent }: FilterProps) =
                 </button>
               ))}
           </Stack>
-
         </FilterItems>
       </Stack>
     </FilterWrapper>

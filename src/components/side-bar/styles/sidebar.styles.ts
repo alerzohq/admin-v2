@@ -32,7 +32,7 @@ export const Inner = styled.div<sidebarStyleProps>`
   padding: ${({ isCollapsed }) => (isCollapsed ? '2rem 1rem' : '2rem ')};
   height: 100%;
   overflow: auto;
- 
+
   svg {
     cursor: pointer;
     margin: ${({ isCollapsed }) => (isCollapsed ? '0 auto' : '0')};
