@@ -58,8 +58,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
 
   return (
     <>
-      
-       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
         <Filter
           showFilters={{
             search: {
