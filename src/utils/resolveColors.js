@@ -1,6 +1,7 @@
 import { Color } from '../assets/theme'
 
 export const resolveTableColor = (status) => {
+  status = String(status)
   if (
     status?.toLowerCase() === 'verified' ||
     status?.toLowerCase() === 'set' ||
@@ -37,7 +38,8 @@ export const resolveTableColor = (status) => {
     }
   } else if (
     status?.toLowerCase() === 'failed' ||
-    status?.toLowerCase() === 'disabled'
+    status?.toLowerCase() === 'disabled' ||
+    status?.toLowerCase() === 'false'
   ) {
     return {
       textColor: Color.alerzoDanger,

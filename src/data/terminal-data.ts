@@ -1,8 +1,8 @@
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
-  { label: 'Terminal Details', value: 'details', title: 'Terminal Details' },
-  { label: 'Merchant Details', value: 'merchant', title: 'Merchant Details' },
+  { label: 'Terminal Details', value: 'details', title: '' },
+  { label: 'Merchant Details', value: 'merchant', title: '' },
   { label: 'Terminal Status History', value: 'stats-history', title: '' },
   { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
 ]
@@ -32,9 +32,9 @@ export const MERCHANTDETAILSTABLE = [
 export const MERCHANTBUSINESSTABLE = [
   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
   { label: 'Location', value: 'location', columnWidth: 'small' },
-  { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
-  { label: 'Passscode', value: 'passcodeStatus', columnWidth: 'small' },
-  { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
+  // { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
+  // { label: 'Passscode', value: 'passcodeStatus', columnWidth: 'small' },
+  // { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
   { label: 'Business Address', value: 'businessAddress', columnWidth: 'large' },
 ]
 export const MERCHANTCUSTOMERTABLE = [
@@ -100,39 +100,39 @@ export const terminalHelper = (data: any) => {
 }
 
 export const merchantHelper = (data: any) => {
+  console.log({ helper: data })
   return [
     {
       spacing: false,
       header: MERCHANTDETAILSTABLE,
       data: {
-        mid: data?.merchant?.mid,
-        merchantName: data?.merchant?.merchantName,
-        phone: data?.merchant?.phone,
-        status: data?.merchant?.status,
-        updatedAt: data?.updatedAt
-          ? formatDate(data?.updatedAt, 'YYYY-MM-DD HH:mm:ss')
+        mid: data?.business_owner?.id,
+        merchantName: `${data?.business_owner?.first_name} ${data?.business_owner?.last_name}`,
+        phone: data?.business_owner?.phone_number,
+        status: String(data?.business_owner?.status),
+        updatedAt: data?.created_at
+          ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
           : '',
-        email: data?.merchant?.email,
+        email: data?.business_owner?.email,
       },
     },
     {
       spacing: false,
       header: MERCHANTBUSINESSTABLE,
       data: {
-        businessName: data?.merchant?.business?.businessName,
-        location: data?.merchant?.business?.location,
-        pinStatus: data?.merchant?.business?.pin,
-        passcodeStatus: data?.merchant?.business?.passcode,
-        bvnStatus: data?.merchant?.business?.bvn,
-        businessAddress: data?.merchant?.business?.businessName,
+        businessName: data?.name,
+        location: data?.state,
+        pinStatus: data?.business_owner?.business?.pin,
+        bvnStatus: data?.business_owner?.business?.bvn,
+        businessAddress: data?.address,
       },
     },
     {
       spacing: false,
       header: MERCHANTCUSTOMERTABLE,
       data: {
-        customerSegment: data?.merchant?.customer?.customerSegment,
-        gender: data?.merchant?.customer?.gender,
+        customerSegment: data?.business_owner?.customer?.customerSegment,
+        gender: data?.business_owner?.gender,
       },
     },
   ]
