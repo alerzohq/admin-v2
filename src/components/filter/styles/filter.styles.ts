@@ -27,7 +27,7 @@ export const FilterItems = styled.div`
   display: flex;
   width: 100%;
   gap: 20px;
-  justify-content: 'justify-between;
+  justify-content: justify-between;
   overflow-y: visible;
   overflow-x: scroll;
   scrollbar-width: none;
