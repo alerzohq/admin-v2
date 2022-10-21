@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
+import { filterProps } from '../../../../../@types'
 import {
   FallBack,
   Filter,
@@ -10,17 +11,23 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
-import { getResource } from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
-  const getTransactionsHistory = () => {
-    return getResource(`transactions?userId=${userId}`)
+  const [values, setValues] = useState(filterValue)
+
+  const getTransactionsHistory = (filterValue: filterProps) => {
+    return getNewFilterResource(
+      `transactions?userId=${userId}&`,
+      filterValue,
+      true
+    )
   }
 
-  const [, setValues] = useState(filterValue)
   const { isLoading, isError, data } = useQuery(
-    'user-transaction-history',
-    getTransactionsHistory
+    ['user-transaction-history', values],
+    () => getTransactionsHistory(values),
+    { keepPreviousData: true }
   )
 
   let component
@@ -63,7 +70,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
               },
             ],
           }}
-          justifyContent={'flex-start'}
+          setFilterValues={setValues}
         />
 
         {component}

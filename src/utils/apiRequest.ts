@@ -18,13 +18,17 @@ export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
 }
 export const getNewFilterResource = async (
   pathUrl: string,
-  filterValue: filterProps
+  filterValue: filterProps,
+  hasArg?: boolean
 ) => {
   const filterQuery = queryString.stringify(filterValue, {
     skipNull: true,
     skipEmptyString: true,
   })
-  const { data } = await axiosInstance.get(`/${pathUrl}?${filterQuery}`)
+  console.log(filterQuery)
+  const { data } = await axiosInstance.get(
+    `/${pathUrl}${hasArg ? '' : '?'}${filterQuery}`
+  )
   return data
 }
 export const getFilterResource = async (
