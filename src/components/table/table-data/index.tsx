@@ -46,7 +46,9 @@ const TableData = ({
               <td key={i} id="td-hover">
                 <div
                   onClick={
-                    notClickable ? ()=>{} :setParams
+                    notClickable
+                      ? () => {}
+                      : setParams
                       ? () => {
                           setQueryParams(
                             { ...params },
