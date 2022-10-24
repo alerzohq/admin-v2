@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { TopBarProps } from './type'
 import Text from '../text'
 import { TopbarWrapper, TopbarFilters, Filter } from './styles/topbar.styles'
@@ -28,6 +28,9 @@ const TopBar = ({
   })
 
   const { search } = values
+  const ref = useRef<HTMLDivElement>(null)
+  const rectVal = ref?.current?.getBoundingClientRect()?.left
+  const position = rectVal && rectVal >= 600 && '20px'
 
   useEffect(() => {
     if (showFilters && status !== null) {
@@ -39,13 +42,13 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
   useEffect(() => {
-    console.log(newObj, 'loop')
     if (Object.keys(newObj).length > 0) {
       setFilterValues((prev: any) => ({ ...prev, ...newObj }))
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
+
   return (
     <>
       <TopbarWrapper>
@@ -72,7 +75,11 @@ const TopBar = ({
                 placeholder={showFilters.search.placeholder}
               />
             )}
-            {showFilters?.date && <DateRange filterDate={setFilterValues} />}
+            {showFilters?.date && (
+              <div ref={ref}>
+                <DateRange right={position} filterDate={setFilterValues} />
+              </div>
+            )}
             {showFilters?.selects?.length >= 1 &&
               showFilters.selects.map((select, i) => (
                 <SelectInput
@@ -86,7 +93,6 @@ const TopBar = ({
                       }))
                     }
                     if (select?.searchQuery) {
-                      console.log('new', 'lo')
                       const key: string = select?.searchQuery
                       const dataObj: any = {}
                       dataObj[key] = e?.value.toString() || ''
@@ -111,23 +117,6 @@ const TopBar = ({
                 </button>
               ))}
           </TopbarFilters>
-          {/* {showFilters &&(
-        <TopbarFilters>
-        <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search by reference number..'}/>
-        <DateRange filterDate={setFilterValues}/>
-        <SelectInput placeholder={'All Platform'}
-          onChange={()=>{}}
-         value={''} options={optionsAllPlatform}/> 
-         <SelectInput placeholder={'Status'}
-          onChange={handleChange}
-         value={status} options={options}/> 
-         
-         <button id={'download-btn'}>
-           {'Download CSV'}
-         </button>
-        </TopbarFilters>
- 
-       )} */}
         </Stack>
       </TopbarWrapper>
     </>

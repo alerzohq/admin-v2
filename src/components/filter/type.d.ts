@@ -1,6 +1,11 @@
 export type FilterProps = {
   showFilters: {
-    search?: { type: string; placeholder: string }
+    search?: {
+      type: string
+      placeholder: string
+      onChange?: (e?: string) => void
+      customChange?: boolean
+    }
     date?: boolean
     selects?: {
       values: options
@@ -18,4 +23,5 @@ export type FilterProps = {
   isFetching?: boolean
   setFilterValues?: any
   routePath?: string
+  justifyContent?: string
 }

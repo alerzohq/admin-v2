@@ -62,10 +62,13 @@ const EditEmployees = ({ data }: any) => {
             color={Color.alerzoBlue}
             variant="transparent"
             onClick={() => setIsEditing(false)}
+            weight="600"
           >
             Cancel
           </Button>
-          <Button onClick={() => console.log('sss')}>Save changes</Button>
+          <Button onClick={() => {}} weight="600">
+            Save changes
+          </Button>
         </Stack>
       ) : (
         <Stack gap="1rem" width="35%" direction="row" pt="2rem">
@@ -73,11 +76,14 @@ const EditEmployees = ({ data }: any) => {
             borderColor={Color.alerzoBlue}
             color={Color.alerzoBlue}
             variant="transparent"
-            onClick={() => console.log('sss')}
+            onClick={() => {}}
+            weight="600"
           >
             Reset Password
           </Button>
-          <Button onClick={() => setIsEditing(true)}>Edit Information</Button>
+          <Button weight="600" onClick={() => setIsEditing(true)}>
+            Edit Information
+          </Button>
         </Stack>
       )}
     </>

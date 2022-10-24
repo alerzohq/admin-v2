@@ -30,7 +30,8 @@ export const resolveTableColor = (status) => {
   }
   if (
     status?.toLowerCase() === 'successful' ||
-    status?.toLowerCase() === 'active'
+    status?.toLowerCase() === 'active' ||
+    status?.toLowerCase() === 'enabled'
   ) {
     return {
       textColor: Color.alerzoTableSuccess,

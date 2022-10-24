@@ -39,7 +39,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     component = (
       <FallBack
         title={'You have no business history yet. '}
-        refetch={refetch}
+
       />
     )
   } else {
@@ -52,6 +52,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={1}
         withSlug
+        notClickable
       />
     )
   }
@@ -79,12 +80,12 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
                 value: '',
                 onChange: () => {},
               },
-              {
-                placeholder: 'Download CSV',
-                values: [],
-                value: '',
-                onChange: () => {},
-              },
+              // {
+              //   placeholder: 'Download CSV',
+              //   values: [],
+              //   value: '',
+              //   onChange: () => {},
+              // },
             ],
           }}
         />

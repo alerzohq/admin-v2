@@ -7,7 +7,6 @@ import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
 import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
-import { optionsAllPlatform } from '../../../data/select-data'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
@@ -46,9 +45,16 @@ const DigitalBankContainer = () => {
       <FallBack error title={'Failed to load transactions. '} />
     )
   } else if (data?.data?.length < 1) {
-    digitalBankComponent = <FallBack title={'You have no transactions yet. '} />
+    digitalBankComponent = (
+      <FallBack
+        title={
+          Object.values(values).length >= 3
+            ? 'User cannot be found'
+            : 'You have no transactions yet. '
+        }
+      />
+    )
   } else {
-    console.log(data?.data, 'newtesttt')
     digitalBankComponent = (
       <TableWrapper>
         <DynamicTable
@@ -70,12 +76,6 @@ const DigitalBankContainer = () => {
         date: true,
         selects: [
           {
-            searchQuery: 'channel',
-            placeholder: 'All Platforms',
-            values: optionsAllPlatform,
-            value: '',
-          },
-          {
             searchQuery: 'disabled',
             placeholder: 'Status',
             values: [
@@ -84,9 +84,6 @@ const DigitalBankContainer = () => {
             ],
             value: '',
           },
-        ],
-        buttons: [
-          { label: 'Download CSV', onClick: () => console.log('first') },
         ],
       }}
       title="Digital Bank"

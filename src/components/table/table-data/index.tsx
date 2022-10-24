@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import {  useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
 
@@ -16,6 +16,7 @@ type dataProps = {
   hideActive?: boolean
   hideDate?: boolean
   setParams?: boolean
+  notClickable?: boolean
 }
 type dataList = string[] | undefined
 
@@ -28,6 +29,7 @@ const TableData = ({
   hideActive,
   hideDate,
   setParams,
+  notClickable,
 }: dataProps) => {
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
@@ -44,7 +46,9 @@ const TableData = ({
               <td key={i} id="td-hover">
                 <div
                   onClick={
-                    setParams
+                    notClickable
+                      ? () => {}
+                      : setParams
                       ? () => {
                           setQueryParams(
                             { ...params },

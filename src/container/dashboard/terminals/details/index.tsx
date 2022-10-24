@@ -25,7 +25,6 @@ const Details = () => {
     'terminal',
     getTerminalDetails
   )
-
   const renderSwitch = () => {
     switch (queryParam) {
       case 'stats-history':

@@ -12,9 +12,9 @@ const Table = ({
   amountIndex,
   dateFormat,
   withSlug,
-  hideActive,
   hideDate,
   setParams,
+  notClickable,
 }: TableProps) => {
   return (
     <>
@@ -22,12 +22,13 @@ const Table = ({
         <DataTable bgColor={headerbgColor}>
           <TableHeader headers={tableHeaders} />
           <TableData
+            notClickable={notClickable}
             name={tableName}
             amountIndex={amountIndex}
             tableData={tableData}
-            dateFormat={dateFormat}
+            dateFormat={dateFormat ?? 'YYYY-MM-DD HH:mm:ss'}
             withSlug={withSlug}
-            hideActive={hideActive}
+            hideActive={notClickable}
             hideDate={hideDate}
             setParams={setParams}
           />

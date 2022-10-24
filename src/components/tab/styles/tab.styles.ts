@@ -8,7 +8,7 @@ type tabProps = {
   hideStatus?: boolean
 }
 
-export const TabWrapper = styled.div<tabProps>`
+export const Tabs = styled.div<tabProps>`
   display: flex;
   align-items: center;
   padding: ${({ hideStatus }) => (hideStatus ? '1rem 1.25rem' : '1em 2rem')};
@@ -43,7 +43,7 @@ export const TabContent = styled.div<tabProps>`
   width: 100%;
   display: flex;
 `
-export const TabTitle = styled.button<tabProps>`
+export const TabLink = styled.button<tabProps>`
   color: ${({ color, active, activeColor }) => (active ? activeColor : color)};
   font-weight: 600;
   background-color: transparent;

@@ -19,13 +19,13 @@ export const digitalBankTableMapper = [
     key: 'email',
     render: (data: any) => <span>{data['email']?.toLowerCase()}</span>,
   },
-  {
-    title: 'KYC Level',
-    key: 'kyc_level',
-    render: (data: any) => (
-      <span style={{ paddingLeft: '2rem' }}>{data['kyc_level']}</span>
-    ),
-  },
+  // {
+  //   title: 'KYC Level',
+  //   key: 'kyc_level',
+  //   render: (data: any) => (
+  //     <span style={{ paddingLeft: '2rem' }}>{data['kyc_level']}</span>
+  //   ),
+  // },
   {
     title: 'Status',
     key: 'status',

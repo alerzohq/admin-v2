@@ -51,7 +51,6 @@ export const DataTableBodyRow = styled.tr`
   td {
     font-size: 0.9rem;
     font-weight: 500;
-    text-transform: capitalize;
     white-space: nowrap;
     min-width: 200px;
     &:first-child {
@@ -63,7 +62,9 @@ export const DataTableBodyRow = styled.tr`
       padding-left: 2rem;
     }
     div {
-      text-transform: capitalize;
+      &:first-letter {
+        text-transform: capitalize;
+      }
     }
   }
 `

@@ -89,12 +89,12 @@ const TransactionContainer = () => {
             value: '',
           },
         ],
-        buttons: [
-          {
-            label: 'Download CSV',
-            onClick: () => console.log('first'),
-          },
-        ],
+        // buttons: [
+        //   {
+        //     label: 'Download CSV',
+        //     onClick: () => console.log('first'),
+        //   },
+        // ],
       }}
       title="History"
       setFilterValues={setValues}

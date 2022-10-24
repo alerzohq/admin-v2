@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
+import { filterProps } from '../../../../../@types'
 import {
   FallBack,
   Filter,
@@ -10,17 +11,23 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
-import { getResource } from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
-  const getTransactionsHistory = () => {
-    return getResource(`transactions?userId=${userId}`)
+  const [values, setValues] = useState(filterValue)
+
+  const getTransactionsHistory = (filterValue: filterProps) => {
+    return getNewFilterResource(
+      `transactions?userId=${userId}&`,
+      filterValue,
+      true
+    )
   }
 
-  const [values, setValues] = useState(filterValue)
   const { isLoading, isError, data } = useQuery(
-    'user-transaction-history',
-    getTransactionsHistory
+    ['user-transaction-history', values],
+    () => getTransactionsHistory(values),
+    { keepPreviousData: true }
   )
 
   let component
@@ -40,13 +47,14 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={1}
         withSlug
+        notClickable
       />
     )
   }
 
   return (
     <>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} >
         <Filter
           showFilters={{
             search: {
@@ -56,22 +64,14 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
             date: true,
             selects: [
               {
-                placeholder: 'All Platform',
-                values: [],
-                value: '',
-                onChange: () => {},
-              },
-              {
                 placeholder: 'Status',
                 values: [],
                 value: '',
                 onChange: () => {},
               },
             ],
-            buttons: [
-              { label: 'Download CSV', onClick: () => console.log('first') },
-            ],
           }}
+          setFilterValues={setValues}
         />
 
         {component}

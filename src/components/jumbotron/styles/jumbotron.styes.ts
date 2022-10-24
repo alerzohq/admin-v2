@@ -38,7 +38,7 @@ export const JumbotronItem = styled.div<Props>`
   margin-top: 2rem;
   min-height: 300px;
   border: 1px solid ${Color.alerzoGrayBorder};
-  width: ${({ width }) => width ?? '100%'};
+  width: ${({ width }) => width ?? 'auto'};
 
   @media (max-width: 768px) {
     padding: 1rem;

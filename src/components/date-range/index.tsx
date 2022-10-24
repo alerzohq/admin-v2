@@ -10,7 +10,7 @@ import {
   DateRangeWrapper,
 } from './styles/date-range.styles'
 
-const DateRange = ({ filterDate, isTop }: any) => {
+const DateRange = ({ filterDate, isTop, right }: any) => {
   const [dateValue, setDateValue] = useState('')
   const [show, setShow] = useState(false)
   const [selectionRange, setSelectionRange] = useState({
@@ -29,8 +29,8 @@ const DateRange = ({ filterDate, isTop }: any) => {
     let end_date = formatDate(selection?.endDate, 'l')
     setDateValue(`${start_date} - ${end_date}`)
 
-    let startD = formatDate(selection?.startDate, 'YYYY-MM-DD, h:mm:ss a')
-    let endD = formatDate(selection?.endDate, 'YYYY-MM-DD,h:mm:ss a')
+    let startD = formatDate(selection?.startDate)
+    let endD = formatDate(selection?.endDate)
 
     filterDate((prev: any) => ({ ...prev, from: startD, to: endD }))
   }
@@ -47,7 +47,7 @@ const DateRange = ({ filterDate, isTop }: any) => {
           <CalenderIcon />
         </button>
         {show && (
-          <DateRangeContainer isTop={isTop}>
+          <DateRangeContainer isTop={isTop} right={right}>
             <DateRangePicker
               ranges={[selectionRange]}
               onChange={handleSelect}
