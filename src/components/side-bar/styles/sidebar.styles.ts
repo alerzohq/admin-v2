@@ -31,6 +31,8 @@ export const Inner = styled.div<sidebarStyleProps>`
   flex-direction: column;
   padding: ${({ isCollapsed }) => (isCollapsed ? '2rem 1rem' : '2rem ')};
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   svg {
     cursor: pointer;
     margin: ${({ isCollapsed }) => (isCollapsed ? '0 auto' : '0')};

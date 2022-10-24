@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   FallBack,
   Jumbotron,
@@ -12,11 +12,15 @@ import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import { TabsContext } from '../../../components/tabs-new/Tabs'
 import DynamicTable from '../../../components/react-table'
 import { TerminalSelects, terminalsTableMapper } from './config'
 import { useLocation } from 'react-router-dom'
 import { terminalHeader } from '../../../data/table-headers'
+<<<<<<< HEAD
+=======
+import { filterProps } from '../../../@types'
+import { TerminalManualAdd } from '../../../assets/icons'
+>>>>>>> fedee9583239bc5250ed3e9020b4bfa018b8c72e
 import { Color } from '../../../assets/theme'
 import {
   terminalIcons,
@@ -32,13 +36,13 @@ const TransactionContainer = () => {
   const queryParam = new URLSearchParams(search).get('status')
   const found = TERMINALTABS.find((element) => element.value === queryParam)
   const [values, setValues] = useState(filterValue)
-  const { setActiveTab } = React.useContext(TabsContext)
+  // const { setActiveTab } = React.useContext(TabsContext)
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
 
-  useEffect(() => {
-    setActiveTab && setActiveTab('Existing Terminals')
-  }, [])
+  // useEffect(() => {
+  //   setActiveTab && setActiveTab('Existing Terminals')
+  // }, [])
 
   const { isLoading: loading, data: Stats } = useQuery(
     'terminal-stats',

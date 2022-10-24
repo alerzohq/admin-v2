@@ -2,8 +2,8 @@ import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
 type Props = {
-  isTop?: boolean;
-  right?: string;
+  isTop?: boolean
+  right?: string
 }
 
 export const DateRangeWrapper = styled.div`
@@ -16,7 +16,7 @@ export const DateRangeWrapper = styled.div`
     border-radius: 10px;
     height: 45px;
     padding: 0 1rem;
-    width: 220px;
+    width: 250px;
     font-family: 'Gilmer';
     font-style: normal;
     font-size: 14px;
@@ -30,7 +30,7 @@ export const DateRangeContainer = styled.div<Props>`
   position: absolute;
   z-index: 5;
   top: ${({ isTop }) => (isTop ? '' : '5.7rem')};
-  right:${({right})=>right};
+  right: ${({ right }) => right};
   border: 1px solid ${Color.alerzoGray};
   @media (max-width: 768px) {
     left: 0;

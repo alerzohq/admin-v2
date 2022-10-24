@@ -9,8 +9,9 @@ import {
   DateRangeContainer,
   DateRangeWrapper,
 } from './styles/date-range.styles'
+import { SelectDateProp } from './type'
 
-const DateRange = ({ filterDate, isTop,right }: any) => {
+const DateRange = ({ filterDate, isTop, right }: any) => {
   const [dateValue, setDateValue] = useState('')
   const [show, setShow] = useState(false)
   const [selectionRange, setSelectionRange] = useState({
