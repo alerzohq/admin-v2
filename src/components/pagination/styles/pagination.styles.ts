@@ -16,6 +16,7 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     align-items: center;
     gap: 0.8rem;
     list-style-type: none;
+    padding-left: 0 !important;
   }
   .page-item {
     color: ${Color.alerzoDarkGray};

@@ -4,7 +4,7 @@ import { useMutation, useQuery } from 'react-query'
 import { InviteSent } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
-  Button,
+  // Button,
   FallBack,
   Filter,
   Form,
@@ -205,7 +205,7 @@ const Employees = () => {
           )}
         </>
       </Modal>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} >
         <Filter
           showFilters={{
             search: {

@@ -17,8 +17,8 @@ const Members = ({ userId }: { userId: string }) => {
     return getResource(`transactions?userId=${userId}`)
   }
 
-  const [values, setValues] = useState(filterValue)
-  const { isLoading, isError, data, isFetching } = useQuery(
+  const [, setValues] = useState(filterValue)
+  const { isLoading, isError, data,  } = useQuery(
     'members',
     getMembers
   )
@@ -35,8 +35,7 @@ const Members = ({ userId }: { userId: string }) => {
         headerbgColor={'transparent'}
         tableName="transaction"
         tableData={data?.data}
-        tableHeaders={transHeaderList}
-        dateFormat="YYYY-MM-DD HH:mm:ss"
+        tableHeaders={transHeaderList}  
         amountIndex={1}
         withSlug
       />
