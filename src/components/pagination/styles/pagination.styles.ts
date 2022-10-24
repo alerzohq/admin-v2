@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
-export type PaginationProps={
-  isMobile:boolean;
+export type PaginationProps = {
+  isMobile: boolean
 }
 
 export const PaginationWrapper = styled.div<PaginationProps>`
@@ -49,7 +49,7 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({ isMobile }) =>isMobile?'50px':'150px'};
+    width: ${({ isMobile }) => (isMobile ? '50px' : '150px')};
     height: 45px;
     background: ${Color.alerzoWhite};
     border: 1px solid ${Color.alerzoBlue};
@@ -63,7 +63,7 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({ isMobile }) =>isMobile?'50px':'150px'};
+    width: ${({ isMobile }) => (isMobile ? '50px' : '150px')};
     height: 45px;
     background: ${Color.alerzoWhite};
     border: 1px solid ${Color.alerzoBlue};
@@ -77,7 +77,7 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({ isMobile }) =>isMobile?'50px':'150px'};
+    width: ${({ isMobile }) => (isMobile ? '50px' : '150px')};
     height: 45px;
     background: #f9fafc;
     opacity: 0.5;

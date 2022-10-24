@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 
 type Props = {
-  bgColor?: string;
-  hideOnMobile?: boolean;
-  p?: string;
+  bgColor?: string
+  hideOnMobile?: boolean
+  p?: string
 }
 
 export const AuthContainer = styled.div<Props>`

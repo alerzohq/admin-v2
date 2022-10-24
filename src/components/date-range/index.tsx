@@ -10,7 +10,6 @@ import {
   DateRangeWrapper,
 } from './styles/date-range.styles'
 
-
 const DateRange = ({ filterDate, isTop, right }: any) => {
   const [dateValue, setDateValue] = useState('')
   const [show, setShow] = useState(false)
@@ -35,8 +34,6 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
 
     filterDate((prev: any) => ({ ...prev, from: startD, to: endD }))
   }
-
- 
 
   return (
     <OutsideClickHandler

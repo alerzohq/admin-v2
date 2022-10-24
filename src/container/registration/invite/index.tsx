@@ -7,10 +7,7 @@ import AuthLayout from '../../onboarding/layout'
 import { useQuery, useMutation } from 'react-query'
 import { getResource } from '../../../utils/apiRequest'
 import { AxiosResponse, AxiosError } from 'axios'
-import {
-
-  axiosInstanceWithoutToken,
-} from '../../../configs/axios-instance'
+import { axiosInstanceWithoutToken } from '../../../configs/axios-instance'
 import toast from 'react-hot-toast'
 import { FormValue } from '../type'
 
