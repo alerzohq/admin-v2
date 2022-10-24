@@ -40,20 +40,28 @@ const Details = () => {
   }
 
   return (
-    <TabsContentWidget
-      isFetching={isFetching}
-      isLoading={isLoading}
-      containerTitle="Terminal Details"
-      title={title}
-      type="Transaction!"
-      isError={isError}
-      errorMessage="Failed to load terminal."
-      currentValue={found?.value || 'details'}
-      renderSwitch={renderSwitch}
-      tabs={TABS}
-      hideStatus
-      routePath={'/dashboard/terminals'}
-    />
+    <>
+      {!isLoading && (
+        <TabsContentWidget
+          isFetching={isFetching}
+          isLoading={isLoading}
+          containerTitle="Terminal Details"
+          title={title}
+          type="Transaction!"
+          isError={isError}
+          errorMessage="Failed to load terminal."
+          currentValue={found?.value || 'details'}
+          renderSwitch={renderSwitch}
+          tabs={
+            data && data?.data?.[0]?.user_id
+              ? TABS
+              : TABS.filter((tab) => tab.value !== 'merchant')
+          }
+          hideStatus
+          routePath={'/dashboard/terminals'}
+        />
+      )}
+    </>
   )
 }
 

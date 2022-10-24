@@ -1,8 +1,8 @@
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
-  { label: 'Terminal Details', value: 'details', title: '' },
-  { label: 'Merchant Details', value: 'merchant', title: '' },
+  { label: 'Terminal Details', value: 'details', title: 'Terminal Details' },
+  { label: 'Business Details', value: 'merchant', title: 'Business Details' },
   { label: 'Terminal Status History', value: 'stats-history', title: '' },
   { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
 ]
@@ -22,25 +22,28 @@ export const OTHERDETAILSTABLE = [
 ]
 
 export const MERCHANTDETAILSTABLE = [
-  { label: 'Merchant  ID', value: 'mid', columnWidth: 'small' },
-  { label: 'Merchant Name', value: 'merchantName', columnWidth: 'small' },
-  { label: 'Phone', value: 'phone', columnWidth: 'small' },
-  { label: 'Status', value: 'status', columnWidth: 'small' },
-  { label: 'Date Updated', value: 'updatedAt', columnWidth: 'small' },
-  { label: 'Email Address', value: 'email', columnWidth: 'large' },
-]
-export const MERCHANTBUSINESSTABLE = [
+  // { label: 'Merchant  ID', value: 'mid', columnWidth: 'small' },
   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
   { label: 'Location', value: 'location', columnWidth: 'small' },
-  // { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
-  // { label: 'Passscode', value: 'passcodeStatus', columnWidth: 'small' },
-  // { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
-  { label: 'Business Address', value: 'businessAddress', columnWidth: 'large' },
+  { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
+  { label: 'Passcode', value: 'passcodeStatus', columnWidth: 'small' },
+  { label: 'BVN', value: 'BVNStatus', columnWidth: 'small' },
+  { label: 'Business Adress', value: 'businessAdress', columnWidth: 'large' },
+  // { label: 'Date Updated', value: 'updatedAt', columnWidth: 'small' },
+  // { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
-export const MERCHANTCUSTOMERTABLE = [
-  { label: 'Customer Segment', value: 'customerSegment', columnWidth: 'small' },
-  { label: 'Gender', value: 'gender', columnWidth: 'large' },
-]
+// export const MERCHANTBUSINESSTABLE = [
+//   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
+//   { label: 'Location', value: 'location', columnWidth: 'small' },
+//   { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
+//   { label: 'Passscode', value: 'passcodeStatus', columnWidth: 'small' },
+//   { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
+//   { label: 'Business Address', value: 'businessAddress', columnWidth: 'large' },
+// ]
+// export const MERCHANTCUSTOMERTABLE = [
+//   { label: 'Customer Segment', value: 'customerSegment', columnWidth: 'small' },
+//   { label: 'Gender', value: 'gender', columnWidth: 'large' },
+// ]
 
 export const merchant = {
   status: true,
@@ -100,40 +103,38 @@ export const terminalHelper = (data: any) => {
 }
 
 export const merchantHelper = (data: any) => {
-  console.log({ helper: data })
   return [
     {
       spacing: false,
       header: MERCHANTDETAILSTABLE,
       data: {
-        mid: data?.business_owner?.id,
-        merchantName: `${data?.business_owner?.first_name} ${data?.business_owner?.last_name}`,
-        phone: data?.business_owner?.phone_number,
-        status: String(data?.business_owner?.status),
-        updatedAt: data?.created_at
-          ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
-          : '',
-        email: data?.business_owner?.email,
-      },
-    },
-    {
-      spacing: false,
-      header: MERCHANTBUSINESSTABLE,
-      data: {
+        // mid: data?.business_owner?.id,
         businessName: data?.name,
-        location: data?.state,
-        pinStatus: data?.business_owner?.business?.pin,
-        bvnStatus: data?.business_owner?.business?.bvn,
-        businessAddress: data?.address,
+        location: data?.city,
+        pinStatus: data?.business_owner?.transaction_pin ? 'Set' : 'Not set',
+        passcodeStatus: data?.business_owner?.passcode ? 'Set' : 'Not set',
+        BVNStatus: data?.kyc_level > 1 ? 'Verified' : 'Not Verified',
+        businessAdress: data?.address,
       },
     },
-    {
-      spacing: false,
-      header: MERCHANTCUSTOMERTABLE,
-      data: {
-        customerSegment: data?.business_owner?.customer?.customerSegment,
-        gender: data?.business_owner?.gender,
-      },
-    },
+    // {
+    //   spacing: false,
+    //   header: MERCHANTBUSINESSTABLE,
+    //   data: {
+    //     businessName: data?.name,
+    //     location: data?.state,
+    //     pinStatus: data?.business_owner?.business?.pin,
+    //     bvnStatus: data?.business_owner?.business?.bvn,
+    //     businessAddress: data?.address,
+    //   },
+    // },
+    // {
+    //   spacing: false,
+    //   header: MERCHANTCUSTOMERTABLE,
+    //   data: {
+    //     customerSegment: data?.business_owner?.customer?.customerSegment,
+    //     gender: data?.business_owner?.gender,
+    //   },
+    // },
   ]
 }

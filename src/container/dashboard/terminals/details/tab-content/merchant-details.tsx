@@ -1,7 +1,4 @@
-import {
-  merchantHelper,
-  terminalHelper,
-} from '../../../../../data/terminal-data'
+import { merchantHelper } from '../../../../../data/terminal-data'
 import DetailsContentWidget from '../../../widget/tabs/tab-content-details'
 
 import { TerminalDetailWrapper } from './styles/tab-content.styles'
@@ -29,9 +26,6 @@ const MerchantDetails = ({ resolvedData }: any) => {
         <DetailsContentWidget
           resolvedData={merchantHelper(merchantDetails.data[0])!}
         />
-      )}
-      {!resolvedData.user_id && (
-        <FallBack title="Please assign terminal first" />
       )}
       {isError && <FallBack title="Something went wrong" />}
     </TerminalDetailWrapper>
