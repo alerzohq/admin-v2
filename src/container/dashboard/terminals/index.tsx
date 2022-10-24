@@ -113,8 +113,6 @@ const TransactionContainer = () => {
     card4: Statistics?.unassignedTerminals,
   }
 
-
-
   const toggle = () => {
     setIsShown(!isShown)
   }

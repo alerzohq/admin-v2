@@ -5,15 +5,12 @@ import ReactPaginate from 'react-paginate'
 import { useWindowResize } from '../../hooks'
 
 const Pagination = ({ data, setPageNumber }: PaginationProps) => {
-
-  const {width}=useWindowResize();
-  const mobileWidth=640
+  const { width } = useWindowResize()
+  const mobileWidth = 640
 
   const handlePageClick = ({ selected }: { selected: number }) => {
     setPageNumber((prev) => ({ ...prev, pageNumber: selected }))
   }
-
-
 
   return (
     <>
@@ -21,12 +18,12 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
         <PaginationWrapper isMobile={width < mobileWidth}>
           <ReactPaginate
             breakLabel="..."
-            nextLabel={width < mobileWidth ? ">":"Next"}
+            nextLabel={width < mobileWidth ? '>' : 'Next'}
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
             pageCount={data?.metadata?.pages}
-            previousLabel={width < mobileWidth ? "<":"Back"}
+            previousLabel={width < mobileWidth ? '<' : 'Back'}
             containerClassName={'paginate'}
             pageClassName={'page-item'}
             pageLinkClassName={'page-link'}

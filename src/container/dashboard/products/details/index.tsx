@@ -52,6 +52,7 @@ const ProductDetailsContainer = () => {
         tableHeaders={productBillersHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         withSlug
+        notClickable
       />
     )
   }

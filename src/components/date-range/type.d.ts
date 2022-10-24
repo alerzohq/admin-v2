@@ -1,8 +1,8 @@
-export type SelectDateProp={
-  selection:{
-    startDate: Date;
-    endDate: Date;
-    key: string;
+export type SelectDateProp = {
+  selection: {
+    startDate: Date
+    endDate: Date
+    key: string
   }
 }
 
