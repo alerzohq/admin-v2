@@ -54,7 +54,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
 
   return (
     <>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} >
         <Filter
           showFilters={{
             search: {

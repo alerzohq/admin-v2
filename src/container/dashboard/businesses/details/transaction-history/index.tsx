@@ -39,7 +39,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     component = (
       <FallBack
         title={'You have no business history yet. '}
-        refetch={refetch}
+
       />
     )
   } else {

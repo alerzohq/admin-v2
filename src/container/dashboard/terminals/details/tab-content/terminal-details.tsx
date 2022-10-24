@@ -12,6 +12,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { getResource, postRequest } from '../../../../../utils/apiRequest'
 import { toast } from 'react-hot-toast'
+import { ValueProps } from '../type'
 
 const TerminalDetails = ({ data }: any) => {
   const queryClient = useQueryClient()
@@ -26,11 +27,7 @@ const TerminalDetails = ({ data }: any) => {
   const assignBtnText =
     data?.user_id !== null ? 'Reassign Terminal' : 'Assign Terminal'
 
-  const [value, setValue] = useState<{
-    reassignmentReason?: string
-    serial_number?: string
-    businessId?: string
-  }>({ reassignmentReason: '', businessId: '', serial_number: '' })
+  const [value, setValue] = useState<ValueProps>({ reassignmentReason: '', businessId: '', serial_number: '' })
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
   const toggle = (type?: 'assign') => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)

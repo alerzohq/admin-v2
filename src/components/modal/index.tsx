@@ -1,4 +1,4 @@
-import { Button, Loader, Text } from '..'
+import { Button,  Text } from '..'
 import CloseIcon from '../../assets/icons/close-icon'
 import { Color } from '../../assets/theme'
 import { Footer } from '../form/styles/form.style'
@@ -77,13 +77,10 @@ const Modal = ({
                   radius="10px"
                   fontSize="15px"
                   weight="500"
+                  loading={loading}
                   onClick={handleSubmit ?? setShowModal}
                 >
-                  {loading ? (
-                    <Loader color={Color.alerzoWhite} />
-                  ) : (
-                    `${buttonText}`
-                  )}
+                 {buttonText}          
                 </Button>
               </Button.Group>
             </Footer>

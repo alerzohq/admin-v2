@@ -18,6 +18,7 @@ export type ButtonProps = {
   default?: string
   padding?: string
   borderColor?: string
+  loading?:boolean
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
   onMouseOver?: (e: React.MouseEvent<HTMLButtonElement>) => void
   onMouseOut?: (e: React.MouseEvent<HTMLButtonElement>) => void

@@ -23,8 +23,8 @@ import {
   TERMINALTABS,
 } from '../../../data/terminal-data'
 import { getTerminalsHandler, getTerminalStats } from './utils'
-import AddMethodModal from './modals/AddMethod'
-import AddTerminalModal from './modals/AddTerminalForm'
+import AddMethodModal from './modals/add-method'
+import AddTerminalModal from './modals/add-terminal-form'
 
 const TransactionContainer = () => {
   const search = useLocation().search

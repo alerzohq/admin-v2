@@ -103,7 +103,7 @@ const RolesPermissions = () => {
           </Form.Control>
         </Form>
       </Modal>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           showFilters={{
             search: {
