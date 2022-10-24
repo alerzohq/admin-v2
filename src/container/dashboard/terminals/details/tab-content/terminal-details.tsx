@@ -4,7 +4,7 @@ import { Button, Loader } from '../../../../../components'
 import { terminalHelper } from '../../../../../data/terminal-data'
 import DetailsContentWidget from '../../../widget/tabs/tab-content-details'
 import ReassignTerminalWidget from '../../../widget/terminal-modal-content/reassign'
-import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
+// import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
 import {
   ButtonWrapper,
   TerminalDetailWrapper,
@@ -129,7 +129,7 @@ const TerminalDetails = ({ data }: any) => {
           height="3.2rem"
           radius="10px"
           borderSize="1px"
-          width="14%"
+          width="150px"
           onClick={async () => {
             setIsTriggerSubmit(true)
             enableTerminal(
@@ -148,6 +148,7 @@ const TerminalDetails = ({ data }: any) => {
           color={Color.alerzoBlueTint}
           borderColor={Color.alerzoBlueTint}
           variant="transparent"
+          weight={'600'}
         >
           {loadingEnable ? (
             <Loader color={Color.alerzoBlue} />
@@ -157,7 +158,8 @@ const TerminalDetails = ({ data }: any) => {
         </Button>
         <Button
           height="3.2rem"
-          width="14%"
+          width="150px"
+          weight={'600'}
           radius="10px"
           onClick={() => {
             toggle('assign')

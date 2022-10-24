@@ -56,7 +56,7 @@ const BusinessContainer = () => {
         tableData={data?.data}
         tableHeaders={busHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        hideActive
+     
       />
     )
   }

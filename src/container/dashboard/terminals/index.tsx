@@ -16,11 +16,6 @@ import DynamicTable from '../../../components/react-table'
 import { TerminalSelects, terminalsTableMapper } from './config'
 import { useLocation } from 'react-router-dom'
 import { terminalHeader } from '../../../data/table-headers'
-<<<<<<< HEAD
-=======
-import { filterProps } from '../../../@types'
-import { TerminalManualAdd } from '../../../assets/icons'
->>>>>>> fedee9583239bc5250ed3e9020b4bfa018b8c72e
 import { Color } from '../../../assets/theme'
 import {
   terminalIcons,

@@ -20,7 +20,7 @@ const AuthLayout = ({
         <AlerzoLogo className={'logo-svg'} />
         <AuthContent>
           <AuthInner>
-            <img src={authImage} alt={'auth-img'} width={'80%'} />
+            <img src={authImage} alt={'auth-img'} width={'80%'} loading={'lazy'}/>
             <Text
               as={'h2'}
               size={'1.1rem'}
