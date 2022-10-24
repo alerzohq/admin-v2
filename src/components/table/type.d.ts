@@ -13,6 +13,7 @@ export type TableProps = {
   headerbgColor?: string
   setParams?: boolean
   custom?: boolean
+  notClickable?: boolean
 
   onClick?: (item: {}) => void
 }

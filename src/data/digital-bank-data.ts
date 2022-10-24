@@ -45,7 +45,7 @@ export const customerHelper = (data: any) => {
         name: `${data?.first_name} ${data?.last_name}`,
         accountNumber: data?.account_numberr,
         phoneNumber: data?.phone_number,
-        bvnStatus: data?.bvn_set ? 'Verified' : 'Not verified',
+        bvnStatus: data?.kyc_level > 1 ? 'Verified' : 'Not verified',
         date: data?.created_at
           ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
           : '',

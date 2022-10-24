@@ -52,6 +52,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={1}
         withSlug
+        notClickable
       />
     )
   }
