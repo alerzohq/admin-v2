@@ -10,8 +10,8 @@ export function validEmail(email: string) {
     return true
   }
 }
-export const formatDate = (date: any, type: string) => {
-  return moment(date).format(type)
+export const formatDate = (date: any, type?: string) => {
+  return moment(date).format(type ?? 'YYYY-MM-DD, h:mm:ss a')
 }
 
 //Mask string

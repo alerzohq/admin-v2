@@ -8,10 +8,11 @@ import { useQuery, useMutation } from 'react-query'
 import { getResource } from '../../../utils/apiRequest'
 import { AxiosResponse, AxiosError } from 'axios'
 import {
-  axiosInstance,
+
   axiosInstanceWithoutToken,
 } from '../../../configs/axios-instance'
 import toast from 'react-hot-toast'
+import { FormValue } from '../type'
 
 export const RegistrationInvite = () => {
   const navigate = useNavigate()
@@ -19,14 +20,7 @@ export const RegistrationInvite = () => {
   const id = location.pathname.split('/').pop()
 
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
-  const [values, setValues] = useState<{
-    firstName: string
-    lastName: string
-    phoneNumber: string
-    password: string
-    email: string
-    confirmPassword?: string
-  }>({
+  const [values, setValues] = useState<FormValue>({
     email: '',
     firstName: '',
     lastName: '',

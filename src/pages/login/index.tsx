@@ -3,9 +3,9 @@ import { LoginContainer } from '../../container/onboarding'
 
 const Login: React.FC = () => {
   return (
-    <>
+
       <LoginContainer />
-    </>
+
   )
 }
 
