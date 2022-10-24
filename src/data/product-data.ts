@@ -15,8 +15,8 @@ export const productHelper = (data: any) => {
         name: data?.name?.toUpperCase(),
         category: data?.name?.toUpperCase(),
         status: data?.commission?.splits?.length > 0 ? 'Yes' : 'No',
-        date: data?.created_at
-          ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
+        date: data?.createdAt
+          ? formatDate(data?.createdAt, 'YYYY-MM-DD HH:mm:ss')
           : '',
       },
     },
