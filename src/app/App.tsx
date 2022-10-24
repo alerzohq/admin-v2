@@ -71,10 +71,10 @@ function App() {
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
               <Route path={Path.BUSINESSES} element={<Businesses />} />
               <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
-              <Route path={Path.DigitalBank} element={<DigitalBank />} />
+              <Route path={Path.DIGITALBANK} element={<DigitalBank />} />
               <Route
                 path={Path.DIGITALBANKDETAIL}
-                element={<DigitalBankDetails />}
+                element={<DigitalBankDetails />} 
               />
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />

@@ -10,7 +10,7 @@ export enum Path {
   TERMINALDETAIL = 'terminals/:terminalId',
   BUSINESSES = 'businesses',
   BUSINESSDETAIL = 'businesses/:businessId',
-  DigitalBank = 'digital-bank',
+  DIGITALBANK = 'digital-bank',
   DIGITALBANKDETAIL = 'digital-bank/:dbId',
   PRODUCTS = 'products',
   PRODUCTDETAIL = 'products/:productId',
