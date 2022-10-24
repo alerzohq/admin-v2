@@ -40,6 +40,8 @@ export const productsHeaderList = [
   '',
 ]
 export const productBillersHeaderList = ['Biller', 'Commission', 'Date']
+
+
 export const terminalHeader = [
   'Terminal ID',
   'Serial No',

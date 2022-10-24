@@ -47,7 +47,7 @@ export const sideBarData = [
     title: 'Digital Bank',
     InActiveIcon: DigitalbankIcon,
     ActiveIcon: ActiveDigitalIcon,
-    path: `/${Path.DASHBOARD}/${Path.DigitalBank}`,
+    path: `/${Path.DASHBOARD}/${Path.DIGITALBANK}`,
     activeIconColor: Color.alerzoBlue,
   },
   {

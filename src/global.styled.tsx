@@ -36,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
   text-align: center;
   font-weight: 500;
   max-width:120px;
+  text-transform: capitalize;
 }
 .unassigned{
   background: #D7E2E9;
@@ -46,6 +47,7 @@ const GlobalStyle = createGlobalStyle`
   text-align: center;
   font-weight: 500;
   max-width:120px;
+  text-transform: capitalize;
 }
 .pending{
   background: #f1a85a1a;
@@ -56,6 +58,7 @@ const GlobalStyle = createGlobalStyle`
   font-weight: 500;
   max-width:120px;
   text-align: center;
+  text-transform: capitalize;
 }
 .failed{
   background: #ea43361a;
@@ -65,6 +68,7 @@ const GlobalStyle = createGlobalStyle`
   padding: 0.5rem;
   text-align: center;
   font-weight: 500;
+  text-transform: capitalize;
   max-width:120px;
 }
 .select-wrap{
@@ -80,6 +84,7 @@ const GlobalStyle = createGlobalStyle`
   text-align: center;
   font-weight: 500;
   cursor: pointer;
+  text-transform: capitalize;
 }
 .tableLink{
   cursor: pointer;

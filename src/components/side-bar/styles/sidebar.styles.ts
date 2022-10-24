@@ -38,8 +38,11 @@ export const Inner = styled.div<sidebarStyleProps>`
     margin: ${({ isCollapsed }) => (isCollapsed ? '0 auto' : '0')};
   }
   .logo {
-    padding-left: 1rem;
+    padding-left: .5rem;
   }
+`
+export const LogoBox= styled.div`
+display: flex;
 `
 
 export const SidebarList = styled.div`
