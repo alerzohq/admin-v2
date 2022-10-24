@@ -9,7 +9,7 @@ import { FilterInput, FilterItems, FilterWrapper } from './styles/filter.styles'
 const Filter = ({
   showFilters,
   setFilterValues,
-  justifyContent = 'space-between',
+  justifyContent = 'flex-start',
 }: FilterProps) => {
   const [status] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({

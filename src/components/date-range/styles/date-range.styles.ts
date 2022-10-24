@@ -2,7 +2,8 @@ import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
 type Props = {
-  isTop?: boolean
+  isTop?: boolean;
+  right?: string;
 }
 
 export const DateRangeWrapper = styled.div`
@@ -29,6 +30,7 @@ export const DateRangeContainer = styled.div<Props>`
   position: absolute;
   z-index: 5;
   top: ${({ isTop }) => (isTop ? '' : '5.7rem')};
+  right:${({right})=>right};
   border: 1px solid ${Color.alerzoGray};
   @media (max-width: 768px) {
     left: 0;
