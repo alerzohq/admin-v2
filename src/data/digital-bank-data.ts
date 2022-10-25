@@ -60,7 +60,7 @@ export const customerHelper = (data: any) => {
       spacing: false,
       header: SECURITYTABLE,
       data: {
-        status: data?.security_question_set ? "Set" : "Not Set",
+        status: data?.security_question_set ? 'Set' : 'Not Set',
       },
     },
     {

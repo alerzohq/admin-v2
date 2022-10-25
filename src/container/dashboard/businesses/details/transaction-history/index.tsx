@@ -36,12 +36,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
       />
     )
   } else if (data?.data?.length < 1) {
-    component = (
-      <FallBack
-        title={'You have no business history yet. '}
-
-      />
-    )
+    component = <FallBack title={'You have no business history yet. '} />
   } else {
     component = (
       <Table

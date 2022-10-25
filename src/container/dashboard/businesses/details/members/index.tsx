@@ -18,10 +18,7 @@ const Members = ({ userId }: { userId: string }) => {
   }
 
   const [, setValues] = useState(filterValue)
-  const { isLoading, isError, data,  } = useQuery(
-    'members',
-    getMembers
-  )
+  const { isLoading, isError, data } = useQuery('members', getMembers)
   let component
   if (isLoading) {
     component = <Loader />
@@ -35,7 +32,7 @@ const Members = ({ userId }: { userId: string }) => {
         headerbgColor={'transparent'}
         tableName="transaction"
         tableData={data?.data}
-        tableHeaders={transHeaderList}  
+        tableHeaders={transHeaderList}
         amountIndex={1}
         withSlug
       />
