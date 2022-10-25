@@ -49,8 +49,8 @@ const ReassignTerminalModal = ({
       showModal={isShown}
       setShowModal={toggleModal}
       buttonText={btnText}
-     title={btnText}
-     disabled={!value?.businessId || !value?.reassignmentReason}
+      title={btnText}
+      disabled={!value?.businessId || !value?.reassignmentReason}
       handleSubmit={handleSubmit}
       loading={loading}
     >

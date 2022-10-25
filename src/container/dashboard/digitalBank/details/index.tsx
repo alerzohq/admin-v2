@@ -28,8 +28,8 @@ const DigitalBankDetailContainer = () => {
     switch (queryParam) {
       case 'transHistory':
         return <TransactionHistory userId={id} />
-        case 'cards':
-          return <div>cards</div>
+      case 'cards':
+        return <div>cards</div>
       case 'bankAccounts':
         return <CardsContainer />
       case 'expensesLens':

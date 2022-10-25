@@ -64,14 +64,12 @@ const TerminalDetails = ({ data }: any) => {
       {},
       {
         onSuccess: () => {
-
           queryClient.invalidateQueries('terminal')
           if (enabled) {
             return toggle()
           }
           console.log(data?.active)
           toast.success(`Terminal updated successfully`)
-
         },
         onError: (error: any) => {
           toast.error(`${error?.response?.data?.message}`)
@@ -129,7 +127,7 @@ const TerminalDetails = ({ data }: any) => {
         loading={loadingAssign}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
-         handleReassign()
+          handleReassign()
         }}
         merchants={merchants?.data}
         toggleModal={() => {
@@ -139,7 +137,7 @@ const TerminalDetails = ({ data }: any) => {
             businessId: '',
           })
           setIsTriggerSubmit(false)
-        
+
           toggle('assign')
         }}
         value={value}
@@ -151,7 +149,8 @@ const TerminalDetails = ({ data }: any) => {
         toggleModal={() => {
           setIsTriggerSubmit(false)
           toggle()
-        }} />
+        }}
+      />
       <DetailsContentWidget resolvedData={terminalHelper(data)!} />
       <ButtonWrapper>
         <Button
@@ -164,7 +163,6 @@ const TerminalDetails = ({ data }: any) => {
               return toggle()
             }
             handleEnable()
-
           }}
           color={Color.alerzoBlueTint}
           borderColor={Color.alerzoBlueTint}

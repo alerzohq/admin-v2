@@ -54,7 +54,7 @@ const Modal = ({
                 padding="0"
                 weight="600"
                 color={Color.alerzoBlack}
-                size={titleSize || "18px"}
+                size={titleSize || '18px'}
                 align="center"
               >
                 {title}
@@ -65,7 +65,7 @@ const Modal = ({
                   padding="0"
                   margin="0 0 2rem 0"
                   color={Color.alerzoBlack}
-                  size={subTitleSize || "14px"}
+                  size={subTitleSize || '14px'}
                   align="center"
                 >
                   {subTitle}
@@ -78,7 +78,7 @@ const Modal = ({
             <Footer>
               <Button.Group align="center">
                 <Button
-                  width={cancelBtnText ? "40%" :"50%"}
+                  width={cancelBtnText ? '40%' : '50%'}
                   radius="10px"
                   fontSize="14px"
                   weight="500"
@@ -88,21 +88,21 @@ const Modal = ({
                 >
                  {buttonText}          
                 </Button>
-                {cancelBtnText &&   
-                 <Button
-                 width={"40%"}
-                 radius="10px"
-                 fontSize="14px"
-                 weight="500"
-                 borderSize='1px'
-                 variant='transparent'
-                 color={Color?.alerzoBlueTint}
-                 borderColor={Color?.alerzoBlueTint}
-                 onClick={setShowModal}
-               >
-                {cancelBtnText}
-               </Button>
-                }
+                {cancelBtnText && (
+                  <Button
+                    width={'40%'}
+                    radius="10px"
+                    fontSize="14px"
+                    weight="500"
+                    borderSize="1px"
+                    variant="transparent"
+                    color={Color?.alerzoBlueTint}
+                    borderColor={Color?.alerzoBlueTint}
+                    onClick={setShowModal}
+                  >
+                    {cancelBtnText}
+                  </Button>
+                )}
               </Button.Group>
             </Footer>
           )}

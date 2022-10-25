@@ -68,20 +68,20 @@ const ProductDetailsContainer = () => {
       <DetailsContent
         resolvedData={productHelper({ ...resp, name: detail?.slug })!}
       />
-           <Text
-                as={'p'}
-                padding={'0'}
-                color={Color.alerzoBlack}
-                size="14px"
-                textAlign="left"
-                whiteSpace="nowrap"
-                margin='1.875rem 0 1rem 0'
-                weight="600"
-                align={'center'}
-              >
-                Biller Information
-              </Text>
-      <Jumbotron padding={'0'} direction="column"  mt='0'>
+      <Text
+        as={'p'}
+        padding={'0'}
+        color={Color.alerzoBlack}
+        size="14px"
+        textAlign="left"
+        whiteSpace="nowrap"
+        margin="1.875rem 0 1rem 0"
+        weight="600"
+        align={'center'}
+      >
+        Biller Information
+      </Text>
+      <Jumbotron padding={'0'} direction="column" mt="0">
         {component}
       </Jumbotron>
     </Container>

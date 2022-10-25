@@ -36,8 +36,8 @@ export const JumbotronItem = styled.div<Props>`
   padding: ${({ padding }) => (padding ? padding : '2rem')};
   gap: ${({ gap }) => gap};
   flex: ${({ flex }) => flex};
-  margin-top:   ${({ mt }) => mt || "2rem"};
-  min-height: ${({ minHeight }) => minHeight || "300px"};
+  margin-top: ${({ mt }) => mt || '2rem'};
+  min-height: ${({ minHeight }) => minHeight || '300px'};
   border: 1px solid ${Color.alerzoGrayBorder};
   width: ${({ width }) => width ?? 'auto'};
 

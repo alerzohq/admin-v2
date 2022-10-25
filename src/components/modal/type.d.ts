@@ -12,8 +12,8 @@ export type ModalProps = {
   contentPadding?: string
   subTitleSize?: string
   subTitle?: string
-  titleSize?: string;
-  cancelBtnText?:  string
+  titleSize?: string
+  cancelBtnText?: string
   setShowModal: Dispatch<SetStateAction<boolean>>
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   icon?: ReactNode

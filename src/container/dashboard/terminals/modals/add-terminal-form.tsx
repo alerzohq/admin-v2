@@ -3,11 +3,7 @@ import React, { useState } from 'react'
 import Modal from '../../../../components/modal'
 import { Form, Text } from '../../../../components'
 import { Color } from '../../../../assets/theme'
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError, AxiosResponse } from 'axios'
 import { axiosInstance } from '../../../../configs/axios-instance'
 import toast from 'react-hot-toast'
