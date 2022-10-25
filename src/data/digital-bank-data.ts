@@ -58,13 +58,6 @@ export const customerHelper = (data: any) => {
     },
     {
       spacing: false,
-      header: SECURITYTABLE,
-      data: {
-        status: data?.security_question_set ? 'Set' : 'Not Set',
-      },
-    },
-    {
-      spacing: false,
       header: CUSTOMERSEGMENTTABLE,
       data: {
         customerSegment: data?.customer_segment,
@@ -74,6 +67,14 @@ export const customerHelper = (data: any) => {
         kyc: data?.kyc_level.toString(),
         pinStatus: data?.transaction_pin_set ? 'Set' : 'Not Set',
         status: data?.disabled ? 'Inactive' : 'Active',
+      },
+    },
+
+    {
+      spacing: false,
+      header: SECURITYTABLE,
+      data: {
+        status: data?.security_question_set ? 'Set' : 'Not Set',
       },
     },
   ]
