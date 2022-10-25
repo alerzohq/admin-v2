@@ -34,12 +34,14 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   )
 
 useEffect(() => {
-window.scrollTo(0, 0);
-dispatch({ 
-  type:Action.IS_FETCHING, 
-  payload:isFetching
-})
+  dispatch({ 
+    type:Action.IS_FETCHING, 
+    payload:isFetching
+  })
 },[isFetching, dispatch])
+
+
+
 
   let component
   if (isLoading) {

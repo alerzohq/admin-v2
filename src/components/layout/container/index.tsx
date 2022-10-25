@@ -23,7 +23,7 @@ const Container: React.FC<ContainerProps> = ({
     if (!noScroll) {
       window.scrollTo(0, 0)
     }
-  }, [isFetching, noScroll])
+  }, [isFetching,fetching, noScroll])
   return (
     <>
       <TopBar
