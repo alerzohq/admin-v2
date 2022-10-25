@@ -31,7 +31,7 @@ const TopBar = ({
   const ref = useRef<HTMLDivElement>(null)
   const rectVal = ref?.current?.getBoundingClientRect()?.left
   const position = rectVal && rectVal >= 600 && '20px'
-  
+
   useEffect(() => {
     if (showFilters && status !== null) {
       return setFilterValues((prev: any) => ({ ...prev, status }))
@@ -48,9 +48,6 @@ const TopBar = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
-
-
-
 
   return (
     <>
@@ -119,9 +116,7 @@ const TopBar = ({
                   {button.label}
                 </button>
               ))}
-              
           </TopbarFilters>
-         
         </Stack>
       </TopbarWrapper>
     </>

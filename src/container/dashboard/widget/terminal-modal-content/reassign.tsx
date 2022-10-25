@@ -22,7 +22,7 @@ type Props = {
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const ReassignTerminalWidget = ({
+const ReassignTerminalModal = ({
   data,
   loadingOptions,
   triggerSubmit,
@@ -49,7 +49,8 @@ const ReassignTerminalWidget = ({
       showModal={isShown}
       setShowModal={toggleModal}
       buttonText={btnText}
-      headerText={btnText}
+      title={btnText}
+      disabled={!value?.businessId || !value?.reassignmentReason}
       handleSubmit={handleSubmit}
       loading={loading}
     >
@@ -135,4 +136,4 @@ const ReassignTerminalWidget = ({
     </Modal>
   )
 }
-export default ReassignTerminalWidget
+export default ReassignTerminalModal

@@ -19,7 +19,7 @@ const AddMethodModal: React.FC<{
     <Modal
       showModal={isShown}
       setShowModal={toggle}
-      headerText="Select Preferred Option"
+      title="Select Preferred Option"
       contentPadding={'0'}
       withoutFooter
       modalHeight="270px"

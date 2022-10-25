@@ -1,47 +1,43 @@
+@font-face {
+  font-family: 'Gilmer';
+  font-display: swap;
+  src: url('./assets/fonts/GilmerFont2/Gilmer-light.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilmer';
+  font-display: swap;
+  src: url('./assets/fonts/GilmerFont2/Gilmer-Regular.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilmer';
+  font-display: swap;
+  src: url('./assets/fonts/GilmerFont2/Gilmer-Medium.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilmer';
+  font-display: swap;
+  src: url('./assets/fonts/GilmerFont2/Gilmer-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
 
-
-  @font-face {
-    font-family: "Gilmer";
-    font-display: swap;
-    src: url('./assets/fonts/GilmerFont2/Gilmer-light.otf') format("opentype");
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "Gilmer";
-    font-display: swap;
-    src: url('./assets/fonts/GilmerFont2/Gilmer-Regular.otf') format("opentype");
-    font-weight: 500;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "Gilmer";
-    font-display: swap;
-    src: url('./assets/fonts/GilmerFont2/Gilmer-Medium.otf') format("opentype");
-    font-weight: 600;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "Gilmer";
-    font-display: swap;
-    src: url('./assets/fonts/GilmerFont2/Gilmer-Bold.otf') format("opentype");
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: "Gilmer";
-    font-display: swap;
-    src: url('./assets/fonts/GilmerFont2/Gilmer-Heavy.otf') format("opentype");
-    font-weight: 800;
-    font-style: normal;
-  }
+@font-face {
+  font-family: 'Gilmer';
+  font-display: swap;
+  src: url('./assets/fonts/GilmerFont2/Gilmer-Heavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
 :root {
-
   /* Animations */
   --animation-duration: 0.5s;
   --animation-timing: ease;
-
 
   /* sizes */
   --spacing: 0;
@@ -58,17 +54,17 @@
   --breakpoints-widescreen: 1920px;
 
   /* Colors */
-  --gray: #EEEEEE;
-  --green: #34A853; 
-  --green2: #DDF3E3;
-  --red: #EA4336;
+  --gray: #eeeeee;
+  --green: #34a853;
+  --green2: #ddf3e3;
+  --red: #ea4336;
   --red2: rgba(234, 67, 54, 0.1);
-  --yellow: #F1A85A;
-  --yellow2: rgba(241, 168, 90, 0.1); 
-  --text-gray-1: #A5B0B7;
+  --yellow: #f1a85a;
+  --yellow2: rgba(241, 168, 90, 0.1);
+  --text-gray-1: #a5b0b7;
   --text-gray-2: #798892;
   --text-color: #001928;
-  --text-card-color: #374B58;
+  --text-card-color: #374b58;
 
   /* Borders */
   --borders-radius: 10px;
@@ -87,9 +83,15 @@ body {
 
   scroll-behavior: smooth;
 }
-h1,h2,h3,h4,h5,h6,p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 2px;
-  padding:2px;
+  padding: 2px;
 }
 a {
   color: inherit;
