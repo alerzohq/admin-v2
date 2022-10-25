@@ -199,7 +199,7 @@ const Employees = () => {
           )}
         </>
       </Modal>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} >
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           showFilters={{
             search: {

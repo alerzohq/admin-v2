@@ -74,7 +74,7 @@ function App() {
               <Route path={Path.DIGITALBANK} element={<DigitalBank />} />
               <Route
                 path={Path.DIGITALBANKDETAIL}
-                element={<DigitalBankDetails />} 
+                element={<DigitalBankDetails />}
               />
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />

@@ -13,21 +13,18 @@ const SelectInput = ({
   fullWidth,
   onChange,
 }: SelectProps) => {
-
   const Placeholder = (props: PlaceholderProps) => {
-    return <components.Placeholder {...props} />;
-  };
-  
+    return <components.Placeholder {...props} />
+  }
+
   return (
     <Select
-      components={{Placeholder,
-        IndicatorSeparator: () => null,
-      }}
+      components={{ Placeholder, IndicatorSeparator: () => null }}
       classNamePrefix="react-select"
       id="long-value-select"
       instanceId="long-value-select"
       defaultValue={value}
-      onChange={onChange}  
+      onChange={onChange}
       options={options}
       styles={styles ? styles : selectStyles(false, fullWidth)}
       isClearable={isClearable}

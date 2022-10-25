@@ -22,13 +22,15 @@ export const TABS = [
 
 export const CUSTOMERTABLE = [
   { label: 'Customer Name', value: 'name', columnWidth: 'small' },
-  { label: 'Account Number', value: 'accountNumber', columnWidth: 'small' },
   { label: 'Phone Number', value: 'phoneNumber', columnWidth: 'small' },
   { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
   { label: 'Date Registered', value: 'date', columnWidth: 'small' },
   { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
-
+export const SECURITYTABLE = [
+  { label: 'Security Questions', value: 'status', columnWidth: 'small' },
+  { label: 'noVisibility', value: 'empty', columnWidth: 'extraLarge' },
+]
 export const CUSTOMERSEGMENTTABLE = [
   { label: 'Customer Segment', value: 'customerSegment', columnWidth: 'small' },
   { label: 'Gender', value: 'gender', columnWidth: 'small' },
@@ -45,7 +47,6 @@ export const customerHelper = (data: any) => {
       header: CUSTOMERTABLE,
       data: {
         name: `${data?.first_name} ${data?.last_name}`,
-        accountNumber: data?.account_numberr,
         phoneNumber: data?.phone_number,
         bvnStatus:
           data?.bvn_set || data?.kyc_level > 1 ? 'Verified' : 'Not verified',
@@ -66,6 +67,14 @@ export const customerHelper = (data: any) => {
         kyc: data?.kyc_level.toString(),
         pinStatus: data?.transaction_pin_set ? 'Set' : 'Not Set',
         status: data?.disabled ? 'Inactive' : 'Active',
+      },
+    },
+
+    {
+      spacing: false,
+      header: SECURITYTABLE,
+      data: {
+        status: data?.security_question_set ? 'Set' : 'Not Set',
       },
     },
   ]
