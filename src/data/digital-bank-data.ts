@@ -11,6 +11,7 @@ export const TABS = [
     value: 'transHistory',
   },
   { label: 'Cards', value: 'cards', title: '' },
+  { label: 'Bank Accounts', value: 'bankAccounts', title: '' },
   {
     label: 'Expenses Lens',
     value: 'expensesLens',

@@ -63,7 +63,7 @@ const RolesPermissions = () => {
         subTitle={'Enter employee email adree and assign role'}
         setShowModal={toggle}
         buttonText="Send Invite"
-        headerText="Add New Employer"
+        title="Add New Employer"
         contentPadding={'0'}
       >
         <Form>

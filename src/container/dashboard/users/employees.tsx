@@ -4,7 +4,6 @@ import { useMutation, useQuery } from 'react-query'
 import { InviteSent } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
-  // Button,
   FallBack,
   Filter,
   Form,
@@ -56,9 +55,7 @@ const Employees = () => {
   )
   const {
     isLoading: isLoadingRoles,
-    isError: isErrorRoles,
     data: roles,
-    refetch: refetchRoles,
   } = useQuery('roles', getRoles)
   let component
   if (isLoading) {
@@ -103,7 +100,7 @@ const Employees = () => {
             role: '',
           })
         }}
-        headerText="Employee invitation sent"
+        title="Employee invitation sent"
         contentPadding={'0'}
         icon={<InviteSent />}
         subTitle={`You have invited ${values.email}`}
@@ -122,7 +119,7 @@ const Employees = () => {
         subTitle={'Enter employee email address and assign role'}
         setShowModal={toggle}
         buttonText="Send Invite"
-        headerText="Add New Employee"
+        title="Add New Employee"
         contentPadding={'0'}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)

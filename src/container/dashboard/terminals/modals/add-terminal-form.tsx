@@ -5,7 +5,6 @@ import { Form, Text } from '../../../../components'
 import { Color } from '../../../../assets/theme'
 import {
   useMutation,
-  // UseMutationResult,
   useQuery,
   useQueryClient,
 } from 'react-query'
@@ -62,7 +61,7 @@ const AddTerminalModal: React.FC<{
       showModal={addMethod === 'manual'}
       setShowModal={() => handleAddMethod('')}
       buttonText="Add Terminal"
-      headerText="Add New Terminal"
+      title="Add New Terminal"
       contentPadding={'0'}
       handleSubmit={async () => {
         handleIsTriggerSubmit(true)
