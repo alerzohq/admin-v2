@@ -5,8 +5,12 @@ export const options = [
 ]
 
 export const optionsAllPlatform = [
-  { value: 'web', label: 'Web' },
-  { value: 'pos', label: 'POS' },
-  { value: 'app', label: 'App' },
-  { value: 'api', label: 'API' },
+  // { value: 'web', label: 'Web' },
+  // { value: 'pos', label: 'POS' },
+  // { value: 'app', label: 'App' },
+  // { value: 'api', label: 'API' },
+  {label: 'Customer', value: 'customer'}, 
+  {label: 'Business',  value: 'business'}, 
+  {label: 'Business User', value: 'business-user'},
+  {label: 'Business Customer', value: 'business-customer'}
 ]
