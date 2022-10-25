@@ -13,6 +13,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { getResource, postRequest } from '../../../../../utils/apiRequest'
 import { toast } from 'react-hot-toast'
 import { ValueProps } from '../type'
+import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
 
 const TerminalDetails = ({ data }: any) => {
   const queryClient = useQueryClient()
@@ -57,7 +58,65 @@ const TerminalDetails = ({ data }: any) => {
   const { isLoading: loadingEnable, mutate: enableTerminal } =
     useEnableTermMutation()
   const { isLoading: loadingAssign, mutate } = useAssignMutation()
-
+  const handleEnable = () => {
+    setIsTriggerSubmit(true)
+    enableTerminal(
+      {},
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('terminal')
+          if (enabled) {
+            return toggle()
+          }
+          console.log(data?.active)
+          toast.success(`Terminal updated successfully`)
+        },
+        onError: (error: any) => {
+          toast.error(`${error?.response?.data?.message}`)
+        },
+      }
+    )
+  }
+  const handleReassign = () => {
+    if (
+      data?.user_id !== null &&
+      value?.businessId !== undefined &&
+      value?.reassignmentReason !== undefined
+    ) {
+      setIsTriggerSubmit(false)
+      return mutate(
+        { ...value },
+        {
+          onSuccess: () => {
+            toggle('assign')
+            toast.success(`Terminal reassigned successfully`)
+            queryClient.invalidateQueries('terminal')
+          },
+          onError: (err: any) => {
+            toggle('assign')
+            toast.error(`${err?.response?.data?.message}`)
+          },
+        }
+      )
+    }
+    if (data?.user_id === null && value?.businessId !== undefined) {
+      setIsTriggerSubmit(false)
+      return mutate(
+        { ...value },
+        {
+          onSuccess: () => {
+            toggle('assign')
+            toast.success(`Terminal assigned successfully`)
+            queryClient.invalidateQueries('terminal')
+          },
+          onError: (err: any) => {
+            toggle('assign')
+            toast.error(`${err?.response?.data?.message}`)
+          },
+        }
+      )
+    }
+  }
   return (
     <TerminalDetailWrapper>
       <ReassignTerminalWidget
@@ -68,57 +127,29 @@ const TerminalDetails = ({ data }: any) => {
         loading={loadingAssign}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
-          if (
-            data?.user_id !== null &&
-            value?.businessId !== undefined &&
-            value?.reassignmentReason !== undefined
-          ) {
-            setIsTriggerSubmit(false)
-            return mutate(
-              { ...value },
-              {
-                onSuccess: () => {
-                  toggle('assign')
-                  toast.success(`Terminal reassigned successfully`)
-                  queryClient.invalidateQueries('terminal')
-                },
-                onError: (err: any) => {
-                  toggle('assign')
-                  toast.error(`${err?.response?.data?.message}`)
-                },
-              }
-            )
-          }
-          if (data?.user_id === null && value?.businessId !== undefined) {
-            setIsTriggerSubmit(false)
-            return mutate(
-              { ...value },
-              {
-                onSuccess: () => {
-                  toggle('assign')
-                  toast.success(`Terminal assigned successfully`)
-                  queryClient.invalidateQueries('terminal')
-                },
-                onError: (err: any) => {
-                  toggle('assign')
-                  toast.error(`${err?.response?.data?.message}`)
-                },
-              }
-            )
-          }
+          handleReassign()
         }}
         merchants={merchants?.data}
         toggleModal={() => {
-          setIsTriggerSubmit(false)
           setValue({
             reassignmentReason: '',
             serial_number: '',
             businessId: '',
           })
+          setIsTriggerSubmit(false)
+
           toggle('assign')
         }}
         value={value}
         setValue={setValue}
+      />
+      <EnableTerminalWidget
+        isShown={enabled}
+        handleSubmit={handleEnable}
+        toggleModal={() => {
+          setIsTriggerSubmit(false)
+          toggle()
+        }}
       />
       <DetailsContentWidget resolvedData={terminalHelper(data)!} />
       <ButtonWrapper>
@@ -128,19 +159,10 @@ const TerminalDetails = ({ data }: any) => {
           borderSize="1px"
           width="150px"
           onClick={async () => {
-            setIsTriggerSubmit(true)
-            enableTerminal(
-              {},
-              {
-                onSuccess: () => {
-                  toast.success(`Terminal updated successfully`)
-                  queryClient.invalidateQueries('terminal')
-                },
-                onError: (error: any) => {
-                  toast.error(`${error?.response?.data?.message}`)
-                },
-              }
-            )
+            if (data?.active) {
+              return toggle()
+            }
+            handleEnable()
           }}
           color={Color.alerzoBlueTint}
           borderColor={Color.alerzoBlueTint}

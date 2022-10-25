@@ -3,12 +3,7 @@ import React, { useState } from 'react'
 import Modal from '../../../../components/modal'
 import { Form, Text } from '../../../../components'
 import { Color } from '../../../../assets/theme'
-import {
-  useMutation,
-  // UseMutationResult,
-  useQuery,
-  useQueryClient,
-} from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError, AxiosResponse } from 'axios'
 import { axiosInstance } from '../../../../configs/axios-instance'
 import toast from 'react-hot-toast'
@@ -62,7 +57,7 @@ const AddTerminalModal: React.FC<{
       showModal={addMethod === 'manual'}
       setShowModal={() => handleAddMethod('')}
       buttonText="Add Terminal"
-      headerText="Add New Terminal"
+      title="Add New Terminal"
       contentPadding={'0'}
       handleSubmit={async () => {
         handleIsTriggerSubmit(true)
