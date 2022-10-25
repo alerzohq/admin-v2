@@ -3,4 +3,5 @@ export const initialState = {
   isCollapsed: false,
   error: null,
   userOtp: null,
+  fetching: false,
 }

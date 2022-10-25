@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { filterProps } from '../../../../../@types'
 import {
@@ -9,12 +9,15 @@ import {
   Pagination,
   Table,
 } from '../../../../../components'
+import { useAppContext } from '../../../../../context'
+import { Action } from '../../../../../context/actions'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
-  const [values, setValues] = useState(filterValue)
+  const [values, setValues] = useState(filterValue);
+  const {dispatch} = useAppContext()
 
   const getTransactionsHistory = (filterValue: filterProps) => {
     return getNewFilterResource(
@@ -24,11 +27,21 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
     )
   }
 
-  const { isLoading, isError, data } = useQuery(
+  const { isLoading, isError, data, isFetching} = useQuery(
     ['user-transaction-history', values],
     () => getTransactionsHistory(values),
     { keepPreviousData: true }
   )
+
+useEffect(() => {
+  dispatch({ 
+    type:Action.IS_FETCHING, 
+    payload:isFetching
+  })
+},[isFetching, dispatch])
+
+
+
 
   let component
   if (isLoading) {
@@ -55,6 +68,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   return (
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} >
+      
         <Filter
           showFilters={{
             search: {
