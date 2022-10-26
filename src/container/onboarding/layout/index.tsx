@@ -5,6 +5,7 @@ import {
   AuthColumn,
   AuthContainer,
   AuthContent,
+  AuthImage,
   AuthInner,
 } from './styles/layout.styles'
 import authImage from '../../../assets/images/svgs/auth-img.svg'
@@ -20,12 +21,15 @@ const AuthLayout = ({
         <AlerzoLogo className={'logo-svg'} />
         <AuthContent>
           <AuthInner>
-            <img
-              src={authImage}
-              alt={'auth-img'}
-              width={'80%'}
-              loading={'lazy'}
-            />
+            <AuthImage>
+              <img
+                src={authImage}
+                alt={'auth-img'}
+                width={'100%'}
+                height={'100%'}
+                loading={'lazy'}
+              />
+            </AuthImage>
             <Text
               as={'h2'}
               size={'1.1rem'}
