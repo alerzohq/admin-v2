@@ -11,7 +11,7 @@ const Filter = ({
   setFilterValues,
   justifyContent,
 }: FilterProps) => {
-  const [status, setStatus] = useState<SelectInputProps>(null)
+  const [status, ] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
     status: '',
