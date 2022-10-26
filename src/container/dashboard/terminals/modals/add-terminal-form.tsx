@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import Modal from '../../../../components/modal'
-import { Form, Text } from '../../../../components'
+import { Form, SelectInput, Text } from '../../../../components'
 import { Color } from '../../../../assets/theme'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError, AxiosResponse } from 'axios'
@@ -44,11 +44,12 @@ const AddTerminalModal: React.FC<{
       },
     }
   )
-  const handleChange =
-    (name: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setAddValues({ ...addValues, [name]: e.target.value.trim() })
-    }
+  const handleChange = (name: string, value: string) =>
+    setAddValues({
+      ...addValues,
+      [name]: value.trim(),
+    })
+
   const handleIsTriggerSubmit = (triggered: boolean) => {
     setIsTriggerSubmit(triggered)
   }
@@ -73,7 +74,9 @@ const AddTerminalModal: React.FC<{
             <Form.Label>Serial Number</Form.Label>
             <Form.Input
               type="text"
-              onChange={handleChange('serialNumber')}
+              onChange={(e) =>
+                handleChange('serialNumber', e.target.value.trim())
+              }
               placeholder="Enter serial number"
               value={addValues.serialNumber}
             />
@@ -93,7 +96,8 @@ const AddTerminalModal: React.FC<{
           <Form.Control pb={'1rem'}>
             <Form.Label>POS Variant</Form.Label>
             {!specsLoading && (
-              <Form.Select
+              <SelectInput
+                fullWidth
                 placeholder="Select POS variant"
                 options={[
                   {
@@ -110,7 +114,9 @@ const AddTerminalModal: React.FC<{
                     }
                   ),
                 ]}
-                onChange={handleChange('specification')}
+                onChange={(e) => {
+                  handleChange('specification', e.value)
+                }}
                 value={addValues.specification}
               />
             )}

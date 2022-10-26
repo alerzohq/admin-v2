@@ -53,19 +53,19 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   return (
     <SidebarWrapper isCollapsed={isCollapsed}>
       <Inner isCollapsed={isCollapsed}>
-       <LogoBox>
-       {isCollapsed ? (
-          <FavIcon onClick={collapseBar} />
-        ) : (
-          <AlerzoLogo
-            className={'logo'}
-            onClick={collapseBar}
-            height={'25'}
-            width={'150'}
-            color={Color.alerzoBlue}
-          />
-        )}
-       </LogoBox>
+        <LogoBox>
+          {isCollapsed ? (
+            <FavIcon onClick={collapseBar} />
+          ) : (
+            <AlerzoLogo
+              className={'logo'}
+              onClick={collapseBar}
+              height={'25'}
+              width={'150'}
+              color={Color.alerzoBlue}
+            />
+          )}
+        </LogoBox>
         <SidebarList>
           {sideBarData.map(
             (

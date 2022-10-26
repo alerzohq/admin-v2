@@ -9,8 +9,8 @@ export const optionsAllPlatform = [
   // { value: 'pos', label: 'POS' },
   // { value: 'app', label: 'App' },
   // { value: 'api', label: 'API' },
-  {label: 'Customer', value: 'customer'}, 
-  {label: 'Business',  value: 'business'}, 
-  {label: 'Business User', value: 'business-user'},
-  {label: 'Business Customer', value: 'business-customer'}
+  { label: 'Customer', value: 'customer' },
+  { label: 'Business', value: 'business' },
+  { label: 'Business User', value: 'business-user' },
+  { label: 'Business Customer', value: 'business-customer' },
 ]

@@ -1,4 +1,4 @@
-import { Button,  Text } from '..'
+import { Button, Text } from '..'
 import CloseIcon from '../../assets/icons/close-icon'
 import { Color } from '../../assets/theme'
 import { Footer } from '../form/styles/form.style'
@@ -86,7 +86,7 @@ const Modal = ({
                   disabled={disabled}
                   onClick={handleSubmit ?? setShowModal}
                 >
-                 {buttonText}          
+                  {buttonText}
                 </Button>
                 {cancelBtnText && (
                   <Button

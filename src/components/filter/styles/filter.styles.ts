@@ -8,7 +8,7 @@ export const FilterWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   /* padding: 0 1rem; */
-  /* overflow: scroll; */
+  // overflow: scroll;
   /* border-bottom: 0.8px solid #e8ebee; */
   svg {
     cursor: pointer;
@@ -29,7 +29,7 @@ export const FilterItems = styled.div`
   gap: 20px;
   justify-content: space-between;
   overflow-y: visible;
-  /* overflow-x: scroll; */
+  // overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
   .download-btn {

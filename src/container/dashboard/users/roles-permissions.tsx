@@ -117,6 +117,7 @@ const RolesPermissions = () => {
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'status',
               },
             ],
             buttons: [

@@ -63,7 +63,7 @@ Form.Select = function FormSelect({
   return (
     <Select>
       <select onChange={onChange} {...restProps}>
-        {options?.map((option,i) => (
+        {options?.map((option, i) => (
           <option key={i} disabled={option?.disabled} value={option?.value}>
             {option?.label}
           </option>

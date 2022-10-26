@@ -10,8 +10,9 @@ export type FilterProps = {
     selects?: {
       values: options
       placeholder: string
-      onChange: () => void
+      onChange?: () => void
       value: string
+      query: 'search' | 'status' | 'allPlatform'
     }[]
     buttons?: {
       buttonClass: string

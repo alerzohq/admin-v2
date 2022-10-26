@@ -28,7 +28,11 @@ const TerminalDetails = ({ data }: any) => {
   const assignBtnText =
     data?.user_id !== null ? 'Reassign Terminal' : 'Assign Terminal'
 
-  const [value, setValue] = useState<ValueProps>({ reassignmentReason: '', businessId: '', serial_number: '' })
+  const [value, setValue] = useState<ValueProps>({
+    reassignmentReason: '',
+    businessId: '',
+    serial_number: '',
+  })
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
   const toggle = (type?: 'assign') => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
