@@ -55,12 +55,14 @@ const Members = ({ userId }: { userId: string }) => {
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'allPlatform',
               },
               {
                 placeholder: 'Status',
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'status',
               },
             ],
           }}

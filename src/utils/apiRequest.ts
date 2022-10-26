@@ -25,7 +25,6 @@ export const getNewFilterResource = async (
     skipNull: true,
     skipEmptyString: true,
   })
-  // console.log(filterQuery)
   const { data } = await axiosInstance.get(
     `/${pathUrl}${hasArg ? '' : '?'}${filterQuery}`
   )

@@ -68,12 +68,14 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
                 values: optionsAllPlatform,
                 value: '',
                 onChange: () => {},
+                query: 'allPlatform',
               },
               {
                 placeholder: 'Status',
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'status',
               },
               // {
               //   placeholder: 'Download CSV',

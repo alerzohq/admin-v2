@@ -61,7 +61,11 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
       />
     )
   }
-
+  useEffect(() => {
+    if (isFetching) {
+      window.scrollTo(0, 0)
+    }
+  }, [isFetching])
   return (
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
@@ -75,9 +79,13 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
             selects: [
               {
                 placeholder: 'Status',
-                values: [],
+                values: [
+                  { label: 'successful', value: 'successful' },
+                  { label: 'failed', value: 'failed' },
+                  { label: 'pending', value: 'pending' },
+                ],
                 value: '',
-                onChange: () => {},
+                query: 'status',
               },
             ],
           }}

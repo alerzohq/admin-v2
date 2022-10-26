@@ -40,7 +40,6 @@ export const CUSTOMERSEGMENTTABLE = [
   { label: 'Status', value: 'status', columnWidth: 'large' },
 ]
 export const customerHelper = (data: any) => {
-  console.log({ data })
   return [
     {
       spacing: false,

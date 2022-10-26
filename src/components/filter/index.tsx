@@ -22,10 +22,14 @@ const Filter = ({
 
   useEffect(() => {
     if (showFilters) {
-      setFilterValues?.((prev: any) => ({ ...prev, query: search }))
+      setFilterValues?.((prev: any) => ({
+        ...prev,
+        query: search,
+        status: values.status,
+      }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, status])
+  }, [search, status, values.status])
   const ref = useRef<HTMLDivElement>(null)
   const rectVal = ref?.current?.getBoundingClientRect()?.left
   const position = rectVal && rectVal >= 600 && '20px'
@@ -64,10 +68,14 @@ const Filter = ({
                 <SelectInput
                   key={i}
                   placeholder={select.placeholder}
-                  onChange={select.onChange}
-                  value={select.value}
+                  onChange={(e: any) => {
+                    setValues({
+                      ...values,
+                      [select.query as string]: e.value,
+                    })
+                  }}
+                  value={values[select.query]}
                   options={select.values}
-                  isClearable
                 />
               ))}
             {showFilters?.buttons &&
