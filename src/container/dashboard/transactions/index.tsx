@@ -34,8 +34,6 @@ const TransactionContainer = () => {
   // )
   // console.log({filters})
 
-
-
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
     getTranStats

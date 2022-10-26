@@ -16,14 +16,15 @@ const Container: React.FC<ContainerProps> = ({
   noScroll,
   ...restProps
 }) => {
-
-  const {state:{fetching}} = useAppContext()
+  const {
+    state: { fetching },
+  } = useAppContext()
 
   useEffect(() => {
     if (!noScroll) {
       window.scrollTo(0, 0)
     }
-  }, [isFetching,fetching, noScroll])
+  }, [isFetching, fetching, noScroll])
   return (
     <>
       <TopBar
