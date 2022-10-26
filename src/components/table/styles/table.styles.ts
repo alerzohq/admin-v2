@@ -21,6 +21,14 @@ export const TableWrapper = styled.div<Props>`
     width: 0;
     height: 0;
   }
+  /* &:before{
+    content: "";
+    height:100%;
+    width: 100%;
+    position: absolute;
+    z-index:1;
+    background:rgba(255,255,255, 0.5) ;
+  } */
 `
 export const DataTable = styled.table<Props>`
   width: 100%;

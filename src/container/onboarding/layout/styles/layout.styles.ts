@@ -48,3 +48,11 @@ export const AuthInner = styled.div<Props>`
   flex-direction: column;
   align-items: center;
 `
+export const AuthImage = styled.div`
+width:500px;
+height:500px;
+@media (max-width:1024px){
+width:400px;
+height:400px;
+}
+`

@@ -1,0 +1,15 @@
+{
+    "algorithms": ["br", "gz"],
+    "filetypes": [
+      ".html",
+      ".js",
+      ".css",
+      ".svg",
+      ".png",
+      ".jpg",
+      ".tff",
+      ".woff2",
+      ".map"
+    ],
+    "directory": "/build"
+  }

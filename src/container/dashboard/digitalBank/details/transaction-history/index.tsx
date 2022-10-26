@@ -77,12 +77,16 @@ useEffect(() => {
             },
             date: true,
             selects: [
-              {
-                placeholder: 'Status',
-                values: [],
-                value: '',
-                onChange: () => {},
-              },
+             {
+              placeholder: 'Status',
+              values: [
+                { label: 'Successful', value: 'successful' },
+                { label: 'Pending', value: 'pending' },
+                { label: 'Failed', value: 'failed' },
+              ],
+              value: '',
+              onChange: () =>{}
+             }
             ],
           }}
           setFilterValues={setValues}
