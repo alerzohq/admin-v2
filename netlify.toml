@@ -1,0 +1,15 @@
+[build]
+    environment = { REACT_APP_API_BASE_URL="https://api.develop.alerzopay.com/v2/admin", REACT_APP_API_TEMP_URL="https://api.develop.alerzopay.com" }
+    
+
+
+[context.staging] # “staging” is a branch name
+    environment = { REACT_APP_API_BASE_URL="https://api.staging.alerzopay.com/v2/admin", REACT_APP_API_TEMP_URL="https://api.staging.alerzopay.com" }
+    
+
+
+[context.production]
+    environment = { REACT_APP_API_BASE_URL="https://api.alerzopay.com/v2/admin", REACT_APP_API_TEMP_URL="https://api.alerzopay.com" }
+
+
+  
