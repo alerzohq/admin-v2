@@ -3,9 +3,10 @@ import styled from 'styled-components/macro'
 type Props = {
   bgColor?: string
   hideOnMobile?: boolean
+  p?: string
 }
 
-export const AuthContainer = styled.div<{ p?: string }>`
+export const AuthContainer = styled.div<Props>`
   display: flex;
   width: 100%;
   min-height: 100vh;
@@ -46,4 +47,12 @@ export const AuthInner = styled.div<Props>`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+export const AuthImage = styled.div`
+width:500px;
+height:500px;
+@media (max-width:1024px){
+width:400px;
+height:400px;
+}
 `

@@ -29,8 +29,8 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
     let end_date = formatDate(selection?.endDate, 'l')
     setDateValue(`${start_date} - ${end_date}`)
 
-    let startD = formatDate(selection?.startDate, 'YYYY-MM-DD, h:mm:ss a')
-    let endD = formatDate(selection?.endDate, 'YYYY-MM-DD,h:mm:ss a')
+    let startD = formatDate(selection?.startDate)
+    let endD = formatDate(selection?.endDate)
 
     filterDate((prev: any) => ({ ...prev, from: startD, to: endD }))
   }

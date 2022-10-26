@@ -54,7 +54,6 @@ const BusinessContainer = () => {
         tableData={data?.data}
         tableHeaders={busHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        hideActive
       />
     )
   }
@@ -75,16 +74,6 @@ const BusinessContainer = () => {
             ],
             value: '',
           },
-          // {
-          //   placeholder: 'KYC Level',
-          //   shouldSetQuery: true,
-          //   values: [
-          //     { label: '1', value: '1 ' },
-          //     { label: '2', value: '2' },
-          //     { label: '3', value: '3' },
-          //   ],
-          //   value: '',
-          // },
         ],
       }}
       title="Businesses"
@@ -93,6 +82,7 @@ const BusinessContainer = () => {
     >
       <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{component}</Jumbotron>
+
       <Pagination data={data} setPageNumber={setValues} />
     </Container>
   )

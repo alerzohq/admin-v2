@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import { filterProps } from '../../../../../@types'
 import {
   FallBack,
   Filter,
@@ -8,20 +9,36 @@ import {
   Pagination,
   Table,
 } from '../../../../../components'
+import { useAppContext } from '../../../../../context'
+import { Action } from '../../../../../context/actions'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
-import { getResource } from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
-  const getTransactionsHistory = () => {
-    return getResource(`transactions?userId=${userId}`)
+  const [values, setValues] = useState(filterValue)
+  const { dispatch } = useAppContext()
+
+  const getTransactionsHistory = (filterValue: filterProps) => {
+    return getNewFilterResource(
+      `transactions?userId=${userId}&`,
+      filterValue,
+      true
+    )
   }
 
-  const [, setValues] = useState(filterValue)
-  const { isLoading, isError, data } = useQuery(
-    'user-transaction-history',
-    getTransactionsHistory
+  const { isLoading, isError, data, isFetching } = useQuery(
+    ['user-transaction-history', values],
+    () => getTransactionsHistory(values),
+    { keepPreviousData: true }
   )
+
+  useEffect(() => {
+    dispatch({
+      type: Action.IS_FETCHING,
+      payload: isFetching,
+    })
+  }, [isFetching, dispatch])
 
   let component
   if (isLoading) {
@@ -29,7 +46,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   } else if (isError) {
     component = <FallBack error title={'Failed to load businesses history. '} />
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no business history yet. '} />
+    component = <FallBack title={'No transaction Found. '} />
   } else {
     component = (
       <Table
@@ -40,13 +57,18 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={1}
         withSlug
+        notClickable
       />
     )
   }
-
+  useEffect(() => {
+    if (isFetching) {
+      window.scrollTo(0, 0)
+    }
+  }, [isFetching])
   return (
     <>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           showFilters={{
             search: {
@@ -57,13 +79,17 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
             selects: [
               {
                 placeholder: 'Status',
-                values: [],
+                values: [
+                  { label: 'Successful', value: 'successful' },
+                  { label: 'Failed', value: 'failed' },
+                  { label: 'Pending', value: 'pending' },
+                ],
                 value: '',
-                onChange: () => {},
+                query: 'status',
               },
             ],
           }}
-          justifyContent={'flex-start'}
+          setFilterValues={setValues}
         />
 
         {component}

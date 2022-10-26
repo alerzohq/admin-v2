@@ -10,6 +10,7 @@ import { sideBarData } from '../../data/sidebar-data'
 import {
   SidebarWrapper,
   Inner,
+  LogoBox,
   SidebarDropdown,
   DropdownItem,
   SidebarItem,
@@ -52,17 +53,19 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   return (
     <SidebarWrapper isCollapsed={isCollapsed}>
       <Inner isCollapsed={isCollapsed}>
-        {isCollapsed ? (
-          <FavIcon onClick={collapseBar} />
-        ) : (
-          <AlerzoLogo
-            className={'logo'}
-            onClick={collapseBar}
-            height={'25'}
-            width={'150'}
-            color={Color.alerzoBlue}
-          />
-        )}
+        <LogoBox>
+          {isCollapsed ? (
+            <FavIcon onClick={collapseBar} />
+          ) : (
+            <AlerzoLogo
+              className={'logo'}
+              onClick={collapseBar}
+              height={'25'}
+              width={'150'}
+              color={Color.alerzoBlue}
+            />
+          )}
+        </LogoBox>
         <SidebarList>
           {sideBarData.map(
             (

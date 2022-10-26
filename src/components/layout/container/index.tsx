@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useAppContext } from '../../../context'
 import LineLoader from '../../line-loader'
 import TopBar from '../../top-bar'
 import { ContainerProps } from '../type'
@@ -12,15 +13,18 @@ const Container: React.FC<ContainerProps> = ({
   routePath,
   children,
   whiteSpace,
-
   noScroll,
   ...restProps
 }) => {
+  const {
+    state: { fetching },
+  } = useAppContext()
+
   useEffect(() => {
     if (!noScroll) {
       window.scrollTo(0, 0)
     }
-  }, [isFetching, noScroll])
+  }, [isFetching, fetching, noScroll])
   return (
     <>
       <TopBar
@@ -31,7 +35,7 @@ const Container: React.FC<ContainerProps> = ({
         whiteSpace={whiteSpace}
         {...restProps}
       />
-      {isFetching ? <LineLoader /> : ''}
+      {isFetching || fetching ? <LineLoader /> : ''}
       <ContainerWrapper {...restProps}>{children}</ContainerWrapper>
     </>
   )

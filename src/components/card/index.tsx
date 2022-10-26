@@ -29,7 +29,7 @@ CardRow.Container = function CardContainer({ data }: CardRowProps) {
         showModal={isShown}
         setShowModal={toggle}
         buttonText="Submit Note"
-        headerText="Add New Note"
+        title="Add New Note"
       >
         <Text
           as="p"

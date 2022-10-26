@@ -31,6 +31,7 @@ const TopBar = ({
   const ref = useRef<HTMLDivElement>(null)
   const rectVal = ref?.current?.getBoundingClientRect()?.left
   const position = rectVal && rectVal >= 600 && '20px'
+
   useEffect(() => {
     if (showFilters && status !== null) {
       return setFilterValues((prev: any) => ({ ...prev, status }))
@@ -47,6 +48,7 @@ const TopBar = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
+
   return (
     <>
       <TopbarWrapper>
@@ -115,23 +117,6 @@ const TopBar = ({
                 </button>
               ))}
           </TopbarFilters>
-          {/* {showFilters &&(
-        <TopbarFilters>
-        <Filter value={search} onChange={(e)=>{setValues({...values,search:e.target.value})}} placeholder={'Search by reference number..'}/>
-        <DateRange filterDate={setFilterValues}/>
-        <SelectInput placeholder={'All Platform'}
-          onChange={()=>{}}
-         value={''} options={optionsAllPlatform}/> 
-         <SelectInput placeholder={'Status'}
-          onChange={handleChange}
-         value={status} options={options}/> 
-         
-         <button id={'download-btn'}>
-           {'Download CSV'}
-         </button>
-        </TopbarFilters>
- 
-       )} */}
         </Stack>
       </TopbarWrapper>
     </>

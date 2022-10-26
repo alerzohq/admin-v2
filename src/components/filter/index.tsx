@@ -11,7 +11,7 @@ const Filter = ({
   setFilterValues,
   justifyContent,
 }: FilterProps) => {
-  const [status] = useState<SelectInputProps>(null)
+  const [status, ] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
     status: '',
@@ -22,7 +22,10 @@ const Filter = ({
 
   useEffect(() => {
     if (showFilters) {
-      setFilterValues?.((prev: any) => ({ ...prev, query: search }))
+      setFilterValues?.((prev: any) => ({
+        ...prev,
+        query: search,
+      }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
@@ -63,7 +66,12 @@ const Filter = ({
                 <SelectInput
                   key={i}
                   placeholder={select.placeholder}
-                  onChange={select.onChange}
+                  onChange={(e: any) => {
+                    setFilterValues({
+                      ...values,
+                      [select.query as string]: e?.value ?? '',
+                    })
+                  }}
                   value={select.value}
                   options={select.values}
                   isClearable

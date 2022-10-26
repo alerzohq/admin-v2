@@ -63,7 +63,7 @@ const RolesPermissions = () => {
         subTitle={'Enter employee email adree and assign role'}
         setShowModal={toggle}
         buttonText="Send Invite"
-        headerText="Add New Employer"
+        title="Add New Employer"
         contentPadding={'0'}
       >
         <Form>
@@ -103,7 +103,7 @@ const RolesPermissions = () => {
           </Form.Control>
         </Form>
       </Modal>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           showFilters={{
             search: {
@@ -117,6 +117,7 @@ const RolesPermissions = () => {
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'status',
               },
             ],
             buttons: [

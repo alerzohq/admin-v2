@@ -6,12 +6,13 @@ import DetailsContent from '../../widget/tabs/tab-content-details'
 import { productHelper } from '../../../../data/product-data'
 import {
   FallBack,
-  Filter,
   Jumbotron,
   Loader,
   Table,
+  Text,
 } from '../../../../components'
 import { productBillersHeaderList } from '../../../../data/table-headers'
+import { Color } from '../../../../assets/theme'
 
 interface CustomizedState {
   detail: any
@@ -23,7 +24,7 @@ const ProductDetailsContainer = () => {
   const getProductBillers = () => {
     return getResource(`products/${detail?.slug}/billers`)
   }
-  const { isLoading, isRefetching, isError, refetch, error, data } = useQuery(
+  const { isLoading, isRefetching, isError, refetch, data } = useQuery(
     'billers',
     getProductBillers
   )
@@ -52,6 +53,7 @@ const ProductDetailsContainer = () => {
         tableHeaders={productBillersHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         withSlug
+        notClickable
       />
     )
   }
@@ -66,17 +68,20 @@ const ProductDetailsContainer = () => {
       <DetailsContent
         resolvedData={productHelper({ ...resp, name: detail?.slug })!}
       />
-      <Jumbotron padding={'.5rem .5rem'} direction="column">
-        <Filter
-          showFilters={{
-            search: {
-              placeholder: 'Search',
-              type: 'text',
-            },
-            date: false,
-            selects: [],
-          }}
-        />
+      <Text
+        as={'p'}
+        padding={'0'}
+        color={Color.alerzoBlack}
+        size="14px"
+        textAlign="left"
+        whiteSpace="nowrap"
+        margin="1.875rem 0 1rem 0"
+        weight="600"
+        align={'center'}
+      >
+        Biller Information
+      </Text>
+      <Jumbotron padding={'0'} direction="column" mt="0">
         {component}
       </Jumbotron>
     </Container>

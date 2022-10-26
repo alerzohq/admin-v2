@@ -146,7 +146,7 @@ const ProductsContainer = () => {
       padding="0 2rem"
       noScroll
     >
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="98%">
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           setFilterValues={setValues}
           showFilters={{

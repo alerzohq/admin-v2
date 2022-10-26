@@ -1,4 +1,4 @@
-import Select from 'react-select'
+import Select, { components, PlaceholderProps } from 'react-select'
 import { SelectProps } from './styles/type'
 import { selectStyles } from './styles/select-input.styes'
 
@@ -13,11 +13,13 @@ const SelectInput = ({
   fullWidth,
   onChange,
 }: SelectProps) => {
+  const Placeholder = (props: PlaceholderProps) => {
+    return <components.Placeholder {...props} />
+  }
+
   return (
     <Select
-      components={{
-        IndicatorSeparator: () => null,
-      }}
+      components={{ Placeholder, IndicatorSeparator: () => null }}
       classNamePrefix="react-select"
       id="long-value-select"
       instanceId="long-value-select"

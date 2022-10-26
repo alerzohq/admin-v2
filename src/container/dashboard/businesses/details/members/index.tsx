@@ -17,11 +17,8 @@ const Members = ({ userId }: { userId: string }) => {
     return getResource(`transactions?userId=${userId}`)
   }
 
-  const [values, setValues] = useState(filterValue)
-  const { isLoading, isError, data, isFetching } = useQuery(
-    'members',
-    getMembers
-  )
+  const [, setValues] = useState(filterValue)
+  const { isLoading, isError, data } = useQuery('members', getMembers)
   let component
   if (isLoading) {
     component = <Loader />
@@ -36,7 +33,6 @@ const Members = ({ userId }: { userId: string }) => {
         tableName="transaction"
         tableData={data?.data}
         tableHeaders={transHeaderList}
-        dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={1}
         withSlug
       />
@@ -59,12 +55,14 @@ const Members = ({ userId }: { userId: string }) => {
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'allPlatform',
               },
               {
                 placeholder: 'Status',
                 values: [],
                 value: '',
                 onChange: () => {},
+                query: 'status',
               },
             ],
           }}

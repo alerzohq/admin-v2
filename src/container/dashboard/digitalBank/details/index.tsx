@@ -5,6 +5,7 @@ import { getResource } from '../../../../utils/apiRequest'
 import DetailsContent from '../../widget/tabs/tab-content-details'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import TransactionHistory from './transaction-history'
+import CardsContainer from './user-accounts'
 
 const DigitalBankDetailContainer = () => {
   const location = useLocation()
@@ -28,7 +29,9 @@ const DigitalBankDetailContainer = () => {
       case 'transHistory':
         return <TransactionHistory userId={id} />
       case 'cards':
-        return <div>Cards</div>
+        return <div>cards</div>
+      case 'bankAccounts':
+        return <CardsContainer />
       case 'expensesLens':
         return <div>Expense Lens</div>
       case 'smartSpend':
