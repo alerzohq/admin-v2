@@ -21,7 +21,7 @@ const CardsContainer = () => {
     getCustomerDetails
   )
   const bank_details = data?.data[0]?.bank_details
-  console.log('data', data, data[0]?.bank_details)
+  const user = data?.data[0];
   const renderSwitch = () => {
     if (isError) {
       return <FallBack error title={'Failed to load accounts. '} />
@@ -30,7 +30,6 @@ const CardsContainer = () => {
       return <Loader />
     }
     if (data && !bank_details?.length) {
-      console.log('pool')
       return (
         <FallBack
           refetch={refetch}
@@ -41,11 +40,12 @@ const CardsContainer = () => {
     return (
       <CardBody>
         <GridWrapper>
-          {bank_details?.map((detail: { [key: string]: string }) => (
+          {bank_details?.map((detail: { [key: string]: string }, i: number) => (
             <UserAccount
+            key={i}
               bank={detail?.bank_name}
               accountNumber={detail?.account_number}
-              accountName={detail?.account_nuame}
+              accountName={`${user?.first_name} ${user?.last_name}`}
             />
           ))}
         </GridWrapper>
