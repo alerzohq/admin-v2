@@ -11,7 +11,7 @@ const Filter = ({
   setFilterValues,
   justifyContent,
 }: FilterProps) => {
-  const [status] = useState<SelectInputProps>(null)
+  const [status, setStatus] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
     search: '',
     status: '',
@@ -25,11 +25,10 @@ const Filter = ({
       setFilterValues?.((prev: any) => ({
         ...prev,
         query: search,
-        status: values.status,
       }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, status, values.status])
+  }, [search, status])
   const ref = useRef<HTMLDivElement>(null)
   const rectVal = ref?.current?.getBoundingClientRect()?.left
   const position = rectVal && rectVal >= 600 && '20px'
@@ -69,13 +68,14 @@ const Filter = ({
                   key={i}
                   placeholder={select.placeholder}
                   onChange={(e: any) => {
-                    setValues({
+                    setFilterValues({
                       ...values,
-                      [select.query as string]: e.value,
+                      [select.query as string]: e?.value ?? '',
                     })
                   }}
-                  value={values[select.query]}
+                  value={select.value}
                   options={select.values}
+                  isClearable
                 />
               ))}
             {showFilters?.buttons &&

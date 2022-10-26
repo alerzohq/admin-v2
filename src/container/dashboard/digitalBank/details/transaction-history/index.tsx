@@ -80,9 +80,9 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
               {
                 placeholder: 'Status',
                 values: [
-                  { label: 'successful', value: 'successful' },
-                  { label: 'failed', value: 'failed' },
-                  { label: 'pending', value: 'pending' },
+                  { label: 'Successful', value: 'successful' },
+                  { label: 'Failed', value: 'failed' },
+                  { label: 'Pending', value: 'pending' },
                 ],
                 value: '',
                 query: 'status',
