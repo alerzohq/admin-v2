@@ -7,7 +7,6 @@ import { useQuery } from 'react-query'
 import { FallBack } from '../../../../../components'
 
 const MerchantDetails = ({ resolvedData }: any) => {
-  console.log(resolvedData)
   const getMerchantDetails = () => {
     return getResource(`businesses?id=${resolvedData.user_id}`)
   }

@@ -46,7 +46,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   } else if (isError) {
     component = <FallBack error title={'Failed to load businesses history. '} />
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no business history yet. '} />
+    component = <FallBack title={'No transaction Found. '} />
   } else {
     component = (
       <Table
