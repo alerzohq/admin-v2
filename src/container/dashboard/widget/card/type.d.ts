@@ -1,0 +1,34 @@
+type CardWidgetItemProps = {
+  text: string
+  value: string | number
+  Icon?: React.JSXElement
+  loading?: boolean
+}
+
+type StatsProps = {
+  stats?: {
+    totalAmountDeposited: number
+    totalAmountWithdrawn: number
+    totalUsers: number
+    totalTransactions: number
+  }
+  statistics?: {
+    card1: number
+    card2: number
+    card3: number
+    card4: number
+  }
+  labels?: {
+    card1: string
+    card2: string
+    card3: string
+    card4: string
+  }
+  icons?: {
+    card1?: React.JSXElement
+    card2?: React.JSXElement
+    card3?: React.JSXElement
+    card4?: React.JSXElement
+  }
+  loading?: boolean
+}

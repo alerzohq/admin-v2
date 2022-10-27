@@ -1,77 +1,111 @@
-import React, { useState } from "react";
-import { AlerzoLogo, FavIcon } from "../../assets/icons";
-import { Color } from "../../assets/theme";
-import { sideBarData } from "../../data/sidebar-data";
+import React, { useState } from 'react'
+import {
+  AlerzoLogo,
+  FavIcon,
+  LogoutIcon,
+  SettingsIcon,
+} from '../../assets/icons'
+import { Color } from '../../assets/theme'
+import { sideBarData } from '../../data/sidebar-data'
 import {
   SidebarWrapper,
   Inner,
+  LogoBox,
   SidebarDropdown,
   DropdownItem,
   SidebarItem,
   SidebarList,
-} from "./styles/sidebar.styles";
-import { sidebarProps } from "./type";
-import Text from "../text";
-import { Link, useLocation } from "react-router-dom";
-import Stack from "../stack";
+  SidebarFooter,
+  Profile,
+} from './styles/sidebar.styles'
+import { sidebarMenuProp, sidebarProps } from './type'
+import Text from '../text'
+import { Link, useLocation } from 'react-router-dom'
+import Stack from '../stack'
+import { useAppContext } from '../../context'
+import { logOut } from '../../utils/session-storage'
+import { Action } from '../../context/actions'
 
 const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
-  const location = useLocation();
-  const [show, setShow] = useState<number | null>();
+  const location = useLocation()
+  const [show, setShow] = useState<number | null>()
+  const pathname = location?.pathname
+
+  const {
+    state: { user },
+    dispatch,
+  } = useAppContext()
 
   const handleToggle = (index: number) => {
     if (show === index) {
-      return setShow(null);
+      return setShow(null)
     }
 
-    setShow(index);
-  };
+    setShow(index)
+  }
+
+  const handleLogout = () => {
+    logOut(() => {
+      dispatch({ type: Action.LOGOUT })
+    })
+  }
 
   return (
     <SidebarWrapper isCollapsed={isCollapsed}>
       <Inner isCollapsed={isCollapsed}>
-        {isCollapsed ? (
-          <FavIcon onClick={collapseBar} />
-        ) : (
-          <AlerzoLogo
-            className={"logo"}
-            onClick={collapseBar}
-            height={"25"}
-            width={"150"}
-            color={Color.alerzoBlue}
-          />
-        )}
+        <LogoBox>
+          {isCollapsed ? (
+            <FavIcon onClick={collapseBar} />
+          ) : (
+            <AlerzoLogo
+              className={'logo'}
+              onClick={collapseBar}
+              height={'25'}
+              width={'150'}
+              color={Color.alerzoBlue}
+            />
+          )}
+        </LogoBox>
         <SidebarList>
           {sideBarData.map(
-            ({ subMenu, title, Icon, path, activeIconColor }, i) => (
+            (
+              {
+                title,
+                ActiveIcon,
+                path,
+                InActiveIcon,
+                subMenu,
+              }: sidebarMenuProp,
+              i
+            ) => (
               <SidebarItem
-                isActive={path === location.pathname}
+                isActive={path === pathname}
                 isCollapsed={isCollapsed}
                 key={i}
               >
                 <Link to={path}>
                   <Stack
-                    direction={"row"}
-                    gap={"10px"}
-                    alignItems={"center"}
+                    direction={'row'}
+                    gap={'10px'}
+                    alignItems={'center'}
                     onClick={() => {
-                      handleToggle(i);
+                      handleToggle(i)
                     }}
                   >
-                    <Stack justifyContent={"center"} alignItems={"center"}>
-                      {Icon && (
-                        <Icon
-                          color={
-                            path === location.pathname ? activeIconColor : ""
-                          }
-                          height={path === location.pathname ? "20" : ""}
-                        />
+                    <Stack
+                      justifyContent={'center'}
+                      width={'auto'}
+                      alignItems={'center'}
+                    >
+                      {path === location.pathname ? (
+                        <>{ActiveIcon && <ActiveIcon />}</>
+                      ) : (
+                        <>{InActiveIcon && <InActiveIcon />}</>
                       )}
-                    </Stack>{" "}
-                    {!isCollapsed && <Text as={"p"}>{title}</Text>}
+                    </Stack>{' '}
+                    {!isCollapsed && <Text as={'p'}>{title}</Text>}
                   </Stack>
                 </Link>
-
                 {subMenu?.map(({ name, subPath }) => (
                   <SidebarDropdown key={name} isShown={show === i}>
                     <Link to={subPath}>
@@ -83,9 +117,48 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
             )
           )}
         </SidebarList>
+        <SidebarFooter>
+          <SidebarItem>
+            <Profile>
+              {user?.data?.firstName?.charAt(0)}
+              {user?.data?.lastName?.charAt(0)}
+            </Profile>
+            <Link to={''}>
+              <Stack
+                direction={'row'}
+                padding={'0 0 1rem 0'}
+                alignItems={'center'}
+              >
+                <Stack
+                  justifyContent={'center'}
+                  width={'auto'}
+                  alignItems={'center'}
+                >
+                  <SettingsIcon />
+                </Stack>{' '}
+                {!isCollapsed && <Text as={'p'}>Settings</Text>}
+              </Stack>
+            </Link>
+
+            <Stack
+              onClick={handleLogout}
+              direction={'row'}
+              alignItems={'center'}
+            >
+              <Stack
+                justifyContent={'center'}
+                width={'auto'}
+                alignItems={'center'}
+              >
+                <LogoutIcon />
+              </Stack>{' '}
+              {!isCollapsed && <Text as={'p'}>Log out</Text>}
+            </Stack>
+          </SidebarItem>
+        </SidebarFooter>
       </Inner>
     </SidebarWrapper>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

@@ -1,18 +1,16 @@
-export type State ={
-    isCollapsed: any;
-    user:{} | null
+export type State = {
+  isCollapsed: boolean
+  user: {} | null
 }
 
-export type ActionTypes={
-    type: string;
-    payload:{}
+export type ActionTypes = {
+  type: string
+  payload: {}
 }
-
 
 export type ContextType = {
-    state: any;
-    dispatch: Dispatch<ActionTypes>;
-  
-  };
+  state: any
+  dispatch: Dispatch<ActionTypes>
+}
 
-export type ProviderProps=React.ComponentProps<'div'>
+export type ProviderProps = React.ComponentProps<'div'>

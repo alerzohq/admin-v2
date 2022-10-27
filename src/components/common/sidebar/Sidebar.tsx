@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import getActiveTab from "../../../utils/getActiveTab";
-import signoutlogout from "../../../assets/images/pngs/signout-logout.png";
-import styles from "./sidenav.module.css";
-import { useLocation } from "react-router-dom";
-import SideBarList from "./SidebarData";
-import { SubMenu } from "./SubMenu";
+import { useState, useEffect } from 'react'
+import getActiveTab from '../../../utils/getActiveTab'
+import signoutlogout from '../../../assets/images/pngs/signout-logout.png'
+import styles from './sidenav.module.css'
+import { useLocation } from 'react-router-dom'
+import SideBarList from './SidebarData'
+import { SubMenu } from './SubMenu'
 // import { useAuthDispatch } from "../store/authProvider";
 
 export const Sidebar: React.FC = () => {
   // const { onLogout } = useAuthDispatch();
-  const { SidebarData } = SideBarList();
-  const [activeTab, setActiveTab] = useState("Dashboard");
+  const { SidebarData } = SideBarList()
+  const [activeTab, setActiveTab] = useState('Dashboard')
 
-  const router = useLocation();
-  let location = router.pathname;
+  const router = useLocation()
+  let location = router.pathname
 
   useEffect(() => {
-    let ActiveTab = getActiveTab(location);
-    setActiveTab(ActiveTab);
-  }, [location]);
+    let ActiveTab = getActiveTab(location)
+    setActiveTab(ActiveTab)
+  }, [location])
 
   return (
     <div className={styles.sidenav}>
@@ -31,7 +31,7 @@ export const Sidebar: React.FC = () => {
               setActiveTab={setActiveTab}
               activeTab={activeTab}
             />
-          );
+          )
         })}
       </div>
       <div className={styles.navbarsectionBottom}>
@@ -45,5 +45,5 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
