@@ -1,12 +1,7 @@
-import React from 'react'
-import { Container } from '../../../../components/layout'
+import { TransactionDetailContainer } from '../../../../container/dashboard'
 
 const TransactionDetails = () => {
-  return (
-    <Container title={'Detail'}>
-        Detail
-    </Container>
-  )
+  return <TransactionDetailContainer />
 }
 
 export default TransactionDetails

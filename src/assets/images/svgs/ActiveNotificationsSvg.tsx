@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ActiveNotificationsSvg = () => {
   return (
@@ -20,7 +20,7 @@ const ActiveNotificationsSvg = () => {
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default ActiveNotificationsSvg;
+export default ActiveNotificationsSvg

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ProductActiveSvg = () => {
   return (
@@ -27,7 +27,7 @@ const ProductActiveSvg = () => {
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default ProductActiveSvg;
+export default ProductActiveSvg

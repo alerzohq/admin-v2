@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ActiveHistory = () => {
   return (
@@ -32,7 +32,7 @@ const ActiveHistory = () => {
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default ActiveHistory;
+export default ActiveHistory

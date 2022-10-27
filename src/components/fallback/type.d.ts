@@ -1,7 +1,9 @@
-export type fallbackProps={
-    title:string;
-    hideBtn?:boolean;
-    routeLink?:string | undefined;
-    btnText?:string;
-    description?:string;
-};
+export type fallbackProps = {
+  title: string
+  error?: boolean
+  hideBtn?: boolean
+  routeLink?: string | undefined
+  btnText?: string
+  description?: string
+  refetch?: () => void
+}

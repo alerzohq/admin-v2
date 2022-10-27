@@ -1,36 +1,42 @@
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro'
 
-type stackProps={
-    width: string;
-    padding: string;
-    pr:string;
-    pt:string;
-    pb:string;
-    pl:string;
-    direction: string;
-    alignItems: string;
-    justifyContent: string;
-    gap:string ;
-    minDirection:string;
+type stackProps = {
+  width: string
+  padding: string
+  pr: string
+  pt: string
+  pb: string
+  pl: string
+  direction: string
+  alignItems: string
+  justifyContent: string
+  gap: string
+  minDirection: string
+  flexWrap?: string
+  rowGap?: string
+  columnGap?: string
 }
 
-export const StackWrapper= styled.div<stackProps>`
-display: flex;
-flex-direction:${({direction})=>direction ? direction : 'column'};
-width:${({width})=>width? width: '100%'};
-padding:${({padding})=>padding };
-padding-top:${({pt})=>pt};
-padding-right:${({pr})=>pr};
-padding-bottom:${({pb})=>pb};
-padding-left:${({pl})=>pl};
-align-items:${({alignItems})=>alignItems };
-justify-content:${({justifyContent})=>justifyContent };
-gap:${({gap})=>gap};
+export const StackWrapper = styled.div<stackProps>`
+  display: flex;
+  flex-direction: ${({ direction }) => (direction ? direction : 'column')};
+  width: ${({ width }) => (width ? width : '100%')};
+  padding: ${({ padding }) => padding};
+  padding-top: ${({ pt }) => pt};
+  padding-right: ${({ pr }) => pr};
+  padding-bottom: ${({ pb }) => pb};
+  padding-left: ${({ pl }) => pl};
+  align-items: ${({ alignItems }) => alignItems};
+  justify-content: ${({ justifyContent }) => justifyContent};
+  gap: ${({ gap }) => gap};
+  column-gap: ${({ columnGap }) => columnGap};
+  row-gap: ${({ rowGap }) => rowGap};
+  flex-wrap: ${({ flexWrap }) => flexWrap};
 
-@media(max-width:768px){
-    h1{
-        font-size:1.3rem;
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.3rem;
     }
-flex-direction:${({minDirection})=>minDirection};
-}
+    flex-direction: ${({ minDirection }) => minDirection};
+  }
 `
