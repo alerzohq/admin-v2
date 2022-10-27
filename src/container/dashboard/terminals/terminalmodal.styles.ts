@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { Color } from '../../../assets/theme'
+
 
 export const TerminalModal = styled.div`
   display: flex;
