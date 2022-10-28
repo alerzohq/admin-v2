@@ -83,7 +83,7 @@ const TransactionContainer = () => {
         date: true,
         selects: [
           {
-            searchQuery: 'channel',
+            searchQuery: 'userType',
             placeholder: 'All Platform',
             values: optionsAllPlatform,
             value: '',

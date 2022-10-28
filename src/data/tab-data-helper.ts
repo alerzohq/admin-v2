@@ -36,7 +36,7 @@ export const detailsHelper = (slug: string, data: any) => {
               : data?.actionPayload?.senderAccountName,
           type: data?.type,
           amount: amountConverter(data?.amount),
-          balance: data?.total,
+          balance: amountConverter(data?.balance),
           accountNumber: 'credit'
             ? metaData?.accountNumber
             : data?.actionPayload?.senderAccountNumber,
