@@ -73,7 +73,7 @@ const ReassignTerminalModal = ({
         value={value?.businessId}
         fullWidth
         options={
-          loadingOptions 
+          loadingOptions
             ? [
                 {
                   label: 'Loading...',

@@ -1,3 +1,4 @@
+import { amountConverter } from '../utils/formatValue'
 import {
   AIRTIMEDETAILSTABLE,
   AIRTIMEMORETABLE,
@@ -34,7 +35,7 @@ export const detailsHelper = (slug: string, data: any) => {
               ? metaData?.accountName
               : data?.actionPayload?.senderAccountName,
           type: data?.type,
-          amount: data?.amount,
+          amount: amountConverter(data?.amount),
           balance: data?.total,
           accountNumber: 'credit'
             ? metaData?.accountNumber
