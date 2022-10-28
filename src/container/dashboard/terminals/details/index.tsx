@@ -3,7 +3,6 @@ import { useQuery } from 'react-query'
 import { getResource } from '../../../../utils/apiRequest'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import { TABS } from '../../../../data/terminal-data'
-// import DetailsContentWidget from '../../widget/tabs/tab-content-details'
 import TerminalDetails from './tab-content/terminal-details'
 import MerchantDetails from './tab-content/merchant-details'
 
@@ -40,7 +39,6 @@ const Details = () => {
 
   return (
     <>
-      {!isLoading && (
         <TabsContentWidget
           isFetching={isFetching}
           isLoading={isLoading}
@@ -59,7 +57,6 @@ const Details = () => {
           hideStatus
           routePath={'/dashboard/terminals'}
         />
-      )}
     </>
   )
 }

@@ -63,7 +63,7 @@ const TabsContentWidget = ({
             </Text>
           )}
           {isError ? (
-            <FallBack error title={errorMessage || ''} />
+            <FallBack error title={errorMessage || 'Something went wrong, try again!'} />
           ) : (
             renderSwitch()
           )}
