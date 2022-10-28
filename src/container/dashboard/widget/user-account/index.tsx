@@ -1,6 +1,9 @@
 import { Color } from '../../../../assets/theme'
 import { Stack, Text } from '../../../../components'
-import { capitalizeFirstLetterInSentence, removeHyphen } from '../../../../utils/formatValue'
+import {
+  capitalizeFirstLetterInSentence,
+  removeHyphen,
+} from '../../../../utils/formatValue'
 import { Card } from './styles/cards.styles'
 
 interface Props {
@@ -33,7 +36,7 @@ const UserAccount = ({ accountNumber, accountName, bank }: Props) => {
             Account Name
           </Text>
           <Text weight="600" color={Color.alerzoGrayishBlue2} size="1rem">
-            { capitalizeFirstLetterInSentence(accountName) || '-'}
+            {capitalizeFirstLetterInSentence(accountName) || '-'}
           </Text>
         </Stack>
       </Stack>

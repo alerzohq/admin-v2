@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro'
 
-
 export const TerminalModal = styled.div`
   display: flex;
   gap: 4%;

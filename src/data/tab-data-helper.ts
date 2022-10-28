@@ -1,4 +1,4 @@
-import { amountConverter } from '../utils/formatValue';
+import { amountConverter } from '../utils/formatValue'
 import {
   AIRTIMEDETAILSTABLE,
   AIRTIMEMORETABLE,

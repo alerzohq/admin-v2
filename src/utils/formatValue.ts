@@ -39,11 +39,15 @@ export const capitalizeFirstLetter = (s: string) => {
 }
 export const removeHyphen = (s?: string) => {
   if (typeof s !== 'string') return ''
-  if (s.includes("-")) {
-    const str = s.replaceAll('-', ' ');
-    console.log("s", s.replace(/-/g, " ",), capitalizeFirstLetterInSentence("wema bank"))
+  if (s.includes('-')) {
+    const str = s.replaceAll('-', ' ')
+    console.log(
+      's',
+      s.replace(/-/g, ' '),
+      capitalizeFirstLetterInSentence('wema bank')
+    )
     return capitalizeFirstLetterInSentence(str)
-}
+  }
 
   return s?.charAt(0).toUpperCase() + s.slice(1)
 }
@@ -72,12 +76,15 @@ export const generateCommission = (
   }
 }
 export const capitalizeFirstLetterInSentence = (mySentence?: string) => {
-  if (typeof mySentence !== 'string') return '';
+  if (typeof mySentence !== 'string') return ''
 
-  const words = mySentence.trim().split(' ');
-  return words.map((word) => (word?.length === 0 ? word : word[0].toUpperCase() + word.substring(1))).join(' ');
-};
-
+  const words = mySentence.trim().split(' ')
+  return words
+    .map((word) =>
+      word?.length === 0 ? word : word[0].toUpperCase() + word.substring(1)
+    )
+    .join(' ')
+}
 
 export const mapBillers = (arr: any) =>
   arr?.map((obj: any) => ({
