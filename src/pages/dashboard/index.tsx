@@ -4,8 +4,6 @@ import { Sidebar } from '../../components'
 import Content from '../../components/dashboard-contents'
 import SessionTimeout from '../../configs/session-timeout'
 
-
-
 const Dashboard: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
