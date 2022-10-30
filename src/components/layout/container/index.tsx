@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
+import { useQuery } from 'react-query'
+import { LineLoader } from '../..'
 import { useAppContext } from '../../../context'
-import LineLoader from '../../line-loader'
+import { Action } from '../../../context/actions'
+import { getResource } from '../../../utils/apiRequest'
+
 import TopBar from '../../top-bar'
 import { ContainerProps } from '../type'
 import { ContainerWrapper } from './styles/container.styles'
@@ -18,13 +22,28 @@ const Container: React.FC<ContainerProps> = ({
 }) => {
   const {
     state: { fetching },
+    dispatch,
   } = useAppContext()
+
+const getFilters = () => {
+  return getResource(`filters`)
+}
+
+const { data } = useQuery('app-filters', getFilters, {
+  staleTime: 60,
+})
+
+  useEffect(() => {
+    dispatch({ type: Action.GET_FILTERS, payload: data })
+  }, [data, dispatch])
+
 
   useEffect(() => {
     if (!noScroll) {
       window.scrollTo(0, 0)
     }
   }, [isFetching, fetching, noScroll])
+
   return (
     <>
       <TopBar

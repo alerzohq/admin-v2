@@ -7,13 +7,14 @@ import {
   Table,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
-import CardWidget from '../widget/card'
+
 import { useQuery } from 'react-query'
 import { transHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
 import { optionsAllPlatform } from '../../../data/select-data'
+import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
+import CardWidget from '../widget/card'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
