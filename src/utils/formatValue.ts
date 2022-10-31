@@ -41,11 +41,6 @@ export const removeHyphen = (s?: string) => {
   if (typeof s !== 'string') return ''
   if (s.includes('-')) {
     const str = s.replaceAll('-', ' ')
-    console.log(
-      's',
-      s.replace(/-/g, ' '),
-      capitalizeFirstLetterInSentence('wema bank')
-    )
     return capitalizeFirstLetterInSentence(str)
   }
 

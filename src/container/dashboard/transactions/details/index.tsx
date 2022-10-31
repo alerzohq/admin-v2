@@ -35,11 +35,7 @@ const TabsContainer = () => {
       case 'notes':
         return <NotesContent />
       default:
-        return (
-          <DetailsContent
-            resolvedData={detailsHelper(slug, data?.data?.[0])!}
-          />
-        )
+        return <DetailsContent resolvedData={detailsHelper(data?.data?.[0])!} />
     }
   }
 

@@ -25,15 +25,6 @@ const TransactionContainer = () => {
     return getResource(`transactions/statistics`)
   }
 
-  // const getFilter=()=> {
-  //   return getResource(`filters`)
-  // }
-  // const {  data: filters } = useQuery(
-  //   'filter',
-  //   getFilter
-  // )
-  // console.log({filters})
-
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
     getTranStats
@@ -98,12 +89,6 @@ const TransactionContainer = () => {
             value: '',
           },
         ],
-        // buttons: [
-        //   {
-        //     label: 'Download CSV',
-        //     onClick: () => console.log('first'),
-        //   },
-        // ],
       }}
       title="History"
       setFilterValues={setValues}
