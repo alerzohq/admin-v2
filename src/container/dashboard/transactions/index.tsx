@@ -15,7 +15,10 @@ import { filterValue } from '../../../data/filter-data'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useAppContext } from '../../../context'
-import { platformFiltersOptions, statusFilterOptions } from '../../../helper/filter-helper'
+import {
+  platformFiltersOptions,
+  statusFilterOptions,
+} from '../../../helper/filter-helper'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
@@ -34,7 +37,6 @@ const TransactionContainer = () => {
   const getTranStats = () => {
     return getResource(`transactions/statistics`)
   }
-  
 
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
@@ -92,7 +94,7 @@ const TransactionContainer = () => {
           },
           {
             placeholder: 'Status',
-            values: statusOptions ,
+            values: statusOptions,
             value: '',
           },
         ],
