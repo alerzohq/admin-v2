@@ -1,13 +1,12 @@
 import { Fragment } from 'react'
 import { Color } from '../../../../assets/theme'
 import { FlexTableWrapper, Text } from '../../../../components'
-import { TableData } from '../../../../components/flex-table/type'
 import { TabContentContainer } from '../../transactions/details/tab-content/styles/tab-content.styles'
 
 const DetailsContentWidget = ({
   resolvedData,
 }: {
-  resolvedData: TableData[]
+  resolvedData: {[key: string]:any}[]
 }) => {
   return (
     <>

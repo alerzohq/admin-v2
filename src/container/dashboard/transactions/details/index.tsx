@@ -37,7 +37,7 @@ const TabsContainer = () => {
       default:
         return (
           <DetailsContent
-            resolvedData={detailsHelper(slug, data?.data?.[0])!}
+            resolvedData={detailsHelper(data?.data?.[0])!}
           />
         )
     }
