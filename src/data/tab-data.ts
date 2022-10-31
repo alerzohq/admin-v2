@@ -17,8 +17,6 @@ export const DETAILSTABLE = [
   { label: 'Biller', value: 'biller', columnWidth: 'large' },
 ]
 
-
-
 export const CUSTOMERTABLE = [
   { label: 'Customer ID', value: 'customerId', columnWidth: 'small' },
   { label: 'Customer Name', value: 'customerName', columnWidth: 'small' },

@@ -6,7 +6,6 @@ type props = {
 }
 
 export const transformData = ({ item, name }: props) => {
-  
   if (item && name === 'transaction') {
     const { reference, amount, type, action, status, biller, created_at } = item
     let displayName = biller?.display_name || ''

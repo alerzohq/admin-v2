@@ -6,7 +6,7 @@ import { TabContentContainer } from '../../transactions/details/tab-content/styl
 const DetailsContentWidget = ({
   resolvedData,
 }: {
-  resolvedData: {[key: string]:any}[]
+  resolvedData: { [key: string]: any }[]
 }) => {
   return (
     <>

@@ -25,7 +25,6 @@ const TransactionContainer = () => {
     return getResource(`transactions/statistics`)
   }
 
-
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
     getTranStats
@@ -90,7 +89,6 @@ const TransactionContainer = () => {
             value: '',
           },
         ],
-    
       }}
       title="History"
       setFilterValues={setValues}
