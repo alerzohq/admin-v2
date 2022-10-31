@@ -26,18 +26,15 @@ import { getTerminalsHandler, getTerminalStats } from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
 
+
 const TransactionContainer = () => {
   const search = useLocation().search
-  const queryParam = new URLSearchParams(search).get('status')
+  const queryParam = new URLSearchParams(search).get('status');
+ 
   const found = TERMINALTABS.find((element) => element.value === queryParam)
   const [values, setValues] = useState(filterValue)
-  // const { setActiveTab } = React.useContext(TabsContext)
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
-
-  // useEffect(() => {
-  //   setActiveTab && setActiveTab('Existing Terminals')
-  // }, [])
 
   const { isLoading: loading, data: Stats } = useQuery(
     'terminal-stats',
@@ -68,6 +65,9 @@ const TransactionContainer = () => {
     () => getTerminalsRequestsHandler(values.count),
     { keepPreviousData: true }
   )
+
+ 
+
   let existingTerrminals
   if (isLoadingExistingTerrminals) {
     existingTerrminals = <Loader />
