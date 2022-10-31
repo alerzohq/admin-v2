@@ -6,7 +6,7 @@ export const TABS = [
   },
   { label: 'Other Information', value: 'other', title: 'Customer Details' },
   { label: 'Transaction Receipt', value: 'receipt', title: '' },
-  { label: 'Staff Notes', value: 'notes', title: '' },
+  // { label: 'Staff Notes', value: 'notes', title: '' },
 ]
 export const DETAILSTABLE = [
   { label: 'Name', value: 'name', columnWidth: 'small' },
