@@ -34,7 +34,7 @@ const { data } = useQuery('app-filters', getFilters, {
 })
 
   useEffect(() => {
-    dispatch({ type: Action.GET_FILTERS, payload: data })
+    dispatch({ type: Action.GET_FILTERS, payload: data?.data })
   }, [data, dispatch])
 
 
