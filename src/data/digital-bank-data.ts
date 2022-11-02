@@ -45,7 +45,7 @@ export const customerHelper = (data: any) => {
       spacing: false,
       header: CUSTOMERTABLE,
       data: {
-        name: `${data?.first_name} ${data?.last_name}`,
+        name: `${data?.first_name || ''} ${data?.last_name || ''}`,
         phoneNumber: data?.phone_number,
         bvnStatus:
           data?.bvn_set || data?.kyc_level > 1 ? 'Verified' : 'Not verified',

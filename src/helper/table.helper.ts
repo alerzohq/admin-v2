@@ -20,8 +20,8 @@ export const transformData = ({ item, name }: props) => {
     let displayName = biller?.display_name || ''
     return {
       reference,
-      amount,
       customer_name,
+      amount,   
       type,
       action,
       displayName,
