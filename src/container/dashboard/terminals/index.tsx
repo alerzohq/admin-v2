@@ -26,11 +26,10 @@ import { getTerminalsHandler, getTerminalStats } from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
 
-
 const TransactionContainer = () => {
   const search = useLocation().search
-  const queryParam = new URLSearchParams(search).get('status');
- 
+  const queryParam = new URLSearchParams(search).get('status')
+
   const found = TERMINALTABS.find((element) => element.value === queryParam)
   const [values, setValues] = useState(filterValue)
   const [isShown, setIsShown] = useState(false)
@@ -65,8 +64,6 @@ const TransactionContainer = () => {
     () => getTerminalsRequestsHandler(values.count),
     { keepPreviousData: true }
   )
-
- 
 
   let existingTerrminals
   if (isLoadingExistingTerrminals) {

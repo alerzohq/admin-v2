@@ -7,9 +7,27 @@ type props = {
 
 export const transformData = ({ item, name }: props) => {
   if (item && name === 'transaction') {
-    const { reference, amount,customer_name, type, action, status, biller, created_at } = item
+    const {
+      reference,
+      amount,
+      customer_name,
+      type,
+      action,
+      status,
+      biller,
+      created_at,
+    } = item
     let displayName = biller?.display_name || ''
-    return { reference, customer_name, amount, type, action, displayName, status, created_at }
+    return {
+      reference,
+      amount,
+      customer_name,
+      type,
+      action,
+      displayName,
+      status,
+      created_at,
+    }
   }
 
   if (item && name === 'business-transactions') {
