@@ -1,7 +1,8 @@
-import { CUSTOMERMORETABLE, CUSTOMERTABLE, DETAILSTABLE } from './tab-data'
+import { amountHelper } from '../utils/formatValue'
+import { CUSTOMERMORETABLE, CUSTOMERTABLE, DETAILSTABLE1, DETAILSTABLE2, DETAILSTABLE3 } from './tab-data'
 export const detailsHelper = (data: any) => {
   let metaHeaders: { [key: string]: any }[] = []
-  const { metadata, customer_name, type, amount, balance, reference, biller } =
+  const { product, action, channel, charge, commission, created_at, updated_at, summary, total, user_type, user_id, wallet_id, biller_reference, biller_id, metadata, customer_name, type, amount, balance, reference, biller } =
     data
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
@@ -21,26 +22,56 @@ export const detailsHelper = (data: any) => {
   ) {
     for (var key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
-        result[key] = currentObject[key]
+        let val = currentObject[key];
+        if (key === "amount" || key === "balance" || key === "total") {
+          val = amountHelper(currentObject[key])
+        }
+        result[key] = val;
       }
     }
     return result
   },
-  {})
+    {})
   const tableData = {
     customer_name,
     type,
-    amount,
-    balance,
+    amount: amountHelper(amount),
+    balance: amountHelper(balance),
     reference,
     biller: biller?.display_name,
+    user_id,
+    wallet_id,
+    biller_reference,
+    biller_id,
+    user_type,
+    action,
+    channel,
+    charge: amountHelper(charge),
+    commission: amountHelper(commission),
+    created_at,
+    updated_at,
+    product: product?.display_name,
+    summary,
+    total: amountHelper(total),
   }
   return [
     {
       spacing: false,
-      header: DETAILSTABLE,
+      clickable:{url: `/dashboard/digital-bank/${user_id}`, index: 0},
+      header: DETAILSTABLE1,
       data: tableData,
     },
+    {
+      spacing: false,
+      header: DETAILSTABLE2,
+      data: tableData,
+    },
+    {
+      spacing: false,
+      header: DETAILSTABLE3,
+      data: tableData,
+    },
+
     {
       spacing: false,
       header: metaHeaders,

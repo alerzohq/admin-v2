@@ -17,6 +17,7 @@ const DetailsContentWidget = ({
               <FlexTableWrapper.Row
                 data={item?.data}
                 header={item?.header}
+                clickable={item?.clickable}
                 bgBottomColor={Color.alerzoWhite}
               />
             </TabContentContainer>
@@ -37,6 +38,7 @@ const DetailsContentWidget = ({
               data={item?.data}
               header={item.header}
               bgBottomColor={Color.alerzoWhite}
+              clickable={item?.clickable}
             />
           )}
         </Fragment>

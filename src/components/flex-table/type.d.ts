@@ -108,4 +108,5 @@ export type FlexTableRowProps = {
   data: TransactionData | TerminalData | BusinessData | BasicData
   header: HeaderData[]
   bgBottomColor?: string
+  clickable: {[key : string] : any}
 }

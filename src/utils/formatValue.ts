@@ -46,14 +46,26 @@ export const removeHyphen = (s?: string) => {
 
   return s?.charAt(0).toUpperCase() + s.slice(1)
 }
-export const numberWithCommas = (x: string | number) => {
-  return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-}
+
 
 export const amountConverter = (x: string | number) => {
-  let amount = Number(x) / 100
+  if (x === 0 || x === "0") {
+    return "0"
+  }
+  if (x !== null && x !== undefined) {
+    let amount = Number(x) / 100
 
-  return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  return x;
+
+}
+export const amountHelper = (x: string | number) => {
+  const value: number | string = amountConverter(x);
+  if (value !== null && value !== undefined) {
+    return `₦${value}`;
+  }
+  return x;
 }
 export const generateCommission = (
   type: string,

@@ -7,7 +7,6 @@ import {
 } from '../../../../assets/icons'
 import {
   amountConverter,
-  numberWithCommas,
 } from '../../../../utils/formatValue'
 import { CardWidgetWrapper } from '../styles/widget.styles'
 import CardWidgetBox from './card.widget'
@@ -55,7 +54,7 @@ const CardWidget = ({
           statistics?.card3 ||
           `${
             stats?.totalTransactions
-              ? numberWithCommas(stats?.totalTransactions)
+              ? amountConverter(stats?.totalTransactions)
               : '0'
           }`
         }
@@ -66,7 +65,7 @@ const CardWidget = ({
         text={labels?.card4 || ' Total Number of Users'}
         value={
           statistics?.card4 ||
-          `${stats?.totalUsers ? numberWithCommas(stats?.totalUsers) : '0'}`
+          `${stats?.totalUsers ? amountConverter(stats?.totalUsers) : '0'}`
         }
         loading={loading}
       />
