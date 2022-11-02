@@ -37,6 +37,7 @@ const TableData = ({
   return (
     <tbody>
       {tableData?.map((item, index) => {
+        console.log(item)
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.[dataList?.length - 1]
@@ -77,6 +78,16 @@ const TableData = ({
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
+                      : formatDate(
+                          item?.sessionStartedAt,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ) === data
+                      ? 'successText'
+                      : formatDate(
+                          item?.sessionEndedAt,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ) === data
+                      ? 'dangertext'
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >

@@ -50,3 +50,9 @@ export const terminalHeader = [
   'Date Created',
   'Date Updated',
 ]
+export const auditHeaderList = [
+  'User',
+  'Role',
+  'Session Started At',
+  'Session Ended At',
+]

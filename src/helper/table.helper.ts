@@ -87,4 +87,11 @@ export const transformData = ({ item, name }: props) => {
     const updatedDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
     return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
+  if (item && name === 'audit') {
+    let { username, role, sessionStartedAt, sessionEndedAt } = item
+    sessionStartedAt = formatDate(sessionStartedAt, 'YYYY-MM-DD HH:mm:ss')
+    sessionEndedAt = formatDate(sessionEndedAt, 'YYYY-MM-DD HH:mm:ss')
+    role = role.charAt(0).toUpperCase() + role.slice(1)
+    return { username, role, sessionStartedAt, sessionEndedAt }
+  }
 }
