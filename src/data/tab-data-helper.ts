@@ -110,7 +110,7 @@ export const detailsHelper = (data: any) => {
 export const otherHelper = (data: any) => {
   const recipientObject = data?.metadata?.reduce(
     (o: any, { key, value }: { key: number; value: string }) => (
-      (o[key] = value), o
+      (o[key] = value) 
     ),
     {}
   )
