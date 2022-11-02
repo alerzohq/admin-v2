@@ -1,9 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { Text } from '..'
 import { Color } from '../../assets/theme'
-import {
-  capitalizeFirstLetterInSentence,
-} from '../../utils/formatValue'
+import { capitalizeFirstLetterInSentence } from '../../utils/formatValue'
 import { resolveTableColor } from '../../utils/resolveColors'
 import {
   CardItem,
@@ -24,7 +22,7 @@ FlexTableWrapper.Row = function CardRow({
   bgBottomColor,
   clickable,
 }: FlexTableRowProps) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const renderSwitch = (param: string) => {
     switch (param) {
       case 'large':
@@ -39,9 +37,10 @@ FlexTableWrapper.Row = function CardRow({
     <CardWrapper>
       {header.map((detail, index) => {
         const field = header[index]?.value as string
-        const amt = (field as keyof typeof data) !== 'email'
-          ? capitalizeFirstLetterInSentence(data[field as keyof typeof data])
-          : data[field as keyof typeof data]
+        const amt =
+          (field as keyof typeof data) !== 'email'
+            ? capitalizeFirstLetterInSentence(data[field as keyof typeof data])
+            : data[field as keyof typeof data]
         let color: string = ''
         let bgColor: string = ''
         if (field.toLowerCase().includes('status')) {
@@ -87,17 +86,23 @@ FlexTableWrapper.Row = function CardRow({
                 showBorder={header.length - 1 !== index}
                 padding="0 1em"
                 flex={'3'}
-                clickable={clickable?.index === index }
-                bgColor={bgBottomColor}>
-                <button onClick={() => clickable?.index === index ? navigate(clickable?.url) : {}}>
+                clickable={clickable?.index === index}
+                bgColor={bgBottomColor}
+              >
+                <button
+                  onClick={() =>
+                    clickable?.index === index ? navigate(clickable?.url) : {}
+                  }
+                >
                   <Text
-
                     as={'p'}
                     padding={'0 .1em'}
                     color={
                       field.toLowerCase().includes('status')
                         ? color
-                        : clickable?.index === index ? Color.alerzoBlue : Color.alerzoBlack
+                        : clickable?.index === index
+                        ? Color.alerzoBlue
+                        : Color.alerzoBlack
                     }
                     bgColor={
                       field.toLowerCase().includes('status')
@@ -122,7 +127,6 @@ FlexTableWrapper.Row = function CardRow({
                     {data[field as keyof typeof data] ? amt : ''}
                   </Text>
                 </button>
-
               </CardItem>
             </CardBorderWrapper>
           </CardContainer>

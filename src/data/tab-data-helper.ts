@@ -1,9 +1,36 @@
 import { amountHelper } from '../utils/formatValue'
-import { CUSTOMERMORETABLE, CUSTOMERTABLE, DETAILSTABLE1, DETAILSTABLE2, DETAILSTABLE3 } from './tab-data'
+import {
+  CUSTOMERMORETABLE,
+  CUSTOMERTABLE,
+  DETAILSTABLE1,
+  DETAILSTABLE2,
+  DETAILSTABLE3,
+} from './tab-data'
 export const detailsHelper = (data: any) => {
   let metaHeaders: { [key: string]: any }[] = []
-  const { product, action, channel, charge, commission, created_at, updated_at, summary, total, user_type, user_id, wallet_id, biller_reference, biller_id, metadata, customer_name, type, amount, balance, reference, biller } =
-    data
+  const {
+    product,
+    action,
+    channel,
+    charge,
+    commission,
+    created_at,
+    updated_at,
+    summary,
+    total,
+    user_type,
+    user_id,
+    wallet_id,
+    biller_reference,
+    biller_id,
+    metadata,
+    customer_name,
+    type,
+    amount,
+    balance,
+    reference,
+    biller,
+  } = data
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -22,16 +49,16 @@ export const detailsHelper = (data: any) => {
   ) {
     for (var key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
-        let val = currentObject[key];
-        if (key === "amount" || key === "balance" || key === "total") {
+        let val = currentObject[key]
+        if (key === 'amount' || key === 'balance' || key === 'total') {
           val = amountHelper(currentObject[key])
         }
-        result[key] = val;
+        result[key] = val
       }
     }
     return result
   },
-    {})
+  {})
   const tableData = {
     customer_name,
     type,
@@ -57,7 +84,7 @@ export const detailsHelper = (data: any) => {
   return [
     {
       spacing: false,
-      clickable:{url: `/dashboard/digital-bank/${user_id}`, index: 0},
+      clickable: { url: `/dashboard/digital-bank/${user_id}`, index: 0 },
       header: DETAILSTABLE1,
       data: tableData,
     },

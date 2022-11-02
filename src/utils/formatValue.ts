@@ -47,25 +47,23 @@ export const removeHyphen = (s?: string) => {
   return s?.charAt(0).toUpperCase() + s.slice(1)
 }
 
-
 export const amountConverter = (x: string | number) => {
-  if (x === 0 || x === "0") {
-    return "0"
+  if (x === 0 || x === '0') {
+    return '0'
   }
   if (x !== null && x !== undefined) {
     let amount = Number(x) / 100
 
     return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
-  return x;
-
+  return x
 }
 export const amountHelper = (x: string | number) => {
-  const value: number | string = amountConverter(x);
+  const value: number | string = amountConverter(x)
   if (value !== null && value !== undefined) {
-    return `₦${value}`;
+    return `₦${value}`
   }
-  return x;
+  return x
 }
 export const generateCommission = (
   type: string,

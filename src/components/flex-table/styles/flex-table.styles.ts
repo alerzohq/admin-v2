@@ -67,9 +67,9 @@ export const CardItem = styled.div<columnProps>`
     showBorder ? `1px solid ${Color.alerzoGrayBorder}` : 'none'};
   align-self: ${({ selfAlign }) => selfAlign};
   background-color: ${({ bgColor }) => (bgColor ? bgColor : Color.alerzoGray3)};
-button{
-  border: none;
-  background-color: transparent;
-  cursor: ${({ clickable }) => clickable ? "pointer" : ""};
-}
-  `
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: ${({ clickable }) => (clickable ? 'pointer' : '')};
+  }
+`

@@ -4,5 +4,5 @@ export const initialState = {
   error: null,
   userOtp: null,
   fetching: false,
-  appFilters: []
+  appFilters: [],
 }

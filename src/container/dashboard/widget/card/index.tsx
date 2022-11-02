@@ -5,9 +5,7 @@ import {
   UsersSolidIcon,
   WithDrawIcon,
 } from '../../../../assets/icons'
-import {
-  amountConverter,
-} from '../../../../utils/formatValue'
+import { amountConverter } from '../../../../utils/formatValue'
 import { CardWidgetWrapper } from '../styles/widget.styles'
 import CardWidgetBox from './card.widget'
 
