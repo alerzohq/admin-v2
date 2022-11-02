@@ -25,18 +25,17 @@ const Container: React.FC<ContainerProps> = ({
     dispatch,
   } = useAppContext()
 
-const getFilters = () => {
-  return getResource(`filters`)
-}
+  const getFilters = () => {
+    return getResource(`filters`)
+  }
 
-const { data } = useQuery('app-filters', getFilters, {
-  staleTime: 60,
-})
+  const { data } = useQuery('app-filters', getFilters, {
+    staleTime: 60,
+  })
 
   useEffect(() => {
     dispatch({ type: Action.GET_FILTERS, payload: data?.data })
   }, [data, dispatch])
-
 
   useEffect(() => {
     if (!noScroll) {

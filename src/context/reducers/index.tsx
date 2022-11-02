@@ -14,7 +14,7 @@ export const rootReducer = (state: State, action: ActionTypes) => {
     case Action.IS_FETCHING:
       return { ...state, fetching: action.payload }
     case Action.GET_FILTERS:
-    return { ...state, appFilters: action.payload }
+      return { ...state, appFilters: action.payload }
     case Action.COLLAPSED_SIDEBAR:
       return { ...state, isCollapsed: !state.isCollapsed }
     default:
