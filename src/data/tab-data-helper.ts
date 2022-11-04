@@ -84,7 +84,7 @@ export const detailsHelper = (data: any) => {
   return [
     {
       spacing: false,
-      clickable: { url: `/dashboard/digital-bank/${user_id}`, index: 0 },
+      clickable: { url: user_type.includes("business") ? `/dashboard/businesses`: `/dashboard/digital-bank/${user_id}`, index: 0 },
       header: DETAILSTABLE1,
       data: tableData,
     },

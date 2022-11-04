@@ -37,11 +37,9 @@ const TableData = ({
   return (
     <tbody>
       {tableData?.map((item, index) => {
-        console.log(item)
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
-        // [dataList?.length - 1]
         return (
           <tr key={index}>
             {dataList?.map((data, i) => (

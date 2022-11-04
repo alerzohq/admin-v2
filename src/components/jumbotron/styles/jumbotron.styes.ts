@@ -15,6 +15,8 @@ type Props = {
   gap?: string
   flex?: string
   mt?: string
+  responsiveDirection?: string
+  overflow?: string
 }
 
 export const Container = styled.div<Props>`
@@ -40,7 +42,7 @@ export const JumbotronItem = styled.div<Props>`
   min-height: ${({ minHeight }) => minHeight || '300px'};
   border: 1px solid ${Color.alerzoGrayBorder};
   width: ${({ width }) => width ?? 'auto'};
-
+  overflow: ${({ overflow }) => overflow};
   @media (max-width: 768px) {
     padding: 1rem;
   }
@@ -53,7 +55,7 @@ export const Inner = styled.div<Props>`
   width: 100%;
   margin: ${({ margin }) => margin};
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: ${({ responsiveDirection }) => responsiveDirection  || "column"};
     justify-content: center;
   }
 `

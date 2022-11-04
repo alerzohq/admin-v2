@@ -23,28 +23,28 @@ function AuditIcon({
         d="M18 10.0957V5.0957C18 3.43885 16.6569 2.0957 15 2.0957H5C3.34315 2.0957 2 3.43885 2 5.0957V15.0957C2 16.7526 3.34315 18.0957 5 18.0957H10"
         stroke={color ? color : '#374B58'}
         fill={fill ? fill : ''}
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <circle
         cx="11"
         cy="11.0957"
         r="4"
         stroke="#374B58"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M13.8511 14.232L17.8967 18.3626"
         stroke={color ? color : '#374B58'}
         fill={fill ? fill : ''}
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M5.5 5.5957H7.5"
         stroke={color ? color : '#374B58'}
         fill={fill ? fill : ''}
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
     </svg>
   )

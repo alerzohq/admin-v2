@@ -111,7 +111,7 @@ const ProductsContainer = () => {
   } else {
     component = (
       <TableWrapper wrapperPb="5rem">
-        <DataTable bgColor={'transparent'}>
+        <DataTable bgColor={'transparent'} layout="fixed">
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
             name="products"

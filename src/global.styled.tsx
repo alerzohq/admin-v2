@@ -106,6 +106,12 @@ const GlobalStyle = createGlobalStyle`
 .successText{
   color:#34A853;
 }
+.center{
+  text-align: center;
+}
+.end{
+  text-align: end;
+}
 .dangertext{
   color:#EA4336;
 }
