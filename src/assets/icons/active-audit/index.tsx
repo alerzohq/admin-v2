@@ -31,8 +31,8 @@ function ActiveAuditIcon({
       <path
         d="M13.8511 14.4391L17.8967 18.5697"
         stroke="white"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <circle
         cx="11"
@@ -40,9 +40,9 @@ function ActiveAuditIcon({
         r="4"
         fill="#005FCB"
         stroke="#F9FAFC"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
-      <path d="M5.5 5.80273H7.5" stroke="#F9FAFC" stroke-linecap="round" />
+      <path d="M5.5 5.80273H7.5" stroke="#F9FAFC" strokeLinecap="round" />
     </svg>
   )
 }

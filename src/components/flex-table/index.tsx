@@ -117,9 +117,7 @@ FlexTableWrapper.Row = function CardRow({
                       field.toLowerCase().includes('status') ? '600' : '400'
                     }
                     width={
-                      field.toLowerCase().includes('status')
-                        ? '100%'
-                        : 'auto'
+                      field.toLowerCase().includes('status') ? '100%' : 'auto'
                     }
                     size="14px"
                     align={'center'}

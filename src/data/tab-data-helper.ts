@@ -84,7 +84,12 @@ export const detailsHelper = (data: any) => {
   return [
     {
       spacing: false,
-      clickable: { url: `/dashboard/digital-bank/${user_id}`, index: 0 },
+      clickable: {
+        url: user_type.includes('business')
+          ? `/dashboard/businesses`
+          : `/dashboard/digital-bank/${user_id}`,
+        index: 0,
+      },
       header: DETAILSTABLE1,
       data: tableData,
     },
@@ -109,9 +114,8 @@ export const detailsHelper = (data: any) => {
 
 export const otherHelper = (data: any) => {
   const recipientObject = data?.metadata?.reduce(
-    (o: any, { key, value }: { key: number; value: string }) => (
-      (o[key] = value) 
-    ),
+    (o: any, { key, value }: { key: number; value: string }) =>
+      (o[key] = value),
     {}
   )
   return [
