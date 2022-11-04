@@ -21,7 +21,7 @@ export const transformData = ({ item, name }: props) => {
     return {
       reference,
       customer_name,
-      amount,   
+      amount,
       type,
       action,
       displayName,

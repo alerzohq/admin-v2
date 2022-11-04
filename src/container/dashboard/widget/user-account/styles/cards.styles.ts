@@ -15,9 +15,8 @@ export const Card = styled.div`
   border-radius: 10px;
   gap: 30px;
   @media (max-width: 420px) {
-    min-width: 18rem
+    min-width: 18rem;
   }
-
 `
 export const GridWrapper = styled.div`
   margin: 1.25rem;

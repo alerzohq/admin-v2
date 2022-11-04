@@ -55,7 +55,8 @@ export const Inner = styled.div<Props>`
   width: 100%;
   margin: ${({ margin }) => margin};
   @media (max-width: 768px) {
-    flex-direction: ${({ responsiveDirection }) => responsiveDirection  || "column"};
+    flex-direction: ${({ responsiveDirection }) =>
+      responsiveDirection || 'column'};
     justify-content: center;
   }
 `

@@ -14,7 +14,12 @@ interface Props {
 const UserAccount = ({ accountNumber, accountName, bank }: Props) => {
   return (
     <Card>
-      <Stack flexWrap="wrap" direction="row" justifyContent="space-between" gap="30px">
+      <Stack
+        flexWrap="wrap"
+        direction="row"
+        justifyContent="space-between"
+        gap="30px"
+      >
         <Stack width="auto">
           <Text
             color={Color.alerzoGrayishBlue}

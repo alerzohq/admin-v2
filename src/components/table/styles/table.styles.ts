@@ -34,7 +34,7 @@ export const TableWrapper = styled.div<Props>`
 export const DataTable = styled.table<Props>`
   width: 100%;
   border-collapse: collapse;
-  table-layout: ${({ layout }) => layout ? layout : "auto"};
+  table-layout: ${({ layout }) => (layout ? layout : 'auto')};
   thead {
     background: ${({ bgColor }) => (bgColor ? bgColor : Color.alerzoGray3)};
     color: #001928;
