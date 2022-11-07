@@ -103,6 +103,18 @@ const GlobalStyle = createGlobalStyle`
 .w-50{
   width: 50% !important
 }
+.successText{
+  color:#34A853;
+}
+.center{
+  text-align: center;
+}
+.end{
+  text-align: end;
+}
+.dangertext{
+  color:#EA4336;
+}
 `
 
 export default GlobalStyle

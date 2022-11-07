@@ -13,6 +13,8 @@ import {
   ProductIcon,
   ActiveProductIcon,
   ActiveTerminalIcon,
+  AuditIcon,
+  ActiveAuditIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
 import { Path } from '../constants/route-path'
@@ -73,5 +75,13 @@ export const sideBarData = [
     ActiveIcon: ActiveTerminalIcon,
     activeIconColor: Color.alerzoBlue,
     path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
+  },
+  {
+    id: 7,
+    title: 'Audit Trail',
+    InActiveIcon: AuditIcon,
+    ActiveIcon: ActiveAuditIcon,
+    activeIconColor: Color.alerzoBlue,
+    path: `/${Path.DASHBOARD}/${Path.AUDIT}`,
   },
 ]

@@ -40,7 +40,6 @@ const TableData = ({
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
-        // [dataList?.length - 1]
         return (
           <tr key={index}>
             {dataList?.map((data, i) => (
@@ -78,6 +77,16 @@ const TableData = ({
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
+                      : formatDate(
+                          item?.sessionStartedAt,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ) === data
+                      ? 'successText'
+                      : formatDate(
+                          item?.sessionEndedAt,
+                          'YYYY-MM-DD HH:mm:ss'
+                        ) === data
+                      ? 'dangertext'
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >

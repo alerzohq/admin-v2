@@ -24,6 +24,7 @@ import Products from '../pages/dashboard/products'
 import ProductDetails from '../pages/dashboard/products/details'
 import RegisterInvitation from '../pages/invitation'
 import NotFound from '../pages/404'
+import Audit from '../pages/dashboard/audit'
 
 function App() {
   const { state } = useAppContext()
@@ -77,6 +78,7 @@ function App() {
               />
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
+              <Route path={Path.AUDIT} element={<Audit />} />
             </Route>
           </Route>
 

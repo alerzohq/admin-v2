@@ -21,7 +21,7 @@ export const transformData = ({ item, name }: props) => {
     return {
       reference,
       customer_name,
-      amount,   
+      amount,
       type,
       action,
       displayName,
@@ -86,5 +86,12 @@ export const transformData = ({ item, name }: props) => {
       user_id === null ? 'Unassigned' : active ? 'Active' : 'Inactive'
     const updatedDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
     return { tid, serial_number, model, statusVal, updatedDate, updated_at }
+  }
+  if (item && name === 'audit') {
+    let { username, role, sessionStartedAt, sessionEndedAt } = item
+    sessionStartedAt = formatDate(sessionStartedAt, 'YYYY-MM-DD HH:mm:ss')
+    sessionEndedAt = formatDate(sessionEndedAt, 'YYYY-MM-DD HH:mm:ss')
+    role = role.charAt(0).toUpperCase() + role.slice(1)
+    return { username, role, sessionStartedAt, sessionEndedAt }
   }
 }
