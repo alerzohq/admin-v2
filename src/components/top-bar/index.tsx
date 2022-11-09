@@ -57,7 +57,11 @@ const TopBar = ({
             {(Object.entries(params)?.length > 0 || withParams) && (
               <ArrowBackIcon
                 onClick={() => {
-                  routePath ? navigate(`${routePath}`) : navigate(-1)
+                  routePath
+                    ? typeof routePath === 'function'
+                      ? navigate(`${routePath()}`)
+                      : navigate(`${routePath}`)
+                    : navigate(-1)
                 }}
               />
             )}{' '}

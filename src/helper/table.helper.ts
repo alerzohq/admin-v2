@@ -46,7 +46,17 @@ export const transformData = ({ item, name }: props) => {
     const { name, permissions, status, numberOfMembers } = item
     let statusVal = status ? 'Active' : 'Inactive'
     let perm = permissions || []
-    return { name, permission: perm.toString(), numberOfMembers, statusVal }
+    return {
+      name,
+      permission: perm
+        .map(
+          (selectedPermission: { displayName: string }) =>
+            selectedPermission.displayName
+        )
+        .join(', '),
+      numberOfMembers,
+      statusVal,
+    }
   }
   if (item && name === 'employees') {
     const { firstName, lastName, phoneNumber, email, roleName, disabled } = item
