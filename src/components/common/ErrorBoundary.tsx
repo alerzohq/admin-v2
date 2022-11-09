@@ -7,16 +7,21 @@ interface Props {
 }
 
 interface State {
-  hasError: boolean
+  hasError: boolean,
+  error: {};
 }
 
+
+
 class ErrorBoundary extends Component<Props, State> {
-  state = { hasError: false }
+  state = { hasError: false, error:{} }
+
   static getDerivedStateFromError() {
     return { hasError: true }
   }
   componentDidCatch(error: Error, info: ErrorInfo): void {
     console.error('ErrorBoundary caught an error', error, info)
+    this.setState({error:error})
   }
 
   render() {
@@ -24,6 +29,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="loaderWrapper">
           <h2 data-testid="errorboundary">{this.props.fallback}</h2>
+          <h2 data-testid="errorboundary">{JSON.stringify(this.state.error)}</h2>
         </div>
       )
     }
