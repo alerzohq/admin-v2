@@ -27,7 +27,6 @@ const AuthLayout = ({
                 alt={'auth-img'}
                 width={'100%'}
                 height={'100%'}
-                loading={'lazy'}
               />
             </AuthImage>
             <Text
