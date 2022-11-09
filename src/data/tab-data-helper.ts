@@ -7,8 +7,10 @@ import {
   DETAILSTABLE2,
   DETAILSTABLE3,
 } from './tab-data'
-export const detailsHelper = (data: any, setFetch: Dispatch<SetStateAction<boolean>>) => {
-
+export const detailsHelper = (
+  data: any,
+  setFetch: Dispatch<SetStateAction<boolean>>
+) => {
   let metaHeaders: { [key: string]: any }[] = []
   const {
     product,
@@ -60,7 +62,7 @@ export const detailsHelper = (data: any, setFetch: Dispatch<SetStateAction<boole
     }
     return result
   },
-    {})
+  {})
   const tableData = {
     customer_name,
     type,
@@ -90,11 +92,13 @@ export const detailsHelper = (data: any, setFetch: Dispatch<SetStateAction<boole
         url: `/dashboard/digital-bank/${user_id}`,
         index: 0,
         setFetch,
-        shouldFetch: user_type === null || user_type === null || user_type === "business-user"
+        shouldFetch:
+          user_type === null ||
+          user_type === null ||
+          user_type === 'business-user',
       },
       header: DETAILSTABLE1,
       data: tableData,
-
     },
     {
       spacing: false,

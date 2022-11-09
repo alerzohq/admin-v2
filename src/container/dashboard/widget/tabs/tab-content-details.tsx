@@ -39,7 +39,6 @@ const DetailsContentWidget = ({
               header={item.header}
               bgBottomColor={Color.alerzoWhite}
               clickable={item?.clickable}
-
             />
           )}
         </Fragment>

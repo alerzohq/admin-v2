@@ -13,7 +13,7 @@ import { toast } from 'react-hot-toast'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
-  const [fetchUser, setFetchUser] = useState(false);
+  const [fetchUser, setFetchUser] = useState(false)
   const location = useLocation()
   const thePath = location.pathname
   var result = thePath.split('/')
@@ -25,7 +25,6 @@ const TabsContainer = () => {
     return getResource(`transactions?query=${id}`)
   }
 
- 
   const { isLoading, data, isError, isFetching } = useQuery(
     'transactions',
     getTransactions
@@ -34,7 +33,7 @@ const TabsContainer = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
 
-  const {   data: user,  isRefetching: fetchinguser } = useQuery(
+  const { data: user, isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
     getBusinessUser,
     {
@@ -43,17 +42,14 @@ const TabsContainer = () => {
   )
 
   useEffect(() => {
-    if(fetchUser && !fetchinguser && user){
+    if (fetchUser && !fetchinguser && user) {
       setFetchUser(false)
-      if(!user?.data[0]?.business_id){
-       toast.error(`${"business details does not exist for this user"}`)
-      }else{
+      if (!user?.data[0]?.business_id) {
+        toast.error(`${'business details does not exist for this user'}`)
+      } else {
         navigate(`/dashboard/businesses/${user?.data[0]?.business_id}`)
-      
       }
-      
     }
-
   }, [fetchUser, user])
   const renderSwitch = () => {
     switch (queryParam) {
@@ -64,7 +60,11 @@ const TabsContainer = () => {
       case 'notes':
         return <NotesContent />
       default:
-        return <DetailsContent resolvedData={detailsHelper(data?.data?.[0], setFetchUser)!} />
+        return (
+          <DetailsContent
+            resolvedData={detailsHelper(data?.data?.[0], setFetchUser)!}
+          />
+        )
     }
   }
 

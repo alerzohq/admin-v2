@@ -64,7 +64,7 @@ export const thousandSeparator = (x: string | number) => {
     return '0'
   }
   if (x !== null && x !== undefined) {
-    let amount = Number(x) 
+    let amount = Number(x)
     return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
   return x

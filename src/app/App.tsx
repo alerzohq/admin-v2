@@ -35,10 +35,13 @@ function App() {
   let routes = (
     <>
       <ScrollToTop />
-      <ErrorBoundary FallbackComponent={ErrorFallback}  onReset={() => {
-      // reset the state of your app so the error doesn't happen again
-      navigate("dashboard",{replace: true})
-    }}>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => {
+          // reset the state of your app so the error doesn't happen again
+          navigate('dashboard', { replace: true })
+        }}
+      >
         <Routes>
           <Route element={<IsUserRedirect user={user} />}>
             <Route path={Path.LOGIN} element={<Login />} />
