@@ -109,4 +109,6 @@ export type FlexTableRowProps = {
   header: HeaderData[]
   bgBottomColor?: string
   clickable: { [key: string]: any }
+  setFetch?: Dispatch<SetStateAction<boolean>>
+  shouldFetch?: boolean
 }

@@ -1,4 +1,5 @@
-import { useLocation } from 'react-router-dom'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getResource } from '../../../../utils/apiRequest'
 import DetailsContent from '../../widget/tabs/tab-content-details'
@@ -7,12 +8,15 @@ import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper'
 import NotesContent from './tab-content/notes'
 import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 const TabsContainer = () => {
+  const navigate = useNavigate()
+  const [fetchUser, setFetchUser] = useState(false)
   const location = useLocation()
   const thePath = location.pathname
   var result = thePath.split('/')
-  const slug = result[4]
   const id = result[3]
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
@@ -25,7 +29,28 @@ const TabsContainer = () => {
     'transactions',
     getTransactions
   )
+  const getBusinessUser = () => {
+    return getResource(`business-users?id=${data?.data[0]?.user_id}`)
+  }
 
+  const { data: user, isRefetching: fetchinguser } = useQuery(
+    `queryKey${data?.data[0]?.user_id}${data}`,
+    getBusinessUser,
+    {
+      enabled: fetchUser,
+    }
+  )
+
+  useEffect(() => {
+    if (fetchUser && !fetchinguser && user) {
+      setFetchUser(false)
+      if (!user?.data[0]?.business_id) {
+        toast.error(`${'business details does not exist for this user'}`)
+      } else {
+        navigate(`/dashboard/businesses/${user?.data[0]?.business_id}`)
+      }
+    }
+  }, [fetchUser, user])
   const renderSwitch = () => {
     switch (queryParam) {
       case 'other':
@@ -35,7 +60,11 @@ const TabsContainer = () => {
       case 'notes':
         return <NotesContent />
       default:
-        return <DetailsContent resolvedData={detailsHelper(data?.data?.[0])!} />
+        return (
+          <DetailsContent
+            resolvedData={detailsHelper(data?.data?.[0], setFetchUser)!}
+          />
+        )
     }
   }
 

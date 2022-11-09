@@ -4,7 +4,7 @@ import { Path } from '../../constants/route-path'
 
 const NotFound = ({ user }: { user: unknown }) => {
   if (!user) {
-    ;<Navigate to={Path.LOGIN} replace />
+    <Navigate to={Path.LOGIN} replace />
   }
 
   return <Navigate to={Path.DASHBOARD} replace />

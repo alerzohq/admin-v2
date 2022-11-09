@@ -33,6 +33,12 @@ FlexTableWrapper.Row = function CardRow({
         return '1'
     }
   }
+  const handleClick = () => {
+    if (clickable?.shouldFetch) {
+      return clickable.setFetch(true)
+    }
+  }
+
   return (
     <CardWrapper>
       {header.map((detail, index) => {
@@ -90,8 +96,12 @@ FlexTableWrapper.Row = function CardRow({
                 bgColor={bgBottomColor}
               >
                 <button
-                  onClick={() =>
-                    clickable?.index === index ? navigate(clickable?.url) : {}
+                  onClick={
+                    clickable?.index === index
+                      ? clickable?.shouldFetch === false
+                        ? () => navigate(clickable?.url)
+                        : () => handleClick()
+                      : () => null
                   }
                 >
                   <Text
