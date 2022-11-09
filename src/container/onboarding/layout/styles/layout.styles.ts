@@ -19,6 +19,35 @@ export const AuthContainer = styled.div<Props>`
       padding: 2rem 0 0 0;
     }
   }
+
+  #otp-verification{
+    padding: ${({ p }) => p ?? '6rem 0 0 0'};
+    @media (max-width: 1240px) {
+      form{
+        width:80%;
+      }
+    }
+    @media (max-width: 1024px) {
+      form{
+        width:90%;
+      }
+    }
+    @media (max-width: 992px) {
+      padding: 2rem 0 0 0;
+      form{
+        width:70%;
+      }
+      
+    }
+    @media (max-width: 640px) {
+      padding: 2rem 0 0 0;
+      form{
+        width:100%;
+      }
+      
+    }
+
+  }
 `
 
 export const AuthColumn = styled.div<Props>`

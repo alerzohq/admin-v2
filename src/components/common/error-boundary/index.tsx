@@ -1,9 +1,11 @@
-import { useNavigate } from 'react-router-dom'
+
 import { AlerzoLogo } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Button from '../../button'
 import { ErrorContainer } from './styles/error-boundary.styles'
 import errorImg from '../../../assets/images/pngs/error.png'
+
+import React from 'react'
 
 type ErrorBoundaryProps = {
   error: any
@@ -25,7 +27,10 @@ export function ErrorFallback({
           color={Color.alerzoBlue}
         />
         <img src={errorImg} alt="signout" />
-        <h2 data-testid="errorboundary">{error?.message}</h2>
+        <h2 data-testid="errorboundary">
+        You have run into an error while trying to perform this action
+       </h2>
+        <h2 data-testid="errorboundary">Error:{error?.message }</h2>
         <Button
           radius="10px"
           fontSize="14px"

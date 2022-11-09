@@ -32,7 +32,7 @@ TabPage.Tabs = function TabList({
   currentValue,
   hideStatus,
 }: TabsProps) {
-  const [queryParam, setQueryParams] = useSearchParams()
+  const [, setQueryParams] = useSearchParams()
   return (
     <>
       <Tabs hideStatus={hideStatus}>
