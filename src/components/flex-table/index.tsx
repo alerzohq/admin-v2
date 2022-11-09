@@ -1,3 +1,4 @@
+
 import { useNavigate } from 'react-router-dom'
 import { Text } from '..'
 import { Color } from '../../assets/theme'
@@ -33,6 +34,13 @@ FlexTableWrapper.Row = function CardRow({
         return '1'
     }
   }
+  const handleClick = () => {
+    if (clickable?.shouldFetch) {
+      return clickable.setFetch(true)
+
+    }
+  }
+  
   return (
     <CardWrapper>
       {header.map((detail, index) => {
@@ -90,9 +98,7 @@ FlexTableWrapper.Row = function CardRow({
                 bgColor={bgBottomColor}
               >
                 <button
-                  onClick={() =>
-                    clickable?.index === index ? navigate(clickable?.url) : {}
-                  }
+                  onClick={clickable?.index === index ? clickable?.shouldFetch === false ? ()=>  navigate(clickable?.url) : () => handleClick() : () => null}
                 >
                   <Text
                     as={'p'}
@@ -101,8 +107,8 @@ FlexTableWrapper.Row = function CardRow({
                       field.toLowerCase().includes('status')
                         ? color
                         : clickable?.index === index
-                        ? Color.alerzoBlue
-                        : Color.alerzoBlack
+                          ? Color.alerzoBlue
+                          : Color.alerzoBlack
                     }
                     bgColor={
                       field.toLowerCase().includes('status')
