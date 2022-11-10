@@ -2,11 +2,12 @@
 import { useAppContext } from '../context';
 
 const AllPermissions = () => {
-    const {
-        state: { user }
-      } = useAppContext();
+    const {state: { user }} = useAppContext();
+      const adminAccess=Boolean(user?.data?.role==="Super Admin")
 
-  return {user}
+      // console.log({user})
+
+  return {adminAccess}
 }
 
 export default AllPermissions

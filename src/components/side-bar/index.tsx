@@ -68,7 +68,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
           )}
         </LogoBox>
         <SidebarList>
-          {sideBarData?.map(
+          {sideBarData.map(
             (
               {
                 title,

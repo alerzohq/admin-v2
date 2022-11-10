@@ -16,4 +16,4 @@ export type sidebarMenuProp = {
   activeIconColor: string
   path: string
   subMenu?: subMenuData[]
-} | any ;
+} | any  ;

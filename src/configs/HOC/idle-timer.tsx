@@ -5,11 +5,8 @@ interface IAppProps extends IIdleTimer {
   children: ReactNode
 }
 
-interface IAppState {
-  bar: string
-}
 
-class AppComponent extends Component<IAppProps, IAppState> {
+class AppComponent extends Component<IAppProps> {
   render(): ReactNode {
     return <>{this.props.children}</>
   }
