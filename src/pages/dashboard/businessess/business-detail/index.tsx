@@ -5,10 +5,17 @@ import { BusinessDetailContainer } from '../../../../container/dashboard'
 
 const BusinessDetails = () => {
   const {adminAccess} = AllPermissions();
+  let obj={
+    name:''
+  }
   if(!adminAccess){
    return <Navigate to={`/${Path.DASHBOARD}`} replace/>
   }
-  return <BusinessDetailContainer />
+
+  return <>
+   <BusinessDetailContainer />
+   {obj}
+  </>
 }
 
 export default BusinessDetails
