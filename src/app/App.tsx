@@ -25,8 +25,7 @@ import RegisterInvitation from '../pages/invitation'
 import NotFound from '../pages/404'
 import Audit from '../pages/dashboard/audit'
 import { ErrorBoundary } from 'react-error-boundary'
-import {ErrorFallback} from '../components/common/error-boundary'
-
+import { ErrorFallback } from '../components/common/error-boundary'
 
 function App() {
   const navigate = useNavigate()

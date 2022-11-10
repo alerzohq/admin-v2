@@ -14,6 +14,7 @@ import {
 } from '../../../../components'
 import Checkbox from '../../../../components/checkbox'
 import { axiosInstance } from '../../../../configs/axios-instance'
+import { Path } from '../../../../constants/route-path'
 import { getResource } from '../../../../utils/apiRequest'
 
 const RolePermissionDetails = ({
@@ -75,7 +76,16 @@ const RolePermissionDetails = ({
         toast.success('Role created succesfully')
         queryClient.invalidateQueries('roles')
         handleRoleCreation(false)
-        navigate('users?status=roles-permissions')
+        navigate(
+          {
+            pathname: Path.USERS,
+            search: '?status=roles-permissions',
+          },
+          { replace: true }
+        )
+      },
+      onError: (error) => {
+        toast.error(error.response.data.message)
       },
     }
   )
@@ -95,7 +105,16 @@ const RolePermissionDetails = ({
         toast.success('Role edited succesfully')
         queryClient.invalidateQueries('roles')
         handleRoleEdit(false)
-        navigate('users?status=roles-permissions')
+        navigate(
+          {
+            pathname: Path.USERS,
+            search: '?status=roles-permissions',
+          },
+          { replace: true }
+        )
+      },
+      onError: (error) => {
+        toast.error(error.response.data.message)
       },
     }
   )
@@ -215,6 +234,7 @@ const RolePermissionDetails = ({
               })
             }}
             className="download-btn mt-3 btn-blue"
+            disabled={!inputValue}
           >
             Create
           </Button>

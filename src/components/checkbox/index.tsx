@@ -21,7 +21,7 @@ const Checkbox = ({
           value={value}
           id={String(value)}
           onClick={(e) => onClick((e.target as HTMLInputElement)?.value)}
-          checked={checked}
+          defaultChecked={checked}
         />
         <span className="checkmark" />
       </CheckboxContainer>

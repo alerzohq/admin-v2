@@ -48,12 +48,14 @@ export const transformData = ({ item, name }: props) => {
     let perm = permissions || []
     return {
       name,
-      permission: perm
-        .map(
-          (selectedPermission: { displayName: string }) =>
-            selectedPermission.displayName
-        )
-        .join(', '),
+      permission: perm.length
+        ? perm
+            .map(
+              (selectedPermission: { displayName: string }) =>
+                selectedPermission.displayName
+            )
+            .join(', ')
+        : '-',
       numberOfMembers,
       statusVal,
     }
