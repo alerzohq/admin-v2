@@ -25,8 +25,8 @@ import { Path } from '../constants/route-path'
 
 export const SideBarMenus =()=>{
 
-const {user} = AllPermissions();
-const adminAccess=Boolean(user?.data?.permissions?.[0]?.displayName==='Remove Admin')
+const {adminAccess} = AllPermissions();
+
 
 
 
