@@ -3,7 +3,9 @@ import { useAppContext } from '../context';
 
 const AllPermissions = () => {
     const {state: { user }} = useAppContext();
-      const adminAccess=Boolean(user?.data?.permissions?.[0]?.displayName==='Remove Admin')
+      const adminAccess=Boolean(user?.data?.role==="Super Admin")
+
+      console.log({user})
 
   return {adminAccess}
 }
