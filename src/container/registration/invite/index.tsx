@@ -50,7 +50,7 @@ export const RegistrationInvite = () => {
     navigate('/')
   }
   const [values, setValues] = useState<FormValue>({
-    email: data.data.email,
+    email: data?.data?.email,
     firstName: '',
     lastName: '',
     phoneNumber: '',
@@ -116,7 +116,7 @@ export const RegistrationInvite = () => {
                 <Form.Input
                   type="text"
                   onChange={handleChange('email')}
-                  value={data.data.email}
+                  value={data?.data?.email}
                   disabled
                 />
                 {isTriggerSubmit && (
