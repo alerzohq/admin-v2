@@ -23,7 +23,15 @@ const Container: React.FC<ContainerProps> = ({
   const {
     state: { fetching },
     dispatch,
-  } = useAppContext()
+  } = useAppContext();
+
+  // const getPermissions = () => {
+  //   return getResource(`permissions`)
+  // }
+
+  // const { data:permissions } = useQuery('app-filters', getPermissions);
+
+ 
 
   const getFilters = () => {
     return getResource(`filters`)
@@ -42,6 +50,8 @@ const Container: React.FC<ContainerProps> = ({
       window.scrollTo(0, 0)
     }
   }, [isFetching, fetching, noScroll])
+
+
 
   return (
     <>

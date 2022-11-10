@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import { amountHelper } from '../utils/formatValue'
 import {
   CUSTOMERMORETABLE,
@@ -6,7 +7,10 @@ import {
   DETAILSTABLE2,
   DETAILSTABLE3,
 } from './tab-data'
-export const detailsHelper = (data: any) => {
+export const detailsHelper = (
+  data: any,
+  setFetch: Dispatch<SetStateAction<boolean>>
+) => {
   let metaHeaders: { [key: string]: any }[] = []
   const {
     product,
@@ -85,10 +89,13 @@ export const detailsHelper = (data: any) => {
     {
       spacing: false,
       clickable: {
-        url: user_type.includes('business')
-          ? `/dashboard/businesses`
-          : `/dashboard/digital-bank/${user_id}`,
+        url: `/dashboard/digital-bank/${user_id}`,
         index: 0,
+        setFetch,
+        shouldFetch:
+          user_type === null ||
+          user_type === null ||
+          user_type === 'business-user',
       },
       header: DETAILSTABLE1,
       data: tableData,

@@ -72,7 +72,7 @@ const VerificationContainer = () => {
 
   return (
     <AuthLayout>
-      <Stack alignItems={'center'} id="login">
+      <Stack alignItems={'center'} id="otp-verification">
         <Form width={'65%'}>
           <Text
             margin={'auto'}
@@ -120,6 +120,7 @@ const VerificationContainer = () => {
               containerStyle={{
                 display: 'flex',
                 justifyContent: 'space-between',
+                gap:'5px'
               }}
             />
           </Form.Control>
