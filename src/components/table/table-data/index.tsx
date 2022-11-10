@@ -45,6 +45,12 @@ const TableData = ({
             {dataList?.map((data, i) => (
               <td key={i} id="td-hover">
                 <div
+                  style={{
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    maxWidth: '350px',
+                    whiteSpace: 'nowrap',
+                  }}
                   onClick={
                     notClickable
                       ? () => {}

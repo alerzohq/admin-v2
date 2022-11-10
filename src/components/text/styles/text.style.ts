@@ -18,6 +18,7 @@ type textProps = {
   visibility?: string
   lineHeight?: string
   alignSelf?: string
+  height?: string
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -40,4 +41,5 @@ export const TextStyle = styled.div<textProps>`
   text-align: ${({ textAlign }) => textAlign};
   line-height: ${({ lineHeight }) => lineHeight};
   justify-content: ${({ justifyContent }) => justifyContent};
+  height: ${({ height }) => height};
 `
