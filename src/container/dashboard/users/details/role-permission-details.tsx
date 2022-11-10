@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Color } from '../../../../assets/theme'
 import {
   Button,
@@ -218,7 +218,8 @@ const RolePermissionDetails = ({
             minWidth: '450px',
           }}
         >
-          <Button
+         <Button.Group>
+         <Button
             onClick={() => {
               handleRoleCreation(false)
             }}
@@ -238,6 +239,7 @@ const RolePermissionDetails = ({
           >
             Create
           </Button>
+         </Button.Group>
         </div>
       )}
     </>

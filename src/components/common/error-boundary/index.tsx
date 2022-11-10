@@ -4,6 +4,7 @@ import { Color } from '../../../assets/theme'
 import Button from '../../button'
 import { ErrorContainer } from './styles/error-boundary.styles'
 import errorImg from '../../../assets/images/pngs/error.png'
+import { useAppContext } from '../../../context'
 
 
 type ErrorBoundaryProps = {
@@ -15,6 +16,9 @@ export function ErrorFallback({
   error,
   resetErrorBoundary,
 }: ErrorBoundaryProps) {
+
+const {state}=useAppContext();
+
   return (
     <div role="alert">
       <ErrorContainer>
@@ -25,18 +29,19 @@ export function ErrorFallback({
           width={'150'}
           color={Color.alerzoBlue}
         />
-        <img src={errorImg} alt="signout" />
-        <h2 data-testid="errorboundary">
-        You have run into an error while trying to perform this action
+        <img src={errorImg} alt="error-img" className={'error-boundary-img'} />
+        <h2 data-testid="errorboundary" className='error-desc'>
+         You have run into an error while trying to perform this action
        </h2>
-        <h2 data-testid="errorboundary">Error:{error?.message }</h2>
-        <Button
+        <code>Error: {error?.message }</code>
+         <Button
           radius="10px"
           fontSize="14px"
+          width="200px"
           weight="700"
           onClick={resetErrorBoundary}
-        >
-          Go Back To Dashboard
+         >
+          {state?.user? 'Go Back To Dashboard' : 'Go to Login'}
         </Button>
       </ErrorContainer>
     </div>
