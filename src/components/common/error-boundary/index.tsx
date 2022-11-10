@@ -1,11 +1,10 @@
-
+import React from 'react'
 import { AlerzoLogo } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Button from '../../button'
 import { ErrorContainer } from './styles/error-boundary.styles'
 import errorImg from '../../../assets/images/pngs/error.png'
 
-import React from 'react'
 
 type ErrorBoundaryProps = {
   error: any

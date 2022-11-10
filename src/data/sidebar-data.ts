@@ -25,8 +25,8 @@ import { Path } from '../constants/route-path'
 
 export const SideBarMenus =()=>{
 
-const {user}=AllPermissions();
-const userAccess=Boolean(user?.data?.permissions?.length)
+const {user} = AllPermissions();
+const adminAccess=Boolean(user?.data?.permissions?.[0]?.displayName==='Remove Admin')
 
 
 
@@ -47,7 +47,7 @@ const userAccess=Boolean(user?.data?.permissions?.length)
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.TRANSACTION}`,
     },
-    (!userAccess && {
+    (adminAccess && {
       id: 3,
       title: 'Businesses',
       InActiveIcon: BusinessIcon,
@@ -80,7 +80,7 @@ const userAccess=Boolean(user?.data?.permissions?.length)
       path: `/${Path.DASHBOARD}/${Path.PRODUCTS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    (!userAccess && {
+    (adminAccess && {
       id: 6,
       title: 'Terminals',
       InActiveIcon: TerminalIcon,
