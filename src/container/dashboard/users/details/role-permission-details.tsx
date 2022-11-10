@@ -124,7 +124,7 @@ const RolePermissionDetails = ({
           flexWrap="wrap"
           pb="1rem"
         >
-          {data?.permissions?.length === 0 ? (
+          {data?.permissions?.length === 0 && !edit ? (
             <FallBack title={'No permissions for this role'} />
           ) : edit || create ? (
             allPermissions?.data.map(
@@ -180,7 +180,7 @@ const RolePermissionDetails = ({
           )}
         </Stack>
       </Jumbotron>
-      {data?.permissions?.length !== 0 && !create && (
+      {!create && (
         <Button
           onClick={() => {
             edit ? editRoles.mutate(permissions) : handleRoleEdit(true)
