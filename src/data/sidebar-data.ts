@@ -47,7 +47,7 @@ const {adminAccess} = AllPermissions();
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.TRANSACTION}`,
     },
-    (adminAccess && {
+    (adminAccess && { 
       id: 3,
       title: 'Businesses',
       InActiveIcon: BusinessIcon,
