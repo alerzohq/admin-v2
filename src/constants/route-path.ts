@@ -15,4 +15,5 @@ export enum Path {
   PRODUCTS = 'products',
   PRODUCTDETAIL = 'products/:productId',
   INVITATIONREGISTER = 'invites/:inviteId',
+  AUDIT = 'audit',
 }

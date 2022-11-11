@@ -7,3 +7,4 @@ export { default as RolePermissionDetailsContainer } from './users/details/role-
 export { default as UserDetailsContainer } from './users/details/edit-employee'
 export { default as ProductsContainer } from './products'
 export { default as ProductDetailsContainer } from './products/details'
+export { default as AuditContainer } from './audit'

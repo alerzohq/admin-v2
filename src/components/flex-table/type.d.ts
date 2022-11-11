@@ -8,7 +8,6 @@ export type BasicData = {
 }
 export type TransactionData = {
   name?: string
-
   type?: string
   balance?: string
   summary?: string
@@ -96,15 +95,6 @@ export type HeaderData = {
   label: string
   value: keyof typeof TransactionData
   columnWidth?: string
-  columnWidth?: string
-}
-
-export type TableData = {
-  spacing?: boolean
-  title?: string
-  currentValue?: boolean
-  header: HeaderData[]
-  data: TransactionData | TerminalData | BusinessData | BasicData
 }
 export type FlexTableRowProps = {
   children?: string | React.Node
@@ -118,4 +108,7 @@ export type FlexTableRowProps = {
   data: TransactionData | TerminalData | BusinessData | BasicData
   header: HeaderData[]
   bgBottomColor?: string
+  clickable: { [key: string]: any }
+  setFetch?: Dispatch<SetStateAction<boolean>>
+  shouldFetch?: boolean
 }

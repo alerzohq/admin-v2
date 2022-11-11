@@ -1,5 +1,6 @@
 export const transHeaderList = [
   'Reference No',
+  'Customer Name',
   'Amount',
   'Type',
   'Narration',
@@ -15,7 +16,7 @@ export const busHeaderList = [
   'Status',
   'Date Registered',
 ]
-export const rolesPermList = ['Roles', 'Permissions', 'No of Members', 'Status']
+export const rolesPermList = ['Roles', 'Permissions', 'No of Members']
 
 export const DBtransHeaderList = [
   'Reference No',
@@ -48,4 +49,10 @@ export const terminalHeader = [
   'Status',
   'Date Created',
   'Date Updated',
+]
+export const auditHeaderList = [
+  'User',
+  'Role',
+  'Session Started At',
+  'Session Ended At',
 ]

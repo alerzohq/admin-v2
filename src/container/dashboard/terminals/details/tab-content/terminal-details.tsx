@@ -72,7 +72,6 @@ const TerminalDetails = ({ data }: any) => {
           if (enabled) {
             return toggle()
           }
-          console.log(data?.active)
           toast.success(`Terminal updated successfully`)
         },
         onError: (error: any) => {

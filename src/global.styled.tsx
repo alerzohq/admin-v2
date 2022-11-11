@@ -103,6 +103,89 @@ const GlobalStyle = createGlobalStyle`
 .w-50{
   width: 50% !important
 }
+.successText{
+  color:#34A853;
+}
+.center{
+  text-align: center;
+}
+.end{
+  text-align: end;
+}
+.dangertext{
+  color:#EA4336;
+}
+.download-btn {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  background: ${Color.alerzoWhite} !important;
+  border: 1px solid ${Color.alerzoBlue} !important;
+  border-radius: 10px;
+  height: 45px !important;
+  padding: 0 1rem;
+  width: 200px !important;
+  text-align: center;
+  font-family: 'Gilmer';
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: ${Color.alerzoBlue} !important;
+  font-weight: 500;
+  cursor: pointer;
+}
+.mt-3{
+  margin-top:3em
+}
+.checkbox{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+input ~ .checkmark {
+  background-color: #ccc;
+}
+
+input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+input:checked ~ .checkmark:after {
+  display: block;
+}
+
+ .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.btn-blue{
+  background: ${Color.alerzoBlue} !important;
+  color: ${Color.alerzoBgColor} !important;
+}
 `
 
 export default GlobalStyle

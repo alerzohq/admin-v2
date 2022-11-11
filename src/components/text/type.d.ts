@@ -20,6 +20,7 @@ type TextOwnProps<E extends React.ElementType> = {
   lineHeight?: string
   alignSelf?: string
   as?: E
+  height?: string
 }
 
 export type TextProps<E extends React.ElementType> = TextOwnProps<E> &

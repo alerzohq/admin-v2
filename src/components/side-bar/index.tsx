@@ -6,7 +6,7 @@ import {
   SettingsIcon,
 } from '../../assets/icons'
 import { Color } from '../../assets/theme'
-import { sideBarData } from '../../data/sidebar-data'
+import { SideBarMenus } from '../../data/sidebar-data'
 import {
   SidebarWrapper,
   Inner,
@@ -30,6 +30,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const location = useLocation()
   const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
+  const { sideBarData } = SideBarMenus()
 
   const {
     state: { user },
@@ -43,7 +44,6 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
 
     setShow(index)
   }
-
   const handleLogout = () => {
     logOut(() => {
       dispatch({ type: Action.LOGOUT })
@@ -106,13 +106,15 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
                     {!isCollapsed && <Text as={'p'}>{title}</Text>}
                   </Stack>
                 </Link>
-                {subMenu?.map(({ name, subPath }) => (
-                  <SidebarDropdown key={name} isShown={show === i}>
-                    <Link to={subPath}>
-                      <DropdownItem>{name}</DropdownItem>
-                    </Link>
-                  </SidebarDropdown>
-                ))}
+                {subMenu?.map(
+                  ({ name, subPath }: { name: string; subPath: string }) => (
+                    <SidebarDropdown key={name} isShown={show === i}>
+                      <Link to={subPath}>
+                        <DropdownItem>{name}</DropdownItem>
+                      </Link>
+                    </SidebarDropdown>
+                  )
+                )}
               </SidebarItem>
             )
           )}
