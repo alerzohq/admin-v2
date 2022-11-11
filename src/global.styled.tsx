@@ -183,8 +183,8 @@ input:checked ~ .checkmark:after {
   transform: rotate(45deg);
 }
 .btn-blue{
-  background: ${Color.alerzoBlue};
-  color: ${Color.alerzoBgColor};
+  background: ${Color.alerzoBlue} !important;
+  color: ${Color.alerzoBgColor} !important;
 }
 `
 

@@ -237,7 +237,7 @@ const RolePermissionDetails = ({
               className="download-btn mt-3 btn-blue"
               disabled={!inputValue}
             >
-              Create
+              Create Role
             </Button>
           </Button.Group>
         </div>
