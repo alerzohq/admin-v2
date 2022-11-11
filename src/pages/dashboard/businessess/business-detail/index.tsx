@@ -8,7 +8,9 @@ const BusinessDetails = () => {
   if(!adminAccess){
    return <Navigate to={`/${Path.DASHBOARD}`} replace/>
   }
-  return <BusinessDetailContainer />
+
+  return (<BusinessDetailContainer />)
+
 }
 
 export default BusinessDetails
