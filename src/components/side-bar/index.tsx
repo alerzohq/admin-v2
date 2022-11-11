@@ -30,8 +30,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const location = useLocation()
   const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
-  const {sideBarData} = SideBarMenus();
-
+  const { sideBarData } = SideBarMenus()
 
   const {
     state: { user },
@@ -107,13 +106,15 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
                     {!isCollapsed && <Text as={'p'}>{title}</Text>}
                   </Stack>
                 </Link>
-                {subMenu?.map(({ name, subPath }:{name: string;subPath: string}) => (
-                  <SidebarDropdown key={name} isShown={show === i}>
-                    <Link to={subPath}>
-                      <DropdownItem>{name}</DropdownItem>
-                    </Link>
-                  </SidebarDropdown>
-                ))}
+                {subMenu?.map(
+                  ({ name, subPath }: { name: string; subPath: string }) => (
+                    <SidebarDropdown key={name} isShown={show === i}>
+                      <Link to={subPath}>
+                        <DropdownItem>{name}</DropdownItem>
+                      </Link>
+                    </SidebarDropdown>
+                  )
+                )}
               </SidebarItem>
             )
           )}

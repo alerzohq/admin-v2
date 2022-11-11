@@ -5,7 +5,6 @@ interface IAppProps extends IIdleTimer {
   children: ReactNode
 }
 
-
 class AppComponent extends Component<IAppProps> {
   render(): ReactNode {
     return <>{this.props.children}</>

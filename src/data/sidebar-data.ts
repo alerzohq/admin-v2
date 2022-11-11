@@ -17,18 +17,11 @@ import {
   ActiveAuditIcon,
 } from '../assets/icons'
 import { Color } from '../assets/theme'
-import AllPermissions from '../configs/access-control';
+import AllPermissions from '../configs/access-control'
 import { Path } from '../constants/route-path'
 
-
-
-
-export const SideBarMenus =()=>{
-
-const {adminAccess} = AllPermissions();
-
-
-
+export const SideBarMenus = () => {
+  const { adminAccess } = AllPermissions()
 
   const sideBarData = [
     {
@@ -47,15 +40,14 @@ const {adminAccess} = AllPermissions();
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.TRANSACTION}`,
     },
-    (adminAccess && { 
+    adminAccess && {
       id: 3,
       title: 'Businesses',
       InActiveIcon: BusinessIcon,
       ActiveIcon: ActiveBusinessIcon,
       path: `/${Path.DASHBOARD}/${Path.BUSINESSES}`,
       activeIconColor: Color.alerzoBlue,
-    }),
-    
+    },
     {
       id: 4,
       title: 'Digital Bank',
@@ -80,14 +72,14 @@ const {adminAccess} = AllPermissions();
       path: `/${Path.DASHBOARD}/${Path.PRODUCTS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    (adminAccess && {
+    adminAccess && {
       id: 6,
       title: 'Terminals',
       InActiveIcon: TerminalIcon,
       ActiveIcon: ActiveTerminalIcon,
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
-    }),
+    },
     {
       id: 7,
       title: 'Audit Trail',
@@ -96,8 +88,7 @@ const {adminAccess} = AllPermissions();
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.AUDIT}`,
     },
-  ].filter(Boolean);
+  ].filter(Boolean)
 
-  return {sideBarData}
+  return { sideBarData }
 }
-
