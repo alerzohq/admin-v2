@@ -43,8 +43,7 @@ export const transformData = ({ item, name }: props) => {
     return { name, phoneNumber, email, kyc_level, status, created_at }
   }
   if (item && name === 'user-roles-permission') {
-    const { name, permissions, status, numberOfMembers } = item
-    let statusVal = status ? 'Active' : 'Inactive'
+    const { name, permissions, numberOfMembers } = item
     let perm = permissions || []
     return {
       name,
@@ -57,7 +56,6 @@ export const transformData = ({ item, name }: props) => {
             .join(', ')
         : '-',
       numberOfMembers,
-      statusVal,
     }
   }
   if (item && name === 'employees') {
