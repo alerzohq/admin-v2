@@ -139,7 +139,7 @@ const RolePermissionDetails = ({
         <Stack
           direction="row"
           columnGap="1.875rem"
-          rowGap="1.3125rem"
+          rowGap="2.3125rem"
           flexWrap="wrap"
           pb="1rem"
         >
