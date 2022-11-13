@@ -13,12 +13,12 @@ export const ErrorContainer = styled.div`
     color: ${Color.alerzoDarkGray};
     margin: 2rem 0 0 0;
   }
-  code{
+  code {
     width: 100%;
     text-align: center;
     max-width: 400px;
     margin: 1rem 0;
-    background: ${Color.alerzoBlue4};;
+    background: ${Color.alerzoBlue4};
     border-radius: 5px;
     padding: 1rem;
   }
@@ -28,7 +28,5 @@ export const ErrorContainer = styled.div`
     color: ${Color.alerzoDarkGray};
     width: 350px;
     margin-top: 4rem;
-    
   }
- 
 `

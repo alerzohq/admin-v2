@@ -139,7 +139,7 @@ const RolePermissionDetails = ({
         <Stack
           direction="row"
           columnGap="1.875rem"
-          rowGap="1.3125rem"
+          rowGap="2.3125rem"
           flexWrap="wrap"
           pb="1rem"
         >
@@ -218,28 +218,28 @@ const RolePermissionDetails = ({
             minWidth: '450px',
           }}
         >
-         <Button.Group>
-         <Button
-            onClick={() => {
-              handleRoleCreation(false)
-            }}
-            className="download-btn mt-3"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              createRole.mutate({
-                role: inputValue,
-                permissions: permissions.map((permission) => permission.slug),
-              })
-            }}
-            className="download-btn mt-3 btn-blue"
-            disabled={!inputValue}
-          >
-            Create
-          </Button>
-         </Button.Group>
+          <Button.Group>
+            <Button
+              onClick={() => {
+                handleRoleCreation(false)
+              }}
+              className="download-btn mt-3"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                createRole.mutate({
+                  role: inputValue,
+                  permissions: permissions.map((permission) => permission.slug),
+                })
+              }}
+              className="download-btn mt-3 btn-blue"
+              disabled={!inputValue}
+            >
+              Create Role
+            </Button>
+          </Button.Group>
         </div>
       )}
     </>

@@ -120,18 +120,18 @@ const GlobalStyle = createGlobalStyle`
   display: flex;
   justify-content: center;
   white-space: nowrap;
-  background: ${Color.alerzoWhite};
-  border: 1px solid ${Color.alerzoBlue};
+  background: ${Color.alerzoWhite} !important;
+  border: 1px solid ${Color.alerzoBlue} !important;
   border-radius: 10px;
-  height: 45px;
+  height: 45px !important;
   padding: 0 1rem;
-  width: 200px;
+  width: 200px !important;
   text-align: center;
   font-family: 'Gilmer';
   font-style: normal;
   font-size: 14px;
   line-height: 17px;
-  color: ${Color.alerzoBlue};
+  color: ${Color.alerzoBlue} !important;
   font-weight: 500;
   cursor: pointer;
 }
@@ -183,8 +183,8 @@ input:checked ~ .checkmark:after {
   transform: rotate(45deg);
 }
 .btn-blue{
-  background: ${Color.alerzoBlue};
-  color: ${Color.alerzoBgColor};
+  background: ${Color.alerzoBlue} !important;
+  color: ${Color.alerzoBgColor} !important;
 }
 `
 

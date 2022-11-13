@@ -120,7 +120,7 @@ const VerificationContainer = () => {
               containerStyle={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                gap:'5px'
+                gap: '5px',
               }}
             />
           </Form.Control>

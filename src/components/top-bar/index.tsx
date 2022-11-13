@@ -41,7 +41,7 @@ const TopBar = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
-  
+
   useEffect(() => {
     if (Object.keys(newObj).length > 0) {
       setFilterValues((prev: any) => ({ ...prev, ...newObj }))

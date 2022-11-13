@@ -62,15 +62,6 @@ const RolesPermissions = ({
               type: 'text',
             },
             date: false,
-            // selects: [
-            //   {
-            //     placeholder: 'Status',
-            //     values: [],
-            //     value: '',
-            //     onChange: () => {},
-            //     query: 'status',
-            //   },
-            // ],
             buttons: [
               {
                 label: 'Add New Role',

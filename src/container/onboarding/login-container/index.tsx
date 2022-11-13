@@ -13,7 +13,6 @@ import { Path } from '../../../constants/route-path'
 import toast from 'react-hot-toast'
 import { formValue } from './formValues'
 
-
 const LoginContainer = () => {
   const navigate = useNavigate()
   const { dispatch } = useAppContext()
@@ -55,8 +54,6 @@ const LoginContainer = () => {
     (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [name]: e.target.value.trim() })
     }
-
-    
 
   return (
     <AuthLayout>
