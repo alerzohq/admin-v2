@@ -77,6 +77,8 @@ const Employees = () => {
     )
   }
 
+  console.log({roles})
+
   const toggle = (type?: 'sendInvite') => {
     type === 'sendInvite'
       ? setShowSuucessInvite(!showSuucessInvite)
@@ -155,7 +157,7 @@ const Employees = () => {
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Select Role</Form.Label>
-              {!isLoadingRoles && (
+              {!isLoadingRoles && roles && (
                 <SelectInput
                   fullWidth
                   placeholder="Select a role"
