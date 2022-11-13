@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { amountHelper } from '../utils/formatValue'
+import { amountHelper, formatDate } from '../utils/formatValue'
 import {
   CUSTOMERMORETABLE,
   CUSTOMERTABLE,
@@ -79,8 +79,8 @@ export const detailsHelper = (
     channel,
     charge: amountHelper(charge),
     commission: amountHelper(commission),
-    created_at,
-    updated_at,
+    created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
+    updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
     product: product?.display_name,
     summary,
     total: amountHelper(total),
