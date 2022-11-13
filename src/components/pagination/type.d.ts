@@ -1,4 +1,4 @@
-import { filterProps } from '../../@types'
+// import { filterProps } from '../../@types'
 
 export type PaginationProps = {
   data: { [key: string]: any }

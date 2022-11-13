@@ -142,13 +142,15 @@ const RolePermissionDetails = ({
           rowGap="2.3125rem"
           flexWrap="wrap"
           pb="1rem"
+          pt="2rem"
         >
           {data?.permissions?.length === 0 && !edit ? (
             <FallBack title={'No permissions for this role'} />
           ) : edit || create ? (
             allPermissions?.data.map(
-              (permission: { slug: string; displayName: string }) => (
+              (permission: { slug: string; displayName: string }, i: number) => (
                 <div
+                key={i}
                   style={{
                     position: 'relative',
                     flex: '1 1 15%',
@@ -178,8 +180,9 @@ const RolePermissionDetails = ({
               )
             )
           ) : (
-            data?.permissions.map((permission: { displayName: string }) => (
+            data?.permissions.map((permission: { displayName: string }, i:number) => (
               <div
+                key={i}
                 style={{
                   position: 'relative',
                 }}
@@ -206,7 +209,7 @@ const RolePermissionDetails = ({
           }}
           className="download-btn mt-3"
         >
-          Edit Role and Permissions
+          {edit?'Update':'Edit Role and Permissions'}
         </Button>
       )}
       {create && (
