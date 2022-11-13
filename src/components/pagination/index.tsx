@@ -3,6 +3,13 @@ import { PaginationWrapper } from './styles/pagination.styles'
 import { PaginationProps } from './type'
 import ReactPaginate from 'react-paginate'
 import { useWindowResize } from '../../hooks'
+import SelectInput from '../select-input'
+import { options } from '../../data/filter-data'
+import { SelectOptions } from '../../@types'
+
+
+
+
 
 const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   const { width } = useWindowResize()
@@ -12,10 +19,21 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
     setPageNumber((prev) => ({ ...prev, pageNumber: selected }))
   }
 
+  const handlePageCount=(val:SelectOptions)=>{
+    let count = Number(val?.value)
+    setPageNumber((prev) => ({ ...prev, count }))
+  }
+
+
+
   return (
     <>
       {data?.data?.length > 0 && (
         <PaginationWrapper isMobile={width < mobileWidth}>
+
+         <SelectInput onChange={(val)=>handlePageCount(val)} 
+         placeholder={'10'}
+         value={'10'} options={options}/>
           <ReactPaginate
             breakLabel="..."
             nextLabel={width < mobileWidth ? '>' : 'Next'}

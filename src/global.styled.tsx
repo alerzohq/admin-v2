@@ -158,7 +158,7 @@ input ~ .checkmark {
 }
 
 input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: ${Color.alerzoBlue};
 }
 
 .checkmark:after {

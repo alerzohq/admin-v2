@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Color } from '../../assets/theme'
 
 export const CheckboxContainer = styled.div`
   input {
@@ -17,20 +18,23 @@ export const CheckboxContainer = styled.div`
     position: absolute;
     top: 50%;
     left: 0;
-    height: 25px;
-    width: 25px;
-    background: #ffffff;
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
+    height: 20px;
+    width: 20px;
+    background: ${Color.alerzoWhite};
+    border: 1px solid ${Color.alerzoLightGray4};
+    border-radius: 5px;
     transform: translate(0%, -50%);
+    margin-right:.5rem;
   }
 
   &:hover input ~ .checkmark {
-    background-color: #0077ff90;
+    /* background-color: #0077ff90; */
+    border: 2px solid ${Color.alerzoBlue};
   }
 
   input:checked ~ .checkmark {
-    background-color: #2196f3;
+    background-color: ${Color.alerzoBlue};
+    border: 2px solid ${Color.alerzoBlue};
   }
 
   .checkmark:after {
@@ -43,10 +47,10 @@ export const CheckboxContainer = styled.div`
   }
 
   .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
     border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
