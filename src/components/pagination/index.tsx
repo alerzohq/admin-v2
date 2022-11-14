@@ -1,11 +1,13 @@
 import React from 'react'
-import { PaginationWrapper } from './styles/pagination.styles'
+import { Inner, PaginationWrapper } from './styles/pagination.styles'
 import { PaginationProps } from './type'
 import ReactPaginate from 'react-paginate'
 import { useWindowResize } from '../../hooks'
 import SelectInput from '../select-input'
+import Text from '../text'
 import { options } from '../../data/filter-data'
 import { SelectOptions } from '../../@types'
+import { Color } from '../../assets/theme'
 
 const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   const { width } = useWindowResize()
@@ -24,13 +26,14 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
     <>
       {data?.data?.length > 0 && (
         <PaginationWrapper isMobile={width < mobileWidth}>
-          <SelectInput
-            onChange={(val) => handlePageCount(val)}
+
+          <Inner>
+            <Text as={'p'} color={Color.alerzoGray2}>Rows Per Page</Text>
+            <SelectInput onChange={(val)=>handlePageCount(val)} 
             placeholder={'10'}
-            value={'10'}
-            options={options}
-          />
-          <ReactPaginate
+            value={'10'} options={options}/></Inner>
+        
+         <ReactPaginate
             breakLabel="..."
             nextLabel={width < mobileWidth ? '>' : 'Next'}
             onPageChange={handlePageClick}
@@ -46,6 +49,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             previousLinkClassName={'previous-btn'}
             disabledClassName={'pagination-disabled'}
           />
+     
         </PaginationWrapper>
       )}
     </>

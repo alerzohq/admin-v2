@@ -1,5 +1,5 @@
 import React from 'react'
-import { AlerzoLogo } from '../../../assets/icons'
+import { AlerzoLogo, ErrorBoundaryIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Button from '../../button'
 import { ErrorContainer } from './styles/error-boundary.styles'
@@ -27,7 +27,8 @@ export function ErrorFallback({
           width={'150'}
           color={Color.alerzoBlue}
         />
-        <img src={errorImg} alt="error-img" className={'error-boundary-img'} />
+        
+        <ErrorBoundaryIcon />
         <h2 data-testid="errorboundary" className="error-desc">
           You have run into an error while trying to perform this action
         </h2>
