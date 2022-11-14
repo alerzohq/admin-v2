@@ -37,7 +37,6 @@ const LoginContainer = () => {
     } else if (error) {
       toast.error(`${error}`)
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, data])
 
