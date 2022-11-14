@@ -54,6 +54,7 @@ const ProductDetailsContainer = () => {
         dateFormat="YYYY-MM-DD HH:mm:ss"
         withSlug
         notClickable
+        layout="fixed"
       />
     )
   }

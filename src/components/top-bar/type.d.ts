@@ -20,7 +20,7 @@ export type TopBarProps = {
 
   isFetching?: boolean
   setFilterValues?: any
-  routePath?: string
+  routePath?: () => string | string
   whiteSpace?: string
   withParams?: boolean
 }

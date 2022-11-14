@@ -39,13 +39,13 @@ export const CUSTOMERSEGMENTTABLE = [
   { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
   { label: 'Status', value: 'status', columnWidth: 'large' },
 ]
-export const customerHelper = (data: any) => {
+export const customerHelper = (data: { [key: string]: any }) => {
   return [
     {
       spacing: false,
       header: CUSTOMERTABLE,
       data: {
-        name: `${data?.first_name} ${data?.last_name}`,
+        name: `${data?.first_name || ''} ${data?.last_name || ''}`,
         phoneNumber: data?.phone_number,
         bvnStatus:
           data?.bvn_set || data?.kyc_level > 1 ? 'Verified' : 'Not verified',

@@ -15,11 +15,12 @@ const Table = ({
   hideDate,
   setParams,
   notClickable,
+  layout,
 }: TableProps) => {
   return (
     <>
       <TableWrapper>
-        <DataTable bgColor={headerbgColor}>
+        <DataTable bgColor={headerbgColor} layout={layout}>
           <TableHeader headers={tableHeaders} />
           <TableData
             notClickable={notClickable}

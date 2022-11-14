@@ -7,16 +7,29 @@ import {
   Table,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
-import CardWidget from '../widget/card'
+
 import { useQuery } from 'react-query'
 import { transHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
-import { optionsAllPlatform } from '../../../data/select-data'
+import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
+import CardWidget from '../widget/card'
+import { useAppContext } from '../../../context'
+import {
+  platformFiltersOptions,
+  statusFilterOptions,
+} from '../../../helper/filter-helper'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
+
+  const {
+    state: { appFilters },
+  } = useAppContext()
+
+  let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
+  let statusOptions = statusFilterOptions(appFilters?.['transactions'])
+
   const getTransactions = (filterValue: filterProps) => {
     return getNewFilterResource(`transactions`, filterValue)
   }
@@ -24,15 +37,6 @@ const TransactionContainer = () => {
   const getTranStats = () => {
     return getResource(`transactions/statistics`)
   }
-
-  // const getFilter=()=> {
-  //   return getResource(`filters`)
-  // }
-  // const {  data: filters } = useQuery(
-  //   'filter',
-  //   getFilter
-  // )
-  // console.log({filters})
 
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
@@ -68,7 +72,7 @@ const TransactionContainer = () => {
         tableData={data?.data}
         tableHeaders={transHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        amountIndex={1}
+        amountIndex={2}
         withSlug
       />
     )
@@ -83,27 +87,17 @@ const TransactionContainer = () => {
         date: true,
         selects: [
           {
-            searchQuery: 'channel',
+            searchQuery: 'userType',
             placeholder: 'All Platform',
-            values: optionsAllPlatform,
+            values: platformOptions,
             value: '',
           },
           {
             placeholder: 'Status',
-            values: [
-              { label: 'Successful', value: 'successful' },
-              { label: 'Pending', value: 'pending' },
-              { label: 'Failed', value: 'failed' },
-            ],
+            values: statusOptions,
             value: '',
           },
         ],
-        // buttons: [
-        //   {
-        //     label: 'Download CSV',
-        //     onClick: () => console.log('first'),
-        //   },
-        // ],
       }}
       title="History"
       setFilterValues={setValues}

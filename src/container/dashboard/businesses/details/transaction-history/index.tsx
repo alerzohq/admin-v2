@@ -45,7 +45,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         tableData={data?.data}
         tableHeaders={transHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        amountIndex={1}
+        amountIndex={2}
         withSlug
         notClickable
       />

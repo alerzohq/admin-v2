@@ -1,9 +1,7 @@
+import { useNavigate } from 'react-router-dom'
 import { Text } from '..'
 import { Color } from '../../assets/theme'
-import {
-  capitalizeFirstLetterInSentence,
-  numberWithCommas,
-} from '../../utils/formatValue'
+import { capitalizeFirstLetterInSentence } from '../../utils/formatValue'
 import { resolveTableColor } from '../../utils/resolveColors'
 import {
   CardItem,
@@ -22,7 +20,9 @@ FlexTableWrapper.Row = function CardRow({
   data,
   header,
   bgBottomColor,
+  clickable,
 }: FlexTableRowProps) {
+  const navigate = useNavigate()
   const renderSwitch = (param: string) => {
     switch (param) {
       case 'large':
@@ -33,15 +33,18 @@ FlexTableWrapper.Row = function CardRow({
         return '1'
     }
   }
+  const handleClick = () => {
+    if (clickable?.shouldFetch) {
+      return clickable.setFetch(true)
+    }
+  }
+
   return (
     <CardWrapper>
       {header.map((detail, index) => {
         const field = header[index]?.value as string
         const amt =
-          (field as keyof typeof data) === 'amount' ||
-          (field as keyof typeof data) === 'balance'
-            ? `₦${numberWithCommas(data[field as keyof typeof data])}`
-            : (field as keyof typeof data) !== 'email'
+          (field as keyof typeof data) !== 'email'
             ? capitalizeFirstLetterInSentence(data[field as keyof typeof data])
             : data[field as keyof typeof data]
         let color: string = ''
@@ -89,38 +92,49 @@ FlexTableWrapper.Row = function CardRow({
                 showBorder={header.length - 1 !== index}
                 padding="0 1em"
                 flex={'3'}
+                clickable={clickable?.index === index}
                 bgColor={bgBottomColor}
               >
-                <Text
-                  as={'p'}
-                  padding={'0 .1em'}
-                  color={
-                    field.toLowerCase().includes('status')
-                      ? color
-                      : Color.alerzoBlack
+                <button
+                  onClick={
+                    clickable?.index === index
+                      ? clickable?.shouldFetch === false
+                        ? () => navigate(clickable?.url)
+                        : () => handleClick()
+                      : () => null
                   }
-                  bgColor={
-                    field.toLowerCase().includes('status')
-                      ? bgColor
-                      : 'transparent'
-                  }
-                  justifyContent={
-                    field.toLowerCase().includes('status') ? 'center' : 'left'
-                  }
-                  textAlign="left"
-                  weight={
-                    field.toLowerCase().includes('status') ? '600' : '400'
-                  }
-                  width={
-                    field.toLowerCase().includes('status')
-                      ? 'fit-content'
-                      : 'auto'
-                  }
-                  size="14px"
-                  align={'center'}
                 >
-                  {data[field as keyof typeof data] ? amt : ''}
-                </Text>
+                  <Text
+                    as={'p'}
+                    padding={'0 .1em'}
+                    color={
+                      field.toLowerCase().includes('status')
+                        ? color
+                        : clickable?.index === index
+                        ? Color.alerzoBlue
+                        : Color.alerzoBlack
+                    }
+                    bgColor={
+                      field.toLowerCase().includes('status')
+                        ? bgColor
+                        : 'transparent'
+                    }
+                    justifyContent={
+                      field.toLowerCase().includes('status') ? 'center' : 'left'
+                    }
+                    textAlign="left"
+                    weight={
+                      field.toLowerCase().includes('status') ? '600' : '400'
+                    }
+                    width={
+                      field.toLowerCase().includes('status') ? '100%' : 'auto'
+                    }
+                    size="14px"
+                    align={'center'}
+                  >
+                    {data[field as keyof typeof data] ? amt : ''}
+                  </Text>
+                </button>
               </CardItem>
             </CardBorderWrapper>
           </CardContainer>

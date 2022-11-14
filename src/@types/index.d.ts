@@ -1,3 +1,8 @@
+export type SelectOptions = {
+  value: string
+  label: string
+}
+
 export type SelectInputProps =
   | {
       value: string

@@ -37,15 +37,45 @@ export const capitalizeFirstLetter = (s: string) => {
 
   return s?.charAt(0).toUpperCase() + s.slice(1)
 }
+export const removeHyphen = (s?: string) => {
+  if (typeof s !== 'string') return ''
+  if (s.includes('-')) {
+    const str = s.replaceAll('-', ' ')
+    return capitalizeFirstLetterInSentence(str)
+  }
 
-export const numberWithCommas = (x: string | number) => {
-  return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return s?.charAt(0).toUpperCase() + s.slice(1)
 }
 
 export const amountConverter = (x: string | number) => {
-  let amount = Number(x) / 100
+  if (x === 0 || x === '0') {
+    return '0'
+  }
+  if (x !== null && x !== undefined) {
+    let amount = Number(x) / 100
 
-  return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  return x
+}
+
+export const thousandSeparator = (x: string | number) => {
+  if (x === 0 || x === '0') {
+    return '0'
+  }
+  if (x !== null && x !== undefined) {
+    let amount = Number(x)
+    return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  return x
+}
+
+export const amountHelper = (x: string | number) => {
+  const value: number | string = amountConverter(x)
+  if (value !== null && value !== undefined) {
+    return `₦${value}`
+  }
+  return x
 }
 export const generateCommission = (
   type: string,
@@ -62,13 +92,15 @@ export const generateCommission = (
     return `₦${amountToNaira} FLAT`
   }
 }
-export const capitalizeFirstLetterInSentence = (mySentence: string) => {
+export const capitalizeFirstLetterInSentence = (mySentence?: string) => {
   if (typeof mySentence !== 'string') return ''
-  const arr = mySentence?.split(' ')
-  for (var i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
-    return arr.join(' ')
-  }
+
+  const words = mySentence.trim().split(' ')
+  return words
+    .map((word) =>
+      word?.length === 0 ? word : word[0].toUpperCase() + word.substring(1)
+    )
+    .join(' ')
 }
 
 export const mapBillers = (arr: any) =>

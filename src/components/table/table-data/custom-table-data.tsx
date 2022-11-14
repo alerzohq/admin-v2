@@ -45,7 +45,7 @@ const CustomTableData = ({
                   onClick={
                     i === 0
                       ? () => {
-                          navigate(`${item?.id}`, {
+                          navigate(`${item?.slug}`, {
                             state: { detail: item },
                           })
                         }

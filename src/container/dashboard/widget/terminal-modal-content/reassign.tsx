@@ -67,7 +67,7 @@ const ReassignTerminalModal = ({
       </Text>
       <SelectInput
         placeholder="Enter to search for merchant"
-        onChange={(e) =>
+        onChange={(e: any) =>
           setValue({ businessId: e?.value, serialNumber: data?.serial_number })
         }
         value={value?.businessId}

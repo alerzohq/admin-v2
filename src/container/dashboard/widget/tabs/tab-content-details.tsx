@@ -1,13 +1,12 @@
 import { Fragment } from 'react'
 import { Color } from '../../../../assets/theme'
 import { FlexTableWrapper, Text } from '../../../../components'
-import { TableData } from '../../../../components/flex-table/type'
 import { TabContentContainer } from '../../transactions/details/tab-content/styles/tab-content.styles'
 
 const DetailsContentWidget = ({
   resolvedData,
 }: {
-  resolvedData: TableData[]
+  resolvedData: { [key: string]: any }[]
 }) => {
   return (
     <>
@@ -18,6 +17,7 @@ const DetailsContentWidget = ({
               <FlexTableWrapper.Row
                 data={item?.data}
                 header={item?.header}
+                clickable={item?.clickable}
                 bgBottomColor={Color.alerzoWhite}
               />
             </TabContentContainer>
@@ -38,6 +38,7 @@ const DetailsContentWidget = ({
               data={item?.data}
               header={item.header}
               bgBottomColor={Color.alerzoWhite}
+              clickable={item?.clickable}
             />
           )}
         </Fragment>

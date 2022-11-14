@@ -41,11 +41,11 @@ const TopBar = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
+
   useEffect(() => {
     if (Object.keys(newObj).length > 0) {
       setFilterValues((prev: any) => ({ ...prev, ...newObj }))
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
 
@@ -57,7 +57,11 @@ const TopBar = ({
             {(Object.entries(params)?.length > 0 || withParams) && (
               <ArrowBackIcon
                 onClick={() => {
-                  routePath ? navigate(`${routePath}`) : navigate(-1)
+                  routePath
+                    ? typeof routePath === 'function'
+                      ? navigate(`${routePath()}`)
+                      : navigate(`${routePath}`)
+                    : navigate(-1)
                 }}
               />
             )}{' '}

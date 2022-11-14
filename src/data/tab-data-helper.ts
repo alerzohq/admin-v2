@@ -1,282 +1,170 @@
+import { Dispatch, SetStateAction } from 'react'
+import { amountHelper, formatDate } from '../utils/formatValue'
 import {
-  AIRTIMEDETAILSTABLE,
-  AIRTIMEMORETABLE,
-  BETTINGUSERTABLE,
-  CABLEPRODUCTDETAILSTABLE,
   CUSTOMERMORETABLE,
-  CUSTOMERTABLE,
-  DATAMORETABLE,
-  DETAILSTABLE,
-  ELECTRICITYPRODUCTTABLE,
-  INTERNETDETAILSTABLE,
-  RECIPIENTTABLE,
-  SESSIONTABLE,
-  TOKENDETAILSTABLE,
-  VASDETAILSTABLE,
+  DETAILSTABLE1,
+  DETAILSTABLE2,
+  DETAILSTABLE3,
 } from './tab-data'
-
-export const detailsHelper = (slug: string, data: any) => {
-  const type = data?.type
-  const metaData = data?.metadata?.reduce(
-    (o: any, { key, value }: { key: number; value: string }) => (
-      (o[key] = value), o
-    ),
-    {}
+export const detailsHelper = (
+  data: any,
+  setFetch: Dispatch<SetStateAction<boolean>>
+) => {
+  let metaHeaders: { [key: string]: any }[] = []
+  const {
+    product,
+    action,
+    channel,
+    charge,
+    commission,
+    created_at,
+    updated_at,
+    summary,
+    total,
+    user_type,
+    user_id,
+    wallet_id,
+    biller_reference,
+    biller_id,
+    metadata,
+    customer_name,
+    type,
+    amount,
+    balance,
+    reference,
+    biller,
+  } = data
+  const metaDataArr = metadata?.map(
+    (val: { [key: string]: any }, i: number) => {
+      const key = val?.key
+      const label = val?.label
+      metaHeaders.push({
+        label,
+        value: key,
+        columnWidth: i === metadata?.length - 1 ? 'large' : 'small',
+      })
+      return { [key]: val?.value }
+    }
   )
-  if (slug === 'bank-transfer') {
-    return [
-      {
-        spacing: false,
-        header: DETAILSTABLE,
-        data: {
-          name:
-            type === 'credit'
-              ? metaData?.accountName
-              : data?.actionPayload?.senderAccountName,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          accountNumber: 'credit'
-            ? metaData?.accountNumber
-            : data?.actionPayload?.senderAccountNumber,
-          summary: metaData?.narration,
-        },
-      },
-      {
-        spacing: false,
-        header: SESSIONTABLE,
-        data: {
-          displayName: data?.biller?.displayName,
-          sessionId: metaData?.sessionId,
-          channel: data?.channel,
-        },
-      },
-      {
-        spacing: true,
-        header: RECIPIENTTABLE,
-        data: {
-          name:
-            type === 'credit'
-              ? data?.actionPayload?.craccountname
-              : metaData?.accountName,
-          product: data?.product?.displayName,
-          package: data?.product?.displayName,
-          reference: data?.billerReference,
-          userId:
-            type === 'credit'
-              ? `${
-                  data?.actionPayload?.craccount
-                    ? `${data?.actionPayload?.craccount} / `
-                    : ''
-                }/${data?.userId || ''}`
-              : `${
-                  data?.actionPayload?.accountNumber
-                    ? `${data?.actionPayload?.accountNumber} / `
-                    : ''
-                }${data?.userId || ''}`,
-        },
-      },
-    ]
-  }
-  if (slug === 'dstv') {
-    return [
-      {
-        spacing: false,
-        header: VASDETAILSTABLE,
-        data: {
-          customer: metaData?.customerName,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          product: data?.product?.displayName,
-          reference: data?.reference,
-        },
-      },
-      {
-        spacing: false,
-        header: CABLEPRODUCTDETAILSTABLE,
-        data: {
-          cardNumber: metaData?.smartCardNumber,
-          bouquet: metaData?.bouquet,
-          status: data?.status,
-          biller: data?.biller?.displayName,
-          channel: data?.channel,
-        },
-      },
-    ]
-  }
-  if (
-    slug === 'ikeja-electric-prepaid' ||
-    'abuja-electric-prepaid' ||
-    slug === 'portharcourt-electric-postpaid'
+  var resultObject = metaDataArr?.reduce(function (
+    result: any,
+    currentObject: any
   ) {
-    return [
-      {
-        spacing: false,
-        header: VASDETAILSTABLE,
-        data: {
-          customer: metaData?.customerName,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          product: data?.product?.displayName,
-          reference: data?.reference,
-        },
-      },
-      {
-        spacing: false,
-        header: ELECTRICITYPRODUCTTABLE,
-        data: {
-          meterNumber: metaData?.smartCardNumber,
-          disco: metaData?.disco,
-          status: data?.status,
-          biller: data?.biller?.displayName,
-          channel: data?.channel,
-          address: metaData?.address,
-        },
-      },
-      {
-        spacing: false,
-        header: TOKENDETAILSTABLE,
-        data: {
-          token: metaData?.token,
-          phoneNumber: metaData?.phoneNumber,
-        },
-      },
-    ]
+    for (var key in currentObject) {
+      if (currentObject.hasOwnProperty(key)) {
+        let val = currentObject[key]
+        if (key === 'amount' || key === 'balance' || key === 'total') {
+          val = amountHelper(currentObject[key])
+        }
+        result[key] = val
+      }
+    }
+    return result
+  },
+  {})
+  const tableData = {
+    customer_name,
+    type,
+    amount: amountHelper(amount),
+    balance: amountHelper(balance),
+    reference,
+    biller: biller?.display_name,
+    user_id,
+    wallet_id,
+    biller_reference,
+    biller_id,
+    user_type,
+    action,
+    channel,
+    charge: amountHelper(charge),
+    commission: amountHelper(commission),
+    created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
+    updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
+    product: product?.display_name,
+    summary,
+    total: amountHelper(total),
   }
-  if (slug === 'bet9ja' || slug === 'betking') {
-    return [
-      {
-        spacing: false,
-        header: VASDETAILSTABLE,
-        data: {
-          customer: metaData?.name,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          product: data?.product?.displayName,
-          reference: data?.reference,
-        },
-      },
-      {
-        spacing: false,
-        header: BETTINGUSERTABLE,
-        data: {
-          customerId: metaData?.customerId,
-          biller: data?.biller?.displayName,
-          status: data?.status,
-          channel: data?.channel,
-        },
-      },
-    ]
-  }
-  if (slug === 'smile') {
-    return [
-      {
-        spacing: false,
-        header: VASDETAILSTABLE,
-        data: {
-          customer: metaData?.customerName,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          product: data?.product?.displayName,
-          reference: data?.reference,
-        },
-      },
-      {
-        spacing: false,
-        header: INTERNETDETAILSTABLE,
-        data: {
-          accountNumber: metaData?.accountNumber,
-          biller: data?.biller?.displayName,
-          bundleName: metaData?.bundleName,
-          status: data?.status,
-          channel: data?.channel,
-        },
-      },
-    ]
-  }
-  if (slug === 'mtn-vtu') {
-    return [
-      {
-        spacing: false,
-        header: AIRTIMEDETAILSTABLE,
-        data: {
-          phoneNumber: metaData?.phoneNumber,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          product: data?.product?.displayName,
-          reference: data?.reference,
-        },
-      },
-      {
-        spacing: false,
-        header: AIRTIMEMORETABLE,
-        data: {
-          biller: data?.biller?.displayName,
-          status: data?.status,
-          channel: data?.channel,
-        },
-      },
-    ]
-  }
-  if (slug === 'glo-bundle' || slug === 'mtn-bundle') {
-    return [
-      {
-        spacing: false,
-        header: AIRTIMEDETAILSTABLE,
-        data: {
-          phoneNumber: metaData?.phoneNumber,
-          type: data?.type,
-          amount: data?.amount,
-          balance: data?.total,
-          product: data?.product?.displayName,
-          reference: data?.reference,
-        },
-      },
-      {
-        spacing: false,
-        header: DATAMORETABLE,
-        data: {
-          bundle: metaData?.bundle,
-          biller: data?.biller?.displayName,
-          status: data?.status,
-          channel: data?.channel,
-        },
-      },
-    ]
-  }
-}
-
-export const otherHelper = (data: any) => {
-  const recipientObject = data?.metadata?.reduce(
-    (o: any, { key, value }: { key: number; value: string }) => (
-      (o[key] = value), o
-    ),
-    {}
-  )
   return [
     {
       spacing: false,
-      header: CUSTOMERTABLE,
-      data: {
-        customerId: recipientObject?.customerId || data?.userId,
-        customerName:
-          recipientObject?.accountName || recipientObject?.customerName,
-        phoneNumber: recipientObject?.phoneNumber,
-        dob: recipientObject?.dateOfBirth,
-        email: recipientObject?.email,
+      clickable: {
+        url: `/dashboard/digital-bank/${user_id}`,
+        index: 0,
+        setFetch,
+        shouldFetch:
+          user_type === null ||
+          user_type === null ||
+          user_type === 'business-user',
       },
+      header: DETAILSTABLE1,
+      data: tableData,
+    },
+    {
+      spacing: false,
+      header: DETAILSTABLE2,
+      data: tableData,
+    },
+    {
+      spacing: false,
+      header: DETAILSTABLE3,
+      data: tableData,
+    },
+
+    {
+      spacing: false,
+      header: metaHeaders,
+      data: resultObject,
+    },
+  ]
+}
+
+export const otherHelper = (data: any) => {
+  let metaHeaders: { [key: string]: any }[] = []
+  // const recipientObject = data?.metadata?.reduce(
+  //   (o: any, { key, value }: { key: number; value: string }) =>
+  //     (o[key] = value),
+  //   {}
+  // )
+  const metaDataArr = data?.metadata?.map(
+    (val: { [key: string]: any }, i: number) => {
+      const key = val?.key
+      const label = val?.label
+      metaHeaders.push({
+        label,
+        value: key,
+        columnWidth: i === data?.metadata?.length - 1 ? 'large' : 'small',
+      })
+      return { [key]: val?.value }
+    }
+  )
+  var resultObject = metaDataArr?.reduce(function (
+    result: any,
+    currentObject: any
+  ) {
+    for (var key in currentObject) {
+      if (currentObject.hasOwnProperty(key)) {
+        let val = currentObject[key]
+        if (key === 'amount' || key === 'balance' || key === 'total') {
+          val = amountHelper(currentObject[key])
+        }
+        result[key] = val
+      }
+    }
+    return result
+  },
+  {})
+  return [
+    {
+      spacing: false,
+      header: metaHeaders,
+      data: resultObject,
     },
     {
       spacing: false,
       header: CUSTOMERMORETABLE,
       data: {
         segment: data?.segment,
-        customerType: data?.userType,
+        customerType: data?.user_type,
         kyc: data?.kyc,
         status: data?.status,
       },

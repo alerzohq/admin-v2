@@ -111,7 +111,7 @@ const ProductsContainer = () => {
   } else {
     component = (
       <TableWrapper wrapperPb="5rem">
-        <DataTable bgColor={'transparent'}>
+        <DataTable bgColor={'transparent'} layout="fixed">
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
             name="products"
@@ -156,13 +156,13 @@ const ProductsContainer = () => {
             },
             date: false,
             selects: [],
-            buttons: [
-              {
-                label: 'Add New Products',
-                onClick: () => {},
-                buttonClass: 'add-button',
-              },
-            ],
+            // buttons: [
+            //   {
+            //     label: 'Add New Products',
+            //     onClick: () => {},
+            //     buttonClass: 'add-button',
+            //   },
+            // ],
           }}
         />
         {component}

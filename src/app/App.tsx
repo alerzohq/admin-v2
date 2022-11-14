@@ -1,8 +1,5 @@
 // import { Suspense } from "react";
-import { Routes, Route } from 'react-router-dom'
-
-// import { Sidebar } from "../components/common/sidebar/Sidebar";
-import ErrorBoundary from '../components/common/ErrorBoundary'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import ScrollToTop from '../utils/ScrollTo'
 import Login from '../pages/login'
 import Transactions from '../pages/dashboard/transactions'
@@ -11,7 +8,7 @@ import Overview from '../pages/dashboard/overview'
 import { Path } from '../constants/route-path'
 import Users from '../pages/dashboard/users'
 import { IsUserRedirect, ProtectedRoutes } from '../configs/private-route'
-import NotFound from '../pages/404'
+
 import TransactionDetails from '../pages/dashboard/transactions/transaction-details'
 import { useAppContext } from '../context'
 import { getStorageItem } from '../utils/session-storage'
@@ -25,15 +22,26 @@ import DigitalBankDetails from '../pages/dashboard/digitalBank/details'
 import Products from '../pages/dashboard/products'
 import ProductDetails from '../pages/dashboard/products/details'
 import RegisterInvitation from '../pages/invitation'
+import NotFound from '../pages/404'
+import Audit from '../pages/dashboard/audit'
+import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorFallback } from '../components/common/error-boundary'
 
 function App() {
+  const navigate = useNavigate()
   const { state } = useAppContext()
   const user = getStorageItem('user') || state.user
 
   let routes = (
     <>
       <ScrollToTop />
-      <ErrorBoundary fallback="Sorry.. something went wrong">
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => {
+          // reset the state of your app so the error doesn't happen again
+          navigate('dashboard', { replace: true })
+        }}
+      >
         <Routes>
           <Route element={<IsUserRedirect user={user} />}>
             <Route path={Path.LOGIN} element={<Login />} />
@@ -45,17 +53,7 @@ function App() {
             path={Path.INVITATIONREGISTER}
             element={<RegisterInvitation />}
           />
-          {/* <Route
-            path="dashboard"
-            element={
-              <Suspense fallback={<h1>Loading dashboard</h1>}>
-                <Dashboard />
-              </Suspense>
-            }
-          >
-             <Route path="transactions" element={<Transactions /> }
-          />
-          </Route> */}
+ 
 
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path={Path.DASHBOARD} element={<Dashboard />}>
@@ -78,6 +76,7 @@ function App() {
               />
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
+              <Route path={Path.AUDIT} element={<Audit />} />
             </Route>
           </Route>
 

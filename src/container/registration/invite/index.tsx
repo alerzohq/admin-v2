@@ -17,14 +17,7 @@ export const RegistrationInvite = () => {
   const id = location.pathname.split('/').pop()
 
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
-  const [values, setValues] = useState<FormValue>({
-    email: '',
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    password: '',
-    confirmPassword: '',
-  })
+
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setIsTriggerSubmit(true)
@@ -56,6 +49,14 @@ export const RegistrationInvite = () => {
   if (isError) {
     navigate('/')
   }
+  const [values, setValues] = useState<FormValue>({
+    email: data?.data?.email,
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    password: '',
+    confirmPassword: '',
+  })
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -82,6 +83,7 @@ export const RegistrationInvite = () => {
       },
     }
   )
+
   return (
     <>
       {!isLoading && !isError && (
@@ -114,7 +116,7 @@ export const RegistrationInvite = () => {
                 <Form.Input
                   type="text"
                   onChange={handleChange('email')}
-                  value={data.data.email}
+                  value={data?.data?.email}
                   disabled
                 />
                 {isTriggerSubmit && (

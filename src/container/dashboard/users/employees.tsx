@@ -9,6 +9,7 @@ import {
   Form,
   Jumbotron,
   Loader,
+  SelectInput,
   Table,
   Text,
 } from '../../../components'
@@ -76,16 +77,19 @@ const Employees = () => {
     )
   }
 
+  console.log({ roles })
+
   const toggle = (type?: 'sendInvite') => {
     type === 'sendInvite'
       ? setShowSuucessInvite(!showSuucessInvite)
       : setIsShown(!isShown)
   }
-  const handleChange =
-    (name: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setValues({ ...values, [name]: e.target.value.trim() })
-    }
+
+  const handleChange = (name: string, value: string) =>
+    setValues({
+      ...values,
+      [name]: value.trim(),
+    })
   return (
     <>
       <Modal
@@ -132,7 +136,7 @@ const Employees = () => {
               <Form.Label>Email address</Form.Label>
               <Form.Input
                 type="text"
-                onChange={handleChange('email')}
+                onChange={(e) => handleChange('email', e.target.value)}
                 placeholder="Enter email address"
                 value={values.email}
               />
@@ -153,8 +157,9 @@ const Employees = () => {
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Select Role</Form.Label>
-              {!isLoadingRoles && (
-                <Form.Select
+              {!isLoadingRoles && roles && (
+                <SelectInput
+                  fullWidth
                   placeholder="Select a role"
                   options={[
                     {
@@ -169,7 +174,9 @@ const Employees = () => {
                       }
                     }),
                   ]}
-                  onChange={handleChange('role')}
+                  onChange={(e) => {
+                    handleChange('role', e.value)
+                  }}
                   value={values.role}
                 />
               )}

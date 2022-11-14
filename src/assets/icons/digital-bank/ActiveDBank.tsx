@@ -23,8 +23,8 @@ export function ActiveDigitalBankIcon({
         y2="15.3027"
         stroke={color ? color : '#005FCB'}
         stroke-width="2"
-        stroke-linecap="square"
-        stroke-linejoin="round"
+        strokeLinecap="square"
+        strokeLinejoin="round"
       />
       <line
         x1="10"
@@ -33,8 +33,8 @@ export function ActiveDigitalBankIcon({
         y2="15.3027"
         stroke={color ? color : '#005FCB'}
         stroke-width="2"
-        stroke-linecap="square"
-        stroke-linejoin="round"
+        strokeLinecap="square"
+        strokeLinejoin="round"
       />
       <line
         x1="15"
@@ -43,14 +43,14 @@ export function ActiveDigitalBankIcon({
         y2="15.3027"
         stroke={color ? color : '#005FCB'}
         stroke-width="2"
-        stroke-linecap="square"
-        stroke-linejoin="round"
+        strokeLinecap="square"
+        strokeLinejoin="round"
       />
       <path
         d="M2 5.99573C2 5.57889 2.25857 5.20577 2.64888 5.05941L9.64888 2.43441C9.87526 2.34951 10.1247 2.34951 10.3511 2.43441L17.3511 5.05941C17.7414 5.20577 18 5.57889 18 5.99573V7.30273C18 7.85502 17.5523 8.30273 17 8.30273H3C2.44772 8.30273 2 7.85502 2 7.30273V5.99573Z"
         fill="#0077FF"
         stroke="#0077FF"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <rect
         x="2"
@@ -60,7 +60,7 @@ export function ActiveDigitalBankIcon({
         rx="1"
         fill="#0077FF"
         stroke="#0077FF"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   )

@@ -27,7 +27,7 @@ const EnableTerminalModal = ({
       handleSubmit={handleSubmit}
       loading={loading}
       cancelBtnText="No, don't disable terminal"
-    ></Modal>
+    />
   )
 }
 export default EnableTerminalModal
