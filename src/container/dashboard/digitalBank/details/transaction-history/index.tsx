@@ -55,7 +55,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
         tableData={data?.data}
         tableHeaders={DBtransHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        amountIndex={1}
+        amountIndex={2}
         withSlug
         notClickable
       />
