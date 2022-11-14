@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from 'react'
 import { amountHelper, formatDate } from '../utils/formatValue'
 import {
   CUSTOMERMORETABLE,
-  CUSTOMERTABLE,
   DETAILSTABLE1,
   DETAILSTABLE2,
   DETAILSTABLE3,

@@ -88,15 +88,13 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     font-weight: 600;
     cursor: not-allowed;
   }
-  .react-select__control{
-    margin-right:2rem;
+  .react-select__control {
+    margin-right: 2rem;
   }
-  .css-18bubph-control{
-    width:80px !important;
+  .css-18bubph-control {
+    width: 80px !important;
   }
-  .css-wc1yx4-control{
-    width:80px !important;
-
+  .css-wc1yx4-control {
+    width: 80px !important;
   }
-
 `
