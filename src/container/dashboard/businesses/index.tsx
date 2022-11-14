@@ -22,7 +22,7 @@ const BusinessContainer = () => {
   }
 
   const getTranStats = () => {
-    return getResource(`transactions/statistics`)
+    return getResource(`businesses/statistics`)
   }
   const { isLoading: loading, data: Stats } = useQuery(
     'trans-stats',
