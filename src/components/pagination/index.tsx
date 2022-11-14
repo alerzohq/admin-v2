@@ -9,10 +9,6 @@ import { options } from '../../data/filter-data'
 import { SelectOptions } from '../../@types'
 import { Color } from '../../assets/theme'
 
-
-
-
-
 const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   const { width } = useWindowResize()
   const mobileWidth = 640
@@ -21,12 +17,10 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
     setPageNumber((prev) => ({ ...prev, pageNumber: selected }))
   }
 
-  const handlePageCount=(val:SelectOptions)=>{
+  const handlePageCount = (val: SelectOptions) => {
     let count = Number(val?.value)
     setPageNumber((prev) => ({ ...prev, count }))
   }
-
-
 
   return (
     <>
