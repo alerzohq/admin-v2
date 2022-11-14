@@ -5,7 +5,7 @@ export const TABS = [
     title: 'Transaction Details',
   },
   { label: 'Other Information', value: 'other', title: 'Customer Details' },
-  { label: 'Transaction Receipt', value: 'receipt', title: '' },
+  // { label: 'Transaction Receipt', value: 'receipt', title: '' },
   // { label: 'Staff Notes', value: 'notes', title: '' },
 ]
 export const DETAILSTABLE1 = [

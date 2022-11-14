@@ -1,15 +1,13 @@
 import React from 'react'
-import { PaginationWrapper } from './styles/pagination.styles'
+import { Inner, PaginationWrapper } from './styles/pagination.styles'
 import { PaginationProps } from './type'
 import ReactPaginate from 'react-paginate'
 import { useWindowResize } from '../../hooks'
 import SelectInput from '../select-input'
+import Text from '../text'
 import { options } from '../../data/filter-data'
 import { SelectOptions } from '../../@types'
-
-
-
-
+import { Color } from '../../assets/theme'
 
 const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   const { width } = useWindowResize()
@@ -19,22 +17,23 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
     setPageNumber((prev) => ({ ...prev, pageNumber: selected }))
   }
 
-  const handlePageCount=(val:SelectOptions)=>{
+  const handlePageCount = (val: SelectOptions) => {
     let count = Number(val?.value)
     setPageNumber((prev) => ({ ...prev, count }))
   }
-
-
 
   return (
     <>
       {data?.data?.length > 0 && (
         <PaginationWrapper isMobile={width < mobileWidth}>
 
-         <SelectInput onChange={(val)=>handlePageCount(val)} 
-         placeholder={'10'}
-         value={'10'} options={options}/>
-          <ReactPaginate
+          <Inner>
+            <Text as={'p'} color={Color.alerzoGray2}>Rows Per Page</Text>
+            <SelectInput onChange={(val)=>handlePageCount(val)} 
+            placeholder={'10'}
+            value={'10'} options={options}/></Inner>
+        
+         <ReactPaginate
             breakLabel="..."
             nextLabel={width < mobileWidth ? '>' : 'Next'}
             onPageChange={handlePageClick}
@@ -50,6 +49,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             previousLinkClassName={'previous-btn'}
             disabledClassName={'pagination-disabled'}
           />
+     
         </PaginationWrapper>
       )}
     </>

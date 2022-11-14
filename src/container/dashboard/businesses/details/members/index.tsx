@@ -33,7 +33,7 @@ const Members = ({ userId }: { userId: string }) => {
         tableName="transaction"
         tableData={data?.data}
         tableHeaders={transHeaderList}
-        amountIndex={1}
+        amountIndex={2}
         withSlug
       />
     )

@@ -148,12 +148,15 @@ const RolePermissionDetails = ({
             <FallBack title={'No permissions for this role'} />
           ) : edit || create ? (
             allPermissions?.data.map(
-              (permission: { slug: string; displayName: string }, i: number) => (
+              (
+                permission: { slug: string; displayName: string },
+                i: number
+              ) => (
                 <div
-                key={i}
+                  key={i}
                   style={{
                     position: 'relative',
-                    flex: '1 1 15%',
+                    flex: '0 0 18%',
                   }}
                 >
                   <Text
@@ -180,25 +183,27 @@ const RolePermissionDetails = ({
               )
             )
           ) : (
-            data?.permissions.map((permission: { displayName: string }, i:number) => (
-              <div
-                key={i}
-                style={{
-                  position: 'relative',
-                }}
-              >
-                <Text
-                  lineHeight="1.375rem"
-                  weight="600"
-                  color={Color?.alerzoDarkGray}
-                  size="0.875rem"
-                  bgColor={Color.alerzoBlue5}
-                  padding={'.6rem .9rem'}
+            data?.permissions.map(
+              (permission: { displayName: string }, i: number) => (
+                <div
+                  key={i}
+                  style={{
+                    position: 'relative',
+                  }}
                 >
-                  {permission.displayName}
-                </Text>
-              </div>
-            ))
+                  <Text
+                    lineHeight="1.375rem"
+                    weight="600"
+                    color={Color?.alerzoDarkGray}
+                    size="0.875rem"
+                    bgColor={Color.alerzoBlue5}
+                    padding={'.6rem .9rem'}
+                  >
+                    {permission.displayName}
+                  </Text>
+                </div>
+              )
+            )
           )}
         </Stack>
       </Jumbotron>
@@ -209,7 +214,7 @@ const RolePermissionDetails = ({
           }}
           className="download-btn mt-3"
         >
-          {edit?'Update':'Edit Role and Permissions'}
+          {edit ? 'Update' : 'Edit Role and Permissions'}
         </Button>
       )}
       {create && (

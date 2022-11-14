@@ -24,7 +24,7 @@ export const CheckboxContainer = styled.div`
     border: 1px solid ${Color.alerzoLightGray4};
     border-radius: 5px;
     transform: translate(0%, -50%);
-    margin-right:.5rem;
+    margin-right: 0.5rem;
   }
 
   &:hover input ~ .checkmark {
