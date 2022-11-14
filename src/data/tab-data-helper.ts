@@ -120,30 +120,52 @@ export const detailsHelper = (
 }
 
 export const otherHelper = (data: any) => {
-  const recipientObject = data?.metadata?.reduce(
-    (o: any, { key, value }: { key: number; value: string }) =>
-      (o[key] = value),
-    {}
+  let metaHeaders: { [key: string]: any }[] = []
+  // const recipientObject = data?.metadata?.reduce(
+  //   (o: any, { key, value }: { key: number; value: string }) =>
+  //     (o[key] = value),
+  //   {}
+  // )
+  const metaDataArr = data?.metadata?.map(
+    (val: { [key: string]: any }, i: number) => {
+      const key = val?.key
+      const label = val?.label
+      metaHeaders.push({
+        label,
+        value: key,
+        columnWidth: i === data?.metadata?.length - 1 ? 'large' : 'small',
+      })
+      return { [key]: val?.value }
+    }
   )
+  var resultObject = metaDataArr?.reduce(function (
+    result: any,
+    currentObject: any
+  ) {
+    for (var key in currentObject) {
+      if (currentObject.hasOwnProperty(key)) {
+        let val = currentObject[key]
+        if (key === 'amount' || key === 'balance' || key === 'total') {
+          val = amountHelper(currentObject[key])
+        }
+        result[key] = val
+      }
+    }
+    return result
+  },
+  {})
   return [
     {
       spacing: false,
-      header: CUSTOMERTABLE,
-      data: {
-        customerId: recipientObject?.customerId || data?.userId,
-        customerName:
-          recipientObject?.accountName || recipientObject?.customerName,
-        phoneNumber: recipientObject?.phoneNumber,
-        dob: recipientObject?.dateOfBirth,
-        email: recipientObject?.email,
-      },
+      header: metaHeaders,
+      data: resultObject,
     },
     {
       spacing: false,
       header: CUSTOMERMORETABLE,
       data: {
         segment: data?.segment,
-        customerType: data?.userType,
+        customerType: data?.user_type,
         kyc: data?.kyc,
         status: data?.status,
       },
