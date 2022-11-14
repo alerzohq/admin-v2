@@ -10,6 +10,7 @@ export const PaginationWrapper = styled.div<PaginationProps>`
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
+  position:relative;
 
   .paginate {
     display: flex;
@@ -98,5 +99,13 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     width:80px !important;
 
   }
+
+`
+export const Inner = styled.div`
+display:flex;
+position:absolute;
+align-items: center;
+gap:10px;
+left:0;
 
 `
