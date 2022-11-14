@@ -106,8 +106,7 @@ const RolePermissionDetails = ({
         queryClient.invalidateQueries('roles')
         handleRoleEdit(false)
         navigate(
-          {
-            pathname: Path.USERS,
+          {  
             search: '?status=roles-permissions',
           },
           { replace: true }
