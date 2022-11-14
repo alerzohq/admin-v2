@@ -53,17 +53,7 @@ function App() {
             path={Path.INVITATIONREGISTER}
             element={<RegisterInvitation />}
           />
-          {/* <Route
-            path="dashboard"
-            element={
-              <Suspense fallback={<h1>Loading dashboard</h1>}>
-                <Dashboard />
-              </Suspense>
-            }
-          >
-             <Route path="transactions" element={<Transactions /> }
-          />
-          </Route> */}
+ 
 
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path={Path.DASHBOARD} element={<Dashboard />}>
