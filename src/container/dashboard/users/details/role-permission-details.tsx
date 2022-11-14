@@ -156,7 +156,7 @@ const RolePermissionDetails = ({
                   key={i}
                   style={{
                     position: 'relative',
-                    flex: '1 1 15%',
+                    flex: '0 0 18%',
                   }}
                 >
                   <Text
