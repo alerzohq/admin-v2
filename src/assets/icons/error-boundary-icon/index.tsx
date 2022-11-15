@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ErrorBoundaryIcon() {
   return (
@@ -166,7 +166,7 @@ function ErrorBoundaryIcon() {
         d="M210.124 257.394s-8.976 20.726 5.488 37.009m7.559-36.92s-4.145 24.962 11.333 38.918"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default ErrorBoundaryIcon;
+export default ErrorBoundaryIcon
