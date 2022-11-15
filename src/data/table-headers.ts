@@ -3,7 +3,7 @@ export const transHeaderList = [
   'Customer Name',
   'Amount',
   'Type',
-  'Narration',
+  'Action',
   'Biller',
   'Status',
   'Date',
