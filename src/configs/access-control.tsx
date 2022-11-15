@@ -6,8 +6,6 @@ const AllPermissions = () => {
   } = useAppContext()
   const adminAccess = Boolean(user?.data?.role === 'Super Admin')
 
-  // console.log({user})
-
   return { adminAccess }
 }
 

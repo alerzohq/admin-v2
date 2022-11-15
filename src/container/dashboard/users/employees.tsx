@@ -77,8 +77,6 @@ const Employees = () => {
     )
   }
 
-  console.log({ roles })
-
   const toggle = (type?: 'sendInvite') => {
     type === 'sendInvite'
       ? setShowSuucessInvite(!showSuucessInvite)

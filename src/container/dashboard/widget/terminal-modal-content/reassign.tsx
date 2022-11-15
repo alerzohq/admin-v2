@@ -50,7 +50,11 @@ const ReassignTerminalModal = ({
       setShowModal={toggleModal}
       buttonText={btnText}
       title={btnText}
-      disabled={!value?.businessId || !value?.reassignmentReason}
+      disabled={
+        !value?.businessId ||
+        !value?.reassignmentReason ||
+        value.reassignmentReason.length <= 5
+      }
       handleSubmit={handleSubmit}
       loading={loading}
     >
@@ -67,9 +71,13 @@ const ReassignTerminalModal = ({
       </Text>
       <SelectInput
         placeholder="Enter to search for merchant"
-        onChange={(e: any) =>
-          setValue({ businessId: e?.value, serialNumber: data?.serial_number })
-        }
+        onChange={(e: any) => {
+          setValue({
+            ...value,
+            businessId: e?.value,
+            serialNumber: data?.serial_number,
+          })
+        }}
         value={value?.businessId}
         fullWidth
         options={
@@ -113,14 +121,14 @@ const ReassignTerminalModal = ({
 
           <TextArea
             textAreaTopMargin="0"
-            placeholder={'Enter message'}
+            placeholder={'Enter message with more than 5 charaters'}
             textAreaHeight="85px"
             value={value?.reassignmentReason}
             textAreaWidth="95%"
-            onChange={(e) =>
+            onChange={(e) => {
               setValue({ ...value, reassignmentReason: e.target.value })
-            }
-          ></TextArea>
+            }}
+          />
         </>
       )}
       {triggerSubmit && data?.user_id && !value.reassignmentReason && (

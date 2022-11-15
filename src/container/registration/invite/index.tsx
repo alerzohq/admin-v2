@@ -164,7 +164,7 @@ export const RegistrationInvite = () => {
                 <Form.Input
                   type="text"
                   onChange={handleChange('phoneNumber')}
-                  placeholder="Enter your last name"
+                  placeholder="Enter your mobile number"
                 />
                 {isTriggerSubmit && (
                   <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
