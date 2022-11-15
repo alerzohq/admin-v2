@@ -1,13 +1,13 @@
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
-  { label: 'Customer Details', value: 'details', title: 'Customer Details' },
+  { label: 'Customer Details', value: 'details', title: 'Business Details' },
   { label: 'Transaction History', value: 'transaction', title: '' },
   { label: 'Members', value: 'members', title: '' },
-  { label: 'Products', value: 'products', title: '' },
-  { label: 'KYC Documents', value: 'kyc', title: '' },
-  { label: 'Terminals', value: 'terminals', title: '' },
-  { label: 'API Keys', value: 'api-keys', title: '' },
+  // { label: 'Products', value: 'products', title: '' },
+  // { label: 'KYC Documents', value: 'kyc', title: '' },
+  // { label: 'Terminals', value: 'terminals', title: '' },
+  // { label: 'API Keys', value: 'api-keys', title: '' },
 ]
 
 export const DETAILSTABLE = [
@@ -53,7 +53,7 @@ export const businessDetailsHelper = (data: any) => {
       data: {
         id: data?.id,
         name: data?.name,
-        phone_number: data?.business_owner?.phone_number,
+        phone_number: data?.phone_number,
         state: data?.state,
         createdAt: data?.created_at
           ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
