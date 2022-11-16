@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Color } from '../../../assets/theme'
 import { Button, Form, Loader, Stack, Text } from '../../../components'
-import { validEmail } from '../../../utils/formatValue'
 import AuthLayout from '../../onboarding/layout'
 import { useQuery, useMutation } from 'react-query'
 import { getResource } from '../../../utils/apiRequest'
@@ -119,15 +118,6 @@ export const RegistrationInvite = () => {
                   value={data?.data?.email}
                   disabled
                 />
-                {isTriggerSubmit && (
-                  <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
-                    {isTriggerSubmit && values.email === ''
-                      ? 'Email address is required*'
-                      : values.email !== '' && !validEmail(values.email)
-                      ? 'Please provide an alerzo email*'
-                      : ''}
-                  </Text>
-                )}
               </Form.Control>
               <Form.Control pb={'1rem'}>
                 <Form.Label>First Name</Form.Label>
@@ -170,6 +160,10 @@ export const RegistrationInvite = () => {
                   <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.phoneNumber === ''
                       ? 'Phone number is required*'
+                      : values.phoneNumber.length < 8
+                      ? 'Phone must be at least 8 numbers'
+                      : values.phoneNumber.match('^[0-9]*$')
+                      ? 'Only numbers are allowed*'
                       : ''}
                   </Text>
                 )}
@@ -187,6 +181,10 @@ export const RegistrationInvite = () => {
                       ? 'Password is required*'
                       : values.password !== '' && values.password.length < 8
                       ? 'Password must be 8 characters long'
+                      : values.password.match(
+                          /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/
+                        )
+                      ? 'Password must be number, small/captial letters, and speacial characters'
                       : ''}
                   </Text>
                 )}
