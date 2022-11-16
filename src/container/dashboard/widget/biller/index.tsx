@@ -14,7 +14,7 @@ const BillerWidget = () => {
     };
    const {data,isError, isLoading,refetch} = useQuery('billers',getBillers);
 
-   console.log(data?.data)
+  
 
 let component
   if (isLoading) {
