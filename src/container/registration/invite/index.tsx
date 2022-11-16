@@ -160,8 +160,9 @@ export const RegistrationInvite = () => {
                   <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.phoneNumber === ''
                       ? 'Phone number is required*'
-                      : values.phoneNumber.length < 8
-                      ? 'Phone must be at least 8 numbers'
+                      : values.phoneNumber.length < 8 ||
+                        values.phoneNumber.length > 11
+                      ? 'Phone must be between 8 and 11 number'
                       : !values.phoneNumber.match('^[0-9]{8,11}$')
                       ? 'Only numbers are allowed*'
                       : ''}
@@ -182,7 +183,7 @@ export const RegistrationInvite = () => {
                       : values.password !== '' && values.password.length < 8
                       ? 'Password must be 8 characters long'
                       : !values.password.match(
-                          /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/
+                          '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$'
                         )
                       ? 'Password must be number, small/captial letters, and speacial characters'
                       : ''}
