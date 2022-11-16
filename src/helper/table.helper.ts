@@ -1,4 +1,8 @@
-import { amountHelper, formatDate, generateCommission } from '../utils/formatValue'
+import {
+  amountHelper,
+  formatDate,
+  generateCommission,
+} from '../utils/formatValue'
 
 type props = {
   item: { [key: string]: any } | null
@@ -30,29 +34,17 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'transaction-history') {
-    const {
-      reference,
-      amount,
-      type,
-      action,
-      status,
-      biller,
-      created_at,
-    } = item
+    const { reference, amount, type, action, status, biller, created_at } = item
     let displayName = biller?.display_name || ''
     return {
       reference,
       amount: amountHelper(amount),
-      
+
       type,
       displayName,
       action,
       status,
-      
-      
-    
-    
-      
+
       created_at,
     }
   }
