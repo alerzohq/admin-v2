@@ -3,7 +3,6 @@ import { AlerzoLogo, ErrorBoundaryIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Button from '../../button'
 import { ErrorContainer } from './styles/error-boundary.styles'
-import errorImg from '../../../assets/images/pngs/error.png'
 import { useAppContext } from '../../../context'
 
 type ErrorBoundaryProps = {

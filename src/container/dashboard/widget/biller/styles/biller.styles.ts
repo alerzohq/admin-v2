@@ -47,3 +47,13 @@ justify-content:space-between;
 align-items:center;
 text-transform:capitalize;
 `
+export const BillerLogo = styled.div`
+width:100px;
+height:35px;
+img{
+width:100%;
+height:35px; 
+object-fit:contain;
+object-position:right;
+}
+`
