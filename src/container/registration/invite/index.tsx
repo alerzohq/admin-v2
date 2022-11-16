@@ -162,7 +162,7 @@ export const RegistrationInvite = () => {
                       ? 'Phone number is required*'
                       : values.phoneNumber.length < 8
                       ? 'Phone must be at least 8 numbers'
-                      : values.phoneNumber.match('^[0-9]{8,11}$')
+                      : !values.phoneNumber.match('^[0-9]{8,11}$')
                       ? 'Only numbers are allowed*'
                       : ''}
                   </Text>
@@ -181,7 +181,7 @@ export const RegistrationInvite = () => {
                       ? 'Password is required*'
                       : values.password !== '' && values.password.length < 8
                       ? 'Password must be 8 characters long'
-                      : values.password.match(
+                      : !values.password.match(
                           /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/
                         )
                       ? 'Password must be number, small/captial letters, and speacial characters'
