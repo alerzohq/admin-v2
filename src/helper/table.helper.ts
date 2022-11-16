@@ -96,7 +96,7 @@ export const transformData = ({ item, name }: props) => {
     const { displayName, commission, createdAt } = item
     const type = commission?.rate?.type
     const percentage = commission?.rate?.percentage
-    const cap = commission?.rate?.cap
+    const cap = commission?.splits[0]?.rate.amount
     const rates = generateCommission(type, percentage, cap)
     return { displayName, rates, createdAt }
   }
