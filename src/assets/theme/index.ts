@@ -17,8 +17,8 @@ export enum Color {
   alerzoBlueTint = '#0077FF',
   alerzoGreyTint = '#879AA5',
   alerzoGreyBg = '#F6F6F6',
-  alerzoTableSuccessBg = '#DDF3E3',
-  alerzoTableSuccess = '#34A853',
+  alerzoGreenBg = '#DDF3E3',
+  alerzoGreen = '#34A853',
   alerzoMediumGray = 'rgba(121, 136, 146, 1)',
   alerzoGrayTwo = '#798892',
   alerzoGrayBorder = '#E8EBEE',
@@ -45,4 +45,5 @@ export enum Color {
   alerzoBlackishBlue = '#D7E2E9',
   alerzoGrayishBlue = '#5976A1',
   alerzoGrayishBlue2 = '#475E80',
+
 }

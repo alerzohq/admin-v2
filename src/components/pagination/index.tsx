@@ -34,6 +34,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             value={'10'} options={options}/></Inner>
         
          <ReactPaginate
+           
             breakLabel="..."
             nextLabel={width < mobileWidth ? '>' : 'Next'}
             onPageChange={handlePageClick}

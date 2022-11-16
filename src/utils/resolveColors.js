@@ -8,7 +8,7 @@ export const resolveTableColor = (status) => {
     status?.toLowerCase() === 'yes'
   ) {
     return {
-      textColor: Color.alerzoTableSuccess,
+      textColor: Color.alerzoGreen,
       bgColor: '',
     }
   }
@@ -34,7 +34,7 @@ export const resolveTableColor = (status) => {
     status?.toLowerCase() === 'enabled'
   ) {
     return {
-      textColor: Color.alerzoTableSuccess,
+      textColor: Color.alerzoGreen,
       bgColor: Color.alerzoStatusSuccess,
     }
   } else if (
@@ -57,8 +57,8 @@ export const resolveTableColor = (status) => {
 export const resolveColor = (status) => {
   if (status?.toLowerCase() === 'successful') {
     return {
-      color: Color.alerzoTableSuccess,
-      bg: Color.alerzoTableSuccessBg,
+      color: Color.alerzoGreen,
+      bg: Color.alerzoGreenBg,
     }
   } else if (status?.toLowerCase() === 'failed') {
     return {

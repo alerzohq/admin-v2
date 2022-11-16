@@ -1,4 +1,5 @@
 import  {render, screen} from '@testing-library/react'
+import React from 'react'
 import Pagination from '..'
 
 
@@ -23,8 +24,16 @@ describe('Pagination', () => {
     
     test('render correctly with data',async()=>{
      render(<Pagination data={mockData} setPageNumber={setFilterValues}/>)
-     const paginatedElement = await screen.findByRole('pagination')
+     const paginatedElement = await screen.findByRole('button', {name: /Next/i})
      expect(paginatedElement).toBeInTheDocument();
 
     })
+
+     
+    test('not to render',async()=>{
+        render(<Pagination data={[]} setPageNumber={setFilterValues}/>)
+        const paginatedElement = await screen.findByRole('button', {name: /Next/i})
+        expect(paginatedElement).not.toBeInTheDocument();
+   
+       })
 })
