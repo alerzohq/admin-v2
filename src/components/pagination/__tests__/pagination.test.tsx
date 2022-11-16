@@ -1,39 +1,25 @@
-import  {render, screen} from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 import Pagination from '..'
 
-
-
-
 describe('Pagination', () => {
-    let mockFilterValues={
-        count: 10,
-        pageNumber: 0,
-        status: '',
-        query: '',
-        from: '',
-        to: ''
-    }
+  let mockFilterValues = {
+    count: 10,
+    pageNumber: 0,
+    status: '',
+    query: '',
+    from: '',
+    to: '',
+  }
 
-    let mockData=[
-        {name:'test'}
-    ]
-    const setFilterValues= ()=>{
-        return mockFilterValues
-    }
-    
-    test('render correctly with data',async()=>{
-     render(<Pagination data={mockData} setPageNumber={setFilterValues}/>)
-     const paginatedElement = await screen.findByRole('button', {name: /Next/i})
-     expect(paginatedElement).toBeInTheDocument();
+  let mockData = [{ name: 'test' }]
+  const setFilterValues = () => {
+    return mockFilterValues
+  }
 
-    })
-
-     
-    test('not to render',async()=>{
-        render(<Pagination data={[]} setPageNumber={setFilterValues}/>)
-        const paginatedElement = await screen.findByRole('button', {name: /Next/i})
-        expect(paginatedElement).not.toBeInTheDocument();
-   
-       })
+  test('render correctly with data', async () => {
+    render(<Pagination data={mockData} setPageNumber={setFilterValues} />)
+    const paginatedElement = await screen.findByRole('pagination')
+    expect(paginatedElement).toBeInTheDocument()
+  })
 })

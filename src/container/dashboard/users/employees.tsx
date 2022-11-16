@@ -77,8 +77,6 @@ const Employees = () => {
     )
   }
 
- 
-
   const toggle = (type?: 'sendInvite') => {
     type === 'sendInvite'
       ? setShowSuucessInvite(!showSuucessInvite)

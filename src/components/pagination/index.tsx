@@ -26,15 +26,19 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
     <>
       {data?.data?.length > 0 && (
         <PaginationWrapper isMobile={width < mobileWidth}>
-
           <Inner>
-            <Text as={'p'} color={Color.alerzoGray2}>Rows Per Page</Text>
-            <SelectInput onChange={(val)=>handlePageCount(val)} 
-            placeholder={'10'}
-            value={'10'} options={options}/></Inner>
-        
-         <ReactPaginate
-           
+            <Text as={'p'} color={Color.alerzoGray2}>
+              Rows Per Page
+            </Text>
+            <SelectInput
+              onChange={(val) => handlePageCount(val)}
+              placeholder={'10'}
+              value={'10'}
+              options={options}
+            />
+          </Inner>
+
+          <ReactPaginate
             breakLabel="..."
             nextLabel={width < mobileWidth ? '>' : 'Next'}
             onPageChange={handlePageClick}
@@ -50,7 +54,6 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             previousLinkClassName={'previous-btn'}
             disabledClassName={'pagination-disabled'}
           />
-     
         </PaginationWrapper>
       )}
     </>

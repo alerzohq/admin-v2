@@ -27,7 +27,7 @@ export function ErrorFallback({
           width={'150'}
           color={Color.alerzoBlue}
         />
-        
+
         <ErrorBoundaryIcon />
         <h2 data-testid="errorboundary" className="error-desc">
           You have run into an error while trying to perform this action
