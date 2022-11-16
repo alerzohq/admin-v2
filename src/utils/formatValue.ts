@@ -82,8 +82,8 @@ export const generateCommission = (
   amount: string | number,
   cap?: string
 ) => {
-  console.log(amount, "am")
-  const amountToNaira = amount ? amountConverter(amount): ''
+  console.log(amount, 'am')
+  const amountToNaira = amount ? amountConverter(amount) : ''
 
   if (type === 'percentage') {
     const capToNaira = amountConverter(cap!)
