@@ -181,7 +181,7 @@ export const RegistrationInvite = () => {
                     {isTriggerSubmit && values.password === ''
                       ? 'Password is required*'
                       : !values.password.match(
-                          '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$'
+                          '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
                         )
                       ? 'Password must be number, small/captial letters, and speacial characters'
                       : values.password !== '' && values.password.length < 8
