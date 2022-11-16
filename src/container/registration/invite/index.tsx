@@ -162,7 +162,7 @@ export const RegistrationInvite = () => {
                       ? 'Phone number is required*'
                       : values.phoneNumber.length < 8
                       ? 'Phone must be at least 8 numbers'
-                      : values.phoneNumber.match('^[0-9]*$')
+                      : values.phoneNumber.match('^[0-9]{8,11}$')
                       ? 'Only numbers are allowed*'
                       : ''}
                   </Text>
