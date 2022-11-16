@@ -1,6 +1,5 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { Color } from '../../../../assets/theme'
 import { FallBack, Jumbotron, Loader, Stack, Text} from '../../../../components'
 import { getResource } from '../../../../utils/apiRequest'
 import BillerCard from './card'
@@ -48,7 +47,7 @@ let component
     <BillerWrapper>
         <Stack direction={'row'} justifyContent={'space-between'}>
         <Text as={'h4'}>Biller Balance</Text>
-        <Text as={'small'} weight={'600'} color={Color.alerzoBlue}>VIew Biller Settings</Text>
+        {/* <Text as={'small'} weight={'600'} color={Color.alerzoBlue}>VIew Biller Settings</Text> */}
         </Stack>
         <Jumbotron mt={'.5rem'} >
             {component}

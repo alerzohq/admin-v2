@@ -3,17 +3,22 @@ import { SettingsIcon } from '../../../../../assets/icons'
 import { Color } from '../../../../../assets/theme'
 import { Text } from '../../../../../components'
 import { amountHelper } from '../../../../../utils/formatValue'
-import { Card, CardInner } from '../styles/biller.styles'
+import { BillerLogo, Card, CardInner } from '../styles/biller.styles'
 import { BillerProps } from '../type'
 
 
 const BillerCard = ({biller}:BillerProps) => {
+let avarageThreshold=1500000
+let minimumThreshold=100000
 
-let balance= biller? Number(biller?.balance) : 0;
-let color= ()=> {
-    if(balance <= 0){
+const color= ()=> {
+
+    let balance= biller? Number(biller?.balance/100) : 0;
+  
+
+    if(balance <= minimumThreshold){
         return Color.alerzoDanger
-    }else if(balance > 10 && balance <=1000000){
+    }else if(balance > 0 && balance <=avarageThreshold){
         return Color.alerzoWarningText
     }else{
         return Color.alerzoGreen
@@ -24,9 +29,11 @@ let color= ()=> {
     <Card>
         <CardInner>
             <Text as={'small'} weight={'600'}>{biller?.displayName}</Text>
-            <Text as={'small'}>Logo</Text>
+           <BillerLogo>
+           {biller?.logo &&(<img src={biller?.logo} alt="biller-logo"/>)}
+           </BillerLogo>
         </CardInner>
-        <CardInner >
+        <CardInner > 
            <Text as={'h2'} weight={'600'} color={color()}>
             {biller ? amountHelper(biller?.balance) :''}
             </Text>
