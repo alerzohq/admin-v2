@@ -2,22 +2,22 @@ import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
 type Props = {
-  direction: string;
-  bgColor?: string;
-  width?: string;
-  position?: string;
-  padding?: string;
-  justifyContent?: string;
-  socialPosition?: string;
-  minHeight?: string;
-  alignItems?: string;
-  margin?: string;
-  gap?: string;
-  flex?: string;
-  mt?: string;
-  mb?: string;
-  responsiveDirection?: string;
-  overflow?: string;
+  direction: string
+  bgColor?: string
+  width?: string
+  position?: string
+  padding?: string
+  justifyContent?: string
+  socialPosition?: string
+  minHeight?: string
+  alignItems?: string
+  margin?: string
+  gap?: string
+  flex?: string
+  mt?: string
+  mb?: string
+  responsiveDirection?: string
+  overflow?: string
 }
 
 export const Container = styled.div<Props>`
