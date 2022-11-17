@@ -3,7 +3,6 @@ import { AlerzoLogo, ErrorBoundaryIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import Button from '../../button'
 import { ErrorContainer } from './styles/error-boundary.styles'
-import errorImg from '../../../assets/images/pngs/error.png'
 import { useAppContext } from '../../../context'
 
 type ErrorBoundaryProps = {
@@ -27,7 +26,7 @@ export function ErrorFallback({
           width={'150'}
           color={Color.alerzoBlue}
         />
-        
+
         <ErrorBoundaryIcon />
         <h2 data-testid="errorboundary" className="error-desc">
           You have run into an error while trying to perform this action

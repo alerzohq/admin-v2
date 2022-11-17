@@ -15,6 +15,7 @@ type Props = {
   gap?: string
   flex?: string
   mt?: string
+  mb?: string
   responsiveDirection?: string
   overflow?: string
 }
@@ -39,6 +40,7 @@ export const JumbotronItem = styled.div<Props>`
   gap: ${({ gap }) => gap};
   flex: ${({ flex }) => flex};
   margin-top: ${({ mt }) => mt || '2rem'};
+  margin-bottom: ${({ mb }) => mb};
   min-height: ${({ minHeight }) => minHeight || '300px'};
   border: 1px solid ${Color.alerzoGrayBorder};
   width: ${({ width }) => width ?? 'auto'};
