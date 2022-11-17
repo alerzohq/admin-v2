@@ -8,36 +8,45 @@ export const Inner = styled.div`
   width: 100%;
 `
 export const BillerCardBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
+display: flex;
+flex-wrap:wrap;
+gap:1rem;
+@media (max-width:1240px){
+gap:1rem;
+}
 `
 export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 0 0 32%;
-  width: 100%;
-  box-sizing: border-box;
-  height: 150px;
-  border-radius: 1.3rem;
-  padding: 1rem;
-  border: 1px solid ${Color.alerzoGray};
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+flex:0 0 32%;
+max-width:32%;
+width:100%;
+box-sizing: border-box;
+height:150px;
+border-radius:1.3rem;
+padding:1rem;
+border:1px solid ${Color.alerzoGray};
 
-  @media (max-width: 1240px) {
-    flex: 0 0 31.75%;
-  }
-  @media (max-width: 1024px) {
-    flex: 0 0 31.5%;
-  }
+@media (max-width:1240px){
+flex:0 0 31.75%; 
+max-width:31.75%; 
 
-  @media (max-width: 992px) {
-    flex: 0 0 47.5%;
-  }
+}
+@media (max-width:1024px){
+flex:0 0 31.5%; 
+max-width:31.5%; 
+}
 
-  @media (max-width: 640px) {
-    flex: 0 0 100%;
-  }
+@media (max-width:992px){
+flex:0 0 47.5%; 
+max-width: 47.5%; 
+}
+
+ @media (max-width:640px){
+    flex:0 0 100%; 
+    max-width:100%; 
+ }
 `
 export const CardInner = styled.div`
   display: flex;

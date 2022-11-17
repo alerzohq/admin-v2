@@ -12,11 +12,10 @@ const BillerCard = ({ biller }: BillerProps) => {
 
   const color = () => {
     let balance = biller ? Number(biller?.balance / 100) : 0
-
     if (balance <= minimumThreshold) {
       return Color.alerzoDanger
     } else if (balance > 0 && balance <= avarageThreshold) {
-      return Color.alerzoWarningText
+      return Color.alerzoWarning
     } else {
       return Color.alerzoGreen
     }
