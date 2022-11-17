@@ -122,4 +122,9 @@ export const transformData = ({ item, name }: props) => {
     role = role.charAt(0).toUpperCase() + role.slice(1)
     return { username, role, sessionStartedAt, sessionEndedAt }
   }
+  if (item && name === 'business-members') {
+    let { first_name, last_name, email, active, created_at} = item
+    let status = active ? 'Active' : 'Inactive'
+    return { username: `${first_name} ${last_name}`, email, status, created_at }
+  }
 }
