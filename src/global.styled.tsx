@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
   padding: 0.5rem;
   text-align: center;
   font-weight: 500;
-  max-width:120px;
+  max-width:120px !important;
   text-transform: capitalize;
 }
 .unassigned{
@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
   padding: 0.5rem;
   text-align: center;
   font-weight: 500;
-  max-width:120px;
+  max-width:120px !important;
   text-transform: capitalize;
 }
 .pending{
@@ -56,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
   border-radius: 5px;
   padding: 0.5rem;
   font-weight: 500;
-  max-width:120px;
+  max-width:120px !important;
   text-align: center;
   text-transform: capitalize;
 }
@@ -69,7 +69,7 @@ const GlobalStyle = createGlobalStyle`
   text-align: center;
   font-weight: 500;
   text-transform: capitalize;
-  max-width:120px;
+  max-width:120px !important;
 }
 .select-wrap{
   display:flex;
