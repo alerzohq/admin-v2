@@ -14,10 +14,10 @@ const CardsContainer = () => {
   var result = thePath.split('/')
   const id = result[3]
   const getCustomerDetails = () => {
-    return getResource(`customers?id=${id}`)
+    return getResource(`customers?query=${id}`)
   }
   const { isLoading, isError, data, isFetching, refetch } = useQuery(
-    'customer',
+    'customer-bank',
     getCustomerDetails
   )
   const bank_details = data?.data[0]?.bank_details
@@ -41,32 +41,12 @@ const CardsContainer = () => {
       <CardBody>
         <GridWrapper>
           {bank_details?.map((detail: { [key: string]: string }, i: number) => (
-            <>
-              <UserAccount
-                key={i}
-                bank={detail?.bank_name}
-                accountNumber={detail?.account_number}
-                accountName={`${user?.first_name} ${user?.last_name}`}
-              />
-              <UserAccount
-                key={i}
-                bank={detail?.bank_name}
-                accountNumber={detail?.account_number}
-                accountName={`${user?.first_name} ${user?.last_name}`}
-              />
-              <UserAccount
-                key={i}
-                bank={detail?.bank_name}
-                accountNumber={detail?.account_number}
-                accountName={`${user?.first_name} ${user?.last_name}`}
-              />
-              <UserAccount
-                key={i}
-                bank={detail?.bank_name}
-                accountNumber={detail?.account_number}
-                accountName={`${user?.first_name} ${user?.last_name}`}
-              />
-            </>
+            <UserAccount
+              key={i}
+              bank={detail?.bank_name}
+              accountNumber={detail?.account_number}
+              accountName={`${user?.first_name} ${user?.last_name}`}
+            />
           ))}
         </GridWrapper>
       </CardBody>
