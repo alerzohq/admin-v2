@@ -8,7 +8,6 @@ import {
 import UserAccount from '../../../widget/user-account'
 import { FallBack, Jumbotron, Loader } from '../../../../../components'
 
-
 const CardsContainer = () => {
   const location = useLocation()
   const thePath = location.pathname
@@ -42,12 +41,12 @@ const CardsContainer = () => {
       <CardBody>
         <GridWrapper>
           {bank_details?.map((detail: { [key: string]: string }, i: number) => (
-              <UserAccount
-                key={i}
-                bank={detail?.bank_name}
-                accountNumber={detail?.account_number}
-                accountName={`${user?.first_name} ${user?.last_name}`}
-              />
+            <UserAccount
+              key={i}
+              bank={detail?.bank_name}
+              accountNumber={detail?.account_number}
+              accountName={`${user?.first_name} ${user?.last_name}`}
+            />
           ))}
         </GridWrapper>
       </CardBody>

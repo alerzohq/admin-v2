@@ -56,9 +56,4 @@ export const auditHeaderList = [
   'Session Started At',
   'Session Ended At',
 ]
-export const busUserList = [
-  'Full Name',
-  'Email',
-  'Status',
-  'Date',
-]
+export const busUserList = ['Full Name', 'Email', 'Status', 'Date']
