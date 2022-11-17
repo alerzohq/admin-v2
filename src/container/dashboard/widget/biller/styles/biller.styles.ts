@@ -1,12 +1,11 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../../../assets/theme'
 
-export const BillerWrapper=styled.div`
-margin-top:2.5rem ;
-
+export const BillerWrapper = styled.div`
+  margin-top: 2.5rem;
 `
 export const Inner = styled.div`
-width: 100%;
+  width: 100%;
 `
 export const BillerCardBox = styled.div`
 display: flex;
@@ -50,18 +49,18 @@ max-width: 47.5%;
  }
 `
 export const CardInner = styled.div`
-display:flex;
-justify-content:space-between;
-align-items:center;
-text-transform:capitalize;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize;
 `
 export const BillerLogo = styled.div`
-width:100px;
-height:35px;
-img{
-width:100%;
-height:35px; 
-object-fit:contain;
-object-position:right;
-}
+  width: 100px;
+  height: 35px;
+  img {
+    width: 100%;
+    height: 35px;
+    object-fit: contain;
+    object-position: right;
+  }
 `

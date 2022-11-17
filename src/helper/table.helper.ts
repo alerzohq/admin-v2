@@ -96,7 +96,7 @@ export const transformData = ({ item, name }: props) => {
     const { displayName, commission, createdAt } = item
     const type = commission?.rate?.type
     const percentage = commission?.rate?.percentage
-    const cap = commission?.rate?.cap
+    const cap = commission?.splits[0]?.rate.amount
     const rates = generateCommission(type, percentage, cap)
     return { displayName, rates, createdAt }
   }
@@ -121,5 +121,10 @@ export const transformData = ({ item, name }: props) => {
     sessionEndedAt = formatDate(sessionEndedAt, 'YYYY-MM-DD HH:mm:ss')
     role = role.charAt(0).toUpperCase() + role.slice(1)
     return { username, role, sessionStartedAt, sessionEndedAt }
+  }
+  if (item && name === 'business-members') {
+    let { first_name, last_name, email, active, created_at } = item
+    let status = active ? 'Active' : 'Inactive'
+    return { username: `${first_name} ${last_name}`, email, status, created_at }
   }
 }
