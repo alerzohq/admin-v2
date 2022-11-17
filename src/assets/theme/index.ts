@@ -23,7 +23,7 @@ export enum Color {
   alerzoGrayTwo = '#798892',
   alerzoGrayBorder = '#E8EBEE',
   alerzoErrorBg = 'rgba(243, 221, 221, 1)',
-  alerzoWarningText = '#F1A85A',
+  alerzoWarning = '#F1A85A',
   alerzoWarningBg = 'rgba(241, 168, 90, 0.1)',
   alerzoStatusSuccess = 'rgba(52, 168, 83, 0.1)',
   alerzoStatusPending = 'rgba(241, 168, 90, 0.1)',

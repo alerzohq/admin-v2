@@ -48,7 +48,7 @@ export const resolveTableColor = (status) => {
     }
   } else {
     return {
-      textColor: Color.alerzoWarningText,
+      textColor: Color.alerzoWarning,
       bgColor: Color.alerzoWarningBg,
     }
   }
@@ -67,7 +67,7 @@ export const resolveColor = (status) => {
     }
   } else {
     return {
-      color: Color.alerzoWarningText,
+      color: Color.alerzoWarning,
       bg: Color.alerzoWarningBg,
     }
   }
