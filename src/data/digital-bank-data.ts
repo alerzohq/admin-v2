@@ -10,14 +10,14 @@ export const TABS = [
     label: 'Transaction History',
     value: 'transHistory',
   },
-  { label: 'Cards', value: 'cards', title: '' },
+  // { label: 'Cards', value: 'cards', title: '' },
   { label: 'Bank Accounts', value: 'bankAccounts', title: '' },
-  {
-    label: 'Expenses Lens',
-    value: 'expensesLens',
-    title: 'Smart Spend History',
-  },
-  { label: 'Smart Spend', value: 'smartSpend', title: '' },
+  // {
+  //   label: 'Expenses Lens',
+  //   value: 'expensesLens',
+  //   title: 'Smart Spend History',
+  // },
+  // { label: 'Smart Spend', value: 'smartSpend', title: '' },
 ]
 
 export const CUSTOMERTABLE = [

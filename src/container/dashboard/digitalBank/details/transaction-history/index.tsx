@@ -51,11 +51,10 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
     component = (
       <Table
         headerbgColor={'transparent'}
-        tableName="transaction"
+        tableName="transaction-history"
         tableData={data?.data}
         tableHeaders={DBtransHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        amountIndex={2}
         withSlug
         notClickable
       />

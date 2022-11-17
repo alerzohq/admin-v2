@@ -9,12 +9,12 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
-import { transHeaderList } from '../../../../../data/table-headers'
+import { busUserList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
 
-const Members = ({ userId }: { userId: string }) => {
+const Members = ({ businessId }: { businessId: string }) => {
   const getMembers = () => {
-    return getResource(`transactions?userId=${userId}`)
+    return getResource(`business-users?query=${businessId}`)
   }
 
   const [, setValues] = useState(filterValue)
@@ -30,10 +30,9 @@ const Members = ({ userId }: { userId: string }) => {
     component = (
       <Table
         headerbgColor={'transparent'}
-        tableName="transaction"
+        tableName="business-members"
         tableData={data?.data}
-        tableHeaders={transHeaderList}
-        amountIndex={2}
+        tableHeaders={busUserList}
         withSlug
       />
     )

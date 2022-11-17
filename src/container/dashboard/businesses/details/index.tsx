@@ -39,7 +39,7 @@ const BusinessDetailContainer = () => {
       case 'terminals':
         return <div>Terminals</div>
       case 'members':
-        return <Members userId={userId} />
+        return <Members businessId={id} />
       case 'api-keys':
         return <div>Api Keys</div>
       default:

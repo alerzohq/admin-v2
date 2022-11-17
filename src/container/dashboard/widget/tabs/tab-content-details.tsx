@@ -21,25 +21,28 @@ const DetailsContentWidget = ({
                 bgBottomColor={Color.alerzoWhite}
               />
             </TabContentContainer>
-          ) : item?.title ? (
-            <Text
-              key={index}
-              as={'p'}
-              padding={'1.5em 0 0 0'}
-              color={Color.alerzoBlack}
-              weight="600"
-              align={'center'}
-            >
-              {item?.title}
-            </Text>
           ) : (
-            <FlexTableWrapper.Row
-              key={index}
-              data={item?.data}
-              header={item.header}
-              bgBottomColor={Color.alerzoWhite}
-              clickable={item?.clickable}
-            />
+            <>
+              {item?.title && (
+                <Text
+                  key={index}
+                  as={'p'}
+                  padding={'1.5em 0 0 0'}
+                  color={Color.alerzoBlack}
+                  weight="600"
+                  align={'center'}
+                >
+                  {item?.title}
+                </Text>
+              )}
+              <FlexTableWrapper.Row
+                key={index}
+                data={item?.data}
+                header={item.header}
+                bgBottomColor={Color.alerzoWhite}
+                clickable={item?.clickable}
+              />
+            </>
           )}
         </Fragment>
       ))}

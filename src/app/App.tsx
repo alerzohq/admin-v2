@@ -53,7 +53,6 @@ function App() {
             path={Path.INVITATIONREGISTER}
             element={<RegisterInvitation />}
           />
- 
 
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path={Path.DASHBOARD} element={<Dashboard />}>

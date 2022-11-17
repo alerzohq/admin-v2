@@ -111,10 +111,20 @@ const TerminalDetails = ({ data }: any) => {
             toggle('assign')
             toast.success(`Terminal assigned successfully`)
             queryClient.invalidateQueries('terminal')
+            setValue({
+              reassignmentReason: '',
+              serial_number: '',
+              businessId: '',
+            })
           },
           onError: (err: any) => {
             toggle('assign')
             toast.error(`${err?.response?.data?.message}`)
+            setValue({
+              reassignmentReason: '',
+              serial_number: '',
+              businessId: '',
+            })
           },
         }
       )

@@ -106,7 +106,7 @@ const RolePermissionDetails = ({
         queryClient.invalidateQueries('roles')
         handleRoleEdit(false)
         navigate(
-          {  
+          {
             search: '?status=roles-permissions',
           },
           { replace: true }
