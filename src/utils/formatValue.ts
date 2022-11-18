@@ -48,19 +48,16 @@ export const removeHyphen = (s?: string) => {
 }
 
 export const amountConverter = (x: string | number) => {
-  if (x === 0 || x === '0') {
+  if (x === 0 || x === null || x === undefined) {
     return '0'
   }
-  if (x !== null && x !== undefined) {
-    let amount = Number(x) / 100
+  let amount = Number(x) / 100
 
-    return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-  return x
+  return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 export const thousandSeparator = (x: string | number) => {
-  if (x === 0 || x === '0') {
+  if (x === 0) {
     return '0'
   }
   if (x !== null && x !== undefined) {
@@ -72,17 +69,13 @@ export const thousandSeparator = (x: string | number) => {
 
 export const amountHelper = (x: string | number) => {
   const value: number | string = amountConverter(x)
-  if (value !== null && value !== undefined) {
-    return `₦${value}`
-  }
-  return x
+  return `₦${value}`
 }
 export const generateCommission = (
   type: string,
   amount: string | number,
   cap?: string
 ) => {
-  console.log(amount, 'am')
   const amountToNaira = amount ? amountConverter(amount) : ''
 
   if (type === 'percentage') {

@@ -129,7 +129,7 @@ export const RegistrationInvite = () => {
                 {isTriggerSubmit && (
                   <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.firstName === ''
-                      ? 'first name is required*'
+                      ? 'First name is required*'
                       : ''}
                   </Text>
                 )}
@@ -144,7 +144,7 @@ export const RegistrationInvite = () => {
                 {isTriggerSubmit && (
                   <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.lastName === ''
-                      ? 'last name is required*'
+                      ? 'Last name is required*'
                       : ''}
                   </Text>
                 )}
@@ -211,7 +211,7 @@ export const RegistrationInvite = () => {
                 )}
               </Form.Control>
               <Form.Control>
-                <Button onClick={submitForm}>
+                <Button loading={mutation.isLoading} onClick={submitForm}>
                   {isLoading ? (
                     <Loader color={Color.alerzoWhite} />
                   ) : (
