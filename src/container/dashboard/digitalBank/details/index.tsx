@@ -17,7 +17,7 @@ const DigitalBankDetailContainer = () => {
   var result = thePath.split('/')
   const id = result[3]
   const getBusinessDetails = () => {
-    return getResource(`customers?query=${id}`)
+    return getResource(`customers?id=${id}`)
   }
 
   const { isLoading, isError, data, isFetching } = useQuery(
