@@ -54,7 +54,6 @@ export const amountConverter = (x: string | number) => {
   let amount = Number(x) / 100
 
   return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
 }
 
 export const thousandSeparator = (x: string | number) => {
@@ -71,7 +70,6 @@ export const thousandSeparator = (x: string | number) => {
 export const amountHelper = (x: string | number) => {
   const value: number | string = amountConverter(x)
   return `₦${value}`
-
 }
 export const generateCommission = (
   type: string,

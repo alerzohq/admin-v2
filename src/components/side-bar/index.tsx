@@ -125,7 +125,6 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
               {user?.data?.firstName?.charAt(0)}
               {user?.data?.lastName?.charAt(0)}
             </Profile>
-            
 
             <Stack
               onClick={handleLogout}
