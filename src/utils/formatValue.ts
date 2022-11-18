@@ -48,7 +48,7 @@ export const removeHyphen = (s?: string) => {
 }
 
 export const amountConverter = (x: string | number) => {
-  if (!!x || x === 0) {
+  if (x === 0 || x === null || x === undefined) {
     return '0'
   }
   let amount = Number(x) / 100
