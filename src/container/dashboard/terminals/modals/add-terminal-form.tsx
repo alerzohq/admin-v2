@@ -88,7 +88,7 @@ const AddTerminalModal: React.FC<{
                 color={Color.alerzoDanger}
               >
                 {isTriggerSubmit && addValues.serialNumber === ''
-                  ? 'serial Number is required*'
+                  ? 'Serial Number is required*'
                   : ''}
               </Text>
             )}
@@ -128,7 +128,7 @@ const AddTerminalModal: React.FC<{
                 color={Color.alerzoDanger}
               >
                 {isTriggerSubmit && addValues.specification === ''
-                  ? 'POS Varient is required*'
+                  ? 'POS variant is required*'
                   : ''}
               </Text>
             )}
