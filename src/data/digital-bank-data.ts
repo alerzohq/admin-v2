@@ -1,4 +1,4 @@
-import { formatDate } from '../utils/formatValue'
+import { amountHelper, formatDate } from '../utils/formatValue'
 
 export const TABS = [
   {
@@ -25,10 +25,11 @@ export const CUSTOMERTABLE = [
   { label: 'Phone Number', value: 'phoneNumber', columnWidth: 'small' },
   { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
   { label: 'Date Registered', value: 'date', columnWidth: 'small' },
-  { label: 'Email Address', value: 'email', columnWidth: 'large' },
+  { label: 'Wallet Balance', value: 'balance', columnWidth: 'large' },
 ]
 export const SECURITYTABLE = [
   { label: 'Security Questions', value: 'status', columnWidth: 'small' },
+  { label: 'Email Address', value: 'email', columnWidth: 'large' },
   { label: 'noVisibility', value: 'empty', columnWidth: 'extraLarge' },
 ]
 export const CUSTOMERSEGMENTTABLE = [
@@ -52,7 +53,7 @@ export const customerHelper = (data: { [key: string]: any }) => {
         date: data?.created_at
           ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
           : '',
-        email: data?.email,
+        balance: amountHelper(data?.balance),
       },
     },
     {
@@ -74,6 +75,7 @@ export const customerHelper = (data: { [key: string]: any }) => {
       header: SECURITYTABLE,
       data: {
         status: data?.security_question_set ? 'Set' : 'Not Set',
+        email: data?.email,
       },
     },
   ]

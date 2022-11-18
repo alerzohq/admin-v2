@@ -125,22 +125,7 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
               {user?.data?.firstName?.charAt(0)}
               {user?.data?.lastName?.charAt(0)}
             </Profile>
-            <Link to={''}>
-              <Stack
-                direction={'row'}
-                padding={'0 0 1rem 0'}
-                alignItems={'center'}
-              >
-                <Stack
-                  justifyContent={'center'}
-                  width={'auto'}
-                  alignItems={'center'}
-                >
-                  <SettingsIcon />
-                </Stack>{' '}
-                {!isCollapsed && <Text as={'p'}>Settings</Text>}
-              </Stack>
-            </Link>
+            
 
             <Stack
               onClick={handleLogout}
