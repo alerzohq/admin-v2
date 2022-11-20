@@ -75,11 +75,13 @@ const TableData = ({
                         }
                   }
                   className={
-                    data === 'successful' || data === 'Active'
+                    data === 'successful' ||
+                    data === 'Active' ||
+                    data === 'approved'
                       ? 'success'
                       : data === 'Unassigned'
                       ? 'unassigned'
-                      : data === 'pending'
+                      : data === 'pending' || data === 'processing'
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
