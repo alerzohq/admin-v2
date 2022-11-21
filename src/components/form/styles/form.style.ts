@@ -85,10 +85,11 @@ export const Input = styled.div<inputProps>`
     height: 45px;
     border: 1px solid rgba(193, 202, 207, 0.5);
     color: #001928;
-    border-radius: 6px;
+    border-radius: 10px;
     padding: ${({ inputPadding }) => inputPadding || '0 1rem'};
     outline: none;
     width: 100%;
+   
   }
   input[type='text']:disabled {
     background: transparent;

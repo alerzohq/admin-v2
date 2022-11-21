@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { useQuery } from 'react-query'
+
 import {
   FallBack,
   Jumbotron,
@@ -9,15 +10,25 @@ import {
 } from '../../../../components'
 import { getResource } from '../../../../utils/apiRequest'
 import BillerCard from './card'
+import SetBiller from './set-biller'
 import { BillerCardBox, Inner, BillerWrapper } from './styles/biller.styles'
-import { BillerProps } from './type'
+import { IBillerProp, BillerProps } from './type'
 
 const BillerWidget = () => {
+  const [show, setShow] = useState(false)
+  const [biller, setBiller] = useState<IBillerProp>({})
   const getBillers = () => {
     return getResource('billers')
   }
-  const { data, isError, isLoading, refetch } = useQuery('billers', getBillers)
+  
+  const { data, isError, isLoading, refetch } = useQuery('billers', getBillers);
 
+  const handleBiller= useCallback((vals:IBillerProp)=>{
+    setBiller(vals)
+    setShow(true)
+  },[])
+ 
+ 
   let component
   if (isLoading) {
     component = <Loader />
@@ -36,7 +47,7 @@ const BillerWidget = () => {
       <Inner>
         <BillerCardBox>
           {data?.data.map((biller: BillerProps, i: number) => (
-            <BillerCard key={i} biller={biller} />
+            <BillerCard key={i} biller={biller} handleBiller={handleBiller} />
           ))}
         </BillerCardBox>
       </Inner>
@@ -45,9 +56,19 @@ const BillerWidget = () => {
 
   return (
     <BillerWrapper>
+      <SetBiller show={show} setShow={()=>setShow(false)} biller={biller} />
       <Stack direction={'row'} justifyContent={'space-between'}>
         <Text as={'h4'}>Biller Balance</Text>
-        {/* <Text as={'small'} weight={'600'} color={Color.alerzoBlue}>VIew Biller Settings</Text> */}
+        {/* <Button
+          noborder
+          variant={'transparent'}
+          width={'170px'}
+          weight={'600'}
+          color={Color.alerzoBlue}
+          onClick={() =>setShow(true)}
+        >
+          VIew Biller Settings
+        </Button> */}
       </Stack>
       <Jumbotron mt={'.5rem'}>{component}</Jumbotron>
     </BillerWrapper>

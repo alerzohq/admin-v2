@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { SettingsIcon } from '../../../../../assets/icons'
 import { Text } from '../../../../../components'
 import { amountHelper } from '../../../../../utils/formatValue'
@@ -6,11 +6,12 @@ import { color } from '../helper'
 import { BillerLogo, Card, CardInner } from '../styles/biller.styles'
 import { BillerProps } from '../type'
 
-const BillerCard = ({ biller }: BillerProps) => {
+const BillerCard = ({ biller,handleBiller }: BillerProps) => {
 
 
   return (
-    <Card>
+   
+    <Card onClick={()=>handleBiller?.(biller)}>
       <CardInner>
         <Text as={'small'} weight={'600'}>
           {biller?.displayName}
@@ -29,4 +30,4 @@ const BillerCard = ({ biller }: BillerProps) => {
   )
 }
 
-export default BillerCard
+export default memo(BillerCard)

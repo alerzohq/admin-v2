@@ -63,7 +63,7 @@ const CardWidget = ({
       />
       <CardWidgetBox
         Icon={icons?.card4 || UsersSolidIcon}
-        text={labels?.card4 || ' Total Number of Users'}
+        text={labels?.card4 || ' Total Active Users'}
         value={
           statistics?.card4 ||
           `${stats?.totalUsers ? thousandSeparator(stats?.totalUsers) : '0'}`
