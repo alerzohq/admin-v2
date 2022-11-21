@@ -10,7 +10,7 @@ const OverviewContainer = () => {
   }
 
   const { isLoading: loading, data: Stats } = useQuery(
-    'trans-stats',
+    'overview-stats',
     getTranStats
   )
   const Statistics = Stats?.data

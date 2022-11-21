@@ -14,6 +14,7 @@ export type TabsProps = {
   color?: string
   currentValue?: string
   hideStatus?: boolean
+  borderRadius?: string
   component?: React.ReactNode
 }
 export type TabItem = {

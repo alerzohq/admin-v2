@@ -26,7 +26,7 @@ const SessionTimeout = ({ children }: TimeoutProps) => {
         idleTimer = ref
       }}
       timeout={10000 * 60}
-      promptTimeout={1000 * 30}
+      // promptTimeout={1000 * 30}
       onIdle={onIdle}
     >
       {children}

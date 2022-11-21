@@ -14,7 +14,9 @@ import {
 import { FormProps, InputProps, SelectProps } from './type'
 
 const Form = ({ children, ...restProps }: FormProps) => {
-  return <FormContainer {...restProps}>{children}</FormContainer>
+  return <FormContainer {...restProps}>
+    {children}
+    </FormContainer>
 }
 
 export default Form

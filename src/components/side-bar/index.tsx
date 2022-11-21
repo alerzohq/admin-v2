@@ -3,7 +3,6 @@ import {
   AlerzoLogo,
   FavIcon,
   LogoutIcon,
-  SettingsIcon,
 } from '../../assets/icons'
 import { Color } from '../../assets/theme'
 import { SideBarMenus } from '../../data/sidebar-data'

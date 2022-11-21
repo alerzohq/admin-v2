@@ -1,25 +1,13 @@
 import React from 'react'
 import { SettingsIcon } from '../../../../../assets/icons'
-import { Color } from '../../../../../assets/theme'
 import { Text } from '../../../../../components'
 import { amountHelper } from '../../../../../utils/formatValue'
+import { color } from '../helper'
 import { BillerLogo, Card, CardInner } from '../styles/biller.styles'
 import { BillerProps } from '../type'
 
 const BillerCard = ({ biller }: BillerProps) => {
-  let avarageThreshold = 1500000
-  let minimumThreshold = 100000
 
-  const color = () => {
-    let balance = biller ? Number(biller?.balance / 100) : 0
-    if (balance <= minimumThreshold) {
-      return Color.alerzoDanger
-    } else if (balance > 0 && balance <= avarageThreshold) {
-      return Color.alerzoWarning
-    } else {
-      return Color.alerzoGreen
-    }
-  }
 
   return (
     <Card>
@@ -28,11 +16,11 @@ const BillerCard = ({ biller }: BillerProps) => {
           {biller?.displayName}
         </Text>
         <BillerLogo>
-          {biller?.logo && <img src={biller?.logo} alt="biller-logo" />}
+          {biller?.logo ? <img src={biller?.logo} alt="biller-logo" />:null}
         </BillerLogo>
       </CardInner>
       <CardInner>
-        <Text as={'h2'} weight={'600'} color={color()}>
+        <Text as={'h2'} weight={'600'} color={color(biller)}>
           {biller ? amountHelper(biller?.balance) : ''}
         </Text>
         <SettingsIcon />
