@@ -23,7 +23,7 @@ minimumBalance,
 averageBalance,
 }
 
-console.log('BILLERS',averageBalance)
+
 
 useEffect(() => {
     setValues({...values,minimumBalance:biller?.minBalance,averageBalance:biller?.averageBalance })
