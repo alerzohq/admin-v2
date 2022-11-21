@@ -44,7 +44,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
-            pageCount={data?.metadata?.pages}
+            pageCount={data?.metadata?.pages ?? 1}
             previousLabel={width < mobileWidth ? '<' : 'Back'}
             containerClassName={'paginate'}
             pageClassName={'page-item'}
