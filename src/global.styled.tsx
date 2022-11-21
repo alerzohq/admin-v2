@@ -182,9 +182,24 @@ input:checked ~ .checkmark:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+input{
+  font-family:Gilmer;
+  ::placeholder{
+      font-family:Gilmer;
+      color:#A5B0B7;
+    }
+}
 .btn-blue{
   background: ${Color.alerzoBlue} !important;
   color: ${Color.alerzoBgColor} !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
 `
 

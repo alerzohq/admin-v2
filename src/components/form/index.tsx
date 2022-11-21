@@ -33,7 +33,7 @@ Form.Input = function FormInput({
   inputPadding,
   onChange,
   ...restProps
-}: InputProps) {
+}: InputProps) { 
   return (
     <Input inputPadding={inputPadding}>
       {Icon && <Icon />} <input onChange={onChange} {...restProps} />
