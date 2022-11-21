@@ -50,6 +50,14 @@ export const terminalHeader = [
   'Date Created',
   'Date Updated',
 ]
+export const terminalRequestHeader = [
+  'Business ID',
+  'Business Name',
+  'Location',
+  'Status',
+  'Date Requested',
+]
+
 export const auditHeaderList = [
   'User',
   'Role',

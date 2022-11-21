@@ -12,10 +12,12 @@ import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import DynamicTable from '../../../components/react-table'
-import { TerminalSelects, terminalsTableMapper } from './config'
+import { TerminalSelects } from './config'
 import { useLocation } from 'react-router-dom'
-import { terminalHeader } from '../../../data/table-headers'
+import {
+  terminalHeader,
+  terminalRequestHeader,
+} from '../../../data/table-headers'
 import { Color } from '../../../assets/theme'
 import {
   terminalIcons,
@@ -97,9 +99,10 @@ const TransactionContainer = () => {
     )
   } else {
     requestsTerrminals = (
-      <DynamicTable
-        data={terrminalsRequestsData?.data}
-        mappers={terminalsTableMapper}
+      <Table
+        tableName="requestsTerrminals"
+        tableData={terrminalsRequestsData?.data}
+        tableHeaders={terminalRequestHeader}
       />
     )
   }
