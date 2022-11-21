@@ -104,9 +104,12 @@ export const Error = styled.p``
 export const Footer = styled.div`
   display: flex;
   justify-content: center;
+  padding:1rem 0;
   a {
     color: ${Color.alerzoBlue};
+    padding:0;
   }
+
 `
 export const Tags = styled.div`
   display: flex;

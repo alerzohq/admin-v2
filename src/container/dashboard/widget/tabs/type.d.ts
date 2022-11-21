@@ -12,4 +12,5 @@ type TabWidgetItemProps = {
   type?: string
   containerTitle: string
   renderSwitch: React.JSXElement
+  borderRadius?: string
 }
