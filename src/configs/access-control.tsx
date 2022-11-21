@@ -4,13 +4,10 @@ import { getStorageItem } from '../utils/session-storage'
 const AllPermissions = () => {
   const {
     state: { user },
-  } = useAppContext()
+  } = useAppContext();
 
-   const userInfo =getStorageItem('user');
-
-  console.log(userInfo)  
-
-  const adminAccess = Boolean(user?.data?.role === 'Super Admin')
+  const userInfo =getStorageItem('user'); 
+  const adminAccess = userInfo?.data?.role==='Super Admin' || Boolean(user?.data?.role === 'Super Admin')
 
   return { adminAccess }
 }

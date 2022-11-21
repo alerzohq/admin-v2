@@ -74,7 +74,7 @@ const TopBar = ({
               <Filter
                 value={search}
                 onChange={(e) => {
-                  setValues({ ...values, search: e.target.value })
+                  setValues({ ...values, search: e.target.value?.trim() })
                 }}
                 placeholder={showFilters.search.placeholder}
               />

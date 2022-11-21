@@ -103,6 +103,7 @@ const TransactionContainer = () => {
         tableName="requestsTerrminals"
         tableData={terrminalsRequestsData?.data}
         tableHeaders={terminalRequestHeader}
+        notClickable
       />
     )
   }
