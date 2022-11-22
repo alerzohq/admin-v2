@@ -88,7 +88,7 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
           <Form.Input
             type="number"
             placeholder="Enter Minimum amount"
-            value={minimumBalance || 0}
+            value={minimumBalance || ''}
             onChange={handleChange('minimumBalance')}
           />
           <CircleFlag color={Color.alerzoDanger} />
@@ -105,7 +105,7 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
           <Form.Input
             type="number"
             placeholder="Enter average threshold"
-            value={averageBalance || 0}
+            value={averageBalance || ''}
             onChange={handleChange('averageBalance')}
           />
           <CircleFlag color={Color.alerzoWarning} />
