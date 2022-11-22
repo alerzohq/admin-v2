@@ -1,9 +1,23 @@
 import { useState } from 'react'
+import { useQuery } from 'react-query'
 import { Color } from '../../../../assets/theme'
-import { Button, Form, Jumbotron, Stack } from '../../../../components'
+import {
+  Button,
+  Form,
+  Jumbotron,
+  SelectInput,
+  Stack,
+} from '../../../../components'
+import { getResource } from '../../../../utils/apiRequest'
 
 const EditEmployees = ({ data }: any) => {
   const [isEditing, setIsEditing] = useState(false)
+
+  const getRoles = () => {
+    return getResource('roles')
+  }
+  const { isLoading: isLoadingRoles, data: roles } = useQuery('roles', getRoles)
+
   return (
     <>
       <Jumbotron width={'65%'} padding={'2rem'} direction={'column'}>
@@ -44,14 +58,30 @@ const EditEmployees = ({ data }: any) => {
               disabled={!isEditing}
             />
           </Form.Control>
-          <Form.Control pr={'2rem'} pb={'1rem'} width="45%">
-            <Form.Label labelFontSize="1rem">Role</Form.Label>
-            <Form.Input
-              type="text"
-              value={data?.roleName}
-              onChange={() => {}}
-              disabled={!isEditing}
-            />
+          <Form.Control pb={'1rem'} width="45%">
+            <Form.Label labelFontSize="1rem">Role Name</Form.Label>
+            {!isLoadingRoles && roles && (
+              <SelectInput
+                placeholder="Select a role"
+                options={[
+                  {
+                    value: '',
+                    label: 'Select a role',
+                    disabled: true,
+                  },
+                  ...roles?.data?.map((role: { name: string }) => {
+                    return {
+                      value: role.name,
+                      label: role.name,
+                    }
+                  }),
+                ]}
+                onChange={(e) => {}}
+                value={{ value: data?.roleName, label: data?.roleName }}
+                styles={{ width: '100%' }}
+                disabled={!isEditing}
+              />
+            )}
           </Form.Control>
         </Form>
       </Jumbotron>
