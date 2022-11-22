@@ -20,15 +20,14 @@ const BillerWidget = () => {
   const getBillers = () => {
     return getResource('billers')
   }
-  
-  const { data, isError, isLoading, refetch } = useQuery('billers', getBillers);
 
-  const handleBiller= useCallback((vals:IBillerProp)=>{
+  const { data, isError, isLoading, refetch } = useQuery('billers', getBillers)
+
+  const handleBiller = useCallback((vals: IBillerProp) => {
     setBiller(vals)
     setShow(true)
-  },[])
- 
- 
+  }, [])
+
   let component
   if (isLoading) {
     component = <Loader />
@@ -56,7 +55,7 @@ const BillerWidget = () => {
 
   return (
     <BillerWrapper>
-      <SetBiller show={show} setShow={()=>setShow(false)} biller={biller} />
+      <SetBiller show={show} setShow={() => setShow(false)} biller={biller} />
       <Stack direction={'row'} justifyContent={'space-between'}>
         <Text as={'h4'}>Biller Balance</Text>
         {/* <Button

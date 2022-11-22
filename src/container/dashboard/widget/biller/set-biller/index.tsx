@@ -48,17 +48,17 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
 
   const handleChange =
     (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [name]: e.target.value });
+      setValues({ ...values, [name]: e.target.value })
       setIsTriggerSubmit(false)
     }
 
   const handleBiller = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     setIsTriggerSubmit(true)
-   if(minimumBalance && averageBalance && (minimumBalance < averageBalance)){
-    setIsTriggerSubmit(false)
-    mutate(payload);
-   }
+    if (minimumBalance && averageBalance && minimumBalance < averageBalance) {
+      setIsTriggerSubmit(false)
+      mutate(payload)
+    }
   }
 
   return (
@@ -88,35 +88,38 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
           <Form.Input
             type="number"
             placeholder="Enter Minimum amount"
-            value={minimumBalance || 0}
+            value={minimumBalance || ''}
             onChange={handleChange('minimumBalance')}
           />
           <CircleFlag color={Color.alerzoDanger} />
           {isTriggerSubmit && (
-              <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
-                {isTriggerSubmit && minimumBalance === ''
-                  ? 'Minimum threshold is required*'       
-                  : ''}
-              </Text>)}
+            <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+              {isTriggerSubmit && minimumBalance === ''
+                ? 'Minimum threshold is required*'
+                : ''}
+            </Text>
+          )}
         </Form.Control>
-        
+
         <Form.Control pb={'1rem'}>
           <Form.Label>Average Threshold</Form.Label>
           <Form.Input
             type="number"
             placeholder="Enter average threshold"
-            value={averageBalance || 0}
+            value={averageBalance || ''}
             onChange={handleChange('averageBalance')}
           />
           <CircleFlag color={Color.alerzoWarning} />
           {isTriggerSubmit && (
-              <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
-                {isTriggerSubmit && minimumBalance === ''
-                  ? 'Average threshold is required*'       
-                  : minimumBalance >= averageBalance?'Average threshold should be greater than minimum threshold*':'' }
-              </Text>)}
+            <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+              {isTriggerSubmit && minimumBalance === ''
+                ? 'Average threshold is required*'
+                : minimumBalance >= averageBalance
+                ? 'Average threshold should be greater than minimum threshold*'
+                : ''}
+            </Text>
+          )}
         </Form.Control>
-        
 
         <Form.Control pb={'1rem'}>
           <Button.Group align={'center'}>

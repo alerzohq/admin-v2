@@ -89,7 +89,6 @@ export const Input = styled.div<inputProps>`
     padding: ${({ inputPadding }) => inputPadding || '0 1rem'};
     outline: none;
     width: 100%;
-   
   }
   input[type='text']:disabled {
     background: transparent;
@@ -105,12 +104,11 @@ export const Error = styled.p``
 export const Footer = styled.div`
   display: flex;
   justify-content: center;
-  padding:1rem 0;
+  padding: 1rem 0;
   a {
     color: ${Color.alerzoBlue};
-    padding:0;
+    padding: 0;
   }
-
 `
 export const Tags = styled.div`
   display: flex;

@@ -31,7 +31,7 @@ TabPage.Tabs = function TabList({
   color,
   currentValue,
   hideStatus,
-  borderRadius
+  borderRadius,
 }: TabsProps) {
   const [, setQueryParams] = useSearchParams()
   return (
