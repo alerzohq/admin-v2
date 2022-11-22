@@ -85,15 +85,11 @@ const TableData = ({
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
-                      : formatDate(
-                          item?.sessionStartedAt,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ) === data
+                      : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
+                        data
                       ? 'successText'
-                      : formatDate(
-                          item?.sessionEndedAt,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ) === data
+                      : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
+                        data
                       ? 'dangertext'
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }

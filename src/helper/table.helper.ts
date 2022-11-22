@@ -116,11 +116,17 @@ export const transformData = ({ item, name }: props) => {
     return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
   if (item && name === 'audit') {
-    let { username, role, sessionStartedAt, sessionEndedAt } = item
-    sessionStartedAt = formatDate(sessionStartedAt, 'YYYY-MM-DD HH:mm:ss')
-    sessionEndedAt = formatDate(sessionEndedAt, 'YYYY-MM-DD HH:mm:ss')
-    role = role.charAt(0).toUpperCase() + role.slice(1)
-    return { username, role, sessionStartedAt, sessionEndedAt }
+    let { admin, loginDate, logoutDate } = item
+    loginDate = formatDate(loginDate, 'YYYY-MM-DD HH:mm:ss')
+    logoutDate = formatDate(logoutDate, 'YYYY-MM-DD HH:mm:ss')
+    const role =
+      admin.roleName.charAt(0).toUpperCase() + admin.roleName.slice(1)
+    return {
+      username: `${admin.firstName} ${admin.lastName}`,
+      role,
+      loginDate,
+      logoutDate,
+    }
   }
   if (item && name === 'business-members') {
     let { first_name, last_name, email, active, created_at } = item
