@@ -25,7 +25,10 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   return (
     <>
       {data?.data?.length > 0 && (
-        <PaginationWrapper isMobile={width < mobileWidth} data-testid="paginate">
+        <PaginationWrapper
+          isMobile={width < mobileWidth}
+          data-testid="paginate"
+        >
           <Inner>
             <Text as={'p'} color={Color.alerzoGray2}>
               Rows Per Page

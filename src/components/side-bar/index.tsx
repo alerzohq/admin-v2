@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import {
-  AlerzoLogo,
-  FavIcon,
-  LogoutIcon,
-} from '../../assets/icons'
+import { AlerzoLogo, FavIcon, LogoutIcon } from '../../assets/icons'
 import { Color } from '../../assets/theme'
 import { SideBarMenus } from '../../data/sidebar-data'
 import {
