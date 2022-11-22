@@ -8,7 +8,7 @@ import { ButtonGroupProps, ButtonProps } from './type'
 const Button = ({ loading, children, ...restProps }: ButtonProps) => {
   return (
     <ButtonContainer {...restProps}>
-      {loading ? <Loader color={Color.alerzoWhite}/> : children}
+      {loading ? <Loader color={Color.alerzoWhite} /> : children}
     </ButtonContainer>
   )
 }
