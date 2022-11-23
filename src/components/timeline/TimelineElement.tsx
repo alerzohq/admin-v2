@@ -15,7 +15,7 @@ export const TimelineElement = ({
 }): JSX.Element => {
   return (
     <>
-      {actions.map((action: any) => (
+      {actions?.map((action: any) => (
         <TimelineAction>
           <TimelineActionDate>
             {formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss')}

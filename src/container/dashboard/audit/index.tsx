@@ -35,6 +35,9 @@ const Audit = () => {
     if (state?.detail.id) {
       setComponentToRender('logs')
     }
+    return () => {
+      setComponentToRender('auditUsers')
+    }
   }, [state?.detail.id])
 
   const getSessionsDetails = () => {
@@ -120,7 +123,7 @@ const Audit = () => {
             Actions Performed
           </Text>
           <Jumbotron padding={'1rem 0'} mt={'0.5rem'} direction="column">
-            <TimelineElement actions={state.detail.actions} />
+            <TimelineElement actions={state?.detail?.actions} />
           </Jumbotron>
           <Pagination
             data={{ data: state?.detail?.actions }}
