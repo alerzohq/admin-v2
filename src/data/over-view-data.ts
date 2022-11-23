@@ -1,25 +1,26 @@
-import { amountConverter, thousandSeparator } from "../utils/formatValue"
+import { TransCountIcon, Users2Icon,BriefcaseIcon, Terminal2Icon } from "../assets/icons"
+import { thousandSeparator } from "../utils/formatValue"
 
 export const overviewStats=(Statistics:{[key: string]:any})=>{
     let statistics = {
-        card1:  `₦${amountConverter(Statistics?.totalAmountDeposited)}`,
-        card2: `₦${amountConverter(Statistics?.totalAmounWithdrawn)}`,
-        card3: thousandSeparator(Statistics?.totalNumberOfTransactions),
-        card4: thousandSeparator(Statistics?.totalNumberOfActiveUsers),
+        card1:  thousandSeparator(Statistics?.totalCustomers),
+        card2: thousandSeparator(Statistics?.totalTransactions),
+        card3: thousandSeparator(Statistics?.totalBusinesses),
+        card4: thousandSeparator(Statistics?.totalTerminals),
       }
     return statistics
 }
 
-// export const dashboardLabels = {
-//     card1: 'Active Terminals',
-//     card2: 'Inactive Terminals',
-//     card3: 'Defective Terminals',
-//     card4: 'Unassigned Terminals',
-//   }
-//   export const dashboardIcons = {
-//     card1: ActiveTerminalsIcon,
-//     card2: InactiveTerminalsIcon,
-//     card3: DefectiveTerminalsIcon,
-//     card4: UnassignedTerminalsIcon,
-//   }
+export const dashboardLabels = {
+    card1: 'Total No of Customer',
+    card2: 'Total Number of Transactions',
+    card3: 'Total No of Businesses',
+    card4: 'Total No of Terminals',
+  }
+  export const dashboardStatsIcons = {
+    card1: Users2Icon,
+    card2: TransCountIcon,
+    card3: BriefcaseIcon,
+    card4: Terminal2Icon,
+  }
   

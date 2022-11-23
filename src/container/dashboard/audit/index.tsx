@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import ReactPaginate from 'react-paginate'
+// import ReactPaginate from 'react-paginate'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { TimelineIcon } from '../../../assets/icons'
+// import { TimelineIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
   FallBack,
