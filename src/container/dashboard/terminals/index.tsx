@@ -22,6 +22,7 @@ import { Color } from '../../../assets/theme'
 import {
   terminalIcons,
   terminalLabels,
+  terminalStats,
   TERMINALTABS,
 } from '../../../data/terminal-data'
 import { getTerminalsHandler, getTerminalStats } from './utils'
@@ -107,12 +108,7 @@ const TransactionContainer = () => {
       />
     )
   }
-  const statistics = {
-    card1: Statistics?.activeTerminals,
-    card2: Statistics?.inactiveTerminals,
-    card3: Statistics?.defectiveTerminals,
-    card4: Statistics?.unassignedTerminals,
-  }
+ 
 
   const toggle = () => {
     setIsShown(!isShown)
@@ -172,7 +168,7 @@ const TransactionContainer = () => {
         ) : (
           <>
             <CardWidget
-              statistics={statistics}
+              statistics={terminalStats(Statistics)}
               loading={loading}
               labels={terminalLabels}
               icons={terminalIcons}
