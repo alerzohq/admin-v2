@@ -19,6 +19,7 @@ export const TimelineActionDate = styled.p`
   padding: 6px 11px;
   width: 10rem;
   position: relative;
+  text-align:center;
   &:after {
     content: '';
     position: absolute;
