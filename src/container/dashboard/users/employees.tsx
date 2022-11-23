@@ -206,6 +206,7 @@ const Employees = () => {
       </Modal>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
+          setFilterValues={setValues}
           showFilters={{
             search: {
               placeholder: 'Search',
