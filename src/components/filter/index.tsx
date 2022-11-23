@@ -53,7 +53,11 @@ const Filter = ({
           >
             {showFilters?.date && (
               <div ref={ref}>
-                <DateRange right={position} filterDate={setFilterValues} />
+             <DateRange
+                  isTop
+                  filterDate={setFilterValues && setFilterValues}
+                  right={position}
+                />
               </div>
             )}
             {showFilters?.selects &&
