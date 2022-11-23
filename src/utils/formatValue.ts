@@ -11,6 +11,7 @@ export function validEmail(email: string) {
   }
 }
 export const formatDate = (date: any, type?: string) => {
+  console.log(moment(1669194777751).format('YYYY-MM-DD HH:mm:ss'))
   return moment(date).format(type ?? 'YYYY-MM-DD, h:mm:ss a')
 }
 

@@ -14,6 +14,7 @@ import {
   Text,
 } from '../../../components'
 import { Container } from '../../../components/layout'
+import { TimelineElement } from '../../../components/timeline'
 import { filterValue } from '../../../data/filter-data'
 import { auditHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
@@ -103,7 +104,12 @@ const Audit = () => {
                   : header === ''
                   ? 'empty'
                   : header,
-              columnWidth: i === 5 ? 'large' : 'small',
+              columnWidth:
+                i === 5 ||
+                header === 'Session Started At' ||
+                header === 'Session Ended At'
+                  ? 'medium'
+                  : 'small',
             }))}
             bgBottomColor={Color.alerzoWhite}
             classes={{
@@ -115,34 +121,7 @@ const Audit = () => {
             Actions Performed
           </Text>
           <Jumbotron padding={'1rem 0'} mt={'0.5rem'} direction="column">
-            <div
-              style={{
-                display: 'flex',
-                width: '90%',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-              }}
-            >
-              <p
-                style={{
-                  background: ' #C7E1FF',
-                  borderRadius: '4px',
-                  padding: ' 6px 11px',
-                }}
-              >
-                {formatDate(state?.detail?.actions[0].date)}
-              </p>
-              <TimelineIcon />
-              <p
-                style={{
-                  flex: '0.9',
-                  padding: '0.8rem 0',
-                  borderBottom: '1px solid #E8EBEE',
-                }}
-              >
-                {state?.detail?.actions[0].action}
-              </p>
-            </div>
+            <TimelineElement actions={state.detail.actions} />
           </Jumbotron>
           <Pagination
             data={{ data: state?.detail?.actions }}
