@@ -80,7 +80,7 @@ export const detailsHelper = (
     commission: amountHelper(commission),
     created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
     updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
-    product: product?.display_name,
+    product: product?.display_name || '',
     summary,
     total: amountHelper(total),
   }

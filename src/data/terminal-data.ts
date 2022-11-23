@@ -154,3 +154,16 @@ export const terminalIcons = {
   card3: DefectiveTerminalsIcon,
   card4: UnassignedTerminalsIcon,
 }
+
+
+
+
+export const terminalStats=(Statistics:{ [key: string]: any})=>{
+  const statistics = {
+    card1: Statistics?.activeTerminals,
+    card2: Statistics?.inactiveTerminals,
+    card3: Statistics?.defectiveTerminals,
+    card4: Statistics?.unassignedTerminals,
+  }
+  return statistics
+}
