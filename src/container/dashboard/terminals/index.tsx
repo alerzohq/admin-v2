@@ -108,7 +108,6 @@ const TransactionContainer = () => {
       />
     )
   }
- 
 
   const toggle = () => {
     setIsShown(!isShown)

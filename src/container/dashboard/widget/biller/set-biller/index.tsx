@@ -22,7 +22,7 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
     averageBalance,
   }
 
-  let isValidThreshold = parseInt(minimumBalance) < parseInt( averageBalance)
+  let isValidThreshold = parseInt(minimumBalance) < parseInt(averageBalance)
 
   useEffect(() => {
     setValues({
@@ -57,10 +57,14 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
   const handleBiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setIsTriggerSubmit(true)
-   if(minimumBalance && averageBalance && (Number(minimumBalance) < Number(averageBalance))){
-    setIsTriggerSubmit(false)
-    mutate(payload);
-   }
+    if (
+      minimumBalance &&
+      averageBalance &&
+      Number(minimumBalance) < Number(averageBalance)
+    ) {
+      setIsTriggerSubmit(false)
+      mutate(payload)
+    }
   }
 
   return (
@@ -113,11 +117,14 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
           />
           <CircleFlag color={Color.alerzoWarning} />
           {isTriggerSubmit && (
-              <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
-                {isTriggerSubmit && minimumBalance === ''
-                  ? 'Average threshold is required*'       
-                  :!isValidThreshold?'Average threshold should be greater than minimum threshold*':'' }
-              </Text>)}
+            <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+              {isTriggerSubmit && minimumBalance === ''
+                ? 'Average threshold is required*'
+                : !isValidThreshold
+                ? 'Average threshold should be greater than minimum threshold*'
+                : ''}
+            </Text>
+          )}
         </Form.Control>
 
         <Form.Control pb={'1rem'}>

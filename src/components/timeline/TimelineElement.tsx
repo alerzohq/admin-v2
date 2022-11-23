@@ -18,7 +18,9 @@ export const TimelineElement = ({
       {actions?.map((action: any) => (
         <TimelineAction>
           <TimelineActionDate>
-            {action?.date ? formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss'):''}
+            {action?.date
+              ? formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss')
+              : ''}
           </TimelineActionDate>
           <TimelineActionIcon>
             <TimelineIcon />
