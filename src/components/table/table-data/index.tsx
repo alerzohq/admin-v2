@@ -86,6 +86,8 @@ const TableData = ({
                       : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
                         data
                       ? 'dangertext'
+                      : data === 'Session ongoing'
+                      ? 'pendingText'
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >

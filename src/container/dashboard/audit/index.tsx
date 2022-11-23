@@ -30,6 +30,7 @@ const Audit = () => {
 
   const [componentToRender, setComponentToRender] = useState('auditUsers')
   const [values, setValues] = useState(filterValue)
+  const [actionsValues, setActionValues] = useState(filterValue)
 
   useEffect(() => {
     if (state?.detail.id) {
@@ -71,6 +72,7 @@ const Audit = () => {
               tableData={data.data}
               tableHeaders={auditHeaderList}
               setParams
+              hideDate
             />
           </Jumbotron>
           <Pagination data={data} setPageNumber={setValues} />
@@ -123,11 +125,16 @@ const Audit = () => {
             Actions Performed
           </Text>
           <Jumbotron padding={'1rem 0'} mt={'0.5rem'} direction="column">
-            <TimelineElement actions={state?.detail?.actions} />
+            <TimelineElement
+              actions={state?.detail?.actions.slice(
+                actionsValues.pageNumber * actionsValues.count,
+                actionsValues.pageNumber + 1 * actionsValues.count
+              )}
+            />
           </Jumbotron>
           <Pagination
             data={{ data: state?.detail?.actions }}
-            setPageNumber={setValues}
+            setPageNumber={setActionValues}
           />
         </>
       )

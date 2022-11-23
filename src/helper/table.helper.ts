@@ -124,7 +124,9 @@ export const transformData = ({ item, name }: props) => {
   if (item && name === 'audit') {
     let { admin, loginDate, logoutDate } = item
     loginDate = formatDate(loginDate, 'YYYY-MM-DD HH:mm:ss')
-    logoutDate = formatDate(logoutDate, 'YYYY-MM-DD HH:mm:ss')
+    logoutDate = logoutDate
+      ? formatDate(logoutDate, 'YYYY-MM-DD HH:mm:ss')
+      : 'Session ongoing'
     const role =
       admin.roleName.charAt(0).toUpperCase() + admin.roleName.slice(1)
     return {
