@@ -56,6 +56,7 @@ const RolesPermissions = ({
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
+        
           showFilters={{
             search: {
               placeholder: 'Search',

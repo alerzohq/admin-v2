@@ -6,6 +6,7 @@ import TabsContentWidget from '../../widget/tabs/tab-content'
 import { getResource } from '../../../../utils/apiRequest'
 import TransactionHistory from './transaction-history'
 import Members from './members'
+import BusinessTerminalContainer from './terminals'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -37,7 +38,7 @@ const BusinessDetailContainer = () => {
       case 'kyc':
         return <div>KYC</div>
       case 'terminals':
-        return <div>Terminals</div>
+        return <BusinessTerminalContainer businessId={id}/>
       case 'members':
         return <Members businessId={id} />
       case 'api-keys':
