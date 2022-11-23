@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
+import { TableItemDiv } from './table.style'
 
 export type selectedDataType = {
   [key: string]: any
@@ -44,13 +45,7 @@ const TableData = ({
           <tr key={index}>
             {dataList?.map((data, i) => (
               <td key={i} id="td-hover">
-                <div
-                  style={{
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    maxWidth: '350px',
-                    whiteSpace: 'nowrap',
-                  }}
+                <TableItemDiv
                   onClick={
                     notClickable
                       ? () => {}
@@ -99,7 +94,7 @@ const TableData = ({
                     : i === amountIndex
                     ? `₦${amountConverter(data)}`
                     : data}
-                </div>
+                </TableItemDiv>
               </td>
             ))}
           </tr>
