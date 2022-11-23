@@ -1,11 +1,17 @@
-
-import { useState } from "react"
-import { useQuery } from "react-query"
-import { Loader, FallBack, Table, Jumbotron, Pagination, Filter } from "../../../../../components"
-import { filterValue } from "../../../../../data/filter-data"
-import { businessTerminalHeader } from "../../../../../data/table-headers"
+import { useState } from 'react'
+import { useQuery } from 'react-query'
+import {
+  Loader,
+  FallBack,
+  Table,
+  Jumbotron,
+  Pagination,
+  Filter,
+} from '../../../../../components'
+import { filterValue } from '../../../../../data/filter-data'
+import { businessTerminalHeader } from '../../../../../data/table-headers'
 import { filterProps } from '../../../../../@types'
-import { getNewFilterResource } from "../../../../../utils/apiRequest"
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 
 const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   const [values, setValues] = useState(filterValue)
@@ -14,10 +20,9 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     return getNewFilterResource(`terminals`, filterValue)
   }
 
-
   const { isLoading, data, isError, isFetching, refetch } = useQuery(
     ['business-terminals', values],
-    () => getBusinesses({...values, userId: businessId}),
+    () => getBusinesses({ ...values, userId: businessId }),
     { keepPreviousData: true }
   )
 
@@ -26,11 +31,18 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error title={'Failed to load business terminals. '} refetch={refetch} />
+      <FallBack
+        error
+        title={'Failed to load business terminals. '}
+        refetch={refetch}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = (
-      <FallBack title={'This business does not have a terminal.'} refetch={refetch} />
+      <FallBack
+        title={'This business does not have a terminal.'}
+        refetch={refetch}
+      />
     )
   } else {
     component = (
@@ -44,39 +56,39 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   }
   return (
     <>
-    <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
-      <Filter
-        setFilterValues={setValues}
-        showFilters={{
-          search: {
-            placeholder: 'Search',
-            type: 'text',
-          },
-          date: true,
-          selects: [
-            {
-              placeholder: 'Variant',
-              values: [],
-              query: 'variant',
-              value: '',
-              onChange: () => {},
+      <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
+        <Filter
+          setFilterValues={setValues}
+          showFilters={{
+            search: {
+              placeholder: 'Search',
+              type: 'text',
             },
-          ],
-          buttons: [
-            {
-              label: 'Map New Terminal',
-              onClick: () => {},
-              buttonClass: 'add-button',
-            },
-          ],
-        }}
-      />
+            date: true,
+            selects: [
+              {
+                placeholder: 'Variant',
+                values: [],
+                query: 'variant',
+                value: '',
+                onChange: () => {},
+              },
+            ],
+            buttons: [
+              {
+                label: 'Map New Terminal',
+                onClick: () => {},
+                buttonClass: 'add-button',
+              },
+            ],
+          }}
+        />
 
-      {component}
-    </Jumbotron>
+        {component}
+      </Jumbotron>
 
-    {data?.data && <Pagination data={data} setPageNumber={setValues} />}
-  </>
+      {data?.data && <Pagination data={data} setPageNumber={setValues} />}
+    </>
     // <Container
     //   showFilters={{
     //     search: {
@@ -97,7 +109,7 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     //   }}
     //   title="Business Information"
     //   setFilterValues={setValues}
-  
+
     // >
     //   <Jumbotron padding={'0'}>{component}</Jumbotron>
 
@@ -106,4 +118,4 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   )
 }
 
-export default BusinessTerminalContainer 
+export default BusinessTerminalContainer

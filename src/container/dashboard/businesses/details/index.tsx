@@ -38,7 +38,7 @@ const BusinessDetailContainer = () => {
       case 'kyc':
         return <div>KYC</div>
       case 'terminals':
-        return <BusinessTerminalContainer businessId={id}/>
+        return <BusinessTerminalContainer businessId={id} />
       case 'members':
         return <Members businessId={id} />
       case 'api-keys':

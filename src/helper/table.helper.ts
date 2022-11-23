@@ -116,15 +116,8 @@ export const transformData = ({ item, name }: props) => {
     return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
   if (item && name === 'business-terminals') {
-    const {
-      serial_number,
-      tid,
-      variant,
-      model,
-      active,
-      created_at,
-    } = item
-    const statusVal =  active ? 'Active' : 'Inactive'
+    const { serial_number, tid, variant, model, active, created_at } = item
+    const statusVal = active ? 'Active' : 'Inactive'
     const createdDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
     return { tid, serial_number, variant, model, statusVal, createdDate }
   }
