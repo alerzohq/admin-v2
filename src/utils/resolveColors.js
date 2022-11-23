@@ -2,7 +2,6 @@ import { Color } from '../assets/theme'
 
 export const resolveTableColor = (status) => {
   status = String(status)
-  console.log(status)
   if (
     status?.toLowerCase() === 'verified' ||
     status?.toLowerCase() === 'set' ||

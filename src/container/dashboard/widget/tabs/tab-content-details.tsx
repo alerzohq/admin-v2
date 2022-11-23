@@ -11,7 +11,6 @@ const DetailsContentWidget = ({
   return (
     <>
       {resolvedData?.map((item, index) => {
-        console.log(item)
         return (
           <Fragment key={index}>
             {item?.spacing ? (
