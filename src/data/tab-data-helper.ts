@@ -33,7 +33,7 @@ export const detailsHelper = (
     balance,
     reference,
     biller,
-  } = data
+  } = data || {}
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key

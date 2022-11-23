@@ -6,7 +6,7 @@ type tabProps = {
   activeColor?: string
   flexDirection?: string
   hideStatus?: boolean
-  borderRadius?:string
+  borderRadius?: string
 }
 
 export const Tabs = styled.div<tabProps>`
@@ -18,7 +18,7 @@ export const Tabs = styled.div<tabProps>`
   border-bottom-right-radius: 5px;
   border: ${({ hideStatus }) => (hideStatus ? 'none' : '1px solid #E8EBEE')};
   border-top: none;
-  border-radius:${({borderRadius})=>borderRadius?? '10px'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '10px'};
   background-color: ${({ hideStatus }) =>
     hideStatus ? Color.alerzoGray3 : Color.alerzoWhite};
   white-space: nowrap;

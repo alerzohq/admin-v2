@@ -6,18 +6,15 @@ import { color } from '../helper'
 import { BillerLogo, Card, CardInner } from '../styles/biller.styles'
 import { BillerProps } from '../type'
 
-const BillerCard = ({ biller,handleBiller }: BillerProps) => {
-
-
+const BillerCard = ({ biller, handleBiller }: BillerProps) => {
   return (
-   
-    <Card onClick={()=>handleBiller?.(biller)}>
+    <Card onClick={() => handleBiller?.(biller)}>
       <CardInner>
         <Text as={'small'} weight={'600'}>
           {biller?.displayName}
         </Text>
         <BillerLogo>
-          {biller?.logo ? <img src={biller?.logo} alt="biller-logo" />:null}
+          {biller?.logo ? <img src={biller?.logo} alt="biller-logo" /> : null}
         </BillerLogo>
       </CardInner>
       <CardInner>

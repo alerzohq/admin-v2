@@ -12,19 +12,18 @@ describe('Pagination', () => {
     to: '',
   }
 
-  let mockData = {data:[{ name: 'test' }]}
+  let mockData = { data: [{ name: 'test' }] }
   const setFilterValues = () => {
     return mockFilterValues
   }
 
-  test('render correctly with data',  () => {
-
+  test('render correctly with data', () => {
     render(<Pagination data={mockData} setPageNumber={setFilterValues} />)
     const paginatedElement = screen.getByTestId('paginate')
-    expect(paginatedElement).toBeInTheDocument() 
+    expect(paginatedElement).toBeInTheDocument()
   })
 
-  test('not to render',  () => {
+  test('not to render', () => {
     render(<Pagination data={[]} setPageNumber={setFilterValues} />)
     const paginatedElement = screen.queryByTestId('paginate')
     expect(paginatedElement).not.toBeInTheDocument()

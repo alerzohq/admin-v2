@@ -104,7 +104,7 @@ const GlobalStyle = createGlobalStyle`
   width: 50% !important
 }
 .successText{
-  color:#34A853;
+  color:#34A853 !important;
 }
 .center{
   text-align: center;
@@ -113,7 +113,7 @@ const GlobalStyle = createGlobalStyle`
   text-align: end;
 }
 .dangertext{
-  color:#EA4336;
+  color:#EA4336 !important;
 }
 .download-btn {
   align-items: center;

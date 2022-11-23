@@ -14,9 +14,7 @@ import {
 import { FormProps, InputProps, SelectProps } from './type'
 
 const Form = ({ children, ...restProps }: FormProps) => {
-  return <FormContainer {...restProps}>
-    {children}
-    </FormContainer>
+  return <FormContainer {...restProps}>{children}</FormContainer>
 }
 
 export default Form
@@ -33,7 +31,7 @@ Form.Input = function FormInput({
   inputPadding,
   onChange,
   ...restProps
-}: InputProps) { 
+}: InputProps) {
   return (
     <Input inputPadding={inputPadding}>
       {Icon && <Icon />} <input onChange={onChange} {...restProps} />

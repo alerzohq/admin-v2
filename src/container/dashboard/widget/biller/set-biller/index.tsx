@@ -50,12 +50,12 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
 
   const handleChange =
     (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [name]: e.target.value });
+      setValues({ ...values, [name]: e.target.value })
       setIsTriggerSubmit(false)
     }
 
   const handleBiller = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     setIsTriggerSubmit(true)
    if(minimumBalance && averageBalance && (Number(minimumBalance) < Number(averageBalance))){
     setIsTriggerSubmit(false)
@@ -95,13 +95,14 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
           />
           <CircleFlag color={Color.alerzoDanger} />
           {isTriggerSubmit && (
-              <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
-                {isTriggerSubmit && minimumBalance === ''
-                  ? 'Minimum threshold is required*'       
-                  : ''}
-              </Text>)}
+            <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+              {isTriggerSubmit && minimumBalance === ''
+                ? 'Minimum threshold is required*'
+                : ''}
+            </Text>
+          )}
         </Form.Control>
-        
+
         <Form.Control pb={'1rem'}>
           <Form.Label>Average Threshold</Form.Label>
           <Form.Input
@@ -118,7 +119,6 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
                   :!isValidThreshold?'Average threshold should be greater than minimum threshold*':'' }
               </Text>)}
         </Form.Control>
-        
 
         <Form.Control pb={'1rem'}>
           <Button.Group align={'center'}>
