@@ -96,6 +96,22 @@ export type HeaderData = {
   value: keyof typeof TransactionData
   columnWidth?: string
 }
+
+type Audit = {
+  User: string
+  Role: string
+  SessionStartedAt: string
+  SessionEndedAt: string
+}
+export type classesKeys =
+  | keyof TransactionData
+  | keyof TerminalData
+  | keyof BusinessData
+  | keyof BasicData
+  | keyof Audit
+interface classNameI {
+  class: string
+}
 export type FlexTableRowProps = {
   children?: string | React.Node
   flex?: string
@@ -105,10 +121,11 @@ export type FlexTableRowProps = {
   bottomRightRadius?: string
   selfAlign?: string
   bgTopColor?: string
-  data: TransactionData | TerminalData | BusinessData | BasicData
+  data: TransactionData | TerminalData | BusinessData | BasicData | Audit
   header: HeaderData[]
   bgBottomColor?: string
-  clickable: { [key: string]: any }
+  clickable?: { [key: string]: any }
   setFetch?: Dispatch<SetStateAction<boolean>>
   shouldFetch?: boolean
+  classes?: Partial<Record<classesKeys, classNameI>>
 }

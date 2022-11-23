@@ -9,7 +9,7 @@ import {
   CardContainer,
   CardBorderWrapper,
 } from './styles/flex-table.styles'
-import { FlexTableProps, FlexTableRowProps } from './type'
+import { classesKeys, FlexTableProps, FlexTableRowProps } from './type'
 
 const FlexTableWrapper = ({ children }: FlexTableProps) => {
   return <CardWrapper>{children}</CardWrapper>
@@ -21,6 +21,7 @@ FlexTableWrapper.Row = function CardRow({
   header,
   bgBottomColor,
   clickable,
+  classes,
 }: FlexTableRowProps) {
   const navigate = useNavigate()
   const renderSwitch = (param: string) => {
@@ -42,7 +43,7 @@ FlexTableWrapper.Row = function CardRow({
   return (
     <CardWrapper>
       {header.map((detail, index) => {
-        const field = header[index]?.value as string
+        const field = header[index]?.value as classesKeys
         const amt =
           (field as keyof typeof data) !== 'email'
             ? capitalizeFirstLetterInSentence(data[field as keyof typeof data])
@@ -131,7 +132,10 @@ FlexTableWrapper.Row = function CardRow({
                     }
                     size="14px"
                     align={'center'}
+                    className={classes?.[field]?.class}
                   >
+                    {/* {JSON.stringify(classes)} */}
+                    {/* {classes[]} */}
                     {data[field as keyof typeof data] ? amt : ''}
                   </Text>
                 </button>

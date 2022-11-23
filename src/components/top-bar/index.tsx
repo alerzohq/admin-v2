@@ -59,12 +59,12 @@ const TopBar = ({
                 onClick={() => {
                   routePath
                     ? typeof routePath === 'function'
-                      ? navigate(`${routePath()}`)
+                      ? navigate(`${routePath()}`, { replace: true })
                       : navigate(`${routePath}`)
                     : navigate(-1)
                 }}
               />
-            )}{' '}
+            )}
             <Text whiteSpace={whiteSpace} as={'h3'}>
               {title}
             </Text>
