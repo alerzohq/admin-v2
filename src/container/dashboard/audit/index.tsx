@@ -82,10 +82,9 @@ const Audit = () => {
                 state?.detail.loginDate,
                 'YYYY-MM-DD HH:mm:ss'
               )}`,
-              SessionEndedAt: `${formatDate(
-                state?.detail.logoutDate,
-                'YYYY-MM-DD HH:mm:ss'
-              )}`,
+              SessionEndedAt: isNaN(state?.detail.logoutDate)
+                ? formatDate(state?.detail.logoutDate, 'YYYY-MM-DD HH:mm:ss')
+                : 'Session ongoing',
             }}
             header={[...auditHeaderList, '', ''].map((header, i) => ({
               label:
