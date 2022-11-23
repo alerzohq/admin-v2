@@ -53,7 +53,7 @@ const Filter = ({
           >
             {showFilters?.date && (
               <div ref={ref}>
-             <DateRange
+                <DateRange
                   isTop
                   filterDate={setFilterValues && setFilterValues}
                   right={position}
