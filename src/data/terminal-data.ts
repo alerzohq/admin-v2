@@ -2,8 +2,10 @@ import {
   ActiveTerminalsIcon,
   DefectiveTerminalsIcon,
   InactiveTerminalsIcon,
+  TerminalsRequestsIcon,
   UnassignedTerminalsIcon,
 } from '../assets/icons'
+import TerminalsPendingRequestsIcon from '../assets/icons/pending-terminals-requests'
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
@@ -161,6 +163,28 @@ export const terminalStats = (Statistics: { [key: string]: any }) => {
     card2: Statistics?.inactiveTerminals,
     card3: Statistics?.defectiveTerminals,
     card4: Statistics?.unassignedTerminals,
+  }
+  return statistics
+}
+
+export const terminalsRequestsLabels = {
+  card1: 'All Terminal Requests',
+  card2: 'Rejected Terminal Requests',
+  card3: 'Pending Terminal Requests',
+  card4: 'Approved Terminal Requests',
+}
+export const requestTerminalIcons = {
+  card1: TerminalsRequestsIcon,
+  card2: InactiveTerminalsIcon,
+  card3: TerminalsPendingRequestsIcon,
+  card4: ActiveTerminalsIcon,
+}
+export const terminalRequestsStats = () => {
+  const statistics = {
+    card1: 10,
+    card2: 10,
+    card3: 10,
+    card4: 10,
   }
   return statistics
 }
