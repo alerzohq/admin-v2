@@ -6,6 +6,7 @@ import TerminalsContainer from '../../../container/dashboard/terminals'
 
 const Terminals = () => {
   const { adminAccess } = AllPermissions()
+
   if (!adminAccess) {
     return <Navigate to={`/${Path.DASHBOARD}`} replace />
   }

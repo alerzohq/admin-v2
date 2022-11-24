@@ -8,4 +8,5 @@ export type SelectProps = {
   styles?: StylesConfig<Coptions>
   hideValue?: boolean
   fullWidth?: boolean
+  disabled?: boolean
 }

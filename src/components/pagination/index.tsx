@@ -25,7 +25,10 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   return (
     <>
       {data?.data?.length > 0 && (
-        <PaginationWrapper isMobile={width < mobileWidth}>
+        <PaginationWrapper
+          isMobile={width < mobileWidth}
+          data-testid="paginate"
+        >
           <Inner>
             <Text as={'p'} color={Color.alerzoGray2}>
               Rows Per Page
@@ -44,7 +47,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
-            pageCount={data?.metadata?.pages}
+            pageCount={data?.metadata?.pages ?? 1}
             previousLabel={width < mobileWidth ? '<' : 'Back'}
             containerClassName={'paginate'}
             pageClassName={'page-item'}

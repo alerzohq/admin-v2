@@ -21,6 +21,7 @@ const TabsContentWidget = ({
   errorMessage,
   isError,
   type,
+  borderRadius,
   hideStatus,
   containerTitle,
   renderSwitch,
@@ -50,6 +51,7 @@ const TabsContentWidget = ({
             color={Color.alerzoBlack}
             tabs={tabs}
             currentValue={currentValue}
+            borderRadius={borderRadius}
           />
           {title && (
             <Text

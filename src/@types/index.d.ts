@@ -19,4 +19,5 @@ export type filterProps = {
   to?: string
   query?: string
   channel?: string
+  userId?: string
 }

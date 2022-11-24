@@ -13,10 +13,10 @@ type StatsProps = {
     totalTransactions: number
   }
   statistics?: {
-    card1: number
-    card2: number
-    card3: number
-    card4: number
+    card1: number | string
+    card2: number | string
+    card3: number | string
+    card4: number | string
   }
   labels?: {
     card1: string
