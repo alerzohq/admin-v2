@@ -118,7 +118,7 @@ const Audit = () => {
             bgBottomColor={Color.alerzoWhite}
             classes={{
               SessionStartedAt: { class: 'successText' },
-              SessionEndedAt: { class: 'dangertext' },
+              SessionEndedAt: { class: 'pendingText' },
             }}
           />
           <Text padding={'1rem 0'} whiteSpace={'nowrap'} as={'h4'}>
