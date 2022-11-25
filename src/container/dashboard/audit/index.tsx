@@ -19,6 +19,7 @@ import { filterValue } from '../../../data/filter-data'
 import { auditHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 import { formatDate } from '../../../utils/formatValue'
+import { rowData, rowheaders } from './auditConfig'
 
 interface SessionDetails {
   detail: any
@@ -80,45 +81,12 @@ const Audit = () => {
       ) : (
         <>
           <FlexTableWrapper.Row
-            data={{
-              User: `${state?.detail.admin.firstName} ${state?.detail.admin.lastName}`,
-              Role: `${state?.detail.admin.roleName}`,
-              SessionStartedAt: `${formatDate(
-                state?.detail.loginDate,
-                'YYYY-MM-DD HH:mm:ss'
-              )}`,
-              SessionEndedAt: isNaN(state?.detail.logoutDate)
-                ? formatDate(state?.detail.logoutDate, 'YYYY-MM-DD HH:mm:ss')
-                : 'Session ongoing',
-            }}
-            header={[...auditHeaderList, '', ''].map((header, i) => ({
-              label:
-                header === 'Session Started At'
-                  ? 'Login Time'
-                  : header === 'Session Ended At'
-                  ? 'Logout Time'
-                  : header === ''
-                  ? 'noVisibility'
-                  : header,
-              value:
-                header === 'Session Started At'
-                  ? 'SessionStartedAt'
-                  : header === 'Session Ended At'
-                  ? 'SessionEndedAt'
-                  : header === ''
-                  ? 'empty'
-                  : header,
-              columnWidth:
-                i === 5 ||
-                header === 'Session Started At' ||
-                header === 'Session Ended At'
-                  ? 'medium'
-                  : 'small',
-            }))}
+            data={rowData(state)}
+            header={rowheaders()}
             bgBottomColor={Color.alerzoWhite}
             classes={{
               SessionStartedAt: { class: 'successText' },
-              SessionEndedAt: { class: 'pendingText' },
+              SessionEndedAt: { class: 'dangerText' },
             }}
           />
           <Text padding={'1rem 0'} whiteSpace={'nowrap'} as={'h4'}>
