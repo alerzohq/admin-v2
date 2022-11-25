@@ -116,7 +116,7 @@ const GlobalStyle = createGlobalStyle`
   color:#EA4336 !important;
 }
 .pendingText{
-  color:#F1A85A;
+  color:#F1A85A !important;
 }
 .download-btn {
   align-items: center;
