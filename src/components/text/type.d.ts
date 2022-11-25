@@ -21,6 +21,7 @@ type TextOwnProps<E extends React.ElementType> = {
   alignSelf?: string
   as?: E
   height?: string
+  className?: string
 }
 
 export type TextProps<E extends React.ElementType> = TextOwnProps<E> &

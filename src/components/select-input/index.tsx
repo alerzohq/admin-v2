@@ -12,6 +12,7 @@ const SelectInput = ({
   hideValue,
   fullWidth,
   onChange,
+  disabled,
 }: SelectProps) => {
   const Placeholder = (props: PlaceholderProps) => {
     return <components.Placeholder {...props} />
@@ -34,6 +35,7 @@ const SelectInput = ({
           {placeholder}
         </div>
       }
+      isDisabled={disabled}
     />
   )
 }

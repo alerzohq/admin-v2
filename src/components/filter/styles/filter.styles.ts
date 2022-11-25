@@ -32,26 +32,6 @@ export const FilterItems = styled.div`
   // overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  .download-btn {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    white-space: nowrap;
-    background: ${Color.alerzoWhite};
-    border: 1px solid ${Color.alerzoBlue};
-    border-radius: 10px;
-    height: 45px;
-    padding: 0 1rem;
-    width: 170px;
-    text-align: center;
-    font-family: 'Gilmer';
-    font-style: normal;
-    font-size: 14px;
-    line-height: 17px;
-    color: ${Color.alerzoBlue};
-    font-weight: 500;
-    cursor: pointer;
-  }
   .add-button {
     align-items: center;
     display: flex;

@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import {
-  AlerzoLogo,
-  FavIcon,
-  LogoutIcon,
-  SettingsIcon,
-} from '../../assets/icons'
+import { AlerzoLogo, FavIcon, LogoutIcon } from '../../assets/icons'
 import { Color } from '../../assets/theme'
 import { SideBarMenus } from '../../data/sidebar-data'
 import {
@@ -125,22 +120,6 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
               {user?.data?.firstName?.charAt(0)}
               {user?.data?.lastName?.charAt(0)}
             </Profile>
-            <Link to={''}>
-              <Stack
-                direction={'row'}
-                padding={'0 0 1rem 0'}
-                alignItems={'center'}
-              >
-                <Stack
-                  justifyContent={'center'}
-                  width={'auto'}
-                  alignItems={'center'}
-                >
-                  <SettingsIcon />
-                </Stack>{' '}
-                {!isCollapsed && <Text as={'p'}>Settings</Text>}
-              </Stack>
-            </Link>
 
             <Stack
               onClick={handleLogout}

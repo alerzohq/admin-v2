@@ -26,7 +26,7 @@ const CardWidget = ({
         text={labels?.card1 || ' Total Amount Deposited'}
         value={
           stats
-            ? `N${
+            ? `₦${
                 stats?.totalAmountDeposited
                   ? amountConverter(stats?.totalAmountDeposited)
                   : '0'
@@ -40,7 +40,7 @@ const CardWidget = ({
         text={labels?.card2 || ' Total Amount Withdrawn'}
         value={
           statistics?.card2 ||
-          `N${
+          `₦${
             stats?.totalAmountWithdrawn
               ? amountConverter(stats?.totalAmountWithdrawn)
               : '0'
@@ -63,7 +63,7 @@ const CardWidget = ({
       />
       <CardWidgetBox
         Icon={icons?.card4 || UsersSolidIcon}
-        text={labels?.card4 || ' Total Number of Users'}
+        text={labels?.card4 || ' Total Active Users'}
         value={
           statistics?.card4 ||
           `${stats?.totalUsers ? thousandSeparator(stats?.totalUsers) : '0'}`

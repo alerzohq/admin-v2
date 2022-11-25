@@ -115,16 +115,42 @@ export const transformData = ({ item, name }: props) => {
     const updatedDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
     return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
+  if (item && name === 'business-terminals') {
+    const { serial_number, tid, variant, model, active, created_at } = item
+    const statusVal = active ? 'Active' : 'Inactive'
+    const createdDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
+    return { tid, serial_number, variant, model, statusVal, createdDate }
+  }
   if (item && name === 'audit') {
-    let { username, role, sessionStartedAt, sessionEndedAt } = item
-    sessionStartedAt = formatDate(sessionStartedAt, 'YYYY-MM-DD HH:mm:ss')
-    sessionEndedAt = formatDate(sessionEndedAt, 'YYYY-MM-DD HH:mm:ss')
-    role = role.charAt(0).toUpperCase() + role.slice(1)
-    return { username, role, sessionStartedAt, sessionEndedAt }
+    let { admin, loginDate, logoutDate } = item
+    loginDate = formatDate(loginDate, 'YYYY-MM-DD HH:mm:ss')
+    logoutDate = logoutDate
+      ? formatDate(logoutDate, 'YYYY-MM-DD HH:mm:ss')
+      : 'Session ongoing'
+    const role =
+      admin.roleName.charAt(0).toUpperCase() + admin.roleName.slice(1)
+    return {
+      username: `${admin.firstName} ${admin.lastName}`,
+      role,
+      loginDate,
+      logoutDate,
+    }
   }
   if (item && name === 'business-members') {
     let { first_name, last_name, email, active, created_at } = item
     let status = active ? 'Active' : 'Inactive'
     return { username: `${first_name} ${last_name}`, email, status, created_at }
+  }
+  if (item && name === 'requestsTerrminals') {
+    const { businessId, data, business, status, createdAt } = item
+    const statusVal = status[status.length - 1].status
+    const updatedDate = formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss')
+    return {
+      businessId,
+      name: business.name,
+      address: data.address,
+      statusVal,
+      updatedDate,
+    }
   }
 }

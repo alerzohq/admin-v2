@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
+import { TableItemDiv } from './table.style'
 
 export type selectedDataType = {
   [key: string]: any
@@ -44,13 +45,7 @@ const TableData = ({
           <tr key={index}>
             {dataList?.map((data, i) => (
               <td key={i} id="td-hover">
-                <div
-                  style={{
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    maxWidth: '350px',
-                    whiteSpace: 'nowrap',
-                  }}
+                <TableItemDiv
                   onClick={
                     notClickable
                       ? () => {}
@@ -75,24 +70,24 @@ const TableData = ({
                         }
                   }
                   className={
-                    data === 'successful' || data === 'Active'
+                    data === 'successful' ||
+                    data === 'Active' ||
+                    data === 'approved'
                       ? 'success'
                       : data === 'Unassigned'
                       ? 'unassigned'
-                      : data === 'pending'
+                      : data === 'pending' || data === 'processing'
                       ? 'pending'
                       : data === 'failed' || data === 'Inactive'
                       ? 'failed'
-                      : formatDate(
-                          item?.sessionStartedAt,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ) === data
+                      : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
+                        data
                       ? 'successText'
-                      : formatDate(
-                          item?.sessionEndedAt,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ) === data
-                      ? 'dangertext'
+                      : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
+                        data
+                      ? 'dangerText'
+                      : data === 'Session ongoing'
+                      ? 'pendingText'
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
@@ -101,7 +96,7 @@ const TableData = ({
                     : i === amountIndex
                     ? `₦${amountConverter(data)}`
                     : data}
-                </div>
+                </TableItemDiv>
               </td>
             ))}
           </tr>
