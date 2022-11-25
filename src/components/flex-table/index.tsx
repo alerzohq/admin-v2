@@ -132,10 +132,12 @@ FlexTableWrapper.Row = function CardRow({
                     }
                     size="14px"
                     align={'center'}
-                    className={classes?.[field]?.class}
+                    className={
+                      amt === 'Session Ongoing'
+                        ? 'pendingText'
+                        : classes?.[field]?.class
+                    }
                   >
-                    {/* {JSON.stringify(classes)} */}
-                    {/* {classes[]} */}
                     {data[field as keyof typeof data] ? amt : ''}
                   </Text>
                 </button>

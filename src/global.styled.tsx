@@ -112,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
 .end{
   text-align: end;
 }
-.dangertext{
+.dangerText{
   color:#EA4336 !important;
 }
 .pendingText{
