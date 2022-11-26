@@ -26,11 +26,23 @@ axiosInstance.interceptors.request.use(
     const user: any = jwt_decode(token)
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1
 
-    if (!isExpired) return req
+    console.log('AUTH EXPIRESS')
 
+    if (!isExpired) return req
+    
     logOut(() => {
       window.location.href = '/'
     })
+
+    
+    //  const {data} = await axios.post(`${baseURL}/logout`, {headers:{ Authorization: `Bearer ${token}`}})
+    //   if(data){
+    //     logOut(() => {
+    //       window.location.href = '/'
+    //     })
+    //   }
+    
+  
     // const {data} = await axios.post(`${baseURL}/user/token/refresh`,{refresh:token.refreshToken})
     //   localStorage.getItem('token',JSON.stringify(data.token))
     // req.headers.Authorization = data?.access_token;

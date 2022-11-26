@@ -25,8 +25,8 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 0 0 32%;
-  max-width: 32%;
+  flex: 0 0 32.28%;
+  max-width: 32.28%;
   width: 100%;
   box-sizing: border-box;
   height: 150px;
