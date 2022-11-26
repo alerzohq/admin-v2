@@ -1,13 +1,22 @@
-import { useQuery } from "react-query"
-import { getResource } from "../../../../../utils/apiRequest"
+import  { useEffect, useState } from 'react'
+import { IBillerProp } from '../type'
 
-const useGetBiller = () => {
+const useGetBiller = (biller:IBillerProp) => {
+    const [values, setValues] = useState({
+        minimumBalance: '',
+        averageBalance: '',
+      })
 
-    const getBillers = () => {
-        return getResource('billers')
-      }
-    return useQuery('billers', getBillers)
-   
+      useEffect(() => {
+        setValues({
+          ...values,
+          minimumBalance: biller?.minBalance,
+          averageBalance: biller?.averageBalance,
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [biller?.minBalance, biller?.averageBalance])
+
+  return {values, setValues}
 }
 
 export default useGetBiller

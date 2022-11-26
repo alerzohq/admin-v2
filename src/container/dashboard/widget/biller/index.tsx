@@ -9,7 +9,7 @@ import {
   Text,
 } from '../../../../components'
 import BillerCard from './card'
-import useGetBiller from './helper/useGetBiller'
+import useFetchBillers from './helper/useFetchBillers'
 import SetBiller from './set-biller'
 import { BillerCardBox, Inner, BillerWrapper } from './styles/biller.styles'
 import { IBillerProp, BillerProps } from './type'
@@ -18,7 +18,7 @@ const BillerWidget = () => {
   const [show, setShow] = useState(false)
   const [biller, setBiller] = useState<IBillerProp>({})
 
-  const { data, isError, isLoading, refetch } = useGetBiller()
+  const { data, isError, isLoading, refetch } = useFetchBillers()
 
   const handleBiller = useCallback((vals: IBillerProp) => {
     setBiller(vals)
