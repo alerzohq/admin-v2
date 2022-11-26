@@ -20,8 +20,11 @@ import {
 } from '../../../data/table-headers'
 import { Color } from '../../../assets/theme'
 import {
+  requestTerminalIcons,
   terminalIcons,
   terminalLabels,
+  terminalRequestsStats,
+  terminalsRequestsLabels,
   terminalStats,
   TERMINALTABS,
 } from '../../../data/terminal-data'
@@ -108,7 +111,6 @@ const TransactionContainer = () => {
       />
     )
   }
- 
 
   const toggle = () => {
     setIsShown(!isShown)
@@ -158,7 +160,12 @@ const TransactionContainer = () => {
         />
         {queryParam === 'requests' ? (
           <>
-            <CardWidget />
+            <CardWidget
+              statistics={terminalRequestsStats()}
+              loading={loading}
+              labels={terminalsRequestsLabels}
+              icons={requestTerminalIcons}
+            />
             <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron>
             <Pagination
               data={terrminalsRequestsData}

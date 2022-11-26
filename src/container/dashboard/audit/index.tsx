@@ -19,6 +19,7 @@ import { filterValue } from '../../../data/filter-data'
 import { auditHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 import { formatDate } from '../../../utils/formatValue'
+import { rowData, rowheaders } from './auditConfig'
 
 interface SessionDetails {
   detail: any
@@ -30,6 +31,7 @@ const Audit = () => {
 
   const [componentToRender, setComponentToRender] = useState('auditUsers')
   const [values, setValues] = useState(filterValue)
+  const [actionsValues, setActionValues] = useState(filterValue)
 
   useEffect(() => {
     if (state?.detail.id) {
@@ -71,6 +73,7 @@ const Audit = () => {
               tableData={data.data}
               tableHeaders={auditHeaderList}
               setParams
+              hideDate
             />
           </Jumbotron>
           <Pagination data={data} setPageNumber={setValues} />
@@ -78,56 +81,28 @@ const Audit = () => {
       ) : (
         <>
           <FlexTableWrapper.Row
-            data={{
-              User: `${state?.detail.admin.firstName} ${state?.detail.admin.lastName}`,
-              Role: `${state?.detail.admin.roleName}`,
-              SessionStartedAt: `${formatDate(
-                state?.detail.loginDate,
-                'YYYY-MM-DD HH:mm:ss'
-              )}`,
-              SessionEndedAt: isNaN(state?.detail.logoutDate)
-                ? formatDate(state?.detail.logoutDate, 'YYYY-MM-DD HH:mm:ss')
-                : 'Session ongoing',
-            }}
-            header={[...auditHeaderList, '', ''].map((header, i) => ({
-              label:
-                header === 'Session Started At'
-                  ? 'Login Time'
-                  : header === 'Session Ended At'
-                  ? 'Logout Time'
-                  : header === ''
-                  ? 'noVisibility'
-                  : header,
-              value:
-                header === 'Session Started At'
-                  ? 'SessionStartedAt'
-                  : header === 'Session Ended At'
-                  ? 'SessionEndedAt'
-                  : header === ''
-                  ? 'empty'
-                  : header,
-              columnWidth:
-                i === 5 ||
-                header === 'Session Started At' ||
-                header === 'Session Ended At'
-                  ? 'medium'
-                  : 'small',
-            }))}
+            data={rowData(state)}
+            header={rowheaders()}
             bgBottomColor={Color.alerzoWhite}
             classes={{
               SessionStartedAt: { class: 'successText' },
-              SessionEndedAt: { class: 'dangertext' },
+              SessionEndedAt: { class: 'dangerText' },
             }}
           />
           <Text padding={'1rem 0'} whiteSpace={'nowrap'} as={'h4'}>
             Actions Performed
           </Text>
           <Jumbotron padding={'1rem 0'} mt={'0.5rem'} direction="column">
-            <TimelineElement actions={state?.detail?.actions} />
+            <TimelineElement
+              actions={state?.detail?.actions.slice(
+                actionsValues.pageNumber * actionsValues.count,
+                actionsValues.pageNumber + 1 * actionsValues.count
+              )}
+            />
           </Jumbotron>
           <Pagination
             data={{ data: state?.detail?.actions }}
-            setPageNumber={setValues}
+            setPageNumber={setActionValues}
           />
         </>
       )
