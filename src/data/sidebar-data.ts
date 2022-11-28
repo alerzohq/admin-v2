@@ -21,18 +21,18 @@ import AllPermissions from '../configs/access-control'
 import { Path } from '../constants/route-path'
 
 export const SideBarMenus = () => {
-  const { adminAccess } = AllPermissions()
+  const {adminAccess, businessesAccess,customersAccess,historyAccess,productsAccess,rolesAccess,terminalAccess } = AllPermissions()
 
   const sideBarData = [
-    {
+     {
       id: 1,
       title: 'Dashboard',
       InActiveIcon: Dashboard,
       ActiveIcon: ActiveDashboardIcon,
       path: `/${Path.DASHBOARD}`,
       activeIconColor: Color.alerzoBlue,
-    },
-    {
+     },
+     historyAccess && {
       id: 2,
       title: 'History',
       InActiveIcon: HistoryIcon,
@@ -40,7 +40,7 @@ export const SideBarMenus = () => {
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.TRANSACTION}`,
     },
-    adminAccess && {
+    businessesAccess && {
       id: 3,
       title: 'Businesses',
       InActiveIcon: BusinessIcon,
@@ -48,7 +48,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.BUSINESSES}`,
       activeIconColor: Color.alerzoBlue,
     },
-    {
+    customersAccess && {
       id: 4,
       title: 'Digital Bank',
       InActiveIcon: DigitalbankIcon,
@@ -56,7 +56,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.DIGITALBANK}`,
       activeIconColor: Color.alerzoBlue,
     },
-    {
+    rolesAccess && {
       id: 5,
       title: 'Employee  Mgt',
       InActiveIcon: UserIcon,
@@ -64,7 +64,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.USERS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    {
+    productsAccess &&{
       id: 6,
       title: 'Product',
       InActiveIcon: ProductIcon,
@@ -72,7 +72,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.PRODUCTS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    adminAccess && {
+    terminalAccess && {
       id: 6,
       title: 'Terminals',
       InActiveIcon: TerminalIcon,
@@ -80,7 +80,7 @@ export const SideBarMenus = () => {
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
     },
-    {
+    adminAccess && {
       id: 7,
       title: 'Audit Trail',
       InActiveIcon: AuditIcon,

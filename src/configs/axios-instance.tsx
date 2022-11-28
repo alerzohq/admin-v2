@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
     const user: any = jwt_decode(token)
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1
 
-    console.log('AUTH EXPIRESS')
+
 
     if (!isExpired) return req
     

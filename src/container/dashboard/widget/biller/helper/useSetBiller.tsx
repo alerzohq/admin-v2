@@ -13,9 +13,9 @@ const useSetBiller = (slug:string, setShow: React.Dispatch<React.SetStateAction<
     
      return useMutation(setBillerThreshold, {
         onSuccess: () => {
-          queryClient.invalidateQueries('billers')
+          queryClient.invalidateQueries('billers');      
           setShow(false)
-          toast.success('Threshold set successfully')
+          toast.success('Threshold set successfully');
         },
         onError: () => {
           toast.error('Failed to set threshold')

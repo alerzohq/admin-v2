@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from '../../../../components'
+import { errorMessage } from '../../../../utils/message'
 import BillerCard from './card'
 import useFetchBillers from './helper/useFetchBillers'
 import SetBiller from './set-biller'
@@ -18,7 +19,7 @@ const BillerWidget = () => {
   const [show, setShow] = useState(false)
   const [biller, setBiller] = useState<IBillerProp>({})
 
-  const { data, isError, isLoading, refetch } = useFetchBillers()
+  const { data, isError, isLoading, error, refetch } = useFetchBillers()
 
   const handleBiller = useCallback((vals: IBillerProp) => {
     setBiller(vals)
@@ -34,7 +35,7 @@ const BillerWidget = () => {
     component = (
       <FallBack
         error
-        title={'Failed to load biller balance.'}
+        title={`${errorMessage(error)}`}
         refetch={refetch}
       />
     )

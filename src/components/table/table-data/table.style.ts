@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
 
 export const TableItemDiv = styled.div`
-  textoverflow: ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
-  maxwidth: 350px;
-  whitespace: nowrap;
+  max-width: 350px;
+  white-space: nowrap;
 `

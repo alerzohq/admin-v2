@@ -80,6 +80,8 @@ function App() {
           </Route>
 
           {/* replace with not found component */}
+
+
           <Route path="*" element={<NotFound user={user} />} />
         </Routes>
       </ErrorBoundary>

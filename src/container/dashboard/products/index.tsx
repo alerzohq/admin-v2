@@ -15,6 +15,7 @@ import { productsHeaderList } from '../../../data/table-headers'
 import { useMutation } from '../../../hooks'
 import { getResource } from '../../../utils/apiRequest'
 import { mapBillers } from '../../../utils/formatValue'
+import { errorMessage } from '../../../utils/message'
 
 const ProductsContainer = () => {
   const [slug, setSlug] = useState()
@@ -76,6 +77,8 @@ const ProductsContainer = () => {
     }
   }, [newBiller, changeBiller])
 
+  console.log({error})
+
   useEffect(() => {
     setSlug(stateValue?.selectData?.slug)
   }, [stateValue?.selectData])
@@ -88,23 +91,20 @@ const ProductsContainer = () => {
     }
   }, [updatedData, refetch])
   useEffect(() => {
-    if (isError) {
-      toast.error(`${error}`)
-    }
     if (isBillerError) {
-      toast.error(`${billerError}`)
+      toast.error(`${errorMessage(billerError)}`)
     }
     if (updateError) {
-      toast.error(`${updateError}`)
+      toast.error(`${errorMessage(updateError)}`)
     }
-  }, [isError, isBillerError, updateError, error, billerError])
+  }, [ isBillerError, updateError, error, billerError])
 
   let component
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={'Failed to load products. '} />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No products list available. '} />
