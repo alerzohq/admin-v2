@@ -20,7 +20,7 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     return getNewFilterResource(`terminals`, filterValue)
   }
 
-  const { isLoading, data, isError, isFetching, refetch } = useQuery(
+  const { isLoading, data, isError,  refetch } = useQuery(
     ['business-terminals', values],
     () => getBusinesses({ ...values, userId: businessId }),
     { keepPreviousData: true }

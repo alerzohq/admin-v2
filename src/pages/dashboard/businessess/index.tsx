@@ -5,12 +5,13 @@ import { Path } from '../../../constants/route-path'
 import { BusinessContainer } from '../../../container/dashboard'
 
 const Businesses = () => {
-  const { adminAccess } = AllPermissions()
-  if (!adminAccess) {
+  const { businessesAccess } = AllPermissions()
+  if (!businessesAccess) {
     return <Navigate to={`/${Path.DASHBOARD}`} replace />
   }
 
   return <BusinessContainer />
 }
+ 
 
 export default Businesses

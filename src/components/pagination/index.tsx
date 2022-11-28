@@ -35,8 +35,8 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             </Text>
             <SelectInput
               onChange={(val) => handlePageCount(val)}
-              placeholder={'10'}
-              value={'10'}
+              placeholder={'50'}
+              value={'50'}
               options={options}
             />
           </Inner>
