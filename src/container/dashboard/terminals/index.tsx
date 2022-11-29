@@ -31,6 +31,7 @@ import {
 import { getTerminalsHandler, getTerminalStats } from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
+import { errorMessage } from '../../../utils/message'
 
 const TransactionContainer = () => {
   const search = useLocation().search
@@ -56,6 +57,7 @@ const TransactionContainer = () => {
     isError: isErrorExistingTerrminals,
     isFetching: isFetchingExistingTerrminals,
     refetch,
+    error: existingRequestsError,
   } = useQuery(['terminals', values], () => getTerminalsHandler(values), {
     keepPreviousData: true,
   })
@@ -65,6 +67,7 @@ const TransactionContainer = () => {
     data: terrminalsRequestsData,
     isError: isErrorTerrminalsRequests,
     isFetching: isFetchingTerrminalsRequests,
+    error: terminsalsRequestsError,
   } = useQuery(
     ['requestsTerminals', values.count],
     () => getTerminalsRequestsHandler(values.count),
@@ -76,7 +79,11 @@ const TransactionContainer = () => {
     existingTerrminals = <Loader />
   } else if (isErrorExistingTerrminals) {
     existingTerrminals = (
-      <FallBack error title={'Failed to load terminals. '} refetch={refetch} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(existingRequestsError)}`}
+      />
     )
   } else if (existingTerrminalsData?.data?.length < 1) {
     existingTerrminals = (
@@ -96,7 +103,13 @@ const TransactionContainer = () => {
   if (isLoadingTerrminalsRequests) {
     requestsTerrminals = <Loader />
   } else if (isErrorTerrminalsRequests) {
-    existingTerrminals = <FallBack error title={'Failed to load terminals. '} />
+    existingTerrminals = (
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(terminsalsRequestsError)}`}
+      />
+    )
   } else if (terrminalsRequestsData?.data?.length < 1) {
     requestsTerrminals = (
       <FallBack title={'You have no requested terminals yet. '} />

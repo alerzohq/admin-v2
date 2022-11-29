@@ -12,6 +12,7 @@ import { filterValue } from '../../../../../data/filter-data'
 import { businessTerminalHeader } from '../../../../../data/table-headers'
 import { filterProps } from '../../../../../@types'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
 
 const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   const [values, setValues] = useState(filterValue)
@@ -20,7 +21,7 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     return getNewFilterResource(`terminals`, filterValue)
   }
 
-  const { isLoading, data, isError,  refetch } = useQuery(
+  const { isLoading, data, isError, refetch, error } = useQuery(
     ['business-terminals', values],
     () => getBusinesses({ ...values, userId: businessId }),
     { keepPreviousData: true }
@@ -31,11 +32,7 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        title={'Failed to load business terminals. '}
-        refetch={refetch}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = (

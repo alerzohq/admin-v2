@@ -11,6 +11,7 @@ import {
 import { filterValue } from '../../../../../data/filter-data'
 import { busUserList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
 
 const Members = ({ businessId }: { businessId: string }) => {
   const getMembers = () => {
@@ -18,12 +19,17 @@ const Members = ({ businessId }: { businessId: string }) => {
   }
 
   const [, setValues] = useState(filterValue)
-  const { isLoading, isError, data } = useQuery('members', getMembers)
+  const { isLoading, isError, data, refetch, error } = useQuery(
+    'members',
+    getMembers
+  )
   let component
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = <FallBack error title={'Failed to load businesses history. '} />
+    component = (
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+    )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no business history yet. '} />
   } else {

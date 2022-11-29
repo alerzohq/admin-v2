@@ -30,11 +30,7 @@ const BillerWidget = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        title={`${errorMessage(error)}`}
-        refetch={refetch}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no biller yet.'} refetch={refetch} />

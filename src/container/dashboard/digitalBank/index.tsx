@@ -31,7 +31,7 @@ const DigitalBankContainer = () => {
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError,error, isFetching } = useQuery(
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     ['digital-bank', values],
     () => getDigitalBanksHandler(values),
     { keepPreviousData: true }
@@ -42,9 +42,7 @@ const DigitalBankContainer = () => {
   if (isLoading) {
     digitalBankComponent = <Loader />
   } else if (isError) {
-    digitalBankComponent = (
-      <FallBack error title={`${errorMessage(error)}`} />
-    )
+    digitalBankComponent = <FallBack error title={`${errorMessage(error)}`} />
   } else if (data?.data?.length < 1) {
     digitalBankComponent = (
       <FallBack

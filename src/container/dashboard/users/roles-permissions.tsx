@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
 import { rolesPermList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
+import { errorMessage } from '../../../utils/message'
 
 const RolesPermissions = ({
   handleRoleEdit,
@@ -20,7 +21,7 @@ const RolesPermissions = ({
     return getResource('roles')
   }
 
-  const { isLoading, isError, data, refetch } = useQuery(
+  const { isLoading, isError, data, refetch, error } = useQuery(
     'roles-permissions',
     getRoles
   )
@@ -29,11 +30,7 @@ const RolesPermissions = ({
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        refetch={refetch}
-        title={'Failed to load roles and permission. '}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = (

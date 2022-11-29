@@ -18,6 +18,7 @@ import { axiosInstance } from '../../../configs/axios-instance'
 import { employeesHeader } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 import { validEmail } from '../../../utils/formatValue'
+import { errorMessage } from '../../../utils/message'
 
 const Employees = () => {
   const [isShown, setIsShown] = useState(false)
@@ -50,7 +51,7 @@ const Employees = () => {
     return getResource('roles')
   }
 
-  const { isLoading, isError, data, refetch } = useQuery(
+  const { isLoading, isError, data, refetch, error } = useQuery(
     'employees',
     getEmployees
   )
@@ -60,7 +61,7 @@ const Employees = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={'Failed to load Employees'} />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No Employees list available yet.'} />

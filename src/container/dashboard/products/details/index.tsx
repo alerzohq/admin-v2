@@ -13,6 +13,7 @@ import {
 } from '../../../../components'
 import { productBillersHeaderList } from '../../../../data/table-headers'
 import { Color } from '../../../../assets/theme'
+import { errorMessage } from '../../../../utils/message'
 
 interface CustomizedState {
   detail: any
@@ -24,7 +25,7 @@ const ProductDetailsContainer = () => {
   const getProductBillers = () => {
     return getResource(`products/${detail?.slug}/billers`)
   }
-  const { isLoading, isRefetching, isError, refetch, data } = useQuery(
+  const { isLoading, isRefetching, isError, refetch, data, error } = useQuery(
     'billers',
     getProductBillers
   )
@@ -35,11 +36,7 @@ const ProductDetailsContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        title={'Failed to load transaction history.'}
-        refetch={refetch}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = (

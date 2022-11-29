@@ -77,8 +77,6 @@ const ProductsContainer = () => {
     }
   }, [newBiller, changeBiller])
 
-  console.log({error})
-
   useEffect(() => {
     setSlug(stateValue?.selectData?.slug)
   }, [stateValue?.selectData])
@@ -97,7 +95,7 @@ const ProductsContainer = () => {
     if (updateError) {
       toast.error(`${errorMessage(updateError)}`)
     }
-  }, [ isBillerError, updateError, error, billerError])
+  }, [isBillerError, updateError, error, billerError])
 
   let component
   if (isLoading) {
@@ -107,7 +105,7 @@ const ProductsContainer = () => {
       <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'No products list available. '} />
+    component = <FallBack title={'No products list available.'} />
   } else {
     component = (
       <TableWrapper wrapperPb="5rem">
