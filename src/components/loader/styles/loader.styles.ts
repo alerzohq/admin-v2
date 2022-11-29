@@ -11,9 +11,9 @@ export const LoaderWrapper = styled.div<Props>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  bottom: ${({isUpload})=>isUpload ? '30px' : 0};
-  position: ${({isUpload})=>isUpload ? 'absolute' : 'static'} 
-  `
+  bottom: ${({ isUpload }) => (isUpload ? '30px' : 0)};
+  position: ${({ isUpload }) => (isUpload ? 'absolute' : 'static')};
+`
 
 export const LoaderIndicator = styled.div<Props>`
   height: 40px;

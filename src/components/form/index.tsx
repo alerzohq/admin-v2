@@ -74,22 +74,28 @@ Form.Select = function FormSelect({
   )
 }
 
-Form.File = function FormFile({text,icon, handleFileChange, ...restProps}:FormProps){
-
-  const fileRef = useRef<HTMLInputElement>(null);  
-  const handleClick = ()=>{
-     fileRef?.current?.click()
+Form.File = function FormFile({
+  text,
+  icon,
+  handleFileChange,
+  ...restProps
+}: FormProps) {
+  const fileRef = useRef<HTMLInputElement>(null)
+  const handleClick = () => {
+    fileRef?.current?.click()
   }
 
   return (
-      <FileUpload  {...restProps}> 
-           <input type='file' accept="image/*" ref={fileRef} onChange={handleFileChange}/>
-           <div className= "file" onClick={handleClick}>
-              {icon &&icon()} {text}
-           </div>    
-      </FileUpload>
-    
+    <FileUpload {...restProps}>
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileRef}
+        onChange={handleFileChange}
+      />
+      <div className="file" onClick={handleClick}>
+        {icon && icon()} {text}
+      </div>
+    </FileUpload>
   )
-    
 }
-

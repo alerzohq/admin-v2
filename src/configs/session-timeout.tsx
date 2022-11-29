@@ -2,17 +2,16 @@ import React, { ReactNode } from 'react'
 import { IdleTimer } from './HOC/idle-timer'
 import useLogout from '../hooks/useLogout'
 
-
 type TimeoutProps = {
   children: ReactNode
 }
 
 const SessionTimeout = ({ children }: TimeoutProps) => {
-  const {mutate}=useLogout();
+  const { mutate } = useLogout()
 
   let idleTimer = null
   const onIdle = () => {
-    mutate();
+    mutate()
   }
 
   return (
