@@ -127,6 +127,7 @@ const TransactionContainer = () => {
         isShown={isShown}
         toggle={toggle}
         handleAddMethod={handleAddMethod}
+        setIsShown={setIsShown}
       />
       <AddTerminalModal
         addMethod={addMethod}

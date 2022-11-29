@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react'
 
-
 import {
   FallBack,
   Jumbotron,
@@ -26,8 +25,6 @@ const BillerWidget = () => {
     setShow(true)
   }, [])
 
-
-
   let component
   if (isLoading) {
     component = <Loader />
@@ -46,7 +43,11 @@ const BillerWidget = () => {
       <Inner>
         <BillerCardBox>
           {data?.data.map((billerItem: BillerProps, i: number) => (
-            <BillerCard key={i} biller={billerItem} handleBiller={handleBiller} />
+            <BillerCard
+              key={i}
+              biller={billerItem}
+              handleBiller={handleBiller}
+            />
           ))}
         </BillerCardBox>
       </Inner>

@@ -14,7 +14,15 @@ export const color = (biller: { [key: string]: any }) => {
   }
 }
 
-export const isBillerValid=(values:{minimumBalance:string,averageBalance:string})=>{
-  if(values?.minimumBalance && values?.averageBalance && (Number(values?.minimumBalance) < Number(values?.averageBalance))){
-    return true}
+export const isBillerValid = (values: {
+  minimumBalance: string
+  averageBalance: string
+}) => {
+  if (
+    values?.minimumBalance &&
+    values?.averageBalance &&
+    Number(values?.minimumBalance) < Number(values?.averageBalance)
+  ) {
+    return true
+  }
 }

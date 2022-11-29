@@ -25,9 +25,11 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
   const { sideBarData } = SideBarMenus()
-  const { state:{ user }} = useAppContext()
+  const {
+    state: { user },
+  } = useAppContext()
 
-  const {mutate}=useLogout()
+  const { mutate } = useLogout()
 
   const handleToggle = (index: number) => {
     if (show === index) {
@@ -39,9 +41,6 @@ const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
   const handleLogout = () => {
     mutate()
   }
-
-
-
 
   return (
     <SidebarWrapper isCollapsed={isCollapsed}>

@@ -29,20 +29,18 @@ axiosInstance.interceptors.request.use(
 
 
     if (!isExpired) return req
-    
+
     logOut(() => {
       window.location.href = '/'
     })
 
-    
     //  const {data} = await axios.post(`${baseURL}/logout`, {headers:{ Authorization: `Bearer ${token}`}})
     //   if(data){
     //     logOut(() => {
     //       window.location.href = '/'
     //     })
     //   }
-    
-  
+
     // const {data} = await axios.post(`${baseURL}/user/token/refresh`,{refresh:token.refreshToken})
     //   localStorage.getItem('token',JSON.stringify(data.token))
     // req.headers.Authorization = data?.access_token;
