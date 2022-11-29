@@ -12,6 +12,5 @@ const Businesses = () => {
 
   return <BusinessContainer />
 }
- 
 
 export default Businesses

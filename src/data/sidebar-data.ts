@@ -21,18 +21,26 @@ import AllPermissions from '../configs/access-control'
 import { Path } from '../constants/route-path'
 
 export const SideBarMenus = () => {
-  const {adminAccess, businessesAccess,customersAccess,historyAccess,productsAccess,rolesAccess,terminalAccess } = AllPermissions()
+  const {
+    adminAccess,
+    businessesAccess,
+    customersAccess,
+    historyAccess,
+    productsAccess,
+    rolesAccess,
+    terminalAccess,
+  } = AllPermissions()
 
   const sideBarData = [
-     {
+    {
       id: 1,
       title: 'Dashboard',
       InActiveIcon: Dashboard,
       ActiveIcon: ActiveDashboardIcon,
       path: `/${Path.DASHBOARD}`,
       activeIconColor: Color.alerzoBlue,
-     },
-     historyAccess && {
+    },
+    historyAccess && {
       id: 2,
       title: 'History',
       InActiveIcon: HistoryIcon,
@@ -64,7 +72,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.USERS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    productsAccess &&{
+    productsAccess && {
       id: 6,
       title: 'Product',
       InActiveIcon: ProductIcon,

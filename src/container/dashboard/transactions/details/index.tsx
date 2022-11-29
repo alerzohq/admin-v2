@@ -25,8 +25,9 @@ const TabsContainer = () => {
     return getResource(`transactions?query=${id}`)
   }
 
-  const { isLoading, data, isError, isFetching } = useQuery(['transactions',id],
-   ()=> getTransactions(id)
+  const { isLoading, data, isError, isFetching } = useQuery(
+    ['transactions', id],
+    () => getTransactions(id)
   )
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
