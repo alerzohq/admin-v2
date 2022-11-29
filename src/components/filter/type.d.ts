@@ -12,7 +12,7 @@ export type FilterProps = {
       placeholder: string
       onChange?: () => void
       value: string
-      query: 'search' | 'status' | 'allPlatform' | 'variant'
+      query: 'search' | 'status' | 'allPlatform' | 'model'
     }[]
     buttons?: {
       buttonClass: string

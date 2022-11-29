@@ -1,18 +1,21 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
-type LineStyleProps = {
+type Props = {
   color?: string
+  isUpload?: boolean
 }
 
-export const LoaderWrapper = styled.div`
+export const LoaderWrapper = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+  bottom: ${({isUpload})=>isUpload ? '30px' : 0};
+  position: ${({isUpload})=>isUpload ? 'absolute' : 'static'} 
+  `
 
-export const LoaderIndicator = styled.div<LineStyleProps>`
+export const LoaderIndicator = styled.div<Props>`
   height: 40px;
   display: flex;
   align-items: center;

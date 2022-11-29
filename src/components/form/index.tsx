@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 // import { options } from '../../data/select-data'
 import {
   FormContainer,
@@ -10,6 +10,7 @@ import {
   Footer,
   Input,
   Select,
+  FileUpload,
 } from './styles/form.style'
 import { FormProps, InputProps, SelectProps } from './type'
 
@@ -72,3 +73,23 @@ Form.Select = function FormSelect({
     </Select>
   )
 }
+
+Form.File = function FormFile({text,icon, handleFileChange, ...restProps}:FormProps){
+
+  const fileRef = useRef<HTMLInputElement>(null);  
+  const handleClick = ()=>{
+     fileRef?.current?.click()
+  }
+
+  return (
+      <FileUpload  {...restProps}> 
+           <input type='file' accept="image/*" ref={fileRef} onChange={handleFileChange}/>
+           <div className= "file" onClick={handleClick}>
+              {icon &&icon()} {text}
+           </div>    
+      </FileUpload>
+    
+  )
+    
+}
+

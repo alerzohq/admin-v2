@@ -1,4 +1,4 @@
-import { formatDate } from '../utils/formatValue'
+import { amountHelper, formatDate } from '../utils/formatValue'
 
 export const TABS = [
   { label: 'Business Details', value: 'details', title: 'Business Details' },
@@ -20,9 +20,9 @@ export const DETAILSTABLE = [
 ]
 
 export const ADDRESSTABLE = [
+  { label: 'Main balance', value: 'balance', columnWidth: 'small' },
+  { label: 'Commission', value: 'commission', columnWidth: 'small' },
   { label: 'Business Address', value: 'address', columnWidth: 'small' },
-  { label: 'noVisibility', value: 'empty', columnWidth: 'small' },
-  { label: 'noVisibility', value: 'empty', columnWidth: 'small' },
   { label: 'noVisibility', value: 'empty', columnWidth: 'small' },
   { label: 'noVisibility', value: 'empty', columnWidth: 'small' },
   { label: 'noVisibility', value: 'empty', columnWidth: 'large' },
@@ -67,6 +67,8 @@ export const businessDetailsHelper = (data: any) => {
       header: ADDRESSTABLE,
       data: {
         address: data?.address,
+        balance: amountHelper(data?.wallet_details[0]?.wallet_balance),
+        commission: amountHelper(data?.wallet_details[1]?.wallet_balance),
         empty: '',
       },
     },
