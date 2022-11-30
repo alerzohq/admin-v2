@@ -8,8 +8,6 @@ const AllPermissions = () => {
 
   const userInfo = getStorageItem('user')
 
-  console.log({ userInfo })
-
   const isHasPermission = userInfo?.data?.permissions.map(
     (permission: { [key: string]: string }) => permission.slug
   )

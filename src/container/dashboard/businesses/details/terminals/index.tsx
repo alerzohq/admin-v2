@@ -65,8 +65,17 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
             selects: [
               {
                 placeholder: 'Variant',
-                values: [],
-                query: 'model',
+                values: [
+                  {
+                    label: 'A75',
+                    value: 'A75',
+                  },
+                  {
+                    label: 'VM30',
+                    value: 'VM30',
+                  },
+                ],
+                query: 'variant',
                 value: '',
                 onChange: () => {},
               },
