@@ -4,16 +4,14 @@ import { getStorageItem } from '../utils/session-storage'
 const AllPermissions = () => {
   const {
     state: { user },
-  } = useAppContext();
-  
-  const userInfo = getStorageItem('user');
-  
+  } = useAppContext()
 
-  // console.log({userInfo})
+  const userInfo = getStorageItem('user')
 
+  const isHasPermission = userInfo?.data?.permissions.map(
+    (permission: { [key: string]: string }) => permission.slug
+  )
 
-  const isHasPermission =  userInfo?.data?.permissions.map((permission:{[key: string]: string}) => permission.slug)
-  
   //Permissions
   const adminAccess = userInfo?.data?.role === 'Super Admin' || Boolean(user?.data?.role === 'Super Admin')
   const businessesAccess =isHasPermission.includes('view_businesses') || adminAccess

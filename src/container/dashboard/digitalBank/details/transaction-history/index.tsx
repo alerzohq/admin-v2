@@ -14,6 +14,7 @@ import { Action } from '../../../../../context/actions'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
   const [values, setValues] = useState(filterValue)
@@ -27,7 +28,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
     )
   }
 
-  const { isLoading, isError, data, isFetching } = useQuery(
+  const { isLoading, isError, data, isFetching, error, refetch } = useQuery(
     ['user-transaction-history', values],
     () => getTransactionsHistory(values),
     { keepPreviousData: true }
@@ -44,7 +45,9 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = <FallBack error title={'Failed to load businesses history. '} />
+    component = (
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+    )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No transaction Found. '} />
   } else {

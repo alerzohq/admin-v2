@@ -7,6 +7,7 @@ import {
 } from '../../../widget/user-account/styles/cards.styles'
 import UserAccount from '../../../widget/user-account'
 import { FallBack, Jumbotron, Loader } from '../../../../../components'
+import { errorMessage } from '../../../../../utils/message'
 
 const CardsContainer = () => {
   const location = useLocation()
@@ -16,7 +17,7 @@ const CardsContainer = () => {
   const getCustomerDetails = () => {
     return getResource(`customers?query=${id}`)
   }
-  const { isLoading, isError, data, isFetching, refetch } = useQuery(
+  const { isLoading, isError, data, isFetching, refetch, error } = useQuery(
     'customer-bank',
     getCustomerDetails
   )
@@ -24,7 +25,9 @@ const CardsContainer = () => {
   const user = data?.data[0]
   const renderSwitch = () => {
     if (isError) {
-      return <FallBack error title={'Failed to load accounts. '} />
+      return (
+        <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      )
     }
     if (isLoading || isFetching) {
       return <Loader />

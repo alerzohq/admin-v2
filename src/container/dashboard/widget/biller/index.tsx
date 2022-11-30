@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react'
 
-
 import {
   FallBack,
   Jumbotron,
@@ -26,18 +25,12 @@ const BillerWidget = () => {
     setShow(true)
   }, [])
 
-
-
   let component
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        title={`${errorMessage(error)}`}
-        refetch={refetch}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no biller yet.'} refetch={refetch} />
@@ -46,7 +39,11 @@ const BillerWidget = () => {
       <Inner>
         <BillerCardBox>
           {data?.data.map((billerItem: BillerProps, i: number) => (
-            <BillerCard key={i} biller={billerItem} handleBiller={handleBiller} />
+            <BillerCard
+              key={i}
+              biller={billerItem}
+              handleBiller={handleBiller}
+            />
           ))}
         </BillerCardBox>
       </Inner>

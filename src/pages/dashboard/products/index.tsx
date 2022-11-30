@@ -4,7 +4,7 @@ import { Path } from '../../../constants/route-path'
 import { ProductsContainer } from '../../../container/dashboard'
 
 const Products = () => {
-  const {productsAccess} = AllPermissions()
+  const { productsAccess } = AllPermissions()
 
   if (!productsAccess) {
     return <Navigate to={`/${Path.DASHBOARD}`} replace />

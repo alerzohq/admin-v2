@@ -45,7 +45,7 @@ const TransactionContainer = () => {
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, isFetching,error, refetch } = useQuery(
+  const { isLoading, data, isError, isFetching, refetch, error } = useQuery(
     ['transactions', values],
     () => getTransactions(values),
     { keepPreviousData: true }
@@ -56,11 +56,7 @@ const TransactionContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        title={`${errorMessage(error)}`}
-        refetch={refetch}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = (
@@ -78,7 +74,7 @@ const TransactionContainer = () => {
       />
     )
   }
-  
+
 
   return (
     <Container
