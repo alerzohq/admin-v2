@@ -5,10 +5,7 @@ import 'react-date-range/dist/theme/default.css'
 import OutsideClickHandler from 'react-outside-click-handler'
 import { CalenderIcon } from '../../assets/icons'
 import { formatDate } from '../../utils/formatValue'
-import {
-  isSameDay,
-  endOfDay,
-} from 'date-fns';
+import { isSameDay, endOfDay } from 'date-fns'
 import {
   DateRangeContainer,
   DateRangeWrapper,
@@ -23,7 +20,9 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
     key: 'selection',
   })
   const handleSelect = ({ selection }: any) => {
-    const endDateVal = isSameDay(selection?.startDate, selection?.endDate) ?  endOfDay(selection?.endDate) : selection?.endDate;
+    const endDateVal = isSameDay(selection?.startDate, selection?.endDate)
+      ? endOfDay(selection?.endDate)
+      : selection?.endDate
     setSelectionRange({
       ...selectionRange,
       startDate: selection?.startDate,

@@ -68,12 +68,12 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
                 values: [
                   {
                     label: 'A75',
-                    value: 'A75'
+                    value: 'A75',
                   },
                   {
                     label: 'VM30',
-                    value: 'VM30'
-                  }
+                    value: 'VM30',
+                  },
                 ],
                 query: 'variant',
                 value: '',
