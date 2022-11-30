@@ -13,23 +13,35 @@ const AllPermissions = () => {
   )
 
   //Permissions
-  const adminAccess = userInfo?.data?.role === 'Super Admin' || Boolean(user?.data?.role === 'Super Admin')
+  const adminAccess =
+    userInfo?.data?.role === 'Super Admin' ||
+    Boolean(user?.data?.role === 'Super Admin')
   const businessesAccess =isHasPermission.includes('view_businesses') || adminAccess
-  
-  const customersAccess =   isHasPermission.includes('view_customers') || adminAccess
-  const customerDetailAccess =   isHasPermission.includes('view_customer') || adminAccess
-  const productBillersAccess =   isHasPermission.includes('view_product_billers') || adminAccess
-  const productsAccess =   isHasPermission.includes('view_products') || adminAccess
-  const rolesAccess =   isHasPermission.includes('view_roles') || adminAccess
-  const terminalAccess =   isHasPermission.includes('view_terminals') || adminAccess
-  const historyAccess =   isHasPermission.includes('view_transactions') || adminAccess
+  const customersAccess =
+    isHasPermission.includes('view_customers') || adminAccess
+  const customerDetailAccess =
+    isHasPermission.includes('view_customer') || adminAccess
+  const productBillersAccess =
+    isHasPermission.includes('view_product_billers') || adminAccess
+  const productsAccess =
+    isHasPermission.includes('view_products') || adminAccess
+  const rolesAccess = isHasPermission.includes('view_roles') || adminAccess
+  const terminalAccess =
+    isHasPermission.includes('view_terminals') || adminAccess
+  const historyAccess =
+    isHasPermission.includes('view_transactions') || adminAccess
 
-  
-
-
-
-
-  return { adminAccess,businessesAccess,customersAccess,customerDetailAccess,historyAccess,productsAccess, productBillersAccess,rolesAccess,terminalAccess }
+  return {
+    adminAccess,
+    businessesAccess,
+    customersAccess,
+    customerDetailAccess,
+    historyAccess,
+    productsAccess,
+    productBillersAccess,
+    rolesAccess,
+    terminalAccess,
+  }
 }
 
 export default AllPermissions
