@@ -36,7 +36,6 @@ const AddMethodModal: React.FC<{
     if (file) {
       const payload = new FormData()
       payload.append('terminalUploadFile', file!)
-      console.log(file, payload)
       mutate(payload, {
         onSuccess: () => {
           queryClient.invalidateQueries('terminal-stats')
