@@ -9,14 +9,15 @@ const AllPermissions = () => {
   const userInfo = getStorageItem('user');
   
 
-  console.log({userInfo})
+  // console.log({userInfo})
 
 
   const isHasPermission =  userInfo?.data?.permissions.map((permission:{[key: string]: string}) => permission.slug)
   
   //Permissions
-  const adminAccess = userInfo?.data?.role === 'Super Admin' ||Boolean(user?.data?.role === 'Super Admin')
-  const businessesAccess =isHasPermission.includes('view_businesses')
+  const adminAccess = userInfo?.data?.role === 'Super Admin' || Boolean(user?.data?.role === 'Super Admin')
+  const businessesAccess =isHasPermission.includes('view_businesses') || adminAccess
+  
   const customersAccess =   isHasPermission.includes('view_customers') || adminAccess
   const customerDetailAccess =   isHasPermission.includes('view_customer') || adminAccess
   const productBillersAccess =   isHasPermission.includes('view_product_billers') || adminAccess

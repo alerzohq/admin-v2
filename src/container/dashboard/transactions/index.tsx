@@ -19,6 +19,7 @@ import {
   platformFiltersOptions,
   statusFilterOptions,
 } from '../../../helper/filter-helper'
+import { errorMessage } from '../../../utils/message'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
@@ -44,7 +45,7 @@ const TransactionContainer = () => {
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, isFetching, refetch } = useQuery(
+  const { isLoading, data, isError, isFetching,error, refetch } = useQuery(
     ['transactions', values],
     () => getTransactions(values),
     { keepPreviousData: true }
@@ -57,7 +58,7 @@ const TransactionContainer = () => {
     component = (
       <FallBack
         error
-        title={'Failed to load transaction history.'}
+        title={`${errorMessage(error)}`}
         refetch={refetch}
       />
     )
@@ -77,6 +78,7 @@ const TransactionContainer = () => {
       />
     )
   }
+  
 
   return (
     <Container
