@@ -1,23 +1,17 @@
 import React, { ReactNode } from 'react'
-import { useAppContext } from '../context'
-import { Action } from '../context/actions'
-import { logOut } from '../utils/session-storage'
 import { IdleTimer } from './HOC/idle-timer'
+import useLogout from '../hooks/useLogout'
 
 type TimeoutProps = {
   children: ReactNode
 }
 
 const SessionTimeout = ({ children }: TimeoutProps) => {
-  const { dispatch } = useAppContext()
+  const { mutate } = useLogout()
 
   let idleTimer = null
   const onIdle = () => {
-    logOut(() => {
-      dispatch({
-        type: Action.LOGOUT,
-      })
-    })
+    mutate()
   }
 
   return (
@@ -26,7 +20,7 @@ const SessionTimeout = ({ children }: TimeoutProps) => {
         idleTimer = ref
       }}
       timeout={10000 * 60}
-      // promptTimeout={1000 * 30}
+      promptTimeout={1000 * 30}
       onIdle={onIdle}
     >
       {children}

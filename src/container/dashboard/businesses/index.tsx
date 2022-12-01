@@ -13,6 +13,7 @@ import { useQuery } from 'react-query'
 import { busHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
+import { errorMessage } from '../../../utils/message'
 
 const BusinessContainer = () => {
   const [values, setValues] = useState(filterValue)
@@ -30,7 +31,7 @@ const BusinessContainer = () => {
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, isFetching, refetch } = useQuery(
+  const { isLoading, data, isError, isFetching, refetch, error } = useQuery(
     ['businesses', values],
     () => getBusinesses(values),
     { keepPreviousData: true }
@@ -41,7 +42,7 @@ const BusinessContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error title={'Failed to load businesses. '} refetch={refetch} />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = (

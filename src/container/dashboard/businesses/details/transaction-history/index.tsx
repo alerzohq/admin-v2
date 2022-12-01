@@ -12,6 +12,7 @@ import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
 import { getResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
 
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
   const getTransactionsHistory = () => {
@@ -19,7 +20,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
   }
 
   const [, setValues] = useState(filterValue)
-  const { isLoading, isError, data, refetch } = useQuery(
+  const { isLoading, isError, data, refetch, error } = useQuery(
     'transaction-history',
     getTransactionsHistory
   )
@@ -29,11 +30,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        refetch={refetch}
-        title={'Failed to load businesses history. '}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no business history yet. '} />
@@ -47,7 +44,6 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={2}
         withSlug
-        notClickable
       />
     )
   }

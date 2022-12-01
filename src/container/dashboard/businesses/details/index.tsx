@@ -27,7 +27,6 @@ const BusinessDetailContainer = () => {
   )
 
   let walletId = data?.data?.[0]?.wallet_id
-  let userId = data?.data?.[0]?.business_owner?.id
 
   const renderSwitch = () => {
     switch (queryParam) {

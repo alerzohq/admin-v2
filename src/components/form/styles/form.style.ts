@@ -145,3 +145,20 @@ export const Select = styled.div`
     color: ${Color.alerzoGray2};
   }
 `
+export const FileUpload = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  left: 0%;
+  right: 0%;
+  top: 0px;
+  background: #ffffff;
+  border: 2px dashed #000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  outline: none;
+  padding: 0 1rem;
+  cursor: pointer;
+`

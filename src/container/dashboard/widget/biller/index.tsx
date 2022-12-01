@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { useQuery } from 'react-query'
 
 import {
   FallBack,
@@ -8,8 +7,9 @@ import {
   Stack,
   Text,
 } from '../../../../components'
-import { getResource } from '../../../../utils/apiRequest'
+import { errorMessage } from '../../../../utils/message'
 import BillerCard from './card'
+import useFetchBillers from './helper/useFetchBillers'
 import SetBiller from './set-biller'
 import { BillerCardBox, Inner, BillerWrapper } from './styles/biller.styles'
 import { IBillerProp, BillerProps } from './type'
@@ -17,11 +17,8 @@ import { IBillerProp, BillerProps } from './type'
 const BillerWidget = () => {
   const [show, setShow] = useState(false)
   const [biller, setBiller] = useState<IBillerProp>({})
-  const getBillers = () => {
-    return getResource('billers')
-  }
 
-  const { data, isError, isLoading, refetch } = useQuery('billers', getBillers)
+  const { data, isError, isLoading, error, refetch } = useFetchBillers()
 
   const handleBiller = useCallback((vals: IBillerProp) => {
     setBiller(vals)
@@ -33,11 +30,7 @@ const BillerWidget = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack
-        error
-        title={'Failed to load biller balance.'}
-        refetch={refetch}
-      />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no biller yet.'} refetch={refetch} />
@@ -45,8 +38,12 @@ const BillerWidget = () => {
     component = (
       <Inner>
         <BillerCardBox>
-          {data?.data.map((biller: BillerProps, i: number) => (
-            <BillerCard key={i} biller={biller} handleBiller={handleBiller} />
+          {data?.data.map((billerItem: BillerProps, i: number) => (
+            <BillerCard
+              key={i}
+              biller={billerItem}
+              handleBiller={handleBiller}
+            />
           ))}
         </BillerCardBox>
       </Inner>
