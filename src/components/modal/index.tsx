@@ -33,6 +33,7 @@ const Modal = ({
   icon,
   withoutFooter,
   subTitleWhiteSpace,
+  footer,
 }: ModalProps) => {
   return (
     <>

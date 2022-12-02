@@ -79,7 +79,7 @@ const TransactionContainer = () => {
     <Container
       showFilters={{
         search: {
-          placeholder: 'Search by reference number..',
+          placeholder: 'Search...',
         },
         date: true,
         selects: [

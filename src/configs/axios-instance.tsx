@@ -15,7 +15,7 @@ export const axiosInstance = axios.create({
 export const axiosInstanceWithoutToken = axios.create({
   baseURL,
 })
-
+export const axiosInstanceUniqueUrl = axios.create()
 axiosInstance.interceptors.request.use(
   async (req: any) => {
     token = getStorageItem('user')?.data?.token ?? null

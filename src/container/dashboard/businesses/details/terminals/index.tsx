@@ -48,6 +48,7 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
         tableData={data?.data}
         tableHeaders={businessTerminalHeader}
         dateFormat="YYYY-MM-DD HH:mm:ss"
+        routePath="dashboard/terminals"
       />
     )
   }
