@@ -1,5 +1,5 @@
 export const filterValue = {
-  count: 50,
+  count: 10,
   pageNumber: 0,
   status: '',
   query: '',
