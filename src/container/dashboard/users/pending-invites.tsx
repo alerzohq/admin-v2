@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
-import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
+import { FallBack, Filter, Jumbotron, Loader } from '../../../components'
 import {
   TableWrapper,
   DataTable,
@@ -23,6 +23,7 @@ const PendingInvites = () => {
     ['invites', values],
     getInvites
   )
+  
   let component
   if (isLoading) {
     component = <Loader />

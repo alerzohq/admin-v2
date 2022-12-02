@@ -11,7 +11,7 @@ import {
   Span,
   Text,
 } from '../terminalmodal.styles'
-import { TerminalBulkAdd } from '../../../../assets/icons/terminals'
+// import { TerminalBulkAdd } from '../../../../assets/icons/terminals'
 import { BulkUpload, UploadIcon } from '../../../../assets/icons'
 import { postRequest } from '../../../../utils/apiRequest'
 import toast from 'react-hot-toast'

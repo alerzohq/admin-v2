@@ -41,8 +41,8 @@ export const PaginationWrapper = styled.div<PaginationProps>`
   .page-link {
   }
   .active-page {
-    color: ${Color.alerzoBlue};
-    background: #e6eeff;
+    color: ${Color.alerzoWhite};
+    background: ${Color.alerzoBlue};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,20 +124,19 @@ export const Inner = styled.div`
     margin-left: 3rem;
   }
   .react-select__control {
+    width: 60px !important;
+    border-radius: 40px;
+    height: 35px;
+    &:focus {
+    width: 60px !important;
+    border-radius: 40px;
+    height: 35px;
+    }
   }
   .css-319lph-ValueContainer {
     padding: 0 0 0 5px !important;
   }
-  .css-18bubph-control {
-    width: 60px !important;
-    border-radius: 40px;
-    height: 35px;
-  }
-  .css-wc1yx4-control {
-    width: 60px !important;
-    border-radius: 40px;
-    height: 35px;
-  }
+
   .css-tlfecz-indicatorContainer {
     padding: 0 5px 0 0 !important;
   }
