@@ -16,9 +16,6 @@ const download = (blob: any, filename: string) => {
 
 export const downloadBulkCSV = async () => {
   let getToken = localStorage.getItem('token')
-  let token = localStorage.getItem('token') ? JSON.parse(`${getToken}`) : null
-
-  var myHeaders = new Headers()
   axios({
     url: 'https://alerzopay.s3.eu-west-1.amazonaws.com/terminal/batch_terminal_template.xlsx', //your url
     method: 'GET',
