@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
+import Button from '../../button'
 import { TableItemDiv } from './table.style'
+import { Color } from '../../../assets/theme'
+import ResendInvite from './resend-invite-modal'
 
 export type selectedDataType = {
   [key: string]: any
@@ -35,9 +38,18 @@ const TableData = ({
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
-
+  const [showModal, setShowModal] = useState(false)
+  const [rowData, setRowData] = useState<undefined | string[]>([])
   return (
     <tbody>
+      {showModal && (
+        <ResendInvite
+          role={rowData?.[1]}
+          email={rowData?.[0]}
+          showConfirmModal={showModal}
+          handleShow={setShowModal}
+        />
+      )}
       {tableData?.map((item, index) => {
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
@@ -92,11 +104,27 @@ const TableData = ({
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
-                  {lastItem && lastItem === data && !hideDate
-                    ? formatDate(data, dateFormat || 'lll')
-                    : i === amountIndex
-                    ? `₦${amountConverter(data)}`
-                    : data}
+                  {lastItem && lastItem === data && !hideDate ? (
+                    formatDate(data, dateFormat || 'lll')
+                  ) : i === amountIndex ? (
+                    `₦${amountConverter(data)}`
+                  ) : data === 'sendInvite' ? (
+                    <Button
+                      onClick={() => {
+                        setRowData(dataList)
+                        setShowModal(true)
+                      }}
+                      height="25px"
+                      width="auto"
+                      borderColor={Color.alerzoBlueTint}
+                      variant="transparent"
+                      color={Color.alerzoBlueTint}
+                    >
+                      Resend Invite
+                    </Button>
+                  ) : (
+                    data
+                  )}
                 </TableItemDiv>
               </td>
             ))}
