@@ -19,4 +19,5 @@ export type ModalProps = {
   icon?: ReactNode
   withoutFooter?: boolean
   disabled?: boolean
+  subTitleWhiteSpace?: string
 }

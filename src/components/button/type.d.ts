@@ -11,6 +11,7 @@ export type ButtonProps = {
   fontSize?: string
   borderSize?: string
   color?: string
+  backgroundColor?: string
   position?: string
   noborder?: boolean
   margin?: string

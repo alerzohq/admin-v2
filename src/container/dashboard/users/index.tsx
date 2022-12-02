@@ -8,6 +8,7 @@ import Employees from './employees'
 import RolesPermissions from './roles-permissions'
 import EditEmployee from './details/edit-employee'
 import { useState } from 'react'
+import PendingInvites from './pending-invites'
 
 const UsersContainer = () => {
   const [edit, setEdit] = useState(false)
@@ -52,6 +53,8 @@ const UsersContainer = () => {
         )
       case 'employees':
         return data ? <EditEmployee data={data?.detail} /> : <Employees />
+      case 'pending-invites':
+        return <PendingInvites />
     }
   }
   const handleNavigation = () => {

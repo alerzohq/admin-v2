@@ -32,6 +32,7 @@ const Modal = ({
   handleSubmit,
   icon,
   withoutFooter,
+  subTitleWhiteSpace,
 }: ModalProps) => {
   return (
     <>
@@ -67,6 +68,7 @@ const Modal = ({
                   color={Color.alerzoBlack}
                   size={subTitleSize || '14px'}
                   align="center"
+                  whiteSpace={subTitleWhiteSpace}
                 >
                   {subTitle}
                 </Text>
