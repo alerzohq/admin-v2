@@ -14,6 +14,7 @@ export const transformData = ({ item, name }: props) => {
     const {
       reference,
       amount,
+      channel,
       customer_name,
       type,
       action,
@@ -22,9 +23,11 @@ export const transformData = ({ item, name }: props) => {
       created_at,
     } = item
     let displayName = biller?.display_name || ''
+    let actionChannel= channel ? channel?.toUpperCase():''
     return {
       reference,
       customer_name,
+      actionChannel,
       amount,
       type,
       action,
