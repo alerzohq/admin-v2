@@ -43,7 +43,9 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         tableHeaders={transHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={2}
+        routePath="dashboard/transactions"
         withSlug
+
       />
     )
   }

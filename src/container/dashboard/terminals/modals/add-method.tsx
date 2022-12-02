@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TerminalModal, TerminalModalChild } from '../terminalmodal.styles'
 
 import { TerminalManualAdd } from '../../../../assets/icons'
@@ -8,11 +8,7 @@ import {
   Upload,
 } from '../../../../assets/icons/terminals'
 import Modal from '../../../../components/modal'
-import { Loader, Text } from '../../../../components'
-import { useEffect } from 'react'
-import { postRequest } from '../../../../utils/apiRequest'
-import { useMutation, useQueryClient } from 'react-query'
-import toast from 'react-hot-toast'
+import { Text } from '../../../../components'
 
 const AddMethodModal: React.FC<{
   isShown: boolean
@@ -20,37 +16,8 @@ const AddMethodModal: React.FC<{
   setIsShown: (value: boolean) => void
   handleAddMethod: (method: 'manual' | 'excel' | '') => void
 }> = ({ isShown, toggle, handleAddMethod, setIsShown }) => {
-  const [file, setFile] = useState(null)
-  const handleFileChange = (e: any) => {
-    let imgFile = e.target.files[0]
-    setFile(imgFile)
-  }
 
-  const useUploadMutation = () =>
-    useMutation((payload: { [key: string]: any }) =>
-      postRequest({ pathUrl: 'terminals/bulk', payload, methodType: 'post' })
-    )
-  const { isLoading, mutate } = useUploadMutation()
-  const queryClient = useQueryClient()
-  useEffect(() => {
-    if (file) {
-      const payload = new FormData()
-      payload.append('terminalUploadFile', file!)
-      mutate(payload, {
-        onSuccess: () => {
-          queryClient.invalidateQueries('terminal-stats')
-          queryClient.invalidateQueries('terminals')
-          setIsShown(false)
-          setFile(null)
-          toast.success(`Terminals uploaded successfully`)
-        },
-        onError: (error: any) => {
-          setFile(null)
-          toast.error(`${error?.response?.data?.message}`)
-        },
-      })
-    }
-  }, [file])
+
 
   return (
     <Modal
@@ -66,7 +33,6 @@ const AddMethodModal: React.FC<{
           onClick={() => {
             handleAddMethod('manual')
           }}
-          className={isLoading ? 'disabled' : ''}
         >
           <div className="svg-container">
             <TerminalManualAdd width="100%" />
@@ -77,24 +43,17 @@ const AddMethodModal: React.FC<{
           </Text>
         </TerminalModalChild>
         <TerminalModalChild
-          onClick={() => {}}
-          className={isLoading ? 'disabled' : ''}
+          onClick={() => {
+            handleAddMethod('excel')
+          }}
+          
         >
           <div className="svg-container ">
-            <input
-              type="file"
-              hidden
-              id="actual-btn"
-              onChange={handleFileChange}
-            />
-            <label htmlFor="actual-btn">
               <TerminalBulkAdd width="100%" />
-              {isLoading ? (
+              {/* {isLoading ? (
                 <Loader isUpload />
-              ) : (
+              ) : ( */}
                 <Upload className="svg-icon" />
-              )}
-            </label>
           </div>
 
           <Text

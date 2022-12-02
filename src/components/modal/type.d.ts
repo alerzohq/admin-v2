@@ -20,4 +20,5 @@ export type ModalProps = {
   withoutFooter?: boolean
   disabled?: boolean
   subTitleWhiteSpace?: string
+  footer?: React.ReactNode
 }

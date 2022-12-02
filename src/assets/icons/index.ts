@@ -42,5 +42,10 @@ export { default as Users2Icon } from './users-2-icon'
 export { default as BriefcaseIcon } from './brief-case-icon'
 export { default as Terminal2Icon } from './terminal-2-icon'
 export { default as TerminalsRequestsIcon } from './terminals-requests'
+
 export { default as BackIcon } from './back-icon'
 export { default as NextIcon } from './next-icon'
+
+export { default as UploadIcon } from './upload-icon'
+export { default as  BulkUpload } from'./terminals/bulk-upload'
+
