@@ -30,7 +30,6 @@ const BulkTerminalModal: React.FC<{
     handleAddMethod('')
   }
   const handleExportCSV = () => {
-    console.log('clicked')
     downloadBulkCSV()
   }
 
@@ -40,6 +39,7 @@ const BulkTerminalModal: React.FC<{
   const useUploadMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
       postRequest({ pathUrl: 'terminals/bulk', payload, methodType: 'post' })
+
     )
   const { isLoading: loading, mutate } = useUploadMutation()
   const handleSendBulk = () => {
@@ -62,6 +62,8 @@ const BulkTerminalModal: React.FC<{
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
+
   return (
     <Modal
       showModal={addMethod === 'excel'}
@@ -70,9 +72,9 @@ const BulkTerminalModal: React.FC<{
         handleAddMethod('')
       }}
       buttonText="Add Terminal"
-      title="Add New Terminal"
+      title=""
       contentPadding="0"
-      modalWidth="50%"
+      modalWidth="650px"
       withoutFooter
       handleSubmit={() => {}}
     >
@@ -100,8 +102,9 @@ const BulkTerminalModal: React.FC<{
                 borderSize="1px"
                 onClick={() => {}}
                 borderColor={Color.alerzoBlue}
-                height={'40px'}
-                variant={'transparent'}
+                height='40px'
+                margin="0 0 2rem 0"
+                variant='transparent'
                 color={Color.alerzoBlue}
               >
                 Add File
@@ -152,98 +155,7 @@ const BulkTerminalModal: React.FC<{
       </Container>
     </Modal>
 
-    // <Modal
-    //   showModal={addMethod === 'manual'}
-    //   setShowModal={() => handleAddMethod('')}
-    //   buttonText="Add Terminal"
-    //   title="Add New Terminal"
-    //   contentPadding={'0'}
-    //   handleSubmit={async () => {
-    //     handleIsTriggerSubmit(true)
-    //     if (addValues.serialNumber && addValues.specification) {
-    //       handleIsTriggerSubmit(false)
-    //       mutation.mutate(addValues)
-    //     }
-    //   }}
-    // >
-    //   <>
-    //     <Form>
-    //       <Form.Control pb={'1rem'}>
-    //         <Form.Label>Serial Number</Form.Label>
-    //         <Form.Input
-    //           type="text"
-    //           onChange={(e) =>
-    //             handleChange('serialNumber', e.target.value.trim())
-    //           }
-    //           placeholder="Enter serial number"
-    //           value={addValues.serialNumber}
-    //         />
-    //         {isTriggerSubmit && (
-    //           <Text
-    //             padding="8px"
-    //             as={'small'}
-    //             weight={'500'}
-    //             color={Color.alerzoDanger}
-    //           >
-    //             {isTriggerSubmit && addValues.serialNumber === ''
-    //               ? 'Serial Number is required*'
-    //               : ''}
-    //           </Text>
-    //         )}
-    //       </Form.Control>
-    //       <Form.Control pb={'1rem'}>
-    //         <Form.Label>POS Variant</Form.Label>
-    //         {!specsLoading && (
-    //           <SelectInput
-    //             fullWidth
-    //             placeholder="Select POS variant"
-    //             options={[
-    //               {
-    //                 value: '',
-    //                 label: 'Select POS variant',
-    //                 disabled: true,
-    //               },
-    //               ...specs?.data?.map(
-    //                 (spec: { variant: string; id: string }) => {
-    //                   return {
-    //                     value: spec.id,
-    //                     label: spec.variant,
-    //                   }
-    //                 }
-    //               ),
-    //             ]}
-    //             onChange={(e) => {
-    //               handleChange('specification', e.value)
-    //             }}
-    //             value={addValues.specification}
-    //           />
-    //         )}
-    //         {isTriggerSubmit && (
-    //           <Text
-    //             padding="8px"
-    //             as={'small'}
-    //             weight={'500'}
-    //             color={Color.alerzoDanger}
-    //           >
-    //             {isTriggerSubmit && addValues.specification === ''
-    //               ? 'POS Variant is required*'
-    //               : ''}
-    //           </Text>
-    //         )}
-    //       </Form.Control>
-    //     </Form>
-    //     {mutation.isError && (
-    //       <Text
-    //         padding="8px"
-    //         as={'small'}
-    //         weight={'500'}
-    //         color={Color.alerzoDanger}
-    //       >
-    //         {mutation.error.response.data.message as string}
-    //       </Text>
-    //     )}
-    //   </>
-    // </Modal>
+
   )
 }
 

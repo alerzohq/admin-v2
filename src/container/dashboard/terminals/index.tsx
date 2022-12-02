@@ -88,7 +88,7 @@ const TransactionContainer = () => {
     )
   } else if (existingTerrminalsData?.data?.length < 1) {
     existingTerrminals = (
-      <FallBack title={'You have no terminals yet.'} refetch={refetch} />
+      <FallBack title='You have no terminals yet.' refetch={refetch} />
     )
   } else {
     existingTerrminals = (
@@ -113,7 +113,7 @@ const TransactionContainer = () => {
     )
   } else if (terrminalsRequestsData?.data?.length < 1) {
     requestsTerrminals = (
-      <FallBack title={'You have no requested terminals yet. '} />
+      <FallBack title='You have no requested terminals yet. ' />
     )
   } else {
     requestsTerrminals = (
@@ -185,7 +185,7 @@ const TransactionContainer = () => {
               labels={terminalsRequestsLabels}
               icons={requestTerminalIcons}
             />
-            <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron>
+            <Jumbotron padding='0'>{requestsTerrminals}</Jumbotron>
             <Pagination
               data={terrminalsRequestsData}
               setPageNumber={setValues}
@@ -199,7 +199,7 @@ const TransactionContainer = () => {
               labels={terminalLabels}
               icons={terminalIcons}
             />
-            <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron>
+            <Jumbotron padding='0'>{existingTerrminals}</Jumbotron>
             <Pagination
               data={existingTerrminalsData}
               setPageNumber={setValues}
