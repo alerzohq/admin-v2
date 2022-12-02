@@ -32,6 +32,7 @@ import { getTerminalsHandler, getTerminalStats } from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
 import { errorMessage } from '../../../utils/message'
+import BulkTerminalModal from './modals/bulk-terminal-upload'
 
 const TransactionContainer = () => {
   const search = useLocation().search
@@ -143,6 +144,10 @@ const TransactionContainer = () => {
         setIsShown={setIsShown}
       />
       <AddTerminalModal
+        addMethod={addMethod}
+        handleAddMethod={handleAddMethod}
+      />
+      <BulkTerminalModal
         addMethod={addMethod}
         handleAddMethod={handleAddMethod}
       />

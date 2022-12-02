@@ -15,6 +15,7 @@ export type TableProps = {
   custom?: boolean
   notClickable?: boolean
   layout?: string
+  routePath?: string
 
   onClick?: (item: {}) => void
 }

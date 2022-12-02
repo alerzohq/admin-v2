@@ -16,20 +16,27 @@ type Props = {
   gap?: string
   margin?: string
   radius?: string
+  disabledColor?: string
+  disabledBgColor?: string
 }
 
 export const ButtonContainer = styled.button<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ disabled }) =>
+  background: ${({ disabled, disabledBgColor }) =>
     disabled
-      ? Color.alerzoLightBlue
+      ? disabledBgColor || Color.alerzoLightBlue
       : ({ variant }) => (variant ? variant : Color.alerzoBlue)};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   width: ${({ width }) => (width ? width : '100%')};
   height: ${({ height }) => (height ? height : '3rem')};
-  color: ${({ color, disabled }) => (color ? color : `${Color.alerzoWhite}`)};
+  color: ${({ color, disabled, disabledColor }) =>
+    disabled
+      ? disabledColor || Color.alerzoWhite
+      : color
+      ? color
+      : `${Color.alerzoWhite}`};
   border: ${({ borderColor, borderSize }) =>
     borderColor
       ? `${borderSize ? borderSize : '2px'} solid ${borderColor}`
