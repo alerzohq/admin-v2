@@ -42,15 +42,13 @@ const CustomInviteTable = ({
   const [rowData, setRowData] = useState<undefined | string[]>([])
   return (
     <tbody>
-      {showModal && (
-        <ConfirmResendInvite
-          role={rowData?.[1]}
-          email={rowData?.[0]}
-          id={rowData?.[4]}
-          showConfirmModal={showModal}
-          handleShow={setShowModal}
-        />
-      )}
+      <ConfirmResendInvite
+        role={rowData?.[1]}
+        email={rowData?.[0]}
+        id={rowData?.[4]}
+        showConfirmModal={showModal}
+        handleShow={setShowModal}
+      />
       {tableData?.map((item, index) => {
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
