@@ -15,6 +15,7 @@ const RolesPermissions = ({
   useEffect(() => {
     handleRoleCreation(false)
     handleRoleEdit(false)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getRoles = () => {
