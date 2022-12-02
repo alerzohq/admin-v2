@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { FallBack, Filter, Jumbotron, Loader, Table } from '../../../components'
+import {
+  TableWrapper,
+  DataTable,
+} from '../../../components/table/styles/table.styles'
+import CustomInviteTable from '../../../components/table/table-data/resend-invite-data'
+import TableHeader from '../../../components/table/table-headers'
 import { invitesHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
@@ -14,7 +20,7 @@ const PendingInvites = () => {
   }
 
   const { isLoading, isError, data, refetch, error } = useQuery(
-    ['employees', values],
+    ['invites', values],
     getInvites
   )
   let component
@@ -28,14 +34,17 @@ const PendingInvites = () => {
     component = <FallBack title={'No Employees list available yet.'} />
   } else {
     component = (
-      <Table
-        headerbgColor={'transparent'}
-        tableName="invites"
-        tableData={data?.data}
-        tableHeaders={invitesHeaderList}
-        hideDate
-        setParams
-      />
+      <TableWrapper wrapperPb="5rem">
+        <DataTable bgColor={'transparent'} layout="fixed">
+          <TableHeader headers={invitesHeaderList} />
+          <CustomInviteTable
+            name="invites"
+            tableData={data?.data}
+            hideDate
+            setParams
+          />
+        </DataTable>
+      </TableWrapper>
     )
   }
   return (

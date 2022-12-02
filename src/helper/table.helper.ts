@@ -155,7 +155,7 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'invites') {
-    const { email, adminRoleName, createdAt, expiresIn, accepted } = item
+    const { email, adminRoleName, createdAt, expiresIn, accepted, id } = item
     const now = new Date()
 
     return {
@@ -163,6 +163,7 @@ export const transformData = ({ item, name }: props) => {
       adminRoleName,
       createdAt: formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss'),
       expired: new Date(expiresIn) < now && !accepted ? 'sendInvite' : '',
+      id,
     }
   }
 }
