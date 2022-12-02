@@ -45,7 +45,6 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         amountIndex={2}
         routePath="dashboard/transactions"
         withSlug
-
       />
     )
   }

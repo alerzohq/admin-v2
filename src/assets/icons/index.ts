@@ -47,5 +47,9 @@ export { default as BackIcon } from './back-icon'
 export { default as NextIcon } from './next-icon'
 
 export { default as UploadIcon } from './upload-icon'
+
 export { default as  BulkUpload } from'./terminals/bulk-upload'
+
+
+export { default as BulkUpload } from './terminals/bulk-upload'
 

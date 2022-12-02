@@ -42,23 +42,22 @@ export const TerminalModalChild = styled.div`
   }
 `
 export const ModalHeader = styled.div`
-display: flex;
-position: relative;
-justify-content:center;
-flex-direction: column;
-align-items: center;
-padding-top: 2rem;
-padding-bottom:1rem;
-.go-back{
-  position: absolute;
-  left:10px;
   display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  font-size:.8rem;
-
-}
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  .go-back {
+    position: absolute;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
 `
 export const Span = styled.span`
   color: ${Color.alerzoBlue};

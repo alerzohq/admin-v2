@@ -45,6 +45,6 @@ export enum Color {
   alerzoBlackishBlue = '#D7E2E9',
   alerzoGrayishBlue = '#5976A1',
   alerzoGrayishBlue2 = '#475E80',
-  alerzoDisabledBg='#F0F5F8',
-  alerzoDisabled='#A1A8B7',
+  alerzoDisabledBg = '#F0F5F8',
+  alerzoDisabled = '#A1A8B7',
 }

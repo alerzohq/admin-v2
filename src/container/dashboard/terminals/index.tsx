@@ -147,7 +147,7 @@ const TransactionContainer = () => {
         addMethod={addMethod}
         handleAddMethod={handleAddMethod}
       />
-       <BulkTerminalModal
+      <BulkTerminalModal
         addMethod={addMethod}
         handleAddMethod={handleAddMethod}
       />

@@ -21,7 +21,7 @@ type dataProps = {
   hideDate?: boolean
   setParams?: boolean
   notClickable?: boolean
-  routePath?:string
+  routePath?: string
 }
 type dataList = string[] | undefined
 
@@ -73,7 +73,16 @@ const TableData = ({
                             }
                           )
                         }
-                      : routePath ? ()=>{navigate(withSlug ?`/${routePath}/${item?.id}/${item?.product?.slug}`:`/${routePath}/${item?.id}`, { replace: true })} :() => {
+                      : routePath
+                      ? () => {
+                          navigate(
+                            withSlug
+                              ? `/${routePath}/${item?.id}/${item?.product?.slug}`
+                              : `/${routePath}/${item?.id}`,
+                            { replace: true }
+                          )
+                        }
+                      : () => {
                           navigate(
                             withSlug
                               ? `${item?.id}/${item?.product?.slug}`

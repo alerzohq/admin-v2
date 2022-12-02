@@ -29,9 +29,9 @@ const BulkTerminalModal: React.FC<{
     setCsvFile(null)
     handleAddMethod('')
   }
-  const handleExportCSV= () => {
-    console.log("clicked")
-   downloadBulkCSV()
+  const handleExportCSV = () => {
+    console.log('clicked')
+    downloadBulkCSV()
   }
 
   const onDrop = useCallback((acceptedFiles: any) => {
@@ -65,20 +65,24 @@ const BulkTerminalModal: React.FC<{
   return (
     <Modal
       showModal={addMethod === 'excel'}
-      setShowModal={() => {setCsvFile(null);handleAddMethod('')}}
+      setShowModal={() => {
+        setCsvFile(null)
+        handleAddMethod('')
+      }}
       buttonText="Add Terminal"
       title="Add New Terminal"
       contentPadding="0"
       modalWidth="50%"
       withoutFooter
-      handleSubmit={ () => {}}
+      handleSubmit={() => {}}
     >
       <Container>
         <ModalHeader>
           <div style={{ width: '100%', margin: 'auto' }}>
-            <Text  size={'1rem'}>
-              Download a <Span onClick={()=>handleExportCSV()}>sample CSV template</Span> to
-              see an example of the format required
+            <Text size={'1rem'}>
+              Download a{' '}
+              <Span onClick={() => handleExportCSV()}>sample CSV template</Span>{' '}
+              to see an example of the format required
             </Text>
           </div>
         </ModalHeader>
@@ -87,18 +91,25 @@ const BulkTerminalModal: React.FC<{
             <div className="icon-box">
               <BulkUpload />
             </div>
-            <input  {...getInputProps()} id="actual-btn" />
+            <input {...getInputProps()} id="actual-btn" />
             {isDragActive ? (
               <Text>Drop the files here ...</Text>
             ) : (
-                <Button width='20%' borderSize='1px' onClick={() => {}} borderColor={Color.alerzoBlue} height={'40px'} variant={'transparent'} color={Color.alerzoBlue}>
-                  Add File
-                </Button>
-          
+              <Button
+                width="20%"
+                borderSize="1px"
+                onClick={() => {}}
+                borderColor={Color.alerzoBlue}
+                height={'40px'}
+                variant={'transparent'}
+                color={Color.alerzoBlue}
+              >
+                Add File
+              </Button>
             )}
           </div>
         </Body>
-        <Text align='center' padding={'2rem 0'} color={'#001928cc'}>
+        <Text align="center" padding={'2rem 0'} color={'#001928cc'}>
           {csvFile ? csvFile?.name : 'or drag files to upload'}
         </Text>
         <Footer>
@@ -111,7 +122,7 @@ const BulkTerminalModal: React.FC<{
             Need help uploading CSV?
           </Text>
 
-          <Button.Group width='50%' align={'flex-end'}>
+          <Button.Group width="50%" align={'flex-end'}>
             <Button
               onClick={handleCancel}
               height={'45px'}

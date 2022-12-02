@@ -16,9 +16,6 @@ const AddMethodModal: React.FC<{
   setIsShown: (value: boolean) => void
   handleAddMethod: (method: 'manual' | 'excel' | '') => void
 }> = ({ isShown, toggle, handleAddMethod, setIsShown }) => {
-
-
-
   return (
     <Modal
       showModal={isShown}
@@ -46,14 +43,13 @@ const AddMethodModal: React.FC<{
           onClick={() => {
             handleAddMethod('excel')
           }}
-          
         >
           <div className="svg-container ">
-              <TerminalBulkAdd width="100%" />
-              {/* {isLoading ? (
+            <TerminalBulkAdd width="100%" />
+            {/* {isLoading ? (
                 <Loader isUpload />
               ) : ( */}
-                <Upload className="svg-icon" />
+            <Upload className="svg-icon" />
           </div>
 
           <Text

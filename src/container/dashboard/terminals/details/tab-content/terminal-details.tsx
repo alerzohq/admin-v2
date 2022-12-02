@@ -81,7 +81,7 @@ const TerminalDetails = ({ data }: any) => {
     )
   }
 
-  console.log( value, " mappedBusinesses")
+  console.log(value, ' mappedBusinesses')
   const handleReassign = () => {
     if (
       data?.user_id !== null &&
