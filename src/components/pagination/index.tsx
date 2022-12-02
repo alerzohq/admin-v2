@@ -32,7 +32,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
         >
           <Inner>
             <Text as={'p'} color={Color.alerzoGray2}>
-             Show
+              Show
             </Text>
             <SelectInput
               onChange={(val) => handlePageCount(val)}
@@ -62,9 +62,8 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
 
           <Inner>
             <Text as={'p'} color={Color.alerzoGray2}>
-             Go to
+              Go to
             </Text>
-            
           </Inner>
         </PaginationWrapper>
       )}

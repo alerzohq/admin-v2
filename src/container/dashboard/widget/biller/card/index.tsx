@@ -10,7 +10,7 @@ const BillerCard = ({ biller, handleBiller }: BillerProps) => {
   return (
     <Card onClick={() => handleBiller?.(biller)}>
       <CardInner>
-        <Text as='small' weight='600'>
+        <Text as="small" weight="600">
           {biller?.displayName}
         </Text>
         <BillerLogo>
@@ -18,7 +18,7 @@ const BillerCard = ({ biller, handleBiller }: BillerProps) => {
         </BillerLogo>
       </CardInner>
       <CardInner>
-        <Text as='h2' weight='600' color={color(biller)}>
+        <Text as="h2" weight="600" color={color(biller)}>
           {biller ? amountHelper(biller?.balance) : ''}
         </Text>
         <SettingsIcon />

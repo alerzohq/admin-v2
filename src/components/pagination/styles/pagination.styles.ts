@@ -54,15 +54,16 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width:35px;
+    width: 35px;
     height: 35px;
     background: ${Color.alerzoWhite};
     border: 1px solid ${Color.alerzoBlue};
     border-radius: 50%;
-    background:${Color.alerzoBlue};
+    background: ${Color.alerzoBlue};
     font-weight: 600;
     cursor: pointer;
-    svg, path{
+    svg,
+    path {
       fill: ${Color.alerzoWhite} !important;
     }
   }
@@ -70,24 +71,25 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width:35px;
+    width: 35px;
     height: 35px;
     background: ${Color.alerzoWhite};
     border: 1px solid ${Color.alerzoBlue};
     border-radius: 50%;
-    background:${Color.alerzoBlue};
+    background: ${Color.alerzoBlue};
     font-weight: 600;
     cursor: pointer;
-   
+
     /* margin-left: 0.5rem; */
-    svg, path{
+    svg,
+    path {
       fill: ${Color.alerzoWhite} !important;
     }
   }
-  .previous{
+  .previous {
     margin-left: -3rem !important;
   }
-  .next{
+  .next {
     margin-right: -3rem !important;
   }
   .pagination-disabled a {
@@ -95,7 +97,7 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     justify-content: center;
     align-items: center;
     /* width: ${({ isMobile }) => (isMobile ? '40px' : '150px')}; */
-    width:35px;
+    width: 35px;
     height: 35px;
     background: ${Color.alerzoWhite};
     opacity: 0.5;
@@ -104,27 +106,27 @@ export const PaginationWrapper = styled.div<PaginationProps>`
     color: #a5b0b7;
     font-weight: 600;
     cursor: not-allowed;
-    svg, path{
+    svg,
+    path {
       fill: ${Color.alerzoGray2} !important;
     }
   }
-  
 `
 export const Inner = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
   left: 0;
-  &:first-of-type{
+  &:first-of-type {
     margin-right: 3rem;
   }
-  &:last-of-type{
+  &:last-of-type {
     margin-left: 3rem;
   }
   .react-select__control {
   }
-  .css-319lph-ValueContainer{
-    padding:0 0 0 5px !important; ;
+  .css-319lph-ValueContainer {
+    padding: 0 0 0 5px !important;
   }
   .css-18bubph-control {
     width: 60px !important;
@@ -138,5 +140,5 @@ export const Inner = styled.div`
   }
   .css-tlfecz-indicatorContainer {
     padding: 0 5px 0 0 !important;
-}
+  }
 `

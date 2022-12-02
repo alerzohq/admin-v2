@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function NextIcon() {
   return (
@@ -10,11 +10,11 @@ function NextIcon() {
       viewBox="0 0 8 15"
     >
       <path
-       fill="#9DA8B6"
+        fill="#9DA8B6"
         d="M7.504 7L1.208.707a.71.71 0 00-1 0 .705.705 0 000 .998L6.003 7.5.208 13.294a.706.706 0 101 1L7.505 8a.713.713 0 000-1z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default NextIcon;
+export default NextIcon

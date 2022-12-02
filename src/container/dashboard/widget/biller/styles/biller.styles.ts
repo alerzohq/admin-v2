@@ -14,9 +14,9 @@ export const Inner = styled.div`
   width: 100%;
 `
 export const BillerCardBox = styled.div`
-display:grid;
-grid-template-columns:repeat(auto-fill, minmax(330px, 1fr));
-gap:1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1rem;
 `
 export const Card = styled.div`
   display: flex;
@@ -29,7 +29,6 @@ export const Card = styled.div`
   padding: 1rem;
   border: 1px solid ${Color.alerzoGray};
   cursor: pointer;
-
 `
 export const CardInner = styled.div`
   display: flex;
