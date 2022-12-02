@@ -1,6 +1,7 @@
 export const transHeaderList = [
   'Reference No',
   'Customer Name',
+  'Channel',
   'Amount',
   'Type',
   'Action',
