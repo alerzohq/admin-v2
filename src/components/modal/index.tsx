@@ -32,6 +32,8 @@ const Modal = ({
   handleSubmit,
   icon,
   withoutFooter,
+  subTitleWhiteSpace,
+  footer,
 }: ModalProps) => {
   return (
     <>
@@ -67,6 +69,7 @@ const Modal = ({
                   color={Color.alerzoBlack}
                   size={subTitleSize || '14px'}
                   align="center"
+                  whiteSpace={subTitleWhiteSpace}
                 >
                   {subTitle}
                 </Text>
@@ -77,17 +80,19 @@ const Modal = ({
           {!withoutFooter && (
             <Footer>
               <Button.Group align="center">
-                <Button
-                  width={cancelBtnText ? '40%' : '50%'}
-                  radius="10px"
-                  fontSize="14px"
-                  weight="500"
-                  loading={loading}
-                  disabled={disabled}
-                  onClick={handleSubmit ?? setShowModal}
-                >
-                  {buttonText}
-                </Button>
+                {buttonText && (
+                  <Button
+                    width={cancelBtnText ? '40%' : '50%'}
+                    radius="10px"
+                    fontSize="14px"
+                    weight="500"
+                    loading={loading}
+                    disabled={disabled}
+                    onClick={handleSubmit ?? setShowModal}
+                  >
+                    {buttonText}
+                  </Button>
+                )}
                 {cancelBtnText && (
                   <Button
                     width={'40%'}

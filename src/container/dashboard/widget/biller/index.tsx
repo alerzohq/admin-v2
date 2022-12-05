@@ -33,7 +33,7 @@ const BillerWidget = () => {
       <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no biller yet.'} refetch={refetch} />
+    component = <FallBack title="You have no biller yet." refetch={refetch} />
   } else {
     component = (
       <Inner>
@@ -53,8 +53,8 @@ const BillerWidget = () => {
   return (
     <BillerWrapper>
       <SetBiller show={show} setShow={() => setShow(false)} biller={biller} />
-      <Stack direction={'row'} justifyContent={'space-between'}>
-        <Text as={'h4'}>Biller Balance</Text>
+      <Stack direction="row" justifyContent="space-between">
+        <Text as="h4">Biller Balance</Text>
         {/* <Button
           noborder
           variant={'transparent'}
@@ -66,7 +66,7 @@ const BillerWidget = () => {
           VIew Biller Settings
         </Button> */}
       </Stack>
-      <Jumbotron mt={'.5rem'}>{component}</Jumbotron>
+      <Jumbotron mt=".5rem">{component}</Jumbotron>
     </BillerWrapper>
   )
 }

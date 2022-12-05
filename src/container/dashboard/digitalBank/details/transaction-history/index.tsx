@@ -59,7 +59,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
         tableHeaders={DBtransHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         withSlug
-        notClickable
+        routePath="dashboard/transactions"
       />
     )
   }

@@ -38,8 +38,8 @@ const TerminalDetails = ({ data }: any) => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
 
-  const getMerchants = () => {
-    return getResource('business-users')
+  const getBusinesses = () => {
+    return getResource('businesses')
   }
   const useAssignMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
@@ -56,9 +56,9 @@ const TerminalDetails = ({ data }: any) => {
 
   const {
     isLoading,
-    data: merchants,
+    data: businesses,
     isFetching,
-  } = useQuery('merchants', getMerchants)
+  } = useQuery('businesses', getBusinesses)
   const { isLoading: loadingEnable, mutate: enableTerminal } =
     useEnableTermMutation()
   const { isLoading: loadingAssign, mutate } = useAssignMutation()
@@ -80,6 +80,8 @@ const TerminalDetails = ({ data }: any) => {
       }
     )
   }
+
+  console.log(value, ' mappedBusinesses')
   const handleReassign = () => {
     if (
       data?.user_id !== null &&
@@ -142,7 +144,7 @@ const TerminalDetails = ({ data }: any) => {
           setIsTriggerSubmit(true)
           handleReassign()
         }}
-        merchants={merchants?.data}
+        businesses={businesses?.data}
         toggleModal={() => {
           setValue({
             reassignmentReason: '',

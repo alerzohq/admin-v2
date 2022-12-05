@@ -10,7 +10,7 @@ export const TopbarWrapper = styled.div`
   border-bottom: 0.8px solid #e8ebee;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 999;
   svg {
     cursor: pointer;
   }

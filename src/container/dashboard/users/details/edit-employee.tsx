@@ -76,10 +76,11 @@ const EditEmployees = ({ data }: any) => {
                     }
                   }),
                 ]}
+                isClearable
                 onChange={(e) => {}}
                 value={{ value: data?.roleName, label: data?.roleName }}
-                styles={{ width: '100%' }}
                 disabled={!isEditing}
+                fullWidth
               />
             )}
           </Form.Control>

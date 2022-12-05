@@ -14,6 +14,7 @@ export const transformData = ({ item, name }: props) => {
     const {
       reference,
       amount,
+      channel,
       customer_name,
       type,
       action,
@@ -22,9 +23,11 @@ export const transformData = ({ item, name }: props) => {
       created_at,
     } = item
     let displayName = biller?.display_name || ''
+    let actionChannel = channel ? channel?.toUpperCase() : ''
     return {
       reference,
       customer_name,
+      actionChannel,
       amount,
       type,
       action,
@@ -39,12 +42,10 @@ export const transformData = ({ item, name }: props) => {
     return {
       reference,
       amount: amountHelper(amount),
-
       type,
       displayName,
       action,
       status,
-
       created_at,
     }
   }
@@ -151,6 +152,18 @@ export const transformData = ({ item, name }: props) => {
       address: data.address,
       statusVal,
       updatedDate,
+    }
+  }
+  if (item && name === 'invites') {
+    const { email, adminRoleName, createdAt, expiresIn, accepted, id } = item
+    const now = new Date()
+
+    return {
+      email: email.toLowerCase(),
+      adminRoleName,
+      createdAt: formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss'),
+      expired: new Date(expiresIn) < now && !accepted ? 'sendInvite' : '',
+      id,
     }
   }
 }

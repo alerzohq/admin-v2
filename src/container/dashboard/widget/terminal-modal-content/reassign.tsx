@@ -2,13 +2,13 @@ import { Color } from '../../../../assets/theme'
 import { SelectInput, Text } from '../../../../components'
 import Modal from '../../../../components/modal'
 import { TextArea } from '../../../../components/modal/styles/modal.styles'
-import { mapMerchants } from '../../../../utils/formatValue'
+import { mapBusinesses } from '../../../../utils/formatValue'
 type Props = {
   data: any
   isShown: boolean
   loading?: boolean
   loadingOptions?: boolean
-  merchants?: any
+  businesses?: any
   value: { [key: string]: any }
   triggerSubmit: boolean
   toggleModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -32,9 +32,9 @@ const ReassignTerminalModal = ({
   toggleModal,
   setValue,
   loading,
-  merchants,
+  businesses,
 }: Props) => {
-  const mappedMerchants = mapMerchants(merchants)
+  const mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
     data?.user_id === null
       ? 'Assign this terminal to a merchant'
@@ -52,8 +52,8 @@ const ReassignTerminalModal = ({
       title={btnText}
       disabled={
         !value?.businessId ||
-        !value?.reassignmentReason ||
-        value.reassignmentReason.length <= 5
+        (data?.user_id !== null &&
+          (!value?.reassignmentReason || value.reassignmentReason.length <= 5))
       }
       handleSubmit={handleSubmit}
       loading={loading}
@@ -67,10 +67,10 @@ const ReassignTerminalModal = ({
         align="start"
         alignSelf="self-start"
       >
-        Select New Merchant
+        Select New Business
       </Text>
       <SelectInput
-        placeholder="Enter to search for merchant"
+        placeholder="Enter to search for business"
         onChange={(e: any) => {
           setValue({
             ...value,
@@ -91,7 +91,7 @@ const ReassignTerminalModal = ({
             : [
                 {
                   label: 'Enter to search for merchant',
-                  options: mappedMerchants || [{ label: '', value: '' }],
+                  options: mappedBusinesses || [{ label: '', value: '' }],
                 },
               ]
         }

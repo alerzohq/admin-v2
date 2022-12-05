@@ -31,7 +31,7 @@ const DigitalBankContainer = () => {
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
+  const { isLoading, data, isError, error, isFetching } = useQuery(
     ['digital-bank', values],
     () => getDigitalBanksHandler(values),
     { keepPreviousData: true }

@@ -50,7 +50,7 @@ const VerificationContainer = () => {
     if (data) {
       dispatch({ type: Action.LOGIN, payload: data })
       setStorage('user', data, () => {
-        navigate(Path.DASHBOARD)
+        navigate(`/${Path.DASHBOARD}`, { replace: true })
       })
     } else if (error) {
       toast.error(`Invalid or expired token `)
