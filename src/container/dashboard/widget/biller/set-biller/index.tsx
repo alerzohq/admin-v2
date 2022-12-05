@@ -1,4 +1,5 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
+import { InviteSent } from '../../../../../assets/icons'
 import Modal from '../../../../../components/modal'
 import BillerForm from '../biller-form'
 import { isBillerValid } from '../helper'
@@ -7,10 +8,12 @@ import useSetBiller from '../helper/useSetBiller'
 import { BillerSettings } from '../type'
 
 const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
-  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(true)
+  const [ showSuccess, setShowSuccess ] = useState(false)
 
   const { values, setValues } = useGetBiller(biller)
-  const { mutate, isLoading } = useSetBiller(biller?.slug, setShow)
+
+  const { mutate, isLoading, isSuccess } = useSetBiller(biller?.slug, setShow)
 
   const handleBiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -21,7 +24,12 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
     }
   }
 
+  useEffect(() => {
+    setShowSuccess(true)
+  },[isSuccess])
+
   return (
+    <>
     <Modal
       showModal={show}
       title={'Set Biller Threshold'}
@@ -39,6 +47,19 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
         handleBiller={handleBiller}
       />
     </Modal>
+
+    <Modal
+        showModal={showSuccess}
+        setShowModal={() => setShowSuccess(!showSuccess)}
+        title="Biller Thresold Updated"
+        modalWidth="320px"
+        contentPadding={'0'}
+        icon={<InviteSent />}
+        subTitle={<>You have successfully updated the
+        threshold for <strong>{biller?.displayName}</strong></>}
+        buttonText="Back to Billers"
+      />
+    </>
   )
 }
 

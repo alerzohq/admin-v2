@@ -11,7 +11,7 @@ export type ModalProps = {
   modalPadding?: string
   contentPadding?: string
   subTitleSize?: string
-  subTitle?: string
+  subTitle?: string | React.ReactNode
   titleSize?: string
   cancelBtnText?: string
   setShowModal: Dispatch<SetStateAction<boolean>>
