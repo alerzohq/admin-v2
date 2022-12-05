@@ -128,9 +128,9 @@ export const Inner = styled.div`
     border-radius: 40px;
     height: 35px;
     &:focus {
-    width: 60px !important;
-    border-radius: 40px;
-    height: 35px;
+      width: 60px !important;
+      border-radius: 40px;
+      height: 35px;
     }
   }
   .css-319lph-ValueContainer {

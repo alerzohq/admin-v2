@@ -23,7 +23,7 @@ const PendingInvites = () => {
     ['invites', values],
     getInvites
   )
-  
+
   let component
   if (isLoading) {
     component = <Loader />

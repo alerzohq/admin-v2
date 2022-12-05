@@ -39,7 +39,6 @@ const BulkTerminalModal: React.FC<{
   const useUploadMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
       postRequest({ pathUrl: 'terminals/bulk', payload, methodType: 'post' })
-
     )
   const { isLoading: loading, mutate } = useUploadMutation()
   const handleSendBulk = () => {
@@ -62,7 +61,6 @@ const BulkTerminalModal: React.FC<{
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-
 
   return (
     <Modal
@@ -102,9 +100,9 @@ const BulkTerminalModal: React.FC<{
                 borderSize="1px"
                 onClick={() => {}}
                 borderColor={Color.alerzoBlue}
-                height='40px'
+                height="40px"
                 margin="0 0 2rem 0"
-                variant='transparent'
+                variant="transparent"
                 color={Color.alerzoBlue}
               >
                 Add File
@@ -116,7 +114,6 @@ const BulkTerminalModal: React.FC<{
           {csvFile ? csvFile?.name : 'or drag files to upload'}
         </Text>
         <Footer>
-
           <Button.Group align={'flex-end'}>
             <Button
               onClick={handleCancel}
@@ -146,8 +143,6 @@ const BulkTerminalModal: React.FC<{
         </Footer>
       </Container>
     </Modal>
-
-
   )
 }
 
