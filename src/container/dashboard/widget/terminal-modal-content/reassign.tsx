@@ -67,10 +67,10 @@ const ReassignTerminalModal = ({
         align="start"
         alignSelf="self-start"
       >
-        Select New Merchant
+        Select New Business
       </Text>
       <SelectInput
-        placeholder="Enter to search for merchant"
+        placeholder="Enter to search for business"
         onChange={(e: any) => {
           setValue({
             ...value,
