@@ -7,13 +7,11 @@ import SessionTimeout from '../../configs/session-timeout'
 const Dashboard: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
-  const collapseBar = () => {
-    setIsCollapsed(!isCollapsed)
-  }
-
   return (
     <>
-      <Sidebar isCollapsed={isCollapsed} collapseBar={collapseBar} />
+      <Sidebar isCollapsed={isCollapsed} 
+       onMouseEnter={() => setIsCollapsed(false)}
+       onMouseLeave={() => setIsCollapsed(true)}/>
       <Content isCollapsed={isCollapsed}>
         <SessionTimeout>
           <Outlet />

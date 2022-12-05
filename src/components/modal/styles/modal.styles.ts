@@ -18,7 +18,7 @@ export const ModalWrapper = styled.div<props>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 700;
+  z-index: 9999;
   width: inherit;
   outline: 0;
   width: 100%;
@@ -33,7 +33,7 @@ export const BackDrop = styled.div<props>`
   left: 0;
   background: rgba(38, 40, 62, 0.6);
   backdrop-filter: blur(6px);
-  z-index: 500;
+  z-index: 999;
 `
 export const Header = styled.div`
   border-radius: 8px 8px 0 0;
