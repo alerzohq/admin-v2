@@ -116,20 +116,12 @@ const BulkTerminalModal: React.FC<{
           {csvFile ? csvFile?.name : 'or drag files to upload'}
         </Text>
         <Footer>
-          <Text
-            size={'0.875rem'}
-            color={'#0077FF'}
-            cursor={'pointer'}
-            onClick={() => {}}
-          >
-            Need help uploading CSV?
-          </Text>
 
-          <Button.Group width="50%" align={'flex-end'}>
+          <Button.Group align={'flex-end'}>
             <Button
               onClick={handleCancel}
               height={'45px'}
-              width="40%"
+              width="20%"
               borderSize="1px"
               color={Color.alerzoBlue}
               variant="transparent"
@@ -140,7 +132,7 @@ const BulkTerminalModal: React.FC<{
             <Button
               onClick={() => handleSendBulk()}
               height="45px"
-              width="40%"
+              width="20%"
               variant={Color.alerzoBlue}
               color={'#FFF'}
               disabled={!csvFile || loading}
