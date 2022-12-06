@@ -10,6 +10,7 @@ export type ModalProps = {
   modalWidth?: string
   modalPadding?: string
   contentPadding?: string
+  subTitleMargin?: string
   subTitleSize?: string
   subTitle?: string | React.ReactNode
   titleSize?: string
