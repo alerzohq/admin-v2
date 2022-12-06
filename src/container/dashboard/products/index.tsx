@@ -16,11 +16,15 @@ import { useMutation } from '../../../hooks'
 import { getResource } from '../../../utils/apiRequest'
 import { mapBillers } from '../../../utils/formatValue'
 import { errorMessage } from '../../../utils/message'
+import { rowData } from '../audit/auditConfig'
+import ConfirmBillerChange from './details/modal/confirmation-modal'
 
 const ProductsContainer = () => {
   const [slug, setSlug] = useState()
+  const [showModal, setShowModal] = useState(false)
+  const [showStatus, setShowStatus] = useState(false)
   const [values, setValues] = useState(filterValue)
-  const [newBiller, setNewBiller] = useState<string>()
+  const [newBiller, setNewBiller] = useState<{[key:string]:any}>()
   const location = useLocation()
   const [options, setOptions] = useState([
     { label: '', options: { label: '', value: '' } },
@@ -34,14 +38,7 @@ const ProductsContainer = () => {
   const getBillers = () => {
     return getResource(`products/${slug}/billers`)
   }
-  const [
-    changeBiller,
-    { data: updatedData, error: updateError, loading: loadingUpdate },
-  ] = useMutation({
-    pathUrl: `products/${slug}/set-biller`,
-    payload: { billerSlug: newBiller },
-    methodType: 'post',
-  })
+
 
   const { isLoading, isError, error, data, refetch } = useQuery(
     'products',
@@ -71,12 +68,10 @@ const ProductsContainer = () => {
   })
 
   useEffect(() => {
-    if (newBiller !== null && newBiller !== undefined) {
-      changeBiller()
-      setNewBiller(undefined)
+    if(newBiller){
+      setShowModal(true);
     }
-  }, [newBiller, changeBiller])
-
+  }, [newBiller])
   useEffect(() => {
     setSlug(stateValue?.selectData?.slug)
   }, [stateValue?.selectData])
@@ -84,18 +79,10 @@ const ProductsContainer = () => {
     setOptions(mapBillers(billers?.data))
   }, [billers])
   useEffect(() => {
-    if (updatedData?.status) {
-      refetch()
-    }
-  }, [updatedData, refetch])
-  useEffect(() => {
     if (isBillerError) {
       toast.error(`${errorMessage(billerError)}`)
     }
-    if (updateError) {
-      toast.error(`${errorMessage(updateError)}`)
-    }
-  }, [isBillerError, updateError, error, billerError])
+  }, [isBillerError, error, billerError])
 
   let component
   if (isLoading) {
@@ -138,12 +125,21 @@ const ProductsContainer = () => {
   }
   return (
     <Container
-      isFetching={loadingUpdate || isRefetching}
+      isFetching={isRefetching}
       showFilters={false}
       title="Products"
       padding="0 2rem"
       noScroll
     >
+      <ConfirmBillerChange
+        showStatus={showStatus}
+        setShowStatus={setShowStatus}
+        showConfirmModal={showModal}
+        handleShow={setShowModal}
+        biller={newBiller}
+        slug={slug || ''}
+        setBiller={setNewBiller}
+      />
       <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           setFilterValues={setValues}

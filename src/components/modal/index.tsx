@@ -16,6 +16,7 @@ import { ModalProps } from './type'
 const Modal = ({
   loading,
   subTitleSize,
+  subTitleMargin,
   title,
   titleSize,
   cancelBtnText,
@@ -65,8 +66,9 @@ const Modal = ({
                 <Text
                   as="p"
                   padding="0"
-                  margin="0 0 2rem 0"
+                  margin={subTitleMargin || "0 0 2rem 0"}
                   color={Color.alerzoBlack}
+                  opacity="0.8"
                   size={subTitleSize || '14px'}
                   align="center"
                   whiteSpace={subTitleWhiteSpace}
@@ -80,19 +82,7 @@ const Modal = ({
           {!withoutFooter && (
             <Footer>
               <Button.Group align="center">
-                {buttonText && (
-                  <Button
-                    width={cancelBtnText ? '40%' : '50%'}
-                    radius="10px"
-                    fontSize="14px"
-                    weight="500"
-                    loading={loading}
-                    disabled={disabled}
-                    onClick={handleSubmit ?? setShowModal}
-                  >
-                    {buttonText}
-                  </Button>
-                )}
+             
                 {cancelBtnText && (
                   <Button
                     width={'40%'}
@@ -106,6 +96,19 @@ const Modal = ({
                     onClick={setShowModal}
                   >
                     {cancelBtnText}
+                  </Button>
+                )}
+                   {buttonText && (
+                  <Button
+                    width={cancelBtnText ? '40%' : '50%'}
+                    radius="10px"
+                    fontSize="14px"
+                    weight="500"
+                    loading={loading}
+                    disabled={disabled}
+                    onClick={handleSubmit ?? setShowModal}
+                  >
+                    {buttonText}
                   </Button>
                 )}
               </Button.Group>
