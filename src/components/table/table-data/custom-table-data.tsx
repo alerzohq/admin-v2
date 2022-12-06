@@ -18,7 +18,7 @@ type dataProps = {
   setParams?: boolean
   selectIndex?: number
   options?: any[]
-  handleSelectChange?: (item: {[key:string]:any}) => void
+  handleSelectChange?: (item: { [key: string]: any }) => void
 }
 type dataList = string[] | undefined
 
@@ -35,7 +35,6 @@ const CustomTableData = ({
   return (
     <tbody>
       {tableData?.map((item, index) => {
-        console.log(item, "item")
         let newObj = transformData({ item, name })
         let dataList: dataList = newObj && Object.values(newObj)
         return (
@@ -81,7 +80,11 @@ const CustomTableData = ({
                 <SelectInput
                   placeholder="Change Biller"
                   onChange={(e) => {
-                    handleSelectChange?.({newBiller: e.value, oldBiller:item?.billerSlug, displayName: item?.displayName})
+                    handleSelectChange?.({
+                      newBiller: e.value,
+                      oldBiller: item?.billerSlug,
+                      displayName: item?.displayName,
+                    })
                   }}
                   value={'Change Biller'}
                   styles={selectStyles(true)}

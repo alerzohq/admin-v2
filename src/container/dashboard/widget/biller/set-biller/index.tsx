@@ -9,7 +9,7 @@ import { BillerSettings } from '../type'
 
 const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(true)
-  const [ showSuccess, setShowSuccess ] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const { values, setValues } = useGetBiller(biller)
 
@@ -29,37 +29,41 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
   if(isSuccess){
     setShowSuccess(true)
   }
-  },[isSuccess])
+  }, [isSuccess])
 
   return (
     <>
-    <Modal
-      showModal={show}
-      title={'Set Biller Threshold'}
-      setShowModal={setShow}
-      withoutFooter
-      contentPadding={'1rem'}
-    >
-      <BillerForm
-        isTriggerSubmit={isTriggerSubmit}
-        biller={biller}
-        isLoading={isLoading}
-        setValues={setValues}
-        setIsTriggerSubmit={setIsTriggerSubmit}
-        values={values}
-        handleBiller={handleBiller}
-      />
-    </Modal>
+      <Modal
+        showModal={show}
+        title={'Set Biller Threshold'}
+        setShowModal={setShow}
+        withoutFooter
+        contentPadding={'1rem'}
+      >
+        <BillerForm
+          isTriggerSubmit={isTriggerSubmit}
+          biller={biller}
+          isLoading={isLoading}
+          setValues={setValues}
+          setIsTriggerSubmit={setIsTriggerSubmit}
+          values={values}
+          handleBiller={handleBiller}
+        />
+      </Modal>
 
-    <Modal
+      <Modal
         showModal={showSuccess}
         setShowModal={() => setShowSuccess(!showSuccess)}
         title="Biller Thresold Updated"
         modalWidth="320px"
         contentPadding={'0'}
         icon={<InviteSent />}
-        subTitle={<>You have successfully updated the
-        threshold for <strong>{biller?.displayName}</strong></>}
+        subTitle={
+          <>
+            You have successfully updated the threshold for{' '}
+            <strong>{biller?.displayName}</strong>
+          </>
+        }
         buttonText="Back to Billers"
       />
     </>

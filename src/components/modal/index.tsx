@@ -66,7 +66,7 @@ const Modal = ({
                 <Text
                   as="p"
                   padding="0"
-                  margin={subTitleMargin || "0 0 2rem 0"}
+                  margin={subTitleMargin || '0 0 2rem 0'}
                   color={Color.alerzoBlack}
                   opacity="0.8"
                   size={subTitleSize || '14px'}
@@ -82,7 +82,6 @@ const Modal = ({
           {!withoutFooter && (
             <Footer>
               <Button.Group align="center">
-             
                 {cancelBtnText && (
                   <Button
                     width={'40%'}
@@ -98,7 +97,7 @@ const Modal = ({
                     {cancelBtnText}
                   </Button>
                 )}
-                   {buttonText && (
+                {buttonText && (
                   <Button
                     width={cancelBtnText ? '40%' : '50%'}
                     radius="10px"

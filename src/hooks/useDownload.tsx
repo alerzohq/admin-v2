@@ -1,12 +1,10 @@
 import toast from 'react-hot-toast'
 import axios from 'axios'
 const download = (blob: any, filename: string) => {
-  console.log(blob, 'nnnn')
   const url = window.URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.style.display = 'none'
   a.href = url
-  // the filename you want
   a.download = filename
   document.body.appendChild(a)
   a.click()

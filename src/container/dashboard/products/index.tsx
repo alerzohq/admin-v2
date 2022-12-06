@@ -24,7 +24,7 @@ const ProductsContainer = () => {
   const [showModal, setShowModal] = useState(false)
   const [showStatus, setShowStatus] = useState(false)
   const [values, setValues] = useState(filterValue)
-  const [newBiller, setNewBiller] = useState<{[key:string]:any}>()
+  const [newBiller, setNewBiller] = useState<{ [key: string]: any }>()
   const location = useLocation()
   const [options, setOptions] = useState([
     { label: '', options: { label: '', value: '' } },
@@ -38,7 +38,6 @@ const ProductsContainer = () => {
   const getBillers = () => {
     return getResource(`products/${slug}/billers`)
   }
-
 
   const { isLoading, isError, error, data, refetch } = useQuery(
     'products',
@@ -68,8 +67,8 @@ const ProductsContainer = () => {
   })
 
   useEffect(() => {
-    if(newBiller){
-      setShowModal(true);
+    if (newBiller) {
+      setShowModal(true)
     }
   }, [newBiller])
   useEffect(() => {

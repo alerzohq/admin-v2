@@ -17,7 +17,6 @@ const useSetBiller = (
     onSuccess: () => {
       queryClient.invalidateQueries('billers')
       setShow(false)
-     
     },
     onError: () => {
       toast.error('Failed to set threshold')
