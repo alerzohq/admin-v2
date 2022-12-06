@@ -65,9 +65,6 @@ const UsersContainer = () => {
       return `/dashboard/users?status=${queryParam}`
     }
   }
-  useEffect(() => {
-    console.log(data, queryParam)
-  })
 
   return (
     <Container
