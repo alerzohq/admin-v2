@@ -24,8 +24,11 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
     }
   }
 
+
   useEffect(() => {
+  if(isSuccess){
     setShowSuccess(true)
+  }
   },[isSuccess])
 
   return (
