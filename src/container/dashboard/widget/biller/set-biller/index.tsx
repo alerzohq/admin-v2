@@ -54,7 +54,7 @@ const SetBiller = ({ show, setShow, biller }: BillerSettings) => {
       <Modal
         showModal={showSuccess}
         setShowModal={() => setShowSuccess(!showSuccess)}
-        title="Biller Thresold Updated"
+        title="Biller Threshold Updated"
         modalWidth="320px"
         contentPadding={'0'}
         icon={<InviteSent />}
