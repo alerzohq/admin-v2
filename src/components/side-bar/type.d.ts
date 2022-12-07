@@ -1,6 +1,8 @@
 export type sidebarProps = {
   isCollapsed?: boolean
   collapseBar?: () => void
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
 type subMenuData = {

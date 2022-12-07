@@ -25,9 +25,7 @@ const BusinessDetailContainer = () => {
     'businesses',
     getBusinessDetails
   )
-
-  let walletId = data?.data?.[0]?.wallet_id
-  let userId = data?.data?.[0]?.business_owner?.id
+  let walletId = data?.data?.[0]?.wallet_details[0]?.wallet_id
 
   const renderSwitch = () => {
     switch (queryParam) {

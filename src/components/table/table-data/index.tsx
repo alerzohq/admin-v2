@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
@@ -18,6 +17,7 @@ type dataProps = {
   hideDate?: boolean
   setParams?: boolean
   notClickable?: boolean
+  routePath?: string
 }
 type dataList = string[] | undefined
 
@@ -31,10 +31,12 @@ const TableData = ({
   hideDate,
   setParams,
   notClickable,
+  routePath,
 }: dataProps) => {
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
+
   return (
     <tbody>
       {tableData?.map((item, index) => {
@@ -56,6 +58,15 @@ const TableData = ({
                             {
                               state: { detail: item },
                             }
+                          )
+                        }
+                      : routePath
+                      ? () => {
+                          navigate(
+                            withSlug
+                              ? `/${routePath}/${item?.id}/${item?.product?.slug}`
+                              : `/${routePath}/${item?.id}`,
+                            { replace: true }
                           )
                         }
                       : () => {

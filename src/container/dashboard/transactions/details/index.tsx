@@ -21,13 +21,13 @@ const TabsContainer = () => {
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
-  const getTransactions = () => {
+  const getTransactions = (id: string) => {
     return getResource(`transactions?query=${id}`)
   }
 
   const { isLoading, data, isError, isFetching } = useQuery(
-    'transactions',
-    getTransactions
+    ['transactions', id],
+    () => getTransactions(id)
   )
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)

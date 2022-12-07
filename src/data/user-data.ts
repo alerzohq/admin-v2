@@ -9,4 +9,9 @@ export const TABS = [
     value: 'roles-permissions',
     title: '',
   },
+  {
+    label: 'Pending Invites',
+    value: 'pending-invites',
+    title: '',
+  },
 ]

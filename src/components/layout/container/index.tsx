@@ -25,12 +25,6 @@ const Container: React.FC<ContainerProps> = ({
     dispatch,
   } = useAppContext()
 
-  // const getPermissions = () => {
-  //   return getResource(`permissions`)
-  // }
-
-  // const { data:permissions } = useQuery('app-filters', getPermissions);
-
   const getFilters = () => {
     return getResource(`filters`)
   }

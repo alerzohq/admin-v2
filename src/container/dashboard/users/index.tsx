@@ -7,7 +7,8 @@ import { TABS } from '../../../data/user-data'
 import Employees from './employees'
 import RolesPermissions from './roles-permissions'
 import EditEmployee from './details/edit-employee'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import PendingInvites from './pending-invites'
 
 const UsersContainer = () => {
   const [edit, setEdit] = useState(false)
@@ -52,6 +53,8 @@ const UsersContainer = () => {
         )
       case 'employees':
         return data ? <EditEmployee data={data?.detail} /> : <Employees />
+      case 'pending-invites':
+        return <PendingInvites />
     }
   }
   const handleNavigation = () => {
@@ -62,19 +65,20 @@ const UsersContainer = () => {
       return `/dashboard/users?status=${queryParam}`
     }
   }
+
   return (
     <Container
       showFilters={false}
       isFetching={false}
       title={
-        data
+        data && queryParam !== 'pending-invites'
           ? data?.detail?.name ??
             `${data.detail?.firstName} ${data.detail?.lastName}`
           : create
           ? 'Create New Role'
           : 'Employee Roles & Permission'
       }
-      withParams={data !== null || create}
+      withParams={(data !== null || create) && queryParam !== 'pending-invites'}
       routePath={handleNavigation}
     >
       {queryParam === 'employees' && data ? null : (

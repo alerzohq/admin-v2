@@ -18,35 +18,41 @@ import Text from '../text'
 import { Link, useLocation } from 'react-router-dom'
 import Stack from '../stack'
 import { useAppContext } from '../../context'
-import { logOut } from '../../utils/session-storage'
-import { Action } from '../../context/actions'
+import useLogout from '../../hooks/useLogout'
 
-const Sidebar = ({ isCollapsed, collapseBar }: sidebarProps) => {
+const Sidebar = ({
+  isCollapsed,
+  collapseBar,
+  onMouseEnter,
+  onMouseLeave,
+}: sidebarProps) => {
   const location = useLocation()
   const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
   const { sideBarData } = SideBarMenus()
-
   const {
     state: { user },
-    dispatch,
   } = useAppContext()
+
+  const { mutate } = useLogout()
 
   const handleToggle = (index: number) => {
     if (show === index) {
       return setShow(null)
     }
-
     setShow(index)
   }
+
   const handleLogout = () => {
-    logOut(() => {
-      dispatch({ type: Action.LOGOUT })
-    })
+    mutate()
   }
 
   return (
-    <SidebarWrapper isCollapsed={isCollapsed}>
+    <SidebarWrapper
+      isCollapsed={isCollapsed}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <Inner isCollapsed={isCollapsed}>
         <LogoBox>
           {isCollapsed ? (

@@ -10,8 +10,9 @@ export type ModalProps = {
   modalWidth?: string
   modalPadding?: string
   contentPadding?: string
+  subTitleMargin?: string
   subTitleSize?: string
-  subTitle?: string
+  subTitle?: string | React.ReactNode
   titleSize?: string
   cancelBtnText?: string
   setShowModal: Dispatch<SetStateAction<boolean>>
@@ -19,4 +20,6 @@ export type ModalProps = {
   icon?: ReactNode
   withoutFooter?: boolean
   disabled?: boolean
+  subTitleWhiteSpace?: string
+  footer?: React.ReactNode
 }

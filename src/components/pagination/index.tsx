@@ -8,6 +8,7 @@ import Text from '../text'
 import { options } from '../../data/filter-data'
 import { SelectOptions } from '../../@types'
 import { Color } from '../../assets/theme'
+import { BackIcon, NextIcon } from '../../assets/icons'
 
 const Pagination = ({ data, setPageNumber }: PaginationProps) => {
   const { width } = useWindowResize()
@@ -31,24 +32,25 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
         >
           <Inner>
             <Text as={'p'} color={Color.alerzoGray2}>
-              Rows Per Page
+              Show
             </Text>
             <SelectInput
               onChange={(val) => handlePageCount(val)}
-              placeholder={'10'}
-              value={'10'}
+              placeholder={'50'}
+              value={'50'}
               options={options}
             />
           </Inner>
 
           <ReactPaginate
             breakLabel="..."
-            nextLabel={width < mobileWidth ? '>' : 'Next'}
+            nextLabel={<NextIcon />}
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
             pageCount={data?.metadata?.pages ?? 1}
-            previousLabel={width < mobileWidth ? '<' : 'Back'}
+            // previousLabel={width < mobileWidth ? <BackIcon /> :  <BackIcon />}
+            previousLabel={<BackIcon />}
             containerClassName={'paginate'}
             pageClassName={'page-item'}
             pageLinkClassName={'page-link'}
@@ -57,6 +59,12 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
             previousLinkClassName={'previous-btn'}
             disabledClassName={'pagination-disabled'}
           />
+
+          <Inner>
+            <Text as={'p'} color={Color.alerzoGray2}>
+              Go to
+            </Text>
+          </Inner>
         </PaginationWrapper>
       )}
     </>

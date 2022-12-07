@@ -15,7 +15,7 @@ export const axiosInstance = axios.create({
 export const axiosInstanceWithoutToken = axios.create({
   baseURL,
 })
-
+export const axiosInstanceUniqueUrl = axios.create()
 axiosInstance.interceptors.request.use(
   async (req: any) => {
     token = getStorageItem('user')?.data?.token ?? null
@@ -31,6 +31,14 @@ axiosInstance.interceptors.request.use(
     logOut(() => {
       window.location.href = '/'
     })
+
+    //  const {data} = await axios.post(`${baseURL}/logout`, {headers:{ Authorization: `Bearer ${token}`}})
+    //   if(data){
+    //     logOut(() => {
+    //       window.location.href = '/'
+    //     })
+    //   }
+
     // const {data} = await axios.post(`${baseURL}/user/token/refresh`,{refresh:token.refreshToken})
     //   localStorage.getItem('token',JSON.stringify(data.token))
     // req.headers.Authorization = data?.access_token;

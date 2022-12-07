@@ -18,7 +18,8 @@ import { TimelineElement } from '../../../components/timeline'
 import { filterValue } from '../../../data/filter-data'
 import { auditHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
-import { formatDate } from '../../../utils/formatValue'
+// import { formatDate } from '../../../utils/formatValue'
+import { errorMessage } from '../../../utils/message'
 import { rowData, rowheaders } from './auditConfig'
 
 interface SessionDetails {
@@ -46,7 +47,7 @@ const Audit = () => {
     return getResource('sessions')
   }
 
-  const { isLoading, isError, data, refetch } = useQuery(
+  const { isLoading, isError, data, refetch, error } = useQuery(
     ['audit', values],
     getSessionsDetails
   )
@@ -56,7 +57,7 @@ const Audit = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error title={'Failed to load sessions. '} refetch={refetch} />
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
     component = (

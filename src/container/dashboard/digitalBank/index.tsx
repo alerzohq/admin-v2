@@ -8,6 +8,7 @@ import DynamicTable from '../../../components/react-table'
 import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
+import { errorMessage } from '../../../utils/message'
 import CardWidget from '../widget/card'
 import { digitalBankTableMapper } from './tableConfig'
 
@@ -30,7 +31,7 @@ const DigitalBankContainer = () => {
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, isFetching } = useQuery(
+  const { isLoading, data, isError, error, isFetching } = useQuery(
     ['digital-bank', values],
     () => getDigitalBanksHandler(values),
     { keepPreviousData: true }
@@ -41,9 +42,7 @@ const DigitalBankContainer = () => {
   if (isLoading) {
     digitalBankComponent = <Loader />
   } else if (isError) {
-    digitalBankComponent = (
-      <FallBack error title={'Failed to load transactions. '} />
-    )
+    digitalBankComponent = <FallBack error title={`${errorMessage(error)}`} />
   } else if (data?.data?.length < 1) {
     digitalBankComponent = (
       <FallBack

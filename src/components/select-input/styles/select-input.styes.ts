@@ -96,7 +96,7 @@ export const selectStyles = (isBlue?: boolean, fullWidth?: boolean) => {
             : `1px solid ${Color.alerzoLightGray}`,
           height: 45,
           width: fullWidth ? '100%' : 200,
-          borderRadius: 7,
+          borderRadius: 10,
           fontSize: 14,
           boxShadow: Color.alerzoDarkGray,
           '&:hover': {
