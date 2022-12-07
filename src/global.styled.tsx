@@ -204,6 +204,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.bold{
+  font-weight:700;
+  color:   #001928;
+}
 `
 
 export default GlobalStyle

@@ -20,7 +20,12 @@ import Stack from '../stack'
 import { useAppContext } from '../../context'
 import useLogout from '../../hooks/useLogout'
 
-const Sidebar = ({ isCollapsed, collapseBar,onMouseEnter,onMouseLeave }: sidebarProps) => {
+const Sidebar = ({
+  isCollapsed,
+  collapseBar,
+  onMouseEnter,
+  onMouseLeave,
+}: sidebarProps) => {
   const location = useLocation()
   const [show, setShow] = useState<number | null>()
   const pathname = location?.pathname
@@ -43,7 +48,11 @@ const Sidebar = ({ isCollapsed, collapseBar,onMouseEnter,onMouseLeave }: sidebar
   }
 
   return (
-    <SidebarWrapper isCollapsed={isCollapsed} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <SidebarWrapper
+      isCollapsed={isCollapsed}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <Inner isCollapsed={isCollapsed}>
         <LogoBox>
           {isCollapsed ? (

@@ -37,8 +37,8 @@ const ReassignTerminalModal = ({
   const mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
     data?.user_id === null
-      ? 'Assign this terminal to a merchant'
-      : 'Reassign this terminal to a new merchant'
+      ? 'Assign this terminal to a business'
+      : 'Reassign this terminal to a new business'
   const btnText =
     data?.user_id === null ? 'Assign Terminal' : 'Reassign Terminal'
   return (
@@ -90,7 +90,7 @@ const ReassignTerminalModal = ({
               ]
             : [
                 {
-                  label: 'Enter to search for merchant',
+                  label: 'Enter to search for business',
                   options: mappedBusinesses || [{ label: '', value: '' }],
                 },
               ]
@@ -103,7 +103,7 @@ const ReassignTerminalModal = ({
           weight={'500'}
           color={Color.alerzoDanger}
         >
-          Merchant is required*
+          Business is required*
         </Text>
       )}
       {data?.user_id !== null && (

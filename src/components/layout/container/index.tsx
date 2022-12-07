@@ -25,7 +25,6 @@ const Container: React.FC<ContainerProps> = ({
     dispatch,
   } = useAppContext()
 
-
   const getFilters = () => {
     return getResource(`filters`)
   }
