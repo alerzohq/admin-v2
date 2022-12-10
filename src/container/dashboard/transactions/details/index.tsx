@@ -10,6 +10,7 @@ import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { errorMessage } from '../../../../utils/message'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
@@ -21,17 +22,21 @@ const TabsContainer = () => {
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
+
+
   const getTransactions = (id: string) => {
-    return getResource(`transactions?query=${id}`)
+    return getResource(`transactions?id=${id}`)
   }
 
-  const { isLoading, data, isError, isFetching } = useQuery(
-    ['transactions', id],
+  const { isLoading, data, isError, isFetching,error } = useQuery(
+    ['transactions-details', id],
     () => getTransactions(id)
   )
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
+
+  console.log('trans-detaisl',data)
 
   const { data: user, isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
@@ -51,6 +56,7 @@ const TabsContainer = () => {
       }
     }
   }, [fetchUser, user])
+
   const renderSwitch = () => {
     switch (queryParam) {
       case 'other':
@@ -79,7 +85,7 @@ const TabsContainer = () => {
       title={found ? found?.title : TABS[0]?.title}
       type="Transaction!"
       isError={isError}
-      errorMessage="Failed to load transaction."
+      errorMessage={error && errorMessage(error)}
       currentValue={found?.value || 'details'}
       renderSwitch={renderSwitch}
       tabs={TABS}
