@@ -10,6 +10,7 @@ import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { errorMessage } from '../../../../utils/message'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ const TabsContainer = () => {
     return getResource(`transactions?query=${id}`)
   }
 
-  const { isLoading, data, isError, isFetching } = useQuery(
+  const { isLoading, data, isError, isFetching,error } = useQuery(
     ['transactions', id],
     () => getTransactions(id)
   )
@@ -51,6 +52,7 @@ const TabsContainer = () => {
       }
     }
   }, [fetchUser, user])
+
   const renderSwitch = () => {
     switch (queryParam) {
       case 'other':
@@ -79,7 +81,7 @@ const TabsContainer = () => {
       title={found ? found?.title : TABS[0]?.title}
       type="Transaction!"
       isError={isError}
-      errorMessage="Failed to load transaction."
+      errorMessage={error && errorMessage(error)}
       currentValue={found?.value || 'details'}
       renderSwitch={renderSwitch}
       tabs={TABS}
