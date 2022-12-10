@@ -76,17 +76,18 @@ export const amountHelper = (x: string | number) => {
 }
 export const generateCommission = (
   type: string,
-  amount: string | number,
+  percentage: string | number,
   cap?: string
 ) => {
-  const amountToNaira = amount ? amountConverter(amount) : ''
+
+  const commission = percentage ?? '0'
 
   if (type === 'percentage') {
     const capToNaira = amountConverter(cap!)
-    return `${amountToNaira}% @ ₦${capToNaira}`
+    return `${commission}% @ ₦${capToNaira}`
   }
   if (type === 'flat') {
-    return `₦${amountToNaira} FLAT`
+    return `₦${amountConverter(commission)} FLAT`
   }
 }
 export const capitalizeFirstLetterInSentence = (mySentence?: string) => {
