@@ -11,7 +11,7 @@ export function validEmail(email: string) {
   }
 }
 export const formatDate = (date: any, type?: string) => {
-  return moment(date).format(type ?? 'YYYY-MM-DD, h:mm:ss a')
+  return moment(date).add(60, 'minutes').format(type ?? 'YYYY-MM-DD, h:mm:ss a')
 }
 
 //Mask string
