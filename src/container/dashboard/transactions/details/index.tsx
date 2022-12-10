@@ -22,17 +22,21 @@ const TabsContainer = () => {
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
+
+
   const getTransactions = (id: string) => {
-    return getResource(`transactions?query=${id}`)
+    return getResource(`transactions?id=${id}`)
   }
 
   const { isLoading, data, isError, isFetching,error } = useQuery(
-    ['transactions', id],
+    ['transactions-details', id],
     () => getTransactions(id)
   )
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
+
+  console.log('trans-detaisl',data)
 
   const { data: user, isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
