@@ -6,6 +6,7 @@ import DetailsContent from '../../widget/tabs/tab-content-details'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import TransactionHistory from './transaction-history'
 import CardsContainer from './user-accounts'
+import { errorMessage } from '../../../../utils/message'
 
 const DigitalBankDetailContainer = () => {
   const location = useLocation()
@@ -20,7 +21,7 @@ const DigitalBankDetailContainer = () => {
     return getResource(`customers?id=${id}`)
   }
 
-  const { isLoading, isError, data, isFetching } = useQuery(
+  const { isLoading, isError, data, isFetching, error } = useQuery(
     'customer',
     getBusinessDetails
   )
@@ -46,15 +47,15 @@ const DigitalBankDetailContainer = () => {
     <TabsContentWidget
       isFetching={isFetching}
       isLoading={isLoading}
-      containerTitle="Customer Information"
+      containerTitle= "Customer Information"
       isError={isError}
       title={title}
-      errorMessage="Failed to load customer details."
+      errorMessage={error && errorMessage(error)}
       currentValue={found?.value || 'details'}
       renderSwitch={renderSwitch}
       tabs={TABS}
       routePath={'/dashboard/digital-bank'}
-      hideStatus
+      hideStatus 
     />
   )
 }

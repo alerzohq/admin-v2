@@ -17,13 +17,13 @@ const BusinessDetailContainer = () => {
   const thePath = location.pathname
   var result = thePath.split('/')
   const id = result[3]
-  const getBusinessDetails = () => {
+  const getBusinessDetails = (id:string) => {
     return getResource(`businesses?id=${id}`)
   }
 
-  const { isLoading, isError, data, isFetching } = useQuery(
-    'businesses',
-    getBusinessDetails
+  const { isLoading, isError, data, isFetching } = useQuery(['businesses',id]
+    ,()=>getBusinessDetails(id)
+    
   )
   let walletId = data?.data?.[0]?.wallet_details[0]?.wallet_id
 
