@@ -12,11 +12,9 @@ const AllPermissions = () => {
     (permission: { [key: string]: string }) => permission.slug
   )
 
-
   const adminAccess =
     userInfo?.data?.role === 'Super Admin' ||
     Boolean(user?.data?.role === 'Super Admin')
-
 
   const businessesAccess =
     isHasPermission.includes('view_businesses') || adminAccess
@@ -41,7 +39,6 @@ const AllPermissions = () => {
   const historyAccess =
     isHasPermission.includes('view_transactions') || adminAccess
 
-
   return {
     adminAccess,
     businessesAccess,
@@ -55,7 +52,7 @@ const AllPermissions = () => {
     rolesAccess,
     roleDetailAccess,
     terminalAccess,
-    terminalDetailAccess
+    terminalDetailAccess,
   }
 }
 

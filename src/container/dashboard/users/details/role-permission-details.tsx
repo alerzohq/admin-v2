@@ -120,9 +120,9 @@ const RolePermissionDetails = ({
 
   return (
     <>
-      <Jumbotron padding='.5rem .5rem' margin="0 1rem" direction='column'>
-        <Form width='100%'>
-          <Form.Control pb='1rem' width="30%">
+      <Jumbotron padding=".5rem .5rem" margin="0 1rem" direction="column">
+        <Form width="100%">
+          <Form.Control pb="1rem" width="30%">
             <Form.Label labelFontSize="1rem">Role Name</Form.Label>
             <Form.Input
               type="text"
@@ -163,9 +163,9 @@ const RolePermissionDetails = ({
                     weight="600"
                     color={Color?.alerzoDarkGray}
                     size="0.875rem"
-                    bgColor=''
-                    padding='0 2rem'
-                    height='100%'
+                    bgColor=""
+                    padding="0 2rem"
+                    height="100%"
                   >
                     {permission.displayName}
                   </Text>
@@ -196,7 +196,7 @@ const RolePermissionDetails = ({
                     color={Color?.alerzoDarkGray}
                     size="0.875rem"
                     bgColor={Color.alerzoBlue5}
-                    padding='.6rem .9rem'
+                    padding=".6rem .9rem"
                   >
                     {permission.displayName}
                   </Text>

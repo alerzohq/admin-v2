@@ -9,9 +9,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Sidebar isCollapsed={isCollapsed} 
-       onMouseEnter={() => setIsCollapsed(false)}
-       onMouseLeave={() => setIsCollapsed(true)}/>
+      <Sidebar
+        isCollapsed={isCollapsed}
+        onMouseEnter={() => setIsCollapsed(false)}
+        onMouseLeave={() => setIsCollapsed(true)}
+      />
       <Content isCollapsed={isCollapsed}>
         <SessionTimeout>
           <Outlet />

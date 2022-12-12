@@ -46,7 +46,7 @@ export const ButtonContainer = styled.button<Props>`
   font-weight: ${({ weight }) => weight};
   transition: background-color 0.5s linear;
   font-family: 'Gilmer';
-  margin:${({ margin }) => margin};
+  margin: ${({ margin }) => margin};
   gap: 0.2rem;
 `
 

@@ -39,7 +39,6 @@ const BulkTerminalModal: React.FC<{
   const useUploadMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
       postRequest({ pathUrl: 'terminals/bulk', payload, methodType: 'post' })
-
     )
   const { isLoading: loading, mutate } = useUploadMutation()
   const handleSendBulk = () => {
@@ -62,7 +61,6 @@ const BulkTerminalModal: React.FC<{
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-
 
   return (
     <Modal
@@ -102,9 +100,9 @@ const BulkTerminalModal: React.FC<{
                 borderSize="1px"
                 onClick={() => {}}
                 borderColor={Color.alerzoBlue}
-                height='40px'
+                height="40px"
                 margin="0 0 2rem 0"
-                variant='transparent'
+                variant="transparent"
                 color={Color.alerzoBlue}
               >
                 Add File
@@ -116,20 +114,11 @@ const BulkTerminalModal: React.FC<{
           {csvFile ? csvFile?.name : 'or drag files to upload'}
         </Text>
         <Footer>
-          <Text
-            size={'0.875rem'}
-            color={'#0077FF'}
-            cursor={'pointer'}
-            onClick={() => {}}
-          >
-            Need help uploading CSV?
-          </Text>
-
-          <Button.Group width="50%" align={'flex-end'}>
+          <Button.Group align={'flex-end'}>
             <Button
               onClick={handleCancel}
               height={'45px'}
-              width="40%"
+              width="20%"
               borderSize="1px"
               color={Color.alerzoBlue}
               variant="transparent"
@@ -140,7 +129,7 @@ const BulkTerminalModal: React.FC<{
             <Button
               onClick={() => handleSendBulk()}
               height="45px"
-              width="40%"
+              width="20%"
               variant={Color.alerzoBlue}
               color={'#FFF'}
               disabled={!csvFile || loading}
@@ -154,8 +143,6 @@ const BulkTerminalModal: React.FC<{
         </Footer>
       </Container>
     </Modal>
-
-
   )
 }
 
