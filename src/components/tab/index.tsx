@@ -35,12 +35,11 @@ TabPage.Tabs = function TabList({
   borderRadius,
 }: TabsProps) {
   const [, setQueryParams] = useSearchParams()
- 
+
   return (
     <>
       <Tabs hideStatus={hideStatus} borderRadius={borderRadius}>
         {tabs.map((item, index) => {
-        
           return (
             <TabPage.Link
               key={index}

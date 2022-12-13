@@ -10,15 +10,12 @@ import { TimerIcon } from '../../../assets/icons'
 import useAuthenticate from './helper/useAuthenticate'
 import useResendOTP from './helper/useResendOTP'
 
-
 const VerificationContainer = () => {
-
- 
   const navigate = useNavigate()
   const {
     state: { userOtp },
     dispatch,
-  } = useAppContext();
+  } = useAppContext()
 
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
@@ -29,8 +26,11 @@ const VerificationContainer = () => {
     email: userOtp?.email,
   }
 
-  const {authenticateUser, loading}=useAuthenticate({payload:payload, dispatch:dispatch})
-  const {handleResendOTP,minutes, seconds, isLoading}= useResendOTP(payload)
+  const { authenticateUser, loading } = useAuthenticate({
+    payload: payload,
+    dispatch: dispatch,
+  })
+  const { handleResendOTP, minutes, seconds, isLoading } = useResendOTP(payload)
 
   const handleChange = (otp: string) => {
     setOtp(otp)
@@ -44,11 +44,11 @@ const VerificationContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const resendOTP=(e:React.MouseEvent<HTMLButtonElement>)=>{
-    e.preventDefault();
+  const resendOTP = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     handleResendOTP()
   }
- 
+
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
@@ -122,16 +122,15 @@ const VerificationContainer = () => {
             alignItems={'center'}
           >
             <TimerIcon />
-            <Text as={'small'} weight={'600'} color={'#7890B5'} >
+            <Text as={'small'} weight={'600'} color={'#7890B5'}>
               {' '}
-              Expires In :  
+              Expires In :
             </Text>
-            <Stack width='50px'>
-            <Text as={'small'} weight={'600'} color={'#7890B5'} >
-              {' '}
-              {minutes} : {seconds}
-            </Text>
-           
+            <Stack width="50px">
+              <Text as={'small'} weight={'600'} color={'#7890B5'}>
+                {' '}
+                {minutes} : {seconds}
+              </Text>
             </Stack>
           </Stack>
 
@@ -150,12 +149,16 @@ const VerificationContainer = () => {
               {' '}
               Didn’t get a code?
             </Text>
-             <Button width="auto" variant='transparent' weight='600' fontSize='1rem'
-              color={Color.alerzoBlue} 
-              onClick={resendOTP}> 
-              {isLoading? 'Resend...':'Resend'}
+            <Button
+              width="auto"
+              variant="transparent"
+              weight="600"
+              fontSize="1rem"
+              color={Color.alerzoBlue}
+              onClick={resendOTP}
+            >
+              {isLoading ? 'Resend...' : 'Resend'}
             </Button>
-        
           </Stack>
         </Form>
       </Stack>

@@ -11,8 +11,8 @@ export type LoginProps = {
   loading: boolean
 }
 
-export interface IResendOTPProps{
-  otp: string;
-  token: string;
-  email: string;
+export interface IResendOTPProps {
+  otp: string
+  token: string
+  email: string
 }

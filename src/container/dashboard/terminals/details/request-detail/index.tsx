@@ -25,13 +25,12 @@ const TerminalRequestDetails = () => {
             <DetailsContent resolvedData={terminalRequestHelper()} />
             <Wrapper>
               <POSRow />
-             
             </Wrapper>
             <Button>
-                <button onClick={() => {}} className="add-button">
-                  Update Terminal Status
-                </button>
-              </Button>
+              <button onClick={() => {}} className="add-button">
+                Update Terminal Status
+              </button>
+            </Button>
           </>
         )
     }

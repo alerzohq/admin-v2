@@ -1,7 +1,11 @@
 import mini from '../../../../../assets/images/pngs/mini.svg'
 import maxi from '../../../../../assets/images/pngs/maxi.svg'
 import POSItem from './pos-item'
-import { Button, HorizontalLine, TotalRow } from './styles/request-details.style'
+import {
+  Button,
+  HorizontalLine,
+  TotalRow,
+} from './styles/request-details.style'
 import { Color } from '../../../../../assets/theme'
 import { Text } from '../../../../../components'
 
@@ -19,8 +23,6 @@ const POSRow = () => {
           ₦150,000
         </Text>
       </TotalRow>
-     
-     
     </>
   )
 }
