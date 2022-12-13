@@ -1,3 +1,4 @@
+import {  useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { RolePermissionDetailsContainer } from '..'
 import { Color } from '../../../assets/theme'
@@ -7,7 +8,7 @@ import { TABS } from '../../../data/user-data'
 import Employees from './employees'
 import RolesPermissions from './roles-permissions'
 import EditEmployee from './details/edit-employee'
-import { useEffect, useState } from 'react'
+
 import PendingInvites from './pending-invites'
 
 const UsersContainer = () => {

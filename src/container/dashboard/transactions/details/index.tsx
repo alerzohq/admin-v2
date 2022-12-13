@@ -36,7 +36,7 @@ const TabsContainer = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
 
-  console.log('trans-detaisl',data)
+  
 
   const { data: user, isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
