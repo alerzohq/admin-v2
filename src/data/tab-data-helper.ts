@@ -34,7 +34,8 @@ export const detailsHelper = (
     reference,
     biller,
   } = data || {}
-  
+  const shouldFetch = user_type?.toLowerCase()?.includes('business')
+
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -94,10 +95,7 @@ export const detailsHelper = (
         url: `/dashboard/digital-bank/${user_id}`,
         index: 0,
         setFetch,
-        shouldFetch:
-          user_type === null ||
-          user_type === null ||
-          user_type === 'business-user',
+        shouldFetch: shouldFetch,
       },
       header: DETAILSTABLE1,
       data: tableData,

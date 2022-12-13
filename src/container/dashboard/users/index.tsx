@@ -8,7 +8,6 @@ import { TABS } from '../../../data/user-data'
 import Employees from './employees'
 import RolesPermissions from './roles-permissions'
 import EditEmployee from './details/edit-employee'
-
 import PendingInvites from './pending-invites'
 
 const UsersContainer = () => {
