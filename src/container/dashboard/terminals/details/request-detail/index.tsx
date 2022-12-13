@@ -8,6 +8,7 @@ import {
 import DetailsContent from '../../../widget/tabs/tab-content-details'
 import { Button, Wrapper } from './styles/request-details.style'
 import POSRow from './pos-row'
+import { StatusModal } from './status-modal'
 
 const TerminalRequestDetails = () => {
   const search = useLocation().search
@@ -31,6 +32,7 @@ const TerminalRequestDetails = () => {
                 Update Terminal Status
               </button>
             </Button>
+            <StatusModal />
           </>
         )
     }
