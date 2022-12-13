@@ -6,9 +6,7 @@ import {
   TERMINALREQUESTTABS,
 } from '../../../../../data/terminal-data'
 import DetailsContent from '../../../widget/tabs/tab-content-details'
-import {
-  Wrapper,
-} from './styles/request-details.style'
+import { Wrapper } from './styles/request-details.style'
 import POSRow from './pos-row'
 
 const TerminalRequestDetails = () => {
@@ -16,7 +14,6 @@ const TerminalRequestDetails = () => {
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
   const title = found ? found?.title : TABS[0]?.title
- 
 
   const renderSwitch = () => {
     switch (queryParam) {

@@ -66,7 +66,6 @@ export const MERCHANTDETAILSTABLE = [
   { label: 'Business Adress', value: 'businessAdress', columnWidth: 'large' },
 ]
 
-
 export const merchant = {
   status: true,
   message: 'Fetched terminals',
@@ -133,7 +132,6 @@ export const merchantHelper = (data: any) => {
         businessAdress: data?.address,
       },
     },
-    
   ]
 }
 

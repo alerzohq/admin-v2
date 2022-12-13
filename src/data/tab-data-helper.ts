@@ -79,14 +79,15 @@ export const detailsHelper = (
     action,
     channel,
     charge: amountHelper(charge),
-    commission: commissions?.['0'] ? amountHelper(commissions?.['0']?.value) : amountHelper(commissions),
+    commission: commissions?.['0']
+      ? amountHelper(commissions?.['0']?.value)
+      : amountHelper(commissions),
     created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
     updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
     product: product?.display_name || '',
     summary,
     total: amountHelper(total),
   }
-
 
   return [
     {
