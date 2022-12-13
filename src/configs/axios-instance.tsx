@@ -8,6 +8,8 @@ import { getStorageItem, logOut } from '../utils/session-storage'
 let baseURL = process.env.REACT_APP_API_BASE_URL
 let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : null
 
+
+
 export const axiosInstance = axios.create({
   baseURL,
   headers: { Authorization: `Bearer ${token}` },

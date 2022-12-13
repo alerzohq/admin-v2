@@ -7,14 +7,13 @@ import { useNavigate } from 'react-router-dom'
 import { Path } from '../../../constants/route-path'
 import OtpInput from 'react-otp-input'
 import { TimerIcon } from '../../../assets/icons'
-import { useCountdownTimer } from '../../../hooks/useCountdownTimer'
 import useAuthenticate from './helper/useAuthenticate'
 import useResendOTP from './helper/useResendOTP'
 
 
 const VerificationContainer = () => {
 
-  const { minutes, seconds, resetTimer } = useCountdownTimer()
+ 
   const navigate = useNavigate()
   const {
     state: { userOtp },
@@ -31,15 +30,7 @@ const VerificationContainer = () => {
   }
 
   const {authenticateUser, loading}=useAuthenticate({payload:payload, dispatch:dispatch})
-  const {handleResendOTP}= useResendOTP(payload)
-
-
-
-  // const handleOTP=async() => {
-  //   console.log({token: userOtp?.token, email:userOtp?.email})
-  //   const {data} = await axiosInstance.post(`/login/resend-otp`,{token: userOtp?.token, email:userOtp?.email})
-  //   console.log({data})
-  //  }
+  const {handleResendOTP,minutes, seconds, isLoading}= useResendOTP(payload)
 
   const handleChange = (otp: string) => {
     setOtp(otp)
@@ -53,6 +44,10 @@ const VerificationContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const resendOTP=(e:React.MouseEvent<HTMLButtonElement>)=>{
+    e.preventDefault();
+    handleResendOTP()
+  }
  
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -155,8 +150,10 @@ const VerificationContainer = () => {
               {' '}
               Didn’t get a code?
             </Text>
-             <Button width="auto" variant='transparent' weight='600' fontSize='1rem' color={Color.alerzoBlue} onClick={handleResendOTP}>
-              Resend
+             <Button width="auto" variant='transparent' weight='600' fontSize='1rem'
+              color={Color.alerzoBlue} 
+              onClick={resendOTP}> 
+              {isLoading? 'Resend...':'Resend'}
             </Button>
         
           </Stack>
