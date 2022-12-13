@@ -23,11 +23,12 @@ const ProductDetailsContainer = () => {
   const state = location.state as CustomizedState
   const { detail } = state
 
-  const getProductBillers = (slug:string) => {
+  const getProductBillers = (slug: string) => {
     return getResource(`products/${slug}/billers`)
   }
   const { isLoading, isRefetching, isError, refetch, data, error } = useQuery(
-   [ 'billers',detail?.slug ],()=>getProductBillers(detail?.slug)
+    ['billers', detail?.slug],
+    () => getProductBillers(detail?.slug)
   )
   const resp = data?.data?.[0]
 
@@ -67,19 +68,19 @@ const ProductDetailsContainer = () => {
         resolvedData={productHelper({ ...resp, name: detail?.slug })!}
       />
       <Text
-        as='p'
-        padding='0'
+        as="p"
+        padding="0"
         color={Color.alerzoBlack}
         size="14px"
         textAlign="left"
         whiteSpace="nowrap"
         margin="1.875rem 0 1rem 0"
         weight="600"
-        align='center'
+        align="center"
       >
         Biller Information
       </Text>
-      <Jumbotron padding='0' direction="column" mt="0">
+      <Jumbotron padding="0" direction="column" mt="0">
         {component}
       </Jumbotron>
     </Container>

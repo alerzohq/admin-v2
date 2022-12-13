@@ -34,7 +34,8 @@ export const detailsHelper = (
     reference,
     biller,
   } = data || {}
-  
+  const shouldFetch = user_type?.toLowerCase()?.includes('business')
+
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -78,14 +79,15 @@ export const detailsHelper = (
     action,
     channel,
     charge: amountHelper(charge),
-    commission: commissions?.['0'] ? amountHelper(commissions?.['0']?.value) : amountHelper(commissions),
+    commission: commissions?.['0']
+      ? amountHelper(commissions?.['0']?.value)
+      : amountHelper(commissions),
     created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
     updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
     product: product?.display_name || '',
     summary,
     total: amountHelper(total),
   }
-
 
   return [
     {
@@ -94,10 +96,7 @@ export const detailsHelper = (
         url: `/dashboard/digital-bank/${user_id}`,
         index: 0,
         setFetch,
-        shouldFetch:
-          user_type === null ||
-          user_type === null ||
-          user_type === 'business-user',
+        shouldFetch: shouldFetch,
       },
       header: DETAILSTABLE1,
       data: tableData,
