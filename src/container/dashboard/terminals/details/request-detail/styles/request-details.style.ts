@@ -83,3 +83,28 @@ export const Wrapper = styled.div`
     border: 3px solid ${Color.alerzoGray};
   }
 `
+export const Button = styled.div<props>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .add-button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    background: ${Color.alerzoBlue};
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 2rem;
+    text-align: center;
+    font-family: 'Gilmer';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: ${Color.alerzoWhite};
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 4rem;
+  }
+`

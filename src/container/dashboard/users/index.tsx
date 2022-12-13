@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { RolePermissionDetailsContainer } from '..'
 import { Color } from '../../../assets/theme'

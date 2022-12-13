@@ -6,7 +6,7 @@ import {
   TERMINALREQUESTTABS,
 } from '../../../../../data/terminal-data'
 import DetailsContent from '../../../widget/tabs/tab-content-details'
-import { Wrapper } from './styles/request-details.style'
+import { Button, Wrapper } from './styles/request-details.style'
 import POSRow from './pos-row'
 
 const TerminalRequestDetails = () => {
@@ -26,6 +26,11 @@ const TerminalRequestDetails = () => {
             <Wrapper>
               <POSRow />
             </Wrapper>
+            <Button>
+              <button onClick={() => {}} className="add-button">
+                Update Terminal Status
+              </button>
+            </Button>
           </>
         )
     }
