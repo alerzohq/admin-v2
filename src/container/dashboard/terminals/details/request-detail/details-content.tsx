@@ -4,8 +4,8 @@ import { Wrapper } from './styles/request-details.style'
 import POSRow from './pos-row'
 import { StatusModal } from './status-modal'
 import { terminalRequestHelper } from '../../../../../data/terminal-data'
-// terminalRequestHelper()
 import Button from './../../../../../components/button'
+
 export const DetailsContentComp = () => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   return (
