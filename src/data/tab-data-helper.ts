@@ -94,7 +94,10 @@ export const detailsHelper = (
     {
       spacing: false,
       clickable: {
-        url: user_type === 'business' ? `/dashboard/businesses/${user_id}` : `/dashboard/digital-bank/${user_id}`,
+        url:
+          user_type === 'business'
+            ? `/dashboard/businesses/${user_id}`
+            : `/dashboard/digital-bank/${user_id}`,
         index: 0,
         setFetch,
         shouldFetch: shouldFetch,
@@ -122,7 +125,7 @@ export const detailsHelper = (
 }
 
 export const otherHelper = (data: any) => {
-  const userType = data?.user_type;
+  const userType = data?.user_type
   let metaHeaders: { [key: string]: any }[] = []
   const metaDataArr = data?.metadata?.map(
     (val: { [key: string]: any }, i: number) => {
@@ -154,7 +157,9 @@ export const otherHelper = (data: any) => {
   {})
   return [
     {
-      title: userType?.toLowerCase()?.includes('business') ? 'Business Details' :'Customer Details',
+      title: userType?.toLowerCase()?.includes('business')
+        ? 'Business Details'
+        : 'Customer Details',
       spacing: false,
       header: metaHeaders,
       data: resultObject,

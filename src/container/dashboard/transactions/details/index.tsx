@@ -33,7 +33,7 @@ const TabsContainer = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
 
-  const {  isRefetching: fetchinguser } = useQuery(
+  const { isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
     getBusinessUser,
     {
