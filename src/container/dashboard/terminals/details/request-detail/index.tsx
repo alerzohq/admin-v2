@@ -1,14 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import TabsContentWidget from '../../../widget/tabs/tab-content'
-import {
-  TABS,
-  terminalRequestHelper,
-  TERMINALREQUESTTABS,
-} from '../../../../../data/terminal-data'
-import DetailsContent from '../../../widget/tabs/tab-content-details'
-import { Button, Wrapper } from './styles/request-details.style'
-import POSRow from './pos-row'
-import { StatusModal } from './status-modal'
+import { TABS, TERMINALREQUESTTABS } from '../../../../../data/terminal-data'
+import { DetailsContentComp } from './details-content'
 
 const TerminalRequestDetails = () => {
   const search = useLocation().search
@@ -21,20 +14,7 @@ const TerminalRequestDetails = () => {
       case 'order-process':
         return <div>Terminal Order Status History</div>
       default:
-        return (
-          <>
-            <DetailsContent resolvedData={terminalRequestHelper()} />
-            <Wrapper>
-              <POSRow />
-            </Wrapper>
-            <Button>
-              <button onClick={() => {}} className="add-button">
-                Update Terminal Status
-              </button>
-            </Button>
-            <StatusModal />
-          </>
-        )
+        return <DetailsContentComp />
     }
   }
 

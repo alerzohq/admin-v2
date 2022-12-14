@@ -1,16 +1,22 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
 import { TextArea } from '../../terminalmodal.styles'
 
-export const StatusModal = () => {
+export const StatusModal = ({
+  showModal,
+  setShowModal,
+}: {
+  showModal: boolean
+  setShowModal: Dispatch<SetStateAction<boolean>>
+}) => {
   const [order, setOrder] = useState(null)
   const [note, setNote] = useState('')
   return (
     <Modal
-      showModal={true}
-      setShowModal={() => console.log('sss')}
+      showModal={showModal}
+      setShowModal={setShowModal}
       title="Update Terminal Status"
       contentPadding={'0'}
       children={
@@ -38,7 +44,7 @@ export const StatusModal = () => {
         </>
       }
       subTitleWhiteSpace={'pre-line'}
-      handleSubmit={() => console.log('first')}
+      handleSubmit={() => console.log('WIP FROM BE')}
       buttonText="Update Status"
     />
   )
