@@ -2,24 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { Color } from '../../../assets/theme'
 import { Button, Form, Loader, Stack, Text } from '../../../components'
 import { useAppContext } from '../../../context'
-import { useMutation } from '../../../hooks'
 import AuthLayout from '../layout'
-import { Action } from '../../../context/actions'
-import { setStorage } from '../../../utils/session-storage'
 import { useNavigate } from 'react-router-dom'
 import { Path } from '../../../constants/route-path'
-import toast from 'react-hot-toast'
 import OtpInput from 'react-otp-input'
 import { TimerIcon } from '../../../assets/icons'
-import { useCountdownTimer } from '../../../hooks/useCountdownTimer'
+import useAuthenticate from './helper/useAuthenticate'
+import useResendOTP from './helper/useResendOTP'
 
 const VerificationContainer = () => {
-  const { minutes, seconds } = useCountdownTimer()
   const navigate = useNavigate()
   const {
     state: { userOtp },
     dispatch,
   } = useAppContext()
+
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
 
@@ -28,11 +25,12 @@ const VerificationContainer = () => {
     token: userOtp?.token,
     email: userOtp?.email,
   }
-  const [authenticateUser, { data, error, loading }] = useMutation({
-    pathUrl: 'login/complete',
-    payload,
-    methodType: 'post',
+
+  const { authenticateUser, loading } = useAuthenticate({
+    payload: payload,
+    dispatch: dispatch,
   })
+  const { handleResendOTP, minutes, seconds, isLoading } = useResendOTP(payload)
 
   const handleChange = (otp: string) => {
     setOtp(otp)
@@ -46,18 +44,10 @@ const VerificationContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    if (data) {
-      dispatch({ type: Action.LOGIN, payload: data })
-      setStorage('user', data, () => {
-        navigate(`/${Path.DASHBOARD}`, { replace: true })
-      })
-    } else if (error) {
-      toast.error(`Invalid or expired token `)
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error, data])
+  const resendOTP = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    handleResendOTP()
+  }
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -134,8 +124,14 @@ const VerificationContainer = () => {
             <TimerIcon />
             <Text as={'small'} weight={'600'} color={'#7890B5'}>
               {' '}
-              Expires In : {minutes} : {seconds}{' '}
+              Expires In :
             </Text>
+            <Stack width="50px">
+              <Text as={'small'} weight={'600'} color={'#7890B5'}>
+                {' '}
+                {minutes} : {seconds}
+              </Text>
+            </Stack>
           </Stack>
 
           <Form.Control pt={'3rem'} pb={'2rem'}>
@@ -153,10 +149,16 @@ const VerificationContainer = () => {
               {' '}
               Didn’t get a code?
             </Text>
-            <Text as={'p'} weight={'600'} color={Color.alerzoBlue}>
-              {' '}
-              Resend
-            </Text>
+            <Button
+              width="auto"
+              variant="transparent"
+              weight="600"
+              fontSize="1rem"
+              color={Color.alerzoBlue}
+              onClick={resendOTP}
+            >
+              {isLoading ? 'Resend...' : 'Resend'}
+            </Button>
           </Stack>
         </Form>
       </Stack>

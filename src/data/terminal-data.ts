@@ -11,12 +11,37 @@ import { formatDate } from '../utils/formatValue'
 export const TABS = [
   { label: 'Terminal Details', value: 'details', title: 'Terminal Details' },
   { label: 'Business Details', value: 'merchant', title: 'Business Details' },
-  // { label: 'Terminal Status History', value: 'stats-history', title: '' },
-  // { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
 ]
 export const TERMINALTABS = [
   { label: 'Existing Terminals', value: 'existing', title: '' },
   { label: 'Terminal Requests', value: 'requests', title: '' },
+]
+export const TERMINALREQUESTTABS = [
+  { label: 'Request Details', value: 'details', title: 'Request Details' },
+  {
+    label: 'Terminal Order Process',
+    value: 'order-process',
+    title: 'Terminal Order Process',
+  },
+]
+export const TERMINALREQMERCHANTTABLE = [
+  { label: 'Business ID', value: 'id', columnWidth: 'small' },
+  { label: 'Business Name', value: 'name', columnWidth: 'small' },
+  { label: 'Business Address', value: 'address', columnWidth: 'small' },
+  { label: 'Phone Number', value: 'phone', columnWidth: 'small' },
+  { label: 'Date Registered', value: 'date', columnWidth: 'small' },
+  { label: 'Email Address', value: 'email', columnWidth: 'large' },
+]
+export const TERMINALREQDETAILTABLE = [
+  { label: 'Request ID', value: 'requestId', columnWidth: 'small' },
+  { label: 'Status', value: 'status', columnWidth: 'small' },
+  { label: 'Request Date', value: 'date', columnWidth: 'small' },
+  { label: 'Location', value: 'location', columnWidth: 'small' },
+  {
+    label: 'Delivery Location',
+    value: 'deliveryLocation',
+    columnWidth: 'large',
+  },
 ]
 export const DETAILSTABLE = [
   { label: 'Terminal ID', value: 'tid', columnWidth: 'small' },
@@ -33,28 +58,13 @@ export const OTHERDETAILSTABLE = [
 ]
 
 export const MERCHANTDETAILSTABLE = [
-  // { label: 'Merchant  ID', value: 'mid', columnWidth: 'small' },
   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
   { label: 'Location', value: 'location', columnWidth: 'small' },
   { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
   { label: 'Passcode', value: 'passcodeStatus', columnWidth: 'small' },
   { label: 'BVN', value: 'BVNStatus', columnWidth: 'small' },
   { label: 'Business Adress', value: 'businessAdress', columnWidth: 'large' },
-  // { label: 'Date Updated', value: 'updatedAt', columnWidth: 'small' },
-  // { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
-// export const MERCHANTBUSINESSTABLE = [
-//   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
-//   { label: 'Location', value: 'location', columnWidth: 'small' },
-//   { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
-//   { label: 'Passscode', value: 'passcodeStatus', columnWidth: 'small' },
-//   { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
-//   { label: 'Business Address', value: 'businessAddress', columnWidth: 'large' },
-// ]
-// export const MERCHANTCUSTOMERTABLE = [
-//   { label: 'Customer Segment', value: 'customerSegment', columnWidth: 'small' },
-//   { label: 'Gender', value: 'gender', columnWidth: 'large' },
-// ]
 
 export const merchant = {
   status: true,
@@ -122,25 +132,6 @@ export const merchantHelper = (data: any) => {
         businessAdress: data?.address,
       },
     },
-    // {
-    //   spacing: false,
-    //   header: MERCHANTBUSINESSTABLE,
-    //   data: {
-    //     businessName: data?.name,
-    //     location: data?.state,
-    //     pinStatus: data?.business_owner?.business?.pin,
-    //     bvnStatus: data?.business_owner?.business?.bvn,
-    //     businessAddress: data?.address,
-    //   },
-    // },
-    // {
-    //   spacing: false,
-    //   header: MERCHANTCUSTOMERTABLE,
-    //   data: {
-    //     customerSegment: data?.business_owner?.customer?.customerSegment,
-    //     gender: data?.business_owner?.gender,
-    //   },
-    // },
   ]
 }
 
@@ -187,4 +178,33 @@ export const terminalRequestsStats = () => {
     card4: 10,
   }
   return statistics
+}
+
+export const terminalRequestHelper = () => {
+  return [
+    {
+      spacing: false,
+      header: TERMINALREQMERCHANTTABLE,
+      data: {
+        id: '37e68fb-d9fd-4c32',
+        name: 'Blue Enterprise',
+        address: '234 Bishop Hughes Close, Yaba, Lagos.',
+        phone: '081461271802',
+        date: '2038-01-19 03:14:07',
+        email: 'businessenterprise@gmail.com',
+      },
+    },
+    {
+      spacing: false,
+      header: TERMINALREQDETAILTABLE,
+      data: {
+        requestId: '37e68fb-d9fd-4c32',
+        status: 'Terminal Requested',
+        date: '2022-01-19 03:14:07',
+        location: 'Ibadan',
+        deliveryLocation:
+          '17 Olorunfunmi Street off Oregun Road Ojota, Ibadan,Nigeria',
+      },
+    },
+  ]
 }

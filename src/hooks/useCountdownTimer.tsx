@@ -6,6 +6,13 @@ export const useCountdownTimer = () => {
 
   // const togglerTimer = () => setRunTimer((t) => !t);
 
+  const resetTimer = () => {
+    setRunTimer(false)
+    setTimeout(() => {
+      setRunTimer(true)
+    }, 1000)
+  }
+
   useEffect(() => {
     let timerId: any
 
@@ -31,5 +38,5 @@ export const useCountdownTimer = () => {
   const seconds = String(countDown % 60).padStart(2, '0')
   const minutes = String(Math.floor(countDown / 60)).padStart(2, '0')
 
-  return { seconds, minutes }
+  return { seconds, minutes, resetTimer }
 }

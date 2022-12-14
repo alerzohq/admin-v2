@@ -26,6 +26,7 @@ import NotFound from '../pages/404'
 import Audit from '../pages/dashboard/audit'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorFallback } from '../components/common/error-boundary'
+import TerminalRequestDetails from '../container/dashboard/terminals/details/request-detail'
 
 function App() {
   const navigate = useNavigate()
@@ -66,6 +67,10 @@ function App() {
               />
               <Route path={Path.TERMINALS} element={<Terminals />} />
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
+              <Route
+                path={Path.TERMINALREQUESTDETAIL}
+                element={<TerminalRequestDetails />}
+              />
               <Route path={Path.BUSINESSES} element={<Businesses />} />
               <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
               <Route path={Path.DIGITALBANK} element={<DigitalBank />} />
@@ -80,8 +85,8 @@ function App() {
           </Route>
 
           {/* replace with not found component */}
-
-          <Route path="*" element={<NotFound user={user} />} />
+          {/* 
+          <Route path="*" element={<NotFound user={user} />} /> */}
         </Routes>
       </ErrorBoundary>
     </>

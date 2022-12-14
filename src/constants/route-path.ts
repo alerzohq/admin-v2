@@ -17,4 +17,5 @@ export enum Path {
   INVITATIONREGISTER = 'invites/:inviteId',
   AUDIT = 'audit',
   AUDITLOGS = 'audit/:id',
+  TERMINALREQUESTDETAIL = 'terminals/requests/:requestId',
 }
