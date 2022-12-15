@@ -27,7 +27,7 @@ export const StatusModal = ({
             placeholder="Select order status"
             value={order}
             onChange={(val) => setOrder(val)}
-            options={[{ label: 'sss', value: 'Sss' }]}
+            options={[{ label: 'Reject', value: 'Reject' }]}
             fullWidth
           />
           {order && (
