@@ -134,10 +134,20 @@ export const Inner = styled.div`
     }
   }
   .css-319lph-ValueContainer {
-    padding: 0 0 0 5px !important;
+    padding: 0 0 0 3px !important;
   }
 
   .css-tlfecz-indicatorContainer {
-    padding: 0 5px 0 0 !important;
+    padding: 0 3px 0 0 !important;
+    &:hover{
+      padding: 0 3px 0 0 !important;
+    }
+  }
+
+  .react-select__single-value {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    overflow:visible !important;
+
   }
 `

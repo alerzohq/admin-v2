@@ -10,8 +10,7 @@ const useResendOTP = (payload:IResendOTPProps) => {
 
     const BASE_URL = process.env.REACT_APP_API_BASE_URL
     const { minutes, seconds, resetTimer } = useCountdownTimer()
- 
-   const {token, email} = payload
+    const {token, email} = payload
 
 
    const handleOTP=() => {
