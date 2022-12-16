@@ -27,6 +27,7 @@ import Audit from '../pages/dashboard/audit'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorFallback } from '../components/common/error-boundary'
 import TerminalRequestDetails from '../container/dashboard/terminals/details/request-detail'
+import KYC from '../pages/dashboard/KYC'
 
 function App() {
   const navigate = useNavigate()
@@ -81,6 +82,7 @@ function App() {
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
               <Route path={Path.AUDIT} element={<Audit />} />
+              <Route path={Path.KYC} element={<KYC />} />
             </Route>
           </Route>
 
