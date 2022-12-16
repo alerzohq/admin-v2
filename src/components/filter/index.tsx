@@ -36,21 +36,21 @@ const Filter = ({
     <FilterWrapper>
       <Stack justifyContent={'space-between'} direction={'row'}>
         <FilterItems>
-          {showFilters?.search && (
-            <FilterInput
-              value={search}
-              onChange={(e: any) => {
-                setValues({ ...values, search: e.target.value })
-              }}
-              placeholder={showFilters.search.placeholder}
-            />
-          )}
           <Stack
             justifyContent={justifyContent}
             columnGap="20px"
             direction={'row'}
             width="auto"
           >
+            {showFilters?.search && (
+              <FilterInput
+                value={search}
+                onChange={(e: any) => {
+                  setValues({ ...values, search: e.target.value })
+                }}
+                placeholder={showFilters.search.placeholder}
+              />
+            )}
             {showFilters?.date && (
               <div ref={ref}>
                 <DateRange

@@ -23,6 +23,11 @@ export const TERMINALREQUESTTABS = [
     value: 'order-process',
     title: 'Terminal Order Process',
   },
+  {
+    label: 'Terminal Log History',
+    value: 'log-history',
+    title: 'Terminal Log History',
+  },
 ]
 export const TERMINALREQMERCHANTTABLE = [
   { label: 'Business ID', value: 'id', columnWidth: 'small' },

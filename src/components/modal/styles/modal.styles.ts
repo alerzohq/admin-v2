@@ -123,13 +123,16 @@ export const TextArea = styled.textarea<props>`
   outline: none;
   resize: none;
   font-size: 0.8rem;
+  box-sizing: border-box !important;
   font-family: inherit;
-  @media (max-width: 480px) {
-    height: 200px;
-  }
+
   &::placeholder {
     font-size: 0.8rem;
     color: #a5b0b7;
+  }
+
+  @media (max-width: 480px) {
+    height: 200px;
   }
 `
 

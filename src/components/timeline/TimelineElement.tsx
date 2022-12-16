@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { TimelineIcon } from '../../assets/icons'
 import { formatDate } from '../../utils/formatValue'
 import {
@@ -11,19 +11,21 @@ import {
 export const TimelineElement = ({
   actions,
 }: {
-  actions: { date: string; action: string }[]
+  actions: { date?: string; action: string; icon?: ReactNode }[]
 }): JSX.Element => {
   return (
     <>
       {actions?.map((action: any, i) => (
         <TimelineAction key={i} actionsNum={actions.length}>
-          <TimelineActionDate>
-            {action?.date
-              ? formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss')
-              : ''}
-          </TimelineActionDate>
+          {action?.date ? (
+            <TimelineActionDate>
+              {formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss')}
+            </TimelineActionDate>
+          ) : (
+            ''
+          )}
           <TimelineActionIcon>
-            <TimelineIcon />
+            {action.icon ?? <TimelineIcon />}
           </TimelineActionIcon>
           <TimelineActionData>
             {action?.action.split(',').join(', ')}

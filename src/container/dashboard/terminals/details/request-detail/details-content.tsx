@@ -6,7 +6,7 @@ import { StatusModal } from './status-modal'
 import { terminalRequestHelper } from '../../../../../data/terminal-data'
 import Button from './../../../../../components/button'
 
-export const DetailsContentComp = () => {
+export const DetailsContentComp = ({ terminalId }: { terminalId?: string }) => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   return (
     <>
@@ -26,6 +26,7 @@ export const DetailsContentComp = () => {
       <StatusModal
         showModal={showStatusModal}
         setShowModal={() => setShowStatusModal(false)}
+        id={terminalId}
       />
     </>
   )

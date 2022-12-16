@@ -49,3 +49,7 @@ export { default as NextIcon } from './next-icon'
 export { default as UploadIcon } from './upload-icon'
 
 export { default as BulkUpload } from './terminals/bulk-upload'
+export { DiasbleTeminalIcon } from './disable-terminal'
+export { ReassignTerminalIcon } from './reassign-terminal'
+export { AssignTerminalIcon } from './assign-terminal'
+export { AssignedTerminalIcon } from './assigned-terminal'
