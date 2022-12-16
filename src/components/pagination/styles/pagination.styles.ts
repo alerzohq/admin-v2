@@ -137,7 +137,7 @@ export const Inner = styled.div`
     padding: 0 0 0 3px !important;
   }
 
-  .css-tlfecz-indicatorContainer {
+  .react-select__indicator {
     padding: 0 3px 0 0 !important;
     &:hover{
       padding: 0 3px 0 0 !important;

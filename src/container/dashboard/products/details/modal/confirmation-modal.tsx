@@ -60,6 +60,7 @@ const ConfirmBillerChange = ({
           handleShow(false)
         }}
         titleSize="22px"
+        modalWidth="320px"
         title="Change Biller"
         contentPadding={'0'}
         icon={<DangerWarning />}
@@ -82,6 +83,7 @@ const ConfirmBillerChange = ({
           setShowStatus(false)
         }}
         titleSize="22px"
+        modalWidth="320px"
         title="Biller Changed"
         subTitleMargin="0"
         contentPadding={'0'}

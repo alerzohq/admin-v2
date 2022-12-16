@@ -84,7 +84,7 @@ const Modal = ({
               <Button.Group align="center">
                 {cancelBtnText && (
                   <Button
-                    width={'40%'}
+                    width={'45%'}
                     radius="10px"
                     fontSize="14px"
                     weight="500"
@@ -99,7 +99,7 @@ const Modal = ({
                 )}
                 {buttonText && (
                   <Button
-                    width={cancelBtnText ? '40%' : '50%'}
+                    width={cancelBtnText ? '45%' : '50%'}
                     radius="10px"
                     fontSize="14px"
                     weight="500"
