@@ -75,3 +75,10 @@ export const auditHeaderList = [
 ]
 export const busUserList = ['Full Name', 'Email', 'Status', 'Date']
 export const invitesHeaderList = ['Email Address', 'Role', 'Invite Date', '']
+export const KYCHeaderList = [
+  'Verification ID',
+  'Name',
+  'Channel',
+  'Date',
+  'Status',
+]
