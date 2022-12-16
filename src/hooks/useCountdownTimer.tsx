@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react'
 
 export const useCountdownTimer = () => {
   const [countDown, setCountDown] = useState(0)
-  const [runTimer, setRunTimer] = useState(true);
-  
+  const [runTimer, setRunTimer] = useState(true)
 
   // const togglerTimer = () => setRunTimer((t) => !t);
 
-  const resetTimer = () =>{
+  const resetTimer = () => {
     setRunTimer(false)
-    setTimeout(() =>{
+    setTimeout(() => {
       setRunTimer(true)
-    },1000)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -39,5 +38,5 @@ export const useCountdownTimer = () => {
   const seconds = String(countDown % 60).padStart(2, '0')
   const minutes = String(Math.floor(countDown / 60)).padStart(2, '0')
 
-  return { seconds, minutes,resetTimer }
+  return { seconds, minutes, resetTimer }
 }

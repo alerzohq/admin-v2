@@ -21,9 +21,9 @@ const useLogin = (email: string) => {
       if (data) {
         let userInfo = {
           token: data?.data?.token,
-          email, 
+          email,
         }
-       
+
         dispatch({ type: Action.VERIFY_OTP, payload: userInfo })
         navigate(Path.VERIFY_OTP)
       }

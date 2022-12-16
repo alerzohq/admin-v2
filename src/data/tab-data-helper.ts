@@ -1,3 +1,4 @@
+import { userInfo } from 'os'
 import { Dispatch, SetStateAction } from 'react'
 import { amountHelper, formatDate } from '../utils/formatValue'
 import {
@@ -34,7 +35,8 @@ export const detailsHelper = (
     reference,
     biller,
   } = data || {}
-  
+  const shouldFetch = user_type?.toLowerCase() === 'business-user'
+
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -78,7 +80,9 @@ export const detailsHelper = (
     action,
     channel,
     charge: amountHelper(charge),
-    commission: commissions?.['0'] ? amountHelper(commissions?.['0']?.value) : amountHelper(commissions),
+    commission: commissions?.['0']
+      ? amountHelper(commissions?.['0']?.value)
+      : amountHelper(commissions),
     created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
     updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
     product: product?.display_name || '',
@@ -86,18 +90,17 @@ export const detailsHelper = (
     total: amountHelper(total),
   }
 
-
   return [
     {
       spacing: false,
       clickable: {
-        url: `/dashboard/digital-bank/${user_id}`,
+        url:
+          user_type === 'business'
+            ? `/dashboard/businesses/${user_id}`
+            : `/dashboard/digital-bank/${user_id}`,
         index: 0,
         setFetch,
-        shouldFetch:
-          user_type === null ||
-          user_type === null ||
-          user_type === 'business-user',
+        shouldFetch: shouldFetch,
       },
       header: DETAILSTABLE1,
       data: tableData,
@@ -122,12 +125,8 @@ export const detailsHelper = (
 }
 
 export const otherHelper = (data: any) => {
+  const userType = data?.user_type
   let metaHeaders: { [key: string]: any }[] = []
-  // const recipientObject = data?.metadata?.reduce(
-  //   (o: any, { key, value }: { key: number; value: string }) =>
-  //     (o[key] = value),
-  //   {}
-  // )
   const metaDataArr = data?.metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -158,6 +157,9 @@ export const otherHelper = (data: any) => {
   {})
   return [
     {
+      title: userType?.toLowerCase()?.includes('business')
+        ? 'Business Details'
+        : 'Customer Details',
       spacing: false,
       header: metaHeaders,
       data: resultObject,

@@ -1,0 +1,51 @@
+import { Dispatch, SetStateAction, useState } from 'react'
+import { SelectInput } from '../../../../../components'
+import Modal from '../../../../../components/modal'
+import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
+import { TextArea } from '../../terminalmodal.styles'
+
+export const StatusModal = ({
+  showModal,
+  setShowModal,
+}: {
+  showModal: boolean
+  setShowModal: Dispatch<SetStateAction<boolean>>
+}) => {
+  const [order, setOrder] = useState(null)
+  const [note, setNote] = useState('')
+  return (
+    <Modal
+      showModal={showModal}
+      setShowModal={setShowModal}
+      title="Update Terminal Status"
+      contentPadding={'0'}
+      children={
+        <>
+          <ModalLabel>Order Status</ModalLabel>
+          <SelectInput
+            isClearable
+            placeholder="Select order status"
+            value={order}
+            onChange={(val) => setOrder(val)}
+            options={[{ label: 'Reject', value: 'Reject' }]}
+            fullWidth
+          />
+          {order && (
+            <>
+              <ModalLabel>Reason for Rejecting Request</ModalLabel>
+              <TextArea
+                className="p-0"
+                placeholder="Enter your reason for rejecting this request"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+              ></TextArea>
+            </>
+          )}
+        </>
+      }
+      subTitleWhiteSpace={'pre-line'}
+      handleSubmit={() => console.log('WIP FROM BE')}
+      buttonText="Update Status"
+    />
+  )
+}

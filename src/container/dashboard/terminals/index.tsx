@@ -121,7 +121,7 @@ const TransactionContainer = () => {
         tableName="requestsTerrminals"
         tableData={terrminalsRequestsData?.data}
         tableHeaders={terminalRequestHeader}
-        notClickable
+        routePath="dashboard/terminals/requests"
       />
     )
   }
