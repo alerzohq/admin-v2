@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
 import { useCountdownTimer } from '../../../../hooks/useCountdownTimer'
@@ -9,16 +10,16 @@ import { IResendOTPProps } from '../../type'
 const useResendOTP = (payload:IResendOTPProps) => {
 
     const BASE_URL = process.env.REACT_APP_API_BASE_URL
-    const { minutes, seconds, resetTimer } = useCountdownTimer()
-    const {token, email} = payload
-
+    const [newOtpToken, setNewOtpToken] = useState('')
+    const { minutes, seconds, resetTimer } = useCountdownTimer();
 
    const handleOTP=() => {
-    return axios.post(`${BASE_URL}/login/resend-otp`,{token, email})
+    return axios.post(`${BASE_URL}/login/resend-otp`,payload)
    }
 
     const {mutate, isLoading}= useMutation(handleOTP,{
-        onSuccess: () => {
+        onSuccess: ({data}) => {
+            setNewOtpToken(data?.data?.token)
             toast.success('Resend OTP successfully!');
             resetTimer()
         },
@@ -33,7 +34,7 @@ const useResendOTP = (payload:IResendOTPProps) => {
 
 
     
-  return {handleResendOTP,minutes, seconds,isLoading}
+  return {handleResendOTP,minutes, seconds,isLoading,newOtpToken}
 }
 
 export default useResendOTP

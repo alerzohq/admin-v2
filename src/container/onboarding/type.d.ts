@@ -12,7 +12,7 @@ export type LoginProps = {
 }
 
 export interface IResendOTPProps {
-  otp: string
+  otp?: string
   token: string
   email: string
 }
