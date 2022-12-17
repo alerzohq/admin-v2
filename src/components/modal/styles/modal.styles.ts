@@ -33,7 +33,7 @@ export const BackDrop = styled.div<props>`
   left: 0;
   background: rgba(38, 40, 62, 0.6);
   backdrop-filter: blur(6px);
-  z-index: 999;
+  z-index: 9999;
 `
 export const Header = styled.div`
   border-radius: 8px 8px 0 0;
