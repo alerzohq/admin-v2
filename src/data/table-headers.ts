@@ -10,7 +10,7 @@ export const transHeaderList = [
   'Date',
 ]
 export const busHeaderList = [
-  'Full Name',
+  'Business Name',
   'Phone Number',
   'Email Address',
   'KYC Level',
