@@ -26,11 +26,11 @@ const DetailsContentWidget = ({
               <>
                 {item?.title && (
                   <Text
-                    as='p'
-                    padding='1.5em 0 0 0'
+                    as="p"
+                    padding="1.5em 0 0 0"
                     color={Color.alerzoBlack}
                     weight="600"
-                    align='center'
+                    align="center"
                   >
                     {item?.title}
                   </Text>

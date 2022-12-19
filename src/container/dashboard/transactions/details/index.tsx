@@ -8,9 +8,8 @@ import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper'
 import NotesContent from './tab-content/notes'
 import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { errorMessage } from '../../../../utils/message'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
@@ -22,40 +21,33 @@ const TabsContainer = () => {
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
-
-
-  const getTransactions = (id: string) => {
-    return getResource(`transactions?id=${id}`)
+  const getTransactions = () => {
+    return getResource(`transactions?query=${id}`)
   }
 
-  const { isLoading, data, isError, isFetching,error } = useQuery(
-    ['transactions-details', id],
-    () => getTransactions(id)
+  const { isLoading, data, isError, isFetching } = useQuery(
+    'transactions',
+    getTransactions
   )
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
 
-  console.log('trans-detaisl',data)
-
-  const { data: user, isRefetching: fetchinguser } = useQuery(
+  const { isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
     getBusinessUser,
     {
       enabled: fetchUser,
+      onSuccess: (data) => {
+        setFetchUser(false)
+        if (data?.data?.length === 0) {
+          toast.error(`${'business details does not exist for this user'}`)
+        } else {
+          navigate(`/dashboard/businesses/${data?.data?.[0]?.business_id}`)
+        }
+      },
     }
   )
-
-  useEffect(() => {
-    if (fetchUser && !fetchinguser && user) {
-      setFetchUser(false)
-      if (!user?.data[0]?.business_id) {
-        toast.error(`${'business details does not exist for this user'}`)
-      } else {
-        navigate(`/dashboard/businesses/${user?.data[0]?.business_id}`)
-      }
-    }
-  }, [fetchUser, user])
 
   const renderSwitch = () => {
     switch (queryParam) {
@@ -78,18 +70,17 @@ const TabsContainer = () => {
 
   return (
     <TabsContentWidget
-      isFetching={isFetching}
+      isFetching={isFetching || fetchinguser}
       isLoading={isLoading}
       status={status}
       containerTitle="Transaction Details"
       title={found ? found?.title : TABS[0]?.title}
       type="Transaction!"
       isError={isError}
-      errorMessage={error && errorMessage(error)}
+      errorMessage="Failed to load transaction."
       currentValue={found?.value || 'details'}
       renderSwitch={renderSwitch}
       tabs={TABS}
-      borderRadius={'0'}
       routePath={'/dashboard/transactions'}
     />
   )

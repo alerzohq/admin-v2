@@ -39,7 +39,7 @@ export const ButtonContainer = styled.button<Props>`
       : `${Color.alerzoWhite}`};
   border: ${({ borderColor, borderSize }) =>
     borderColor
-      ? `${borderSize ? borderSize : '2px'} solid ${borderColor}`
+      ? `${borderSize ? borderSize : '1px'} solid ${borderColor}`
       : '2px solid transparent'};
   font-size: ${({ fontSize }) => fontSize};
   border-radius: ${({ radius }) => (radius ? radius : '.4rem')};

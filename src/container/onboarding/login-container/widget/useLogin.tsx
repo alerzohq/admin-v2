@@ -23,6 +23,7 @@ const useLogin = (email: string) => {
           token: data?.data?.token,
           email,
         }
+
         dispatch({ type: Action.VERIFY_OTP, payload: userInfo })
         navigate(Path.VERIFY_OTP)
       }

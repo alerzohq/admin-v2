@@ -4,9 +4,7 @@ export const TABS = [
     value: 'details',
     title: 'Transaction Details',
   },
-  { label: 'Other Information', value: 'other', title: 'Customer Details' },
-  // { label: 'Transaction Receipt', value: 'receipt', title: '' },
-  // { label: 'Staff Notes', value: 'notes', title: '' },
+  { label: 'Other Information', value: 'other' },
 ]
 export const DETAILSTABLE1 = [
   { label: 'User ID', value: 'user_id', columnWidth: 'small' },

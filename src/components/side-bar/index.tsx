@@ -99,7 +99,7 @@ const Sidebar = ({
                       alignItems={'center'}
                     >
                       {path === location.pathname ? (
-                        <>{ActiveIcon && <ActiveIcon />}</>
+                        <>{ActiveIcon && ActiveIcon}</>
                       ) : (
                         <>{InActiveIcon && <InActiveIcon />}</>
                       )}

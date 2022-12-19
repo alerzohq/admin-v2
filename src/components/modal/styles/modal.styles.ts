@@ -33,7 +33,7 @@ export const BackDrop = styled.div<props>`
   left: 0;
   background: rgba(38, 40, 62, 0.6);
   backdrop-filter: blur(6px);
-  z-index: 999;
+  z-index: 9999;
 `
 export const Header = styled.div`
   border-radius: 8px 8px 0 0;
@@ -123,13 +123,16 @@ export const TextArea = styled.textarea<props>`
   outline: none;
   resize: none;
   font-size: 0.8rem;
+  box-sizing: border-box !important;
   font-family: inherit;
-  @media (max-width: 480px) {
-    height: 200px;
-  }
+
   &::placeholder {
     font-size: 0.8rem;
     color: #a5b0b7;
+  }
+
+  @media (max-width: 480px) {
+    height: 200px;
   }
 `
 

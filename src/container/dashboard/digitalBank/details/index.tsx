@@ -47,7 +47,7 @@ const DigitalBankDetailContainer = () => {
     <TabsContentWidget
       isFetching={isFetching}
       isLoading={isLoading}
-      containerTitle= "Customer Information"
+      containerTitle="Customer Information"
       isError={isError}
       title={title}
       errorMessage={error && errorMessage(error)}
@@ -55,7 +55,7 @@ const DigitalBankDetailContainer = () => {
       renderSwitch={renderSwitch}
       tabs={TABS}
       routePath={'/dashboard/digital-bank'}
-      hideStatus 
+      hideStatus
     />
   )
 }
