@@ -17,8 +17,8 @@ export const TimelineAction = styled.div<{ actionsNum: number }>`
     `}
   &:first-of-type {
     div:after {
-      height: calc(50% + 0.5rem);
-      top: calc(50% + 0.5rem);
+      height: calc(50% + 0.5rem) !important;
+      top: calc(50% + 0.5rem) !important;
     }
   }
   &:last-of-type {

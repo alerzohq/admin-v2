@@ -166,4 +166,15 @@ export const transformData = ({ item, name }: props) => {
       id,
     }
   }
+  if (item && name === 'KYC') {
+    const { verificationId, fullName, channel, createdAt, status } = item
+
+    return {
+      verificationId,
+      fullName,
+      channel,
+      createdAt: formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss'),
+      status,
+    }
+  }
 }

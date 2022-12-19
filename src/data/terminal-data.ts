@@ -11,6 +11,8 @@ import { formatDate } from '../utils/formatValue'
 export const TABS = [
   { label: 'Terminal Details', value: 'details', title: 'Terminal Details' },
   { label: 'Business Details', value: 'merchant', title: 'Business Details' },
+  // { label: 'Terminal Status History', value: 'stats-history', title: '' },
+  { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
 ]
 export const TERMINALTABS = [
   { label: 'Existing Terminals', value: 'existing', title: '' },
@@ -22,6 +24,11 @@ export const TERMINALREQUESTTABS = [
     label: 'Terminal Order Process',
     value: 'order-process',
     title: 'Terminal Order Process',
+  },
+  {
+    label: 'Terminal Log History',
+    value: 'log-history',
+    title: 'Terminal Log History',
   },
 ]
 export const TERMINALREQMERCHANTTABLE = [

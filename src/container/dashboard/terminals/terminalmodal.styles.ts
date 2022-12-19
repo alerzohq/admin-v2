@@ -169,7 +169,7 @@ export const TextArea = styled.textarea`
   resize: none;
   font-size: 0.8rem;
   font-family: inherit;
-  box-sizing: border-box,
+  box-sizing: border-box;
   &::placeholder {
     font-size: 0.8rem;
   }
