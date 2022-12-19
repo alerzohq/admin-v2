@@ -20,12 +20,8 @@ const VerificationContainer = () => {
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
 
-  let resendOTPPayload = {
-    token: userOtp?.token,
-    email: userOtp?.email,
-  }
 
-  const { handleResendOTP,newOtpToken, minutes, seconds, isLoading } = useResendOTP(resendOTPPayload)
+  const { handleResendOTP,newOtpToken, minutes, seconds, isLoading } = useResendOTP(userOtp)
 
   let payload = {
     otp,
