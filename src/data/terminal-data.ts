@@ -36,7 +36,7 @@ export const TERMINALREQMERCHANTTABLE = [
   { label: 'Business Name', value: 'name', columnWidth: 'small' },
   { label: 'Business Address', value: 'address', columnWidth: 'small' },
   { label: 'Phone Number', value: 'phone', columnWidth: 'small' },
-  { label: 'Date Registered', value: 'date', columnWidth: 'small' },
+  { label: 'Date Registered', value: 'date', columnWidth: 'large' },
   { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
 export const TERMINALREQDETAILTABLE = [
