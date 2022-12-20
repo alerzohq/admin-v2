@@ -39,7 +39,6 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
               placeholder={'50'}
               value={'50'}
               options={options}
-         
             />
           </Inner>
 
@@ -62,7 +61,7 @@ const Pagination = ({ data, setPageNumber }: PaginationProps) => {
           />
 
           <Inner>
-            <Text as='p' color={Color.alerzoGray2}>
+            <Text as="p" color={Color.alerzoGray2}>
               Go to
             </Text>
           </Inner>
