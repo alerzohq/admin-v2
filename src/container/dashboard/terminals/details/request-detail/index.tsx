@@ -2,18 +2,21 @@ import { useLocation } from 'react-router-dom'
 import TabsContentWidget from '../../../widget/tabs/tab-content'
 import { TABS, TERMINALREQUESTTABS } from '../../../../../data/terminal-data'
 import { DetailsContentComp } from './details-content'
+import TerminalOrder from '../order-detail'
 
 const TerminalRequestDetails = () => {
   const location = useLocation()
   const { search, pathname } = location
   const queryParam = new URLSearchParams(search).get('status')
-  const found = TABS.find((element) => element.value === queryParam)
+  const found = TERMINALREQUESTTABS.find(
+    (element) => element.value === queryParam
+  )
   const title = found ? found?.title : TABS[0]?.title
 
   const renderSwitch = () => {
     switch (queryParam) {
       case 'order-process':
-        return <div>Terminal Order Status History</div>
+        return <TerminalOrder />
       default:
         return <DetailsContentComp terminalId={pathname.split('/').pop()} />
     }
