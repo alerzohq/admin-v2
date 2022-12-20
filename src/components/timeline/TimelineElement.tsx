@@ -10,8 +10,10 @@ import {
 
 export const TimelineElement = ({
   actions,
+  top,
 }: {
   actions: { date?: string; action: string; icon?: ReactNode }[]
+  top?: string
 }): JSX.Element => {
   return (
     <>
@@ -21,14 +23,15 @@ export const TimelineElement = ({
             <TimelineActionDate>
               {formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss')}
             </TimelineActionDate>
-          ) : (
-            ''
-          )}
-          <TimelineActionIcon>
+          ) : null}
+          <TimelineActionIcon top={top}>
             {action.icon ?? <TimelineIcon />}
           </TimelineActionIcon>
           <TimelineActionData>
-            {action?.action.split(',').join(', ')}
+            {typeof action?.action === 'string' ||
+            (action?.action instanceof String && action.action.includes(','))
+              ? action?.action.split(',').join(', ')
+              : action.action}
           </TimelineActionData>
         </TimelineAction>
       ))}

@@ -6,6 +6,7 @@ import { TABS } from '../../../../data/terminal-data'
 import TerminalDetails from './tab-content/terminal-details'
 import MerchantDetails from './tab-content/merchant-details'
 import TerminalTransactions from './tab-content/terminal-transactions'
+import TerminalLogs from './tab-content/terminalLogs'
 
 const Details = () => {
   const location = useLocation()
@@ -21,20 +22,19 @@ const Details = () => {
     return getResource(`terminals?id=${id}`)
   }
 
- 
-
   const { isLoading, isError, data, isFetching } = useQuery(
     'terminal',
     getTerminalDetails
   )
 
-  console.log({data:data?.data?.[0]})
   const renderSwitch = () => {
     switch (queryParam) {
       case 'stats-history':
         return <div>Terminal Status History</div>
+      case 'log-history':
+        return <TerminalLogs terminalId={data?.data?.[0].id} />
       case 'trans-history':
-        return <TerminalTransactions terminalId={data?.data?.[0]?.tid}/>
+        return <TerminalTransactions terminalId={data?.data?.[0]?.tid} />
       case 'merchant':
         return <MerchantDetails resolvedData={data?.data?.[0]!} />
       default:

@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom'
 import TabsContentWidget from '../../../widget/tabs/tab-content'
 import { TABS, TERMINALREQUESTTABS } from '../../../../../data/terminal-data'
 import { DetailsContentComp } from './details-content'
-import TerminalRequestLogs from './terminalRequestLogs'
 
 const TerminalRequestDetails = () => {
   const location = useLocation()
@@ -13,8 +12,6 @@ const TerminalRequestDetails = () => {
 
   const renderSwitch = () => {
     switch (queryParam) {
-      case 'log-history':
-        return <TerminalRequestLogs terminalId={pathname.split('/').pop()} />
       case 'order-process':
         return <div>Terminal Order Status History</div>
       default:
