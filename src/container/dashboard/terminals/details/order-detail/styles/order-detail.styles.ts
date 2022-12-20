@@ -8,9 +8,9 @@ export const Timeline = styled.ul`
   position: relative;
   padding-left: 45px;
   list-style: none;
-  font-size:16px;
-  span{
-    color: #A5B0B7;
+  font-size: 16px;
+  span {
+    color: #a5b0b7;
     font-size: 14px;
   }
   &:before {
