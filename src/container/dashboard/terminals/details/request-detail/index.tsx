@@ -7,7 +7,9 @@ import TerminalOrder from '../order-detail'
 const TerminalRequestDetails = () => {
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
-  const found = TERMINALREQUESTTABS.find((element) => element.value === queryParam)
+  const found = TERMINALREQUESTTABS.find(
+    (element) => element.value === queryParam
+  )
   const title = found ? found?.title : TABS[0]?.title
 
   const renderSwitch = () => {

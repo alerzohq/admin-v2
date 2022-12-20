@@ -1,6 +1,9 @@
-import { TimelineWrapper, Timeline, TimelineItem } from './styles/order-detail.styles'
-import Button from '../../../../../components/button/index';
-
+import {
+  TimelineWrapper,
+  Timeline,
+  TimelineItem,
+} from './styles/order-detail.styles'
+import Button from '../../../../../components/button/index'
 
 const TerminalOrder = () => {
   return (
@@ -11,13 +14,13 @@ const TerminalOrder = () => {
           <span>12-09-2022</span>
         </TimelineItem>
         <TimelineItem className="current">
-        <strong>Terminal Requested By Merchant</strong>
+          <strong>Terminal Requested Accepted For Processing</strong>
           <span>12-09-2022</span>
         </TimelineItem>
-        <TimelineItem>Terminal Requested By Merchant</TimelineItem>
-        <TimelineItem>Terminal Requested By Merchant</TimelineItem>
-        <TimelineItem>Terminal Requested By Merchant</TimelineItem>{' '}
-        <TimelineItem className='last'>Terminal Requested By Merchant</TimelineItem>
+        <TimelineItem>Terminal Mapped</TimelineItem>
+        <TimelineItem>Terminal in Transit To Merchant</TimelineItem>
+        <TimelineItem>Terminal Received by Merchant</TimelineItem>{' '}
+        <TimelineItem className="last">Terminal Activated</TimelineItem>
       </Timeline>
       <Button
         margin="2rem 0"

@@ -8,6 +8,11 @@ export const Timeline = styled.ul`
   position: relative;
   padding-left: 45px;
   list-style: none;
+  font-size:16px;
+  span{
+    color: #A5B0B7;
+    font-size: 14px;
+  }
   &:before {
     display: inline-block;
     content: '';
@@ -54,12 +59,10 @@ export const TimelineItem = styled.li`
   }
   &.last {
     &::before {
-    border-left:2px solid white;
+      border-left: 2px solid white;
     }
-   
   }
   &.is-done {
-    
     &::before {
       border-left: 2px solid ${Color.alerzoBlue};
     }
@@ -90,7 +93,6 @@ export const TimelineItem = styled.li`
   }
 `
 export const ButtonWrapper = styled.div`
-display: flex;
-justify-content: flex-start;
-
+  display: flex;
+  justify-content: flex-start;
 `
