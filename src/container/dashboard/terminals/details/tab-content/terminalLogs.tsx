@@ -65,7 +65,7 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
       <TimelineElement
         borderColor="#0077FF"
         borderType="solid"
-        actions={data.data.map((log: Log) => ({
+        actions={data.data.map((log: Log, i: number, self: Log[]) => ({
           action: (
             <p
               style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
@@ -73,7 +73,10 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
               <p style={{ fontWeight: 400, fontSize: '14px' }}>
                 {formatDate(log.createdAt, 'YYYY-MM-DD HH:mm:ss')}
               </p>
-              <p style={{ fontWeight: 600, fontSize: '16px' }}>{log.subject}</p>
+              <p style={{ fontWeight: 600, fontSize: '16px' }}>
+                {self[i].details[4].value.split(' ')[0]}{' '}
+                {self[i].details[4].value.split(' ')[2]}
+              </p>
               <p style={{ fontWeight: 400, fontSize: '14px' }}>
                 {[
                   ...[...log.details].reverse().map((log, i, self) => {
