@@ -11,9 +11,13 @@ import {
 export const TimelineElement = ({
   actions,
   top,
+  borderColor,
+  borderType,
 }: {
   actions: { date?: string; action: string; icon?: ReactNode }[]
   top?: string
+  borderColor?: string
+  borderType?: string
 }): JSX.Element => {
   return (
     <>
@@ -24,7 +28,11 @@ export const TimelineElement = ({
               {formatDate(Number(action.date), 'YYYY-MM-DD HH:mm:ss')}
             </TimelineActionDate>
           ) : null}
-          <TimelineActionIcon top={top}>
+          <TimelineActionIcon
+            top={top}
+            borderType={borderType}
+            borderColor={borderColor}
+          >
             {action.icon ?? <TimelineIcon />}
           </TimelineActionIcon>
           <TimelineActionData>

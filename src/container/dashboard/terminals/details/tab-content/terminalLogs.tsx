@@ -5,7 +5,10 @@ import { AssignTerminalIcon } from '../../../../../assets/icons'
 import { FallBack, Filter, Jumbotron, Loader } from '../../../../../components'
 import { TimelineElement } from '../../../../../components/timeline'
 import { filterValue } from '../../../../../data/filter-data'
-import { getResource } from '../../../../../utils/apiRequest'
+import {
+  getNewFilterResource,
+  getResource,
+} from '../../../../../utils/apiRequest'
 import { formatDate } from '../../../../../utils/formatValue'
 import { errorMessage } from '../../../../../utils/message'
 
@@ -32,13 +35,17 @@ let logIcon = {
   },
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
-  const [values, setValues] = useState(filterValue)
+  const [values, setValues] = useState({ ...filterValue, count: 50 })
   const navigate = useNavigate()
   const getTerminalLog = () => {
-    return getResource(`activity/logs?category=terminal&entityId=${terminalId}`)
+    return getNewFilterResource(`activity/logs`, {
+      ...values,
+      entityId: terminalId,
+      category: 'terminal',
+    })
   }
   const { data, isLoading, isError, refetch, error } = useQuery(
-    'terminal-logs',
+    ['terminal-logs', values],
     getTerminalLog
   )
 
@@ -54,6 +61,8 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
   } else {
     component = (
       <TimelineElement
+        borderColor="#0077FF"
+        borderType="solid"
         actions={data.data.map((log: Log) => ({
           action: (
             <p
@@ -101,6 +110,32 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
 
   return (
     <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+      <Filter
+        setFilterValues={setValues}
+        showFilters={{
+          search: {
+            placeholder: 'Search',
+            type: 'text',
+          },
+          date: true,
+          selects: [
+            {
+              placeholder: 'All Platform',
+              values: [],
+              value: '',
+              onChange: () => {},
+              query: 'allPlatform',
+            },
+            {
+              placeholder: 'Status',
+              values: [],
+              value: '',
+              onChange: () => {},
+              query: 'status',
+            },
+          ],
+        }}
+      />
       {component}
     </Jumbotron>
   )
