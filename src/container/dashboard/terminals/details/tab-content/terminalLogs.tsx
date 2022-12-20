@@ -1,14 +1,16 @@
 import { Fragment, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { AssignTerminalIcon } from '../../../../../assets/icons'
+import {
+  AssignedTerminalIcon,
+  AssignTerminalIcon,
+  DiasbleTeminalIcon,
+  UnassignedTerminalsIcon,
+} from '../../../../../assets/icons'
 import { FallBack, Filter, Jumbotron, Loader } from '../../../../../components'
 import { TimelineElement } from '../../../../../components/timeline'
 import { filterValue } from '../../../../../data/filter-data'
-import {
-  getNewFilterResource,
-  getResource,
-} from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { formatDate } from '../../../../../utils/formatValue'
 import { errorMessage } from '../../../../../utils/message'
 
@@ -29,10 +31,10 @@ interface Log {
   updatedAt: Date
 }
 let logIcon = {
-  'Terminal Activated': {
-    details: 'Terminal was activated by ',
-    icon: <AssignTerminalIcon />,
-  },
+  'Terminal was created by': <AssignTerminalIcon />,
+  'Terminal was disabled': <UnassignedTerminalsIcon />,
+  'Terminal was deactivated by': <DiasbleTeminalIcon />,
+  'Terminal was activated by': <AssignedTerminalIcon />,
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
   const [values, setValues] = useState({ ...filterValue, count: 50 })
@@ -74,35 +76,42 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
               <p style={{ fontWeight: 600, fontSize: '16px' }}>{log.subject}</p>
               <p style={{ fontWeight: 400, fontSize: '14px' }}>
                 {[
-                  ...[...log.details].reverse().map((log, i, self) =>
-                    !['userType', 'businessId'].includes(log.key) ? (
-                      log.key === 'business' ? (
+                  ...[...log.details].reverse().map((log, i, self) => {
+                    if (log.value === 'Terminal was assigned to') {
+                      return !['userType', 'businessId'].includes(log.key) ? (
                         <>
-                          {' '}
-                          <span
-                            className="tableLink"
-                            onClick={() => {
-                              navigate(
-                                `/dashboard/businesses/${self[i - 1].value}`
-                              )
-                            }}
-                          >
-                            {log.value}{' '}
-                          </span>
-                          by{' '}
+                          {log.key === 'business' ? (
+                            <>
+                              <span
+                                className="tableLink"
+                                onClick={() => {
+                                  navigate(
+                                    `/dashboard/businesses/${self[i - 1].value}`
+                                  )
+                                }}
+                              >
+                                {log.value}
+                              </span>{' '}
+                              by{' '}
+                            </>
+                          ) : (
+                            <> {log.value} </>
+                          )}
                         </>
-                      ) : (
-                        `${log.value} `
-                      )
-                    ) : (
-                      ''
-                    )
-                  ),
+                      ) : null
+                    } else {
+                      return !['userType', 'businessId', 'business'].includes(
+                        log.key
+                      ) ? (
+                        <>{log.value} </>
+                      ) : null
+                    }
+                  }),
                 ]}
               </p>
             </p>
           ),
-          icon: (logIcon as any)[log.subject].icon,
+          icon: (logIcon as any)[log.details[4].value],
         }))}
       />
     )
