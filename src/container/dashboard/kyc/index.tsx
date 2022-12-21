@@ -10,9 +10,9 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import { filterValue } from '../../../data/filter-data'
+import { options, optionsAllPlatform } from '../../../data/select-data'
 import { KYCHeaderList } from '../../../data/table-headers'
-import { platformFiltersOptions } from '../../../helper/filter-helper'
-import { getResource } from '../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
 
 type Props = {}
@@ -21,7 +21,7 @@ const KYC = (props: Props) => {
   const [values, setValues] = useState(filterValue)
 
   const getKYCVerifications = () => {
-    return getResource('kyc/verifications')
+    return getNewFilterResource('kyc/verifications', values)
   }
 
   const { isLoading, isError, data, refetch, error } = useQuery(
@@ -69,13 +69,13 @@ const KYC = (props: Props) => {
               {
                 query: 'allPlatform',
                 placeholder: 'All Platform',
-                values: platformFiltersOptions,
+                values: optionsAllPlatform,
                 value: '',
               },
               {
                 query: 'status',
-                placeholder: 'All Platform',
-                values: [],
+                placeholder: 'Status',
+                values: options,
                 value: '',
               },
             ],

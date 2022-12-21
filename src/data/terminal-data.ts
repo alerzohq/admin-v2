@@ -13,6 +13,11 @@ export const TABS = [
   { label: 'Business Details', value: 'merchant', title: 'Business Details' },
   // { label: 'Terminal Status History', value: 'stats-history', title: '' },
   { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
+  {
+    label: 'Terminal Log History',
+    value: 'log-history',
+    title: 'Terminal Log History',
+  },
 ]
 export const TERMINALTABS = [
   { label: 'Existing Terminals', value: 'existing', title: '' },
@@ -25,18 +30,13 @@ export const TERMINALREQUESTTABS = [
     value: 'order-process',
     title: 'Terminal Order Process',
   },
-  {
-    label: 'Terminal Log History',
-    value: 'log-history',
-    title: 'Terminal Log History',
-  },
 ]
 export const TERMINALREQMERCHANTTABLE = [
   { label: 'Business ID', value: 'id', columnWidth: 'small' },
   { label: 'Business Name', value: 'name', columnWidth: 'small' },
   { label: 'Business Address', value: 'address', columnWidth: 'small' },
   { label: 'Phone Number', value: 'phone', columnWidth: 'small' },
-  { label: 'Date Registered', value: 'date', columnWidth: 'small' },
+  { label: 'Date Registered', value: 'date', columnWidth: 'large' },
   { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
 export const TERMINALREQDETAILTABLE = [

@@ -18,7 +18,7 @@ export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
 }
 export const getNewFilterResource = async (
   pathUrl: string,
-  filterValue: filterProps,
+  filterValue: filterProps & { [key in string]?: string | number },
   hasArg?: boolean
 ) => {
   const filterQuery = queryString.stringify(filterValue, {
