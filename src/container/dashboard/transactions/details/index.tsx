@@ -22,7 +22,7 @@ const TabsContainer = () => {
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
   const getTransactions = () => {
-    return getResource(`transactions?query=${id}`)
+    return getResource(`transactions?id=${id}`)
   }
 
   const { isLoading, data, isError, isFetching } = useQuery(
