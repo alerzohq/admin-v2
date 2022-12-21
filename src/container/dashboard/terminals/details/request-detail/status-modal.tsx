@@ -1,6 +1,8 @@
 import { AxiosError, AxiosResponse } from 'axios'
 import { Dispatch, SetStateAction, useState } from 'react'
+import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
+import { useLocation } from 'react-router-dom'
 import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
@@ -13,7 +15,10 @@ enum OrderStatus {
   Ship = 'shipping',
   Deliver = 'delivering',
 }
-
+interface Location {
+  businessId: string
+  status: { status: string }[]
+}
 export const StatusModal = ({
   showModal,
   setShowModal,
@@ -23,6 +28,9 @@ export const StatusModal = ({
   setShowModal: Dispatch<SetStateAction<boolean>>
   id?: string
 }) => {
+  const location = useLocation()
+  const state = location.state as Location
+
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
     null
   )
@@ -35,13 +43,14 @@ export const StatusModal = ({
   >(
     () => {
       return axiosInstance.patch(`terminals/requests/${id}/status`, {
-        businessId: '70946758-9c2d-4ad1-bb65-c3cf3daf168d',
+        businessId: state.businessId,
         status: order?.value,
       })
     },
     {
       onSuccess: () => {
         setShowModal(false)
+        toast.success('Status updated successfully')
       },
     }
   )
@@ -61,10 +70,18 @@ export const StatusModal = ({
             value={order}
             onChange={(val) => setOrder(val)}
             options={[
-              { label: 'Reject', value: 'rejected' },
-              { label: 'Approve', value: 'approved' },
-              { label: 'Ship', value: 'shipping' },
-              { label: 'Deliver', value: 'delivered' },
+              ...(state.status[state.status.length - 1]?.status === 'processing'
+                ? [
+                    { label: 'Reject', value: 'rejected' },
+                    { label: 'Approve', value: 'approved' },
+                  ]
+                : []),
+              ...(state.status[state.status.length - 1]?.status === 'approved'
+                ? [{ label: 'Ship', value: 'shipping' }]
+                : []),
+              ...(state.status[state.status.length - 1]?.status === 'shipping'
+                ? [{ label: 'Deliver', value: 'delivered' }]
+                : []),
             ]}
             fullWidth
           />

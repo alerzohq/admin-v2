@@ -139,7 +139,7 @@ export const Inner = styled.div`
 
   .react-select__indicator {
     padding: 0 3px 0 0 !important;
-    &:hover{
+    &:hover {
       padding: 0 3px 0 0 !important;
     }
   }
@@ -147,7 +147,6 @@ export const Inner = styled.div`
   .react-select__single-value {
     margin-left: 0px !important;
     margin-right: 0px !important;
-    overflow:visible !important;
-
+    overflow: visible !important;
   }
 `

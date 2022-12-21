@@ -66,7 +66,7 @@ const TableData = ({
                             withSlug
                               ? `/${routePath}/${item?.id}/${item?.product?.slug}`
                               : `/${routePath}/${item?.id}`,
-                            { replace: true }
+                            { replace: true, state: item }
                           )
                         }
                       : () => {
@@ -83,7 +83,9 @@ const TableData = ({
                   className={
                     data === 'successful' ||
                     data === 'Active' ||
-                    data === 'approved'
+                    data === 'approved' ||
+                    data === 'shipping' ||
+                    data === 'delivered'
                       ? 'success'
                       : data === 'Unassigned'
                       ? 'unassigned'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -11,33 +11,35 @@ import {
 import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
-import {  getResource } from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
+import { filterProps } from '../../../../../@types'
+import { useAppContext } from '../../../../../context'
+import { Action } from '../../../../../context/actions'
 
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
+  const [values, setValues] = useState(filterValue)
+  const { dispatch } = useAppContext()
 
-  const [, setValues] = useState(filterValue)
-  const getTransactionsHistory = () => {
-    return getResource(`transactions?walletId=${walletId}`)
+  const getTransactionsHistory = (filterValue: filterProps) => {
+    return getNewFilterResource(
+      `transactions?walletId=${walletId}&`,
+      filterValue,
+      true
+    )
   }
 
-  // const getTransactionsHistory = (filterValue: filterProps) => {
-  //   return getNewFilterResource(`transactions?walletId=${walletId}`, filterValue,true)
-  // }
-
-
-  // const { isLoading, data, isError,  refetch, error } = useQuery(
-  //   ['transaction-history', values],
-  //   () =>  getTransactionsHistory(values),
-  //   { keepPreviousData: true }
-  // )
-
-
-  const { isLoading, isError, data, refetch, error } = useQuery(
-    'transaction-history',
-    getTransactionsHistory
+  const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
+    [`transaction-history`, values],
+    () => getTransactionsHistory(values),
+    { keepPreviousData: true }
   )
-
+  useEffect(() => {
+    dispatch({
+      type: Action.IS_FETCHING,
+      payload: isFetching,
+    })
+  }, [isFetching, dispatch])
   let component
   if (isLoading) {
     component = <Loader />
@@ -66,6 +68,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
         <Filter
+          isFetching={isFetching}
           showFilters={{
             search: {
               placeholder: 'Search',
@@ -87,12 +90,6 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
                 onChange: () => {},
                 query: 'status',
               },
-              // {
-              //   placeholder: 'Download CSV',
-              //   values: [],
-              //   value: '',
-              //   onChange: () => {},
-              // },
             ],
           }}
         />
