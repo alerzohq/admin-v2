@@ -11,9 +11,7 @@ import {
 import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
-import {
-  getNewFilterResource,
-} from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
@@ -22,7 +20,7 @@ import { Action } from '../../../../../context/actions'
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
-  
+
   const getTransactionsHistory = (filterValue: filterProps) => {
     return getNewFilterResource(
       `transactions?walletId=${walletId}&`,
@@ -70,7 +68,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
         <Filter
-        isFetching={isFetching}
+          isFetching={isFetching}
           showFilters={{
             search: {
               placeholder: 'Search',
