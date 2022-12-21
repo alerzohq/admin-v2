@@ -11,7 +11,10 @@ import {
 import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
-import { getNewFilterResource, getResource } from '../../../../../utils/apiRequest'
+import {
+  getNewFilterResource,
+  getResource,
+} from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 
@@ -22,12 +25,16 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
   // }
 
   const getTransactionsHistory = (filterValue: filterProps) => {
-    return getNewFilterResource(`transactions?walletId=${walletId}&`, filterValue,true)
+    return getNewFilterResource(
+      `transactions?walletId=${walletId}&`,
+      filterValue,
+      true
+    )
   }
 
-  const { isLoading, data, isError,  refetch, error } = useQuery(
+  const { isLoading, data, isError, refetch, error } = useQuery(
     ['transaction-history', values],
-    () =>  getTransactionsHistory(values),
+    () => getTransactionsHistory(values),
     { keepPreviousData: true }
   )
 

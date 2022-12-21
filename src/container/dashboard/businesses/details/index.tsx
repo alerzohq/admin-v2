@@ -25,9 +25,11 @@ const BusinessDetailContainer = () => {
     ['businesses', id],
     () => getBusinessDetails(id)
   )
-  let wallet = data?.data?.[0]?.wallet_details?.filter((wallet:{[key:string]:any}) =>wallet?.wallet_type === "main");
+  let wallet = data?.data?.[0]?.wallet_details?.filter(
+    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
+  )
 
-  const walletId = wallet?.[0]?.wallet_id;
+  const walletId = wallet?.[0]?.wallet_id
 
   const renderSwitch = () => {
     switch (queryParam) {
