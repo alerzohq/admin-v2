@@ -84,7 +84,8 @@ const TableData = ({
                     data === 'successful' ||
                     data === 'Active' ||
                     data === 'approved' ||
-                    data === 'shipping'
+                    data === 'shipping' ||
+                    data === 'delivered'
                       ? 'success'
                       : data === 'Unassigned'
                       ? 'unassigned'
