@@ -1,3 +1,4 @@
+import { type } from 'os'
 import { KYCContainer } from '../../../container/dashboard'
 
 const KYC = () => {
@@ -11,3 +12,5 @@ const KYC = () => {
 }
 
 export default KYC
+
+
