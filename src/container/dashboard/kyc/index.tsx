@@ -28,6 +28,8 @@ const KYC = (props: Props) => {
     ['KYC', values],
     getKYCVerifications
   )
+
+  
   let component
   if (isLoading) {
     component = <Loader />

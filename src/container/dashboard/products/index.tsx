@@ -41,6 +41,8 @@ const ProductsContainer = () => {
     'products',
     getProducts
   )
+
+  // Create custom hooks for below side effects
   const [dataArr, setDataArr] = useState(data?.data)
   useEffect(() => {
     if (values?.query) {
@@ -63,6 +65,8 @@ const ProductsContainer = () => {
   } = useQuery(`queryKey${slug}`, getBillers, {
     enabled: !!slug,
   })
+
+  // Create custom hooks for below side effects
 
   useEffect(() => {
     if (newBiller) {

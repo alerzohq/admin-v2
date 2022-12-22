@@ -6,28 +6,26 @@ import { Container } from '../../../../components/layout'
 import { getResource } from '../../../../utils/apiRequest'
 import { formatDate } from '../../../../utils/formatValue'
 import { KycContainer } from '../styles/kyc.styles'
+import { IStateProps } from '../type'
 
 type Props = {}
 
 const KYCDetailContainer = (props: Props) => {
   const location = useLocation()
-  const state = location.state as {
-    documents: { key: string; label: string; value: string }[]
-    fullName: string
-    verificationId: string
-    createdAt: string
-    status: string
-    id: string
-  }
+  const state = location.state as IStateProps
 
   const getKYCLog = () => {
     return getResource(`activity/logs?category=kyc&entityId=${state.id}`)
   }
-  const { data, isLoading, isError, refetch, error } = useQuery(
+
+  // pass stateId to useQuery func as params to avoid flicker
+  const {data, isLoading, isError, refetch, error } = useQuery(
     'kyc-logs',
     getKYCLog
   )
 
+  //view for user info and document view should be split into two different components
+  // Use Object-fit on images to advoid image been stretch
   return (
     <Container
       showFilters={false}
@@ -38,6 +36,8 @@ const KYCDetailContainer = (props: Props) => {
     >
       <Jumbotron padding={'0'} margin={'0'}>
         <KycContainer>
+
+          {/* Replace div with Stack component , p with Text component*/}
           <div>
             <div>
               <img
@@ -62,6 +62,8 @@ const KYCDetailContainer = (props: Props) => {
             </div>
             <div>
               <p>Status</p>
+
+              {/* Make logic below a util function */}
               <p
                 className={
                   state.status === 'approved'
