@@ -92,7 +92,9 @@ export const StatusModal = ({
               </ModalLabel>
               <TextArea
                 className="p-0"
-                placeholder="Enter your reason for rejecting this request"
+                placeholder={`Enter your reason for ${
+                  (OrderStatus as any)[order.label]
+                } this request`}
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
               ></TextArea>
