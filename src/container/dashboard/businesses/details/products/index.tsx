@@ -10,31 +10,33 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform } from '../../../../../data/select-data'
-import { transHeaderList } from '../../../../../data/table-headers'
+import { businessProductsHeader} from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 
-const TransactionHistory = ({ walletId }: { walletId: string }) => {
+const Products = () => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
 
-  const getTransactionsHistory = (filterValue: filterProps) => {
+  const getProducts = (filterValue: filterProps) => {
     return getNewFilterResource(
-      `transactions?walletId=${walletId}&`,
+      `products`,
       filterValue,
-      true
+      false
     )
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
-    [`transaction-history`, values],
-    () => getTransactionsHistory(values),
+    [`business-product`, values],
+    () => getProducts(values),
     { keepPreviousData: true }
   )
 
+
+  console.log({products:data})
 
   useEffect(() => {
     dispatch({
@@ -57,9 +59,9 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     component = (
       <Table
         headerbgColor={'transparent'}
-        tableName="transaction"
+        tableName="business-products"
         tableData={data?.data}
-        tableHeaders={transHeaderList}
+        tableHeaders={businessProductsHeader}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         amountIndex={3}
         routePath="dashboard/transactions"
@@ -106,4 +108,4 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
   )
 }
 
-export default TransactionHistory
+export default Products

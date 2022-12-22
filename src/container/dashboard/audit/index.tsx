@@ -20,7 +20,7 @@ import { auditHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 // import { formatDate } from '../../../utils/formatValue'
 import { errorMessage } from '../../../utils/message'
-import { rowData, rowheaders } from './auditConfig'
+import { rowData, rowheaders } from './audit-config'
 
 interface SessionDetails {
   detail: any
@@ -32,8 +32,10 @@ const Audit = () => {
 
   const [componentToRender, setComponentToRender] = useState('auditUsers')
   const [values, setValues] = useState(filterValue)
-  const [actionsValues, setActionValues] = useState(filterValue)
+  const [actionsValues, setActionValues] = useState(filterValue);
 
+
+//Make login a custom hook return componentToRender
   useEffect(() => {
     if (state?.detail.id) {
       setComponentToRender('logs')

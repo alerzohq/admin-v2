@@ -1,11 +1,11 @@
-import { AxiosResponse, AxiosError } from 'axios'
-import { Dispatch, SetStateAction, useState } from 'react'
+
+import { Dispatch, SetStateAction,  } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation, useQueryClient } from 'react-query'
 import { InviteSent } from '../../../../../assets/icons'
 import DangerWarning from '../../../../../assets/icons/danger-warning'
 import Modal from '../../../../../components/modal'
-import { axiosInstance } from '../../../../../configs/axios-instance'
+
 import { postRequest } from '../../../../../utils/apiRequest'
 
 const ConfirmBillerChange = ({
@@ -25,7 +25,11 @@ const ConfirmBillerChange = ({
   setShowStatus: Dispatch<SetStateAction<boolean>>
   handleShow: Dispatch<SetStateAction<boolean>>
 }) => {
+
+  //Create a type file and move the types there and then import it @here
   const queryClient = useQueryClient()
+
+  //this should be a custom hook,  move this logic to a different file
   const useChangeBillerMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
       postRequest({
@@ -52,6 +56,8 @@ const ConfirmBillerChange = ({
     )
   }
 
+  //Replace Div with Stack component, Span tag with Text component as span
+
   return (
     <>
       <Modal
@@ -62,7 +68,7 @@ const ConfirmBillerChange = ({
         titleSize="22px"
         modalWidth="320px"
         title="Change Biller"
-        contentPadding={'0'}
+        contentPadding='0'
         icon={<DangerWarning />}
         subTitleSize={'16'}
         subTitle={
@@ -86,7 +92,7 @@ const ConfirmBillerChange = ({
         modalWidth="320px"
         title="Biller Changed"
         subTitleMargin="0"
-        contentPadding={'0'}
+        contentPadding='0'
         icon={<InviteSent />}
         subTitleSize={'16'}
         subTitle={

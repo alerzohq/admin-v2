@@ -4,7 +4,7 @@ export const TABS = [
   { label: 'Business Details', value: 'details', title: 'Business Details' },
   { label: 'Transaction History', value: 'transaction', title: '' },
   { label: 'Members', value: 'members', title: '' },
-  // { label: 'Products', value: 'products', title: '' },
+  { label: 'Products', value: 'products', title: '' },
   // { label: 'KYC Documents', value: 'kyc', title: '' },
   { label: 'Terminals', value: 'terminals', title: '' },
   // { label: 'API Keys', value: 'api-keys', title: '' },
