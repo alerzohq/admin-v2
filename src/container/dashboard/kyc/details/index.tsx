@@ -5,7 +5,7 @@ import { Button, Jumbotron } from '../../../../components'
 import { Container } from '../../../../components/layout'
 import { getResource } from '../../../../utils/apiRequest'
 import { formatDate } from '../../../../utils/formatValue'
-import { KycContainer } from './styles/kyc.styles'
+import { KycContainer } from '../styles/kyc.styles'
 
 type Props = {}
 
