@@ -46,6 +46,13 @@ export const PASSCODETABLE = [
 ]
 
 export const businessDetailsHelper = (data: any) => {
+  let commision = data?.data?.[0]?.wallet_details?.filter(
+    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
+  )
+  let main = data?.data?.[0]?.wallet_details?.filter(
+    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'commission'
+  )
+
   return [
     {
       spacing: false,
@@ -67,8 +74,8 @@ export const businessDetailsHelper = (data: any) => {
       header: ADDRESSTABLE,
       data: {
         address: data?.address,
-        balance: amountHelper(data?.wallet_details[0]?.wallet_balance),
-        commission: amountHelper(data?.wallet_details[1]?.wallet_balance),
+        balance: amountHelper(main?.[0]?.wallet_id),
+        commission: amountHelper(commision?.[0]?.wallet_id),
         empty: '',
       },
     },
