@@ -12,7 +12,7 @@ import { Container } from '../../../components/layout'
 import { filterValue } from '../../../data/filter-data'
 import { options, optionsAllPlatform } from '../../../data/select-data'
 import { KYCHeaderList } from '../../../data/table-headers'
-import { getNewFilterResource } from '../../../utils/apiRequest'
+import { getResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
 
 type Props = {}
@@ -21,7 +21,7 @@ const KYC = (props: Props) => {
   const [values, setValues] = useState(filterValue)
 
   const getKYCVerifications = () => {
-    return getNewFilterResource('kyc/verifications', values)
+    return getResource('kyc/verifications')
   }
 
   const { isLoading, isError, data, refetch, error } = useQuery(

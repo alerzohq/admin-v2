@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Color } from '../../../../assets/theme'
+import { Color } from '../../../../../assets/theme'
 
 export const KycContainer = styled.div`
   display: grid;
