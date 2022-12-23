@@ -35,15 +35,13 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     { keepPreviousData: true }
   )
 
-
   useEffect(() => {
     dispatch({
       type: Action.IS_FETCHING,
       payload: isFetching,
     })
-  }, [isFetching, dispatch]);
+  }, [isFetching, dispatch])
 
-  
   let component
   if (isLoading) {
     component = <Loader />

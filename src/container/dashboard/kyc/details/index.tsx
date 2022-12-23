@@ -19,7 +19,7 @@ const KYCDetailContainer = (props: Props) => {
   }
 
   // pass stateId to useQuery func as params to avoid flicker
-  const {data, isLoading, isError, refetch, error } = useQuery(
+  const { data, isLoading, isError, refetch, error } = useQuery(
     'kyc-logs',
     getKYCLog
   )
@@ -36,7 +36,6 @@ const KYCDetailContainer = (props: Props) => {
     >
       <Jumbotron padding={'0'} margin={'0'}>
         <KycContainer>
-
           {/* Replace div with Stack component , p with Text component*/}
           <div>
             <div>

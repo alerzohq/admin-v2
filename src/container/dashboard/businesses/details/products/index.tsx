@@ -10,7 +10,7 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform } from '../../../../../data/select-data'
-import { businessProductsHeader} from '../../../../../data/table-headers'
+import { businessProductsHeader } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
@@ -22,11 +22,7 @@ const Products = () => {
   const { dispatch } = useAppContext()
 
   const getProducts = (filterValue: filterProps) => {
-    return getNewFilterResource(
-      `products`,
-      filterValue,
-      false
-    )
+    return getNewFilterResource(`products`, filterValue, false)
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
@@ -35,17 +31,15 @@ const Products = () => {
     { keepPreviousData: true }
   )
 
-
-  console.log({products:data})
+  console.log({ products: data })
 
   useEffect(() => {
     dispatch({
       type: Action.IS_FETCHING,
       payload: isFetching,
     })
-  }, [isFetching, dispatch]);
+  }, [isFetching, dispatch])
 
-  
   let component
   if (isLoading) {
     component = <Loader />
