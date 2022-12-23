@@ -32,10 +32,9 @@ const Audit = () => {
 
   const [componentToRender, setComponentToRender] = useState('auditUsers')
   const [values, setValues] = useState(filterValue)
-  const [actionsValues, setActionValues] = useState(filterValue);
+  const [actionsValues, setActionValues] = useState(filterValue)
 
-
-//Make login a custom hook return componentToRender
+  //Make login a custom hook return componentToRender
   useEffect(() => {
     if (state?.detail.id) {
       setComponentToRender('logs')

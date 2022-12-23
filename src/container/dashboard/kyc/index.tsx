@@ -29,7 +29,6 @@ const KYC = (props: Props) => {
     getKYCVerifications
   )
 
-  
   let component
   if (isLoading) {
     component = <Loader />

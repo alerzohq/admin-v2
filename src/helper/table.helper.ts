@@ -103,8 +103,7 @@ export const transformData = ({ item, name }: props) => {
   }
 
   if (item && name === 'business-products') {
-    const { displayName, commission, createdAt,
-    } = item
+    const { displayName, commission, createdAt } = item
     const type = commission?.rate?.type
     const percentage = commission?.rate?.percentage
     const cap = commission?.splits[0]?.rate.amount

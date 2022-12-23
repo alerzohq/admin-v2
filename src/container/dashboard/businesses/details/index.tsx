@@ -31,9 +31,6 @@ const BusinessDetailContainer = () => {
   )
 
   const walletId = wallet?.wallet_id
-  
-
-  
 
   const renderSwitch = () => {
     switch (queryParam) {
