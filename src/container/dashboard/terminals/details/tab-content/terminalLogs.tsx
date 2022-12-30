@@ -10,6 +10,7 @@ import {
 import { FallBack, Filter, Jumbotron, Loader } from '../../../../../components'
 import { TimelineElement } from '../../../../../components/timeline'
 import { filterValue } from '../../../../../data/filter-data'
+import { optionsAllPlatform, options } from '../../../../../data/select-data'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { formatDate } from '../../../../../utils/formatValue'
 import { errorMessage } from '../../../../../utils/message'
@@ -132,15 +133,8 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
           date: true,
           selects: [
             {
-              placeholder: 'All Platform',
-              values: [],
-              value: '',
-              onChange: () => {},
-              query: 'allPlatform',
-            },
-            {
               placeholder: 'Status',
-              values: [],
+              values: options,
               value: '',
               onChange: () => {},
               query: 'status',

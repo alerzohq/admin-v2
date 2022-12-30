@@ -15,9 +15,7 @@ import { KYCHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
 
-type Props = {}
-
-const KYC = (props: Props) => {
+const KYC = () => {
   const [values, setValues] = useState(filterValue)
 
   const getKYCVerifications = () => {

@@ -5,4 +5,5 @@ export interface IStateProps {
   createdAt: string
   status: string
   id: string
+  userId: string
 }
