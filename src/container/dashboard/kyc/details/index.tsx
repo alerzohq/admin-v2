@@ -3,8 +3,10 @@ import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { Jumbotron } from '../../../../components'
 import { Container } from '../../../../components/layout'
+import { TimelineElement } from '../../../../components/timeline'
 import { getResource } from '../../../../utils/apiRequest'
-import { KycContainer } from '../styles/kyc.styles'
+import { formatDate } from '../../../../utils/formatValue'
+import { KycContainer, KYCLogs } from '../styles/kyc.styles'
 import { IStateProps } from '../type'
 import { KYCDocuments } from './KYCDocuments'
 import { KYCUser } from './KYCUser'
@@ -14,9 +16,7 @@ const KYCDetailContainer = () => {
   const state = location.state as IStateProps
 
   const getKYCLog = () => {
-    return getResource(
-      `activity/logs?category=kyc&entityId=8877d524-a70a-4282-9b13-7e6deb0de161`
-    )
+    return getResource(`activity/logs?category=kyc&entityId=${state.userId}`)
   }
 
   // pass stateId to useQuery func as params to avoid flicker
@@ -37,7 +37,26 @@ const KYCDetailContainer = () => {
         <KycContainer>
           <KYCUser state={state} />
           <KYCDocuments state={state} />
-          <div></div>
+          <KYCLogs>
+            <TimelineElement
+              actions={data?.data.map((action: any) => ({
+                action: (
+                  <p
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px',
+                    }}
+                  >
+                    <p style={{ fontWeight: 400, fontSize: '14px' }}>
+                      {formatDate(action.createdAt, 'YYYY-MM-DD HH:mm:ss')}
+                    </p>
+                    <p>{action.subject}</p>
+                  </p>
+                ),
+              }))}
+            />
+          </KYCLogs>
         </KycContainer>
       </Jumbotron>
     </Container>

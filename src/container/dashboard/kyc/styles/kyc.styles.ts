@@ -84,3 +84,7 @@ export const ImageContainer = styled.div`
     left: 10px;
   }
 `
+export const KYCLogs = styled.div`
+  display: flex;
+  flex-direction: column;
+`
