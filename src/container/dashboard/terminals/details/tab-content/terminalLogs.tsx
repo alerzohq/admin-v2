@@ -5,6 +5,7 @@ import {
   AssignedTerminalIcon,
   AssignTerminalIcon,
   DiasbleTeminalIcon,
+  ReassignTerminalIcon,
   UnassignedTerminalsIcon,
 } from '../../../../../assets/icons'
 import { FallBack, Filter, Jumbotron, Loader } from '../../../../../components'
@@ -36,6 +37,7 @@ let logIcon = {
   'Terminal was disabled': <UnassignedTerminalsIcon />,
   'Terminal was deactivated by': <DiasbleTeminalIcon />,
   'Terminal was activated by': <AssignedTerminalIcon />,
+  'Terminal was re-assigned to': <ReassignTerminalIcon />,
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
   const [values, setValues] = useState({ ...filterValue, count: 50 })
