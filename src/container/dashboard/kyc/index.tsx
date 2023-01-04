@@ -46,6 +46,7 @@ const KYC = () => {
             tableData={data.data}
             tableHeaders={KYCHeaderList}
             routePath={'dashboard/kyc'}
+            hideDate
           />
         </Jumbotron>
         <Pagination data={data} setPageNumber={setValues} />
