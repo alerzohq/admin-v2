@@ -75,13 +75,13 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
                 {formatDate(log.createdAt, 'YYYY-MM-DD HH:mm:ss')}
               </p>
               <p style={{ fontWeight: 600, fontSize: '16px' }}>
-                {self[i].details[4].value.split(' ')[0]}{' '}
-                {self[i].details[4].value.split(' ')[2]}
+                {self[i].details[4]?.value.split(' ')[0]}{' '}
+                {self[i].details[4]?.value.split(' ')[2]}
               </p>
               <p style={{ fontWeight: 400, fontSize: '14px' }}>
                 {[
                   ...[...log.details].reverse().map((log, i, self) => {
-                    if (log.value === 'Terminal was assigned to') {
+                    if (log?.value === 'Terminal was assigned to') {
                       return !['userType', 'businessId'].includes(log.key) ? (
                         <>
                           {log.key === 'business' ? (
@@ -90,24 +90,26 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
                                 className="tableLink"
                                 onClick={() => {
                                   navigate(
-                                    `/dashboard/businesses/${self[i - 1].value}`
+                                    `/dashboard/businesses/${
+                                      self[i - 1]?.value
+                                    }`
                                   )
                                 }}
                               >
-                                {log.value}
+                                {log?.value}
                               </span>{' '}
                               by{' '}
                             </>
                           ) : (
-                            <> {log.value} </>
+                            <> {log?.value} </>
                           )}
                         </>
                       ) : null
                     } else {
                       return !['userType', 'businessId', 'business'].includes(
-                        log.key
+                        log?.key
                       ) ? (
-                        <>{log.value} </>
+                        <>{log?.value} </>
                       ) : null
                     }
                   }),
@@ -115,7 +117,7 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
               </p>
             </p>
           ),
-          icon: (logIcon as any)[log.details[4].value],
+          icon: (logIcon as any)[log.details[log.details.length - 1]?.value],
         }))}
       />
     )
