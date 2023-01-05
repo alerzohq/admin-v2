@@ -19,6 +19,8 @@ type textProps = {
   lineHeight?: string
   alignSelf?: string
   height?: string
+  flexDirection?: string
+  gap?: string
 }
 
 export const TextStyle = styled.div<textProps>`
@@ -42,4 +44,6 @@ export const TextStyle = styled.div<textProps>`
   line-height: ${({ lineHeight }) => lineHeight};
   justify-content: ${({ justifyContent }) => justifyContent};
   height: ${({ height }) => height};
+  flex-direction: ${({ flexDirection }) => flexDirection};
+  gap: ${({ gap }) => gap};
 `

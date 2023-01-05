@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { Jumbotron } from '../../../../components'
+import { Jumbotron, Text } from '../../../../components'
 import { Container } from '../../../../components/layout'
 import { TimelineElement } from '../../../../components/timeline'
 import { getResource } from '../../../../utils/apiRequest'
@@ -41,18 +41,12 @@ const KYCDetailContainer = () => {
             <TimelineElement
               actions={data?.data.map((action: any) => ({
                 action: (
-                  <p
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '10px',
-                    }}
-                  >
-                    <p style={{ fontWeight: 400, fontSize: '14px' }}>
+                  <Text as="p" flexDirection="column" gap="10px">
+                    <Text as="p" weight="400" size="14px">
                       {formatDate(action.createdAt, 'YYYY-MM-DD HH:mm:ss')}
-                    </p>
-                    <p>{action.subject}</p>
-                  </p>
+                    </Text>
+                    <Text as="p">{action.subject}</Text>
+                  </Text>
                 ),
               }))}
             />

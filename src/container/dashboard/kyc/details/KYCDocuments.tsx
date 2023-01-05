@@ -43,25 +43,27 @@ export const KYCDocuments = ({ state }: { state: IStateProps }) => {
             FRONT VIEW
           </Text>
         </ImageContainer>
-        <ImageContainer>
-          <img
-            width={'100%'}
-            height={'190px'}
-            alt="rear img"
-            src={state.documents[3].value[1]}
-          />
-          <Text
-            weight="400"
-            size="14px"
-            lineHeight="17px"
-            color={Color.alerzoGray2}
-            padding="6px 0"
-            as="p"
-            whiteSpace="nowrap"
-          >
-            REAR VIEW
-          </Text>
-        </ImageContainer>
+        {state.documents[3].value[1] && (
+          <ImageContainer>
+            <img
+              width={'100%'}
+              height={'190px'}
+              alt="rear img"
+              src={state.documents[3].value[1]}
+            />
+            <Text
+              weight="400"
+              size="14px"
+              lineHeight="17px"
+              color={Color.alerzoGray2}
+              padding="6px 0"
+              as="p"
+              whiteSpace="nowrap"
+            >
+              REAR VIEW
+            </Text>
+          </ImageContainer>
+        )}
       </IDVerificationDocs>
       <AddressVerificationDocs>
         <Text
