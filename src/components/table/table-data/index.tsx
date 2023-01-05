@@ -2,6 +2,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
 import { TableItemDiv } from './table.style'
+import { useAppContext } from '../../../context'
+import { Action } from '../../../context/actions'
 
 export type selectedDataType = {
   [key: string]: any
@@ -33,6 +35,7 @@ const TableData = ({
   notClickable,
   routePath,
 }: dataProps) => {
+  const { dispatch } = useAppContext()
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
@@ -62,6 +65,11 @@ const TableData = ({
                         }
                       : routePath
                       ? () => {
+                          name === 'requestsTerrminals' &&
+                            dispatch({
+                              type: Action.SAVETERMINALREQ,
+                              payload: item,
+                            })
                           navigate(
                             withSlug
                               ? `/${routePath}/${item?.id}/${item?.product?.slug}`

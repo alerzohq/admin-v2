@@ -187,30 +187,30 @@ export const terminalRequestsStats = () => {
   return statistics
 }
 
-export const terminalRequestHelper = () => {
+export const terminalRequestHelper = (data:any) => {
+  const business = data?.business;
   return [
     {
       spacing: false,
       header: TERMINALREQMERCHANTTABLE,
       data: {
-        id: '37e68fb-d9fd-4c32',
-        name: 'Blue Enterprise',
-        address: '234 Bishop Hughes Close, Yaba, Lagos.',
-        phone: '081461271802',
-        date: '2038-01-19 03:14:07',
-        email: 'businessenterprise@gmail.com',
+        id: business?.id,
+        name: business?.name,
+        address:  business?.address,
+        phone: business?.phoneNumber,
+        date: formatDate(business?.createdAt, 'YYYY-MM-DD HH:mm:ss'),
+        email: business?.email,
       },
     },
     {
       spacing: false,
       header: TERMINALREQDETAILTABLE,
       data: {
-        requestId: '37e68fb-d9fd-4c32',
-        status: 'Terminal Requested',
-        date: '2022-01-19 03:14:07',
-        location: 'Ibadan',
-        deliveryLocation:
-          '17 Olorunfunmi Street off Oregun Road Ojota, Ibadan,Nigeria',
+        requestId: data?.id,
+        status: data?.status[data?.status?.length - 1]?.status,
+        date:data?.data?.createdAt,
+        location: data?.data?.location,
+        deliveryLocation: data?.data?.address,
       },
     },
   ]

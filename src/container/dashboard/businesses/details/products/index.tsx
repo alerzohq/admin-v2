@@ -30,9 +30,6 @@ const Products = () => {
     () => getProducts(values),
     { keepPreviousData: true }
   )
-
-  console.log({ products: data })
-
   useEffect(() => {
     dispatch({
       type: Action.IS_FETCHING,

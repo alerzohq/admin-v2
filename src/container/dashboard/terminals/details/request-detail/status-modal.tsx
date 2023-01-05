@@ -70,16 +70,16 @@ export const StatusModal = ({
             value={order}
             onChange={(val) => setOrder(val)}
             options={[
-              ...(state.status[state.status.length - 1]?.status === 'processing'
+              ...(state?.status?.[state?.status?.length - 1]?.status === 'processing'
                 ? [
                     { label: 'Reject', value: 'rejected' },
                     { label: 'Approve', value: 'approved' },
                   ]
                 : []),
-              ...(state.status[state.status.length - 1]?.status === 'approved'
+              ...(state?.status?.[state?.status?.length - 1]?.status === 'approved'
                 ? [{ label: 'Ship', value: 'shipping' }]
                 : []),
-              ...(state.status[state.status.length - 1]?.status === 'shipping'
+              ...(state?.status?.[state?.status?.length - 1]?.status === 'shipping'
                 ? [{ label: 'Deliver', value: 'delivered' }]
                 : []),
             ]}

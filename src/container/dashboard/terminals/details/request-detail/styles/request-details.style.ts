@@ -108,3 +108,16 @@ export const Button = styled.div<props>`
     margin-top: 4rem;
   }
 `
+export const ImgWrapper = styled.div<props>`
+width: 67px;
+height: 67px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: #EEF3FF;
+border-radius: 11.61px;
+img{
+  width: 29.53px;
+  height: 49.97px;
+}
+`
