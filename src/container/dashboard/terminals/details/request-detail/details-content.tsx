@@ -11,7 +11,10 @@ interface Location {
   status: { status: string }[]
 }
 
-export const DetailsContentComp = ({ terminalId, data }:ITerminalReqDetails) => {
+export const DetailsContentComp = ({
+  terminalId,
+  data,
+}: ITerminalReqDetails) => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   const location = useLocation()
   const state = location.state as Location
@@ -23,7 +26,8 @@ export const DetailsContentComp = ({ terminalId, data }:ITerminalReqDetails) => 
         <POSRow units={data?.data?.units} />
       </Wrapper>
 
-      {state?.status[state?.status?.length - 1]?.status === 'delivered' ? null : (
+      {state?.status[state?.status?.length - 1]?.status ===
+      'delivered' ? null : (
         <Button
           margin="2rem auto"
           onClick={() => setShowStatusModal(true)}

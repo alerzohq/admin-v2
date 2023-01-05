@@ -8,6 +8,6 @@ interface TerminalReqDetails {
   detail: any
 }
 interface ITerminalReqDetails {
-  terminalId?: string 
-  data:{[key:string]:any}
+  terminalId?: string
+  data: { [key: string]: any }
 }

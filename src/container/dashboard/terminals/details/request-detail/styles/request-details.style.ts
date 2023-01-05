@@ -109,15 +109,15 @@ export const Button = styled.div<props>`
   }
 `
 export const ImgWrapper = styled.div<props>`
-width: 67px;
-height: 67px;
-display: flex;
-justify-content: center;
-align-items: center;
-background: #EEF3FF;
-border-radius: 11.61px;
-img{
-  width: 29.53px;
-  height: 49.97px;
-}
+  width: 67px;
+  height: 67px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef3ff;
+  border-radius: 11.61px;
+  img {
+    width: 29.53px;
+    height: 49.97px;
+  }
 `

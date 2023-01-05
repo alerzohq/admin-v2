@@ -187,8 +187,8 @@ export const terminalRequestsStats = () => {
   return statistics
 }
 
-export const terminalRequestHelper = (data:any) => {
-  const business = data?.business;
+export const terminalRequestHelper = (data: any) => {
+  const business = data?.business
   return [
     {
       spacing: false,
@@ -196,7 +196,7 @@ export const terminalRequestHelper = (data:any) => {
       data: {
         id: business?.id,
         name: business?.name,
-        address:  business?.address,
+        address: business?.address,
         phone: business?.phoneNumber,
         date: formatDate(business?.createdAt, 'YYYY-MM-DD HH:mm:ss'),
         email: business?.email,
@@ -208,7 +208,7 @@ export const terminalRequestHelper = (data:any) => {
       data: {
         requestId: data?.id,
         status: data?.status[data?.status?.length - 1]?.status,
-        date:data?.data?.createdAt,
+        date: data?.data?.createdAt,
         location: data?.data?.location,
         deliveryLocation: data?.data?.address,
       },

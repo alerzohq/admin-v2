@@ -1,14 +1,11 @@
 import POSItem from './pos-item'
-import {
-  HorizontalLine,
-  TotalRow,
-} from './styles/request-details.style'
+import { HorizontalLine, TotalRow } from './styles/request-details.style'
 import { Color } from '../../../../../assets/theme'
 import { Text } from '../../../../../components'
 import { amountHelper, sumOfValue } from '../../../../../utils/formatValue'
 
 const POSRow = ({ units }: { units: { [key: string]: any }[] }) => {
-  const total = sumOfValue(units, "price");
+  const total = sumOfValue(units, 'price')
   return (
     <>
       {units?.map((unit) => (
@@ -26,7 +23,7 @@ const POSRow = ({ units }: { units: { [key: string]: any }[] }) => {
         </Text>
         <HorizontalLine />
         <Text size="1.125rem" color={Color.alerzoBlue} weight="700">
-         {amountHelper(total)}
+          {amountHelper(total)}
         </Text>
       </TotalRow>
     </>

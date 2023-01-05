@@ -7,7 +7,7 @@ import { useAppContext } from '../../../../../context'
 
 const TerminalRequestDetails = () => {
   const location = useLocation()
-  const state = location.state as TerminalReqDetails;
+  const state = location.state as TerminalReqDetails
   const { search, pathname } = location
   const queryParam = new URLSearchParams(search)?.get('status')
   const found = TERMINALREQUESTTABS.find(
@@ -16,13 +16,18 @@ const TerminalRequestDetails = () => {
   const title = found ? found?.title : TABS[0]?.title
   const {
     state: { terminalReq },
-  } = useAppContext();
+  } = useAppContext()
   const renderSwitch = () => {
     switch (queryParam) {
       case 'order-process':
         return <TerminalOrder />
       default:
-        return <DetailsContentComp data={state || terminalReq} terminalId={pathname.split('/').pop()} />
+        return (
+          <DetailsContentComp
+            data={state || terminalReq}
+            terminalId={pathname.split('/').pop()}
+          />
+        )
     }
   }
 
