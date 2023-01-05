@@ -38,6 +38,7 @@ let logIcon = {
   'Terminal was deactivated by': <DiasbleTeminalIcon />,
   'Terminal was activated by': <AssignedTerminalIcon />,
   'Terminal was re-assigned to': <ReassignTerminalIcon />,
+  'Terminal was assigned to': <AssignTerminalIcon />,
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
   const [values, setValues] = useState({ ...filterValue, count: 50 })
@@ -81,41 +82,46 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
                 {self[i].details[4]?.value.split(' ')[2]}
               </p>
               <p style={{ fontWeight: 400, fontSize: '14px' }}>
-                {[
-                  ...[...log.details].reverse().map((log, i, self) => {
-                    if (log?.value === 'Terminal was assigned to') {
-                      return !['userType', 'businessId'].includes(log.key) ? (
-                        <>
-                          {log.key === 'business' ? (
-                            <>
-                              <span
-                                className="tableLink"
-                                onClick={() => {
-                                  navigate(
-                                    `/dashboard/businesses/${
-                                      self[i - 1]?.value
-                                    }`
-                                  )
-                                }}
-                              >
-                                {log?.value}
-                              </span>{' '}
-                              by{' '}
-                            </>
-                          ) : (
-                            <> {log?.value} </>
-                          )}
-                        </>
-                      ) : null
-                    } else {
-                      return !['userType', 'businessId', 'business'].includes(
-                        log?.key
-                      ) ? (
-                        <>{log?.value} </>
-                      ) : null
-                    }
-                  }),
-                ]}
+                {log.details[4].value === 'Terminal was assigned to' ||
+                log.details[4].value === 'Terminal was re-assigned to'
+                  ? log.details
+                      .slice(0)
+                      .reverse()
+                      .map((log, i, self) =>
+                        !['userType', 'businessId'].includes(log.key) ? (
+                          <>
+                            {log.key === 'business' ? (
+                              <>
+                                <span
+                                  className="tableLink"
+                                  onClick={() => {
+                                    navigate(
+                                      `/dashboard/businesses/${
+                                        self[i + 1]?.value
+                                      }`
+                                    )
+                                  }}
+                                >
+                                  {log?.value}
+                                </span>{' '}
+                                by{' '}
+                              </>
+                            ) : (
+                              <> {log?.value} </>
+                            )}
+                          </>
+                        ) : null
+                      )
+                  : log.details
+                      .slice(0)
+                      .reverse()
+                      .map((log) =>
+                        !['userType', 'businessId', 'business'].includes(
+                          log?.key
+                        ) ? (
+                          <> {log?.value} </>
+                        ) : null
+                      )}
               </p>
             </p>
           ),
