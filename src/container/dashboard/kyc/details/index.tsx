@@ -41,7 +41,12 @@ const KYCDetailContainer = () => {
             <TimelineElement
               actions={data?.data.map((action: any) => ({
                 action: (
-                  <Text as="p" flexDirection="column" gap="10px">
+                  <Text
+                    as="p"
+                    flexDirection="column"
+                    gap="10px"
+                    alignItems="baseline"
+                  >
                     <Text as="p" weight="400" size="14px">
                       {formatDate(action.createdAt, 'YYYY-MM-DD HH:mm:ss')}
                     </Text>

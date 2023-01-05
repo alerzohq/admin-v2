@@ -13,14 +13,6 @@ export const KycContainer = styled.div`
     padding: 3rem;
   }
 
-  // > div:nth-child(1) {
-  //   display: flex;
-  //   flex-direction: column;
-  //   gap: 30px;
-  // }
-  // > div:nth-child(2) {
-  //   border-inline: 1px solid #e8ebee;
-  // }
   .lightFont {
     font-weight: 400;
     font-size: 14px;
@@ -67,6 +59,16 @@ export const KycDocuments = styled.div`
 `
 export const IDVerificationDocs = styled.div`
   margin: 0px -0.5rem;
+  position: relative;
+  &:after {
+    content: '';
+    border-bottom: 1px solid ${Color.alerzoGrayBorder};
+    width: calc(100% + 5rem);
+    left: -2.5rem;
+    position: absolute;
+    height: 2px;
+    bottom: -1rem;
+  }
 `
 export const AddressVerificationDocs = styled.div`
   margin: 0px -0.5rem;
