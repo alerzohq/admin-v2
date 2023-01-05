@@ -97,7 +97,7 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
                                   onClick={() => {
                                     navigate(
                                       `/dashboard/businesses/${
-                                        self[i + 1]?.value
+                                        self[i - 1]?.value
                                       }`
                                     )
                                   }}
