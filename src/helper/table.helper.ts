@@ -79,7 +79,7 @@ export const transformData = ({ item, name }: props) => {
   }
   if (item && name === 'employees') {
     const { firstName, lastName, phoneNumber, email, roleName, disabled } = item
-    let statusVal = disabled ? 'Active' : 'Inactive'
+    let statusVal = disabled ? 'Inactive' :'Active';
     return {
       name: `${firstName} ${lastName}`,
       email: email.toLowerCase(),
