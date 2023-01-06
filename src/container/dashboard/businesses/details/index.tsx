@@ -8,6 +8,7 @@ import TransactionHistory from './transaction-history'
 import Members from './members'
 import BusinessTerminalContainer from './terminals'
 import Products from './products'
+import BusinessAccounts from './user-accounts/index';
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -46,6 +47,8 @@ const BusinessDetailContainer = () => {
         return <Members businessId={id} />
       case 'api-keys':
         return <div>Api Keys</div>
+      case 'accounts':
+        return <BusinessAccounts />
       default:
         return (
           <DetailsContent
