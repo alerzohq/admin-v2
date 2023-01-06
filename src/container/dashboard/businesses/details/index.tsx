@@ -8,7 +8,7 @@ import TransactionHistory from './transaction-history'
 import Members from './members'
 import BusinessTerminalContainer from './terminals'
 import Products from './products'
-import BusinessAccounts from './user-accounts/index';
+import BusinessAccounts from './user-accounts/index'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
