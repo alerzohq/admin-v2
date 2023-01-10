@@ -10,21 +10,23 @@ import { postRequest } from '../../../../utils/apiRequest'
 import toast from 'react-hot-toast'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
-  console.log(state, "state")
-  const initialState = { comments: '',
-  status: '',
-  reason: '',}
+  console.log(state, 'state')
+  const initialState = { comments: '', status: '', reason: '' }
   const [isShown, setIsShown] = useState(false)
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
-  const [value, setValue] = useState<ValueProps>( initialState)
+  const [value, setValue] = useState<ValueProps>(initialState)
   const toggle = () => {
     setIsShown(!isShown)
   }
-  const id = state?.id;
+  const id = state?.id
   const useUpdateMutation = () =>
-  useMutation((payload: { [key: string]: any }) =>
-    postRequest({ pathUrl: `kyc/verifications/${id}`, payload, methodType: 'patch' })
-  )
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({
+        pathUrl: `kyc/verifications/${id}`,
+        payload,
+        methodType: 'patch',
+      })
+    )
   const queryClient = useQueryClient()
   const { isLoading: loading, mutate } = useUpdateMutation()
   const handleUpdate = () => {
@@ -48,7 +50,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
   }
   return (
     <KycUser>
-       <UpdateKYCModal
+      <UpdateKYCModal
         triggerSubmit={isTriggerSubmit}
         isShown={isShown}
         loading={loading}
@@ -152,9 +154,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           </p>
         </div>
       </KycUserDetails>
-      <Button onClick={() => toggle()}>
-        Provide Action
-      </Button>
+      <Button onClick={() => toggle()}>Provide Action</Button>
     </KycUser>
   )
 }

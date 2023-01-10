@@ -36,7 +36,9 @@ const UpdateKYCModal = ({
       setShowModal={toggleModal}
       buttonText="Submit"
       title="Accout Upgrade Request"
-      disabled={!value?.status || (value?.status === "rejected" && !value?.reason)}
+      disabled={
+        !value?.status || (value?.status === 'rejected' && !value?.reason)
+      }
       handleSubmit={handleSubmit}
       loading={loading}
     >
@@ -66,7 +68,7 @@ const UpdateKYCModal = ({
           { label: 'Rejected', value: 'rejected' },
         ]}
       />
-       {triggerSubmit && !value?.status && (
+      {triggerSubmit && !value?.status && (
         <Text
           padding="8px"
           as={'small'}
@@ -112,39 +114,39 @@ const UpdateKYCModal = ({
               },
             ]}
           />
-           {triggerSubmit && !value?.reason && (
-        <Text
-          padding="8px"
-          as={'small'}
-          weight={'500'}
-          color={Color.alerzoDanger}
-        >
-          Reason is required*
-        </Text>
-      )}
+          {triggerSubmit && !value?.reason && (
+            <Text
+              padding="8px"
+              as={'small'}
+              weight={'500'}
+              color={Color.alerzoDanger}
+            >
+              Reason is required*
+            </Text>
+          )}
         </>
       )}
-          <Text
-            as="p"
-            padding="0"
-            color={Color.alerzoBlack}
-            size="14px"
-            margin="1rem 0 .5rem 0"
-            alignSelf="self-start"
-          >
-            Comments
-          </Text>
+      <Text
+        as="p"
+        padding="0"
+        color={Color.alerzoBlack}
+        size="14px"
+        margin="1rem 0 .5rem 0"
+        alignSelf="self-start"
+      >
+        Comments
+      </Text>
 
-          <TextArea
-            textAreaTopMargin="0"
-            placeholder={'Enter message with more than 5 charaters'}
-            textAreaHeight="85px"
-            value={value?.comments}
-            textAreaWidth="95%"
-            onChange={(e) => {
-              setValue({ ...value, comments: e.target.value })
-            }}
-          />
+      <TextArea
+        textAreaTopMargin="0"
+        placeholder={'Enter message with more than 5 charaters'}
+        textAreaHeight="85px"
+        value={value?.comments}
+        textAreaWidth="95%"
+        onChange={(e) => {
+          setValue({ ...value, comments: e.target.value })
+        }}
+      />
     </Modal>
   )
 }
