@@ -41,7 +41,7 @@ const TerminalOrder = ({ data }: ITerminalReqProcess) => {
           const found = orderStatus?.length > 0
           const status = timeline[index + 1]?.status
           const nextOrder = resolveStatus(status)
-          const foundNext = nextOrder?.length > 0
+          const foundNext = nextOrder?.length > 0;
           return (
             <TimelineItem
               className={
