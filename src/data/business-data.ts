@@ -47,10 +47,10 @@ export const PASSCODETABLE = [
 
 export const businessDetailsHelper = (data: any) => {
   let commision = data?.wallet_details?.find(
-    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
+    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'commission'
   )
   let main = data?.wallet_details?.find(
-    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'commission'
+    (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
 
   return [
