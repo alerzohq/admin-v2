@@ -26,8 +26,8 @@ export const DetailsContentComp = ({
         <POSRow units={data?.data?.units} />
       </Wrapper>
 
-      {state?.status[state?.status?.length - 1]?.status ===
-      'delivered' ? null : (
+      {state?.status[state?.status?.length - 1]?.status === 'delivered' ||
+      state?.status[state?.status?.length - 1]?.status === 'rejected' ? null : (
         <Button
           margin="2rem auto"
           onClick={() => setShowStatusModal(true)}
