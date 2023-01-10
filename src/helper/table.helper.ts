@@ -153,11 +153,11 @@ export const transformData = ({ item, name }: props) => {
     return { username: `${first_name} ${last_name}`, email, status, created_at }
   }
   if (item && name === 'requestsTerrminals') {
-    const { businessId, data, business, status, createdAt } = item
+    const { data, business, status, createdAt } = item
     const statusVal = status[status.length - 1].status
     const updatedDate = formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss')
     return {
-      businessId,
+      businessId: business?.id,
       name: business.name,
       address: data.address,
       statusVal,

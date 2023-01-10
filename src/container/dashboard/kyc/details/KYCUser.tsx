@@ -10,7 +10,6 @@ import { postRequest } from '../../../../utils/apiRequest'
 import toast from 'react-hot-toast'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
-  console.log(state, 'state')
   const initialState = { comments: '', status: '', reason: '' }
   const [isShown, setIsShown] = useState(false)
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
@@ -37,7 +36,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
         onSuccess: () => {
           toggle()
           toast.success(`KYC updated successfully`)
-          queryClient.invalidateQueries('KYC')
+          queryClient.invalidateQueries('kyc-detail')
           setValue(initialState)
         },
         onError: (err: any) => {

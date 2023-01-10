@@ -14,3 +14,8 @@ export const optionsAllPlatform = [
   { label: 'Business User', value: 'business-user' },
   { label: 'Business Customer', value: 'business-customer' },
 ]
+export const KYCOptions = [
+  { value: 'rejected', label: 'Rejected' },
+  { value: 'pending', label: 'Pending' },
+  { value: 'approved', label: 'Approved' },
+]
