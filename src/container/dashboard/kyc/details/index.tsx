@@ -14,16 +14,13 @@ import { KYCUser } from './KYCUser'
 const KYCDetailContainer = () => {
   const location = useLocation()
   const state = location.state as IStateProps
-
+  const userId = state.userId
   const getKYCLog = () => {
-    return getResource(`activity/logs?category=kyc&entityId=${state.userId}`)
+    return getResource(`activity/logs?category=kyc&entityId=${userId}`)
   }
 
   // pass stateId to useQuery func as params to avoid flicker
-  const { data, isLoading, isError, refetch, error } = useQuery(
-    'kyc-logs',
-    () => getKYCLog()
-  )
+  const { data } = useQuery(['kyc-logs', userId], () => getKYCLog())
 
   return (
     <Container

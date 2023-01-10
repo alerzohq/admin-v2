@@ -1,13 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Text } from '../../../../components'
 import { KycUser, KycUserDetails, KycUserImg } from '../styles/kyc.styles'
-import { IStateProps } from '../type'
+import { IStateProps, ValueProps } from '../type'
 import { Color } from '../../../../assets/theme'
 import { formatDate } from '../../../../utils/formatValue'
+import UpdateKYCModal from './update-kyc-modal'
+import { useMutation, useQueryClient } from 'react-query'
+import { postRequest } from '../../../../utils/apiRequest'
+import toast from 'react-hot-toast'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
+  console.log(state, 'state')
+  const initialState = { comments: '', status: '', reason: '' }
+  const [isShown, setIsShown] = useState(false)
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+  const [value, setValue] = useState<ValueProps>(initialState)
+  const toggle = () => {
+    setIsShown(!isShown)
+  }
+  const id = state?.id
+  const useUpdateMutation = () =>
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({
+        pathUrl: `kyc/verifications/${id}`,
+        payload,
+        methodType: 'patch',
+      })
+    )
+  const queryClient = useQueryClient()
+  const { isLoading: loading, mutate } = useUpdateMutation()
+  const handleUpdate = () => {
+    setIsTriggerSubmit(false)
+    return mutate(
+      { ...value },
+      {
+        onSuccess: () => {
+          toggle()
+          toast.success(`KYC updated successfully`)
+          queryClient.invalidateQueries('KYC')
+          setValue(initialState)
+        },
+        onError: (err: any) => {
+          toggle()
+          toast.error(`${err?.response?.data?.message}`)
+          setValue(initialState)
+        },
+      }
+    )
+  }
   return (
     <KycUser>
+      <UpdateKYCModal
+        triggerSubmit={isTriggerSubmit}
+        isShown={isShown}
+        loading={loading}
+        handleSubmit={async () => {
+          setIsTriggerSubmit(true)
+          handleUpdate()
+        }}
+        toggleModal={() => {
+          setValue(initialState)
+          setIsTriggerSubmit(false)
+
+          toggle()
+        }}
+        value={value}
+        setValue={setValue}
+      />
       <KycUserImg>
         <img
           width={'190px'}
@@ -95,9 +154,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           </p>
         </div>
       </KycUserDetails>
-      <Button onClick={() => console.log('Provide Action')}>
-        Provide Action
-      </Button>
+      <Button onClick={() => toggle()}>Provide Action</Button>
     </KycUser>
   )
 }
