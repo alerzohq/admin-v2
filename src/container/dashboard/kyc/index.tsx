@@ -10,7 +10,7 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import { filterValue } from '../../../data/filter-data'
-import { KYCOptions, optionsAllPlatform } from '../../../data/select-data'
+import { optionsAllPlatform } from '../../../data/select-data'
 import { KYCHeaderList } from '../../../data/table-headers'
 import { getNewFilterResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
@@ -74,7 +74,11 @@ const KYC = () => {
               {
                 query: 'status',
                 placeholder: 'Status',
-                values: KYCOptions,
+                values: [
+                  { value: 'verified', label: 'Approved' },
+                  { value: 'rejected', label: 'Rejected' },
+                  { value: 'processing', label: 'Pending' },
+                ],
                 value: '',
               },
             ],
