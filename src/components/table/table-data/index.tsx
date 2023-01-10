@@ -93,13 +93,16 @@ const TableData = ({
                     data === 'Active' ||
                     data === 'approved' ||
                     data === 'shipping' ||
+                    data === 'verified' ||
                     data === 'delivered'
                       ? 'success'
                       : data === 'Unassigned'
                       ? 'unassigned'
                       : data === 'pending' || data === 'processing'
                       ? 'pending'
-                      : data === 'failed' || data === 'Inactive'
+                      : data === 'failed' ||
+                        data === 'Inactive' ||
+                        data === 'rejected'
                       ? 'failed'
                       : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
                         data

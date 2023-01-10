@@ -7,7 +7,7 @@ export const TABS = [
   { label: 'Products', value: 'products', title: '' },
   // { label: 'KYC Documents', value: 'kyc', title: '' },
   { label: 'Terminals', value: 'terminals', title: '' },
-  // { label: 'API Keys', value: 'api-keys', title: '' },
+  { label: 'Bank Accounts', value: 'accounts', title: '' },
 ]
 
 export const DETAILSTABLE = [

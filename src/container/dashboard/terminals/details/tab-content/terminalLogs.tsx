@@ -8,7 +8,13 @@ import {
   ReassignTerminalIcon,
   UnassignedTerminalsIcon,
 } from '../../../../../assets/icons'
-import { FallBack, Filter, Jumbotron, Loader } from '../../../../../components'
+import {
+  FallBack,
+  Filter,
+  Jumbotron,
+  Loader,
+  Text,
+} from '../../../../../components'
 import { TimelineElement } from '../../../../../components/timeline'
 import { filterValue } from '../../../../../data/filter-data'
 import { optionsAllPlatform, options } from '../../../../../data/select-data'
@@ -38,6 +44,7 @@ let logIcon = {
   'Terminal was deactivated by': <DiasbleTeminalIcon />,
   'Terminal was activated by': <AssignedTerminalIcon />,
   'Terminal was re-assigned to': <ReassignTerminalIcon />,
+  'Terminal was assigned to': <AssignTerminalIcon />,
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
   const [values, setValues] = useState({ ...filterValue, count: 50 })
@@ -70,54 +77,57 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
         borderType="solid"
         actions={data.data.map((log: Log, i: number, self: Log[]) => ({
           action: (
-            <p
-              style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
-            >
-              <p style={{ fontWeight: 400, fontSize: '14px' }}>
+            <Text as="p">
+              <Text as="p" weight="400" size="14px">
                 {formatDate(log.createdAt, 'YYYY-MM-DD HH:mm:ss')}
-              </p>
-              <p style={{ fontWeight: 600, fontSize: '16px' }}>
+              </Text>
+              <Text as="p" weight="600" size="16px">
                 {self[i].details[4]?.value.split(' ')[0]}{' '}
                 {self[i].details[4]?.value.split(' ')[2]}
-              </p>
-              <p style={{ fontWeight: 400, fontSize: '14px' }}>
-                {[
-                  ...[...log.details].reverse().map((log, i, self) => {
-                    if (log?.value === 'Terminal was assigned to') {
-                      return !['userType', 'businessId'].includes(log.key) ? (
-                        <>
-                          {log.key === 'business' ? (
-                            <>
-                              <span
-                                className="tableLink"
-                                onClick={() => {
-                                  navigate(
-                                    `/dashboard/businesses/${
-                                      self[i - 1]?.value
-                                    }`
-                                  )
-                                }}
-                              >
-                                {log?.value}
-                              </span>{' '}
-                              by{' '}
-                            </>
-                          ) : (
-                            <> {log?.value} </>
-                          )}
-                        </>
-                      ) : null
-                    } else {
-                      return !['userType', 'businessId', 'business'].includes(
-                        log?.key
-                      ) ? (
-                        <>{log?.value} </>
-                      ) : null
-                    }
-                  }),
-                ]}
-              </p>
-            </p>
+              </Text>
+              <Text as="p" weight="400" size="14px">
+                {log.details[4].value === 'Terminal was assigned to' ||
+                log.details[4].value === 'Terminal was re-assigned to'
+                  ? log.details
+                      .slice(0)
+                      .reverse()
+                      .map((log, i, self) =>
+                        !['userType', 'businessId'].includes(log.key) ? (
+                          <>
+                            {log.key === 'business' ? (
+                              <>
+                                <span
+                                  className="tableLink"
+                                  onClick={() => {
+                                    navigate(
+                                      `/dashboard/businesses/${
+                                        self[i - 1]?.value
+                                      }`
+                                    )
+                                  }}
+                                >
+                                  {log?.value}
+                                </span>{' '}
+                                by{' '}
+                              </>
+                            ) : (
+                              <> {log?.value} </>
+                            )}
+                          </>
+                        ) : null
+                      )
+                  : log.details
+                      .slice(0)
+                      .reverse()
+                      .map((log) =>
+                        !['userType', 'businessId', 'business'].includes(
+                          log?.key
+                        ) ? (
+                          <> {log?.value} </>
+                        ) : null
+                      )}
+              </Text>
+            </Text>
           ),
           icon: (logIcon as any)[log.details[log.details.length - 1]?.value],
         }))}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { Jumbotron } from '../../../../components'
+import { Jumbotron, Text } from '../../../../components'
 import { Container } from '../../../../components/layout'
 import { TimelineElement } from '../../../../components/timeline'
 import { getResource } from '../../../../utils/apiRequest'
@@ -14,16 +14,13 @@ import { KYCUser } from './KYCUser'
 const KYCDetailContainer = () => {
   const location = useLocation()
   const state = location.state as IStateProps
-
+  const userId = state.userId
   const getKYCLog = () => {
-    return getResource(`activity/logs?category=kyc&entityId=${state.userId}`)
+    return getResource(`activity/logs?category=kyc&entityId=${userId}`)
   }
 
   // pass stateId to useQuery func as params to avoid flicker
-  const { data, isLoading, isError, refetch, error } = useQuery(
-    'kyc-logs',
-    () => getKYCLog()
-  )
+  const { data } = useQuery(['kyc-logs', userId], () => getKYCLog())
 
   return (
     <Container
@@ -41,18 +38,17 @@ const KYCDetailContainer = () => {
             <TimelineElement
               actions={data?.data.map((action: any) => ({
                 action: (
-                  <p
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '10px',
-                    }}
+                  <Text
+                    as="p"
+                    flexDirection="column"
+                    gap="10px"
+                    alignItems="baseline"
                   >
-                    <p style={{ fontWeight: 400, fontSize: '14px' }}>
+                    <Text as="p" weight="400" size="14px">
                       {formatDate(action.createdAt, 'YYYY-MM-DD HH:mm:ss')}
-                    </p>
-                    <p>{action.subject}</p>
-                  </p>
+                    </Text>
+                    <Text as="p">{action.subject}</Text>
+                  </Text>
                 ),
               }))}
             />

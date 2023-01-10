@@ -7,3 +7,8 @@ export interface IStateProps {
   id: string
   userId: string
 }
+export type ValueProps = {
+  comments?: string
+  status?: string
+  reason?: string
+}
