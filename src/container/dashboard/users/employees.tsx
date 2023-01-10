@@ -56,7 +56,6 @@ const Employees = () => {
     'employees',
     getEmployees
   )
-  console.log(data?.data)
   const { isLoading: isLoadingRoles, data: roles } = useQuery('roles', getRoles)
   let component
   if (isLoading) {
