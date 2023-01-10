@@ -139,19 +139,25 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           </Text>
 
           {/* Make logic below a util function */}
-          <p
+          <Text
+            align="center"
+            weight="600"
+            size="16px"
+            as="p"
+            justifyContent="center"
+            color={Color.alerzoDarkGray}
             className={
-              state.status === 'approved'
+              state.status === 'verified'
                 ? 'success'
                 : state.status === 'processing'
                 ? 'unassigned'
-                : state.status === 'failed' || state.status === 'Inactive'
+                : state.status === 'rejected'
                 ? 'failed'
                 : state.status
             }
           >
             {state.status}
-          </p>
+          </Text>
         </div>
       </KycUserDetails>
       <Button onClick={() => toggle()}>Provide Action</Button>
