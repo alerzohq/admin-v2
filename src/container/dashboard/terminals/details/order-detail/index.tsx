@@ -59,7 +59,9 @@ const TerminalOrder = ({ data }: ITerminalReqProcess) => {
               {found ? (
                 <>
                   <strong>{val?.value}</strong>
-                  <span>{formatDate(orderStatus?.[0]?.timestamp, 'DD-YY-YYYY')}</span>
+                  <span>
+                    {formatDate(orderStatus?.[0]?.timestamp, 'DD-YY-YYYY')}
+                  </span>
                 </>
               ) : (
                 val?.value
