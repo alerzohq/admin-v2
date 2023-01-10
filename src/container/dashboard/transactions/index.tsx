@@ -28,7 +28,6 @@ const TransactionContainer = () => {
   const {
     state: { appFilters },
   } = useAppContext()
-  console.log({ appFilters })
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 

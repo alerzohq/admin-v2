@@ -6,6 +6,7 @@ import TerminalOrder from '../order-detail'
 import { useAppContext } from '../../../../../context'
 
 const TerminalRequestDetails = () => {
+  
   const location = useLocation()
   const state = location.state as TerminalReqDetails
   const { search, pathname } = location
@@ -17,10 +18,11 @@ const TerminalRequestDetails = () => {
   const {
     state: { terminalReq },
   } = useAppContext()
+ 
   const renderSwitch = () => {
     switch (queryParam) {
       case 'order-process':
-        return <TerminalOrder />
+        return <TerminalOrder data={state?.detail?.status || terminalReq?.status} />
       default:
         return (
           <DetailsContentComp

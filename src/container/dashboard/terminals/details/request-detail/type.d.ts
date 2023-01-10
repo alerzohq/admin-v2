@@ -11,3 +11,6 @@ interface ITerminalReqDetails {
   terminalId?: string
   data: { [key: string]: any }
 }
+interface ITerminalReqProcess {
+  data: { [key: string]: any }[]
+}
