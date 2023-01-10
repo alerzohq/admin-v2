@@ -25,12 +25,12 @@ const KYCDetailContainer = () => {
   const { data: kyc, isLoading } = useQuery(['kyc-detail', id], () =>
     getKYCRequest()
   )
-  console.log(kyc?.data[0], "kyc")
+  console.log(kyc?.data[0], 'kyc')
   // pass stateId to useQuery func as params to avoid flicker
   const { data, isLoading: loading } = useQuery(['kyc-logs', userId], () =>
     getKYCLog()
   )
-const kycDetail = kyc?.data[0]
+  const kycDetail = kyc?.data[0]
   return (
     <Container
       showFilters={false}
