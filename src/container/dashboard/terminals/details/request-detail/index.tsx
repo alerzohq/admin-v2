@@ -45,7 +45,7 @@ const TerminalRequestDetails = () => {
         renderSwitch={renderSwitch}
         tabs={TERMINALREQUESTTABS}
         hideStatus
-        routePath={'/dashboard/terminals'}
+        routePath={'/dashboard/terminals?status=requests'}
       />
     </>
   )
