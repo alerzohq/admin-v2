@@ -31,7 +31,8 @@ export const resolveTableColor = (status) => {
   if (
     status?.toLowerCase() === 'successful' ||
     status?.toLowerCase() === 'active' ||
-    status?.toLowerCase() === 'enabled'
+    status?.toLowerCase() === 'enabled' ||
+    status?.toLowerCase() === 'delivered'
   ) {
     return {
       textColor: Color.alerzoGreen,
@@ -55,7 +56,10 @@ export const resolveTableColor = (status) => {
 }
 
 export const resolveColor = (status) => {
-  if (status?.toLowerCase() === 'successful') {
+  if (
+    status?.toLowerCase() === 'successful' ||
+    status?.toLowerCase() === 'delivered'
+  ) {
     return {
       color: Color.alerzoGreen,
       bg: Color.alerzoGreenBg,

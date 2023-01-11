@@ -17,6 +17,8 @@ export const rootReducer = (state: State, action: ActionTypes) => {
       return { ...state, appFilters: action.payload }
     case Action.COLLAPSED_SIDEBAR:
       return { ...state, isCollapsed: !state.isCollapsed }
+    case Action.SAVETERMINALREQ:
+      return { ...state, terminalReq: action.payload }
     default:
       return state
   }

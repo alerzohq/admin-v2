@@ -79,7 +79,7 @@ export const transformData = ({ item, name }: props) => {
   }
   if (item && name === 'employees') {
     const { firstName, lastName, phoneNumber, email, roleName, disabled } = item
-    let statusVal = disabled ? 'Active' : 'Inactive'
+    let statusVal = disabled ? 'Inactive' : 'Active'
     return {
       name: `${firstName} ${lastName}`,
       email: email.toLowerCase(),
@@ -101,6 +101,16 @@ export const transformData = ({ item, name }: props) => {
     const rates = generateCommission(type, percentage, cap)
     return { displayName, rates, createdAt }
   }
+
+  if (item && name === 'business-products') {
+    const { displayName, commission, createdAt } = item
+    const type = commission?.rate?.type
+    const percentage = commission?.rate?.percentage
+    const cap = commission?.splits[0]?.rate.amount
+    const rates = generateCommission(type, percentage, cap)
+    return { displayName, rates, createdAt }
+  }
+
   if (item && name === 'existTerminal') {
     const {
       serial_number,
@@ -143,11 +153,11 @@ export const transformData = ({ item, name }: props) => {
     return { username: `${first_name} ${last_name}`, email, status, created_at }
   }
   if (item && name === 'requestsTerrminals') {
-    const { businessId, data, business, status, createdAt } = item
+    const { data, business, status, createdAt } = item
     const statusVal = status[status.length - 1].status
     const updatedDate = formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss')
     return {
-      businessId,
+      businessId: business?.id,
       name: business.name,
       address: data.address,
       statusVal,

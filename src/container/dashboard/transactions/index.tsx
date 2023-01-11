@@ -20,14 +20,14 @@ import {
   statusFilterOptions,
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
+import useDownloadCSV from '../../../hooks/useDownloadCSV'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
-
+  const { downloadBulkCSV } = useDownloadCSV('transactions', values, 'history')
   const {
     state: { appFilters },
   } = useAppContext()
-
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 
@@ -95,6 +95,7 @@ const TransactionContainer = () => {
             value: '',
           },
         ],
+        buttons: [{ label: 'Download CSV', onClick: () => downloadBulkCSV() }],
       }}
       title="History"
       setFilterValues={setValues}
@@ -103,6 +104,7 @@ const TransactionContainer = () => {
     >
       <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{component}</Jumbotron>
+
       <Pagination data={data} setPageNumber={setValues} />
     </Container>
   )

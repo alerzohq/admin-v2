@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { Dispatch, SetStateAction, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
@@ -16,7 +16,7 @@ enum OrderStatus {
   Deliver = 'delivering',
 }
 interface Location {
-  businessId: string
+  business: { id: string }
   status: { status: string }[]
 }
 export const StatusModal = ({
@@ -29,6 +29,7 @@ export const StatusModal = ({
   id?: string
 }) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const state = location.state as Location
 
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
@@ -43,7 +44,7 @@ export const StatusModal = ({
   >(
     () => {
       return axiosInstance.patch(`terminals/requests/${id}/status`, {
-        businessId: state.businessId,
+        businessId: state.business.id,
         status: order?.value,
       })
     },
@@ -51,6 +52,7 @@ export const StatusModal = ({
       onSuccess: () => {
         setShowModal(false)
         toast.success('Status updated successfully')
+        navigate('/dashboard/terminals?status=requests')
       },
     }
   )
@@ -70,16 +72,19 @@ export const StatusModal = ({
             value={order}
             onChange={(val) => setOrder(val)}
             options={[
-              ...(state.status[state.status.length - 1]?.status === 'processing'
+              ...(state?.status?.[state?.status?.length - 1]?.status ===
+              'processing'
                 ? [
                     { label: 'Reject', value: 'rejected' },
                     { label: 'Approve', value: 'approved' },
                   ]
                 : []),
-              ...(state.status[state.status.length - 1]?.status === 'approved'
+              ...(state?.status?.[state?.status?.length - 1]?.status ===
+              'approved'
                 ? [{ label: 'Ship', value: 'shipping' }]
                 : []),
-              ...(state.status[state.status.length - 1]?.status === 'shipping'
+              ...(state?.status?.[state?.status?.length - 1]?.status ===
+              'shipping'
                 ? [{ label: 'Deliver', value: 'delivered' }]
                 : []),
             ]}
@@ -92,7 +97,9 @@ export const StatusModal = ({
               </ModalLabel>
               <TextArea
                 className="p-0"
-                placeholder="Enter your reason for rejecting this request"
+                placeholder={`Enter your reason for ${
+                  (OrderStatus as any)[order.label]
+                } this request`}
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
               ></TextArea>

@@ -7,6 +7,8 @@ import { getResource } from '../../../../utils/apiRequest'
 import TransactionHistory from './transaction-history'
 import Members from './members'
 import BusinessTerminalContainer from './terminals'
+import Products from './products'
+import BusinessAccounts from './user-accounts/index'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -25,18 +27,18 @@ const BusinessDetailContainer = () => {
     ['businesses', id],
     () => getBusinessDetails(id)
   )
-  let wallet = data?.data?.[0]?.wallet_details?.filter(
+  let wallet = data?.data?.[0]?.wallet_details?.find(
     (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
 
-  const walletId = wallet?.[0]?.wallet_id
+  const walletId = wallet?.wallet_id
 
   const renderSwitch = () => {
     switch (queryParam) {
       case 'transaction':
         return <TransactionHistory walletId={walletId} />
       case 'products':
-        return <div>Products</div>
+        return <Products />
       case 'kyc':
         return <div>KYC</div>
       case 'terminals':
@@ -45,6 +47,8 @@ const BusinessDetailContainer = () => {
         return <Members businessId={id} />
       case 'api-keys':
         return <div>Api Keys</div>
+      case 'accounts':
+        return <BusinessAccounts />
       default:
         return (
           <DetailsContent

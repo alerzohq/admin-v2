@@ -75,3 +75,12 @@ export const TimelineActionIcon = styled.div<{
     height: calc(100% + 1rem);
   }
 `
+export const LightPara = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+`
+export const TimelinePara = styled.p`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
