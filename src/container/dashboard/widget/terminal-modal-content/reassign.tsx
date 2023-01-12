@@ -11,6 +11,7 @@ type Props = {
   businesses?: any
   value: { [key: string]: any }
   triggerSubmit: boolean
+  setQuery: React.Dispatch<React.SetStateAction<string>>
   toggleModal: React.Dispatch<React.SetStateAction<boolean>>
   setValue: React.Dispatch<
     React.SetStateAction<{
@@ -33,7 +34,9 @@ const ReassignTerminalModal = ({
   setValue,
   loading,
   businesses,
+  setQuery,
 }: Props) => {
+  
   const mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
     data?.user_id === null
@@ -77,6 +80,11 @@ const ReassignTerminalModal = ({
             businessId: e?.value,
             serialNumber: data?.serial_number,
           })
+        }}
+        onInputChange={(e: any) => {
+          console.log(e, "loop")
+          setQuery(e)
+         
         }}
         value={value?.businessId}
         fullWidth
