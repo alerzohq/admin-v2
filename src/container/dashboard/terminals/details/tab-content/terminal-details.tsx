@@ -37,9 +37,10 @@ const TerminalDetails = ({ data }: any) => {
   const toggle = (type?: 'assign') => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
-
+  const [query, setQuery] = useState('')
+  console.log(query)
   const getBusinesses = () => {
-    return getResource('businesses')
+    return getResource(query ? `businesses?query=${query}` : 'businesses')
   }
   const useAssignMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
@@ -58,7 +59,7 @@ const TerminalDetails = ({ data }: any) => {
     isLoading,
     data: businesses,
     isFetching,
-  } = useQuery('businesses', getBusinesses)
+  } = useQuery(['businesses', query], getBusinesses)
   const { isLoading: loadingEnable, mutate: enableTerminal } =
     useEnableTermMutation()
   const { isLoading: loadingAssign, mutate } = useAssignMutation()
@@ -138,6 +139,7 @@ const TerminalDetails = ({ data }: any) => {
         triggerSubmit={isTriggerSubmit}
         isShown={assigned}
         loadingOptions={isLoading || isFetching}
+        setQuery={setQuery}
         loading={loadingAssign}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
