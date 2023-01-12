@@ -81,7 +81,6 @@ const ReassignTerminalModal = ({
           })
         }}
         onInputChange={(e: any) => {
-          console.log(e, 'loop')
           setQuery(e)
         }}
         value={value?.businessId}

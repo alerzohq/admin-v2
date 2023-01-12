@@ -40,7 +40,6 @@ const TerminalDetails = ({ data }: any) => {
   }
   const [query, setQuery] = useState('')
   const debouncedSearchTerm = useDebounce(query, 2000)
-  console.log(debouncedSearchTerm, 'ppp')
   const getBusinesses = () => {
     return getResource(
       query ? `businesses?query=${debouncedSearchTerm}` : 'businesses'
