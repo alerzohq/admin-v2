@@ -105,7 +105,7 @@ const UpdateKYCModal = ({
             options={[
               { label: 'Unable to verify ID', value: 'Unable to verify ID' },
               {
-                label: 'UUnable to verify document/address',
+                label: 'Unable to verify document/address',
                 value: 'Unable to verify document/address',
               },
               {

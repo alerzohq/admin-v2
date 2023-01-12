@@ -37,10 +37,10 @@ const TerminalDetails = ({ data }: any) => {
   const toggle = (type?: 'assign') => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
-const[query, setQuery] = useState('')
-console.log(query)
+  const [query, setQuery] = useState('')
+  console.log(query)
   const getBusinesses = () => {
-    return getResource(query ? `businesses?query=${query}` : "businesses")
+    return getResource(query ? `businesses?query=${query}` : 'businesses')
   }
   const useAssignMutation = () =>
     useMutation((payload: { [key: string]: any }) =>

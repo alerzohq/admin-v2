@@ -36,7 +36,6 @@ const ReassignTerminalModal = ({
   businesses,
   setQuery,
 }: Props) => {
-  
   const mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
     data?.user_id === null
@@ -82,9 +81,8 @@ const ReassignTerminalModal = ({
           })
         }}
         onInputChange={(e: any) => {
-          console.log(e, "loop")
+          console.log(e, 'loop')
           setQuery(e)
-         
         }}
         value={value?.businessId}
         fullWidth
@@ -132,7 +130,7 @@ const ReassignTerminalModal = ({
             placeholder={'Enter message with more than 5 charaters'}
             textAreaHeight="85px"
             value={value?.reassignmentReason}
-            textAreaWidth="95%"
+            textAreaWidth="100%"
             onChange={(e) => {
               setValue({ ...value, reassignmentReason: e.target.value })
             }}

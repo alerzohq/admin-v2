@@ -9,5 +9,5 @@ export type SelectProps = {
   hideValue?: boolean
   fullWidth?: boolean
   disabled?: boolean
-  onInputChange?:(e: any, a: any) => void
+  onInputChange?: (e: any, a: any) => void
 }
