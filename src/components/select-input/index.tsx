@@ -13,6 +13,7 @@ const SelectInput = ({
   fullWidth,
   onChange,
   disabled,
+  onInputChange,
 }: SelectProps) => {
   const Placeholder = (props: PlaceholderProps) => {
     return <components.Placeholder {...props} />
@@ -27,6 +28,7 @@ const SelectInput = ({
       defaultValue={value}
       onChange={onChange}
       options={options}
+      onInputChange={onInputChange}
       styles={styles ? styles : selectStyles(false, fullWidth)}
       isClearable={isClearable}
       controlShouldRenderValue={!hideValue}

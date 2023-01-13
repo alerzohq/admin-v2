@@ -13,5 +13,4 @@ interface ITerminalReqDetails {
 }
 interface ITerminalReqProcess {
   data: { [key: string]: any }[]
-  
 }

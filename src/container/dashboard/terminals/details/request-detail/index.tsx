@@ -13,7 +13,7 @@ const TerminalRequestDetails = () => {
   const found = TERMINALREQUESTTABS.find(
     (element) => element.value === queryParam
   )
-  const title = found ? found?.title : TABS[0]?.title;
+  const title = found ? found?.title : TABS[0]?.title
   const {
     state: { terminalReq },
   } = useAppContext()

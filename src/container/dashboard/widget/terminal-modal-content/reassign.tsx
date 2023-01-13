@@ -11,6 +11,7 @@ type Props = {
   businesses?: any
   value: { [key: string]: any }
   triggerSubmit: boolean
+  setQuery: React.Dispatch<React.SetStateAction<string>>
   toggleModal: React.Dispatch<React.SetStateAction<boolean>>
   setValue: React.Dispatch<
     React.SetStateAction<{
@@ -33,6 +34,7 @@ const ReassignTerminalModal = ({
   setValue,
   loading,
   businesses,
+  setQuery,
 }: Props) => {
   const mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
@@ -77,6 +79,9 @@ const ReassignTerminalModal = ({
             businessId: e?.value,
             serialNumber: data?.serial_number,
           })
+        }}
+        onInputChange={(e: any) => {
+          setQuery(e)
         }}
         value={value?.businessId}
         fullWidth
@@ -124,7 +129,7 @@ const ReassignTerminalModal = ({
             placeholder={'Enter message with more than 5 charaters'}
             textAreaHeight="85px"
             value={value?.reassignmentReason}
-            textAreaWidth="95%"
+            textAreaWidth="100%"
             onChange={(e) => {
               setValue({ ...value, reassignmentReason: e.target.value })
             }}
