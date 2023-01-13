@@ -39,7 +39,7 @@ const TerminalDetails = ({ data }: any) => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
   const [query, setQuery] = useState('')
-  const debouncedSearchTerm = useDebounce(query, 2000)
+  const debouncedSearchTerm = useDebounce(query, 1000)
   const getBusinesses = () => {
     return getResource(
       query ? `businesses?query=${debouncedSearchTerm}` : 'businesses'
