@@ -23,6 +23,9 @@ const Text = <E extends React.ElementType = 'div'>({
   alignSelf,
   height,
   className,
+  flexDirection,
+  gap,
+  alignItems,
 }: TextProps<E>) => {
   let Component = as || 'div'
   return (
@@ -44,6 +47,9 @@ const Text = <E extends React.ElementType = 'div'>({
       alignSelf={alignSelf}
       height={height}
       className={className}
+      flexDirection={flexDirection}
+      gap={gap}
+      alignItems={alignItems}
     >
       <Component>{children}</Component>
     </TextStyle>

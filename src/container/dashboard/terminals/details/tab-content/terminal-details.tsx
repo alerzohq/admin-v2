@@ -14,6 +14,7 @@ import { getResource, postRequest } from '../../../../../utils/apiRequest'
 import { toast } from 'react-hot-toast'
 import { ValueProps } from '../type'
 import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
+import { useDebounce } from '../../../../../hooks/useDebounce'
 
 const TerminalDetails = ({ data }: any) => {
   const queryClient = useQueryClient()
@@ -37,9 +38,12 @@ const TerminalDetails = ({ data }: any) => {
   const toggle = (type?: 'assign') => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
-
+  const [query, setQuery] = useState('')
+  const debouncedSearchTerm = useDebounce(query, 1000)
   const getBusinesses = () => {
-    return getResource('businesses')
+    return getResource(
+      query ? `businesses?query=${debouncedSearchTerm}` : 'businesses'
+    )
   }
   const useAssignMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
@@ -58,7 +62,7 @@ const TerminalDetails = ({ data }: any) => {
     isLoading,
     data: businesses,
     isFetching,
-  } = useQuery('businesses', getBusinesses)
+  } = useQuery(['businesses', debouncedSearchTerm], getBusinesses)
   const { isLoading: loadingEnable, mutate: enableTerminal } =
     useEnableTermMutation()
   const { isLoading: loadingAssign, mutate } = useAssignMutation()
@@ -138,6 +142,7 @@ const TerminalDetails = ({ data }: any) => {
         triggerSubmit={isTriggerSubmit}
         isShown={assigned}
         loadingOptions={isLoading || isFetching}
+        setQuery={setQuery}
         loading={loadingAssign}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -10,14 +10,12 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import { filterValue } from '../../../data/filter-data'
-import { options, optionsAllPlatform } from '../../../data/select-data'
+import { optionsAllPlatform } from '../../../data/select-data'
 import { KYCHeaderList } from '../../../data/table-headers'
 import { getNewFilterResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
 
-type Props = {}
-
-const KYC = (props: Props) => {
+const KYC = () => {
   const [values, setValues] = useState(filterValue)
 
   const getKYCVerifications = () => {
@@ -28,6 +26,7 @@ const KYC = (props: Props) => {
     ['KYC', values],
     getKYCVerifications
   )
+
   let component
   if (isLoading) {
     component = <Loader />
@@ -46,7 +45,7 @@ const KYC = (props: Props) => {
             tableName="KYC"
             tableData={data.data}
             tableHeaders={KYCHeaderList}
-            setParams
+            routePath={'dashboard/kyc'}
             hideDate
           />
         </Jumbotron>
@@ -75,7 +74,11 @@ const KYC = (props: Props) => {
               {
                 query: 'status',
                 placeholder: 'Status',
-                values: options,
+                values: [
+                  { value: 'verified', label: 'Approved' },
+                  { value: 'rejected', label: 'Rejected' },
+                  { value: 'processing', label: 'Pending' },
+                ],
                 value: '',
               },
             ],

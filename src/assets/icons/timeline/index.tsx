@@ -23,8 +23,8 @@ function TimelineIcon() {
           y2="15.8512"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#66ADFF" />
-          <stop offset="1" stop-color="#0077FF" />
+          <stop stopColor="#66ADFF" />
+          <stop offset="1" stopColor="#0077FF" />
         </linearGradient>
       </defs>
     </svg>

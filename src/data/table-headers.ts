@@ -82,3 +82,11 @@ export const KYCHeaderList = [
   'Date',
   'Status',
 ]
+
+export const businessProductsHeader = [
+  'Product Name',
+  'Type',
+  'Commission',
+  'Status',
+  'Date Added',
+]

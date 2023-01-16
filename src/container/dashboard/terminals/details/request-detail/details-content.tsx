@@ -11,19 +11,23 @@ interface Location {
   status: { status: string }[]
 }
 
-export const DetailsContentComp = ({ terminalId }: { terminalId?: string }) => {
+export const DetailsContentComp = ({
+  terminalId,
+  data,
+}: ITerminalReqDetails) => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   const location = useLocation()
   const state = location.state as Location
 
   return (
     <>
-      <DetailsContent resolvedData={terminalRequestHelper()} />
+      <DetailsContent resolvedData={terminalRequestHelper(data)} />
       <Wrapper>
-        <POSRow />
+        <POSRow units={data?.data?.units} />
       </Wrapper>
 
-      {state.status[state.status.length - 1]?.status === 'delivered' ? null : (
+      {state?.status[state?.status?.length - 1]?.status === 'delivered' ||
+      state?.status[state?.status?.length - 1]?.status === 'rejected' ? null : (
         <Button
           margin="2rem auto"
           onClick={() => setShowStatusModal(true)}
