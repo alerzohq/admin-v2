@@ -52,7 +52,8 @@ const TransactionContainer = () => {
     { keepPreviousData: true }
   )
 
-  let component
+  let component: React.ReactNode
+
   if (isLoading) {
     component = <Loader />
   } else if (isError) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Text } from '../../../../components'
+import { Button, Stack, Text } from '../../../../components'
 import { KycUser, KycUserDetails, KycUserImg } from '../styles/kyc.styles'
 import { IStateProps, ValueProps } from '../type'
 import { Color } from '../../../../assets/theme'
@@ -69,15 +69,15 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
       />
       <KycUserImg>
         <img
-          width={'190px'}
-          height={'190px'}
+          width="200px"
+          height="200px"
           alt="selfie"
-          src={state.documents[0].value}
+          src={state?.documents?.[0]?.value}
         />
         <Text
           align="center"
           weight="700"
-          size="18px"
+          size="1.5rem"
           as="p"
           justifyContent="center"
         >
@@ -85,64 +85,53 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
         </Text>
       </KycUserImg>
       <KycUserDetails>
-        <div>
+        <Stack>
           <Text
             weight="400"
-            size="14px"
             lineHeight="17px"
             color={Color.alerzoGray2}
-            padding="6px 0"
+            padding="1rem 0"
           >
             Verification ID
           </Text>
           <Text
             align="center"
             weight="600"
-            size="16px"
             as="p"
             justifyContent="start"
             color={Color.alerzoDarkGray}
           >
             {state.verificationId}
           </Text>
-        </div>
-        <div>
+        </Stack>
+        <Stack>
           <Text
             weight="400"
-            size="14px"
             lineHeight="17px"
             color={Color.alerzoGray2}
-            padding="6px 0"
+            padding="1rem 0"
           >
             Application Date
           </Text>
           <Text
             align="center"
             weight="600"
-            size="16px"
             as="p"
             justifyContent="start"
             color={Color.alerzoDarkGray}
           >
             {formatDate(state.createdAt, 'YYYY-MM-DD HH:mm:ss')}
           </Text>
-        </div>
-        <div>
-          <Text
-            weight="400"
-            size="14px"
-            lineHeight="17px"
-            color={Color.alerzoGray2}
-            padding="6px 0"
-          >
-            Status
+        </Stack>
+        <Stack>
+          <Text weight="400" color={Color.alerzoGray2} padding="1rem 0">
+            Verification Status
           </Text>
 
           {/* Make logic below a util function */}
           <Text
             align="center"
             weight="600"
-            size="16px"
             as="p"
             justifyContent="center"
             color={Color.alerzoDarkGray}
@@ -158,7 +147,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           >
             {state.status}
           </Text>
-        </div>
+        </Stack>
       </KycUserDetails>
       <Button onClick={() => toggle()}>Provide Action</Button>
     </KycUser>

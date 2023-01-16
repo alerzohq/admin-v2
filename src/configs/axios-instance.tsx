@@ -1,13 +1,14 @@
 import axios from 'axios'
 import dayjs from 'dayjs'
 import jwt_decode from 'jwt-decode'
+
 import { getStorageItem, logOut } from '../utils/session-storage'
 
 // AxiosRequestConfig<any>
 
 let baseURL = process.env.REACT_APP_API_BASE_URL
 let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : null
-
+console.log({ token })
 export const axiosInstance = axios.create({
   baseURL,
   headers: { Authorization: `Bearer ${token}` },

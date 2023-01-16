@@ -35,6 +35,9 @@ const KYCDetailContainer = () => {
           <KYCUser state={state} />
           <KYCDocuments state={state} />
           <KYCLogs>
+            <Text as="p" weight="700">
+              Action Logs
+            </Text>
             <TimelineElement
               actions={data?.data.map((action: any) => ({
                 action: (
