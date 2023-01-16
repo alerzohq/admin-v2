@@ -148,7 +148,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           </Text>
         </Stack>
       </KycUserDetails>
-      <Button onClick={() => toggle()}>Provide Action</Button>
+    {state?.status !== "rejected" && <Button onClick={() => toggle()}>Provide Action</Button>}  
     </KycUser>
   )
 }
