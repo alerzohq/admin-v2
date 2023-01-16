@@ -35,15 +35,14 @@ export const KycUserImg = styled.div`
   img {
     border-radius: 50%;
     border: 1px solid ${Color.alerzoGrayBorder};
-    object-fit:cover;
+    object-fit: cover;
   }
-
 `
 export const KycUserDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding:0 2rem 1rem;
+  padding: 0 2rem 1rem;
 `
 export const KycDocuments = styled.div`
   display: flex;
