@@ -17,10 +17,13 @@ const TerminalRequestDetails = () => {
   const {
     state: { terminalReq },
   } = useAppContext()
+
   const renderSwitch = () => {
     switch (queryParam) {
       case 'order-process':
-        return <TerminalOrder />
+        return (
+          <TerminalOrder data={state?.detail?.status || terminalReq?.status} />
+        )
       default:
         return (
           <DetailsContentComp
@@ -45,7 +48,7 @@ const TerminalRequestDetails = () => {
         renderSwitch={renderSwitch}
         tabs={TERMINALREQUESTTABS}
         hideStatus
-        routePath={'/dashboard/terminals'}
+        routePath={'/dashboard/terminals?status=requests'}
       />
     </>
   )
