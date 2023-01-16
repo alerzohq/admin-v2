@@ -34,18 +34,16 @@ export const KycUserImg = styled.div`
 
   img {
     border-radius: 50%;
-    border: 1px solid #e8ebee;
+    border: 1px solid ${Color.alerzoGrayBorder};
+    object-fit:cover;
   }
-  p {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 22px;
-  }
+
 `
 export const KycUserDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding:0 2rem 1rem;
 `
 export const KycDocuments = styled.div`
   display: flex;
