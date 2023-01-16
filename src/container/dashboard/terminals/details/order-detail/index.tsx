@@ -8,7 +8,7 @@ import { formatDate } from '../../../../../utils/formatValue'
 import { useState } from 'react'
 import { StatusModal } from '../request-detail/status-modal'
 
-const TerminalOrder = ({ data, terminalId}: ITerminalReqProcess) => {
+const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   const resolveStatus = (status: string) => {
     const isFound = data?.filter((val) => val?.status === status)
