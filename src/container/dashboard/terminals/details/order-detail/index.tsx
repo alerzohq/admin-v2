@@ -5,8 +5,11 @@ import {
 } from './styles/order-detail.styles'
 import Button from '../../../../../components/button/index'
 import { formatDate } from '../../../../../utils/formatValue'
+import { useState } from 'react'
+import { StatusModal } from '../request-detail/status-modal'
 
-const TerminalOrder = ({ data }: ITerminalReqProcess) => {
+const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
+  const [showStatusModal, setShowStatusModal] = useState(false)
   const resolveStatus = (status: string) => {
     const isFound = data?.filter((val) => val?.status === status)
     return isFound
@@ -70,14 +73,21 @@ const TerminalOrder = ({ data }: ITerminalReqProcess) => {
           )
         })}
       </Timeline>
-      <Button
-        margin="2rem 0"
-        onClick={() => {}}
-        className="add-button"
-        width="auto"
-      >
-        Update Terminal Status
-      </Button>
+      {currentStatus === 'delivered' || currentStatus === 'rejected' ? null : (
+        <Button
+          margin="2rem 0"
+          onClick={() => setShowStatusModal(true)}
+          className="add-button"
+          width="auto"
+        >
+          Update Terminal Status
+        </Button>
+      )}
+      <StatusModal
+        showModal={showStatusModal}
+        setShowModal={() => setShowStatusModal(false)}
+        id={terminalId}
+      />
     </TimelineWrapper>
   )
 }

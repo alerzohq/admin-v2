@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -17,7 +17,7 @@ import {
 } from '../../../../../components'
 import { TimelineElement } from '../../../../../components/timeline'
 import { filterValue } from '../../../../../data/filter-data'
-import { optionsAllPlatform, options } from '../../../../../data/select-data'
+import { options } from '../../../../../data/select-data'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { formatDate } from '../../../../../utils/formatValue'
 import { errorMessage } from '../../../../../utils/message'

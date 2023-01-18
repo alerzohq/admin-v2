@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '../../../../components'
+import { Stack, Text } from '../../../../components'
 import {
   AddressVerificationDocs,
   IDVerificationDocs,
@@ -13,27 +13,24 @@ export const KYCDocuments = ({ state }: { state: IStateProps }) => {
   return (
     <KycDocuments>
       <IDVerificationDocs>
-        <Text
-          weight="600"
-          size="14px"
-          lineHeight="17px"
-          color={Color.alerzoBlack}
-          padding="6px 0"
-          as="p"
-        >
-          ID Verification{' '}
-          <span className="lightFont">{state.documents[1].label}</span>
-        </Text>
+        <Stack direction="row" gap=".5rem" padding=".5rem 0">
+          <Text weight="600" lineHeight="17px" color={Color.alerzoBlack}>
+            ID Verification
+          </Text>
+          <Text weight="600" lineHeight="17px" color={Color.alerzoBlack}>
+            <span className="lightFont">{state?.documents?.[1]?.label}</span>
+          </Text>
+        </Stack>
+
         <ImageContainer>
           <img
-            width={'100%'}
-            height={'190px'}
+            width="100%"
+            height="190px"
             alt="front img"
             src={state.documents[3].value[0]}
           />
           <Text
             weight="400"
-            size="14px"
             lineHeight="17px"
             color={Color.alerzoGray2}
             padding="6px 0"
@@ -46,14 +43,13 @@ export const KYCDocuments = ({ state }: { state: IStateProps }) => {
         {state.documents[3].value[1] && (
           <ImageContainer>
             <img
-              width={'100%'}
-              height={'190px'}
+              width="100%"
+              height="190px"
               alt="rear img"
               src={state.documents[3].value[1]}
             />
             <Text
               weight="400"
-              size="14px"
               lineHeight="17px"
               color={Color.alerzoGray2}
               padding="6px 0"
@@ -66,20 +62,17 @@ export const KYCDocuments = ({ state }: { state: IStateProps }) => {
         )}
       </IDVerificationDocs>
       <AddressVerificationDocs>
-        <Text
-          weight="600"
-          size="14px"
-          lineHeight="17px"
-          color={Color.alerzoBlack}
-          padding="6px 0"
-        >
-          Address Verification{' '}
-          <span className="lightFont">{state.documents[5].label}</span>
-        </Text>
-
+        <Stack direction="row" gap=".5rem" padding=".5rem 0">
+          <Text weight="600" lineHeight="17px" color={Color.alerzoBlack}>
+            Address Verification
+          </Text>
+          <Text weight="600" lineHeight="17px" color={Color.alerzoBlack}>
+            <span className="lightFont">{state.documents[5].label}</span>
+          </Text>
+        </Stack>
         <img
-          width={'100%'}
-          height={'190px'}
+          width="100%"
+          height="190px"
           alt="rear img"
           src={state.documents[5].value}
         />
