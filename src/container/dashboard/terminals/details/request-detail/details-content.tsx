@@ -18,7 +18,6 @@ export const DetailsContentComp = ({
   const [showStatusModal, setShowStatusModal] = useState(false)
   const location = useLocation()
   const state = location.state as Location
-
   return (
     <>
       <DetailsContent resolvedData={terminalRequestHelper(data)} />
@@ -26,17 +25,17 @@ export const DetailsContentComp = ({
         <POSRow units={data?.data?.units} />
       </Wrapper>
 
-      {state?.status[state?.status?.length - 1]?.status === 'delivered' ||
-      state?.status[state?.status?.length - 1]?.status === 'rejected' ? null : (
-        <Button
-          margin="2rem auto"
-          onClick={() => setShowStatusModal(true)}
-          className="add-button"
-          width="25%"
-        >
-          Update Terminal Status
-        </Button>
-      )}
+      {state?.status[state?.status?.length - 1]?.status !== 'delivered' &&
+        state?.status[state?.status?.length - 1]?.status !== 'rejected' && (
+          <Button
+            margin="2rem auto"
+            onClick={() => setShowStatusModal(true)}
+            className="add-button"
+            width="25%"
+          >
+            Update Terminal Status
+          </Button>
+        )}
       <StatusModal
         showModal={showStatusModal}
         setShowModal={() => setShowStatusModal(false)}

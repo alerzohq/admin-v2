@@ -63,7 +63,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
                 <>
                   <strong>{val?.value}</strong>
                   <span>
-                    {formatDate(orderStatus?.[0]?.timestamp, 'DD-YY-YYYY')}
+                    {formatDate(orderStatus?.[0]?.timestamp, 'DD-MM-YYYY')}
                   </span>
                 </>
               ) : (
