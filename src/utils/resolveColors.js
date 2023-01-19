@@ -32,7 +32,8 @@ export const resolveTableColor = (status) => {
     status?.toLowerCase() === 'successful' ||
     status?.toLowerCase() === 'active' ||
     status?.toLowerCase() === 'enabled' ||
-    status?.toLowerCase() === 'delivered'
+    status?.toLowerCase() === 'delivered' ||
+    status?.toLowerCase() === 'approved'
   ) {
     return {
       textColor: Color.alerzoGreen,
@@ -41,7 +42,8 @@ export const resolveTableColor = (status) => {
   } else if (
     status?.toLowerCase() === 'failed' ||
     status?.toLowerCase() === 'disabled' ||
-    status?.toLowerCase() === 'false'
+    status?.toLowerCase() === 'false' ||
+    status?.toLowerCase() === 'rejected'
   ) {
     return {
       textColor: Color.alerzoDanger,
@@ -61,10 +63,13 @@ export const resolveColor = (status) => {
     status?.toLowerCase() === 'delivered'
   ) {
     return {
-      color: Color.alerzoGreen,
+      color: '',
       bg: Color.alerzoGreenBg,
     }
-  } else if (status?.toLowerCase() === 'failed') {
+  } else if (
+    status?.toLowerCase() === 'failed' ||
+    status?.toLowerCase() === 'rejected'
+  ) {
     return {
       color: Color.alerzoDanger,
       bg: Color.alerzoErrorBg,

@@ -17,7 +17,6 @@ const TerminalRequestDetails = () => {
   const {
     state: { terminalReq },
   } = useAppContext()
-
   const renderSwitch = () => {
     switch (queryParam) {
       case 'order-process':
