@@ -16,10 +16,17 @@ import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
+import useDownloadCSV from '../../../../../hooks/useDownloadCSV'
 
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
+
+  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+    `transactions?walletId=${walletId}&`,
+    filterValue,
+    'history'
+  )
 
   const getTransactionsHistory = (filterValue: filterProps) => {
     return getNewFilterResource(
@@ -91,6 +98,12 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
                 value: '',
                 onChange: () => {},
                 query: 'status',
+              },
+            ],
+            buttons: [
+              {
+                label: isDownloading ? 'Download...' : 'Download CSV',
+                onClick: () => downloadBulkCSV(),
               },
             ],
           }}
