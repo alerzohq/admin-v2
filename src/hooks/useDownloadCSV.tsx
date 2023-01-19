@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { axiosInstance } from '../configs/axios-instance'
 import queryString from 'query-string'
+
+import { axiosInstance } from '../configs/axios-instance'
 import { filterProps } from '../@types'
 
 const useDownloadCSV = (
@@ -8,6 +10,8 @@ const useDownloadCSV = (
   filters: filterProps & { [key in string]?: string | number },
   name?: string
 ) => {
+  const [isDownloading, setIsDownloading] = useState(false)
+
   const download = (blob: any, filename: string) => {
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -25,18 +29,21 @@ const useDownloadCSV = (
       skipNull: true,
       skipEmptyString: true,
     })
+    setIsDownloading(true)
     axiosInstance
       .get(`/${url}?${filterQuery}&download=true`, {
         responseType: 'blob',
       })
       .then((response: any) => {
         download(new Blob([response.data]), `${name || 'sample'}.csv`)
+        setIsDownloading(false)
       })
       .catch((error) => {
         toast.error('Failed to download CSV, kindly try again')
+        setIsDownloading(false)
       })
   }
-  return { downloadBulkCSV }
+  return { downloadBulkCSV, isDownloading }
 }
 
 export default useDownloadCSV
