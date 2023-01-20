@@ -17,12 +17,14 @@ const TerminalRequestDetails = () => {
   const {
     state: { terminalReq },
   } = useAppContext()
-
   const renderSwitch = () => {
     switch (queryParam) {
       case 'order-process':
         return (
-          <TerminalOrder data={state?.detail?.status || terminalReq?.status} />
+          <TerminalOrder
+            data={state?.detail?.status || terminalReq?.status}
+            terminalId={pathname.split('/').pop()}
+          />
         )
       default:
         return (

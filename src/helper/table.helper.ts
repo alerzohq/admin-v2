@@ -103,12 +103,13 @@ export const transformData = ({ item, name }: props) => {
   }
 
   if (item && name === 'business-products') {
-    const { displayName, commission, createdAt } = item
+    const { displayName, commission, createdAt, disabled } = item
     const type = commission?.rate?.type
     const percentage = commission?.rate?.percentage
     const cap = commission?.splits[0]?.rate.amount
     const rates = generateCommission(type, percentage, cap)
-    return { displayName, rates, createdAt }
+    let status = disabled ?  'Inactive' :'Active';
+    return { displayName, type, rates, status, createdAt }
   }
 
   if (item && name === 'existTerminal') {
@@ -153,9 +154,10 @@ export const transformData = ({ item, name }: props) => {
     return { username: `${first_name} ${last_name}`, email, status, created_at }
   }
   if (item && name === 'requestsTerrminals') {
-    const { data, business, status, createdAt } = item
+
+    const { data, business, status } = item
     const statusVal = status[status.length - 1].status
-    const updatedDate = formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss')
+    const updatedDate = formatDate(item?.status?.[0]?.timestamp, 'YYYY-MM-DD HH:mm:ss')
     return {
       businessId: business?.id,
       name: business.name,

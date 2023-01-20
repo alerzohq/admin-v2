@@ -25,8 +25,12 @@ export const getNewFilterResource = async (
     skipNull: true,
     skipEmptyString: true,
   })
+  const formatedFilter =
+    filterQuery.indexOf('%20') === filterQuery.length - 3
+      ? filterQuery.replace(/%20/g, '')
+      : filterQuery
   const { data } = await axiosInstance.get(
-    `/${pathUrl}${hasArg ? '' : '?'}${filterQuery}`
+    `/${pathUrl}${hasArg ? '' : '?'}${formatedFilter}`
   )
   return data
 }

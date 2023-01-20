@@ -54,7 +54,6 @@ const Products = () => {
         tableData={data?.data}
         tableHeaders={businessProductsHeader}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        amountIndex={3}
         routePath="dashboard/transactions"
         withSlug
       />
