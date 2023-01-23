@@ -59,7 +59,7 @@ export const TimelineItem = styled.li`
   }
   &.last {
     &::before {
-      border-left: 2px solid white;
+      border-left: 2px solid white!important;
     }
   }
   &.is-done {

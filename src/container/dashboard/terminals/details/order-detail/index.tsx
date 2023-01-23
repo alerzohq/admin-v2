@@ -11,11 +11,20 @@ import { StatusModal } from '../request-detail/status-modal'
 const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   const resolveStatus = (status: string) => {
-    const isFound = data?.filter((val) => val?.status === status)
+    const isFound = data?.status?.filter((val) => val?.status === status)
     return isFound
   }
-  const currentStatus = data?.[data?.length - 1]?.status
-  const timeline = [
+  const currentStatus = data?.status?.[data?.status?.length - 1]?.status
+  const timeline = currentStatus === "rejected" ? [
+    {
+      status: 'processing',
+      value: 'Terminal Request Accepted For Processing',
+    },
+    {
+      status: 'rejected',
+      value: 'Terminal Request Has Been Rejected'
+    },
+  ]:[
     {
       status: 'processing',
       value: 'Terminal Request Accepted For Processing',
@@ -50,7 +59,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
               key={index}
               className={
                 currentStatus === val?.status && index === timeline?.length - 1
-                  ? 'current last'
+                  ? 'is-done  last'
                   : currentStatus === val?.status
                   ? 'current'
                   : index === timeline?.length - 1
@@ -74,7 +83,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           )
         })}
       </Timeline>
-      {currentStatus !== 'delivered' && currentStatus !== 'rejected' && (
+      {currentStatus === 'processing' &&  (
         <Button
           margin="2rem 0"
           onClick={() => setShowStatusModal(true)}
@@ -88,6 +97,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
         showModal={showStatusModal}
         setShowModal={() => setShowStatusModal(false)}
         id={terminalId}
+        data={data?.status}
       />
     </TimelineWrapper>
   )
