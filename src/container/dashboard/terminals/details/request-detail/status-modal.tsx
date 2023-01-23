@@ -24,11 +24,13 @@ export const StatusModal = ({
   setShowModal,
   id,
   basicStatus,
+  data,
 }: {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
   id?: string
   basicStatus?: boolean
+  data: { [key: string]: any }[]
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -37,6 +39,7 @@ export const StatusModal = ({
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
     null
   )
+
   const [note, setNote] = useState('')
   const { mutate } = useMutation<
     AxiosResponse<any, any>,
@@ -80,19 +83,16 @@ export const StatusModal = ({
                     { label: 'Approve Request', value: 'approved' },
                   ]
                 : [
-                    ...(state?.status?.[state?.status?.length - 1]?.status ===
-                    'processing'
+                    ...(data?.[data?.length - 1]?.status === 'processing'
                       ? [
                           { label: 'Reject Request', value: 'rejected' },
                           { label: 'Approve Request', value: 'approved' },
                         ]
                       : []),
-                    ...(state?.status?.[state?.status?.length - 1]?.status ===
-                    'approved'
+                    ...(data?.[data?.length - 1]?.status === 'approved'
                       ? [{ label: 'Ship', value: 'shipping' }]
                       : []),
-                    ...(state?.status?.[state?.status?.length - 1]?.status ===
-                    'shipping'
+                    ...(data?.[data?.length - 1]?.status === 'shipping'
                       ? [{ label: 'Deliver', value: 'delivered' }]
                       : []),
                   ]
