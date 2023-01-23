@@ -31,7 +31,7 @@ const useDownloadCSV = (
     })
     setIsDownloading(true)
     axiosInstance
-      .get(`/${url}?${filterQuery}&download=true`, {
+      .get(`/${url}${filterQuery}&download=true`, {
         responseType: 'blob',
       })
       .then((response: any) => {
