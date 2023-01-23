@@ -23,7 +23,7 @@ export const StatusModal = ({
   showModal,
   setShowModal,
   id,
-  basicStatus
+  basicStatus,
 }: {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
@@ -73,29 +73,30 @@ export const StatusModal = ({
             placeholder="Select order status"
             value={order}
             onChange={(val) => setOrder(val)}
-            options={basicStatus ?
-              [
-                { label: 'Reject Request', value: 'rejected' },
-                { label: 'Approve Request', value: 'approved' },
-              ]
-              :
-              [
-              ...(state?.status?.[state?.status?.length - 1]?.status ===
-              'processing'
+            options={
+              basicStatus
                 ? [
                     { label: 'Reject Request', value: 'rejected' },
                     { label: 'Approve Request', value: 'approved' },
                   ]
-                : []),
-              ...(state?.status?.[state?.status?.length - 1]?.status ===
-              'approved'
-                ? [{ label: 'Ship', value: 'shipping' }]
-                : []),
-              ...(state?.status?.[state?.status?.length - 1]?.status ===
-              'shipping'
-                ? [{ label: 'Deliver', value: 'delivered' }]
-                : []),
-            ]}
+                : [
+                    ...(state?.status?.[state?.status?.length - 1]?.status ===
+                    'processing'
+                      ? [
+                          { label: 'Reject Request', value: 'rejected' },
+                          { label: 'Approve Request', value: 'approved' },
+                        ]
+                      : []),
+                    ...(state?.status?.[state?.status?.length - 1]?.status ===
+                    'approved'
+                      ? [{ label: 'Ship', value: 'shipping' }]
+                      : []),
+                    ...(state?.status?.[state?.status?.length - 1]?.status ===
+                    'shipping'
+                      ? [{ label: 'Deliver', value: 'delivered' }]
+                      : []),
+                  ]
+            }
             fullWidth
           />
           {order && (
