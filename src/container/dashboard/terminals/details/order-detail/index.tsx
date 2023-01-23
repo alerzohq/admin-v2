@@ -15,36 +15,39 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
     return isFound
   }
   const currentStatus = data?.status?.[data?.status?.length - 1]?.status
-  const timeline = currentStatus === "rejected" ? [
-    {
-      status: 'processing',
-      value: 'Terminal Request Accepted For Processing',
-    },
-    {
-      status: 'rejected',
-      value: 'Terminal Request Has Been Rejected'
-    },
-  ]:[
-    {
-      status: 'processing',
-      value: 'Terminal Request Accepted For Processing',
-    },
-    {
-      status: currentStatus === 'rejected' ? 'rejected' : 'approved',
-      value:
-        currentStatus === 'rejected'
-          ? 'Terminal Request Has Been Rejected'
-          : 'Terminal Request Has Been Approved',
-    },
-    {
-      status: 'shipping',
-      value: 'Terminal Shipped Out',
-    },
-    {
-      status: 'delivered',
-      value: 'Terminal Delivered To Merchant',
-    },
-  ]
+  const timeline =
+    currentStatus === 'rejected'
+      ? [
+          {
+            status: 'processing',
+            value: 'Terminal Request Accepted For Processing',
+          },
+          {
+            status: 'rejected',
+            value: 'Terminal Request Has Been Rejected',
+          },
+        ]
+      : [
+          {
+            status: 'processing',
+            value: 'Terminal Request Accepted For Processing',
+          },
+          {
+            status: currentStatus === 'rejected' ? 'rejected' : 'approved',
+            value:
+              currentStatus === 'rejected'
+                ? 'Terminal Request Has Been Rejected'
+                : 'Terminal Request Has Been Approved',
+          },
+          {
+            status: 'shipping',
+            value: 'Terminal Shipped Out',
+          },
+          {
+            status: 'delivered',
+            value: 'Terminal Delivered To Merchant',
+          },
+        ]
   return (
     <TimelineWrapper>
       <Timeline>
@@ -83,7 +86,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           )
         })}
       </Timeline>
-      {currentStatus === 'processing' &&  (
+      {currentStatus === 'processing' && (
         <Button
           margin="2rem 0"
           onClick={() => setShowStatusModal(true)}

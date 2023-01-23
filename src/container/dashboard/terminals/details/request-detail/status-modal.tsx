@@ -39,7 +39,7 @@ export const StatusModal = ({
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
     null
   )
-  
+
   const [note, setNote] = useState('')
   const { mutate } = useMutation<
     AxiosResponse<any, any>,
@@ -83,19 +83,16 @@ export const StatusModal = ({
                     { label: 'Approve Request', value: 'approved' },
                   ]
                 : [
-                    ...(data?.[data?.length - 1]?.status ===
-                    'processing'
+                    ...(data?.[data?.length - 1]?.status === 'processing'
                       ? [
                           { label: 'Reject Request', value: 'rejected' },
                           { label: 'Approve Request', value: 'approved' },
                         ]
                       : []),
-                    ...(data?.[data?.length - 1]?.status ===
-                    'approved'
+                    ...(data?.[data?.length - 1]?.status === 'approved'
                       ? [{ label: 'Ship', value: 'shipping' }]
                       : []),
-                    ...(data?.[data?.length - 1]?.status ===
-                    'shipping'
+                    ...(data?.[data?.length - 1]?.status === 'shipping'
                       ? [{ label: 'Deliver', value: 'delivered' }]
                       : []),
                   ]
