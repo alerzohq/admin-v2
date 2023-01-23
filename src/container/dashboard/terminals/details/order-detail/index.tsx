@@ -47,6 +47,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           const foundNext = nextOrder?.length > 0
           return (
             <TimelineItem
+              key={index}
               className={
                 currentStatus === val?.status && index === timeline?.length - 1
                   ? 'current last'
@@ -73,7 +74,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           )
         })}
       </Timeline>
-      {currentStatus === 'delivered' || currentStatus === 'rejected' ? null : (
+      {currentStatus !== 'delivered' && currentStatus !== 'rejected' && (
         <Button
           margin="2rem 0"
           onClick={() => setShowStatusModal(true)}

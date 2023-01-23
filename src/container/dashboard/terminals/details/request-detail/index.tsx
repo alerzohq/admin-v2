@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import TabsContentWidget from '../../../widget/tabs/tab-content'
 import { TABS, TERMINALREQUESTTABS } from '../../../../../data/terminal-data'
-import { DetailsContentComp } from './details-content'
+import { RequestDetails } from './request-details'
 import TerminalOrder from '../order-detail'
 import { useAppContext } from '../../../../../context'
 
@@ -28,7 +28,7 @@ const TerminalRequestDetails = () => {
         )
       default:
         return (
-          <DetailsContentComp
+          <RequestDetails
             data={state || terminalReq}
             terminalId={pathname.split('/').pop()}
           />

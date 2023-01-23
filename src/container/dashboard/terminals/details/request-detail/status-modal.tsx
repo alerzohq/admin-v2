@@ -10,10 +10,10 @@ import { axiosInstance } from '../../../../../configs/axios-instance'
 import { TextArea } from '../../terminalmodal.styles'
 
 enum OrderStatus {
-  Reject = 'rejecting',
-  Approve = 'approving',
-  Ship = 'shipping',
-  Deliver = 'delivering',
+  rejected = 'rejecting',
+  approved = 'approving',
+  shipped = 'shipping',
+  delivered = 'delivering',
 }
 interface Location {
   business: { id: string }
@@ -23,10 +23,12 @@ export const StatusModal = ({
   showModal,
   setShowModal,
   id,
+  basicStatus
 }: {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
   id?: string
+  basicStatus?: boolean
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -71,12 +73,18 @@ export const StatusModal = ({
             placeholder="Select order status"
             value={order}
             onChange={(val) => setOrder(val)}
-            options={[
+            options={basicStatus ?
+              [
+                { label: 'Reject Request', value: 'rejected' },
+                { label: 'Approve Request', value: 'approved' },
+              ]
+              :
+              [
               ...(state?.status?.[state?.status?.length - 1]?.status ===
               'processing'
                 ? [
-                    { label: 'Reject', value: 'rejected' },
-                    { label: 'Approve', value: 'approved' },
+                    { label: 'Reject Request', value: 'rejected' },
+                    { label: 'Approve Request', value: 'approved' },
                   ]
                 : []),
               ...(state?.status?.[state?.status?.length - 1]?.status ===
@@ -93,12 +101,12 @@ export const StatusModal = ({
           {order && (
             <>
               <ModalLabel>
-                Reason for {(OrderStatus as any)[order.label]} request
+                Reason for {(OrderStatus as any)[order.value]} request
               </ModalLabel>
               <TextArea
                 className="p-0"
                 placeholder={`Enter your reason for ${
-                  (OrderStatus as any)[order.label]
+                  (OrderStatus as any)[order.value]
                 } this request`}
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
