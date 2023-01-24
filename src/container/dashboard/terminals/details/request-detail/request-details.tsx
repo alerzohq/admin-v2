@@ -21,17 +21,16 @@ export const RequestDetails = ({ terminalId, data }: ITerminalReqDetails) => {
       <Wrapper>
         <POSRow units={data?.data?.units} />
       </Wrapper>
-      {state?.status[state?.status?.length - 1]?.status !== 'delivered' &&
-        state?.status[state?.status?.length - 1]?.status !== 'rejected' && (
-          <Button
-            margin="2rem auto"
-            onClick={() => setShowStatusModal(true)}
-            className="add-button"
-            width="25%"
-          >
-            Update Terminal Status
-          </Button>
-        )}
+      {state?.status[state?.status?.length - 1]?.status === 'processing' && (
+        <Button
+          margin="2rem auto"
+          onClick={() => setShowStatusModal(true)}
+          className="add-button"
+          width="25%"
+        >
+          Update Terminal Status
+        </Button>
+      )}
       <StatusModal
         showModal={showStatusModal}
         setShowModal={() => setShowStatusModal(false)}
