@@ -37,6 +37,7 @@ export const RequestDetails = ({ terminalId, data }: ITerminalReqDetails) => {
         setShowModal={() => setShowStatusModal(false)}
         id={terminalId}
         basicStatus
+        data={data?.data}
       />
     </>
   )

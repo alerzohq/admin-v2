@@ -22,7 +22,7 @@ const TerminalRequestDetails = () => {
       case 'order-process':
         return (
           <TerminalOrder
-            data={state?.detail?.status || terminalReq?.status}
+            data={state?.detail || terminalReq}
             terminalId={pathname.split('/').pop()}
           />
         )
