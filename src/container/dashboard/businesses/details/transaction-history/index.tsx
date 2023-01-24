@@ -17,10 +17,16 @@ import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 import useDownloadCSV from '../../../../../hooks/useDownloadCSV'
+import { statusFilterOptions } from '../../../../../helper/filter-helper'
 
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
   const [values, setValues] = useState(filterValue)
-  const { dispatch } = useAppContext()
+  const {
+    state: { appFilters },
+    dispatch,
+  } = useAppContext()
+
+  let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
     `transactions?walletId=${walletId}&`,
@@ -84,19 +90,33 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
               type: 'text',
             },
             date: true,
+            // selects: [
+            //   {
+            //     placeholder: 'All Platform',
+            //     values: optionsAllPlatform,
+            //     value: '',
+            //     onChange: () => {},
+            //     query: 'allPlatform',
+            //   },
+            //   {
+            //     placeholder: 'Status',
+            //     values: [],
+            //     value: '',
+            //     onChange: () => {},
+            //     query: 'status',
+            //   },
+            // ], selects: [
             selects: [
               {
                 placeholder: 'All Platform',
                 values: optionsAllPlatform,
                 value: '',
-                onChange: () => {},
                 query: 'allPlatform',
               },
               {
                 placeholder: 'Status',
-                values: [],
+                values: statusOptions,
                 value: '',
-                onChange: () => {},
                 query: 'status',
               },
             ],
@@ -107,6 +127,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
               },
             ],
           }}
+          setFilterValues={setValues}
         />
 
         {component}
