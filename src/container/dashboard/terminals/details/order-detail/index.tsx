@@ -86,7 +86,7 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           )
         })}
       </Timeline>
-      {currentStatus !== 'delivered' && currentStatus !== 'rejected' &&(
+      {currentStatus !== 'delivered' && currentStatus !== 'rejected' && (
         <Button
           margin="2rem 0"
           onClick={() => setShowStatusModal(true)}
