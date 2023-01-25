@@ -21,18 +21,19 @@ import { statusFilterOptions } from '../../../../../helper/filter-helper'
 
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
   const [values, setValues] = useState(filterValue)
+
+  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+    `transactions?walletId=${walletId}&`,
+    values,
+    'history'
+  )
+
   const {
     state: { appFilters },
     dispatch,
   } = useAppContext()
 
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
-
-  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
-    `transactions?walletId=${walletId}&`,
-    filterValue,
-    'history'
-  )
 
   const getTransactionsHistory = (filterValue: filterProps) => {
     return getNewFilterResource(
