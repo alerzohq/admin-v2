@@ -23,7 +23,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
 
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
     `transactions?userId=${userId}&`,
-    filterValue,
+    values,
     'history'
   )
   const getTransactionsHistory = (filterValue: filterProps) => {

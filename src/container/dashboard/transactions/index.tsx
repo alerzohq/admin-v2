@@ -24,6 +24,7 @@ import useDownloadCSV from '../../../hooks/useDownloadCSV'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
+
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
     'transactions?',
     values,
