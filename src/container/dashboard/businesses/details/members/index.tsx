@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -12,11 +12,9 @@ import { filterValue } from '../../../../../data/filter-data'
 import { busUserList } from '../../../../../data/table-headers'
 import {
   getNewFilterResource,
-  getResource,
 } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import {
-  platformFiltersOptions,
   statusFilterOptions,
 } from '../../../../../helper/filter-helper'
 import { useAppContext } from '../../../../../context'
