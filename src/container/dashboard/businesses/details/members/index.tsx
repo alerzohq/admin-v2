@@ -10,13 +10,9 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { busUserList } from '../../../../../data/table-headers'
-import {
-  getNewFilterResource,
-} from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
-import {
-  statusFilterOptions,
-} from '../../../../../helper/filter-helper'
+import { statusFilterOptions } from '../../../../../helper/filter-helper'
 import { useAppContext } from '../../../../../context'
 import { filterProps } from '../../../../../@types'
 
