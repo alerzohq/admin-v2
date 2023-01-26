@@ -73,13 +73,6 @@ const Products = () => {
             date: true,
             selects: [
               {
-                placeholder: 'All Platform',
-                values: optionsAllPlatform,
-                value: '',
-                onChange: () => {},
-                query: 'allPlatform',
-              },
-              {
                 placeholder: 'Status',
                 values: [],
                 value: '',
