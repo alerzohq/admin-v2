@@ -29,7 +29,7 @@ const TerminalRequestDetails = () => {
       default:
         return (
           <RequestDetails
-            data={state || terminalReq}
+            data={state?.detail || terminalReq}
             terminalId={pathname.split('/').pop()}
           />
         )

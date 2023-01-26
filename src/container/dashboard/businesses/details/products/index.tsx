@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -9,7 +9,6 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
-import { optionsAllPlatform } from '../../../../../data/select-data'
 import { businessProductsHeader } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
@@ -72,13 +71,6 @@ const Products = () => {
             },
             date: true,
             selects: [
-              {
-                placeholder: 'All Platform',
-                values: optionsAllPlatform,
-                value: '',
-                onChange: () => {},
-                query: 'allPlatform',
-              },
               {
                 placeholder: 'Status',
                 values: [],
