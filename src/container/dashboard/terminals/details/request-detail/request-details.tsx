@@ -13,7 +13,7 @@ export const RequestDetails = ({ terminalId, data }: ITerminalReqDetails) => {
     businessId: string
     status: { status: string }[]
   }
-  console.log(data, "data")
+  console.log(data, 'data')
   const location = useLocation()
   const state = location.state as Location
   return (

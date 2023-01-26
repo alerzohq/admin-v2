@@ -29,9 +29,7 @@ export const StatusModal = ({
   basicStatus?: boolean
   data: { [key: string]: any }
 }) => {
- 
   const navigate = useNavigate()
-
 
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
     null
@@ -57,7 +55,7 @@ export const StatusModal = ({
       },
     }
   )
-const statusData = data?.status;
+  const statusData = data?.status
   return (
     <Modal
       showModal={showModal}
@@ -79,23 +77,26 @@ const statusData = data?.status;
                     { label: 'Approve Request', value: 'approved' },
                   ]
                 : [
-                    ...(statusData?.[statusData?.length - 1]?.status === 'processing'
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'processing'
                       ? [
                           { label: 'Reject Request', value: 'rejected' },
                           { label: 'Approve Request', value: 'approved' },
                         ]
                       : []),
-                    ...(statusData?.[statusData?.length - 1]?.status === 'approved'
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'approved'
                       ? [{ label: 'Ship', value: 'shipping' }]
                       : []),
-                    ...(statusData?.[statusData?.length - 1]?.status === 'shipping'
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'shipping'
                       ? [{ label: 'Deliver', value: 'delivered' }]
                       : []),
                   ]
             }
             fullWidth
           />
-          {order?.value === "rejected" && (
+          {order?.value === 'rejected' && (
             <>
               <ModalLabel>
                 Reason for {(OrderStatus as any)[order.value]} request

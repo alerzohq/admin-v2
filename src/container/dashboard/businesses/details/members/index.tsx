@@ -10,7 +10,10 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { busUserList } from '../../../../../data/table-headers'
-import { getNewFilterResource, getResource } from '../../../../../utils/apiRequest'
+import {
+  getNewFilterResource,
+  getResource,
+} from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import {
   platformFiltersOptions,
@@ -20,7 +23,7 @@ import { useAppContext } from '../../../../../context'
 import { filterProps } from '../../../../../@types'
 
 const Members = ({ businessId }: { businessId: string }) => {
-  const [values, setValues] = useState({...filterValue})
+  const [values, setValues] = useState({ ...filterValue })
   const {
     state: { appFilters },
   } = useAppContext()
@@ -28,12 +31,15 @@ const Members = ({ businessId }: { businessId: string }) => {
   let statusOptions = statusFilterOptions(appFilters?.['businessMembers'])
   console.log(statusOptions)
   const getMembers = (filterValue: filterProps) => {
-    return getNewFilterResource(`business-users`, {...filterValue, query:businessId});
+    return getNewFilterResource(`business-users`, {
+      ...filterValue,
+      query: businessId,
+    })
   }
 
   const { isLoading, isError, data, refetch, error } = useQuery(
     ['members', values],
-    () => getMembers(values),
+    () => getMembers(values)
   )
   let component
   if (isLoading) {
@@ -75,7 +81,6 @@ const Members = ({ businessId }: { businessId: string }) => {
               },
             ],
           }}
-         
           setFilterValues={setValues}
         />
         {component}
