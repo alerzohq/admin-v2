@@ -36,13 +36,10 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 
   const getTransactionsHistory = (filterValue: filterProps) => {
-    return getNewFilterResource(
-      'transactions',
-      {
-        ...filterValue,
-        walletId: walletId,
-      }
-    )
+    return getNewFilterResource('transactions', {
+      ...filterValue,
+      walletId: walletId,
+    })
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
@@ -95,7 +92,6 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
             date: true,
 
             selects: [
-             
               {
                 placeholder: 'Status',
                 value: '',
