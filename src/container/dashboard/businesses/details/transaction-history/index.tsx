@@ -37,9 +37,11 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
 
   const getTransactionsHistory = (filterValue: filterProps) => {
     return getNewFilterResource(
-      `transactions?walletId=${walletId}&`,
-      filterValue,
-      true
+      'transactions',
+      {
+        ...filterValue,
+        walletId: walletId,
+      }
     )
   }
 
@@ -91,33 +93,13 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
               type: 'text',
             },
             date: true,
-            // selects: [
-            //   {
-            //     placeholder: 'All Platform',
-            //     values: optionsAllPlatform,
-            //     value: '',
-            //     onChange: () => {},
-            //     query: 'allPlatform',
-            //   },
-            //   {
-            //     placeholder: 'Status',
-            //     values: [],
-            //     value: '',
-            //     onChange: () => {},
-            //     query: 'status',
-            //   },
-            // ], selects: [
+
             selects: [
-              {
-                placeholder: 'All Platform',
-                values: optionsAllPlatform,
-                value: '',
-                query: 'allPlatform',
-              },
+             
               {
                 placeholder: 'Status',
-                values: statusOptions,
                 value: '',
+                values: statusOptions,
                 query: 'status',
               },
             ],
