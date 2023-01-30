@@ -10,15 +10,24 @@ import {
   DateRangeContainer,
   DateRangeWrapper,
 } from './styles/date-range.styles'
+import Text from '../text'
 
 const DateRange = ({ filterDate, isTop, right }: any) => {
   const [dateValue, setDateValue] = useState('')
   const [show, setShow] = useState(false)
-  const [selectionRange, setSelectionRange] = useState({
+  const initialState = {
     startDate: new Date(),
     endDate: new Date(),
     key: 'selection',
-  })
+  }
+
+  const handleClear = () => {
+    console.log("herererererer")
+    setSelectionRange(initialState)
+    filterDate((prev: any) => ({ ...prev, from: '', to: '' }))
+    setDateValue('')
+  }
+  const [selectionRange, setSelectionRange] = useState(initialState)
   const handleSelect = ({ selection }: any) => {
     const endDateVal = isSameDay(selection?.startDate, selection?.endDate)
       ? endOfDay(selection?.endDate)
@@ -37,7 +46,6 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
 
     filterDate((prev: any) => ({ ...prev, from: startD, to: endD }))
   }
-
   return (
     <OutsideClickHandler
       onOutsideClick={() => {
@@ -45,10 +53,19 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
       }}
     >
       <DateRangeWrapper>
-        <button className={'btn'} onClick={() => setShow(!show)}>
-          {dateValue ? dateValue : 'Select Date '}
-          <CalenderIcon />
-        </button>
+        {!show && dateValue?.length > 0 ? (
+          <button className={'btn'} onClick={() => handleClear()}>
+            {dateValue ? dateValue : 'Select Date '}
+            <Text weight="500" color="#374B58">
+              x
+            </Text>
+          </button>
+        ) : (
+          <button className={'btn'} onClick={() => setShow(!show)}>
+            {dateValue ? dateValue : 'Select Date '}
+            <CalenderIcon />
+          </button>
+        )}
         {show && (
           <DateRangeContainer isTop={isTop} right={right}>
             <DateRangePicker
