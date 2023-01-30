@@ -46,7 +46,7 @@ const BusinessContainer = () => {
     )
   } else if (data?.data?.length < 1) {
     component = (
-      <FallBack title={'You have no business yet.'} refetch={refetch} />
+      <FallBack title={'No Transaction Found.'} refetch={refetch} />
     )
   } else {
     component = (
