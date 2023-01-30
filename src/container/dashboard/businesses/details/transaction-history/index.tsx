@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -9,7 +9,6 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
-import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
@@ -36,11 +35,10 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 
   const getTransactionsHistory = (filterValue: filterProps) => {
-    return getNewFilterResource(
-      `transactions?walletId=${walletId}&`,
-      filterValue,
-      true
-    )
+    return getNewFilterResource('transactions', {
+      ...filterValue,
+      walletId: walletId,
+    })
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
@@ -91,33 +89,12 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
               type: 'text',
             },
             date: true,
-            // selects: [
-            //   {
-            //     placeholder: 'All Platform',
-            //     values: optionsAllPlatform,
-            //     value: '',
-            //     onChange: () => {},
-            //     query: 'allPlatform',
-            //   },
-            //   {
-            //     placeholder: 'Status',
-            //     values: [],
-            //     value: '',
-            //     onChange: () => {},
-            //     query: 'status',
-            //   },
-            // ], selects: [
+
             selects: [
               {
-                placeholder: 'All Platform',
-                values: optionsAllPlatform,
-                value: '',
-                query: 'allPlatform',
-              },
-              {
                 placeholder: 'Status',
-                values: statusOptions,
                 value: '',
+                values: statusOptions,
                 query: 'status',
               },
             ],

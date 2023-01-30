@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { Dispatch, SetStateAction, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
@@ -15,10 +15,7 @@ enum OrderStatus {
   shipped = 'shipping',
   delivered = 'delivering',
 }
-interface Location {
-  business: { id: string }
-  status: { status: string }[]
-}
+
 export const StatusModal = ({
   showModal,
   setShowModal,
@@ -30,16 +27,13 @@ export const StatusModal = ({
   setShowModal: Dispatch<SetStateAction<boolean>>
   id?: string
   basicStatus?: boolean
-  data: { [key: string]: any }[]
+  data: { [key: string]: any }
 }) => {
-  const location = useLocation()
   const navigate = useNavigate()
-  const state = location.state as Location
 
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
     null
   )
-
   const [note, setNote] = useState('')
   const { mutate } = useMutation<
     AxiosResponse<any, any>,
@@ -49,7 +43,7 @@ export const StatusModal = ({
   >(
     () => {
       return axiosInstance.patch(`terminals/requests/${id}/status`, {
-        businessId: state.business.id,
+        businessId: data.business.id,
         status: order?.value,
       })
     },
@@ -61,7 +55,7 @@ export const StatusModal = ({
       },
     }
   )
-
+  const statusData = data?.status
   return (
     <Modal
       showModal={showModal}
@@ -83,23 +77,26 @@ export const StatusModal = ({
                     { label: 'Approve Request', value: 'approved' },
                   ]
                 : [
-                    ...(data?.[data?.length - 1]?.status === 'processing'
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'processing'
                       ? [
                           { label: 'Reject Request', value: 'rejected' },
                           { label: 'Approve Request', value: 'approved' },
                         ]
                       : []),
-                    ...(data?.[data?.length - 1]?.status === 'approved'
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'approved'
                       ? [{ label: 'Ship', value: 'shipping' }]
                       : []),
-                    ...(data?.[data?.length - 1]?.status === 'shipping'
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'shipping'
                       ? [{ label: 'Deliver', value: 'delivered' }]
                       : []),
                   ]
             }
             fullWidth
           />
-          {order && (
+          {order?.value === 'rejected' && (
             <>
               <ModalLabel>
                 Reason for {(OrderStatus as any)[order.value]} request
