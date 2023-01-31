@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
+
 import { getResource } from '../../../../utils/apiRequest'
 import DetailsContent from '../../widget/tabs/tab-content-details'
 import { TABS } from '../../../../data/tab-data'
@@ -8,8 +11,6 @@ import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper'
 import NotesContent from './tab-content/notes'
 import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
-import { useState } from 'react'
-import { toast } from 'react-hot-toast'
 
 const TabsContainer = () => {
   const navigate = useNavigate()

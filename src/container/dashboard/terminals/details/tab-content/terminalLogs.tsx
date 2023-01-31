@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -8,16 +8,10 @@ import {
   ReassignTerminalIcon,
   UnassignedTerminalsIcon,
 } from '../../../../../assets/icons'
-import {
-  FallBack,
-  Filter,
-  Jumbotron,
-  Loader,
-  Text,
-} from '../../../../../components'
+import { FallBack, Jumbotron, Loader, Text } from '../../../../../components'
 import { TimelineElement } from '../../../../../components/timeline'
 import { filterValue } from '../../../../../data/filter-data'
-import { optionsAllPlatform, options } from '../../../../../data/select-data'
+
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { formatDate } from '../../../../../utils/formatValue'
 import { errorMessage } from '../../../../../utils/message'
@@ -137,25 +131,6 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
 
   return (
     <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
-      <Filter
-        setFilterValues={setValues}
-        showFilters={{
-          search: {
-            placeholder: 'Search',
-            type: 'text',
-          },
-          date: true,
-          selects: [
-            {
-              placeholder: 'Status',
-              values: options,
-              value: '',
-              onChange: () => {},
-              query: 'status',
-            },
-          ],
-        }}
-      />
       {component}
     </Jumbotron>
   )

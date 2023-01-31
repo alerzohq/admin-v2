@@ -13,6 +13,7 @@ import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
+import useDownloadCSV from '../../../../../hooks/useDownloadCSV'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 
@@ -20,6 +21,11 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
 
+  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+    `transactions?userId=${userId}&`,
+    values,
+    'history'
+  )
   const getTransactionsHistory = (filterValue: filterProps) => {
     return getNewFilterResource(
       `transactions?userId=${userId}&`,
@@ -88,6 +94,13 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
                 ],
                 value: '',
                 query: 'status',
+              },
+            ],
+
+            buttons: [
+              {
+                label: isDownloading ? 'Download...' : 'Download CSV',
+                onClick: () => downloadBulkCSV(),
               },
             ],
           }}

@@ -189,6 +189,7 @@ export const terminalRequestsStats = () => {
 
 export const terminalRequestHelper = (data: any) => {
   const business = data?.business
+  const createdDate = data?.status[0]?.timestamp
   return [
     {
       spacing: false,
@@ -208,7 +209,7 @@ export const terminalRequestHelper = (data: any) => {
       data: {
         requestId: data?.id,
         status: data?.status[data?.status?.length - 1]?.status,
-        date: data?.data?.createdAt,
+        date: formatDate(createdDate, 'YYYY-MM-DD HH:mm:ss'),
         location: data?.data?.location,
         deliveryLocation: data?.data?.address,
       },

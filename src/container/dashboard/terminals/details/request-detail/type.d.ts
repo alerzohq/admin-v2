@@ -12,5 +12,6 @@ interface ITerminalReqDetails {
   data: { [key: string]: any }
 }
 interface ITerminalReqProcess {
-  data: { [key: string]: any }[]
+  data: { [key: string]: any; status: { [key: string]: any }[] }
+  terminalId?: string
 }

@@ -24,7 +24,12 @@ import useDownloadCSV from '../../../hooks/useDownloadCSV'
 
 const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
-  const { downloadBulkCSV } = useDownloadCSV('transactions', values, 'history')
+
+  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+    'transactions?',
+    values,
+    'history'
+  )
   const {
     state: { appFilters },
   } = useAppContext()
@@ -51,7 +56,8 @@ const TransactionContainer = () => {
     { keepPreviousData: true }
   )
 
-  let component
+  let component: React.ReactNode
+
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
@@ -95,7 +101,12 @@ const TransactionContainer = () => {
             value: '',
           },
         ],
-        buttons: [{ label: 'Download CSV', onClick: () => downloadBulkCSV() }],
+        buttons: [
+          {
+            label: isDownloading ? 'Download...' : 'Download CSV',
+            onClick: () => downloadBulkCSV(),
+          },
+        ],
       }}
       title="History"
       setFilterValues={setValues}
