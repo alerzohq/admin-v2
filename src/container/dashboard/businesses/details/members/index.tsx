@@ -23,7 +23,7 @@ const Members = ({ businessId }: { businessId: string }) => {
   } = useAppContext()
 
   let statusOptions = statusFilterOptions(appFilters?.['businessMembers'])
-  console.log(statusOptions)
+
   const getMembers = (filterValue: filterProps) => {
     return getNewFilterResource(`business-users`, {
       ...filterValue,

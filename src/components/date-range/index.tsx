@@ -22,7 +22,6 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
   }
 
   const handleClear = () => {
-    console.log("herererererer")
     setSelectionRange(initialState)
     filterDate((prev: any) => ({ ...prev, from: '', to: '' }))
     setDateValue('')
