@@ -14,7 +14,7 @@ const POSRow = ({ units }: { units: { [key: string]: any }[] }) => {
           imgSrc={unit?.imageUrl}
           text={unit?.name}
           number={unit?.quantity}
-          amount={unit?.price}
+          amount={(unit?.price * unit?.quantity).toString()}
         />
       ))}
       <TotalRow>
