@@ -73,12 +73,15 @@ const ProductsContainer = () => {
       setShowModal(true)
     }
   }, [newBiller])
+
   useEffect(() => {
     setSlug(stateValue?.selectData?.slug)
   }, [stateValue?.selectData])
+
   useEffect(() => {
     setOptions(mapBillers(billers?.data))
   }, [billers])
+
   useEffect(() => {
     if (isBillerError) {
       toast.error(`${errorMessage(billerError)}`)

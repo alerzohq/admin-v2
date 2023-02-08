@@ -11,6 +11,7 @@ const SelectInput = ({
   isClearable,
   hideValue,
   fullWidth,
+  maxWidth,
   onChange,
   disabled,
   onInputChange,
@@ -29,7 +30,7 @@ const SelectInput = ({
       onChange={onChange}
       options={options}
       onInputChange={onInputChange}
-      styles={styles ? styles : selectStyles(false, fullWidth)}
+      styles={styles ? styles : selectStyles(false, fullWidth, maxWidth)}
       isClearable={isClearable}
       controlShouldRenderValue={!hideValue}
       placeholder={

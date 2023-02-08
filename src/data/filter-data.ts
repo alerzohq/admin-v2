@@ -3,6 +3,8 @@ export const filterValue = {
   pageNumber: 0,
   status: '',
   query: '',
+  biller: '',
+  product: '',
   from: '',
   to: '',
 }

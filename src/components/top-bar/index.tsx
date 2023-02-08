@@ -24,6 +24,8 @@ const TopBar = ({
   const [values, setValues] = useState({
     search: '',
     status: '',
+    biller: '',
+    product: '',
     allPlatform: '',
   })
 
@@ -72,6 +74,7 @@ const TopBar = ({
           <TopbarFilters>
             {showFilters?.search && (
               <Filter
+                maxWidth="150px"
                 value={search}
                 onChange={(e) => {
                   setValues({ ...values, search: e.target.value })
@@ -79,6 +82,7 @@ const TopBar = ({
                 placeholder={showFilters.search.placeholder}
               />
             )}
+
             {showFilters?.date && (
               <div ref={ref}>
                 <DateRange right={position} filterDate={setFilterValues} />
@@ -88,6 +92,7 @@ const TopBar = ({
               showFilters.selects.map((select, i) => (
                 <SelectInput
                   key={i}
+                  maxWidth="150px"
                   placeholder={select.placeholder}
                   onChange={(e, a) => {
                     if (select.shouldSetQuery) {
