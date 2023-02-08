@@ -2,6 +2,8 @@ export type TopBarProps = {
   title: string
   showFilters: {
     search: { type: string; placeholder: string }
+    tidSearch: { type: string; placeholder: string }
+    refSearch: { type: string; placeholder: string }
     date: boolean
     selects: {
       searchQuery?: string

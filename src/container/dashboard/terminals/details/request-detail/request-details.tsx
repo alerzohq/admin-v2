@@ -13,14 +13,13 @@ export const RequestDetails = ({ terminalId, data }: ITerminalReqDetails) => {
     businessId: string
     status: { status: string }[]
   }
-  console.log(data, 'data')
   const location = useLocation()
   const state = location.state as Location
   return (
     <>
       <DetailsContent resolvedData={terminalRequestHelper(data)} />
       <Wrapper>
-        <POSRow units={data?.units} />
+        <POSRow units={data?.data?.units} />
       </Wrapper>
       {state?.status[state?.status?.length - 1]?.status === 'processing' && (
         <Button

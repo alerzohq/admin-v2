@@ -45,9 +45,7 @@ const BusinessContainer = () => {
       <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
-    component = (
-      <FallBack title={'No Transaction Found.'} refetch={refetch} />
-    )
+    component = <FallBack title={'No Business Found.'} refetch={refetch} />
   } else {
     component = (
       <Table
