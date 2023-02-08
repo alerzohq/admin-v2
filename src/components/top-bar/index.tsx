@@ -94,7 +94,7 @@ const TopBar = ({
                   key={i}
                   maxWidth="150px"
                   placeholder={select.placeholder}
-                  onChange={(e, a) => {
+                  onChange={select?.action ? (e) =>select.onChange(e) :(e, a) => {
                     if (select.shouldSetQuery) {
                       return setFilterValues((prev: any) => ({
                         ...prev,

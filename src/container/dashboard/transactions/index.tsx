@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   FallBack,
   Jumbotron,
@@ -23,6 +23,7 @@ import {
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
 import useDownloadCSV from '../../../hooks/useDownloadCSV'
+import SingleReversalModal from './modal/single-reversal-modal'
 
 const TransactionContainer = () => {
   const {
@@ -32,9 +33,16 @@ const TransactionContainer = () => {
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
   let productOptions = productFilterOptions(appFilters?.['transactions'])
-
+  const [showModal, setShowModal] = useState(false)
+  const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
+  useEffect(() =>{
+    if(value === 'Perform Single Reversals'){
+     setShowModal(true) 
+    }
+    
+  },[value])
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
     'transactions?',
     values,
@@ -117,13 +125,19 @@ const TransactionContainer = () => {
             values: statusOptions,
             value: '',
           },
-        ],
-        buttons: [
           {
-            label: isDownloading ? 'Download...' : 'Download CSV',
-            onClick: () => downloadBulkCSV(),
+            placeholder: 'Actions',
+            values: [{
+              label: 'Perform Single Reversals',
+              value: 'Perform Single Reversals'
+              
+            }],
+            action:true,
+            value: '',
+            onChange:(e:any)=>setValue(e?.value)
           },
         ],
+       
       }}
       title="History"
       setFilterValues={setValues}
@@ -134,6 +148,7 @@ const TransactionContainer = () => {
       <Jumbotron padding={'0'}>{component}</Jumbotron>
 
       <Pagination data={data} setPageNumber={setValues} />
+      <SingleReversalModal setShowModal={setShowModal} showModal={showModal} />
     </Container>
   )
 }
