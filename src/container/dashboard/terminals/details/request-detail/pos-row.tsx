@@ -5,7 +5,7 @@ import { Text } from '../../../../../components'
 import { amountHelper, sumOfValue } from '../../../../../utils/formatValue'
 
 const POSRow = ({ units }: { units: { [key: string]: any }[] }) => {
-  const total = sumOfValue(units, 'price')
+  const total = sumOfValue(units, 'price', 'quantity')
   return (
     <>
       {units?.map((unit) => (

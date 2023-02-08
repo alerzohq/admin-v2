@@ -218,7 +218,6 @@ export const terminalRequestHelper = (data: any) => {
 }
 
 export const TerminalProviders = [
-  { label: 'GA', value: 'ga', },
+  { label: 'GA', value: 'ga' },
   { label: '3line', value: '3line' },
-
 ]

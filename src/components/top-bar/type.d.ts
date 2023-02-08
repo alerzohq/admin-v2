@@ -10,8 +10,9 @@ export type TopBarProps = {
       shouldSetQuery?: boolean
       values: any[]
       placeholder: string
-      onChange: () => void
+      onChange: (e?: any) => void
       value: string
+      action?: boolean
     }[]
     buttons: {
       label: string

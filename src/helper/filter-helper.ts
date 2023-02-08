@@ -30,4 +30,3 @@ export const productFilterOptions = (appfilters: FilterOptions) => {
     return { label, value }
   })
 }
-

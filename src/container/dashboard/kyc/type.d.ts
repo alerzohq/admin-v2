@@ -6,6 +6,7 @@ export interface IStateProps {
   status: string
   id: string
   userId: string
+  metamapStatus?: string
 }
 export type ValueProps = {
   comments?: string
