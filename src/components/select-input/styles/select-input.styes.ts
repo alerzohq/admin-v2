@@ -5,7 +5,11 @@ type selectStyleProps = {
   isFocused?: boolean
 }
 type Coptions = {}
-export const selectStyles = (isBlue?: boolean, fullWidth?: boolean, maxWidth?:string) => {
+export const selectStyles = (
+  isBlue?: boolean,
+  fullWidth?: boolean,
+  maxWidth?: string
+) => {
   return isBlue
     ? {
         control: (
@@ -96,7 +100,7 @@ export const selectStyles = (isBlue?: boolean, fullWidth?: boolean, maxWidth?:st
             : `1px solid ${Color.alerzoLightGray}`,
           height: 45,
           width: fullWidth ? '100%' : 200,
-          maxWidth:maxWidth,
+          maxWidth: maxWidth,
           borderRadius: 10,
           fontSize: 14,
           boxShadow: Color.alerzoDarkGray,

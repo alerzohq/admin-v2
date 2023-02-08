@@ -37,12 +37,11 @@ const TransactionContainer = () => {
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
-  useEffect(() =>{
-    if(value === 'Perform Single Reversals'){
-     setShowModal(true) 
+  useEffect(() => {
+    if (value === 'Perform Single Reversals') {
+      setShowModal(true)
     }
-    
-  },[value])
+  }, [value])
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
     'transactions?',
     values,
@@ -127,17 +126,17 @@ const TransactionContainer = () => {
           },
           {
             placeholder: 'Actions',
-            values: [{
-              label: 'Perform Single Reversals',
-              value: 'Perform Single Reversals'
-              
-            }],
-            action:true,
+            values: [
+              {
+                label: 'Perform Single Reversals',
+                value: 'Perform Single Reversals',
+              },
+            ],
+            action: true,
             value: '',
-            onChange:(e:any)=>setValue(e?.value)
+            onChange: (e: any) => setValue(e?.value),
           },
         ],
-       
       }}
       title="History"
       setFilterValues={setValues}

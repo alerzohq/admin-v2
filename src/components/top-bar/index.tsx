@@ -94,22 +94,26 @@ const TopBar = ({
                   key={i}
                   maxWidth="150px"
                   placeholder={select.placeholder}
-                  onChange={select?.action ? (e) =>select.onChange(e) :(e, a) => {
-                    if (select.shouldSetQuery) {
-                      return setFilterValues((prev: any) => ({
-                        ...prev,
-                        query: e?.value,
-                      }))
-                    }
-                    if (select?.searchQuery) {
-                      const key: string = select?.searchQuery
-                      const dataObj: any = {}
-                      dataObj[key] = e?.value.toString() || ''
-                      const ne = { ...newObj, ...dataObj }
-                      return setnewObj(ne)
-                    }
-                    setStatus(e?.value)
-                  }}
+                  onChange={
+                    select?.action
+                      ? (e) => select.onChange(e)
+                      : (e, a) => {
+                          if (select.shouldSetQuery) {
+                            return setFilterValues((prev: any) => ({
+                              ...prev,
+                              query: e?.value,
+                            }))
+                          }
+                          if (select?.searchQuery) {
+                            const key: string = select?.searchQuery
+                            const dataObj: any = {}
+                            dataObj[key] = e?.value.toString() || ''
+                            const ne = { ...newObj, ...dataObj }
+                            return setnewObj(ne)
+                          }
+                          setStatus(e?.value)
+                        }
+                  }
                   value={select.value}
                   options={select.values}
                   isClearable

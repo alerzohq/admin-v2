@@ -109,9 +109,12 @@ export const mapBusinesses = (arr: any) =>
     value: obj?.id,
   }))
 
-export const sumOfValue = (arr: { [key: string]: any }[], param: string, param2: string) => {
-
+export const sumOfValue = (
+  arr: { [key: string]: any }[],
+  param: string,
+  param2: string
+) => {
   return arr?.reduce((accumulator, object) => {
-    return accumulator + (object[param] * object[param2])
+    return accumulator + object[param] * object[param2]
   }, 0)
 }

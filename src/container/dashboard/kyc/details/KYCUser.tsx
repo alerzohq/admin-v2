@@ -129,13 +129,12 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           </Text>
           <Text
             align="center"
-            margin='0 0 1rem 0'
+            margin="0 0 1rem 0"
             weight="600"
             as="p"
             justifyContent="center"
             color={Color.alerzoDarkGray}
-            className={resolveStatus(state.metamapStatus)
-            }
+            className={resolveStatus(state.metamapStatus)}
           >
             {state.metamapStatus}
           </Text>
@@ -148,8 +147,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
             as="p"
             justifyContent="center"
             color={Color.alerzoDarkGray}
-            className={resolveStatus(state.status)
-            }
+            className={resolveStatus(state.status)}
           >
             {state.status}
           </Text>
