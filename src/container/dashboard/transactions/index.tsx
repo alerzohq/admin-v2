@@ -16,13 +16,23 @@ import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useAppContext } from '../../../context'
 import {
+  billerFilterOptions,
   platformFiltersOptions,
+  productFilterOptions,
   statusFilterOptions,
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
 import useDownloadCSV from '../../../hooks/useDownloadCSV'
 
 const TransactionContainer = () => {
+  const {
+    state: { appFilters },
+  } = useAppContext()
+  let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
+  let statusOptions = statusFilterOptions(appFilters?.['transactions'])
+  let billerOptions = billerFilterOptions(appFilters?.['transactions'])
+  let productOptions = productFilterOptions(appFilters?.['transactions'])
+
   const [values, setValues] = useState(filterValue)
 
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
@@ -30,11 +40,6 @@ const TransactionContainer = () => {
     values,
     'history'
   )
-  const {
-    state: { appFilters },
-  } = useAppContext()
-  let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
-  let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 
   const getTransactions = (filterValue: filterProps) => {
     return getNewFilterResource(`transactions`, filterValue)
@@ -93,6 +98,18 @@ const TransactionContainer = () => {
             searchQuery: 'userType',
             placeholder: 'All Platform',
             values: platformOptions,
+            value: '',
+          },
+          {
+            searchQuery: 'biller',
+            placeholder: 'Biller',
+            values: billerOptions,
+            value: '',
+          },
+          {
+            searchQuery: 'product',
+            placeholder: 'Products',
+            values: productOptions,
             value: '',
           },
           {

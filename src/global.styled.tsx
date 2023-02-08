@@ -128,7 +128,7 @@ const GlobalStyle = createGlobalStyle`
   border-radius: 10px;
   height: 45px !important;
   padding: 0 1rem;
-  width: 200px !important;
+  width: 150px !important;
   text-align: center;
   font-family: 'Gilmer';
   font-style: normal;
