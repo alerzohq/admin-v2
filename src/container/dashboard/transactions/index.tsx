@@ -101,13 +101,13 @@ const TransactionContainer = () => {
             value: '',
           },
           {
-            searchQuery: 'biller',
-            placeholder: 'Biller',
+            searchQuery: 'billerSlug',
+            placeholder: 'Billers',
             values: billerOptions,
             value: '',
           },
           {
-            searchQuery: 'product',
+            searchQuery: 'productSlug',
             placeholder: 'Products',
             values: productOptions,
             value: '',
