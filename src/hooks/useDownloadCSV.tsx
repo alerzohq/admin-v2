@@ -23,7 +23,6 @@ const useDownloadCSV = (
     document.body.removeChild(a)
     window.URL.revokeObjectURL(url)
   }
-
   const downloadBulkCSV = () => {
     const filterQuery = queryString.stringify(filters, {
       skipNull: true,

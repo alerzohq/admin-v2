@@ -11,31 +11,43 @@ import { StatusModal } from '../request-detail/status-modal'
 const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
   const [showStatusModal, setShowStatusModal] = useState(false)
   const resolveStatus = (status: string) => {
-    const isFound = data?.filter((val) => val?.status === status)
+    const isFound = data?.status?.filter((val) => val?.status === status)
     return isFound
   }
-  const currentStatus = data?.[data?.length - 1]?.status
-  const timeline = [
-    {
-      status: 'processing',
-      value: 'Terminal Request Accepted For Processing',
-    },
-    {
-      status: currentStatus === 'rejected' ? 'rejected' : 'approved',
-      value:
-        currentStatus === 'rejected'
-          ? 'Terminal Request Has Been Rejected'
-          : 'Terminal Request Has Been Approved',
-    },
-    {
-      status: 'shipping',
-      value: 'Terminal Shipped Out',
-    },
-    {
-      status: 'delivered',
-      value: 'Terminal Delivered To Merchant',
-    },
-  ]
+  const currentStatus = data?.status?.[data?.status?.length - 1]?.status
+  const timeline =
+    currentStatus === 'rejected'
+      ? [
+          {
+            status: 'processing',
+            value: 'Terminal Request Accepted For Processing',
+          },
+          {
+            status: 'rejected',
+            value: 'Terminal Request Has Been Rejected',
+          },
+        ]
+      : [
+          {
+            status: 'processing',
+            value: 'Terminal Request Accepted For Processing',
+          },
+          {
+            status: currentStatus === 'rejected' ? 'rejected' : 'approved',
+            value:
+              currentStatus === 'rejected'
+                ? 'Terminal Request Has Been Rejected'
+                : 'Terminal Request Has Been Approved',
+          },
+          {
+            status: 'shipping',
+            value: 'Terminal Shipped Out',
+          },
+          {
+            status: 'delivered',
+            value: 'Terminal Delivered To Merchant',
+          },
+        ]
   return (
     <TimelineWrapper>
       <Timeline>
@@ -47,9 +59,10 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           const foundNext = nextOrder?.length > 0
           return (
             <TimelineItem
+              key={index}
               className={
                 currentStatus === val?.status && index === timeline?.length - 1
-                  ? 'current last'
+                  ? 'is-done  last'
                   : currentStatus === val?.status
                   ? 'current'
                   : index === timeline?.length - 1
@@ -73,7 +86,8 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           )
         })}
       </Timeline>
-      {currentStatus === 'delivered' || currentStatus === 'rejected' ? null : (
+
+      {currentStatus !== 'rejected' && currentStatus !== 'delivered' && (
         <Button
           margin="2rem 0"
           onClick={() => setShowStatusModal(true)}
@@ -83,10 +97,12 @@ const TerminalOrder = ({ data, terminalId }: ITerminalReqProcess) => {
           Update Terminal Status
         </Button>
       )}
+
       <StatusModal
         showModal={showStatusModal}
         setShowModal={() => setShowStatusModal(false)}
         id={terminalId}
+        data={data}
       />
     </TimelineWrapper>
   )

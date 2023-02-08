@@ -189,7 +189,7 @@ export const terminalRequestsStats = () => {
 
 export const terminalRequestHelper = (data: any) => {
   const business = data?.business
-  const createdDate = data?.status[0]?.timestamp;
+  const createdDate = data?.status[0]?.timestamp
   return [
     {
       spacing: false,

@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { Dispatch, SetStateAction, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
@@ -10,27 +10,26 @@ import { axiosInstance } from '../../../../../configs/axios-instance'
 import { TextArea } from '../../terminalmodal.styles'
 
 enum OrderStatus {
-  Reject = 'rejecting',
-  Approve = 'approving',
-  Ship = 'shipping',
-  Deliver = 'delivering',
+  rejected = 'rejecting',
+  approved = 'approving',
+  shipped = 'shipping',
+  delivered = 'delivering',
 }
-interface Location {
-  business: { id: string }
-  status: { status: string }[]
-}
+
 export const StatusModal = ({
   showModal,
   setShowModal,
   id,
+  basicStatus,
+  data,
 }: {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
   id?: string
+  basicStatus?: boolean
+  data: { [key: string]: any }
 }) => {
-  const location = useLocation()
   const navigate = useNavigate()
-  const state = location.state as Location
 
   const [order, setOrder] = useState<{ label: string; value: string } | null>(
     null
@@ -44,7 +43,7 @@ export const StatusModal = ({
   >(
     () => {
       return axiosInstance.patch(`terminals/requests/${id}/status`, {
-        businessId: state.business.id,
+        businessId: data.business.id,
         status: order?.value,
       })
     },
@@ -56,7 +55,7 @@ export const StatusModal = ({
       },
     }
   )
-
+  const statusData = data?.status
   return (
     <Modal
       showModal={showModal}
@@ -71,34 +70,41 @@ export const StatusModal = ({
             placeholder="Select order status"
             value={order}
             onChange={(val) => setOrder(val)}
-            options={[
-              ...(state?.status?.[state?.status?.length - 1]?.status ===
-              'processing'
+            options={
+              basicStatus
                 ? [
-                    { label: 'Reject', value: 'rejected' },
-                    { label: 'Approve', value: 'approved' },
+                    { label: 'Reject Request', value: 'rejected' },
+                    { label: 'Approve Request', value: 'approved' },
                   ]
-                : []),
-              ...(state?.status?.[state?.status?.length - 1]?.status ===
-              'approved'
-                ? [{ label: 'Ship', value: 'shipping' }]
-                : []),
-              ...(state?.status?.[state?.status?.length - 1]?.status ===
-              'shipping'
-                ? [{ label: 'Deliver', value: 'delivered' }]
-                : []),
-            ]}
+                : [
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'processing'
+                      ? [
+                          { label: 'Reject Request', value: 'rejected' },
+                          { label: 'Approve Request', value: 'approved' },
+                        ]
+                      : []),
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'approved'
+                      ? [{ label: 'Ship', value: 'shipping' }]
+                      : []),
+                    ...(statusData?.[statusData?.length - 1]?.status ===
+                    'shipping'
+                      ? [{ label: 'Deliver', value: 'delivered' }]
+                      : []),
+                  ]
+            }
             fullWidth
           />
-          {order && (
+          {order?.value === 'rejected' && (
             <>
               <ModalLabel>
-                Reason for {(OrderStatus as any)[order.label]} request
+                Reason for {(OrderStatus as any)[order.value]} request
               </ModalLabel>
               <TextArea
                 className="p-0"
                 placeholder={`Enter your reason for ${
-                  (OrderStatus as any)[order.label]
+                  (OrderStatus as any)[order.value]
                 } this request`}
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
