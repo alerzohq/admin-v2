@@ -19,7 +19,6 @@ const SelectInput = ({
   const Placeholder = (props: PlaceholderProps) => {
     return <components.Placeholder {...props} />
   }
-
   return (
     <Select
       components={{ Placeholder, IndicatorSeparator: () => null }}

@@ -24,6 +24,7 @@ import {
 import { errorMessage } from '../../../utils/message'
 import useDownloadCSV from '../../../hooks/useDownloadCSV'
 import SingleReversalModal from './modal/single-reversal-modal'
+import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 
 const TransactionContainer = () => {
   const {
@@ -38,7 +39,7 @@ const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   useEffect(() => {
-    if (value === 'Perform Single Reversals') {
+    if (value) {
       setShowModal(true)
     }
   }, [value])
@@ -126,11 +127,18 @@ const TransactionContainer = () => {
           },
           {
             placeholder: 'Actions',
+            hideValue: true,
+            isClearable: false,
+            styles: selectStyles(false, false, '150px', true),
             values: [
               {
                 label: 'Perform Single Reversals',
                 value: 'Perform Single Reversals',
               },
+              // {
+              //   label: 'Perform Bulk Reversals',
+              //   value: 'Perform Bulk Reversals',
+              // },
             ],
             action: true,
             value: '',
@@ -147,7 +155,12 @@ const TransactionContainer = () => {
       <Jumbotron padding={'0'}>{component}</Jumbotron>
 
       <Pagination data={data} setPageNumber={setValues} />
-      <SingleReversalModal setShowModal={setShowModal} showModal={showModal} />
+      <SingleReversalModal
+        value={value}
+        setValue={setValue}
+        setShowModal={setShowModal}
+        showModal={showModal}
+      />
     </Container>
   )
 }
