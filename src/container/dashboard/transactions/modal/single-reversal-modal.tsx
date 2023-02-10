@@ -14,7 +14,12 @@ interface Props {
   value: string
   setValue: Dispatch<SetStateAction<string>>
 }
-const SingleReversalModal = ({ showModal, setShowModal, value, setValue }: Props) => {
+const SingleReversalModal = ({
+  showModal,
+  setShowModal,
+  value,
+  setValue,
+}: Props) => {
   const queryClient = useQueryClient()
   const [showSuccess, setShowSuccess] = useState(false)
 
@@ -44,20 +49,23 @@ const SingleReversalModal = ({ showModal, setShowModal, value, setValue }: Props
     setIsTriggerSubmit(triggered)
   }
   const handleFileChange = (event: any) => {
-    console.log(event.target.files[0], "file")
-  };
+    console.log(event.target.files[0], 'file')
+  }
   const ref = useRef(null)
-  const single = value === 'Perform Single Reversals';
+  const single = value === 'Perform Single Reversals'
   const handleFile = (fileSelect: any) => {
     if (fileSelect) {
-      fileSelect?.current?.click();
+      fileSelect?.current?.click()
     }
-  };
+  }
   return (
     <>
       <Modal
         showModal={showModal}
-        setShowModal={() => { setValue(''); setShowModal(false); }}
+        setShowModal={() => {
+          setValue('')
+          setShowModal(false)
+        }}
         buttonText="Submit"
         title={single ? 'Process Single Reversal' : 'Process Bulk Reversals'}
         contentPadding={'0'}
@@ -71,20 +79,23 @@ const SingleReversalModal = ({ showModal, setShowModal, value, setValue }: Props
           })
           if (single && addValues.references) {
             const refArr = [addValues?.references]
-            console.log(typeof (refArr))
+            console.log(typeof refArr)
             handleIsTriggerSubmit(false)
-            mutate({
-              reasonForReversal: addValues?.reasonForReversal,
-              references: [`${addValues?.references}`],
-            }, {
-              onSuccess: () => {
-                queryClient.invalidateQueries('transactions')
-                setShowSuccess(true)
+            mutate(
+              {
+                reasonForReversal: addValues?.reasonForReversal,
+                references: [`${addValues?.references}`],
               },
-              onError: (error: any) => {
-                toast.error(error?.response?.data?.message)
+              {
+                onSuccess: () => {
+                  queryClient.invalidateQueries('transactions')
+                  setShowSuccess(true)
+                },
+                onError: (error: any) => {
+                  toast.error(error?.response?.data?.message)
+                },
               }
-            })
+            )
           }
         }}
       >
@@ -92,45 +103,49 @@ const SingleReversalModal = ({ showModal, setShowModal, value, setValue }: Props
           <Form>
             <Form.Control pb={'1rem'}>
               <Form.Label>Transaction ID</Form.Label>
-              {!single ? <FileInput onClick={() => handleFile(ref)}>
-                <button>{fileName ? fileName : 'Select to attach document'}</button>
-                <input
-                  accept=".csv"
-                  ref={ref}
-                  type="file"
-                  onChange={(e) =>
-                    handleFileChange(e)
-                  }
-                  placeholder="Enter Transaction ID"
-                  value={addValues.references}
-
-                />
-                <FileIcon />
-              </FileInput> :
+              {!single ? (
+                <FileInput onClick={() => handleFile(ref)}>
+                  <button>
+                    {fileName ? fileName : 'Select to attach document'}
+                  </button>
+                  <input
+                    accept=".csv"
+                    ref={ref}
+                    type="file"
+                    onChange={(e) => handleFileChange(e)}
+                    placeholder="Enter Transaction ID"
+                    value={addValues.references}
+                  />
+                  <FileIcon />
+                </FileInput>
+              ) : (
                 <Form.Input
                   type="text"
-                  onChange={(e) =>
-                    handleChange('references', e.target.value)
-                  }
+                  onChange={(e) => handleChange('references', e.target.value)}
                   placeholder="Enter Transaction ID"
                   value={addValues.references}
-                />}
-              {isTriggerSubmit && ((single && !addValues?.references) || (!single && fileArray?.length === 0)) && (
-                <Text
-                  padding="8px"
-                  as={'small'}
-                  weight={'500'}
-                  color={Color.alerzoDanger}
-                >
-                  Transaction ID is required*
-                </Text>
+                />
               )}
+              {isTriggerSubmit &&
+                ((single && !addValues?.references) ||
+                  (!single && fileArray?.length === 0)) && (
+                  <Text
+                    padding="8px"
+                    as={'small'}
+                    weight={'500'}
+                    color={Color.alerzoDanger}
+                  >
+                    Transaction ID is required*
+                  </Text>
+                )}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Reason For Reversal for Reversal</Form.Label>
               <Form.Input
                 type="text"
-                onChange={(e) => handleChange('reasonForReversal', e.target.value.trim())}
+                onChange={(e) =>
+                  handleChange('reasonForReversal', e.target.value.trim())
+                }
                 placeholder="Why do you want to reverse this transaction"
                 value={addValues.reasonForReversal}
               />
@@ -143,7 +158,7 @@ const SingleReversalModal = ({ showModal, setShowModal, value, setValue }: Props
         setShowModal={() => {
           setFileName(undefined)
           setValue('')
-          setShowSuccess(!showSuccess);
+          setShowSuccess(!showSuccess)
           setAddValues({
             reasonForReversal: '',
             references: '',
@@ -156,33 +171,34 @@ const SingleReversalModal = ({ showModal, setShowModal, value, setValue }: Props
         icon={<InviteSent />}
         subTitle={
           <>
-            {single ? `You have successfully reversed the  transaction`
-             : 'You have successfully reversed transactions'}
+            {single
+              ? `You have successfully reversed the  transaction`
+              : 'You have successfully reversed transactions'}
           </>
         }
       >
-         <Button
-        width={'70%'}
-        radius="10px"
-        fontSize="14px"
-        weight="500"
-        variant="transparent"
-        borderColor={Color.alerzoBlue}
-       color={Color.alerzoBlue}
-        onClick={() => {
-          setFileName(undefined)
-          setValue('')
-          setShowSuccess(!showSuccess);
-          setAddValues({
-            reasonForReversal: '',
-            references: '',
-          })
-          setShowModal(!showModal)
-        }}
-      >
-        Back To Transaction History
-      </Button>
-     </Modal>
+        <Button
+          width={'70%'}
+          radius="10px"
+          fontSize="14px"
+          weight="500"
+          variant="transparent"
+          borderColor={Color.alerzoBlue}
+          color={Color.alerzoBlue}
+          onClick={() => {
+            setFileName(undefined)
+            setValue('')
+            setShowSuccess(!showSuccess)
+            setAddValues({
+              reasonForReversal: '',
+              references: '',
+            })
+            setShowModal(!showModal)
+          }}
+        >
+          Back To Transaction History
+        </Button>
+      </Modal>
     </>
   )
 }

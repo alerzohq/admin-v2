@@ -9,7 +9,7 @@ export const selectStyles = (
   isBlue?: boolean,
   fullWidth?: boolean,
   maxWidth?: string,
-  isBlueBackground?: boolean,
+  isBlueBackground?: boolean
 ) => {
   return isBlue
     ? {
@@ -94,18 +94,22 @@ export const selectStyles = (
         control: (
           styles?: CSSObjectWithLabel,
           state?: ControlProps<Coptions, boolean, GroupBase<Coptions>>
-       
         ) => ({
           ...styles,
-          border: isBlueBackground ? `1px solid ${Color.alerzoBlue}` : state?.isFocused
+          border: isBlueBackground
+            ? `1px solid ${Color.alerzoBlue}`
+            : state?.isFocused
             ? `1px solid ${Color.alerzoLightGray}`
             : `1px solid ${Color.alerzoLightGray}`,
           height: 45,
           width: fullWidth ? '100%' : 200,
           maxWidth: maxWidth,
           borderRadius: 10,
-          backgroundColor:  isBlueBackground && !state?.isFocused ? `${Color.alerzoBlue}` : 'transparent',
-        
+          backgroundColor:
+            isBlueBackground && !state?.isFocused
+              ? `${Color.alerzoBlue}`
+              : 'transparent',
+
           fontSize: 14,
           boxShadow: Color.alerzoDarkGray,
           '&:hover': {
@@ -120,7 +124,11 @@ export const selectStyles = (
             ...defaultStyles,
             fontSize: '.8rem',
             fontWeight: isBlueBackground ? '600' : '500',
-            color: isBlueBackground ? isFocused ? `${Color.alerzoBlue}` : '#fff' :isFocused
+            color: isBlueBackground
+              ? isFocused
+                ? `${Color.alerzoBlue}`
+                : '#fff'
+              : isFocused
               ? `${Color.alerzoWhite}`
               : `${Color.alerzoDarkGray}`,
           }
@@ -131,7 +139,11 @@ export const selectStyles = (
         ) => {
           return {
             ...defaultStyles,
-            color: isBlueBackground ? isFocused ? `${Color.alerzoBlue}` : `${Color.alerzoWhite}` : '',
+            color: isBlueBackground
+              ? isFocused
+                ? `${Color.alerzoBlue}`
+                : `${Color.alerzoWhite}`
+              : '',
           }
         },
         option: (

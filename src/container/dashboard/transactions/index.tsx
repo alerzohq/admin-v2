@@ -130,7 +130,7 @@ const TransactionContainer = () => {
             placeholder: 'Actions',
             hideValue: true,
             isClearable: false,
-            styles: selectStyles(false, false, "150px", true),
+            styles: selectStyles(false, false, '150px', true),
             values: [
               {
                 label: 'Perform Single Reversals',
@@ -156,7 +156,12 @@ const TransactionContainer = () => {
       <Jumbotron padding={'0'}>{component}</Jumbotron>
 
       <Pagination data={data} setPageNumber={setValues} />
-      <SingleReversalModal value={value} setValue={setValue} setShowModal={setShowModal} showModal={showModal} />
+      <SingleReversalModal
+        value={value}
+        setValue={setValue}
+        setShowModal={setShowModal}
+        showModal={showModal}
+      />
     </Container>
   )
 }
