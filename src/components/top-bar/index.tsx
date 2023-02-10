@@ -50,7 +50,7 @@ const TopBar = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
-
+console.log(showFilters?.selects)
   return (
     <>
       <TopbarWrapper>
@@ -89,11 +89,14 @@ const TopBar = ({
               </div>
             )}
             {showFilters?.selects?.length >= 1 &&
-              showFilters.selects.map((select, i) => (
+              showFilters.selects.map((select, i) => {
+                console.log(select.isClearable)
+                return(
                 <SelectInput
                   key={i}
                   maxWidth="150px"
                   placeholder={select.placeholder}
+                  styles={select?.styles}
                   onChange={
                     select?.action
                       ? (e) => select.onChange(e)
@@ -114,11 +117,13 @@ const TopBar = ({
                           setStatus(e?.value)
                         }
                   }
+
+                  hideValue={select.hideValue}
                   value={select.value}
                   options={select.values}
-                  isClearable
+                  isClearable={select.isClearable  === true || select.isClearable === false? select.isClearable : true}
                 />
-              ))}
+              )})}
             {showFilters?.buttons?.length >= 1 &&
               showFilters.buttons.map((button, i) => (
                 <button
