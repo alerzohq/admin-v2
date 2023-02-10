@@ -48,8 +48,7 @@ const SingleReversalModal = ({
   const handleIsTriggerSubmit = (triggered: boolean) => {
     setIsTriggerSubmit(triggered)
   }
-  const handleFileChange = (event: any) => {
-  }
+  const handleFileChange = (event: any) => {}
   const ref = useRef(null)
   const single = value === 'Perform Single Reversals'
   const handleFile = (fileSelect: any) => {
