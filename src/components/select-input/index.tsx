@@ -19,7 +19,6 @@ const SelectInput = ({
   const Placeholder = (props: PlaceholderProps) => {
     return <components.Placeholder {...props} />
   }
-  console.log(isClearable, 'cc', placeholder)
   return (
     <Select
       components={{ Placeholder, IndicatorSeparator: () => null }}

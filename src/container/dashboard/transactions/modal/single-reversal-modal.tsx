@@ -49,7 +49,6 @@ const SingleReversalModal = ({
     setIsTriggerSubmit(triggered)
   }
   const handleFileChange = (event: any) => {
-    console.log(event.target.files[0], 'file')
   }
   const ref = useRef(null)
   const single = value === 'Perform Single Reversals'
@@ -73,13 +72,8 @@ const SingleReversalModal = ({
         disabled={loadingAssign}
         handleSubmit={async () => {
           handleIsTriggerSubmit(true)
-          console.log({
-            ...addValues,
-            references: single ? [`${addValues?.references}`] : fileArray,
-          })
           if (single && addValues.references) {
-            const refArr = [addValues?.references]
-            console.log(typeof refArr)
+            // const refArr = [addValues?.references]
             handleIsTriggerSubmit(false)
             mutate(
               {

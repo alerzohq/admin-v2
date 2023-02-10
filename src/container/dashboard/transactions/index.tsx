@@ -39,7 +39,6 @@ const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   useEffect(() => {
-    console.log(value)
     if (value) {
       setShowModal(true)
     }

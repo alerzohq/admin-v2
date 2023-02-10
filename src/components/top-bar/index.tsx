@@ -50,7 +50,6 @@ const TopBar = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
-  console.log(showFilters?.selects)
   return (
     <>
       <TopbarWrapper>
@@ -90,7 +89,6 @@ const TopBar = ({
             )}
             {showFilters?.selects?.length >= 1 &&
               showFilters.selects.map((select, i) => {
-                console.log(select.isClearable)
                 return (
                   <SelectInput
                     key={i}
