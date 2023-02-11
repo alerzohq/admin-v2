@@ -18,7 +18,6 @@ import { useAppContext } from '../../../context'
 import {
   billerFilterOptions,
   platformFiltersOptions,
-  productFilterOptions,
   statusFilterOptions,
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
@@ -33,22 +32,26 @@ const TransactionContainer = () => {
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
-  let productOptions = productFilterOptions(appFilters?.['transactions'])
+  // let productOptions = productFilterOptions(appFilters?.['transactions'])
   const [showModal, setShowModal] = useState(false)
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
-  useEffect(() => {
-    if (value) {
-      setShowModal(true)
-    }
-  }, [value])
-  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+ 
+  const { downloadBulkCSV  } = useDownloadCSV(
     'transactions?',
     values,
     'history'
   )
-
+  useEffect(() => {
+    if (value) {
+      if(value ==='Download CSV Report'){
+        downloadBulkCSV()
+        return setValue('')
+      }
+      setShowModal(true)
+    }
+  }, [value, downloadBulkCSV])
   const getTransactions = (filterValue: filterProps) => {
     return getNewFilterResource(`transactions`, filterValue)
   }
@@ -114,12 +117,12 @@ const TransactionContainer = () => {
             values: billerOptions,
             value: '',
           },
-          {
-            searchQuery: 'productSlug',
-            placeholder: 'Products',
-            values: productOptions,
-            value: '',
-          },
+          // {
+          //   searchQuery: 'productSlug',
+          //   placeholder: 'Products',
+          //   values: productOptions,
+          //   value: '',
+          // },
           {
             placeholder: 'Status',
             values: statusOptions,
@@ -134,6 +137,10 @@ const TransactionContainer = () => {
               {
                 label: 'Perform Single Reversals',
                 value: 'Perform Single Reversals',
+              },
+              {
+                label: 'Download CSV Report',
+                value: 'Download CSV Report',
               },
               // {
               //   label: 'Perform Bulk Reversals',
