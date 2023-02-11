@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   FallBack,
   Jumbotron,
@@ -23,6 +23,8 @@ import {
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
 import useDownloadCSV from '../../../hooks/useDownloadCSV'
+import SingleReversalModal from './modal/single-reversal-modal'
+import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 
 const TransactionContainer = () => {
   const {
@@ -32,9 +34,15 @@ const TransactionContainer = () => {
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
   let productOptions = productFilterOptions(appFilters?.['transactions'])
-
+  const [showModal, setShowModal] = useState(false)
+  const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
+  useEffect(() => {
+    if (value) {
+      setShowModal(true)
+    }
+  }, [value])
   const { downloadBulkCSV, isDownloading } = useDownloadCSV(
     'transactions?',
     values,
@@ -101,13 +109,13 @@ const TransactionContainer = () => {
             value: '',
           },
           {
-            searchQuery: 'biller',
-            placeholder: 'Biller',
+            searchQuery: 'billerSlug',
+            placeholder: 'Billers',
             values: billerOptions,
             value: '',
           },
           {
-            searchQuery: 'product',
+            searchQuery: 'productSlug',
             placeholder: 'Products',
             values: productOptions,
             value: '',
@@ -117,11 +125,24 @@ const TransactionContainer = () => {
             values: statusOptions,
             value: '',
           },
-        ],
-        buttons: [
           {
-            label: isDownloading ? 'Download...' : 'Download CSV',
-            onClick: () => downloadBulkCSV(),
+            placeholder: 'Actions',
+            hideValue: true,
+            isClearable: false,
+            styles: selectStyles(false, false, '150px', true),
+            values: [
+              {
+                label: 'Perform Single Reversals',
+                value: 'Perform Single Reversals',
+              },
+              // {
+              //   label: 'Perform Bulk Reversals',
+              //   value: 'Perform Bulk Reversals',
+              // },
+            ],
+            action: true,
+            value: '',
+            onChange: (e: any) => setValue(e?.value),
           },
         ],
       }}
@@ -134,6 +155,12 @@ const TransactionContainer = () => {
       <Jumbotron padding={'0'}>{component}</Jumbotron>
 
       <Pagination data={data} setPageNumber={setValues} />
+      <SingleReversalModal
+        value={value}
+        setValue={setValue}
+        setShowModal={setShowModal}
+        showModal={showModal}
+      />
     </Container>
   )
 }

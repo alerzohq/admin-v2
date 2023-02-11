@@ -6,12 +6,16 @@ export type TopBarProps = {
     refSearch: { type: string; placeholder: string }
     date: boolean
     selects: {
+      hideValue?: boolean
+      styles?: StylesConfig<Coptions>
       searchQuery?: string
       shouldSetQuery?: boolean
       values: any[]
       placeholder: string
-      onChange: () => void
+      onChange: (e?: any) => void
       value: string
+      action?: boolean
+      isClearable?: boolean
     }[]
     buttons: {
       label: string

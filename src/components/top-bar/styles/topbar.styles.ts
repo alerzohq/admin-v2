@@ -1,9 +1,8 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
-
-type Props={
-maxWidth?:string;
+type Props = {
+  maxWidth?: string
 }
 
 export const TopbarWrapper = styled.div`
@@ -75,7 +74,7 @@ export const Filter = styled.input<Props>`
   height: 45px;
   padding: 0 1rem;
   width: 250px;
-  max-width:${({maxWidth})=>maxWidth};
+  max-width: ${({ maxWidth }) => maxWidth};
   ::placeholder {
     font-family: 'Gilmer';
     font-style: normal;

@@ -81,3 +81,13 @@ export const resolveColor = (status) => {
     }
   }
 }
+
+export const resolveStatus = (status) => {
+  if (status === 'verified') {
+    return 'success'
+  } else if (status === 'rejected') {
+    return 'failed'
+  } else {
+    return 'unassigned'
+  }
+}
