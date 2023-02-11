@@ -37,7 +37,7 @@ const SingleReversalModal = ({
       })
     )
   const { isLoading: loadingAssign, mutate } = useReversalMutation()
-  const [fileArray, setFileArray] = useState<string[] | any>([])
+  const [fileArray] = useState<string[] | any>([])
   const [fileName, setFileName] = useState()
   const handleChange = (name: string, value: string) =>
     setAddValues({
