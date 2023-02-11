@@ -37,15 +37,10 @@ const TransactionContainer = () => {
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
- 
-  const { downloadBulkCSV  } = useDownloadCSV(
-    'transactions?',
-    values,
-    'history'
-  )
+  const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
   useEffect(() => {
     if (value) {
-      if(value ==='Download CSV Report'){
+      if (value === 'Download CSV Report') {
         downloadBulkCSV()
         return setValue('')
       }
