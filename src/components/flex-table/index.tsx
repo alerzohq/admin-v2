@@ -96,16 +96,16 @@ FlexTableWrapper.Row = function CardRow({
                 clickable={clickable?.index === index}
                 bgColor={bgBottomColor}
               >
-                <button
-                  onClick={
-                    clickable?.index === index
-                      ? clickable?.shouldFetch === false
-                        ? () => navigate(clickable?.url)
-                        : () => handleClick()
-                      : () => null
-                  }
-                >
+          
                   <Text
+                  
+                    onClick={
+                      clickable?.index === index
+                        ? clickable?.shouldFetch === false
+                          ? () => navigate(clickable?.url)
+                          : () => handleClick()
+                        : () => null
+                    }
                     as={'p'}
                     padding={'0 .1em'}
                     color={
@@ -125,7 +125,7 @@ FlexTableWrapper.Row = function CardRow({
                     }
                     textAlign="left"
                     weight={
-                      field.toLowerCase().includes('status') ? '600' : '400'
+                      clickable?.index === index  || field.toLowerCase().includes('status') ? '600' : '400'
                     }
                     width={
                       field.toLowerCase().includes('status') ? '100%' : 'auto'
@@ -140,7 +140,6 @@ FlexTableWrapper.Row = function CardRow({
                   >
                     {data[field as keyof typeof data] ? amt : ''}
                   </Text>
-                </button>
               </CardItem>
             </CardBorderWrapper>
           </CardContainer>
