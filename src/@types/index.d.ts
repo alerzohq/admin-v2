@@ -20,4 +20,6 @@ export type filterProps = {
   query?: string
   channel?: string
   userId?: string
+  billerSlug?: string
+  productSlug?: string
 }

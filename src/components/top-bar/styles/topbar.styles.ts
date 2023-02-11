@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
+type Props = {
+  maxWidth?: string
+}
+
 export const TopbarWrapper = styled.div`
   height: 90px;
   background: ${Color.alerzoWhite};
@@ -27,7 +31,7 @@ export const TopbarWrapper = styled.div`
 `
 export const TopbarFilters = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10px;
   overflow-y: visible;
   overflow-x: clip;
   scrollbar-width: none;
@@ -63,13 +67,14 @@ export const TopbarFilters = styled.div`
     overflow: scroll;
   }
 `
-export const Filter = styled.input`
+export const Filter = styled.input<Props>`
   background: ${Color.alerzoWhite};
   border: 1px solid rgba(193, 202, 207, 0.5);
   border-radius: 10px;
   height: 45px;
   padding: 0 1rem;
   width: 250px;
+  max-width: ${({ maxWidth }) => maxWidth};
   ::placeholder {
     font-family: 'Gilmer';
     font-style: normal;

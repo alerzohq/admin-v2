@@ -8,6 +8,8 @@ export type PaginationProps = {
       pageNumber: number
       status: string
       query: string
+      biller: string
+      product: string
       from: string
       to: string
     }>

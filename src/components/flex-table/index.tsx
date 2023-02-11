@@ -96,7 +96,7 @@ FlexTableWrapper.Row = function CardRow({
                 clickable={clickable?.index === index}
                 bgColor={bgBottomColor}
               >
-                <button
+                <Text
                   onClick={
                     clickable?.index === index
                       ? clickable?.shouldFetch === false
@@ -104,43 +104,43 @@ FlexTableWrapper.Row = function CardRow({
                         : () => handleClick()
                       : () => null
                   }
+                  as={'p'}
+                  padding={'0 .1em'}
+                  color={
+                    field.toLowerCase().includes('status')
+                      ? color
+                      : clickable?.index === index
+                      ? Color.alerzoBlue
+                      : Color.alerzoBlack
+                  }
+                  bgColor={
+                    field.toLowerCase().includes('status')
+                      ? bgColor
+                      : 'transparent'
+                  }
+                  justifyContent={
+                    field.toLowerCase().includes('status') ? 'center' : 'left'
+                  }
+                  textAlign="left"
+                  weight={
+                    clickable?.index === index ||
+                    field.toLowerCase().includes('status')
+                      ? '600'
+                      : '400'
+                  }
+                  width={
+                    field.toLowerCase().includes('status') ? '100%' : 'auto'
+                  }
+                  size="14px"
+                  align={'center'}
+                  className={
+                    amt === 'Session Ongoing'
+                      ? 'pendingText'
+                      : classes?.[field]?.class
+                  }
                 >
-                  <Text
-                    as={'p'}
-                    padding={'0 .1em'}
-                    color={
-                      field.toLowerCase().includes('status')
-                        ? color
-                        : clickable?.index === index
-                        ? Color.alerzoBlue
-                        : Color.alerzoBlack
-                    }
-                    bgColor={
-                      field.toLowerCase().includes('status')
-                        ? bgColor
-                        : 'transparent'
-                    }
-                    justifyContent={
-                      field.toLowerCase().includes('status') ? 'center' : 'left'
-                    }
-                    textAlign="left"
-                    weight={
-                      field.toLowerCase().includes('status') ? '600' : '400'
-                    }
-                    width={
-                      field.toLowerCase().includes('status') ? '100%' : 'auto'
-                    }
-                    size="14px"
-                    align={'center'}
-                    className={
-                      amt === 'Session Ongoing'
-                        ? 'pendingText'
-                        : classes?.[field]?.class
-                    }
-                  >
-                    {data[field as keyof typeof data] ? amt : ''}
-                  </Text>
-                </button>
+                  {data[field as keyof typeof data] ? amt : ''}
+                </Text>
               </CardItem>
             </CardBorderWrapper>
           </CardContainer>

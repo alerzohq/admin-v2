@@ -50,14 +50,10 @@ export const removeHyphen = (s?: string) => {
 }
 
 export const amountConverter = (x: string | number) => {
-  // if (x === 0 || x === null || x === undefined) {
-  //   return '0'
-  // }
   if (!x) {
     return '0'
   }
   let amount = Number(x) / 100
-
   return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
@@ -113,8 +109,12 @@ export const mapBusinesses = (arr: any) =>
     value: obj?.id,
   }))
 
-export const sumOfValue = (arr: { [key: string]: any }[], param: string) => {
+export const sumOfValue = (
+  arr: { [key: string]: any }[],
+  param: string,
+  param2: string
+) => {
   return arr?.reduce((accumulator, object) => {
-    return accumulator + object[param]
+    return accumulator + object[param] * object[param2]
   }, 0)
 }

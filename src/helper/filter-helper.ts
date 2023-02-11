@@ -15,3 +15,18 @@ export const statusFilterOptions = (appfilters: FilterOptions) => {
     return { label, value }
   })
 }
+export const billerFilterOptions = (appfilters: FilterOptions) => {
+  let transformFilters = appfilters?.filters?.[2]?.dropdown
+  return transformFilters?.map((filter: FilterOptions) => {
+    let { label, value } = filter
+    return { label, value }
+  })
+}
+
+export const productFilterOptions = (appfilters: FilterOptions) => {
+  let transformFilters = appfilters?.filters?.[3]?.dropdown
+  return transformFilters?.map((filter: FilterOptions) => {
+    let { label, value } = filter
+    return { label, value }
+  })
+}

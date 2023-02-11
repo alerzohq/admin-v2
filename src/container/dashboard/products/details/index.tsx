@@ -26,9 +26,17 @@ const ProductDetailsContainer = () => {
   const getProductBillers = (slug: string) => {
     return getResource(`products/${slug}/billers`)
   }
+  const getProductBillersDetails = (slug: string) => {
+    return getResource(`products/${slug}`)
+  }
   const { isLoading, isRefetching, isError, refetch, data, error } = useQuery(
     ['billers', detail?.slug],
     () => getProductBillers(detail?.slug)
+  )
+
+  const { data: billerDetails } = useQuery(
+    ['billers-details', detail?.slug],
+    () => getProductBillersDetails(detail?.slug)
   )
   const resp = data?.data?.[0]
 

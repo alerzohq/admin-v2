@@ -8,6 +8,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { axiosInstance } from '../../../../configs/axios-instance'
 import toast from 'react-hot-toast'
 import { getTerminalsSpecs } from '../utils'
+import { TerminalProviders } from '../../../../data/terminal-data'
 
 const AddTerminalModal: React.FC<{
   addMethod: string
@@ -18,6 +19,8 @@ const AddTerminalModal: React.FC<{
   const [addValues, setAddValues] = useState({
     serialNumber: '',
     specification: '',
+    provider: '',
+    terminalId: '',
   })
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
 
@@ -25,6 +28,7 @@ const AddTerminalModal: React.FC<{
     'terminal-specs',
     getTerminalsSpecs
   )
+
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -32,7 +36,7 @@ const AddTerminalModal: React.FC<{
     AxiosError<any, any>
   >(
     (inviteData: { serialNumber: string; POSVariant: string }) => {
-      return axiosInstance.post('/terminals', { tid: '', ...addValues })
+      return axiosInstance.post('/terminals', { ...addValues })
     },
     {
       onSuccess: () => {
@@ -40,7 +44,12 @@ const AddTerminalModal: React.FC<{
         queryClient.invalidateQueries('terminal-stats')
         queryClient.invalidateQueries('terminals')
         handleAddMethod('')
-        setAddValues({ serialNumber: '', specification: '' })
+        setAddValues({
+          serialNumber: '',
+          specification: '',
+          provider: '',
+          terminalId: '',
+        })
       },
     }
   )
@@ -133,6 +142,64 @@ const AddTerminalModal: React.FC<{
               </Text>
             )}
           </Form.Control>
+          <Form.Control pb={'1rem'}>
+            <Form.Label>Provider</Form.Label>
+            {!specsLoading && (
+              <SelectInput
+                fullWidth
+                placeholder="Select Provider"
+                options={[
+                  {
+                    value: '',
+                    label: 'Select Provider',
+                    disabled: true,
+                  },
+                  ...TerminalProviders,
+                ]}
+                onChange={(e) => {
+                  handleChange('provider', e.value)
+                }}
+                value={addValues.specification}
+              />
+            )}
+            {isTriggerSubmit && (
+              <Text
+                padding="8px"
+                as={'small'}
+                weight={'500'}
+                color={Color.alerzoDanger}
+              >
+                {isTriggerSubmit && addValues.provider === ''
+                  ? 'Provider is required*'
+                  : ''}
+              </Text>
+            )}
+          </Form.Control>
+          {addValues.provider === 'ga' && (
+            <Form.Control pb={'1rem'}>
+              <Form.Label>Terminal ID</Form.Label>
+              <Form.Input
+                type="text"
+                onChange={(e) =>
+                  handleChange('terminalId', e.target.value.trim())
+                }
+                placeholder="Enter terminal ID"
+                value={addValues.terminalId}
+              />
+              {isTriggerSubmit && (
+                <Text
+                  padding="8px"
+                  as={'small'}
+                  weight={'500'}
+                  color={Color.alerzoDanger}
+                >
+                  {isTriggerSubmit && addValues.terminalId === ''
+                    ? 'Terminal ID is required*'
+                    : ''}
+                </Text>
+              )}
+            </Form.Control>
+          )}
         </Form>
         {mutation.isError && (
           <Text

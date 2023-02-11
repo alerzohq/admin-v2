@@ -29,7 +29,6 @@ const TerminalTransactions = ({ terminalId }: { terminalId: string }) => {
     () => getTransactions(values),
     { keepPreviousData: true }
   )
-
   let component
   if (isLoading) {
     component = <Loader />
