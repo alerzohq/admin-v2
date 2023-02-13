@@ -9,6 +9,7 @@ export type TopBarProps = {
       hideValue?: boolean
       styles?: StylesConfig<Coptions>
       searchQuery?: string
+      isSearchable?: boolean
       shouldSetQuery?: boolean
       values: any[]
       placeholder: string

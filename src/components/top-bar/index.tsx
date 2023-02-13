@@ -95,6 +95,7 @@ const TopBar = ({
                     maxWidth="150px"
                     placeholder={select.placeholder}
                     styles={select?.styles}
+                    isSearchable={select?.isSearchable}
                     onChange={
                       select?.action
                         ? (e) => select.onChange(e)
