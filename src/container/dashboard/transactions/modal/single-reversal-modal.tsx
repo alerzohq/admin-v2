@@ -70,17 +70,16 @@ const SingleReversalModal = ({
               },
               {
                 onSuccess: (data) => {
-                  console.log(data)
-                  if(data?.message === 'Transactions reversed with some errors'){
+                  if (
+                    data?.message === 'Transactions reversed with some errors'
+                  ) {
                     setShowModal(!showModal)
                     setValue('')
-                    toast.error('Transactions reversed with some errors');
-                    
-                  }else{
+                    toast.error('Transactions reversed with some errors')
+                  } else {
                     queryClient.invalidateQueries('transactions')
                     setShowSuccess(true)
                   }
-                 
                 },
                 onError: (error: any) => {
                   toast.error(error?.response?.data?.message)
@@ -94,24 +93,23 @@ const SingleReversalModal = ({
           <Form>
             <Form.Control pb={'1rem'}>
               <Form.Label>Transaction ID</Form.Label>
-                <Form.Input
-                  type="text"
-                  onChange={(e) => handleChange('references', e.target.value)}
-                  placeholder="Enter Transaction ID"
-                  value={addValues.references}
-                />
-             
-              {isTriggerSubmit &&
-                (!addValues?.references) && (
-                  <Text
-                    padding="8px"
-                    as={'small'}
-                    weight={'500'}
-                    color={Color.alerzoDanger}
-                  >
-                    Transaction ID is required*
-                  </Text>
-                )}
+              <Form.Input
+                type="text"
+                onChange={(e) => handleChange('references', e.target.value)}
+                placeholder="Enter Transaction ID"
+                value={addValues.references}
+              />
+
+              {isTriggerSubmit && !addValues?.references && (
+                <Text
+                  padding="8px"
+                  as={'small'}
+                  weight={'500'}
+                  color={Color.alerzoDanger}
+                >
+                  Transaction ID is required*
+                </Text>
+              )}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Reason For Reversal for Reversal</Form.Label>
@@ -142,7 +140,7 @@ const SingleReversalModal = ({
         modalWidth="320px"
         contentPadding={'0'}
         icon={<InviteSent />}
-        subTitle='You have successfully reversed the  transaction'
+        subTitle="You have successfully reversed the  transaction"
       >
         <Button
           width={'70%'}
