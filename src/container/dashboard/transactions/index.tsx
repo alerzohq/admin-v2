@@ -127,6 +127,7 @@ const TransactionContainer = () => {
             placeholder: 'Actions',
             hideValue: true,
             isClearable: false,
+            isSearchable: false,
             styles: selectStyles(false, false, '150px', true),
             values: [
               {
