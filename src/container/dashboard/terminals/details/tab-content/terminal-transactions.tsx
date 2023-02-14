@@ -65,13 +65,6 @@ const TerminalTransactions = ({ terminalId }: { terminalId: string }) => {
             date: true,
             selects: [
               {
-                placeholder: 'All Platform',
-                values: [],
-                value: '',
-                onChange: () => {},
-                query: 'allPlatform',
-              },
-              {
                 placeholder: 'Status',
                 values: [],
                 value: '',

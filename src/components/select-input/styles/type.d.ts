@@ -7,8 +7,9 @@ export type SelectProps = {
   value: SelectInputProps
   styles?: StylesConfig<Coptions>
   hideValue?: boolean
-  maxWidth?:string
+  maxWidth?: string
   fullWidth?: boolean
   disabled?: boolean
+  isSearchable?: boolean
   onInputChange?: (e: any, a: any) => void
 }

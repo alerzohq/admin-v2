@@ -15,11 +15,11 @@ const SelectInput = ({
   onChange,
   disabled,
   onInputChange,
+  isSearchable,
 }: SelectProps) => {
   const Placeholder = (props: PlaceholderProps) => {
     return <components.Placeholder {...props} />
   }
-
   return (
     <Select
       components={{ Placeholder, IndicatorSeparator: () => null }}
@@ -32,6 +32,7 @@ const SelectInput = ({
       onInputChange={onInputChange}
       styles={styles ? styles : selectStyles(false, fullWidth, maxWidth)}
       isClearable={isClearable}
+      isSearchable={isSearchable}
       controlShouldRenderValue={!hideValue}
       placeholder={
         <div className={placeholderStyle || 'select-placeholder'}>

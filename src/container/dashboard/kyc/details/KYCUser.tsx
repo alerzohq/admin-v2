@@ -8,6 +8,7 @@ import UpdateKYCModal from './update-kyc-modal'
 import { useMutation, useQueryClient } from 'react-query'
 import { postRequest } from '../../../../utils/apiRequest'
 import toast from 'react-hot-toast'
+import { resolveColor, resolveStatus } from '../../../../utils/resolveColors'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
   const initialState = { comments: '', status: '', reason: '' }
@@ -124,25 +125,29 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
         </Stack>
         <Stack>
           <Text weight="400" color={Color.alerzoGray2} padding="1rem 0">
+            Metamap Status
+          </Text>
+          <Text
+            align="center"
+            margin="0 0 1rem 0"
+            weight="600"
+            as="p"
+            justifyContent="center"
+            color={Color.alerzoDarkGray}
+            className={resolveStatus(state.metamapStatus)}
+          >
+            {state.metamapStatus}
+          </Text>
+          <Text weight="400" color={Color.alerzoGray2} padding="1rem 0">
             Verification Status
           </Text>
-
-          {/* Make logic below a util function */}
           <Text
             align="center"
             weight="600"
             as="p"
             justifyContent="center"
             color={Color.alerzoDarkGray}
-            className={
-              state.status === 'verified'
-                ? 'success'
-                : state.status === 'processing'
-                ? 'unassigned'
-                : state.status === 'rejected'
-                ? 'failed'
-                : state.status
-            }
+            className={resolveStatus(state.status)}
           >
             {state.status}
           </Text>

@@ -10,7 +10,6 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import { filterValue } from '../../../data/filter-data'
-import { optionsAllPlatform } from '../../../data/select-data'
 import { KYCHeaderList } from '../../../data/table-headers'
 import { getNewFilterResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
@@ -65,12 +64,6 @@ const KYC = () => {
             },
             date: true,
             selects: [
-              {
-                query: 'allPlatform',
-                placeholder: 'All Platform',
-                values: optionsAllPlatform,
-                value: '',
-              },
               {
                 query: 'status',
                 placeholder: 'Status',

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   FallBack,
   Jumbotron,
@@ -18,11 +18,12 @@ import { useAppContext } from '../../../context'
 import {
   billerFilterOptions,
   platformFiltersOptions,
-  productFilterOptions,
   statusFilterOptions,
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
 import useDownloadCSV from '../../../hooks/useDownloadCSV'
+import SingleReversalModal from './modal/single-reversal-modal'
+import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 
 const TransactionContainer = () => {
   const {
@@ -31,16 +32,21 @@ const TransactionContainer = () => {
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
-  let productOptions = productFilterOptions(appFilters?.['transactions'])
-
+  // let productOptions = productFilterOptions(appFilters?.['transactions'])
+  const [showModal, setShowModal] = useState(false)
+  const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
-  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
-    'transactions?',
-    values,
-    'history'
-  )
-
+  const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
+  useEffect(() => {
+    if (value) {
+      if (value === 'Download CSV Report') {
+        downloadBulkCSV()
+        return setValue('')
+      }
+      setShowModal(true)
+    }
+  }, [value, downloadBulkCSV])
   const getTransactions = (filterValue: filterProps) => {
     return getNewFilterResource(`transactions`, filterValue)
   }
@@ -106,22 +112,40 @@ const TransactionContainer = () => {
             values: billerOptions,
             value: '',
           },
-          {
-            searchQuery: 'productSlug',
-            placeholder: 'Products',
-            values: productOptions,
-            value: '',
-          },
+          // {
+          //   searchQuery: 'productSlug',
+          //   placeholder: 'Products',
+          //   values: productOptions,
+          //   value: '',
+          // },
           {
             placeholder: 'Status',
             values: statusOptions,
             value: '',
           },
-        ],
-        buttons: [
           {
-            label: isDownloading ? 'Download...' : 'Download CSV',
-            onClick: () => downloadBulkCSV(),
+            placeholder: 'Actions',
+            hideValue: true,
+            isClearable: false,
+            isSearchable: false,
+            styles: selectStyles(false, false, '150px', true),
+            values: [
+              {
+                label: 'Perform Single Reversals',
+                value: 'Perform Single Reversals',
+              },
+              {
+                label: 'Download CSV Report',
+                value: 'Download CSV Report',
+              },
+              // {
+              //   label: 'Perform Bulk Reversals',
+              //   value: 'Perform Bulk Reversals',
+              // },
+            ],
+            action: true,
+            value: '',
+            onChange: (e: any) => setValue(e?.value),
           },
         ],
       }}
@@ -134,6 +158,12 @@ const TransactionContainer = () => {
       <Jumbotron padding={'0'}>{component}</Jumbotron>
 
       <Pagination data={data} setPageNumber={setValues} />
+      <SingleReversalModal
+        value={value}
+        setValue={setValue}
+        setShowModal={setShowModal}
+        showModal={showModal}
+      />
     </Container>
   )
 }

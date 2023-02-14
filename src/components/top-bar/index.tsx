@@ -56,7 +56,6 @@ const TopBar = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
-
   return (
     <>
       <TopbarWrapper>
@@ -97,32 +96,46 @@ const TopBar = ({
               </div>
             )}
             {showFilters?.selects?.length >= 1 &&
-              showFilters.selects.map((select, i) => (
-                <SelectInput
-                  key={i}
-                  maxWidth="150px"
-                  placeholder={select.placeholder}
-                  onChange={(e, a) => {
-                    if (select.shouldSetQuery) {
-                      return setFilterValues((prev: any) => ({
-                        ...prev,
-                        query: e?.value,
-                      }))
+              showFilters.selects.map((select, i) => {
+                return (
+                  <SelectInput
+                    key={i}
+                    maxWidth="150px"
+                    placeholder={select.placeholder}
+                    styles={select?.styles}
+                    isSearchable={select?.isSearchable}
+                    onChange={
+                      select?.action
+                        ? (e) => select.onChange(e)
+                        : (e, a) => {
+                            if (select.shouldSetQuery) {
+                              return setFilterValues((prev: any) => ({
+                                ...prev,
+                                query: e?.value,
+                              }))
+                            }
+                            if (select?.searchQuery) {
+                              const key: string = select?.searchQuery
+                              const dataObj: any = {}
+                              dataObj[key] = e?.value.toString() || ''
+                              const ne = { ...newObj, ...dataObj }
+                              return setnewObj(ne)
+                            }
+                            setStatus(e?.value)
+                          }
                     }
-                    if (select?.searchQuery) {
-                      const key: string = select?.searchQuery
-                      const dataObj: any = {}
-                      dataObj[key] = e?.value.toString() || ''
-                      const ne = { ...newObj, ...dataObj }
-                      return setnewObj(ne)
+                    hideValue={select.hideValue}
+                    value={select.value}
+                    options={select.values}
+                    isClearable={
+                      select.isClearable === true ||
+                      select.isClearable === false
+                        ? select.isClearable
+                        : true
                     }
-                    setStatus(e?.value)
-                  }}
-                  value={select.value}
-                  options={select.values}
-                  isClearable
-                />
-              ))}
+                  />
+                )
+              })}
             {showFilters?.buttons?.length >= 1 &&
               showFilters.buttons.map((button, i) => (
                 <button
