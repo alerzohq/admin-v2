@@ -44,7 +44,9 @@ const TabsContainer = () => {
         if (data?.data?.length === 0) {
           toast.error(`${'business details does not exist for this user'}`)
         } else {
-          navigate(`/dashboard/businesses/${data?.data?.[0]?.business_id}`)
+          navigate(`/dashboard/businesses/${data?.data?.[0]?.business_id}`, {
+            state: { prevPath: `${thePath}` },
+          })
         }
       },
     }

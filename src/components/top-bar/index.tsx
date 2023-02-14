@@ -34,7 +34,6 @@ const TopBar = ({
     allPlatform: '',
   })
 
-  // console.log({ routePath })
   const { search } = values
   const ref = useRef<HTMLDivElement>(null)
   const rectVal = ref?.current?.getBoundingClientRect()?.left
@@ -67,7 +66,7 @@ const TopBar = ({
                   routePath
                     ? typeof routePath === 'function'
                       ? navigate(`${routePath()}`, { replace: true })
-                      : state?.prevPath !== routePath
+                      : state?.prevPath === routePath
                       ? navigate(`${routePath}`)
                       : navigate(-1)
                     : navigate(-1)
