@@ -26,6 +26,8 @@ const Text = <E extends React.ElementType = 'div'>({
   flexDirection,
   gap,
   alignItems,
+  cursor,
+  onClick,
 }: TextProps<E>) => {
   let Component = as || 'div'
   return (
@@ -41,6 +43,7 @@ const Text = <E extends React.ElementType = 'div'>({
       width={width}
       align={align}
       size={size}
+      cursor={cursor}
       bgColor={bgColor}
       weight={weight}
       padding={padding}
@@ -49,6 +52,7 @@ const Text = <E extends React.ElementType = 'div'>({
       className={className}
       flexDirection={flexDirection}
       gap={gap}
+      onClick={onClick}
       alignItems={alignItems}
     >
       <Component>{children}</Component>

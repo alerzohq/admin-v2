@@ -97,6 +97,8 @@ FlexTableWrapper.Row = function CardRow({
                 bgColor={bgBottomColor}
               >
                 <Text
+
+                cursor={clickable?.index === index ? "pointer" : ""}
                   onClick={
                     clickable?.index === index
                       ? clickable?.shouldFetch === false
