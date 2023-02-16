@@ -33,7 +33,6 @@ const TabsContainer = () => {
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
-
   const { isRefetching: fetchinguser } = useQuery(
     `queryKey${data?.data[0]?.user_id}${data}`,
     getBusinessUser,
@@ -44,7 +43,9 @@ const TabsContainer = () => {
         if (data?.data?.length === 0) {
           toast.error(`${'business details does not exist for this user'}`)
         } else {
-          navigate(`/dashboard/businesses/${data?.data?.[0]?.business_id}`)
+          navigate(`/dashboard/businesses/${data?.data?.[0]?.business_id}`, {
+            state: { prevPath: `${thePath}` },
+          })
         }
       },
     }

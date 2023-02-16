@@ -18,6 +18,7 @@ import { useAppContext } from '../../../context'
 import {
   billerFilterOptions,
   platformFiltersOptions,
+  productFilterOptions,
   statusFilterOptions,
 } from '../../../helper/filter-helper'
 import { errorMessage } from '../../../utils/message'
@@ -32,7 +33,7 @@ const TransactionContainer = () => {
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
-  // let productOptions = productFilterOptions(appFilters?.['transactions'])
+  let productOptions = productFilterOptions(appFilters?.['transactions'])
   const [showModal, setShowModal] = useState(false)
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
@@ -112,12 +113,12 @@ const TransactionContainer = () => {
             values: billerOptions,
             value: '',
           },
-          // {
-          //   searchQuery: 'productSlug',
-          //   placeholder: 'Products',
-          //   values: productOptions,
-          //   value: '',
-          // },
+          {
+            searchQuery: 'productSlug',
+            placeholder: 'Products',
+            values: productOptions,
+            value: '',
+          },
           {
             placeholder: 'Status',
             values: statusOptions,
@@ -127,6 +128,7 @@ const TransactionContainer = () => {
             placeholder: 'Actions',
             hideValue: true,
             isClearable: false,
+            isSearchable: false,
             styles: selectStyles(false, false, '150px', true),
             values: [
               {
