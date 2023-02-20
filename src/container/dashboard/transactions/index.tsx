@@ -25,11 +25,13 @@ import { errorMessage } from '../../../utils/message'
 import useDownloadCSV from '../../../hooks/useDownloadCSV'
 import SingleReversalModal from './modal/single-reversal-modal'
 import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
+import AllPermissions from '../../../configs/access-control'
 
 const TransactionContainer = () => {
   const {
     state: { appFilters },
   } = useAppContext()
+  const { processReversals } = AllPermissions()
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
@@ -37,6 +39,21 @@ const TransactionContainer = () => {
   const [showModal, setShowModal] = useState(false)
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
+
+  let actionOptions = [
+    {
+      label: 'Download CSV Report',
+      value: 'Download CSV Report',
+    },
+    processReversals && {
+      label: 'Perform Single Reversals',
+      value: 'Perform Single Reversals',
+    },
+    // {
+    //   label: 'Perform Bulk Reversals',
+    //   value: 'Perform Bulk Reversals',
+    // },
+  ].filter(Boolean)
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
   useEffect(() => {
@@ -130,20 +147,7 @@ const TransactionContainer = () => {
             isClearable: false,
             isSearchable: false,
             styles: selectStyles(false, false, '150px', true),
-            values: [
-              {
-                label: 'Perform Single Reversals',
-                value: 'Perform Single Reversals',
-              },
-              {
-                label: 'Download CSV Report',
-                value: 'Download CSV Report',
-              },
-              // {
-              //   label: 'Perform Bulk Reversals',
-              //   value: 'Perform Bulk Reversals',
-              // },
-            ],
+            values: actionOptions,
             action: true,
             value: '',
             onChange: (e: any) => setValue(e?.value),
