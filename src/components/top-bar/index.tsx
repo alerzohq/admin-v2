@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { TopBarProps } from './type'
 import Text from '../text'
 import { TopbarWrapper, TopbarFilters, Filter } from './styles/topbar.styles'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { ArrowBackIcon } from '../../assets/icons'
 import DateRange from '../date-range'
 import Stack from '../stack'
 import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
+
+type RoutePathProps = { prevPath: string }
 
 const TopBar = ({
   title,
@@ -19,6 +21,9 @@ const TopBar = ({
 }: TopBarProps) => {
   let params = useParams()
   let navigate = useNavigate()
+  const location = useLocation()
+  const state = location.state as RoutePathProps
+
   const [newObj, setnewObj] = useState({})
   const [status, setStatus] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
@@ -61,7 +66,9 @@ const TopBar = ({
                   routePath
                     ? typeof routePath === 'function'
                       ? navigate(`${routePath()}`, { replace: true })
-                      : navigate(`${routePath}`)
+                      : state?.prevPath === routePath
+                      ? navigate(`${routePath}`)
+                      : navigate(-1)
                     : navigate(-1)
                 }}
               />
@@ -95,6 +102,7 @@ const TopBar = ({
                     maxWidth="150px"
                     placeholder={select.placeholder}
                     styles={select?.styles}
+                    isSearchable={select?.isSearchable}
                     onChange={
                       select?.action
                         ? (e) => select.onChange(e)

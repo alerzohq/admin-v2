@@ -1,13 +1,12 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import Modal from '../../../../components/modal'
 import { Button, Form, Text } from '../../../../components'
 import { Color } from '../../../../assets/theme'
 import { useMutation, useQueryClient } from 'react-query'
-import { FileIcon, InviteSent } from '../../../../assets/icons'
+import { InviteSent } from '../../../../assets/icons'
 import { postRequest } from '../../../../utils/apiRequest'
 import { toast } from 'react-hot-toast'
-import { FileInput } from './styles/rev.style'
 interface Props {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
@@ -37,8 +36,6 @@ const SingleReversalModal = ({
       })
     )
   const { isLoading: loadingAssign, mutate } = useReversalMutation()
-  const [fileArray] = useState<string[] | any>([])
-  const [fileName, setFileName] = useState()
   const handleChange = (name: string, value: string) =>
     setAddValues({
       ...addValues,
@@ -48,14 +45,7 @@ const SingleReversalModal = ({
   const handleIsTriggerSubmit = (triggered: boolean) => {
     setIsTriggerSubmit(triggered)
   }
-  const handleFileChange = (event: any) => {}
-  const ref = useRef(null)
-  const single = value === 'Perform Single Reversals'
-  const handleFile = (fileSelect: any) => {
-    if (fileSelect) {
-      fileSelect?.current?.click()
-    }
-  }
+
   return (
     <>
       <Modal
@@ -65,14 +55,13 @@ const SingleReversalModal = ({
           setShowModal(false)
         }}
         buttonText="Submit"
-        title={single ? 'Process Single Reversal' : 'Process Bulk Reversals'}
+        title={'Process Single Reversal'}
         contentPadding={'0'}
         loading={loadingAssign}
         disabled={loadingAssign}
         handleSubmit={async () => {
           handleIsTriggerSubmit(true)
-          if (single && addValues.references) {
-            // const refArr = [addValues?.references]
+          if (addValues.references) {
             handleIsTriggerSubmit(false)
             mutate(
               {
@@ -80,9 +69,17 @@ const SingleReversalModal = ({
                 references: [`${addValues?.references}`],
               },
               {
-                onSuccess: () => {
-                  queryClient.invalidateQueries('transactions')
-                  setShowSuccess(true)
+                onSuccess: (data) => {
+                  if (
+                    data?.message === 'Transactions reversed with some errors'
+                  ) {
+                    setShowModal(!showModal)
+                    setValue('')
+                    toast.error('Transactions reversed with some errors')
+                  } else {
+                    queryClient.invalidateQueries('transactions')
+                    setShowSuccess(true)
+                  }
                 },
                 onError: (error: any) => {
                   toast.error(error?.response?.data?.message)
@@ -96,41 +93,23 @@ const SingleReversalModal = ({
           <Form>
             <Form.Control pb={'1rem'}>
               <Form.Label>Transaction ID</Form.Label>
-              {!single ? (
-                <FileInput onClick={() => handleFile(ref)}>
-                  <button>
-                    {fileName ? fileName : 'Select to attach document'}
-                  </button>
-                  <input
-                    accept=".csv"
-                    ref={ref}
-                    type="file"
-                    onChange={(e) => handleFileChange(e)}
-                    placeholder="Enter Transaction ID"
-                    value={addValues.references}
-                  />
-                  <FileIcon />
-                </FileInput>
-              ) : (
-                <Form.Input
-                  type="text"
-                  onChange={(e) => handleChange('references', e.target.value)}
-                  placeholder="Enter Transaction ID"
-                  value={addValues.references}
-                />
+              <Form.Input
+                type="text"
+                onChange={(e) => handleChange('references', e.target.value)}
+                placeholder="Enter Transaction ID"
+                value={addValues.references}
+              />
+
+              {isTriggerSubmit && !addValues?.references && (
+                <Text
+                  padding="8px"
+                  as={'small'}
+                  weight={'500'}
+                  color={Color.alerzoDanger}
+                >
+                  Transaction ID is required*
+                </Text>
               )}
-              {isTriggerSubmit &&
-                ((single && !addValues?.references) ||
-                  (!single && fileArray?.length === 0)) && (
-                  <Text
-                    padding="8px"
-                    as={'small'}
-                    weight={'500'}
-                    color={Color.alerzoDanger}
-                  >
-                    Transaction ID is required*
-                  </Text>
-                )}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Reason For Reversal for Reversal</Form.Label>
@@ -149,7 +128,6 @@ const SingleReversalModal = ({
       <Modal
         showModal={showSuccess}
         setShowModal={() => {
-          setFileName(undefined)
           setValue('')
           setShowSuccess(!showSuccess)
           setAddValues({
@@ -162,13 +140,7 @@ const SingleReversalModal = ({
         modalWidth="320px"
         contentPadding={'0'}
         icon={<InviteSent />}
-        subTitle={
-          <>
-            {single
-              ? `You have successfully reversed the  transaction`
-              : 'You have successfully reversed transactions'}
-          </>
-        }
+        subTitle="You have successfully reversed the  transaction"
       >
         <Button
           width={'70%'}
@@ -179,7 +151,6 @@ const SingleReversalModal = ({
           borderColor={Color.alerzoBlue}
           color={Color.alerzoBlue}
           onClick={() => {
-            setFileName(undefined)
             setValue('')
             setShowSuccess(!showSuccess)
             setAddValues({
