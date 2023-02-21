@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
+
 import {
   FallBack,
   Jumbotron,
@@ -7,8 +9,6 @@ import {
   Table,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-
-import { useQuery } from 'react-query'
 import { transHeaderList } from '../../../data/table-headers'
 import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
@@ -26,6 +26,7 @@ import useDownloadCSV from '../../../hooks/useDownloadCSV'
 import SingleReversalModal from './modal/single-reversal-modal'
 import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 import AllPermissions from '../../../configs/access-control'
+import BulkReversalModal from './modal/bulk-reversal-modal'
 
 const TransactionContainer = () => {
   const {
@@ -37,6 +38,7 @@ const TransactionContainer = () => {
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
   let productOptions = productFilterOptions(appFilters?.['transactions'])
   const [showModal, setShowModal] = useState(false)
+  const [isBulkModal, setIsBulkModal] = useState(false)
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
@@ -49,22 +51,33 @@ const TransactionContainer = () => {
       label: 'Perform Single Reversals',
       value: 'Perform Single Reversals',
     },
-    // {
-    //   label: 'Perform Bulk Reversals',
-    //   value: 'Perform Bulk Reversals',
-    // },
+    processReversals && {
+      label: 'Perform Bulk Reversals',
+      value: 'Perform Bulk Reversals',
+    },
   ].filter(Boolean)
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
+
+  //TODO REFACTOR
+
   useEffect(() => {
     if (value) {
       if (value === 'Download CSV Report') {
         downloadBulkCSV()
         return setValue('')
       }
-      setShowModal(true)
+      if (value === 'Perform Single Reversals') {
+        setShowModal(true)
+        return setValue('')
+      }
+      if (value === 'Perform Bulk Reversals') {
+        setIsBulkModal(true)
+        return setValue('')
+      }
     }
   }, [value, downloadBulkCSV])
+
   const getTransactions = (filterValue: filterProps) => {
     return getNewFilterResource(`transactions`, filterValue)
   }
@@ -161,13 +174,17 @@ const TransactionContainer = () => {
     >
       <CardWidget stats={Statistics} loading={loading} />
       <Jumbotron padding={'0'}>{component}</Jumbotron>
-
       <Pagination data={data} setPageNumber={setValues} />
       <SingleReversalModal
         value={value}
         setValue={setValue}
         setShowModal={setShowModal}
         showModal={showModal}
+      />
+      <BulkReversalModal
+        setValue={setValue}
+        setShowModal={setIsBulkModal}
+        showModal={isBulkModal}
       />
     </Container>
   )
