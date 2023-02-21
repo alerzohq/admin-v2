@@ -36,7 +36,7 @@ const ConfirmBillerChange = ({
         methodType: 'post',
       })
     )
-  const { isLoading: loadingEnable, mutate } = useChangeBillerMutation()
+  const { mutate } = useChangeBillerMutation()
   // const { isLoading: loadingAssign, mutate } = useChangeBillerMutation()
   const handleChange = () => {
     mutate(
