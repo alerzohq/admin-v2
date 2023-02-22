@@ -85,7 +85,9 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
             buttons: [
               {
                 label: 'Map New Terminal',
-                onClick: () => {setShow(true)},
+                onClick: () => {
+                  setShow(true)
+                },
                 buttonClass: 'add-button',
               },
             ],
@@ -101,7 +103,6 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
         businessId={businessId}
         setShow={setShow}
         refetch={refetch}
-       
       />
     </>
     // <Container
