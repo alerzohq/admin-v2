@@ -13,10 +13,11 @@ import { businessTerminalHeader } from '../../../../../data/table-headers'
 import { filterProps } from '../../../../../@types'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
+import MapTerminalModal from '../modal/reassignTerminal'
 
 const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   const [values, setValues] = useState(filterValue)
-
+  const [show, setShow] = useState(false)
   const getBusinesses = (filterValue: filterProps) => {
     return getNewFilterResource(`terminals`, filterValue)
   }
@@ -84,7 +85,7 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
             buttons: [
               {
                 label: 'Map New Terminal',
-                onClick: () => {},
+                onClick: () => {setShow(true)},
                 buttonClass: 'add-button',
               },
             ],
@@ -95,6 +96,13 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
       </Jumbotron>
 
       {data?.data && <Pagination data={data} setPageNumber={setValues} />}
+      <MapTerminalModal
+        show={show}
+        businessId={businessId}
+        setShow={setShow}
+        refetch={refetch}
+       
+      />
     </>
     // <Container
     //   showFilters={{
