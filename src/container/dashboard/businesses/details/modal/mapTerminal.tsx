@@ -45,7 +45,6 @@ const MapTerminalModal: React.FC<{
     'terminals',
     getTerminals
   )
-  console.log(specs)
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -70,7 +69,6 @@ const MapTerminalModal: React.FC<{
     }
   )
   const handleChange = (value: { [key: string]: any }) => {
-    console.log(value)
     return setAddValues({
       ...addValues,
       terminalId: value?.value?.trim(),
@@ -119,7 +117,7 @@ const MapTerminalModal: React.FC<{
                       return {
                         value: spec.id,
                         serialNumber: spec?.serial_number,
-                        label: spec.variant,
+                        label: `${spec.variant} - ${spec?.serial_number}`,
                       }
                     }
                   ),
