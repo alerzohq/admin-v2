@@ -69,7 +69,6 @@ const MapTerminalModal: React.FC<{
     }
   )
   const handleChange = (value: { [key: string]: any }) => {
-  
     return setAddValues({
       ...addValues,
       terminalId: value?.value?.trim(),

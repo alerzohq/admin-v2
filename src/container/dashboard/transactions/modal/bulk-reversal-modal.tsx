@@ -80,7 +80,7 @@ const BulkReversalModal: React.FC<BulkReversalProps> = ({
           <CSVReader
             onUploadAccepted={(results: any) => {
               let csvFile = results?.data?.flat(1)
-             
+
               if (csvFile?.length > 0) {
                 setCsvFile(csvFile)
               }
