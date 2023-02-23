@@ -1,12 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useCSVReader } from 'react-papaparse'
+import { CSVLink } from 'react-csv'
 
 import Modal from '../../../../components/modal'
 import { Button, Stack, Text } from '../../../../components'
 import { BulkUpload, UploadIcon } from '../../../../assets/icons'
 import { Color } from '../../../../assets/theme'
-import { downloadBulkCSV } from '../../../../hooks/useDownload'
-
 import {
   Body,
   Container,
@@ -42,14 +41,17 @@ const BulkReversalModal: React.FC<BulkReversalProps> = ({
     setCsvFile(null)
     setShowModal(!showModal)
   }
-  const handleExportCSV = () => {
-    downloadBulkCSV()
-  }
 
-  let payload = { references: csvFile }
+  let payload = { references: csvFile?.filter((val: string) => val !== '') }
   const handleSendBulk = () => {
     mutate(payload)
   }
+
+  const csvSampleData = [
+    ['74284eb5-114c-4152-89db-4ceab3cb4427'],
+    ['B09b689e-8881-4b9f-99b0-766bc9326e68'],
+    ['A22d7b46-cc9d-4ff5-a627-ee30024cd1a7'],
+  ]
 
   return (
     <>
@@ -69,18 +71,24 @@ const BulkReversalModal: React.FC<BulkReversalProps> = ({
           <ModalHeader>
             <div style={{ width: '100%', margin: 'auto' }}>
               <Text size={'1rem'}>
-                Download a{' '}
-                <Span onClick={() => handleExportCSV()}>
-                  sample CSV template
+                Download a
+                <Span>
+                  <CSVLink
+                    data={csvSampleData}
+                    filename={'Sample-reversal-sheet.csv'}
+                    target="_blank"
+                  >
+                    {' '}
+                    sample CSV template
+                  </CSVLink>
                 </Span>{' '}
                 to see an example of the format required
               </Text>
             </div>
-          </ModalHeader>{' '}
+          </ModalHeader>
           <CSVReader
             onUploadAccepted={(results: any) => {
               let csvFile = results?.data?.flat(1)
-
               if (csvFile?.length > 0) {
                 setCsvFile(csvFile)
               }
