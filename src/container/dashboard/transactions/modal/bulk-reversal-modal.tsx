@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useCSVReader } from 'react-papaparse'
-import { CSVLink, CSVDownload } from 'react-csv'
+import { CSVLink } from 'react-csv'
 
 import Modal from '../../../../components/modal'
 import { Button, Stack, Text } from '../../../../components'
