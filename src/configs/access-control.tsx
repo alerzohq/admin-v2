@@ -38,6 +38,8 @@ const AllPermissions = () => {
     isHasPermission.includes('view_terminal') || adminAccess
   const historyAccess =
     isHasPermission.includes('view_transactions') || adminAccess
+  const processReversals =
+    isHasPermission.includes('process_reversals') || adminAccess
 
   return {
     adminAccess,
@@ -53,6 +55,7 @@ const AllPermissions = () => {
     roleDetailAccess,
     terminalAccess,
     terminalDetailAccess,
+    processReversals,
   }
 }
 

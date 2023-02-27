@@ -36,6 +36,7 @@ const SingleReversalModal = ({
       })
     )
   const { isLoading: loadingAssign, mutate } = useReversalMutation()
+
   const handleChange = (name: string, value: string) =>
     setAddValues({
       ...addValues,
@@ -79,6 +80,7 @@ const SingleReversalModal = ({
                   } else {
                     queryClient.invalidateQueries('transactions')
                     setShowSuccess(true)
+                    setShowModal(!showModal)
                   }
                 },
                 onError: (error: any) => {
@@ -116,7 +118,7 @@ const SingleReversalModal = ({
               <Form.Input
                 type="text"
                 onChange={(e) =>
-                  handleChange('reasonForReversal', e.target.value.trim())
+                  handleChange('reasonForReversal', e.target.value)
                 }
                 placeholder="Why do you want to reverse this transaction"
                 value={addValues.reasonForReversal}
@@ -157,7 +159,6 @@ const SingleReversalModal = ({
               reasonForReversal: '',
               references: '',
             })
-            setShowModal(!showModal)
           }}
         >
           Back To Transaction History
