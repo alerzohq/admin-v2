@@ -40,6 +40,8 @@ const TableData = ({
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
+  //TODO REFACTOR
+
   return (
     <tbody>
       {tableData?.map((item, index) => {
@@ -88,6 +90,7 @@ const TableData = ({
                           )
                         }
                   }
+                  //TODO REFACTOR
                   className={
                     data === 'successful' ||
                     data === 'Active' ||

@@ -36,10 +36,22 @@ const AllPermissions = () => {
     isHasPermission.includes('view_terminals') || adminAccess
   const terminalDetailAccess =
     isHasPermission.includes('view_terminal') || adminAccess
+  const createTerminalAccess =
+    isHasPermission.includes('create_terminal') || adminAccess
   const historyAccess =
     isHasPermission.includes('view_transactions') || adminAccess
+  const historyDetailAccess =
+    isHasPermission.includes('view_transaction') || adminAccess
+  const historyStatisticAccess =
+    isHasPermission.includes('view_transaction_statistics') || adminAccess
+  const historyDownloadAccess =
+    isHasPermission.includes('download_transaction_report') || adminAccess
   const processReversals =
     isHasPermission.includes('process_reversals') || adminAccess
+  const viewBillersAccess =
+    isHasPermission.includes('view_billers') || adminAccess
+  const setBillerThresholdAccess =
+    isHasPermission.includes('set_biller_threshold') || adminAccess
 
   return {
     adminAccess,
@@ -48,14 +60,20 @@ const AllPermissions = () => {
     customersAccess,
     customerDetailAccess,
     historyAccess,
+    historyDetailAccess,
     productsAccess,
     productDetilAccess,
     productBillersAccess,
+    setBillerThresholdAccess,
     rolesAccess,
     roleDetailAccess,
     terminalAccess,
     terminalDetailAccess,
     processReversals,
+    viewBillersAccess,
+    historyDownloadAccess,
+    createTerminalAccess,
+    historyStatisticAccess,
   }
 }
 
