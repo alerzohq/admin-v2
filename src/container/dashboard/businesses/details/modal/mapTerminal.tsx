@@ -30,7 +30,7 @@ const MapTerminalModal: React.FC<{
 
   const getTerminals = () => {
     return getResource(
-      query ? `terminals?id=${debouncedSearchTerm}` : 'terminals'
+      query ? `terminals/unmapped?count=10&id=${debouncedSearchTerm}&cursor` : 'terminals/unmapped?count=10&cursor'
     )
   }
 
@@ -110,14 +110,14 @@ const MapTerminalModal: React.FC<{
                   },
                   ...specs?.data?.map(
                     (spec: {
-                      variant: string
+                      specification: {[key:string]: any}
                       id: string
-                      serial_number: string
+                      serialNumber: string
                     }) => {
                       return {
                         value: spec.id,
-                        serialNumber: spec?.serial_number,
-                        label: `${spec.variant} - ${spec?.serial_number}`,
+                        serialNumber: spec?.serialNumber,
+                        label: `${spec?.specification?.variant} - ${spec?.serialNumber}`,
                       }
                     }
                   ),
