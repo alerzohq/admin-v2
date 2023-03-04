@@ -14,7 +14,7 @@ import { Form, SelectInput, Text } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { axiosInstance } from '../../../../../configs/axios-instance'
 import { useDebounce } from '../../../../../hooks/useDebounce'
-import { getResource, postRequest } from '../../../../../utils/apiRequest'
+import { getResource } from '../../../../../utils/apiRequest'
 
 const MapTerminalModal: React.FC<{
   show: boolean
