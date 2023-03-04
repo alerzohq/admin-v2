@@ -211,7 +211,8 @@ const RolePermissionDetails = ({
           onClick={() => {
             edit ? editRoles.mutate(permissions) : handleRoleEdit(true)
           }}
-          className="download-btn mt-3"
+          width="200px"
+          margin="2rem 0 0 0"
         >
           {edit ? 'Update' : 'Edit Role and Permissions'}
         </Button>
