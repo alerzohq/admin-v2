@@ -5,6 +5,7 @@ import {
   UsersSolidIcon,
   WithDrawIcon,
 } from '../../../../assets/icons'
+import AllPermissions from '../../../../configs/access-control'
 import {
   amountConverter,
   thousandSeparator,
@@ -19,19 +20,22 @@ const CardWidget = ({
   statistics,
   loading,
 }: StatsProps) => {
+  const { historyStatisticAccess } = AllPermissions()
   return (
     <CardWidgetWrapper>
       <CardWidgetBox
         Icon={icons?.card1 || DepositIcon}
         text={labels?.card1 || ' Total Amount Deposited'}
         value={
-          stats
-            ? `₦${
-                stats?.totalAmountDeposited
-                  ? amountConverter(stats?.totalAmountDeposited)
-                  : '0'
-              }`
-            : statistics?.card1 || 0
+          historyStatisticAccess
+            ? stats
+              ? `₦${
+                  stats?.totalAmountDeposited
+                    ? amountConverter(stats?.totalAmountDeposited)
+                    : '0'
+                }`
+              : statistics?.card1 || 0
+            : '******'
         }
         loading={loading}
       />
@@ -39,12 +43,14 @@ const CardWidget = ({
         Icon={icons?.card2 || WithDrawIcon}
         text={labels?.card2 || ' Total Amount Withdrawn'}
         value={
-          statistics?.card2 ||
-          `₦${
-            stats?.totalAmountWithdrawn
-              ? amountConverter(stats?.totalAmountWithdrawn)
-              : '0'
-          }`
+          historyStatisticAccess
+            ? statistics?.card2 ||
+              `₦${
+                stats?.totalAmountWithdrawn
+                  ? amountConverter(stats?.totalAmountWithdrawn)
+                  : '0'
+              }`
+            : '******'
         }
         loading={loading}
       />
@@ -52,12 +58,14 @@ const CardWidget = ({
         Icon={icons?.card3 || TransCountIcon}
         text={labels?.card3 || 'Total Number of Transactions'}
         value={
-          statistics?.card3 ||
-          `${
-            stats?.totalTransactions
-              ? thousandSeparator(stats?.totalTransactions)
-              : '0'
-          }`
+          historyStatisticAccess
+            ? statistics?.card3 ||
+              `${
+                stats?.totalTransactions
+                  ? thousandSeparator(stats?.totalTransactions)
+                  : '0'
+              }`
+            : '******'
         }
         loading={loading}
       />
@@ -65,8 +73,12 @@ const CardWidget = ({
         Icon={icons?.card4 || UsersSolidIcon}
         text={labels?.card4 || ' Total Number of Users'}
         value={
-          statistics?.card4 ||
-          `${stats?.totalUsers ? thousandSeparator(stats?.totalUsers) : '0'}`
+          historyStatisticAccess
+            ? statistics?.card4 ||
+              `${
+                stats?.totalUsers ? thousandSeparator(stats?.totalUsers) : '0'
+              }`
+            : '******'
         }
         loading={loading}
       />

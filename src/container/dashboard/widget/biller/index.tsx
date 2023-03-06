@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 import {
   FallBack,
@@ -7,7 +8,8 @@ import {
   Stack,
   Text,
 } from '../../../../components'
-import { errorMessage } from '../../../../utils/message'
+import AllPermissions from '../../../../configs/access-control'
+import { errorMessage, unauthorizedMessage } from '../../../../utils/message'
 import BillerCard from './card'
 import useFetchBillers from './helper/useFetchBillers'
 import SetBiller from './set-biller'
@@ -15,14 +17,19 @@ import { BillerCardBox, Inner, BillerWrapper } from './styles/biller.styles'
 import { IBillerProp, BillerProps } from './type'
 
 const BillerWidget = () => {
+  const { setBillerThresholdAccess } = AllPermissions()
   const [show, setShow] = useState(false)
   const [biller, setBiller] = useState<IBillerProp>({})
 
   const { data, isError, isLoading, error, refetch } = useFetchBillers()
 
   const handleBiller = useCallback((vals: IBillerProp) => {
-    setBiller(vals)
-    setShow(true)
+    if (!setBillerThresholdAccess) {
+      toast.error(unauthorizedMessage)
+    } else {
+      setBiller(vals)
+      setShow(true)
+    }
   }, [])
 
   let component
@@ -66,6 +73,7 @@ const BillerWidget = () => {
           VIew Biller Settings
         </Button> */}
       </Stack>
+
       <Jumbotron mt=".5rem">{component}</Jumbotron>
     </BillerWrapper>
   )

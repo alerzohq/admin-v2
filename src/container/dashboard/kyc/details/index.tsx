@@ -17,7 +17,7 @@ const KYCDetailContainer = () => {
   const userId = state?.userId
   const id = state?.id
   const getKYCRequest = () => {
-    return getResource(`kyc/verifications/${id}`)
+    return getResource(`kyc/verifications?id=${id}`)
   }
   const getKYCLog = () => {
     return getResource(`activity/logs?category=kyc&entityId=${userId}`)

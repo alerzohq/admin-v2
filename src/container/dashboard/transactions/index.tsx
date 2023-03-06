@@ -32,7 +32,7 @@ const TransactionContainer = () => {
   const {
     state: { appFilters },
   } = useAppContext()
-  const { processReversals } = AllPermissions()
+  const { processReversals, historyDownloadAccess } = AllPermissions()
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
   let billerOptions = billerFilterOptions(appFilters?.['transactions'])
@@ -43,7 +43,7 @@ const TransactionContainer = () => {
   const [values, setValues] = useState(filterValue)
 
   let actionOptions = [
-    {
+    historyDownloadAccess && {
       label: 'Download CSV Report',
       value: 'Download CSV Report',
     },

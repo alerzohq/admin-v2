@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useRef } from 'react'
 import { IdleTimer } from './HOC/idle-timer'
 import useLogout from '../hooks/useLogout'
 
@@ -9,23 +9,23 @@ type TimeoutProps = {
 const SessionTimeout = ({ children }: TimeoutProps) => {
   const { mutate } = useLogout()
 
-  let idleTimer = null
-  const onIdle = () => {
-    mutate()
+  const idleTimerRef = useRef<null>(null)
+
+  const handleOnIdle = () => {
+    if (idleTimerRef.current) {
+      mutate()
+    }
   }
 
   return (
     <IdleTimer
-      ref={(ref) => {
-        idleTimer = ref
-      }}
+      ref={idleTimerRef}
       timeout={10000 * 60}
-      promptTimeout={1000 * 30}
-      onIdle={onIdle}
+      onIdle={handleOnIdle}
+      crossTab={true}
     >
       {children}
     </IdleTimer>
   )
 }
-
 export default SessionTimeout

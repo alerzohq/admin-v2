@@ -1,8 +1,10 @@
 import { Color } from '../../../../assets/theme'
 import {
+  Button,
   FallBack,
   Loader,
   Notification,
+  Stack,
   TabsPage,
   Text,
 } from '../../../../components'
@@ -25,8 +27,12 @@ const TabsContentWidget = ({
   hideStatus,
   containerTitle,
   renderSwitch,
+  btnLabel,
+  btnVariant,
+  btnHandler,
 }: TabWidgetItemProps) => {
   let colors = resolveColor(status)
+
   return (
     <Container
       showFilters={false}
@@ -54,15 +60,26 @@ const TabsContentWidget = ({
             borderRadius={borderRadius}
           />
           {title && (
-            <Text
-              as={'p'}
-              padding={'.8em 0 0 0'}
-              color={Color.alerzoBlack}
-              weight="600"
-              align={'center'}
-            >
-              {title}
-            </Text>
+            <Stack direction="row" justifyContent="space-between">
+              <Text
+                as={'p'}
+                padding={'.8em 0 0 0'}
+                color={Color.alerzoBlack}
+                weight="600"
+                align={'center'}
+              >
+                {title}
+              </Text>
+              {btnHandler && (
+                <Button
+                  onClick={btnHandler}
+                  width="130px"
+                  variant={btnVariant ?? Color.alerzoBlue}
+                >
+                  {btnLabel ?? 'Add label'}
+                </Button>
+              )}
+            </Stack>
           )}
           {isError ? (
             <FallBack
