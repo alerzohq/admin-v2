@@ -97,14 +97,14 @@ export const SideBarMenus = () => {
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.AUDIT}`,
     },
-    // {
-    //   id: 9,
-    //   title: 'KYC',
-    //   path: `/${Path.DASHBOARD}/${Path.KYC}`,
-    //   ActiveIcon: <KYCVerification fill={Color.alerzoBlueTint} />,
-    //   InActiveIcon: KYCVerification,
-    //   activeIconColor: Color.alerzoBlue,
-    // },
+    {
+      id: 9,
+      title: 'KYC',
+      path: `/${Path.DASHBOARD}/${Path.KYC}`,
+      ActiveIcon: <KYCVerification fill={Color.alerzoBlueTint} />,
+      InActiveIcon: KYCVerification,
+      activeIconColor: Color.alerzoBlue,
+    },
   ].filter(Boolean)
 
   return { sideBarData }

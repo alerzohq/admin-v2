@@ -18,7 +18,12 @@ const SessionTimeout = ({ children }: TimeoutProps) => {
   }
 
   return (
-    <IdleTimer ref={idleTimerRef} timeout={15000 * 60} onIdle={handleOnIdle}>
+    <IdleTimer
+      ref={idleTimerRef}
+      timeout={10000 * 60}
+      onIdle={handleOnIdle}
+      crossTab={true}
+    >
       {children}
     </IdleTimer>
   )
