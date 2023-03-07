@@ -30,6 +30,7 @@ export const SideBarMenus = () => {
     productsAccess,
     rolesAccess,
     terminalAccess,
+    KYCAccess,
   } = AllPermissions()
 
   const sideBarData = [
@@ -97,7 +98,7 @@ export const SideBarMenus = () => {
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.AUDIT}`,
     },
-    {
+    KYCAccess && {
       id: 9,
       title: 'KYC',
       path: `/${Path.DASHBOARD}/${Path.KYC}`,
