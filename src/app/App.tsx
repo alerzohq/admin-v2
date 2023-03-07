@@ -83,8 +83,8 @@ function App() {
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
               <Route path={Path.AUDIT} element={<Audit />} />
-              {/* <Route path={Path.KYC} element={<KYC />} />
-              <Route path={Path.KYCView} element={<KYCDetails />} /> */}
+              <Route path={Path.KYC} element={<KYC />} />
+              <Route path={Path.KYCView} element={<KYCDetails />} />
             </Route>
           </Route>
 
