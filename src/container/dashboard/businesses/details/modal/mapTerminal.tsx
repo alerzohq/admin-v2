@@ -31,7 +31,7 @@ const MapTerminalModal: React.FC<{
   const getTerminals = () => {
     return getResource(
       query
-        ? `terminals/unmapped?count=10&id=${debouncedSearchTerm}&cursor`
+        ? `terminals?id=${debouncedSearchTerm}`
         : 'terminals/unmapped?count=10&cursor'
     )
   }
@@ -47,6 +47,8 @@ const MapTerminalModal: React.FC<{
     'terminals',
     getTerminals
   )
+  // console.log({ MAPTERM: specs })
+  // console.log({ BUSINESS: businessId })
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
