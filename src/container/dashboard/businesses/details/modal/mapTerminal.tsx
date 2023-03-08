@@ -47,8 +47,8 @@ const MapTerminalModal: React.FC<{
     'terminals',
     getTerminals
   )
-  console.log({ MAPTERM: specs })
-
+  // console.log({ MAPTERM: specs })
+  // console.log({ BUSINESS: businessId })
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -114,10 +114,9 @@ const MapTerminalModal: React.FC<{
                   },
                   ...specs?.data?.map(
                     (spec: {
-                      variant: string
+                      specification: { [key: string]: any }
                       id: string
                       serialNumber: string
-                      specification: any
                     }) => {
                       return {
                         value: spec.id,
