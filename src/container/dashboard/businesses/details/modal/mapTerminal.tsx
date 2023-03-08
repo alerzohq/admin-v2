@@ -30,7 +30,9 @@ const MapTerminalModal: React.FC<{
 
   const getTerminals = () => {
     return getResource(
-      query ? `terminals?id=${debouncedSearchTerm}` : 'terminals'
+      query
+        ? `terminals?id=${debouncedSearchTerm}`
+        : 'terminals/unmapped?count=10&cursor'
     )
   }
 
@@ -45,6 +47,8 @@ const MapTerminalModal: React.FC<{
     'terminals',
     getTerminals
   )
+  console.log({ MAPTERM: specs })
+
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -112,12 +116,13 @@ const MapTerminalModal: React.FC<{
                     (spec: {
                       variant: string
                       id: string
-                      serial_number: string
+                      serialNumber: string
+                      specification: any
                     }) => {
                       return {
                         value: spec.id,
-                        serialNumber: spec?.serial_number,
-                        label: `${spec.variant} - ${spec?.serial_number}`,
+                        serialNumber: spec?.serialNumber,
+                        label: `${spec?.specification?.variant} - ${spec?.serialNumber}`,
                       }
                     }
                   ),
