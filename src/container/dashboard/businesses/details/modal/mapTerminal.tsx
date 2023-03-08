@@ -65,7 +65,7 @@ const MapTerminalModal: React.FC<{
         toast.success('Terminal mapped successfully')
         queryClient.invalidateQueries('terminals')
         setAddValues({
-          businessId: '',
+          ...addValues,
           serialNumber: '',
           terminalId: '',
         })
