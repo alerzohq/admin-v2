@@ -6,6 +6,7 @@ import {
   TimelineActionData,
   TimelineActionDate,
   TimelineActionIcon,
+  TimelineWrapper,
 } from './TimelineElement.style'
 
 export const TimelineElement = ({
@@ -20,7 +21,7 @@ export const TimelineElement = ({
   borderType?: string
 }): JSX.Element => {
   return (
-    <>
+    <TimelineWrapper>
       {actions?.map((action: any, i) => (
         <TimelineAction key={i} actionsNum={actions.length}>
           {action?.date ? (
@@ -43,6 +44,6 @@ export const TimelineElement = ({
           </TimelineActionData>
         </TimelineAction>
       ))}
-    </>
+    </TimelineWrapper>
   )
 }

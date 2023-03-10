@@ -13,7 +13,7 @@ export const KYCDocuments = ({ state }: { state: IStateProps }) => {
   return (
     <KycDocuments>
       <IDVerificationDocs>
-        <Stack direction="row" gap=".5rem" padding=".5rem 0">
+        <Stack direction="row" gap=".5rem" padding=".5rem 0 2rem">
           <Text weight="600" lineHeight="17px" color={Color.alerzoBlack}>
             ID Verification
           </Text>
@@ -62,7 +62,7 @@ export const KYCDocuments = ({ state }: { state: IStateProps }) => {
         )}
       </IDVerificationDocs>
       <AddressVerificationDocs>
-        <Stack direction="row" gap=".5rem" padding=".5rem 0">
+        <Stack direction="row" gap=".5rem" padding=".5rem 0 2rem">
           <Text weight="600" lineHeight="17px" color={Color.alerzoBlack}>
             Address Verification
           </Text>

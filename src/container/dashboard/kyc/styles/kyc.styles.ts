@@ -10,7 +10,10 @@ export const KycContainer = styled.div`
   width: 100%;
   height: 100%;
   > div {
-    padding: 3rem;
+    padding: 3rem 4rem;
+    &:last-of-type{
+    padding:3rem 0 3rem 3rem;
+    }
   }
 
   .lightFont {
@@ -48,14 +51,16 @@ export const KycDocuments = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  border-inline: 1px solid #e8ebee;
+  border: 1px solid #e8ebee;
   img {
     object-fit: cover;
-    padding-top: 16px;
+    border-radius:8px;
+    margin-bottom: 1rem;
   }
 `
 export const IDVerificationDocs = styled.div`
   margin: 0px -0.5rem;
+padding-bottom:1.5rem;
   position: relative;
   &:after {
     content: '';
@@ -86,4 +91,5 @@ export const ImageContainer = styled.div`
 export const KYCLogs = styled.div`
   display: flex;
   flex-direction: column;
+
 `
