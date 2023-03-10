@@ -20,23 +20,27 @@ const KYCDetailContainer = () => {
     return getResource(`kyc/verifications?id=${id}`)
   }
   const getKYCLog = () => {
-    return getResource(`activity/logs?category=kyc&entityId=${userId}`)
+    return getResource(
+      `activity/logs?count=100&pageNumber=0&id=${id}&category=kyc&entityId=${userId}`
+    )
   }
   const { data: kyc, isLoading } = useQuery(['kyc-detail', id], () =>
     getKYCRequest()
   )
+
   // pass stateId to useQuery func as params to avoid flicker
   const { data, isLoading: loading } = useQuery(['kyc-logs', userId], () =>
     getKYCLog()
   )
+
   const kycDetail = kyc?.data[0]
   return (
     <Container
       showFilters={false}
       isFetching={false}
-      title={'Account Upgrade Request'}
+      title="Account Upgrade Request"
       withParams={true}
-      routePath={'/dashboard/kyc'}
+      routePath="/dashboard/kyc"
     >
       <Jumbotron padding={'0'} margin={'0'}>
         {isLoading || loading ? (

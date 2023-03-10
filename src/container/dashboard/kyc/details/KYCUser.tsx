@@ -136,7 +136,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
             color={Color.alerzoDarkGray}
             className={resolveStatus(state.metamapStatus)}
           >
-            {state.metamapStatus}
+            {state.metamapStatus ?? 'N/A'}
           </Text>
           <Text weight="400" color={Color.alerzoGray2} padding="1rem 0">
             Verification Status
