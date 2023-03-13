@@ -8,7 +8,7 @@ import UpdateKYCModal from './update-kyc-modal'
 import { useMutation, useQueryClient } from 'react-query'
 import { postRequest } from '../../../../utils/apiRequest'
 import toast from 'react-hot-toast'
-import { resolveColor, resolveStatus } from '../../../../utils/resolveColors'
+import { resolveStatus } from '../../../../utils/resolveColors'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
   const initialState = { comments: '', status: '', reason: '' }
@@ -18,6 +18,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
   const toggle = () => {
     setIsShown(!isShown)
   }
+
   const id = state?.id
   const useUpdateMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
@@ -101,7 +102,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
             justifyContent="start"
             color={Color.alerzoDarkGray}
           >
-            {state.verificationId}
+            {state?.verificationId ?? 'N/A'}
           </Text>
         </Stack>
         <Stack>
@@ -154,7 +155,9 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
         </Stack>
       </KycUserDetails>
       {state?.status !== 'rejected' && (
-        <Button onClick={() => toggle()}>Provide Action</Button>
+        <Button onClick={() => toggle()} width="85%" margin="0 auto">
+          Provide Action
+        </Button>
       )}
     </KycUser>
   )

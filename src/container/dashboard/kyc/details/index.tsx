@@ -8,8 +8,10 @@ import { getResource } from '../../../../utils/apiRequest'
 import { formatDate } from '../../../../utils/formatValue'
 import { KycContainer, KYCLogs } from '../styles/kyc.styles'
 import { IStateProps } from '../type'
-import { KYCDocuments } from './KYCDocuments'
-import { KYCUser } from './KYCUser'
+import KYCB2bUser from './b2b-business/b2b-user-info'
+import B2BDocuments from './b2b-business/b2b-documents'
+import { KYCDocuments } from './kyc-documents'
+import { KYCUser } from './kyc-user'
 
 const KYCDetailContainer = () => {
   const location = useLocation()
@@ -47,8 +49,18 @@ const KYCDetailContainer = () => {
           <Loader />
         ) : (
           <KycContainer>
-            <KYCUser state={kycDetail} />
-            <KYCDocuments state={kycDetail} />
+            {kycDetail?.channel === 'B2B Dashboard' ? (
+              <>
+                <KYCB2bUser state={kycDetail} />
+                <B2BDocuments state={kycDetail}  />
+              </>
+            ) : (
+              <>
+                <KYCUser state={kycDetail} />
+                <KYCDocuments state={kycDetail} />
+              </>
+            )}
+
             <KYCLogs>
               <Text as="p" weight="600">
                 Action Logs
