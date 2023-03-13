@@ -10,7 +10,7 @@ import { filterValue } from '../../../data/filter-data'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import { errorMessage } from '../../../utils/message'
 import CardWidget from '../widget/card'
-import { digitalBankTableMapper } from './tableConfig'
+import { digitalBankTableMapper } from './table-config'
 
 const DigitalBankContainer = () => {
   const navigate = useNavigate()

@@ -10,7 +10,8 @@ export const KycContainer = styled.div`
   width: 100%;
   height: 100%;
   > div {
-    padding: 3rem 4rem;
+    /* padding: 3rem 4rem; */
+ padding: 2rem;
     &:last-of-type{
     padding:3rem 0 3rem 3rem;
     }
@@ -82,10 +83,10 @@ export const ImageContainer = styled.div`
   }
   p {
     transform: rotate(270deg);
-    position: absolute;
+    /* position: absolute;
     right: 0px;
     top: 70%;
-    left: 10px;
+    left: 10px; */
   }
 `
 export const KYCLogs = styled.div`
