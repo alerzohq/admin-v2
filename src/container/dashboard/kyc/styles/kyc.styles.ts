@@ -51,30 +51,28 @@ export const KycUserDetails = styled.div`
 export const KycDocuments = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  border: 1px solid #e8ebee;
+  border-right: 1px solid #e8ebee;
+  border-left: 1px solid #e8ebee;
   img {
     object-fit: cover;
     border-radius:8px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 `
 export const IDVerificationDocs = styled.div`
-  margin: 0px -0.5rem;
+
 padding-bottom:1.5rem;
   position: relative;
   &:after {
     content: '';
     border-bottom: 1px solid ${Color.alerzoGrayBorder};
-    width: calc(100% + 5rem);
-    left: -2.5rem;
+    width: 100%;
     position: absolute;
     height: 2px;
-    bottom: -1rem;
   }
 `
 export const AddressVerificationDocs = styled.div`
-  margin: 0px -0.5rem;
+
 `
 export const ImageContainer = styled.div`
   display: flex;
@@ -83,17 +81,10 @@ export const ImageContainer = styled.div`
   }
   p {
     transform: rotate(270deg);
-    /* position: absolute;
-    right: 0px;
-    top: 70%;
-    left: 10px; */
   }
 `
 export const KYCLogs = styled.div`
   display: flex;
   flex-direction: column;
 
-`
-export const KYCStatus=styled.div`
-margin-top:5px;
 `

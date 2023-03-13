@@ -4,7 +4,6 @@ import {
   formatUnderScore,
   removeHyphen,
 } from '../../../../../utils/formatValue'
-import { KYCStatus } from '../../styles/kyc.styles'
 
 const KYCB2bUser = ({ state }: any) => {
   let selfie = state?.documents?.find((v: any) => v?.key === 'selfie')
@@ -108,7 +107,11 @@ const KYCB2bUser = ({ state }: any) => {
             <Text as="p" color="#A5B0B7">
               Company Status
             </Text>
-            <KYCStatus
+            <Text
+              align="center"
+              margin=".5rem 0 1rem 0"
+              justifyContent="center"
+              as="p"
               className={
                 state?.status === 'verified'
                   ? 'success'
@@ -120,7 +123,7 @@ const KYCB2bUser = ({ state }: any) => {
               }
             >
               {state?.status ?? 'N/A'}
-            </KYCStatus>
+            </Text>
           </Stack>
         </Stack>
         {/* <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
