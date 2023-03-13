@@ -15,6 +15,7 @@ const TopBar = ({
   title,
   showFilters,
   setFilterValues,
+  filterValue=true,
   routePath,
   whiteSpace,
   withParams,
@@ -41,17 +42,21 @@ const TopBar = ({
 
   useEffect(() => {
     if (showFilters && status !== null) {
-      return setFilterValues((prev: any) => ({ ...prev, status }))
+      if (filterValue) {
+        return setFilterValues((prev: any) => ({ ...prev, status }))
+      }
     }
     if (showFilters) {
-      setFilterValues((prev: any) => ({ ...prev, query: search }))
+      if (filterValue) {
+        setFilterValues((prev: any) => ({ ...prev, query: search }))
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
 
   useEffect(() => {
     if (Object.keys(newObj).length > 0) {
-      setFilterValues((prev: any) => ({ ...prev, ...newObj }))
+      filterValue && setFilterValues((prev: any) => ({ ...prev, ...newObj }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])

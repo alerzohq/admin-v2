@@ -30,4 +30,5 @@ export type TopBarProps = {
   routePath?: () => string | string
   whiteSpace?: string
   withParams?: boolean
+  filterValue?:boolean
 }

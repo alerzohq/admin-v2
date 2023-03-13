@@ -94,3 +94,6 @@ export const KYCLogs = styled.div`
   flex-direction: column;
 
 `
+export const KYCStatus=styled.div`
+margin-top:5px;
+`
