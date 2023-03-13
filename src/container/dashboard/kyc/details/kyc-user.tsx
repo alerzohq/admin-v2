@@ -1,14 +1,8 @@
 import { Stack, Text } from '../../../../components'
-import {
-  KYCStatus,
-  KycUser,
-  KycUserDetails,
-  KycUserImg,
-} from '../styles/kyc.styles'
+import { KycUser, KycUserDetails, KycUserImg } from '../styles/kyc.styles'
 import { IStateProps } from '../type'
 import { Color } from '../../../../assets/theme'
 import { formatDate } from '../../../../utils/formatValue'
-import { resolveStatus } from '../../../../utils/resolveColors'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
   return (
@@ -76,18 +70,22 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
           <Text
             align="center"
             margin="0 0 1rem 0"
-            weight="600"
             as="p"
             justifyContent="center"
             color={Color.alerzoDarkGray}
-            className={resolveStatus(state.metamapStatus)}
+            className={'unassigned'}
           >
             {state.metamapStatus ?? 'N/A'}
           </Text>
           <Text weight="400" color={Color.alerzoGray2} padding="1rem 0">
             Verification Status
           </Text>
-          <KYCStatus
+          <Text
+            align="center"
+            margin="0 0 1rem 0"
+            justifyContent="center"
+            color={Color.alerzoDarkGray}
+            as="p"
             className={
               state?.status === 'verified'
                 ? 'success'
@@ -99,7 +97,7 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
             }
           >
             {state.status}
-          </KYCStatus>
+          </Text>
         </Stack>
       </KycUserDetails>
     </KycUser>

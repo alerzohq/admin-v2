@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useState } from 'react'
+import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { Jumbotron, Loader, Text } from '../../../../components'
 import { Container } from '../../../../components/layout'
 import { TimelineElement } from '../../../../components/timeline'
-import { getResource, postRequest } from '../../../../utils/apiRequest'
+import { getResource } from '../../../../utils/apiRequest'
 import { formatDate } from '../../../../utils/formatValue'
 import { KycContainer, KYCLogs } from '../styles/kyc.styles'
 import { IStateProps, ValueProps } from '../type'
@@ -12,8 +12,8 @@ import KYCB2bUser from './b2b-business/b2b-user-info'
 import B2BDocuments from './b2b-business/b2b-documents'
 import { KYCDocuments } from './kyc-documents'
 import { KYCUser } from './kyc-user'
-import toast from 'react-hot-toast'
 import UpdateKYCModal from './update-kyc-modal'
+import useUpdateKYC from '../hooks/useUpdateKYC'
 
 //TODO REFACTOR
 const KYCDetailContainer = () => {
@@ -25,6 +25,7 @@ const KYCDetailContainer = () => {
   const [isShown, setIsShown] = useState(false)
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
   const [value, setValue] = useState<ValueProps>(initialState)
+
   const getKYCRequest = () => {
     return getResource(`kyc/verifications?id=${id}`)
   }
@@ -36,7 +37,6 @@ const KYCDetailContainer = () => {
   const { data: kyc, isLoading } = useQuery(['kyc-detail', id], () =>
     getKYCRequest()
   )
-
   // pass stateId to useQuery func as params to avoid flicker
   const { data, isLoading: loading } = useQuery(['kyc-logs', userId], () =>
     getKYCLog()
@@ -45,35 +45,16 @@ const KYCDetailContainer = () => {
   const toggle = () => {
     setIsShown(!isShown)
   }
-  const useUpdateMutation = () =>
-    useMutation((payload: { [key: string]: any }) =>
-      postRequest({
-        pathUrl: `kyc/verifications/${id}`,
-        payload,
-        methodType: 'patch',
-      })
-    )
 
-  const queryClient = useQueryClient()
-  const { isLoading: actionLoading, mutate } = useUpdateMutation()
+  const { isLoading: actionLoading, mutate } = useUpdateKYC(
+    id,
+    setValue,
+    initialState,
+    toggle
+  )
   const handleUpdate = () => {
     setIsTriggerSubmit(false)
-    return mutate(
-      { ...value },
-      {
-        onSuccess: () => {
-          toggle()
-          toast.success(`KYC updated successfully`)
-          queryClient.invalidateQueries('kyc-detail')
-          setValue(initialState)
-        },
-        onError: (err: any) => {
-          toggle()
-          toast.error(`${err?.response?.data?.message}`)
-          setValue(initialState)
-        },
-      }
-    )
+    return mutate({ ...value })
   }
 
   const kycDetail = kyc?.data[0]
@@ -147,12 +128,11 @@ const KYCDetailContainer = () => {
         toggleModal={() => {
           setValue(initialState)
           setIsTriggerSubmit(false)
-
           toggle()
         }}
         value={value}
         setValue={setValue}
-      />{' '}
+      />
     </Container>
   )
 }
