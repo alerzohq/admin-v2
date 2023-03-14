@@ -35,7 +35,6 @@ const Audit = () => {
   const [values, setValues] = useState(filterAudit)
   const [actionsValues, setActionValues] = useState(filterValue)
 
-  console.log({ values })
   //Make login a custom hook return componentToRender
   useEffect(() => {
     if (state?.detail.id) {

@@ -84,7 +84,6 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
             align="center"
             margin="0 0 1rem 0"
             justifyContent="center"
-            color={Color.alerzoDarkGray}
             as="p"
             className={
               state?.status === 'verified'

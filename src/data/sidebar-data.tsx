@@ -15,6 +15,7 @@ import {
   ActiveTerminalIcon,
   AuditIcon,
   ActiveAuditIcon,
+  ActiveKYCIcon,
 } from '../assets/icons'
 import { KYCVerification } from '../assets/icons/KYC/KYC'
 import { Color } from '../assets/theme'
@@ -102,7 +103,7 @@ export const SideBarMenus = () => {
       id: 9,
       title: 'KYC',
       path: `/${Path.DASHBOARD}/${Path.KYC}`,
-      ActiveIcon: <KYCVerification fill={Color.alerzoBlueTint} />,
+      ActiveIcon: <ActiveKYCIcon />,
       InActiveIcon: KYCVerification,
       activeIconColor: Color.alerzoBlue,
     },

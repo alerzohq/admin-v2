@@ -15,16 +15,16 @@ const TopBar = ({
   title,
   showFilters,
   setFilterValues,
-  filterValue=true,
+  filterValue = true,
   routePath,
   whiteSpace,
   withParams,
 }: TopBarProps) => {
+  //TODO REFACTOR
   let params = useParams()
   let navigate = useNavigate()
   const location = useLocation()
   const state = location.state as RoutePathProps
-
   const [newObj, setnewObj] = useState({})
   const [status, setStatus] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
@@ -73,6 +73,8 @@ const TopBar = ({
                     ? typeof routePath === 'function'
                       ? navigate(`${routePath()}`, { replace: true })
                       : state?.prevPath === routePath
+                      ? navigate(`${routePath}`)
+                      : location?.pathname?.includes(routePath)
                       ? navigate(`${routePath}`)
                       : navigate(-1)
                     : navigate(-1)

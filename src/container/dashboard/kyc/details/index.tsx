@@ -45,7 +45,6 @@ const KYCDetailContainer = () => {
   const toggle = () => {
     setIsShown(!isShown)
   }
-
   const { isLoading: actionLoading, mutate } = useUpdateKYC(
     id,
     setValue,
@@ -58,6 +57,7 @@ const KYCDetailContainer = () => {
   }
 
   const kycDetail = kyc?.data[0]
+  const b2bUser = kycDetail?.channel === 'B2B Dashboard'
   return (
     <Container
       showFilters={{
@@ -70,7 +70,7 @@ const KYCDetailContainer = () => {
         ],
       }}
       isFetching={false}
-      title="Account Upgrade Request"
+      title={b2bUser ? 'Business KYC Documents' : 'Account Upgrade Request'}
       withParams={true}
       routePath="/dashboard/kyc"
       filterValue={false}
@@ -80,7 +80,7 @@ const KYCDetailContainer = () => {
           <Loader />
         ) : (
           <KycContainer>
-            {kycDetail?.channel === 'B2B Dashboard' ? (
+            {b2bUser ? (
               <>
                 <KYCB2bUser state={kycDetail} />
                 <B2BDocuments state={kycDetail} />
