@@ -1,9 +1,7 @@
-import React from 'react'
 import { Color } from '../../../../../assets/theme'
 import { Stack, Text } from '../../../../../components'
 
 const B2BDocuments = ({ state }: any) => {
-  console.log({ state })
   let documentNumber = state?.documents?.find(
     (v: any) => v?.key === 'documentNumber'
   )
