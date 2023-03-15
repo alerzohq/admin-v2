@@ -58,6 +58,8 @@ const KYCDetailContainer = () => {
 
   const kycDetail = kyc?.data[0]
   const b2bUser = kycDetail?.channel === 'B2B Dashboard'
+  const isKYCrejected = kycDetail?.status === 'rejected'
+
   return (
     <Container
       showFilters={{
@@ -66,6 +68,7 @@ const KYCDetailContainer = () => {
             label: 'Provide Action',
             onClick: () => toggle(),
             buttonClass: 'add-button',
+            disabled: isKYCrejected,
           },
         ],
       }}

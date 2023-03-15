@@ -8,6 +8,7 @@ import DateRange from '../date-range'
 import Stack from '../stack'
 import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
+import Button from '../button'
 
 type RoutePathProps = { prevPath: string }
 
@@ -61,6 +62,7 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
 
+  console.log({ showFilters })
   return (
     <>
       <TopbarWrapper>
@@ -145,13 +147,18 @@ const TopBar = ({
               })}
             {showFilters?.buttons?.length >= 1 &&
               showFilters.buttons.map((button, i) => (
-                <button
+                <Button
                   key={i}
                   onClick={button.onClick}
-                  className={button?.buttonClass || 'download-btn'}
+                  className={
+                    `${button?.buttonClass} ${
+                      button?.disabled && 'btn-disabled'
+                    }` || 'download-btn'
+                  }
+                  disabled={button?.disabled}
                 >
                   {button.label}
-                </button>
+                </Button>
               ))}
           </TopbarFilters>
         </Stack>
