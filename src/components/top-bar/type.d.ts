@@ -22,6 +22,7 @@ export type TopBarProps = {
       label: string
       buttonClass?: string
       onClick: () => void
+      disabled?:boolean
     }[]
   }
 

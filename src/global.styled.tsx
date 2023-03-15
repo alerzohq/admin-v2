@@ -137,6 +137,13 @@ const GlobalStyle = createGlobalStyle`
   color: ${Color.alerzoBlue} !important;
   font-weight: 500;
   cursor: pointer;
+
+}
+.btn-disabled{
+  cursor:not-allowed !important;
+  background: ${Color.alerzoLightBlue} !important;
+  width: 150px !important;
+  padding: 0 1rem;
 }
 .mt-3{
   margin-top:3em
