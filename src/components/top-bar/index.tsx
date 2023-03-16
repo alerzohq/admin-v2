@@ -8,6 +8,7 @@ import DateRange from '../date-range'
 import Stack from '../stack'
 import { SelectInputProps } from '../../@types'
 import SelectInput from '../select-input'
+import Button from '../button'
 
 type RoutePathProps = { prevPath: string }
 
@@ -15,15 +16,16 @@ const TopBar = ({
   title,
   showFilters,
   setFilterValues,
+  filterValue = true,
   routePath,
   whiteSpace,
   withParams,
 }: TopBarProps) => {
+  //TODO REFACTOR
   let params = useParams()
   let navigate = useNavigate()
   const location = useLocation()
   const state = location.state as RoutePathProps
-
   const [newObj, setnewObj] = useState({})
   const [status, setStatus] = useState<SelectInputProps>(null)
   const [values, setValues] = useState({
@@ -41,20 +43,26 @@ const TopBar = ({
 
   useEffect(() => {
     if (showFilters && status !== null) {
-      return setFilterValues((prev: any) => ({ ...prev, status }))
+      if (filterValue) {
+        return setFilterValues((prev: any) => ({ ...prev, status }))
+      }
     }
     if (showFilters) {
-      setFilterValues((prev: any) => ({ ...prev, query: search }))
+      if (filterValue) {
+        setFilterValues((prev: any) => ({ ...prev, query: search }))
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status])
 
   useEffect(() => {
     if (Object.keys(newObj).length > 0) {
-      setFilterValues((prev: any) => ({ ...prev, ...newObj }))
+      filterValue && setFilterValues((prev: any) => ({ ...prev, ...newObj }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
+
+  console.log({ showFilters })
   return (
     <>
       <TopbarWrapper>
@@ -67,6 +75,8 @@ const TopBar = ({
                     ? typeof routePath === 'function'
                       ? navigate(`${routePath()}`, { replace: true })
                       : state?.prevPath === routePath
+                      ? navigate(`${routePath}`)
+                      : location?.pathname?.includes(routePath)
                       ? navigate(`${routePath}`)
                       : navigate(-1)
                     : navigate(-1)
@@ -137,13 +147,18 @@ const TopBar = ({
               })}
             {showFilters?.buttons?.length >= 1 &&
               showFilters.buttons.map((button, i) => (
-                <button
+                <Button
                   key={i}
                   onClick={button.onClick}
-                  className={button?.buttonClass || 'download-btn'}
+                  className={
+                    `${button?.buttonClass} ${
+                      button?.disabled && 'btn-disabled'
+                    }` || 'download-btn'
+                  }
+                  disabled={button?.disabled}
                 >
                   {button.label}
-                </button>
+                </Button>
               ))}
           </TopbarFilters>
         </Stack>

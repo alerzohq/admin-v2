@@ -10,12 +10,21 @@ import { SelectOptions } from '../../@types'
 import { Color } from '../../assets/theme'
 import { BackIcon, NextIcon } from '../../assets/icons'
 
-const Pagination = ({ data, setPageNumber }: PaginationProps) => {
+const Pagination = ({
+  data,
+  setPageNumber,
+  initialPageCount,
+}: PaginationProps) => {
   const { width } = useWindowResize()
   const mobileWidth = 640
 
   const handlePageClick = ({ selected }: { selected: number }) => {
-    setPageNumber((prev) => ({ ...prev, pageNumber: selected }))
+    if (initialPageCount && initialPageCount === 1) {
+      let newSelect = selected === 0 ? 1 : selected
+      setPageNumber((prev) => ({ ...prev, pageNumber: newSelect + 1 }))
+    } else {
+      setPageNumber((prev) => ({ ...prev, pageNumber: selected }))
+    }
   }
 
   const handlePageCount = (val: SelectOptions) => {

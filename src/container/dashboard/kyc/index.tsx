@@ -21,9 +21,10 @@ const KYC = () => {
     return getNewFilterResource('kyc/verifications', values)
   }
 
-  const { isLoading, isError, data, refetch, error } = useQuery(
+  const { isLoading, isError, data, refetch, error, isFetching } = useQuery(
     ['KYC', values],
-    getKYCVerifications
+    getKYCVerifications,
+    { keepPreviousData: true }
   )
 
   let component
@@ -53,7 +54,7 @@ const KYC = () => {
     )
   }
   return (
-    <Container isFetching={false} title={'KYC Verification'}>
+    <Container isFetching={isFetching} title={'KYC Verification'}>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
           setFilterValues={setValues}

@@ -31,7 +31,7 @@ const MapTerminalModal: React.FC<{
   const getTerminals = () => {
     return getResource(
       query
-        ? `terminals/unmapped?count=10&id=${debouncedSearchTerm}&cursor`
+        ? `terminals?id=${debouncedSearchTerm}`
         : 'terminals/unmapped?count=10&cursor'
     )
   }
@@ -47,6 +47,7 @@ const MapTerminalModal: React.FC<{
     'terminals',
     getTerminals
   )
+
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -63,7 +64,7 @@ const MapTerminalModal: React.FC<{
         toast.success('Terminal mapped successfully')
         queryClient.invalidateQueries('terminals')
         setAddValues({
-          businessId: '',
+          ...addValues,
           serialNumber: '',
           terminalId: '',
         })
