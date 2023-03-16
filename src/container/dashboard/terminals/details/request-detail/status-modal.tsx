@@ -38,6 +38,8 @@ export const StatusModal = ({
   const payload = {
     businessId: data?.business.id,
     status: order?.value,
+    saleReference: data?.saleReference,
+    purchaseReference: data?.purchaseReference,
   }
 
   const handleTerminalUpdate = async (payload: any) => {
@@ -47,7 +49,7 @@ export const StatusModal = ({
     )
     return data
   }
-  const { mutate } = useMutation(handleTerminalUpdate, {
+  const { mutate, isLoading } = useMutation(handleTerminalUpdate, {
     onSuccess: () => {
       setShowModal(false)
       toast.success('Status updated successfully')
@@ -119,6 +121,7 @@ export const StatusModal = ({
       subTitleWhiteSpace={'pre-line'}
       handleSubmit={() => mutate(payload)}
       buttonText="Update Status"
+      loading={isLoading}
     />
   )
 }
