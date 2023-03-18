@@ -83,7 +83,7 @@ const TabsContainer = () => {
       currentValue={found?.value || 'details'}
       renderSwitch={renderSwitch}
       tabs={TABS}
-      routePath={'/dashboard/transactions'}
+      routePath='/dashboard/transactions'
     />
   )
 }

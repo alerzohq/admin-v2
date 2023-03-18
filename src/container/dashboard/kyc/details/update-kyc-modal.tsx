@@ -142,7 +142,6 @@ const UpdateKYCModal = ({
         placeholder={'Enter message with more than 5 charaters'}
         textAreaHeight="85px"
         value={value?.comments}
-        textAreaWidth="95%"
         onChange={(e) => {
           setValue({ ...value, comments: e.target.value })
         }}

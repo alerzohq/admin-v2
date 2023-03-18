@@ -15,6 +15,7 @@ import {
   ActiveTerminalIcon,
   AuditIcon,
   ActiveAuditIcon,
+  ActiveKYCIcon,
 } from '../assets/icons'
 import { KYCVerification } from '../assets/icons/KYC/KYC'
 import { Color } from '../assets/theme'
@@ -30,6 +31,7 @@ export const SideBarMenus = () => {
     productsAccess,
     rolesAccess,
     terminalAccess,
+    KYCAccess,
   } = AllPermissions()
 
   const sideBarData = [
@@ -97,14 +99,14 @@ export const SideBarMenus = () => {
       activeIconColor: Color.alerzoBlue,
       path: `/${Path.DASHBOARD}/${Path.AUDIT}`,
     },
-    // {
-    //   id: 9,
-    //   title: 'KYC',
-    //   path: `/${Path.DASHBOARD}/${Path.KYC}`,
-    //   ActiveIcon: <KYCVerification fill={Color.alerzoBlueTint} />,
-    //   InActiveIcon: KYCVerification,
-    //   activeIconColor: Color.alerzoBlue,
-    // },
+    KYCAccess && {
+      id: 9,
+      title: 'KYC',
+      path: `/${Path.DASHBOARD}/${Path.KYC}`,
+      ActiveIcon: <ActiveKYCIcon />,
+      InActiveIcon: KYCVerification,
+      activeIconColor: Color.alerzoBlue,
+    },
   ].filter(Boolean)
 
   return { sideBarData }

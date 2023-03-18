@@ -27,6 +27,7 @@ const Modal = ({
   modalPadding,
   contentPadding,
   setShowModal,
+  hideContent,
   buttonText,
   subTitle,
   disabled,
@@ -55,6 +56,7 @@ const Modal = ({
               <Text
                 as="p"
                 padding="0"
+                margin="1rem 0 0 0"
                 weight="600"
                 color={Color.alerzoBlack}
                 size={titleSize || '18px'}
@@ -78,13 +80,29 @@ const Modal = ({
               )}
             </HeaderText>
           </Header>
-          <Content contentPadding={contentPadding}>{children}</Content>
+          {!hideContent && (
+            <Content contentPadding={contentPadding}>{children}</Content>
+          )}
+
           {!withoutFooter && (
             <Footer>
-              <Button.Group align="center">
+              <Button.Group align="center" gap="1rem">
+                {buttonText && (
+                  <Button
+                    width={cancelBtnText ? '40%' : '50%'}
+                    radius="10px"
+                    fontSize="14px"
+                    weight="500"
+                    loading={loading}
+                    disabled={disabled}
+                    onClick={handleSubmit ?? setShowModal}
+                  >
+                    {buttonText}
+                  </Button>
+                )}
                 {cancelBtnText && (
                   <Button
-                    width={'45%'}
+                    width="40%"
                     radius="10px"
                     fontSize="14px"
                     weight="500"
@@ -95,19 +113,6 @@ const Modal = ({
                     onClick={setShowModal}
                   >
                     {cancelBtnText}
-                  </Button>
-                )}
-                {buttonText && (
-                  <Button
-                    width={cancelBtnText ? '45%' : '50%'}
-                    radius="10px"
-                    fontSize="14px"
-                    weight="500"
-                    loading={loading}
-                    disabled={disabled}
-                    onClick={handleSubmit ?? setShowModal}
-                  >
-                    {buttonText}
                   </Button>
                 )}
               </Button.Group>

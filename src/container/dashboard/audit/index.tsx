@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 // import ReactPaginate from 'react-paginate'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
+import { filterProps } from '../../../@types'
 // import { TimelineIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
@@ -15,9 +16,9 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import { TimelineElement } from '../../../components/timeline'
-import { filterValue } from '../../../data/filter-data'
+import { filterAudit, filterValue } from '../../../data/filter-data'
 import { auditHeaderList } from '../../../data/table-headers'
-import { getResource } from '../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../utils/apiRequest'
 // import { formatDate } from '../../../utils/formatValue'
 import { errorMessage } from '../../../utils/message'
 import { rowData, rowheaders } from './audit-config'
@@ -31,7 +32,7 @@ const Audit = () => {
   const state = location.state as SessionDetails
 
   const [componentToRender, setComponentToRender] = useState('auditUsers')
-  const [values, setValues] = useState(filterValue)
+  const [values, setValues] = useState(filterAudit)
   const [actionsValues, setActionValues] = useState(filterValue)
 
   //Make login a custom hook return componentToRender
@@ -44,13 +45,13 @@ const Audit = () => {
     }
   }, [state?.detail.id])
 
-  const getSessionsDetails = () => {
-    return getResource('sessions')
+  const getSessions = (filterAudit: filterProps) => {
+    return getNewFilterResource(`sessions`, filterAudit)
   }
-
-  const { isLoading, isError, data, refetch, error } = useQuery(
+  const { isLoading, isError, data, refetch, error, isFetching } = useQuery(
     ['audit', values],
-    getSessionsDetails
+    () => getSessions(values),
+    { keepPreviousData: true }
   )
 
   let component
@@ -78,7 +79,11 @@ const Audit = () => {
               hideDate
             />
           </Jumbotron>
-          <Pagination data={data} setPageNumber={setValues} />
+          <Pagination
+            data={data}
+            setPageNumber={setValues}
+            initialPageCount={1}
+          />
         </>
       ) : (
         <>
@@ -101,18 +106,18 @@ const Audit = () => {
                 actionsValues.pageNumber + 1 * actionsValues.count
               )}
             />
+            <Pagination
+              data={{ data: state?.detail?.actions }}
+              setPageNumber={setActionValues}
+            />
           </Jumbotron>
-          <Pagination
-            data={{ data: state?.detail?.actions }}
-            setPageNumber={setActionValues}
-          />
         </>
       )
   }
   return (
     <Container
       showFilters={false}
-      isFetching={false}
+      isFetching={isFetching}
       title={state?.detail.id ? 'Logs' : 'Audit Trail'}
       withParams={state?.detail.id}
       routePath={() => {

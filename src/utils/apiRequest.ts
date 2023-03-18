@@ -8,7 +8,7 @@ type Methods = 'put' | 'post' | 'patch' | 'delete'
 type useMutationProps = {
   pathUrl: string
   methodType: Methods
-  payload: { [key: string]: any }
+  payload?: { [key: string]: any }
 }
 export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
   const { data } = withoutToken
@@ -53,6 +53,6 @@ export const postRequest = async ({
   payload,
   methodType,
 }: useMutationProps) => {
-  const { data } = await axiosInstance[methodType](pathUrl, payload)
+  const { data } = await axiosInstance[methodType](pathUrl, payload && payload)
   return data
 }

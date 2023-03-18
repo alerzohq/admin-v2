@@ -106,7 +106,7 @@ FlexTableWrapper.Row = function CardRow({
                       : () => null
                   }
                   as={'p'}
-                  padding={'0 .1em'}
+                  padding={'.5rem 0'}
                   color={
                     field.toLowerCase().includes('status')
                       ? color

@@ -1,4 +1,3 @@
-import { AxiosError, AxiosResponse } from 'axios'
 import { Dispatch, SetStateAction, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
@@ -7,6 +6,7 @@ import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
 import { axiosInstance } from '../../../../../configs/axios-instance'
+import { errorMessage } from '../../../../../utils/message'
 import { TextArea } from '../../terminalmodal.styles'
 
 enum OrderStatus {
@@ -35,26 +35,31 @@ export const StatusModal = ({
     null
   )
   const [note, setNote] = useState('')
-  const { mutate } = useMutation<
-    AxiosResponse<any, any>,
-    any,
-    any,
-    AxiosError<any, any>
-  >(
-    () => {
-      return axiosInstance.patch(`terminals/requests/${id}/status`, {
-        businessId: data.business.id,
-        status: order?.value,
-      })
+  const payload = {
+    businessId: data?.business.id,
+    status: order?.value,
+    saleReference: data?.saleReference,
+    purchaseReference: data?.purchaseReference,
+  }
+
+  const handleTerminalUpdate = async (payload: any) => {
+    const data = await axiosInstance.patch(
+      `terminals/requests/${id}/status`,
+      payload
+    )
+    return data
+  }
+  const { mutate, isLoading } = useMutation(handleTerminalUpdate, {
+    onSuccess: () => {
+      setShowModal(false)
+      toast.success('Status updated successfully')
+      navigate('/dashboard/terminals?status=requests')
     },
-    {
-      onSuccess: () => {
-        setShowModal(false)
-        toast.success('Status updated successfully')
-        navigate('/dashboard/terminals?status=requests')
-      },
-    }
-  )
+    onError: (err) => {
+      toast.error(errorMessage(err))
+    },
+  })
+
   const statusData = data?.status
   return (
     <Modal
@@ -114,8 +119,9 @@ export const StatusModal = ({
         </>
       }
       subTitleWhiteSpace={'pre-line'}
-      handleSubmit={() => mutate({})}
+      handleSubmit={() => mutate(payload)}
       buttonText="Update Status"
+      loading={isLoading}
     />
   )
 }

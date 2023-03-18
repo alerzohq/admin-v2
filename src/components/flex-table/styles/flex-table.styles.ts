@@ -57,6 +57,7 @@ export const CardContainer = styled.div<columnProps>`
   flex: ${({ flex }) => (flex ? flex : 1)};
   display: flex;
   flex-direction: column;
+
   flex-wrap: wrap;
 `
 export const CardItem = styled.div<columnProps>`

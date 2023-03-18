@@ -118,3 +118,20 @@ export const sumOfValue = (
     return accumulator + object[param] * object[param2]
   }, 0)
 }
+
+
+export const capitalize = (value?: string) => {
+  if (typeof value !== 'string') return '';
+  const words = value?.toLocaleLowerCase().trim().split(' ');
+  return words
+    .map((word) =>
+      word?.length === 0 ? word : word[0].toUpperCase() + word.substring(1)
+    )
+    .join(' ');
+};
+
+export const formatUnderScore = (value?: string | number): string => {
+  let data = value?.toString()
+  let newvalue = data!?.replaceAll('_', ' ');
+  return capitalize(newvalue);
+};

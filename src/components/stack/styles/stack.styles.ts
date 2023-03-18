@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 type stackProps = {
   width: string
   padding: string
+  bgColor: string
   pr: string
   pt: string
   pb: string
@@ -15,6 +16,12 @@ type stackProps = {
   flexWrap?: string
   rowGap?: string
   columnGap?: string
+  borderBottom?: string
+  borderTop?: string
+  borderLeft?: string
+  borderRight?: string
+  border?: string
+  borderRadius?: string
 }
 
 export const StackWrapper = styled.div<stackProps>`
@@ -32,6 +39,13 @@ export const StackWrapper = styled.div<stackProps>`
   column-gap: ${({ columnGap }) => columnGap};
   row-gap: ${({ rowGap }) => rowGap};
   flex-wrap: ${({ flexWrap }) => flexWrap};
+  border-bottom: ${({ borderBottom }) => borderBottom};
+  border-top: ${({ borderTop }) => borderTop};
+  border-left: ${({ borderLeft }) => borderLeft};
+  border-right: ${({ borderRight }) => borderRight};
+  border: ${({ border }) => border};
+  border-radius: ${({ borderRadius }) => borderRadius};
+  background: ${({ bgColor }) => bgColor};
 
   @media (max-width: 768px) {
     h1 {

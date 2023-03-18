@@ -33,12 +33,13 @@ import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
 import { errorMessage } from '../../../utils/message'
 import BulkTerminalModal from './modals/bulk-terminal-upload'
+import AllPermissions from '../../../configs/access-control'
 
 const TransactionContainer = () => {
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
-
   const found = TERMINALTABS.find((element) => element.value === queryParam)
+  const { createTerminalAccess } = AllPermissions()
   const [values, setValues] = useState(filterValue)
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
@@ -158,12 +159,12 @@ const TransactionContainer = () => {
           },
           selects: TerminalSelects,
           buttons: [
-            {
+            createTerminalAccess && {
               label: 'Register New Terminal',
               onClick: () => toggle(),
               buttonClass: 'add-button',
             },
-          ],
+          ].filter(Boolean),
         }}
         title="Terminals"
         setFilterValues={setValues}
