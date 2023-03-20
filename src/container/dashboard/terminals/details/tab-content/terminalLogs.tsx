@@ -41,7 +41,7 @@ let logIcon = {
   'Terminal was assigned to': <AssignTerminalIcon />,
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
-  const [values, setValues] = useState({ ...filterValue, count: 50 })
+  const [values] = useState({ ...filterValue, count: 50 })
   const navigate = useNavigate()
   const getTerminalLog = () => {
     return getNewFilterResource(`activity/logs`, {

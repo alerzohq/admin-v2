@@ -90,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
   cursor: pointer;
   color:${Color.alerzoBlue};
   font-weight:600;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 
 }
 #td-hover{
