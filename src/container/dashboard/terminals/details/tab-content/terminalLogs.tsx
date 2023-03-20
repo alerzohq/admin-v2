@@ -71,7 +71,7 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
         borderType="solid"
         actions={data.data.map((log: Log, i: number, self: Log[]) => ({
           action: (
-            <Text as="p">
+            <Text>
               <Text as="p" weight="400" size="14px">
                 {formatDate(log.createdAt, 'YYYY-MM-DD HH:mm:ss')}
               </Text>
