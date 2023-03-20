@@ -119,7 +119,7 @@ const KYCB2bUser = ({ state }: any) => {
                   ? 'pending'
                   : state?.status === 'rejected'
                   ? 'failed'
-                  : ''
+                  : 'unassigned'
               }
             >
               {state?.status ?? 'N/A'}
@@ -154,7 +154,20 @@ const KYCB2bUser = ({ state }: any) => {
           <Text as="p" color="#A5B0B7">
             Metamap Status
           </Text>
-          <Text as="p" weight="600" color="#374B58">
+          <Text
+            as="p"
+            weight="600"
+            justifyContent="center"
+            className={
+              state?.metamapStatus === 'verified'
+                ? 'success'
+                : state?.metamapStatus === 'processing'
+                ? 'pending'
+                : state?.metamapStatus === 'rejected'
+                ? 'failed'
+                : 'unassigned'
+            }
+          >
             {state.metamapStatus ?? 'N/A'}
           </Text>
         </Stack>

@@ -23,14 +23,17 @@ const BillerWidget = () => {
 
   const { data, isError, isLoading, error, refetch } = useFetchBillers()
 
-  const handleBiller = useCallback((vals: IBillerProp) => {
-    if (!setBillerThresholdAccess) {
-      toast.error(unauthorizedMessage)
-    } else {
-      setBiller(vals)
-      setShow(true)
-    }
-  }, [])
+  const handleBiller = useCallback(
+    (vals: IBillerProp) => {
+      if (!setBillerThresholdAccess) {
+        toast.error(unauthorizedMessage)
+      } else {
+        setBiller(vals)
+        setShow(true)
+      }
+    },
+    [setBillerThresholdAccess]
+  )
 
   let component
   if (isLoading) {
