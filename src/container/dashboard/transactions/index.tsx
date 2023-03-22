@@ -108,7 +108,7 @@ const TransactionContainer = () => {
     )
   } else if (data?.data?.length < 1) {
     component = (
-      <FallBack title={'You have no transaction yet.'} refetch={refetch} />
+      <FallBack title="You have no transaction yet." refetch={refetch} />
     )
   } else {
     component = (
