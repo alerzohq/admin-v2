@@ -127,7 +127,7 @@ export const selectStyles = (
             color: isBlueBackground
               ? isFocused
                 ? `${Color.alerzoBlue}`
-                : '#fff'
+                : `${Color.alerzoWhite}`
               : isFocused
               ? `${Color.alerzoWhite}`
               : `${Color.alerzoDarkGray}`,

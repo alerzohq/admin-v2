@@ -23,6 +23,7 @@ const TabsContentWidget = ({
   errorMessage,
   isError,
   type,
+  showfilters,
   borderRadius,
   hideStatus,
   containerTitle,
@@ -35,10 +36,11 @@ const TabsContentWidget = ({
 
   return (
     <Container
-      showFilters={false}
+      showFilters={showfilters ?? false}
       isFetching={isFetching}
       title={containerTitle}
       routePath={routePath}
+      filterValue={false}
     >
       {!hideStatus && !isLoading && (
         <Notification
@@ -74,7 +76,9 @@ const TabsContentWidget = ({
                 <Button
                   onClick={btnHandler}
                   width="130px"
-                  variant={btnVariant ?? Color.alerzoBlue}
+                  variant="transparent"
+                  color={btnVariant ?? Color.alerzoBlue}
+                  borderColor={btnVariant ?? Color.alerzoBlue}
                 >
                   {btnLabel ?? 'Add label'}
                 </Button>
