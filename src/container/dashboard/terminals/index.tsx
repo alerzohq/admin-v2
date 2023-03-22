@@ -75,6 +75,7 @@ const TransactionContainer = () => {
     () => getTerminalsRequestsHandler(values.count),
     { keepPreviousData: true }
   )
+  let isRequest = queryParam !== 'requests'
 
   let existingTerrminals
   if (isLoadingExistingTerrminals) {
@@ -135,6 +136,25 @@ const TransactionContainer = () => {
     setIsShown(false)
     setAddMethod(method)
   }
+  //Filters
+  const showFilters = {
+    ...(isRequest && {
+      search: {
+        placeholder: 'Search',
+      },
+    }),
+    ...(isRequest && {
+      selects: TerminalSelects,
+    }),
+
+    buttons: [
+      createTerminalAccess && {
+        label: 'Register New Terminal',
+        onClick: () => toggle(),
+        buttonClass: 'add-button',
+      },
+    ].filter(Boolean),
+  }
 
   return (
     <>
@@ -153,19 +173,7 @@ const TransactionContainer = () => {
         handleAddMethod={handleAddMethod}
       />
       <Container
-        showFilters={{
-          search: {
-            placeholder: 'Search',
-          },
-          selects: TerminalSelects,
-          buttons: [
-            createTerminalAccess && {
-              label: 'Register New Terminal',
-              onClick: () => toggle(),
-              buttonClass: 'add-button',
-            },
-          ].filter(Boolean),
-        }}
+        showFilters={showFilters}
         title="Terminals"
         setFilterValues={setValues}
         isFetching={

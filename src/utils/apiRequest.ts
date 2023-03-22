@@ -10,6 +10,7 @@ type useMutationProps = {
   methodType: Methods
   payload?: { [key: string]: any }
 }
+
 export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
   const { data } = withoutToken
     ? await axiosInstanceWithoutToken.get(`/${pathUrl}`)
