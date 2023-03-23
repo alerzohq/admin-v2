@@ -152,7 +152,7 @@ const BusinessDetailContainer = () => {
           </>
         }
         setShowModal={() => setShow(!show)}
-        cancelBtnText="Cancal"
+        cancelBtnText="Cancel"
         buttonText={isCustomerActive?.is_live ? 'Deactivate' : 'Activate'}
         hideContent={true}
         loading={isActivating || isDeactivating}
