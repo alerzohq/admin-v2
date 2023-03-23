@@ -170,7 +170,7 @@ const BusinessDetailContainer = () => {
           </>
         }
         setShowModal={() => setShowResetQst(!showResetQst)}
-        cancelBtnText="Cancal"
+        cancelBtnText="Cancel"
         buttonText="Reset"
         hideContent={true}
         loading={resetting}
