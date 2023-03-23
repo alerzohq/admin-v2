@@ -59,6 +59,8 @@ const Products = () => {
     )
   }
 
+  console.log(data)
+
   return (
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
