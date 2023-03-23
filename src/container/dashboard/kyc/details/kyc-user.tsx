@@ -72,8 +72,15 @@ export const KYCUser = ({ state }: { state: IStateProps }) => {
             margin="0 0 1rem 0"
             as="p"
             justifyContent="center"
-            color={Color.alerzoDarkGray}
-            className={'unassigned'}
+            className={
+              state?.metamapStatus === 'verified'
+                ? 'success'
+                : state?.metamapStatus === 'processing'
+                ? 'pending'
+                : state?.metamapStatus === 'rejected'
+                ? 'failed'
+                : 'unassigned'
+            }
           >
             {state.metamapStatus ?? 'N/A'}
           </Text>

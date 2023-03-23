@@ -40,7 +40,7 @@ export const ButtonContainer = styled.button<Props>`
   border: ${({ borderColor, borderSize }) =>
     borderColor
       ? `${borderSize ? borderSize : '1px'} solid ${borderColor}`
-      : '2px solid transparent'};
+      : '1px solid transparent'};
   font-size: ${({ fontSize }) => fontSize};
   border-radius: ${({ radius }) => (radius ? radius : '.4rem')};
   font-weight: ${({ weight }) => weight};

@@ -1,25 +1,24 @@
-import toast from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import { useMutation, useQueryClient } from 'react-query'
 
 import { postRequest } from '../../../../utils/apiRequest'
 import { errorMessage } from '../../../../utils/message'
 
-const useActivateBusiness = (
-  setShow: React.Dispatch<React.SetStateAction<boolean>>
+const useResetSecurityQst = (
+  setShow?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const queryClient = useQueryClient()
-
-  const activateBusiness = (id: string) => {
+  const deactivateBusiness = (id: string) => {
     return postRequest({
-      pathUrl: `business/${id}/activate`,
+      pathUrl: `business/${id}/reset-security-question`,
       methodType: 'patch',
     })
   }
 
-  return useMutation(activateBusiness, {
+  return useMutation(deactivateBusiness, {
     onSuccess: () => {
       queryClient.invalidateQueries('businesses-detail')
-      setShow(false)
+      setShow?.(true)
     },
     onError: (error) => {
       toast.error(errorMessage(error))
@@ -27,4 +26,4 @@ const useActivateBusiness = (
   })
 }
 
-export default useActivateBusiness
+export default useResetSecurityQst

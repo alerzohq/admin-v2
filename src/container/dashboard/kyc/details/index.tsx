@@ -103,7 +103,6 @@ const KYCDetailContainer = () => {
                 actions={data?.data.map((action: any) => ({
                   action: (
                     <Text
-                      as="p"
                       flexDirection="column"
                       gap="10px"
                       alignItems="baseline"
