@@ -40,8 +40,10 @@ const BusinessDetailContainer = () => {
     useActivateBusiness(setShow)
   const { mutate: deactivate, isLoading: isDeactivating } =
     useDeactivateBusiness(setShow)
-  const { mutate: resetQst, isLoading: resetting } =
-    useResetSecurityQst(setSuccess)
+  const { mutate: resetQst, isLoading: resetting } = useResetSecurityQst(
+    setSuccess,
+    setShow
+  )
 
   const { isLoading, isError, data, isFetching } = useGetBusinessDetails(id)
   let wallet = data?.data?.[0]?.wallet_details?.find(
@@ -70,7 +72,7 @@ const BusinessDetailContainer = () => {
   }
 
   const handleResetQst = () => {
-    resetQst(id)
+    resetQst(data?.data?.business_owner?.id)
   }
 
   const showfilters = {
