@@ -5,20 +5,22 @@ import { postRequest } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 
 const useResetSecurityQst = (
+  setSuccess?: React.Dispatch<React.SetStateAction<boolean>>,
   setShow?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const queryClient = useQueryClient()
-  const deactivateBusiness = (id: string) => {
+  const customerReset = (id: string) => {
     return postRequest({
       pathUrl: `customer/${id}/reset-security-question`,
       methodType: 'patch',
     })
   }
 
-  return useMutation(deactivateBusiness, {
+  return useMutation(customerReset, {
     onSuccess: () => {
       queryClient.invalidateQueries('customer-detail')
-      setShow?.(true)
+      setSuccess?.(true)
+      setShow?.(false)
     },
     onError: (error) => {
       toast.error(errorMessage(error))

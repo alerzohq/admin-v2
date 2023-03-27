@@ -30,8 +30,10 @@ const DigitalBankDetailContainer = () => {
   const getBusinessDetails = () => {
     return getResource(`customers?id=${id}`)
   }
-  const { mutate: resetQst, isLoading: resetting } =
-    useResetSecurityQst(setSuccess)
+  const { mutate: resetQst, isLoading: resetting } = useResetSecurityQst(
+    setSuccess,
+    setShowResetQst
+  )
   const { isLoading, isError, data, isFetching, error } = useQuery(
     'customer-detail',
     getBusinessDetails
