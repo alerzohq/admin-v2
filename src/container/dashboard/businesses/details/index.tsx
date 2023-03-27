@@ -42,7 +42,8 @@ const BusinessDetailContainer = () => {
     useDeactivateBusiness(setShow)
   const { mutate: resetQst, isLoading: resetting } = useResetSecurityQst(
     setSuccess,
-    setShow
+    setShow,
+    setShowResetQst
   )
 
   const { isLoading, isError, data, isFetching } = useGetBusinessDetails(id)
@@ -72,9 +73,8 @@ const BusinessDetailContainer = () => {
   }
 
   const handleResetQst = () => {
-    resetQst(data?.data?.business_owner?.id)
+    resetQst(data?.data?.[0]?.business_owner?.id)
   }
-
   const showfilters = {
     selects: [
       {
