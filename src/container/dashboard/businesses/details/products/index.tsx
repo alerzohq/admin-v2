@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -15,10 +16,13 @@ import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
-
+ 
 const Products = () => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
+
+  const {businessId} = useParams();
+  const navigate = useNavigate()
 
   const getProducts = (filterValue: filterProps) => {
     return getNewFilterResource(`products`, filterValue, false)
@@ -35,6 +39,12 @@ const Products = () => {
       payload: isFetching,
     })
   }, [isFetching, dispatch])
+
+  const handleRoute = (item: {[key: string]: any} | undefined) => {
+    if(item?.slug) {
+      navigate(`${item?.slug}`, { state: item })
+    }
+  }
 
   let component
   if (isLoading) {
@@ -53,13 +63,10 @@ const Products = () => {
         tableData={data?.data}
         tableHeaders={businessProductsHeader}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        routePath="dashboard/transactions"
-        withSlug
+        handleRouthPath={handleRoute}
       />
     )
   }
-
-  console.log(data)
 
   return (
     <>

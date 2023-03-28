@@ -32,6 +32,8 @@ const CustomTableData = ({
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
+
+  console.log('another one from CustomTableData', tableData)
   return (
     <tbody>
       {tableData?.map((item, index) => {

@@ -1,21 +1,25 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
-import { useCountdownTimer } from '../../../../hooks/useCountdownTimer'
-import { postRequest } from '../../../../utils/apiRequest'
+import { useCountdownTimer } from '../../../../../../hooks/useCountdownTimer'
+import { postRequest } from '../../../../../../utils/apiRequest'
 
 type ITokenProps = {
-    token: string;
-    email: string;
-  }
-
-type ISendOTPProps = {
-    userOtp: ITokenProps;
-    businessId: string;
-    productSlug: string;
+  token: string
+  email: string
 }
 
-const useResendOTPMutation = ({ userOtp, businessId, productSlug }: ISendOTPProps) => {
+type ISendOTPProps = {
+  userOtp: ITokenProps
+  businessId: string | any
+  productSlug: string | any
+}
+
+const useResendOTPMutation = ({
+  userOtp,
+  businessId,
+  productSlug,
+}: ISendOTPProps) => {
   const BASE_URL = process.env.REACT_APP_API_BASE_URL
   const [newOtpToken, setNewOtpToken] = useState('')
   const { minutes, seconds, resetTimer } = useCountdownTimer()
@@ -27,10 +31,10 @@ const useResendOTPMutation = ({ userOtp, businessId, productSlug }: ISendOTPProp
 
   const handleOTP = () => {
     return postRequest({
-        pathUrl: `${BASE_URL}/business/${businessId}/products/${productSlug}/resend-OTP`,
-        payload: sendOTPPayload,
-        methodType: 'post',
-      })
+      pathUrl: `${BASE_URL}/business/${businessId}/products/${productSlug}/resend-OTP`,
+      payload: sendOTPPayload,
+      methodType: 'post',
+    })
   }
 
   const { mutate, isLoading } = useMutation(handleOTP, {
@@ -44,11 +48,11 @@ const useResendOTPMutation = ({ userOtp, businessId, productSlug }: ISendOTPProp
     },
   })
 
-  const handleSendOTP = () => {
+  const handleResendOTP = () => {
     mutate()
   }
 
-  return { handleSendOTP, minutes, seconds, isLoading, newOtpToken }
+  return { handleResendOTP, minutes, seconds, isLoading, newOtpToken }
 }
 
 export default useResendOTPMutation

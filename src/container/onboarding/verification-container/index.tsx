@@ -20,6 +20,9 @@ const VerificationContainer = () => {
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
 
+  // console.log(userOtp)
+  // returns {email: "kelvin.edosa@alerzo.com" token: "jGlcxxmUYUBtzaaFMNlNe"}
+
   const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
     useResendOTP(userOtp)
 

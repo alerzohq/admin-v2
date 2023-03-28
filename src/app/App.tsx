@@ -29,6 +29,7 @@ import { ErrorFallback } from '../components/common/error-boundary'
 import TerminalRequestDetails from '../container/dashboard/terminals/details/request-detail'
 import KYC from '../pages/dashboard/KYC'
 import KYCDetails from '../pages/dashboard/KYC/details'
+import BusinessProductDetails from '../pages/dashboard/businessess/business-detail/business-product-details'
 
 function App() {
   const navigate = useNavigate()
@@ -75,6 +76,7 @@ function App() {
               />
               <Route path={Path.BUSINESSES} element={<Businesses />} />
               <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
+              <Route path={Path.BUSINESSPRODUCTDETAIL} element={<BusinessProductDetails />} />
               <Route path={Path.DIGITALBANK} element={<DigitalBank />} />
               <Route
                 path={Path.DIGITALBANKDETAIL}
@@ -89,7 +91,7 @@ function App() {
           </Route>
 
           {/* replace with not found component */}
-          <Route path="*" element={<NotFound user={user} />} />
+          {/* <Route path="*" element={<NotFound user={user} />} /> */}
         </Routes>
       </ErrorBoundary>
     </>

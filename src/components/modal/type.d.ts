@@ -19,7 +19,7 @@ export type ModalProps = {
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   icon?: ReactNode
   withoutFooter?: boolean
-  hideContent?:boolean
+  hideContent?: boolean
   disabled?: boolean
   subTitleWhiteSpace?: string
   footer?: React.ReactNode

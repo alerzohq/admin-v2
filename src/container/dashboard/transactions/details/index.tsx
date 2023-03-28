@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
 import { getResource } from '../../../../utils/apiRequest'
@@ -11,6 +11,7 @@ import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper'
 import NotesContent from './tab-content/notes'
 import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
+import { cleanCommonProps } from 'react-select/dist/declarations/src/utils'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
@@ -26,10 +27,15 @@ const TabsContainer = () => {
     return getResource(`transactions?id=${id}`)
   }
 
+  const params = useParams();
+
+  console.log('transactions params', params)
+  
   const { isLoading, data, isError, isFetching } = useQuery(
     'transactions',
     getTransactions
-  )
+    )
+    console.log('transactions data',data)
   const getBusinessUser = () => {
     return getResource(`business-users?id=${data?.data[0]?.user_id}`)
   }
@@ -83,7 +89,7 @@ const TabsContainer = () => {
       currentValue={found?.value || 'details'}
       renderSwitch={renderSwitch}
       tabs={TABS}
-      routePath='/dashboard/transactions'
+      routePath="/dashboard/transactions"
     />
   )
 }

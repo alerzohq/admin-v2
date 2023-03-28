@@ -1,38 +1,52 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { Color } from '../../../../assets/theme'
 import { Button, Form, Loader, Stack, Text } from '../../../../components'
 import { useAppContext } from '../../../../context'
-import { Path } from '../../../../constants/route-path'
 import OtpInput from 'react-otp-input'
 import { TimerIcon } from '../../../../assets/icons'
 import useAuthenticate from '../../../onboarding/verification-container/helper/useAuthenticate'
-import useResendOTP from '../../../onboarding/verification-container/helper/useResendOTP'
 import Modal from '../../../../components/modal'
-import useResendOTPMutation from '../../products/hooks/useResendOtpMutation'
+import useResendOTPMutation from '../../businesses/details/products/hooks/useResendOtpMutation'
+import useDeactivateBusinessProduct from '../../businesses/details/products/hooks/useDeactivateProductMutation'
 
 type VerificationModalProps = {
   open: boolean
   close: VoidFunction
-  callback?: (value: string) => void
+  callback?: VoidFunction | any
+  resend?: (value: string) => void
+  loading?: boolean
+  otp?: string
+  setOtp?: any
 }
 
 const VerificationPinModal = ({
   open,
   close,
   callback,
+  resend,
+  loading,
+  otp,
+  setOtp
 }: VerificationModalProps) => {
   const {
     state: { userOtp, user },
     dispatch,
   } = useAppContext()
 
+  console.log('here', userOtp, user)
+
+  const {businessId, slug: productSlug} = useParams()
+
+  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading  } = useResendOTPMutation({
+    userOtp,
+    businessId,
+    productSlug,
+  })
+
   const userEmail = user?.data?.email
 
-  const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
-
-  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
-    useResendOTP(userOtp)
 
   let payload = {
     otp,
@@ -40,10 +54,7 @@ const VerificationPinModal = ({
     email: userOtp?.email,
   }
 
-  const { authenticateUser, loading } = useAuthenticate({
-    payload: payload,
-    dispatch: dispatch,
-  })
+  console.log(otp)
 
   const handleChange = (otp: string) => {
     setOtp(otp)
@@ -52,7 +63,7 @@ const VerificationPinModal = ({
 
   useEffect(() => {
     if (!userOtp) {
-      // navigate(Path.LOGIN)
+      return
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -60,19 +71,10 @@ const VerificationPinModal = ({
   const resendOTP = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     handleResendOTP()
-    console.log('clicked')
   }
 
-  const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+  console.log({userOtp})
 
-    if (userOtp?.email && otp && otp?.length >= 6 && userOtp?.token) {
-      setOtpError(false)
-      await authenticateUser()
-    } else {
-      setOtpError(true)
-    }
-  }
   return (
     <Modal
       showModal={open}
@@ -157,7 +159,7 @@ const VerificationPinModal = ({
           </Stack>
 
           <Form.Control pt={'3rem'} pb={'2rem'}>
-            <Button onClick={submitForm}>
+            <Button onClick={callback}>
               {loading ? <Loader color={Color.alerzoWhite} /> : 'Proceed'}
             </Button>
           </Form.Control>
