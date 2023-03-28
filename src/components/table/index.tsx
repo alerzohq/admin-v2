@@ -18,7 +18,7 @@ const Table = ({
   layout,
   routePath,
   noSlug,
-  handleRouthPath
+  handleRouthPath,
 }: TableProps) => {
   return (
     <>

@@ -37,8 +37,6 @@ const useSendOTPMutation = ({
     })
   }
 
-  
-
   const { mutate, isLoading } = useMutation(handleOTP, {
     onSuccess: ({ data }) => {
       setNewOtpToken(data?.data?.token)

@@ -11,9 +11,9 @@ const useDeactivateBusinessProduct = (
   const queryClient = useQueryClient()
   const deactivateBusinessProduct = (id: string | any) => {
     return postRequest({
-    //   pathUrl: `business/872c7d00-5202-46b4-83aa-8529c46d7daa/products/mtn-vtu/deactivate`,
+      //   pathUrl: `business/872c7d00-5202-46b4-83aa-8529c46d7daa/products/mtn-vtu/deactivate`,
       pathUrl: `business/${id}/products/${slug}/deactivate`,
-      payload: {otp},
+      payload: { otp },
       methodType: 'patch',
     })
   }

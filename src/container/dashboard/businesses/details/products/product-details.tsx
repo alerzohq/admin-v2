@@ -19,14 +19,14 @@ import { selectStyles } from '../../../../../components/select-input/styles/sele
 import DeactivateProductModal from './modal/deactivate-product-modal'
 
 interface CustomizedState {
-  slug: string,
+  slug: string
   displayName: string
 }
 const BusinessProductDetailsContainer = () => {
   const location = useLocation()
   const state = location.state as CustomizedState
 
-const {businessId} = useParams()
+  const { businessId } = useParams()
 
   const [values, setValues] = useState({})
   const [value, setValue] = useState('')
@@ -109,7 +109,7 @@ const {businessId} = useParams()
       }}
       isFetching={isRefetching}
       title="Product Information"
-    //   routePath="/dashboard/products"
+      //   routePath="/dashboard/products"
       setFilterValues={setValues}
     >
       <DetailsContent

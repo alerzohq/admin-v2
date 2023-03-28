@@ -27,7 +27,7 @@ const VerificationPinModal = ({
   resend,
   loading,
   otp,
-  setOtp
+  setOtp,
 }: VerificationModalProps) => {
   const {
     state: { userOtp, user },
@@ -36,13 +36,14 @@ const VerificationPinModal = ({
 
   console.log('here', userOtp, user)
 
-  const {businessId, slug: productSlug} = useParams()
+  const { businessId, slug: productSlug } = useParams()
 
-  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading  } = useResendOTPMutation({
-    userOtp,
-    businessId,
-    productSlug,
-  })
+  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
+    useResendOTPMutation({
+      userOtp,
+      businessId,
+      productSlug,
+    })
 
   const userEmail = user?.data?.email
 
@@ -73,7 +74,7 @@ const VerificationPinModal = ({
     handleResendOTP()
   }
 
-  console.log({userOtp})
+  console.log({ userOtp })
 
   return (
     <Modal

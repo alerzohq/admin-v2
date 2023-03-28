@@ -16,12 +16,12 @@ import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
- 
+
 const Products = () => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
 
-  const {businessId} = useParams();
+  const { businessId } = useParams()
   const navigate = useNavigate()
 
   const getProducts = (filterValue: filterProps) => {
@@ -40,8 +40,8 @@ const Products = () => {
     })
   }, [isFetching, dispatch])
 
-  const handleRoute = (item: {[key: string]: any} | undefined) => {
-    if(item?.slug) {
+  const handleRoute = (item: { [key: string]: any } | undefined) => {
+    if (item?.slug) {
       navigate(`${item?.slug}`, { state: item })
     }
   }

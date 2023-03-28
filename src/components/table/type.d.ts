@@ -17,7 +17,7 @@ export type TableProps = {
   layout?: string
   routePath?: string
   noSlug?: boolean
-  handleRouthPath?: (item?: {[key: string]: any}) => void
+  handleRouthPath?: (item?: { [key: string]: any }) => void
 
   onClick?: (item: {}) => void
 }
