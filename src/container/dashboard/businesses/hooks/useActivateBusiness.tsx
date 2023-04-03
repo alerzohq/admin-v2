@@ -8,6 +8,7 @@ const useActivateBusiness = (
   setShow: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const queryClient = useQueryClient()
+
   const activateBusiness = (id: string) => {
     return postRequest({
       pathUrl: `business/${id}/activate`,

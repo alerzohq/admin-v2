@@ -62,7 +62,6 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
 
-  console.log({ showFilters })
   return (
     <>
       <TopbarWrapper>
@@ -74,8 +73,8 @@ const TopBar = ({
                   routePath
                     ? typeof routePath === 'function'
                       ? navigate(`${routePath()}`, { replace: true })
-                      : state?.prevPath === routePath
-                      ? navigate(`${routePath}`)
+                      : state?.prevPath && !state?.prevPath?.includes(routePath)
+                      ? navigate(-1)
                       : location?.pathname?.includes(routePath)
                       ? navigate(`${routePath}`)
                       : navigate(-1)

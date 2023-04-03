@@ -18,6 +18,11 @@ const useLogout = () => {
         dispatch({ type: Action.LOGOUT })
       })
     },
+    onError: () => {
+      logOut(() => {
+        dispatch({ type: Action.LOGOUT })
+      })
+    },
   })
 }
 
