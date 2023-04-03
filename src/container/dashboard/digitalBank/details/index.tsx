@@ -14,6 +14,8 @@ import Modal from '../../../../components/modal'
 import DangerWarning from '../../../../assets/icons/danger-warning'
 import { SucccessAlert } from '../../../../components'
 import useResetSecurityQst from './hooks/useResetSecurityQst'
+import useActivateCustomer from './hooks/useActiveCustomer'
+import useDeactivateCustomer from './hooks/useDeactivateCustomer'
 
 const DigitalBankDetailContainer = () => {
   const location = useLocation()
@@ -25,11 +27,16 @@ const DigitalBankDetailContainer = () => {
   let result = thePath.split('/')
   const id = result[3]
   const [reset, setReset] = useState('')
+  const [show, setShow] = useState(false)
   const [success, setSuccess] = useState(false)
   const [showResetQst, setShowResetQst] = useState(false)
   const getBusinessDetails = () => {
     return getResource(`customers?id=${id}`)
   }
+  const { mutate: activate, isLoading: isActivating } =
+    useActivateCustomer(setShow)
+  const { mutate: deactivate, isLoading: isDeactivating } =
+    useDeactivateCustomer(setShow)
   const { mutate: resetQst, isLoading: resetting } = useResetSecurityQst(
     setSuccess,
     setShowResetQst
@@ -38,6 +45,15 @@ const DigitalBankDetailContainer = () => {
     'customer-detail',
     getBusinessDetails
   )
+  const isCustomerActive = data?.data?.[0]
+
+  const handleSubmit = () => {
+    if (isCustomerActive?.is_live) {
+      deactivate(id)
+    } else {
+      activate(id)
+    }
+  }
 
   const renderSwitch = () => {
     switch (queryParam) {
@@ -99,6 +115,28 @@ const DigitalBankDetailContainer = () => {
         routePath={'/dashboard/digital-bank'}
         hideStatus
       />
+      <Modal
+        showModal={show}
+        icon={<DangerWarning />}
+        title={
+          isCustomerActive?.is_live
+            ? 'Deactivate Business'
+            : 'Activate Business'
+        }
+        subTitle={
+          <>
+            Are you sure, you want to{' '}
+            {isCustomerActive?.is_live ? 'deactivate' : 'activate'}{' '}
+            <b> {data?.data?.[0]?.name}?</b>
+          </>
+        }
+        setShowModal={() => setShow(!show)}
+        cancelBtnText="Cancel"
+        buttonText={isCustomerActive?.is_live ? 'Deactivate' : 'Activate'}
+        hideContent={true}
+        loading={isActivating || isDeactivating}
+        handleSubmit={handleSubmit}
+      ></Modal>
       <Modal
         showModal={showResetQst}
         icon={<DangerWarning />}

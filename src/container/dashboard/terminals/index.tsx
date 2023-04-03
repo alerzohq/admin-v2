@@ -28,7 +28,11 @@ import {
   terminalStats,
   TERMINALTABS,
 } from '../../../data/terminal-data'
-import { getTerminalsHandler, getTerminalStats } from './utils'
+import {
+  getRequestTerminalStats,
+  getTerminalsHandler,
+  getTerminalStats,
+} from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
 import { errorMessage } from '../../../utils/message'
@@ -44,11 +48,16 @@ const TransactionContainer = () => {
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
 
-  const { isLoading: loading, data: Stats } = useQuery(
+  const { isLoading: loading, data: stats } = useQuery(
     'terminal-stats',
     getTerminalStats
   )
-  const Statistics = Stats?.data
+  const { isLoading: requestLoading, data: requestStats } = useQuery(
+    'terminal-request',
+    getRequestTerminalStats
+  )
+  const Statistics = stats?.data
+  const requestStatistics = requestStats?.data
 
   const getTerminalsRequestsHandler = (count: number) => {
     return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
@@ -189,8 +198,8 @@ const TransactionContainer = () => {
         {queryParam === 'requests' ? (
           <>
             <CardWidget
-              statistics={terminalRequestsStats()}
-              loading={loading}
+              statistics={terminalRequestsStats(requestStatistics)}
+              loading={requestLoading}
               labels={terminalsRequestsLabels}
               icons={requestTerminalIcons}
             />
