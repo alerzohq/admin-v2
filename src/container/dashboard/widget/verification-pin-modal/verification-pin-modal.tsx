@@ -44,7 +44,6 @@ const VerificationPinModal = ({
 
   const userEmail = user?.data?.email
 
-
   const handleChange = (otp: string) => {
     setOtp(otp)
   }
