@@ -16,6 +16,7 @@ type VerificationModalProps = {
   loading?: boolean
   otp?: string
   setOtp?: any
+  otpError: boolean
 }
 
 const VerificationPinModal = ({
@@ -26,6 +27,7 @@ const VerificationPinModal = ({
   loading,
   otp,
   setOtp,
+  otpError,
 }: VerificationModalProps) => {
   const {
     state: { userOtp, user },
@@ -42,11 +44,9 @@ const VerificationPinModal = ({
 
   const userEmail = user?.data?.email
 
-  const [otpError, setOtpError] = useState(false)
 
   const handleChange = (otp: string) => {
     setOtp(otp)
-    setOtpError(false)
   }
 
   useEffect(() => {

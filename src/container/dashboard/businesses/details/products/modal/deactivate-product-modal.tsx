@@ -69,22 +69,30 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
     isLoading: isDeactivating,
     isError,
     error,
+    isSuccess,
   } = useDeactivateBusinessProduct(setShow, productSlug, otp)
 
   useEffect(() => {
-    setOtpError(isError)
-  }, [isError])
+    if(error) {
+      setOtpError(isError)
+      setShowVerification(true)
+    } 
+    if(isSuccess) {
+      setShowVerification(false)
+      setShowSuccess(true)
+    }
+  }, [isError, isSuccess])
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-
+    
     if (businessId && productSlug) {
-      deactivate(businessId)
+      if (otp && otp.length < 6) {
+        setOtpError(true)
+      } else {
+        deactivate(businessId)
+      }   
 
-      if (otpError || otp.length < 6) return
-
-      setShowVerification(false)
-      setShowSuccess(true)
     }
   }
 
@@ -113,7 +121,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           <Button
             onClick={handleCancel}
             height={'45px'}
-            width="30%"
+            width="40%"
             borderSize="1px"
             color={Color.alerzoBlue}
             variant="transparent"
@@ -124,7 +132,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           <Button
             onClick={handleOpenPinModal}
             height="45px"
-            width="50%"
+            width="40%"
             variant={Color.alerzoBlue}
             color={'#FFF'}
           >
@@ -140,6 +148,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           loading={isDeactivating}
           otp={otp}
           setOtp={setOtp}
+          otpError={otpError}
         />
       )}
       {showSuccess && (
