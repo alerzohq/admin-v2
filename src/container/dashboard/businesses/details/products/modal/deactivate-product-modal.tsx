@@ -1,13 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Modal from '../../../../../../components/modal'
 import { Button } from '../../../../../../components'
 import DangerWarning from '../../../../../../assets/icons/danger-warning'
 import { Color } from '../../../../../../assets/theme'
 import { useAppContext } from '../../../../../../context'
-import useSendOTPMutation from '../hooks/useSendOtpMutation'
-import useResendOTPMutation from '../hooks/useResendOtpMutation'
-import useDeactivateBusinessProduct from '../hooks/useDeactivateProductMutation'
+import useSendOTPMutation from '../../../hooks/useSendOtpMutation'
+import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
+import useDeactivateBusinessProduct from '../../../hooks/useDeactivateProductMutation'
 import VerificationPinModal from '../../../../widget/verification-pin-modal/verification-pin-modal'
 import SuccessModal from './success-modal'
 
@@ -52,13 +51,8 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   const [showSuccess, setShowSuccess] = useState(false)
   const [show, setShow] = useState(false)
   const [otp, setOtp] = useState('')
+  const [otpError, setOtpError] = useState(false)
 
-  //   const { isLoading: loading, mutate } = useReversalMutation({
-  //     setShowModal,
-  //     showModal,
-  //     setValue,
-  //     setShowSuccess,
-  //   })
   const handleCancel = () => {
     setShowModal(!showModal)
   }
@@ -70,22 +64,24 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
     setShowVerification(true)
   }
 
-  const { mutate: deactivate, isLoading: isDeactivating } =
+  const { mutate: deactivate, isLoading: isDeactivating, isError, error } =
     useDeactivateBusinessProduct(setShow, productSlug, otp)
+
+    useEffect(() => {
+      setOtpError(isError)
+    }, [isError])
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
-    // if (userOtp?.email && otp && otp?.length >= 6 && userOtp?.token) {
-    //   setOtpError(false)
     if (businessId && productSlug) {
       deactivate(businessId)
+
+      if(otpError || otp.length < 6) return 
+
       setShowVerification(false)
       setShowSuccess(true)
     }
-    // } else {
-    //   setOtpError(true)
-    // }
   }
 
   return (
@@ -102,10 +98,10 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
         icon={<DangerWarning />}
         subTitleSize={'16'}
         subTitle={
-          <div style={{ marginTop: '15px' }}>
+          <span style={{ marginTop: '15px' }}>
             Do you want to deactivate <br />
             <span className="bold">{productName}</span>
-          </div>
+          </span>
         }
         handleSubmit={() => {}}
       >
@@ -128,7 +124,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
             variant={Color.alerzoBlue}
             color={'#FFF'}
           >
-            {'Deactivate Product'}
+            {'Deactivate'}
           </Button>
         </Button.Group>
       </Modal>

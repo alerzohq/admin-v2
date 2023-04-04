@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -17,22 +17,24 @@ import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 
-const Products = () => {
+const Products = (isB2B: any) => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
 
   const { businessId } = useParams()
+
   const navigate = useNavigate()
 
-  const getProducts = (filterValue: filterProps) => {
-    return getNewFilterResource(`products`, filterValue, false)
+  const getBusinessProducts = (filterValue: filterProps) => {
+    return getNewFilterResource(`business/${businessId}/products`, filterValue, false)
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
-    [`business-product`, values],
-    () => getProducts(values),
+    [`business-products`, values],
+    () => getBusinessProducts(values),
     { keepPreviousData: true }
   )
+
   useEffect(() => {
     dispatch({
       type: Action.IS_FETCHING,
@@ -41,8 +43,8 @@ const Products = () => {
   }, [isFetching, dispatch])
 
   const handleRoute = (item: { [key: string]: any } | undefined) => {
-    if (item?.slug) {
-      navigate(`${item?.slug}`, { state: item })
+    if (item?.productSlug) {
+      navigate(`${item?.productSlug}`, { state: { item, isB2B } })
     }
   }
 

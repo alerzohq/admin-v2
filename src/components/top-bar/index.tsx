@@ -62,7 +62,6 @@ const TopBar = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
 
-  // console.log({ showFilters })
   return (
     <>
       <TopbarWrapper>

@@ -40,8 +40,6 @@ const ProductDetailsContainer = () => {
   )
   const resp = data?.data?.[0]
 
-  console.log(data)
-
   let component
   if (isLoading) {
     component = <Loader />

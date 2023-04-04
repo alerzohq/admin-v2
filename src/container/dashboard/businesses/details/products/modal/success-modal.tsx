@@ -19,10 +19,10 @@ const SuccessModal = ({ productName, showSuccess, setShowSuccess }: any) => {
       icon={<SuccessIcon />}
       subTitleSize={'16'}
       subTitle={
-        <div style={{ marginTop: '15px' }}>
+        <span style={{ marginTop: '15px' }}>
           You have successfully deactivated <br />
           <span className="bold">{productName}</span>
-        </div>
+        </span>
       }
     >
       <Button

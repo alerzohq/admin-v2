@@ -19,8 +19,8 @@ import { selectStyles } from '../../../../../components/select-input/styles/sele
 import DeactivateProductModal from './modal/deactivate-product-modal'
 
 interface CustomizedState {
-  slug: string
-  displayName: string
+  item: any
+  isB2B: any
 }
 const BusinessProductDetailsContainer = () => {
   const location = useLocation()
@@ -32,20 +32,20 @@ const BusinessProductDetailsContainer = () => {
   const [value, setValue] = useState('')
   const [isDeactivateModal, setIsDeactivateModal] = useState(false)
 
-  const getProductBillers = (slug: string) => {
-    return getResource(`products/${slug}/billers`)
+  const getProductBillers = (productSlug: string) => {
+    return getResource(`products/${productSlug}/billers`)
   }
-  const getProductBillersDetails = (slug: string) => {
-    return getResource(`products/${slug}`)
+  const getProductBillersDetails = (productSlug: string) => {
+    return getResource(`products/${productSlug}`)
   }
   const { isLoading, isRefetching, isError, refetch, data, error } = useQuery(
-    ['billers', state?.slug],
-    () => getProductBillers(state?.slug)
+    ['billers', state?.item?.productSlug],
+    () => getProductBillers(state?.item?.productSlug)
   )
 
   const { data: billerDetails } = useQuery(
-    ['billers-details', state?.slug],
-    () => getProductBillersDetails(state?.slug)
+    ['billers-details', state?.item?.productSlug],
+    () => getProductBillersDetails(state?.item?.productSlug)
   )
   const resp = data?.data?.[0]
 
@@ -92,7 +92,7 @@ const BusinessProductDetailsContainer = () => {
 
   return (
     <Container
-      showFilters={{
+      showFilters={!state?.isB2B?.isB2B ? {
         selects: [
           {
             placeholder: 'Actions',
@@ -106,14 +106,13 @@ const BusinessProductDetailsContainer = () => {
             onChange: (e: any) => setValue(e?.value),
           },
         ],
-      }}
+      } : {}}
       isFetching={isRefetching}
       title="Product Information"
-      //   routePath="/dashboard/products"
       setFilterValues={setValues}
     >
       <DetailsContent
-        resolvedData={productHelper({ ...resp, name: state?.slug })!}
+        resolvedData={productHelper({ ...resp, name: state?.item?.productSlug })!}
       />
       <Text
         as="p"
@@ -135,8 +134,8 @@ const BusinessProductDetailsContainer = () => {
         setValue={setValue}
         setShowModal={setIsDeactivateModal}
         showModal={isDeactivateModal}
-        productName={state?.displayName}
-        productSlug={state?.slug}
+        productName={state?.item?.displayName}
+        productSlug={state?.item?.productSlug}
         businessId={businessId}
       />
     </Container>

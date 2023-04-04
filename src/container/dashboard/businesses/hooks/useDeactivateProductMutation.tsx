@@ -1,7 +1,7 @@
 import { toast } from 'react-hot-toast'
 import { useMutation, useQueryClient } from 'react-query'
-import { postRequest } from '../../../../../../utils/apiRequest'
-import { errorMessage } from '../../../../../../utils/message'
+import { postRequest } from '../../../../utils/apiRequest'
+import { errorMessage } from '../../../../utils/message'
 
 const useDeactivateBusinessProduct = (
   setShow: React.Dispatch<React.SetStateAction<boolean>>,
@@ -30,3 +30,4 @@ const useDeactivateBusinessProduct = (
 }
 
 export default useDeactivateBusinessProduct
+

@@ -42,8 +42,6 @@ const ProductsContainer = () => {
     getProducts
   )
 
-  console.log(values)
-
   // Create custom hooks for below side effects
   const [dataArr, setDataArr] = useState(data?.data)
   useEffect(() => {
@@ -68,8 +66,6 @@ const ProductsContainer = () => {
     enabled: !!slug,
   })
 
-  console.log(stateValue)
-
   // Create custom hooks for below side effects
 
   useEffect(() => {
@@ -91,8 +87,6 @@ const ProductsContainer = () => {
       toast.error(`${errorMessage(billerError)}`)
     }
   }, [isBillerError, error, billerError])
-
-  console.log(dataArr)
 
   let component
   if (isLoading) {

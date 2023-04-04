@@ -37,6 +37,9 @@ const BusinessDetailContainer = () => {
     (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
 
+  // check if business is b2b
+  const isB2B = data?.data?.[0]?.channel === 'b2b'
+
   const walletId = wallet?.wallet_id
   const isCustomerActive = data?.data?.[0]
   const handleBusinessConfirmation = () => {
@@ -55,7 +58,7 @@ const BusinessDetailContainer = () => {
       case 'transaction':
         return <TransactionHistory walletId={walletId} />
       case 'products':
-        return <Products />
+        return <Products isB2B={isB2B} />
       case 'kyc':
         return <div>KYC</div>
       case 'terminals':

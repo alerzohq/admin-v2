@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
-import { useCountdownTimer } from '../../../../../../hooks/useCountdownTimer'
-import { postRequest } from '../../../../../../utils/apiRequest'
+import { useCountdownTimer } from '../../../../hooks/useCountdownTimer'
+import { postRequest } from '../../../../utils/apiRequest' 
 
 type ITokenProps = {
   token: string
@@ -24,15 +24,9 @@ const useSendOTPMutation = ({
   const [newOtpToken, setNewOtpToken] = useState('')
   const { minutes, seconds, resetTimer } = useCountdownTimer()
 
-  let sendOTPPayload = {
-    token: newOtpToken || userOtp?.token,
-    email: userOtp?.email,
-  }
-
   const handleOTP = () => {
     return postRequest({
       pathUrl: `${BASE_URL}/business/${businessId}/products/${productSlug}/initiate`,
-      payload: sendOTPPayload,
       methodType: 'post',
     })
   }

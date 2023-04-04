@@ -5,10 +5,8 @@ import { Button, Form, Loader, Stack, Text } from '../../../../components'
 import { useAppContext } from '../../../../context'
 import OtpInput from 'react-otp-input'
 import { TimerIcon } from '../../../../assets/icons'
-import useAuthenticate from '../../../onboarding/verification-container/helper/useAuthenticate'
 import Modal from '../../../../components/modal'
-import useResendOTPMutation from '../../businesses/details/products/hooks/useResendOtpMutation'
-import useDeactivateBusinessProduct from '../../businesses/details/products/hooks/useDeactivateProductMutation'
+import useResendOTPMutation from '../../businesses/hooks/useResendOtpMutation' 
 
 type VerificationModalProps = {
   open: boolean
@@ -31,10 +29,7 @@ const VerificationPinModal = ({
 }: VerificationModalProps) => {
   const {
     state: { userOtp, user },
-    dispatch,
   } = useAppContext()
-
-  console.log('here', userOtp, user)
 
   const { businessId, slug: productSlug } = useParams()
 
@@ -48,14 +43,6 @@ const VerificationPinModal = ({
   const userEmail = user?.data?.email
 
   const [otpError, setOtpError] = useState(false)
-
-  let payload = {
-    otp,
-    token: newOtpToken || userOtp?.token,
-    email: userOtp?.email,
-  }
-
-  console.log(otp)
 
   const handleChange = (otp: string) => {
     setOtp(otp)
@@ -73,8 +60,6 @@ const VerificationPinModal = ({
     e.preventDefault()
     handleResendOTP()
   }
-
-  console.log({ userOtp })
 
   return (
     <Modal
