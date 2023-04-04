@@ -6,7 +6,7 @@ import { useAppContext } from '../../../../context'
 import OtpInput from 'react-otp-input'
 import { TimerIcon } from '../../../../assets/icons'
 import Modal from '../../../../components/modal'
-import useResendOTPMutation from '../../businesses/hooks/useResendOtpMutation' 
+import useResendOTPMutation from '../../businesses/hooks/useResendOtpMutation'
 
 type VerificationModalProps = {
   open: boolean

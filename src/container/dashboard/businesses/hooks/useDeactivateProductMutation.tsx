@@ -30,4 +30,3 @@ const useDeactivateBusinessProduct = (
 }
 
 export default useDeactivateBusinessProduct
-

@@ -1,5 +1,9 @@
 import { useLocation } from 'react-router-dom'
-import { businessDetailsHelper, TABS } from '../../../../data/business-data'
+import {
+  actionOptions,
+  businessDetailsHelper,
+  TABS,
+} from '../../../../data/business-data'
 import DetailsContent from '../../widget/tabs/tab-content-details'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import TransactionHistory from './transaction-history'
@@ -10,16 +14,21 @@ import BusinessAccounts from './user-accounts/index'
 import { Color } from '../../../../assets/theme'
 import Modal from '../../../../components/modal'
 import DangerWarning from '../../../../assets/icons/danger-warning'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import useActivateBusiness from '../hooks/useActivateBusiness'
 import useDeactivateBusiness from '../hooks/useDeactivateBusiness'
 import useGetBusinessDetails from '../hooks/useGetBusinessDetails'
+import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
+import useResetSecurityQst from '../hooks/useResetSecurityQst'
+import { SucccessAlert } from '../../../../components'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
   const search = location.search
   const [show, setShow] = useState(false)
-
+  const [success, setSuccess] = useState(false)
+  const [showResetQst, setShowResetQst] = useState(false)
+  const [reset, setReset] = useState('')
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
   const title = found ? found?.title : TABS[0]?.title
@@ -31,6 +40,11 @@ const BusinessDetailContainer = () => {
     useActivateBusiness(setShow)
   const { mutate: deactivate, isLoading: isDeactivating } =
     useDeactivateBusiness(setShow)
+  const { mutate: resetQst, isLoading: resetting } = useResetSecurityQst(
+    setSuccess,
+    setShow,
+    setShowResetQst
+  )
 
   const { isLoading, isError, data, isFetching } = useGetBusinessDetails(id)
   let wallet = data?.data?.[0]?.wallet_details?.find(
@@ -45,12 +59,39 @@ const BusinessDetailContainer = () => {
   const handleBusinessConfirmation = () => {
     setShow(!show)
   }
+
+  useEffect(() => {
+    if (reset) {
+      setShowResetQst(true)
+      setReset('')
+    }
+  }, [reset])
+
   const handleSubmit = () => {
     if (isCustomerActive?.is_live) {
       deactivate(id)
     } else {
       activate(id)
     }
+  }
+
+  const handleResetQst = () => {
+    resetQst(data?.data?.[0]?.business_owner?.id)
+  }
+  const showfilters = {
+    selects: [
+      {
+        placeholder: 'Actions',
+        hideValue: true,
+        isClearable: false,
+        isSearchable: false,
+        styles: selectStyles(false, false, '150px', true),
+        values: actionOptions,
+        action: true,
+        value: '',
+        onChange: (e: any) => setReset(e?.value),
+      },
+    ],
   }
 
   const renderSwitch = () => {
@@ -91,6 +132,7 @@ const BusinessDetailContainer = () => {
         currentValue={found?.value || 'details'}
         renderSwitch={renderSwitch}
         tabs={TABS}
+        showfilters={showfilters}
         routePath={'/dashboard/businesses'}
         hideStatus
         btnHandler={handleBusinessConfirmation}
@@ -115,12 +157,36 @@ const BusinessDetailContainer = () => {
           </>
         }
         setShowModal={() => setShow(!show)}
-        cancelBtnText="Cancal"
+        cancelBtnText="Cancel"
         buttonText={isCustomerActive?.is_live ? 'Deactivate' : 'Activate'}
         hideContent={true}
         loading={isActivating || isDeactivating}
         handleSubmit={handleSubmit}
       ></Modal>
+
+      <Modal
+        showModal={showResetQst}
+        icon={<DangerWarning />}
+        title="Reset Security Question"
+        subTitle={
+          <>
+            Do you want to reset
+            <b> {data?.data?.[0]?.name}</b> security question?
+          </>
+        }
+        setShowModal={() => setShowResetQst(!showResetQst)}
+        cancelBtnText="Cancel"
+        buttonText="Reset"
+        hideContent={true}
+        loading={resetting}
+        handleSubmit={handleResetQst}
+      ></Modal>
+      <SucccessAlert
+        showSuccess={success}
+        setShowModal={setSuccess}
+        title="Reset Security Question"
+        subTitle="You have successfully reset security question"
+      />
     </>
   )
 }

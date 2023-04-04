@@ -7,6 +7,9 @@ export const getTerminalsSpecs = () => {
 export const getTerminalStats = () => {
   return getResource(`terminals/statistics`)
 }
+export const getRequestTerminalStats = () => {
+  return getResource(`terminal-request/statistics`)
+}
 export const getTerminalsHandler = (filterValue: filterProps) => {
   return getNewFilterResource(`terminals`, filterValue)
 }

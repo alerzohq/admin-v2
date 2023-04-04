@@ -13,7 +13,7 @@ import { businessTerminalHeader } from '../../../../../data/table-headers'
 import { filterProps } from '../../../../../@types'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
-import MapTerminalModal from '../modal/mapTerminal'
+import MapTerminalModal from '../modal/map-terminal'
 
 const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   const [values, setValues] = useState(filterValue)

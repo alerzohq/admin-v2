@@ -177,12 +177,12 @@ export const requestTerminalIcons = {
   card3: TerminalsPendingRequestsIcon,
   card4: ActiveTerminalsIcon,
 }
-export const terminalRequestsStats = () => {
+export const terminalRequestsStats = (stats: { [key: string]: any }) => {
   const statistics = {
-    card1: 10,
-    card2: 10,
-    card3: 10,
-    card4: 10,
+    card1: stats?.totalDelivered,
+    card2: stats?.totalRejected,
+    card3: stats?.totalProcessing,
+    card4: stats?.totalApproved,
   }
   return statistics
 }

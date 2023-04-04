@@ -92,27 +92,33 @@ const BusinessProductDetailsContainer = () => {
 
   return (
     <Container
-      showFilters={!state?.isB2B?.isB2B ? {
-        selects: [
-          {
-            placeholder: 'Actions',
-            hideValue: true,
-            isClearable: false,
-            isSearchable: false,
-            styles: selectStyles(false, false, '150px', true),
-            values: actionOptions,
-            action: true,
-            value: '',
-            onChange: (e: any) => setValue(e?.value),
-          },
-        ],
-      } : {}}
+      showFilters={
+        !state?.isB2B?.isB2B
+          ? {
+              selects: [
+                {
+                  placeholder: 'Actions',
+                  hideValue: true,
+                  isClearable: false,
+                  isSearchable: false,
+                  styles: selectStyles(false, false, '150px', true),
+                  values: actionOptions,
+                  action: true,
+                  value: '',
+                  onChange: (e: any) => setValue(e?.value),
+                },
+              ],
+            }
+          : {}
+      }
       isFetching={isRefetching}
       title="Product Information"
       setFilterValues={setValues}
     >
       <DetailsContent
-        resolvedData={productHelper({ ...resp, name: state?.item?.productSlug })!}
+        resolvedData={
+          productHelper({ ...resp, name: state?.item?.productSlug })!
+        }
       />
       <Text
         as="p"

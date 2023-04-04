@@ -7,7 +7,7 @@ import {
   Jumbotron,
   Loader,
   Pagination,
-  Table
+  Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { transHeaderList } from '../../../../../data/table-headers'

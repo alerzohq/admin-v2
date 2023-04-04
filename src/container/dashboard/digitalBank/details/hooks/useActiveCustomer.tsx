@@ -1,10 +1,9 @@
 import toast from 'react-hot-toast'
 import { useMutation, useQueryClient } from 'react-query'
+import { postRequest } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
 
-import { postRequest } from '../../../../utils/apiRequest'
-import { errorMessage } from '../../../../utils/message'
-
-const useActivateBusiness = (
+const useActivateCustomer = (
   setShow: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const queryClient = useQueryClient()
@@ -18,7 +17,7 @@ const useActivateBusiness = (
 
   return useMutation(activateBusiness, {
     onSuccess: () => {
-      queryClient.invalidateQueries('businesses-detail')
+      queryClient.invalidateQueries('customer-detail')
       setShow(false)
     },
     onError: (error) => {
@@ -27,4 +26,4 @@ const useActivateBusiness = (
   })
 }
 
-export default useActivateBusiness
+export default useActivateCustomer

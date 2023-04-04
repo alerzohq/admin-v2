@@ -180,7 +180,7 @@ export const transformData = ({ item, name }: props) => {
     const now = new Date()
 
     return {
-      email: email.toLowerCase(),
+      email: `${email.toLowerCase()}`,
       adminRoleName,
       createdAt: formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss'),
       expired: new Date(expiresIn) < now && !accepted ? 'sendInvite' : '',

@@ -26,7 +26,11 @@ const Products = (isB2B: any) => {
   const navigate = useNavigate()
 
   const getBusinessProducts = (filterValue: filterProps) => {
-    return getNewFilterResource(`business/${businessId}/products`, filterValue, false)
+    return getNewFilterResource(
+      `business/${businessId}/products`,
+      filterValue,
+      false
+    )
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(

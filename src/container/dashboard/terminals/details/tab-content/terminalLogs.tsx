@@ -41,7 +41,7 @@ let logIcon = {
   'Terminal was assigned to': <AssignTerminalIcon />,
 }
 const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
-  const [values, setValues] = useState({ ...filterValue, count: 50 })
+  const [values] = useState({ ...filterValue, count: 50 })
   const navigate = useNavigate()
   const getTerminalLog = () => {
     return getNewFilterResource(`activity/logs`, {
@@ -71,7 +71,7 @@ const TerminalLogs = ({ terminalId }: { terminalId?: string }) => {
         borderType="solid"
         actions={data.data.map((log: Log, i: number, self: Log[]) => ({
           action: (
-            <Text as="p">
+            <Text>
               <Text as="p" weight="400" size="14px">
                 {formatDate(log.createdAt, 'YYYY-MM-DD HH:mm:ss')}
               </Text>

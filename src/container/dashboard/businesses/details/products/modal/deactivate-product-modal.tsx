@@ -64,12 +64,16 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
     setShowVerification(true)
   }
 
-  const { mutate: deactivate, isLoading: isDeactivating, isError, error } =
-    useDeactivateBusinessProduct(setShow, productSlug, otp)
+  const {
+    mutate: deactivate,
+    isLoading: isDeactivating,
+    isError,
+    error,
+  } = useDeactivateBusinessProduct(setShow, productSlug, otp)
 
-    useEffect(() => {
-      setOtpError(isError)
-    }, [isError])
+  useEffect(() => {
+    setOtpError(isError)
+  }, [isError])
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -77,7 +81,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
     if (businessId && productSlug) {
       deactivate(businessId)
 
-      if(otpError || otp.length < 6) return 
+      if (otpError || otp.length < 6) return
 
       setShowVerification(false)
       setShowSuccess(true)

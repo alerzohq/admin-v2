@@ -2,7 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
 import { useCountdownTimer } from '../../../../hooks/useCountdownTimer'
-import { postRequest } from '../../../../utils/apiRequest' 
+import { postRequest } from '../../../../utils/apiRequest'
 
 type ITokenProps = {
   token: string

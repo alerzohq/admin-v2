@@ -16,4 +16,5 @@ type TabWidgetItemProps = {
   btnLabel?: string
   btnVariant?: string
   btnHandler?: () => void
+  showfilters?: { [key: string]: any }
 }
