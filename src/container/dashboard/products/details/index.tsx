@@ -67,7 +67,6 @@ const ProductDetailsContainer = () => {
 
   return (
     <Container
-      showFilters={false}
       isFetching={isRefetching}
       title="Product Information"
       routePath="/dashboard/products"

@@ -114,7 +114,7 @@ export const TextArea = styled.textarea<props>`
   border: 1px solid rgba(193, 202, 207, 0.5);
   height: ${({ textAreaHeight }) =>
     textAreaHeight ? textAreaHeight : '300px'};
-  width: ${({ textAreaWidth }) => textAreaWidth??'100%'};
+  width: ${({ textAreaWidth }) => textAreaWidth ?? '100%'};
   border-radius: 0.6rem;
   margin-top: ${({ textAreaTopMargin }) =>
     textAreaTopMargin ? textAreaTopMargin : '1rem'};

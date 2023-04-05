@@ -48,11 +48,11 @@ export const detailsHelper = (
       return { [key]: val?.value }
     }
   )
-  var resultObject = metaDataArr?.reduce(function (
+  let resultObject = metaDataArr?.reduce(function (
     result: any,
     currentObject: any
   ) {
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
         let val = currentObject[key]
         if (key === 'amount' || key === 'balance' || key === 'total') {
@@ -138,11 +138,11 @@ export const otherHelper = (data: any) => {
       return { [key]: val?.value }
     }
   )
-  var resultObject = metaDataArr?.reduce(function (
+  let resultObject = metaDataArr?.reduce(function (
     result: any,
     currentObject: any
   ) {
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
         let val = currentObject[key]
         if (key === 'amount' || key === 'balance' || key === 'total') {
