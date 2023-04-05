@@ -21,6 +21,7 @@ import useGetBusinessDetails from '../hooks/useGetBusinessDetails'
 import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
 import useResetSecurityQst from '../hooks/useResetSecurityQst'
 import { SucccessAlert } from '../../../../components'
+import UpdateBusinessDetails from './modal/update-business-details'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -28,6 +29,7 @@ const BusinessDetailContainer = () => {
   const [show, setShow] = useState(false)
   const [success, setSuccess] = useState(false)
   const [showResetQst, setShowResetQst] = useState(false)
+  const [showUpdateBusiness, setShowUpdateBusiness] = useState(false)
   const [reset, setReset] = useState('')
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
@@ -59,8 +61,14 @@ const BusinessDetailContainer = () => {
 
   useEffect(() => {
     if (reset) {
-      setShowResetQst(true)
-      setReset('')
+      if(reset === 'Reset Security Question') {
+        setShowResetQst(true)
+        setReset('')
+      }
+      if(reset === 'Edit Business Details') {
+        setShowUpdateBusiness(true)
+        setReset('')
+      }
     }
   }, [reset])
 
@@ -178,6 +186,7 @@ const BusinessDetailContainer = () => {
         loading={resetting}
         handleSubmit={handleResetQst}
       ></Modal>
+      <UpdateBusinessDetails showUpdateBusiness={showUpdateBusiness} setShowUpdateBusiness={setShowUpdateBusiness} />
       <SucccessAlert
         showSuccess={success}
         setShowModal={setSuccess}
