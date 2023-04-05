@@ -7,7 +7,7 @@ import { errorMessage } from '../../../../utils/message'
 const useResetSecurityQst = (
   setSuccess?: React.Dispatch<React.SetStateAction<boolean>>,
   setShow?: React.Dispatch<React.SetStateAction<boolean>>,
-setReset?:React.Dispatch<React.SetStateAction<boolean>>
+  setReset?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const queryClient = useQueryClient()
   const resetBusiness = (id: string) => {
@@ -22,7 +22,7 @@ setReset?:React.Dispatch<React.SetStateAction<boolean>>
       queryClient.invalidateQueries('businesses-detail')
       setSuccess?.(true)
       setShow?.(false)
-setReset?.(false)
+      setReset?.(false)
     },
     onError: (error) => {
       toast.error(errorMessage(error))

@@ -61,11 +61,11 @@ const BusinessDetailContainer = () => {
 
   useEffect(() => {
     if (reset) {
-      if(reset === 'Reset Security Question') {
+      if (reset === 'Reset Security Question') {
         setShowResetQst(true)
         setReset('')
       }
-      if(reset === 'Edit Business Details') {
+      if (reset === 'Edit Business Details') {
         setShowUpdateBusiness(true)
         setReset('')
       }
@@ -186,7 +186,10 @@ const BusinessDetailContainer = () => {
         loading={resetting}
         handleSubmit={handleResetQst}
       ></Modal>
-      <UpdateBusinessDetails showUpdateBusiness={showUpdateBusiness} setShowUpdateBusiness={setShowUpdateBusiness} />
+      <UpdateBusinessDetails
+        showUpdateBusiness={showUpdateBusiness}
+        setShowUpdateBusiness={setShowUpdateBusiness}
+      />
       <SucccessAlert
         showSuccess={success}
         setShowModal={setSuccess}

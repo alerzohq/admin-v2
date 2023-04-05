@@ -11,9 +11,9 @@ export const KycContainer = styled.div`
   height: 100%;
   > div {
     /* padding: 3rem 4rem; */
- padding: 2rem;
-    &:last-of-type{
-    padding:3rem 0 3rem 3rem;
+    padding: 2rem;
+    &:last-of-type {
+      padding: 3rem 0 3rem 3rem;
     }
   }
 
@@ -55,13 +55,12 @@ export const KycDocuments = styled.div`
   border-left: 1px solid #e8ebee;
   img {
     object-fit: cover;
-    border-radius:8px;
+    border-radius: 8px;
     margin-bottom: 2rem;
   }
 `
 export const IDVerificationDocs = styled.div`
-
-padding-bottom:1.5rem;
+  padding-bottom: 1.5rem;
   position: relative;
   &:after {
     content: '';
@@ -71,9 +70,7 @@ padding-bottom:1.5rem;
     height: 2px;
   }
 `
-export const AddressVerificationDocs = styled.div`
-
-`
+export const AddressVerificationDocs = styled.div``
 export const ImageContainer = styled.div`
   display: flex;
   div {
@@ -86,5 +83,4 @@ export const ImageContainer = styled.div`
 export const KYCLogs = styled.div`
   display: flex;
   flex-direction: column;
-
 `

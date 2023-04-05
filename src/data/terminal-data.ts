@@ -182,8 +182,7 @@ export const terminalRequestsStats = (stats: { [key: string]: any }) => {
     card1: stats?.totalDelivered,
     card2: stats?.totalRejected,
     card3: stats?.totalProcessing,
-    card4: stats?.totalApproved
-,
+    card4: stats?.totalApproved,
   }
   return statistics
 }
