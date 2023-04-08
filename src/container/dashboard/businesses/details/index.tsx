@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {
   actionOptions,
   businessDetailsHelper,
@@ -22,6 +22,7 @@ import { selectStyles } from '../../../../components/select-input/styles/select-
 import useResetSecurityQst from '../hooks/useResetSecurityQst'
 import { SucccessAlert } from '../../../../components'
 import UpdateBusinessDetails from './modal/update-business-details'
+import UpdateOwnersDetails from './modal/update-owners-details'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -30,6 +31,7 @@ const BusinessDetailContainer = () => {
   const [success, setSuccess] = useState(false)
   const [showResetQst, setShowResetQst] = useState(false)
   const [showUpdateBusiness, setShowUpdateBusiness] = useState(false)
+  const [showUpdateOwner, setShowUpdateOwner] = useState(false)
   const [reset, setReset] = useState('')
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
@@ -37,6 +39,7 @@ const BusinessDetailContainer = () => {
   const thePath = location.pathname
   var result = thePath.split('/')
   const id = result[3]
+  const { businessId } = useParams()
 
   const { mutate: activate, isLoading: isActivating } =
     useActivateBusiness(setShow)
@@ -53,6 +56,9 @@ const BusinessDetailContainer = () => {
     (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
 
+  // check if business is b2b
+  const isB2B = data?.data?.[0]?.channel === 'b2b'
+
   const walletId = wallet?.wallet_id
   const isCustomerActive = data?.data?.[0]
   const handleBusinessConfirmation = () => {
@@ -67,6 +73,10 @@ const BusinessDetailContainer = () => {
       }
       if (reset === 'Edit Business Details') {
         setShowUpdateBusiness(true)
+        setReset('')
+      }
+      if (reset === 'Edit Business Owner Details') {
+        setShowUpdateOwner(true)
         setReset('')
       }
     }
@@ -104,7 +114,7 @@ const BusinessDetailContainer = () => {
       case 'transaction':
         return <TransactionHistory walletId={walletId} />
       case 'products':
-        return <Products />
+        return <Products isB2B={isB2B} />
       case 'kyc':
         return <div>KYC</div>
       case 'terminals':
@@ -189,6 +199,14 @@ const BusinessDetailContainer = () => {
       <UpdateBusinessDetails
         showUpdateBusiness={showUpdateBusiness}
         setShowUpdateBusiness={setShowUpdateBusiness}
+        data={data?.data}
+        businessId={businessId}
+      />
+      <UpdateOwnersDetails
+        showUpdateOwner={showUpdateOwner}
+        setShowUpdateOwner={setShowUpdateOwner}
+        data={data?.data}
+        businessId={businessId}
       />
       <SucccessAlert
         showSuccess={success}

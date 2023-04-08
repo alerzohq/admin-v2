@@ -1,51 +1,53 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { getResource } from '../../../../utils/apiRequest'
+import { useLocation, useParams } from 'react-router-dom'
+import { getResource } from '../../../../../utils/apiRequest'
 import { useQuery } from 'react-query'
-import { Container } from '../../../../components/layout'
-import DetailsContent from '../../widget/tabs/tab-content-details'
-import { productHelper } from '../../../../data/product-data'
+import { Container } from '../../../../../components/layout'
+import DetailsContent from '../../../widget/tabs/tab-content-details'
+import { productHelper } from '../../../../../data/product-data'
 import {
   FallBack,
   Jumbotron,
   Loader,
   Table,
   Text,
-} from '../../../../components'
-import { productBillersHeaderList } from '../../../../data/table-headers'
-import { Color } from '../../../../assets/theme'
-import { errorMessage } from '../../../../utils/message'
-import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
+} from '../../../../../components'
+import { productBillersHeaderList } from '../../../../../data/table-headers'
+import { Color } from '../../../../../assets/theme'
+import { errorMessage } from '../../../../../utils/message'
+import { selectStyles } from '../../../../../components/select-input/styles/select-input.styes'
 import DeactivateProductModal from './modal/deactivate-product-modal'
 import ActivateProductModal from './modal/activate-product-modal'
 
 interface CustomizedState {
-  detail: any
+  item: any
+  isB2B: any
 }
-const ProductDetailsContainer = () => {
+const BusinessProductDetailsContainer = () => {
   const location = useLocation()
   const state = location.state as CustomizedState
-  const { detail } = state
+
+  const { businessId } = useParams()
 
   const [values, setValues] = useState({})
   const [value, setValue] = useState('')
   const [isDeactivateModal, setIsDeactivateModal] = useState(false)
   const [isActivateModal, setIsActivateModal] = useState(false)
 
-  const getProductBillers = (slug: string) => {
-    return getResource(`products/${slug}/billers`)
+  const getProductBillers = (productSlug: string) => {
+    return getResource(`products/${productSlug}/billers`)
   }
-  const getProductBillersDetails = (slug: string) => {
-    return getResource(`products/${slug}`)
+  const getProductBillersDetails = (productSlug: string) => {
+    return getResource(`products/${productSlug}`)
   }
   const { isLoading, isRefetching, isError, refetch, data, error } = useQuery(
-    ['billers', detail?.slug],
-    () => getProductBillers(detail?.slug)
+    ['billers', state?.item?.productSlug],
+    () => getProductBillers(state?.item?.productSlug)
   )
 
   const { data: billerDetails } = useQuery(
-    ['billers-details', detail?.slug],
-    () => getProductBillersDetails(detail?.slug)
+    ['billers-details', state?.item?.productSlug],
+    () => getProductBillersDetails(state?.item?.productSlug)
   )
   const resp = data?.data?.[0]
 
@@ -74,7 +76,7 @@ const ProductDetailsContainer = () => {
     )
   }
 
-  const isDeactivated = detail?.disabled
+  const isDeactivated = state?.item?.adminDisabled
 
   useEffect(() => {
     if (value) {
@@ -105,28 +107,33 @@ const ProductDetailsContainer = () => {
 
   return (
     <Container
-      showFilters={{
-        selects: [
-          {
-            placeholder: 'Actions',
-            hideValue: true,
-            isClearable: false,
-            isSearchable: false,
-            styles: selectStyles(false, false, '150px', true),
-            values: actionOptions,
-            action: true,
-            value: '',
-            onChange: (e: any) => setValue(e?.value),
-          },
-        ],
-      }}
+      showFilters={
+        !state?.isB2B?.isB2B
+          ? {
+              selects: [
+                {
+                  placeholder: 'Actions',
+                  hideValue: true,
+                  isClearable: false,
+                  isSearchable: false,
+                  styles: selectStyles(false, false, '150px', true),
+                  values: actionOptions,
+                  action: true,
+                  value: '',
+                  onChange: (e: any) => setValue(e?.value),
+                },
+              ],
+            }
+          : {}
+      }
       isFetching={isRefetching}
       title="Product Information"
-      routePath="/dashboard/products"
       setFilterValues={setValues}
     >
       <DetailsContent
-        resolvedData={productHelper({ ...resp, name: detail?.slug })!}
+        resolvedData={
+          productHelper({ ...resp, name: state?.item?.productSlug })!
+        }
       />
       <Text
         as="p"
@@ -145,20 +152,20 @@ const ProductDetailsContainer = () => {
         {component}
       </Jumbotron>
       <DeactivateProductModal
-        setValue={setValue}
         setShowModal={setIsDeactivateModal}
         showModal={isDeactivateModal}
-        productName={detail?.displayName}
-        productSlug={detail?.slug}
+        productName={state?.item?.displayName}
+        productSlug={state?.item?.productSlug}
+        businessId={businessId}
       />
       <ActivateProductModal
-        setValue={setValue}
         setShowModal={setIsActivateModal}
         showModal={isActivateModal}
-        productName={detail?.displayName}
-        productSlug={detail?.slug}
+        productName={state?.item?.displayName}
+        productSlug={state?.item?.productSlug}
+        businessId={businessId}
       />
     </Container>
   )
 }
-export default ProductDetailsContainer
+export default BusinessProductDetailsContainer

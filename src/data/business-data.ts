@@ -119,4 +119,8 @@ export const actionOptions = [
     label: 'Edit Business Details',
     value: 'Edit Business Details',
   },
+  // {
+  //   label: 'Edit Business Owner Details',
+  //   value: 'Edit Business Owner Details',
+  // },
 ].filter(Boolean)
