@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getResource } from '../../../../utils/apiRequest'
 import { useQuery } from 'react-query'
@@ -14,6 +15,9 @@ import {
 import { productBillersHeaderList } from '../../../../data/table-headers'
 import { Color } from '../../../../assets/theme'
 import { errorMessage } from '../../../../utils/message'
+import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
+import DeactivateProductModal from './modal/deactivate-product-modal'
+import ActivateProductModal from './modal/activate-product-modal'
 
 interface CustomizedState {
   detail: any
@@ -22,6 +26,11 @@ const ProductDetailsContainer = () => {
   const location = useLocation()
   const state = location.state as CustomizedState
   const { detail } = state
+
+  const [values, setValues] = useState({})
+  const [value, setValue] = useState('')
+  const [isDeactivateModal, setIsDeactivateModal] = useState(false)
+  const [isActivateModal, setIsActivateModal] = useState(false)
 
   const getProductBillers = (slug: string) => {
     return getResource(`products/${slug}/billers`)
@@ -65,11 +74,56 @@ const ProductDetailsContainer = () => {
     )
   }
 
+  const isDeactivated = detail?.disabled
+
+  useEffect(() => {
+    if (value) {
+      if (value === 'Deactivate Product') {
+        setIsDeactivateModal(true)
+        return setValue('')
+      }
+      if (value === 'Activate Product') {
+        setIsActivateModal(true)
+        return setValue('')
+      }
+    }
+  }, [value])
+
+  let actionOptions = isDeactivated
+    ? [
+        {
+          label: 'Activate Product',
+          value: 'Activate Product',
+        },
+      ]
+    : [
+        {
+          label: 'Deactivate Product',
+          value: 'Deactivate Product',
+        },
+      ]
+
   return (
     <Container
+      showFilters={{
+        selects: [
+          {
+            placeholder: 'Actions',
+            hideValue: true,
+            isClearable: false,
+            isSearchable: false,
+            styles: selectStyles(false, false, '150px', true),
+            values: actionOptions,
+            action: true,
+            value: '',
+            onChange: (e: any) => setValue(e?.value),
+          },
+        ],
+      }}
       isFetching={isRefetching}
       title="Product Information"
       routePath="/dashboard/products"
+      setFilterValues={setValues}
     >
       <DetailsContent
         resolvedData={productHelper({ ...resp, name: detail?.slug })!}
@@ -90,6 +144,20 @@ const ProductDetailsContainer = () => {
       <Jumbotron padding="0" direction="column" mt="0">
         {component}
       </Jumbotron>
+      <DeactivateProductModal
+        setValue={setValue}
+        setShowModal={setIsDeactivateModal}
+        showModal={isDeactivateModal}
+        productName={detail?.displayName}
+        productSlug={detail?.slug}
+      />
+      <ActivateProductModal
+        setValue={setValue}
+        setShowModal={setIsActivateModal}
+        showModal={isActivateModal}
+        productName={detail?.displayName}
+        productSlug={detail?.slug}
+      />
     </Container>
   )
 }

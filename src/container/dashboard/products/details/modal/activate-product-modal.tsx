@@ -1,48 +1,38 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Modal from '../../../../../../components/modal'
-import { Button } from '../../../../../../components'
-import DangerWarning from '../../../../../../assets/icons/danger-warning'
-import { Color } from '../../../../../../assets/theme'
-import { useAppContext } from '../../../../../../context'
-import useSendOTPMutation from '../../../hooks/useSendOtpMutation'
-import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
-import useDeactivateBusinessProduct from '../../../hooks/useDeactivateProductMutation'
-import VerificationPinModal from '../../../../widget/verification-pin-modal/verification-pin-modal'
-import SuccessModal from '../../../../../../components/success-modal/success-modal'
+import Modal from '../../../../../components/modal'
+import { Button } from '../../../../../components'
+import DangerWarning from '../../../../../assets/icons/danger-warning'
+import { Color } from '../../../../../assets/theme'
+import useActivateProduct from '../../hooks/useActivateProduct'
+import VerificationPinModal from '../../../widget/verification-pin-modal/verification-pin-modal'
+import SuccessModal from '../../../../../components/success-modal/success-modal'
+import useSendProductOTPMutation from '../../hooks/useSendProductOtp'
 
 type DeactivateProductProps = {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
+  setValue: Dispatch<SetStateAction<string>>
   productName: string | any
   productSlug: string | any
-  businessId: string | any
 }
 
-const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
+const ActivateProductModal: React.FC<DeactivateProductProps> = ({
   showModal,
   setShowModal,
+  setValue,
   productName,
   productSlug,
-  businessId,
 }) => {
-  const {
-    state: { userOtp },
-  } = useAppContext()
-
   // mutations
-  const { handleSendOTP } = useSendOTPMutation({
-    userOtp,
-    businessId,
+  const { handleSendOTP } = useSendProductOTPMutation({
     productSlug,
   })
 
-  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
-    useResendOTPMutation({
-      userOtp,
-      businessId,
-      productSlug,
-    })
+  //   const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
+  //     useResendOTPMutation({
+  //       productSlug,
+  //     })
 
   // states
   const [showVerification, setShowVerification] = useState(false)
@@ -65,12 +55,12 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   }
 
   const {
-    mutate: deactivate,
-    isLoading: isDeactivating,
+    mutate: activate,
+    isLoading: isActivating,
     isError,
     error,
     isSuccess,
-  } = useDeactivateBusinessProduct(setShow, productSlug, otp)
+  } = useActivateProduct(setShow, productSlug, otp)
 
   useEffect(() => {
     if (error) {
@@ -86,11 +76,11 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
-    if (businessId && productSlug) {
+    if (productSlug) {
       if (otp && otp.length < 6) {
         setOtpError(true)
       } else {
-        deactivate(businessId)
+        activate()
       }
     }
   }
@@ -104,7 +94,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
         }}
         titleSize="22px"
         modalWidth="430px"
-        title="Deactivate Product"
+        title="Activate Product"
         contentPadding="0"
         icon={<DangerWarning />}
         subTitleSize={'16'}
@@ -135,7 +125,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
             variant={Color.alerzoBlue}
             color={'#FFF'}
           >
-            {'Deactivate'}
+            {'Activate'}
           </Button>
         </Button.Group>
       </Modal>
@@ -144,7 +134,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           open={showVerification}
           close={() => setShowVerification(false)}
           callback={submitForm}
-          loading={isDeactivating}
+          loading={isActivating}
           otp={otp}
           setOtp={setOtp}
           otpError={otpError}
@@ -165,4 +155,4 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   )
 }
 
-export default DeactivateProductModal
+export default ActivateProductModal

@@ -103,7 +103,7 @@ export const transformData = ({ item, name }: props) => {
   }
 
   if (item && name === 'business-products') {
-    const { product, commissionRates, createdAt } = item
+    const { product, commissionRates, createdAt, adminDisabled } = item
     const type = commissionRates?.[0]?.rate?.type
     const percentage = commissionRates?.[0]?.rate?.percentage
     const flat = commissionRates?.[0]?.rate?.amount
@@ -113,7 +113,7 @@ export const transformData = ({ item, name }: props) => {
       type === 'percentage' ? percentage : flat,
       cap
     )
-    let status = product?.disabled ? 'Inactive' : 'Active'
+    let status = adminDisabled ? 'Inactive' : 'Active'
     const displayName = product?.displayName
 
     return { displayName, type, rates, status, createdAt }

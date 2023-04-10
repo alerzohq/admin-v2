@@ -17,6 +17,7 @@ import { Color } from '../../../../../assets/theme'
 import { errorMessage } from '../../../../../utils/message'
 import { selectStyles } from '../../../../../components/select-input/styles/select-input.styes'
 import DeactivateProductModal from './modal/deactivate-product-modal'
+import ActivateProductModal from './modal/activate-product-modal'
 
 interface CustomizedState {
   item: any
@@ -31,6 +32,7 @@ const BusinessProductDetailsContainer = () => {
   const [values, setValues] = useState({})
   const [value, setValue] = useState('')
   const [isDeactivateModal, setIsDeactivateModal] = useState(false)
+  const [isActivateModal, setIsActivateModal] = useState(false)
 
   const getProductBillers = (productSlug: string) => {
     return getResource(`products/${productSlug}/billers`)
@@ -74,21 +76,34 @@ const BusinessProductDetailsContainer = () => {
     )
   }
 
+  const isDeactivated = state?.item?.adminDisabled
+
   useEffect(() => {
     if (value) {
       if (value === 'Deactivate Product') {
         setIsDeactivateModal(true)
         return setValue('')
       }
+      if (value === 'Activate Product') {
+        setIsActivateModal(true)
+        return setValue('')
+      }
     }
   }, [value])
 
-  let actionOptions = [
-    {
-      label: 'Deactivate Product',
-      value: 'Deactivate Product',
-    },
-  ]
+  let actionOptions = isDeactivated
+    ? [
+        {
+          label: 'Activate Product',
+          value: 'Activate Product',
+        },
+      ]
+    : [
+        {
+          label: 'Deactivate Product',
+          value: 'Deactivate Product',
+        },
+      ]
 
   return (
     <Container
@@ -137,9 +152,15 @@ const BusinessProductDetailsContainer = () => {
         {component}
       </Jumbotron>
       <DeactivateProductModal
-        setValue={setValue}
         setShowModal={setIsDeactivateModal}
         showModal={isDeactivateModal}
+        productName={state?.item?.displayName}
+        productSlug={state?.item?.productSlug}
+        businessId={businessId}
+      />
+      <ActivateProductModal
+        setShowModal={setIsActivateModal}
+        showModal={isActivateModal}
         productName={state?.item?.displayName}
         productSlug={state?.item?.productSlug}
         businessId={businessId}

@@ -7,11 +7,11 @@ import { Color } from '../../../../../../assets/theme'
 import { useAppContext } from '../../../../../../context'
 import useSendOTPMutation from '../../../hooks/useSendOtpMutation'
 import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
-import useDeactivateBusinessProduct from '../../../hooks/useDeactivateProductMutation'
+import useActivateBusinessProduct from '../../../hooks/useActivateProductMutation'
 import VerificationPinModal from '../../../../widget/verification-pin-modal/verification-pin-modal'
 import SuccessModal from '../../../../../../components/success-modal/success-modal'
 
-type DeactivateProductProps = {
+type ActivateProductProps = {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
   productName: string | any
@@ -19,7 +19,7 @@ type DeactivateProductProps = {
   businessId: string | any
 }
 
-const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
+const ActivateProductModal: React.FC<ActivateProductProps> = ({
   showModal,
   setShowModal,
   productName,
@@ -65,12 +65,12 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   }
 
   const {
-    mutate: deactivate,
-    isLoading: isDeactivating,
+    mutate: activate,
+    isLoading: isActivating,
     isError,
     error,
     isSuccess,
-  } = useDeactivateBusinessProduct(setShow, productSlug, otp)
+  } = useActivateBusinessProduct(setShow, productSlug, otp)
 
   useEffect(() => {
     if (error) {
@@ -90,7 +90,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
       if (otp && otp.length < 6) {
         setOtpError(true)
       } else {
-        deactivate(businessId)
+        activate(businessId)
       }
     }
   }
@@ -104,13 +104,13 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
         }}
         titleSize="22px"
         modalWidth="430px"
-        title="Deactivate Product"
+        title="Activate Product"
         contentPadding="0"
         icon={<DangerWarning />}
         subTitleSize={'16'}
         subTitle={
           <span style={{ marginTop: '15px' }}>
-            Do you want to deactivate <br />
+            Do you want to activate <br />
             <span className="bold">{productName}</span>
           </span>
         }
@@ -135,7 +135,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
             variant={Color.alerzoBlue}
             color={'#FFF'}
           >
-            {'Deactivate'}
+            {'Activate'}
           </Button>
         </Button.Group>
       </Modal>
@@ -144,7 +144,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           open={showVerification}
           close={() => setShowVerification(false)}
           callback={submitForm}
-          loading={isDeactivating}
+          loading={isActivating}
           otp={otp}
           setOtp={setOtp}
           otpError={otpError}
@@ -155,9 +155,9 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           productName={productName}
           showSuccess={showSuccess}
           setShowSuccess={setShowSuccess}
-          message={'You have successfully deactivated'}
+          message={'You have successfully activated'}
           btnText={'Back To Products'}
-          title={'Product Deactivated'}
+          title={'Product Activated'}
           onClick={() => navigate(-1)}
         />
       )}
@@ -165,4 +165,4 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   )
 }
 
-export default DeactivateProductModal
+export default ActivateProductModal
