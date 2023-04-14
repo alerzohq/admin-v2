@@ -37,11 +37,11 @@ export const TimelineAction = styled.section<{ actionsNum: number }>`
           }
         `}
 `
-export const TimelineWrapper=styled.div`
+export const TimelineWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-height:1000px;
-  overflow-y:auto;
+  max-height: 1000px;
+  overflow-y: auto;
 `
 export const TimelineActionDate = styled.p`
   background: #c7e1ff;

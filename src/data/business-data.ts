@@ -111,8 +111,16 @@ export const businessDetailsHelper = (data: any) => {
 }
 
 export const actionOptions = [
-    {
-      label: 'Reset Security Question',
-      value: 'Reset Security Question',
-    },
-  ].filter(Boolean)
+  {
+    label: 'Reset Security Question',
+    value: 'Reset Security Question',
+  },
+  {
+    label: 'Edit Business Details',
+    value: 'Edit Business Details',
+  },
+  // {
+  //   label: 'Edit Business Owner Details',
+  //   value: 'Edit Business Owner Details',
+  // },
+].filter(Boolean)
