@@ -8,7 +8,7 @@ import {
   TabsPage,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getTerminalsRequestsData } from '../../../utils/apiRequest'
+// import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
@@ -32,6 +32,7 @@ import {
   getRequestTerminalStats,
   getTerminalsHandler,
   getTerminalStats,
+  getTerminalsRequestsData,
 } from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
@@ -45,8 +46,11 @@ const TransactionContainer = () => {
   const found = TERMINALTABS.find((element) => element.value === queryParam)
   const { createTerminalAccess } = AllPermissions()
   const [values, setValues] = useState(filterValue)
+  const [requestValues, setRequestValues] = useState(filterValue)
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
+
+  console.log(values)
 
   const { isLoading: loading, data: stats } = useQuery(
     'terminal-stats',
@@ -59,9 +63,9 @@ const TransactionContainer = () => {
   const Statistics = stats?.data
   const requestStatistics = requestStats?.data
 
-  const getTerminalsRequestsHandler = (count: number) => {
-    return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
-  }
+  // const getTerminalsRequestsHandler = (count: number) => {
+  //   return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
+  // }
   const {
     isLoading: isLoadingExistingTerrminals,
     data: existingTerrminalsData,
@@ -73,17 +77,33 @@ const TransactionContainer = () => {
     keepPreviousData: true,
   })
 
+  // const {
+  //   isLoading: isLoadingTerrminalsRequests,
+  //   data: terrminalsRequestsData,
+  //   isError: isErrorTerrminalsRequests,
+  //   isFetching: isFetchingTerrminalsRequests,
+  //   error: terminsalsRequestsError,
+  // } = useQuery(
+  //   ['requestsTerminals', values.count],
+  //   () => getTerminalsRequestsHandler(values.count),
+  //   { keepPreviousData: true }
+  // )
   const {
     isLoading: isLoadingTerrminalsRequests,
     data: terrminalsRequestsData,
     isError: isErrorTerrminalsRequests,
     isFetching: isFetchingTerrminalsRequests,
+    refetch: refetchTerminalRequests,
     error: terminsalsRequestsError,
   } = useQuery(
-    ['requestsTerminals', values.count],
-    () => getTerminalsRequestsHandler(values.count),
+    ['requestsTerminals', requestValues],
+    () => getTerminalsRequestsData(requestValues, filterValue.count, true),
     { keepPreviousData: true }
   )
+  console.log(filterValue.count)
+
+  console.log({ requestValues })
+
   let isRequest = queryParam !== 'requests'
 
   let existingTerrminals
@@ -118,13 +138,16 @@ const TransactionContainer = () => {
     existingTerrminals = (
       <FallBack
         error
-        refetch={refetch}
+        refetch={refetchTerminalRequests}
         title={`${errorMessage(terminsalsRequestsError)}`}
       />
     )
   } else if (terrminalsRequestsData?.data?.length < 1) {
     requestsTerrminals = (
-      <FallBack title="You have no requested terminals yet. " />
+      <FallBack
+        title="You have no requested terminals yet. "
+        refetch={refetchTerminalRequests}
+      />
     )
   } else {
     requestsTerrminals = (
@@ -152,6 +175,29 @@ const TransactionContainer = () => {
         placeholder: 'Search',
       },
     }),
+    ...(!isRequest && {
+      search: {
+        placeholder: 'Search',
+      },
+    }),
+    ...(isRequest && {
+      selects: TerminalSelects,
+    }),
+
+    buttons: [
+      createTerminalAccess && {
+        label: 'Register New Terminal',
+        onClick: () => toggle(),
+        buttonClass: 'add-button',
+      },
+    ].filter(Boolean),
+  }
+
+  //Filters
+  const showRequestsFilters = {
+    search: {
+      placeholder: 'Search',
+    },
     ...(isRequest && {
       selects: TerminalSelects,
     }),
@@ -182,11 +228,13 @@ const TransactionContainer = () => {
         handleAddMethod={handleAddMethod}
       />
       <Container
-        showFilters={showFilters}
+        showFilters={!isRequest ? showFilters : showRequestsFilters}
         title="Terminals"
-        setFilterValues={setValues}
+        setFilterValues={!isRequest ? setValues : setRequestValues}
         isFetching={
-          isFetchingExistingTerrminals || isFetchingTerrminalsRequests
+          !isRequest
+            ? isFetchingExistingTerrminals
+            : isFetchingTerrminalsRequests
         }
       >
         <TabsPage.Tabs
@@ -206,7 +254,7 @@ const TransactionContainer = () => {
             <Jumbotron padding="0">{requestsTerrminals}</Jumbotron>
             <Pagination
               data={terrminalsRequestsData}
-              setPageNumber={setValues}
+              setPageNumber={setRequestValues}
             />
           </>
         ) : (

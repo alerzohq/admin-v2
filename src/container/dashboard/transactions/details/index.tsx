@@ -11,10 +11,17 @@ import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper'
 import NotesContent from './tab-content/notes'
 import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
+import Modal from '../../../../components/modal'
+
+import { ResponseDiv } from './details.styles'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
+
+  //states
   const [fetchUser, setFetchUser] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
+
   const location = useLocation()
   const thePath = location.pathname
   var result = thePath.split('/')
@@ -70,21 +77,44 @@ const TabsContainer = () => {
 
   const status: string = data?.data[0]?.status
 
+  const lastItemIndex = data?.data?.[0]?.runs?.length - 1
+  const billerResponse = data?.data?.[0]?.runs?.[lastItemIndex]?.data
+  console.log(JSON.stringify(billerResponse))
+
   return (
-    <TabsContentWidget
-      isFetching={isFetching || fetchinguser}
-      isLoading={isLoading}
-      status={status}
-      containerTitle="Transaction Details"
-      title={found ? found?.title : TABS[0]?.title}
-      type="Transaction!"
-      isError={isError}
-      errorMessage="Failed to load transaction."
-      currentValue={found?.value || 'details'}
-      renderSwitch={renderSwitch}
-      tabs={TABS}
-      routePath="/dashboard/transactions"
-    />
+    <>
+      <TabsContentWidget
+        isFetching={isFetching || fetchinguser}
+        isLoading={isLoading}
+        status={status}
+        containerTitle="Transaction Details"
+        title={found ? found?.title : TABS[0]?.title}
+        type="Transaction!"
+        isError={isError}
+        errorMessage="Failed to load transaction."
+        currentValue={found?.value || 'details'}
+        renderSwitch={renderSwitch}
+        tabs={TABS}
+        routePath="/dashboard/transactions"
+        btnHandler={() => setOpenModal(true)}
+        btnLabel="Biller Response"
+      />
+
+      <Modal
+        title="Biller Response"
+        contentPadding={'0'}
+        titleSize="22px"
+        modalHeight="auto"
+        modalWidth="480px"
+        subTitleSize="16px"
+        showModal={openModal}
+        setShowModal={() => {
+          setOpenModal(!openModal)
+        }}
+      >
+        <ResponseDiv>{JSON.stringify(billerResponse, null, 2)}</ResponseDiv>
+      </Modal>
+    </>
   )
 }
 

@@ -135,6 +135,8 @@ const TerminalDetails = ({ data }: any) => {
       )
     }
   }
+
+  console.log(data)
   return (
     <TerminalDetailWrapper>
       <ReassignTerminalWidget

@@ -49,3 +49,9 @@ export const CUSTOMERMORETABLE = [
   { label: 'KYC', value: 'kyc', columnWidth: 'small' },
   { label: 'Status', value: 'status', columnWidth: 'large' },
 ]
+export const BILLERRESPONSETABLE = [
+  { label: 'Segment', value: 'segment', columnWidth: 'small' },
+  { label: 'Customer Type', value: 'customerType', columnWidth: 'small' },
+  { label: 'KYC', value: 'kyc', columnWidth: 'small' },
+  { label: 'Status', value: 'status', columnWidth: 'large' },
+]

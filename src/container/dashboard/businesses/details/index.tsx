@@ -109,6 +109,8 @@ const BusinessDetailContainer = () => {
     ],
   }
 
+  console.log(data?.data?.[0]?.bvn)
+
   const renderSwitch = () => {
     switch (queryParam) {
       case 'transaction':
@@ -129,6 +131,9 @@ const BusinessDetailContainer = () => {
         return (
           <DetailsContent
             resolvedData={businessDetailsHelper(data?.data?.[0])!}
+            userId={data?.data?.[0]?.bvn_verification?.user_id}
+            userType={data?.data?.[0]?.bvn_verification?.user_type}
+            documentNumber={data?.data?.[0]?.bvn}
           />
         )
     }

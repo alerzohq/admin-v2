@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Color } from '../../../../../assets/theme'
 import { Button, Form, Text } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import VerificationPinModal from '../../../widget/verification-pin-modal/verification-pin-modal'
@@ -7,6 +6,7 @@ import { ModalForm } from './styles/modals.styles'
 import useSendBusinessOwnerOTP from '../../hooks/useSendBusinessOwnerOtp'
 import useUpdateBusinessOwnerInfo from '../../hooks/useUpdateBusinessOwnerInfo'
 import SuccessModal from '../../../../../components/success-modal/success-modal'
+import { convertPhoneNumber } from '../../../../../utils/formatValue'
 
 const UpdateOwnersDetails = ({
   showUpdateOwner,
@@ -106,7 +106,7 @@ const UpdateOwnersDetails = ({
                 type="text"
                 onChange={(e) => handleChange('phoneNumber', e.target.value)}
                 placeholder={data?.[0]?.phone_number}
-                value={inputValues.phoneNumber}
+                value={convertPhoneNumber(inputValues.phoneNumber)}
               />
             </Form.Control>
             <Form.Control pb={'1rem'}>
