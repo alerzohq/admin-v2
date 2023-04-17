@@ -50,8 +50,6 @@ const TransactionContainer = () => {
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
 
-  console.log(values)
-
   const { isLoading: loading, data: stats } = useQuery(
     'terminal-stats',
     getTerminalStats
@@ -100,9 +98,6 @@ const TransactionContainer = () => {
     () => getTerminalsRequestsData(requestValues, filterValue.count, true),
     { keepPreviousData: true }
   )
-  console.log(filterValue.count)
-
-  console.log({ requestValues })
 
   let isRequest = queryParam !== 'requests'
 

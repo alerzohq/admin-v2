@@ -18,10 +18,7 @@ const DetailsContentWidget = ({
   userType?: any
   documentNumber?: any
 }) => {
-  console.log(resolvedData)
   const { mutate, isLoading } = useUpgradeUser(userId, userType, documentNumber)
-
-  console.log(userId, userType)
 
   const onSubmit = () => {
     // if (userId && userType) {

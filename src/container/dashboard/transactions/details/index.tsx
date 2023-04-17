@@ -79,7 +79,6 @@ const TabsContainer = () => {
 
   const lastItemIndex = data?.data?.[0]?.runs?.length - 1
   const billerResponse = data?.data?.[0]?.runs?.[lastItemIndex]?.data
-  console.log(JSON.stringify(billerResponse))
 
   return (
     <>

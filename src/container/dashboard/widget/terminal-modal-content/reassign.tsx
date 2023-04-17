@@ -36,13 +36,8 @@ const ReassignTerminalModal = ({
   businesses,
   setQuery,
 }: Props) => {
-  console.log(value)
   const mappedBusinesses = mapBusinesses(businesses)
 
-  console.log('business', businesses)
-  console.log('data', data)
-
-  console.log('mapped', mappedBusinesses)
   const subtitle =
     data?.user_id === null
       ? 'Assign this terminal to a business'
@@ -88,7 +83,6 @@ const ReassignTerminalModal = ({
         }}
         onInputChange={(e: any) => {
           setQuery(e)
-          console.log('e', e)
         }}
         value={value?.businessId}
         fullWidth

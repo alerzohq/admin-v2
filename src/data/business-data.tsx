@@ -60,8 +60,6 @@ export const businessDetailsHelper = (data: any) => {
     (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
 
-  console.log(data)
-
   return [
     {
       spacing: false,

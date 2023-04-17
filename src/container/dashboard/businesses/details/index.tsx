@@ -109,8 +109,6 @@ const BusinessDetailContainer = () => {
     ],
   }
 
-  console.log(data?.data?.[0]?.bvn)
-
   const renderSwitch = () => {
     switch (queryParam) {
       case 'transaction':
