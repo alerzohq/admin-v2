@@ -5,6 +5,7 @@ import {
   DETAILSTABLE1,
   DETAILSTABLE2,
   DETAILSTABLE3,
+  BILLERRESPONSETABLE,
 } from './tab-data'
 export const detailsHelper = (
   data: any,
@@ -163,15 +164,25 @@ export const otherHelper = (data: any) => {
       header: metaHeaders,
       data: resultObject,
     },
-    {
-      spacing: false,
-      header: CUSTOMERMORETABLE,
-      data: {
-        segment: data?.segment,
-        customerType: data?.user_type,
-        kyc: data?.kyc,
-        status: data?.status,
-      },
-    },
+    // {
+    //   spacing: false,
+    //   header: CUSTOMERMORETABLE,
+    //   data: {
+    //     segment: data?.segment,
+    //     customerType: data?.user_type,
+    //     kyc: data?.kyc,
+    //     status: data?.status,
+    //   },
+    // },
+    // {
+    //   spacing: false,
+    //   header: BILLERRESPONSETABLE,
+    //   data: {
+    //     segment: data?.segment,
+    //     customerType: data?.user_type,
+    //     kyc: data?.kyc,
+    //     status: data?.status,
+    //   },
+    // },
   ]
 }

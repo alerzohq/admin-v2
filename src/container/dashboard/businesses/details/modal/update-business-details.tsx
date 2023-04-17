@@ -115,7 +115,7 @@ const UpdateBusinessDetails = ({
               <Form.Input
                 type="text"
                 onChange={(e) =>
-                  handleChange('businessAddress', e.target.value.trim())
+                  handleChange('businessAddress', e.target.value)
                 }
                 placeholder={data?.[0]?.address}
                 value={inputValues.businessAddress}

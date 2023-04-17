@@ -134,3 +134,11 @@ export const formatUnderScore = (value?: string | number): string => {
   let newvalue = data!?.replaceAll('_', ' ')
   return capitalize(newvalue)
 }
+
+export const convertPhoneNumber = (number: string) => {
+  if (number.startsWith('+234')) {
+    return '0' + number.slice(4)
+  } else {
+    return number
+  }
+}

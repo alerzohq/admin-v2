@@ -4,11 +4,14 @@ import { postRequest } from '../../../../utils/apiRequest'
 import { errorMessage } from '../../../../utils/message'
 
 const useUpdateBusinessOwnerInfo = (otp: string, inputValues: any) => {
+  const nonEmptyValues = Object.fromEntries(
+    Object.entries(inputValues).filter(([_, value]) => value !== '')
+  )
   const queryClient = useQueryClient()
   const updateBusinessOwnerInfo = (id: string | any) => {
     return postRequest({
       pathUrl: `business/${id}/owner`,
-      payload: { ...inputValues, otp },
+      payload: { ...nonEmptyValues, otp },
       methodType: 'patch',
     })
   }

@@ -20,6 +20,7 @@ export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
 export const getNewFilterResource = async (
   pathUrl: string,
   filterValue: filterProps & { [key in string]?: string | number },
+  cursor?: boolean,
   hasArg?: boolean
 ) => {
   const filterQuery = queryString.stringify(filterValue, {
@@ -31,7 +32,7 @@ export const getNewFilterResource = async (
       ? filterQuery.replace(/%20/g, '')
       : filterQuery
   const { data } = await axiosInstance.get(
-    `/${pathUrl}${hasArg ? '' : '?'}${formatedFilter}`
+    `/${pathUrl}${hasArg ? '' : '?'}${formatedFilter}${cursor ? '&cursor' : ''}`
   )
   return data
 }
