@@ -89,9 +89,12 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'products') {
-    const { displayName, fallbackBillerSlug, billerSlug } = item
+    const { displayName, fallbackBillerSlug, billerSlug, disabled } = item
 
-    return { name: displayName, biller: billerSlug, fallbackBillerSlug }
+    console.log(item)
+    let status = disabled ? 'Inactive' : 'Active'
+
+    return { name: displayName, biller: billerSlug, status, fallbackBillerSlug }
   }
   if (item && name === 'product-billers') {
     const { displayName, commission, createdAt } = item

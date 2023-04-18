@@ -97,18 +97,6 @@ const UpdateBusinessDetails = ({
                 placeholder={data?.[0]?.business_owner?.email}
                 value={inputValues.businessEmail}
               />
-              {/* {isTriggerSubmit && (
-              <Text
-                padding="8px"
-                as={'small'}
-                weight={'500'}
-                color={Color.alerzoDanger}
-              >
-                {isTriggerSubmit && inputValues.serialNumber === ''
-                  ? 'Serial Number is required*'
-                  : ''}
-              </Text>
-            )} */}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Business Address</Form.Label>
@@ -145,8 +133,12 @@ const UpdateBusinessDetails = ({
               <Form.Label>Phone Number</Form.Label>
               <Form.Input
                 type="text"
+                maxLength={11}
                 onChange={(e) =>
-                  handleChange('businessPhoneNumber', e.target.value.trim())
+                  handleChange(
+                    'businessPhoneNumber',
+                    e.target.value.replace(/\D/g, '')
+                  )
                 }
                 placeholder={data?.[0]?.phone_number}
                 value={inputValues.businessPhoneNumber}

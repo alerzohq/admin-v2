@@ -18,7 +18,6 @@ const UpdateOwnersDetails = ({
     firstName: '',
     lastName: '',
     phoneNumber: '',
-    email: '',
   })
 
   // mutations
@@ -104,12 +103,15 @@ const UpdateOwnersDetails = ({
               <Form.Label>Phone Number</Form.Label>
               <Form.Input
                 type="text"
-                onChange={(e) => handleChange('phoneNumber', e.target.value)}
+                maxLength={11}
+                onChange={(e) =>
+                  handleChange('phoneNumber', e.target.value.replace(/\D/g, ''))
+                }
                 placeholder={data?.[0]?.phone_number}
                 value={convertPhoneNumber(inputValues.phoneNumber)}
               />
             </Form.Control>
-            <Form.Control pb={'1rem'}>
+            {/* <Form.Control pb={'1rem'}>
               <Form.Label>Email Address</Form.Label>
               <Form.Input
                 type="text"
@@ -117,7 +119,7 @@ const UpdateOwnersDetails = ({
                 placeholder={data?.[0]?.business_owner?.email}
                 value={inputValues.email}
               />
-            </Form.Control>
+            </Form.Control> */}
           </Form>
           <Button
             width={'100%'}

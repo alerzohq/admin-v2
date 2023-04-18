@@ -49,7 +49,6 @@ export const BVNTABLE = [
   { label: 'Surname', value: 'surname', columnWidth: 'small' },
   { label: 'Middle Name', value: 'middleName', columnWidth: 'small' },
   { label: 'Phone Number', value: 'phoneNumber', columnWidth: 'small' },
-  { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
 
 export const businessDetailsHelper = (data: any) => {
@@ -129,7 +128,6 @@ export const businessDetailsHelper = (data: any) => {
         surname: data?.bvn_verification?.last_name,
         middleName: data?.bvn_verification?.middle_name,
         phoneNumber: data?.bvn_verification?.phone_number,
-        email: data?.business_owner?.email,
       },
     },
   ]
@@ -144,8 +142,8 @@ export const actionOptions = [
     label: 'Edit Business Details',
     value: 'Edit Business Details',
   },
-  // {
-  //   label: 'Edit Business Owner Details',
-  //   value: 'Edit Business Owner Details',
-  // },
+  {
+    label: 'Edit Business Owner Details',
+    value: 'Edit Business Owner Details',
+  },
 ].filter(Boolean)
