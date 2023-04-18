@@ -3,7 +3,7 @@ import { Color } from '../../../../../assets/theme'
 import { Button, Form, Text } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import VerificationPinModal from '../../../widget/verification-pin-modal/verification-pin-modal'
-import { ModalForm } from './styles/modals.styles'
+import { ModalForm, InputError } from './styles/modals.styles'
 import useSendBusinessOTP from '../../hooks/useSendBusinessInfoOtp'
 import useUpdateBusinessInfo from '../../hooks/useUpdateBusinessInfo'
 import SuccessModal from '../../../../../components/success-modal/success-modal'
@@ -32,12 +32,51 @@ const UpdateBusinessDetails = ({
   const [showSuccess, setShowSuccess] = useState(false)
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const [phoneNumberError, setPhoneNumberError] = useState(false)
+  const [websiteError, setWebsiteError] = useState(false)
 
   const handleOpenPinModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    handleSendOTP()
-    setShowUpdateBusiness(false)
-    setShowVerification(true)
+
+    // check if fields in inputValues are not empty strings
+    let hasValues = false
+    for (const value of Object.values(inputValues)) {
+      if (value.trim() !== '') {
+        hasValues = true
+        break
+      }
+    }
+
+    // check email validity
+    const isEmailValid = () => {
+      const emailRegex = /\S+@\S+\.\S+/
+      return emailRegex.test(inputValues.businessEmail)
+    }
+
+    // check website validity
+    const isWebsiteValid = () => {
+      const websiteRegex =
+        /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z0-9-.]+)$/
+      return websiteRegex.test(inputValues.businessWebsite)
+    }
+
+    if (hasValues) {
+      if (inputValues.businessEmail?.length > 0 && !isEmailValid()) {
+        setEmailError(true)
+      } else if (
+        inputValues.businessPhoneNumber?.length > 0 &&
+        inputValues.businessPhoneNumber?.length < 11
+      ) {
+        setPhoneNumberError(true)
+      } else if (inputValues.businessWebsite?.length > 0 && !isWebsiteValid()) {
+        setWebsiteError(true)
+      } else {
+        handleSendOTP()
+        setShowUpdateBusiness(false)
+        setShowVerification(true)
+      }
+    }
   }
 
   const {
@@ -75,13 +114,26 @@ const UpdateBusinessDetails = ({
     }
   }
 
+  const toggleModal = () => {
+    setShowUpdateBusiness(!showUpdateBusiness)
+    setInputValues({
+      businessName: '',
+      businessAddress: '',
+      businessPhoneNumber: '',
+      businessEmail: '',
+      businessWebsite: '',
+      state: '',
+      city: '',
+    })
+  }
+
   return (
     <>
       <Modal
         showModal={showUpdateBusiness}
         modalWidth={'800px'}
         title="Update Business Details"
-        setShowModal={() => setShowUpdateBusiness(!showUpdateBusiness)}
+        setShowModal={toggleModal}
         // loading={resetting}
         handleSubmit={() => {}}
       >
@@ -90,13 +142,16 @@ const UpdateBusinessDetails = ({
             <Form.Control pb={'1rem'}>
               <Form.Label>Email Address</Form.Label>
               <Form.Input
-                type="text"
+                type="email"
                 onChange={(e) =>
                   handleChange('businessEmail', e.target.value.trim())
                 }
                 placeholder={data?.[0]?.business_owner?.email}
                 value={inputValues.businessEmail}
               />
+              {emailError ? (
+                <InputError>Please enter a valid email</InputError>
+              ) : null}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Business Address</Form.Label>
@@ -128,6 +183,9 @@ const UpdateBusinessDetails = ({
                 placeholder={data?.[0]?.website}
                 value={inputValues.businessWebsite}
               />
+              {websiteError ? (
+                <InputError>Please enter a valid website</InputError>
+              ) : null}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Phone Number</Form.Label>
@@ -143,12 +201,20 @@ const UpdateBusinessDetails = ({
                 placeholder={data?.[0]?.phone_number}
                 value={inputValues.businessPhoneNumber}
               />
+              {phoneNumberError ? (
+                <InputError>Phone number must be 11 digits</InputError>
+              ) : null}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>State</Form.Label>
               <Form.Input
                 type="text"
-                onChange={(e) => handleChange('state', e.target.value)}
+                onChange={(e) =>
+                  handleChange(
+                    'state',
+                    e.target.value.replace(/[^a-zA-Z\s-]/g, '')
+                  )
+                }
                 placeholder={data?.[0]?.state}
                 value={inputValues.state}
               />
@@ -157,7 +223,12 @@ const UpdateBusinessDetails = ({
               <Form.Label>City</Form.Label>
               <Form.Input
                 type="text"
-                onChange={(e) => handleChange('city', e.target.value)}
+                onChange={(e) =>
+                  handleChange(
+                    'city',
+                    e.target.value.replace(/[^a-zA-Z\s-]/g, '')
+                  )
+                }
                 placeholder={data?.[0]?.city}
                 value={inputValues.city}
               />
