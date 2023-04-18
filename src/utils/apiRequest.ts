@@ -20,7 +20,6 @@ export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
 export const getNewFilterResource = async (
   pathUrl: string,
   filterValue: filterProps & { [key in string]?: string | number },
-  cursor?: boolean,
   hasArg?: boolean
 ) => {
   const filterQuery = queryString.stringify(filterValue, {
@@ -32,7 +31,7 @@ export const getNewFilterResource = async (
       ? filterQuery.replace(/%20/g, '')
       : filterQuery
   const { data } = await axiosInstance.get(
-    `/${pathUrl}${hasArg ? '' : '?'}${formatedFilter}${cursor ? '&cursor' : ''}`
+    `/${pathUrl}${hasArg ? '' : '?'}${formatedFilter}`
   )
   return data
 }
@@ -44,9 +43,13 @@ export const getTerminalsData = async (pathUrl: string, count: number) => {
 
 export const getTerminalsRequestsData = async (
   pathUrl: string,
-  count: number
+  filterValue: filterProps & { [key in string]?: string | number }
 ) => {
-  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`)
+  const { data }: any = await axiosInstance.get(
+    `/${pathUrl}?count=${filterValue.count}&cursor=&pageNumber=${
+      filterValue.pageNumber + 1
+    }`
+  )
   return data
 }
 

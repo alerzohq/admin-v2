@@ -8,7 +8,7 @@ import {
   TabsPage,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-// import { getTerminalsRequestsData } from '../../../utils/apiRequest'
+import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
@@ -32,7 +32,6 @@ import {
   getRequestTerminalStats,
   getTerminalsHandler,
   getTerminalStats,
-  getTerminalsRequestsData,
 } from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
@@ -61,9 +60,9 @@ const TransactionContainer = () => {
   const Statistics = stats?.data
   const requestStatistics = requestStats?.data
 
-  // const getTerminalsRequestsHandler = (count: number) => {
-  //   return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
-  // }
+  const getTerminalsRequestsHandler = () => {
+    return getTerminalsRequestsData(`terminals/requests`, requestValues)
+  }
   const {
     isLoading: isLoadingExistingTerrminals,
     data: existingTerrminalsData,
@@ -75,17 +74,6 @@ const TransactionContainer = () => {
     keepPreviousData: true,
   })
 
-  // const {
-  //   isLoading: isLoadingTerrminalsRequests,
-  //   data: terrminalsRequestsData,
-  //   isError: isErrorTerrminalsRequests,
-  //   isFetching: isFetchingTerrminalsRequests,
-  //   error: terminsalsRequestsError,
-  // } = useQuery(
-  //   ['requestsTerminals', values.count],
-  //   () => getTerminalsRequestsHandler(values.count),
-  //   { keepPreviousData: true }
-  // )
   const {
     isLoading: isLoadingTerrminalsRequests,
     data: terrminalsRequestsData,
@@ -95,7 +83,7 @@ const TransactionContainer = () => {
     error: terminsalsRequestsError,
   } = useQuery(
     ['requestsTerminals', requestValues],
-    () => getTerminalsRequestsData(requestValues, filterValue.count, true),
+    () => getTerminalsRequestsHandler(),
     { keepPreviousData: true }
   )
 
@@ -166,11 +154,6 @@ const TransactionContainer = () => {
   //Filters
   const showFilters = {
     ...(isRequest && {
-      search: {
-        placeholder: 'Search',
-      },
-    }),
-    ...(!isRequest && {
       search: {
         placeholder: 'Search',
       },
@@ -250,6 +233,7 @@ const TransactionContainer = () => {
             <Pagination
               data={terrminalsRequestsData}
               setPageNumber={setRequestValues}
+              initialPageCount={1}
             />
           </>
         ) : (
