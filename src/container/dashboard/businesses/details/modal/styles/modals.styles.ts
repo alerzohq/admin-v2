@@ -21,3 +21,7 @@ export const ModalForm = styled.div`
     }
   }
 `
+export const InputError = styled.div`
+  color: red;
+  font-size: 12px;
+`

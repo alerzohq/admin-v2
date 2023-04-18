@@ -48,6 +48,11 @@ const VerificationPinModal = ({
     setOtp(otp)
   }
 
+  const closeModal = () => {
+    setOtp('')
+    close()
+  }
+
   useEffect(() => {
     if (!userOtp) {
       return
