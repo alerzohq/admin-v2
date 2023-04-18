@@ -13,10 +13,3 @@ export const getRequestTerminalStats = () => {
 export const getTerminalsHandler = (filterValue: filterProps) => {
   return getNewFilterResource(`terminals`, filterValue)
 }
-export const getTerminalsRequestsData = (
-  filterValue: filterProps,
-  count: number,
-  cursor: boolean
-) => {
-  return getNewFilterResource(`terminals/requests`, filterValue, cursor)
-}
