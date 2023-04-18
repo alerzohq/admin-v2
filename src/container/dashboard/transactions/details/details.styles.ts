@@ -7,4 +7,5 @@ export const ResponseDiv = styled.pre`
   border-radius: 8px;
   height: 300px;
   overflow-y: scroll;
+  max-width: 460px;
 `
