@@ -22,7 +22,7 @@ export type TopBarProps = {
       label: string
       buttonClass?: string
       onClick: () => void
-      disabled?:boolean
+      disabled?: boolean
     }[]
   }
 
@@ -31,5 +31,5 @@ export type TopBarProps = {
   routePath?: () => string | string
   whiteSpace?: string
   withParams?: boolean
-  filterValue?:boolean
+  filterValue?: boolean
 }

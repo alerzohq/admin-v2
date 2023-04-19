@@ -20,6 +20,8 @@ type dataProps = {
   setParams?: boolean
   notClickable?: boolean
   routePath?: string
+  noSlug?: boolean
+  handleRouthPath?: (item: { [key: string]: any }) => void
 }
 type dataList = string[] | undefined
 
@@ -34,6 +36,8 @@ const TableData = ({
   setParams,
   notClickable,
   routePath,
+  noSlug,
+  handleRouthPath,
 }: dataProps) => {
   const { dispatch } = useAppContext()
   const navigate = useNavigate()
@@ -54,7 +58,11 @@ const TableData = ({
               <td key={i} id="td-hover">
                 <TableItemDiv
                   onClick={
-                    notClickable
+                    !!handleRouthPath
+                      ? () => {
+                          handleRouthPath?.(item)
+                        }
+                      : notClickable
                       ? () => {}
                       : setParams
                       ? () => {
@@ -75,6 +83,8 @@ const TableData = ({
                           navigate(
                             withSlug
                               ? `/${routePath}/${item?.id}/${item?.product?.slug}`
+                              : noSlug
+                              ? `/${routePath}`
                               : `/${routePath}/${item?.id}`,
                             { replace: true, state: item }
                           )

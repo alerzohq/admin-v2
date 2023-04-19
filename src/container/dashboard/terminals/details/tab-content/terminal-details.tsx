@@ -4,7 +4,6 @@ import { Button, Loader } from '../../../../../components'
 import { terminalHelper } from '../../../../../data/terminal-data'
 import DetailsContentWidget from '../../../widget/tabs/tab-content-details'
 import ReassignTerminalWidget from '../../../widget/terminal-modal-content/reassign'
-// import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
 import {
   ButtonWrapper,
   TerminalDetailWrapper,
@@ -137,6 +136,7 @@ const TerminalDetails = ({ data }: any) => {
       )
     }
   }
+
   return (
     <TerminalDetailWrapper>
       <ReassignTerminalWidget

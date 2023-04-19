@@ -17,6 +17,8 @@ const Table = ({
   notClickable,
   layout,
   routePath,
+  noSlug,
+  handleRouthPath,
 }: TableProps) => {
   return (
     <>
@@ -34,6 +36,8 @@ const Table = ({
             hideDate={hideDate}
             setParams={setParams}
             routePath={routePath}
+            noSlug={noSlug}
+            handleRouthPath={handleRouthPath}
           />
         </DataTable>
       </TableWrapper>

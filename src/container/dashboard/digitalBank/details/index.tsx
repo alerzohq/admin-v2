@@ -8,7 +8,6 @@ import TransactionHistory from './transaction-history'
 import CardsContainer from './user-accounts'
 import { errorMessage } from '../../../../utils/message'
 import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
-import { actionOptions } from '../../../../data/business-data'
 import { useEffect, useState } from 'react'
 import Modal from '../../../../components/modal'
 import DangerWarning from '../../../../assets/icons/danger-warning'
@@ -73,6 +72,13 @@ const DigitalBankDetailContainer = () => {
         )
     }
   }
+  let actionOptions = [
+    {
+      label: 'Reset Security Question',
+      value: 'Reset Security Question',
+    },
+  ].filter(Boolean)
+
   const showfilters = {
     selects: [
       {

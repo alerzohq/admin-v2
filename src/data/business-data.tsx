@@ -44,6 +44,12 @@ export const PASSCODETABLE = [
   { label: 'noVisibility', value: 'empty', columnWidth: 'small' },
   { label: 'noVisibility', value: 'empty', columnWidth: 'large' },
 ]
+export const BVNTABLE = [
+  { label: 'First Name', value: 'firstName', columnWidth: 'small' },
+  { label: 'Surname', value: 'surname', columnWidth: 'small' },
+  { label: 'Middle Name', value: 'middleName', columnWidth: 'small' },
+  { label: 'Phone Number', value: 'phoneNumber', columnWidth: 'small' },
+]
 
 export const businessDetailsHelper = (data: any) => {
   let commision = data?.wallet_details?.find(
@@ -56,6 +62,7 @@ export const businessDetailsHelper = (data: any) => {
   return [
     {
       spacing: false,
+      button: false,
       header: DETAILSTABLE,
       data: {
         id: data?.id,
@@ -71,6 +78,7 @@ export const businessDetailsHelper = (data: any) => {
     },
     {
       spacing: false,
+      button: false,
       header: ADDRESSTABLE,
       data: {
         address: data?.address,
@@ -80,8 +88,9 @@ export const businessDetailsHelper = (data: any) => {
       },
     },
     {
-      title: 'Business Owner  Details',
+      title: 'Business Owner Details',
       spacing: false,
+      button: false,
       header: OWNERTABLE,
       data: {
         ownerName:
@@ -94,11 +103,12 @@ export const businessDetailsHelper = (data: any) => {
           ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
           : '',
 
-        ownerEmail: data?.business_owner?.email,
+        email: data?.business_owner?.email,
       },
     },
     {
       spacing: false,
+      button: false,
       header: PASSCODETABLE,
       data: {
         pinStatus: data?.business_owner.transaction_pin ? 'Set' : 'Not Set',
@@ -107,12 +117,33 @@ export const businessDetailsHelper = (data: any) => {
         empty: '',
       },
     },
+    {
+      title: 'BVN Details',
+      spacing: false,
+      button: true,
+      bvnVerified: !!data?.bvn_verification,
+      header: BVNTABLE,
+      data: {
+        firstName: data?.bvn_verification?.first_name || '',
+        surname: data?.bvn_verification?.last_name,
+        middleName: data?.bvn_verification?.middle_name,
+        phoneNumber: data?.bvn_verification?.phone_number,
+      },
+    },
   ]
 }
 
 export const actionOptions = [
-    {
-      label: 'Reset Security Question',
-      value: 'Reset Security Question',
-    },
-  ].filter(Boolean)
+  {
+    label: 'Reset Security Question',
+    value: 'Reset Security Question',
+  },
+  {
+    label: 'Edit Business Details',
+    value: 'Edit Business Details',
+  },
+  {
+    label: 'Edit Business Owner Details',
+    value: 'Edit Business Owner Details',
+  },
+].filter(Boolean)

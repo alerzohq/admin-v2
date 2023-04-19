@@ -36,7 +36,7 @@ const ReassignTerminalModal = ({
   businesses,
   setQuery,
 }: Props) => {
-  let mappedBusinesses = mapBusinesses(businesses)
+  const mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
     data?.user_id === null
       ? 'Assign this terminal to a business'
