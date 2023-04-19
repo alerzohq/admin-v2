@@ -104,9 +104,9 @@ export const mapBillers = (arr: any) =>
     value: obj?.slug,
   }))
 export const mapBusinesses = (arr: any) =>
-  arr?.map((obj: any) => ({
-    label: obj.name,
-    value: obj?.id,
+  arr?.map((business: any) => ({
+    label: `${business.name} - ${business.phone_number}`,
+    value: business?.id,
   }))
 
 export const sumOfValue = (

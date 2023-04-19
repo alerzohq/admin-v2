@@ -36,7 +36,7 @@ const ReassignTerminalModal = ({
   businesses,
   setQuery,
 }: Props) => {
-  const mappedBusinesses = mapBusinesses(businesses)
+  let mappedBusinesses = mapBusinesses(businesses)
   const subtitle =
     data?.user_id === null
       ? 'Assign this terminal to a business'
@@ -71,6 +71,7 @@ const ReassignTerminalModal = ({
       >
         Select New Business
       </Text>
+
       <SelectInput
         placeholder="Enter to search for business"
         onChange={(e: any) => {
@@ -93,12 +94,7 @@ const ReassignTerminalModal = ({
                   options: [{ label: '', value: '' }],
                 },
               ]
-            : [
-                {
-                  label: 'Enter to search for business',
-                  options: mappedBusinesses || [{ label: '', value: '' }],
-                },
-              ]
+            : mappedBusinesses
         }
       />
       {triggerSubmit && !value?.businessId && (
