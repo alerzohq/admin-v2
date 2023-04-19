@@ -41,7 +41,9 @@ const TerminalDetails = ({ data }: any) => {
   const debouncedSearchTerm = useDebounce(query, 1000)
   const getBusinesses = () => {
     return getResource(
-      query ? `businesses?query=${debouncedSearchTerm}` : 'businesses'
+      query
+        ? `businesses?query=${debouncedSearchTerm}`
+        : 'businesses?count=50&pageNumber=0'
     )
   }
   const useAssignMutation = () =>
