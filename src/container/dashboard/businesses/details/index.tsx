@@ -51,7 +51,10 @@ const BusinessDetailContainer = () => {
     setShowResetQst
   )
 
-  const { isLoading, isError, data, isFetching } = useGetBusinessDetails(id)
+  console.log(id)
+
+  const { isLoading, isError, data, isFetching, refetch } =
+    useGetBusinessDetails(id)
   let wallet = data?.data?.[0]?.wallet_details?.find(
     (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
@@ -129,8 +132,7 @@ const BusinessDetailContainer = () => {
         return (
           <DetailsContent
             resolvedData={businessDetailsHelper(data?.data?.[0])!}
-            userId={data?.data?.[0]?.bvn_verification?.user_id}
-            userType={data?.data?.[0]?.bvn_verification?.user_type}
+            phoneNumber={data?.data?.[0]?.bvn_verification?.phone_number}
             documentNumber={data?.data?.[0]?.bvn}
           />
         )
@@ -204,12 +206,14 @@ const BusinessDetailContainer = () => {
         setShowUpdateBusiness={setShowUpdateBusiness}
         data={data?.data}
         businessId={businessId}
+        refetch={refetch}
       />
       <UpdateOwnersDetails
         showUpdateOwner={showUpdateOwner}
         setShowUpdateOwner={setShowUpdateOwner}
         data={data?.data}
         businessId={businessId}
+        refetch={refetch}
       />
       <SucccessAlert
         showSuccess={success}
