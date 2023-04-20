@@ -14,6 +14,7 @@ const UpdateOwnersDetails = ({
   setShowUpdateOwner,
   data,
   businessId,
+  refetch,
 }: any) => {
   const [inputValues, setInputValues] = useState({
     firstName: '',
@@ -91,6 +92,7 @@ const UpdateOwnersDetails = ({
       setOtpError(true)
     } else {
       update(businessId)
+      refetch()
     }
   }
 

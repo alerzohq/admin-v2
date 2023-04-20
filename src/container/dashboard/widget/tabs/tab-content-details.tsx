@@ -9,21 +9,17 @@ import useUpgradeUser from '../../businesses/hooks/useUpgradeUser'
 
 const DetailsContentWidget = ({
   resolvedData,
-  userId,
-  userType,
+  phoneNumber,
   documentNumber,
 }: {
   resolvedData: { [key: string]: any }[]
-  userId?: any
-  userType?: any
+  phoneNumber?: any
   documentNumber?: any
 }) => {
-  const { mutate, isLoading } = useUpgradeUser(userId, userType, documentNumber)
+  const { mutate, isLoading } = useUpgradeUser(phoneNumber, documentNumber)
 
   const onSubmit = () => {
-    // if (userId && userType) {
     mutate()
-    // }
   }
   return (
     <>
