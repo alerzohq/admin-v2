@@ -73,7 +73,7 @@ export const businessDetailsHelper = (data: any) => {
           ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss')
           : '',
 
-        email: data?.business_owner?.email,
+        email: data?.email,
       },
     },
     {

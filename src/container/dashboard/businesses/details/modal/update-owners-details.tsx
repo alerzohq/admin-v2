@@ -7,6 +7,7 @@ import useSendBusinessOwnerOTP from '../../hooks/useSendBusinessOwnerOtp'
 import useUpdateBusinessOwnerInfo from '../../hooks/useUpdateBusinessOwnerInfo'
 import SuccessModal from '../../../../../components/success-modal/success-modal'
 import { convertPhoneNumber } from '../../../../../utils/formatValue'
+import useResendBusinessOwnerOTP from '../../hooks/useResendBusinessOwnerOtp'
 
 const UpdateOwnersDetails = ({
   showUpdateOwner,
@@ -22,6 +23,8 @@ const UpdateOwnersDetails = ({
 
   // mutations
   const { handleSendOTP } = useSendBusinessOwnerOTP()
+
+  const { handleResendOTP } = useResendBusinessOwnerOTP()
 
   // states
   const [showVerification, setShowVerification] = useState(false)
@@ -91,13 +94,27 @@ const UpdateOwnersDetails = ({
     }
   }
 
-  const toggleModal = () => {
-    setShowUpdateOwner(!showUpdateOwner)
+  const resetForm = () => {
     setInputValues({
       firstName: '',
       lastName: '',
       phoneNumber: '',
     })
+  }
+
+  const toggleModal = () => {
+    setShowUpdateOwner(!showUpdateOwner)
+    resetForm()
+  }
+
+  const closeVerificationModal = () => {
+    resetForm()
+    setShowVerification(false)
+  }
+
+  const closeSuccessModal = () => {
+    resetForm()
+    setShowSuccess(false)
   }
 
   return (
@@ -154,15 +171,6 @@ const UpdateOwnersDetails = ({
             {phoneNumberError && (
               <InputError>Phone number must be 11 digits</InputError>
             )}
-            {/* <Form.Control pb={'1rem'}>
-              <Form.Label>Email Address</Form.Label>
-              <Form.Input
-                type="text"
-                onChange={(e) => handleChange('email', e.target.value.trim())}
-                placeholder={data?.[0]?.business_owner?.email}
-                value={inputValues.email}
-              />
-            </Form.Control> */}
           </Form>
           <Button
             width={'100%'}
@@ -178,12 +186,13 @@ const UpdateOwnersDetails = ({
       {showVerification && (
         <VerificationPinModal
           open={showVerification}
-          close={() => setShowVerification(false)}
+          close={closeVerificationModal}
           callback={submitForm}
           loading={isUpdating}
           otp={otp}
           setOtp={setOtp}
           otpError={otpError}
+          resend={handleResendOTP}
         />
       )}
       {showSuccess && (
@@ -193,7 +202,7 @@ const UpdateOwnersDetails = ({
           message={'You have successfully updated owner detail'}
           btnText={'Continue'}
           title={'Owner Detail Updated'}
-          onClick={() => setShowSuccess(false)}
+          onClick={closeSuccessModal}
         />
       )}
     </>

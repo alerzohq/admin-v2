@@ -7,6 +7,7 @@ import { ModalForm, InputError } from './styles/modals.styles'
 import useSendBusinessOTP from '../../hooks/useSendBusinessInfoOtp'
 import useUpdateBusinessInfo from '../../hooks/useUpdateBusinessInfo'
 import SuccessModal from '../../../../../components/success-modal/success-modal'
+import useResendBusinessInfoOTP from '../../hooks/useResendBusinessInfoOtp'
 
 const UpdateBusinessDetails = ({
   showUpdateBusiness,
@@ -26,6 +27,8 @@ const UpdateBusinessDetails = ({
 
   // mutations
   const { handleSendOTP } = useSendBusinessOTP()
+
+  const { handleResendOTP } = useResendBusinessInfoOTP()
 
   // states
   const [showVerification, setShowVerification] = useState(false)
@@ -114,8 +117,7 @@ const UpdateBusinessDetails = ({
     }
   }
 
-  const toggleModal = () => {
-    setShowUpdateBusiness(!showUpdateBusiness)
+  const resetForm = () => {
     setInputValues({
       businessName: '',
       businessAddress: '',
@@ -125,6 +127,21 @@ const UpdateBusinessDetails = ({
       state: '',
       city: '',
     })
+  }
+
+  const toggleModal = () => {
+    setShowUpdateBusiness(!showUpdateBusiness)
+    resetForm()
+  }
+
+  const closeVerificationModal = () => {
+    resetForm()
+    setShowVerification(false)
+  }
+
+  const closeSuccessModal = () => {
+    resetForm()
+    setShowSuccess(false)
   }
 
   return (
@@ -146,7 +163,7 @@ const UpdateBusinessDetails = ({
                 onChange={(e) =>
                   handleChange('businessEmail', e.target.value.trim())
                 }
-                placeholder={data?.[0]?.business_owner?.email}
+                placeholder={data?.[0]?.email}
                 value={inputValues.businessEmail}
               />
               {emailError ? (
@@ -239,8 +256,6 @@ const UpdateBusinessDetails = ({
             radius="10px"
             fontSize="14px"
             weight="500"
-            // loading={loading}
-            // disabled={disabled}
             onClick={handleOpenPinModal}
           >
             Save Changes
@@ -250,12 +265,13 @@ const UpdateBusinessDetails = ({
       {showVerification && (
         <VerificationPinModal
           open={showVerification}
-          close={() => setShowVerification(false)}
+          close={closeVerificationModal}
           callback={submitForm}
           loading={isUpdating}
           otp={otp}
           setOtp={setOtp}
           otpError={otpError}
+          resend={handleResendOTP}
         />
       )}
       {showSuccess && (
@@ -265,7 +281,7 @@ const UpdateBusinessDetails = ({
           message={'You have successfully updated business details'}
           btnText={'Continue'}
           title={'Business Details Updated'}
-          onClick={() => setShowSuccess(false)}
+          onClick={closeSuccessModal}
         />
       )}
     </>
