@@ -12,7 +12,7 @@ type VerificationModalProps = {
   open: boolean
   close: VoidFunction
   callback?: VoidFunction | any
-  resend?: (value: string) => void
+  resend?: () => void
   loading?: boolean
   otp?: string
   setOtp?: any
@@ -41,6 +41,25 @@ const VerificationPinModal = ({
       businessId,
       productSlug,
     })
+
+  // convert time to milliseconds
+  const timeToMilliseconds = () => {
+    const totalSeconds = Number(minutes) * 60 + Number(seconds)
+    const totalMilliseconds = totalSeconds * 1000
+    return totalMilliseconds
+  }
+
+  const resendOtpHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    // wait for timer to finish before resending otp
+    if (timeToMilliseconds() > 1 && resend) {
+      setTimeout(() => {
+        resend()
+      }, timeToMilliseconds())
+    } else if (timeToMilliseconds() < 1 && resend) {
+      resend()
+    }
+  }
 
   const userEmail = user?.data?.email
 
@@ -153,28 +172,27 @@ const VerificationPinModal = ({
               {loading ? <Loader color={Color.alerzoWhite} /> : 'Proceed'}
             </Button>
           </Form.Control>
-
-          <Stack
-            direction={'row'}
-            justifyContent={'center'}
-            alignItems={'center'}
-          >
-            <Text as={'p'} weight={'500'} color={'#7890B5'}>
-              {' '}
-              Didn’t get a code?
-            </Text>
-            <Button
-              width="auto"
-              variant="transparent"
-              weight="600"
-              fontSize="1rem"
-              color={Color.alerzoBlue}
-              onClick={resendOTP}
-            >
-              {isLoading ? 'Resend...' : 'Resend'}
-            </Button>
-          </Stack>
         </Form>
+        <Stack
+          direction={'row'}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Text as={'p'} weight={'500'} color={'#7890B5'}>
+            {' '}
+            Didn’t get a code?
+          </Text>
+          <Button
+            width="auto"
+            variant="transparent"
+            weight="600"
+            fontSize="1rem"
+            color={Color.alerzoBlue}
+            onClick={resendOtpHandler || resendOTP}
+          >
+            {isLoading ? 'Resend...' : 'Resend'}
+          </Button>
+        </Stack>
       </Stack>
     </Modal>
   )
