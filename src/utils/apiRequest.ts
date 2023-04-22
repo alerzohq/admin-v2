@@ -43,9 +43,13 @@ export const getTerminalsData = async (pathUrl: string, count: number) => {
 
 export const getTerminalsRequestsData = async (
   pathUrl: string,
-  count: number
+  filterValue: filterProps & { [key in string]?: string | number }
 ) => {
-  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`)
+  const { data }: any = await axiosInstance.get(
+    `/${pathUrl}?count=${filterValue.count}&cursor=&pageNumber=${
+      filterValue.pageNumber + 1
+    }`
+  )
   return data
 }
 

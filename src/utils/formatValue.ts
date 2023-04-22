@@ -104,9 +104,9 @@ export const mapBillers = (arr: any) =>
     value: obj?.slug,
   }))
 export const mapBusinesses = (arr: any) =>
-  arr?.map((obj: any) => ({
-    label: obj.name,
-    value: obj?.id,
+  arr?.map((business: any) => ({
+    label: `${business.name} - ${business.phone_number}`,
+    value: business?.id,
   }))
 
 export const sumOfValue = (
@@ -133,4 +133,12 @@ export const formatUnderScore = (value?: string | number): string => {
   let data = value?.toString()
   let newvalue = data!?.replaceAll('_', ' ')
   return capitalize(newvalue)
+}
+
+export const convertPhoneNumber = (number: string) => {
+  if (number.startsWith('+234')) {
+    return '0' + number.slice(4)
+  } else {
+    return number
+  }
 }
