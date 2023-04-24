@@ -30,3 +30,11 @@ export const productFilterOptions = (appfilters: FilterOptions) => {
     return { label, value }
   })
 }
+
+export const employeFilterOptions = (appfilters: FilterOptions) => {
+  let transformFilters = appfilters?.filters?.[0]?.dropdown
+  return transformFilters?.map((filter: FilterOptions) => {
+    let { label, value } = filter
+    return { label, value }
+  })
+}
