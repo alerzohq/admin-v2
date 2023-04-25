@@ -79,6 +79,7 @@ const TabsContainer = () => {
 
   const lastItemIndex = data?.data?.[0]?.runs?.length - 1
   const billerResponse = data?.data?.[0]?.runs?.[lastItemIndex]?.data
+  
   const isBillerResponse = Object.keys(billerResponse ?? {})?.length > 0
 
   return (
