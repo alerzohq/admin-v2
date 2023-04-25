@@ -158,7 +158,9 @@ const TransactionContainer = () => {
         placeholder: 'Search',
       },
     }),
-    selects: TerminalSelects,
+    ...(isRequest && {
+      selects: TerminalSelects,
+    }),
 
     buttons: [
       createTerminalAccess && {
