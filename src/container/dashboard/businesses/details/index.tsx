@@ -51,8 +51,6 @@ const BusinessDetailContainer = () => {
     setShowResetQst
   )
 
-  console.log(id)
-
   const { isLoading, isError, data, isFetching, refetch } =
     useGetBusinessDetails(id)
   let wallet = data?.data?.[0]?.wallet_details?.find(

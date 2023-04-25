@@ -79,6 +79,8 @@ const TabsContainer = () => {
 
   const lastItemIndex = data?.data?.[0]?.runs?.length - 1
   const billerResponse = data?.data?.[0]?.runs?.[lastItemIndex]?.data
+  
+  const isBillerResponse = Object.keys(billerResponse ?? {})?.length > 0
 
   return (
     <>
@@ -100,7 +102,7 @@ const TabsContainer = () => {
       />
 
       <Modal
-        title="Biller Response"
+        title={isBillerResponse ? 'Biller Response' : 'No biller response'}
         contentPadding={'0'}
         titleSize="22px"
         modalHeight="auto"
@@ -111,7 +113,9 @@ const TabsContainer = () => {
           setOpenModal(!openModal)
         }}
       >
-        <ResponseDiv>{JSON.stringify(billerResponse, null, 2)}</ResponseDiv>
+        {isBillerResponse && (
+          <ResponseDiv>{JSON.stringify(billerResponse, null, 2)}</ResponseDiv>
+        )}
       </Modal>
     </>
   )
