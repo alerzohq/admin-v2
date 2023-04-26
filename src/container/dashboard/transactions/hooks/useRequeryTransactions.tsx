@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import { postRequest } from '../../../../utils/apiRequest'
 import { errorMessage } from '../../../../utils/message'
 
-const useRequeryTransactions = (payload : string[]) => {
+const useRequeryTransactions = (payload: string[]) => {
   const queryClient = useQueryClient()
 
   const requeryTransactions = () => {
