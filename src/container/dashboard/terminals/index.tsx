@@ -125,7 +125,7 @@ const TransactionContainer = () => {
         title={`${errorMessage(terminsalsRequestsError)}`}
       />
     )
-  } else if (terrminalsRequestsData?.data?.length < 1) {
+  } else if (terrminalsRequestsData?.data?.terminalRequests?.length < 1) {
     requestsTerrminals = (
       <FallBack
         title="You have no requested terminals yet. "
@@ -136,7 +136,7 @@ const TransactionContainer = () => {
     requestsTerrminals = (
       <Table
         tableName="requestsTerrminals"
-        tableData={terrminalsRequestsData?.data}
+        tableData={terrminalsRequestsData?.data?.terminalRequests}
         tableHeaders={terminalRequestHeader}
         routePath="dashboard/terminals/requests"
       />
@@ -171,24 +171,6 @@ const TransactionContainer = () => {
     ].filter(Boolean),
   }
 
-  //Filters
-  const showRequestsFilters = {
-    search: {
-      placeholder: 'Search',
-    },
-    ...(isRequest && {
-      selects: TerminalSelects,
-    }),
-
-    buttons: [
-      createTerminalAccess && {
-        label: 'Register New Terminal',
-        onClick: () => toggle(),
-        buttonClass: 'add-button',
-      },
-    ].filter(Boolean),
-  }
-
   return (
     <>
       <AddMethodModal
@@ -206,14 +188,10 @@ const TransactionContainer = () => {
         handleAddMethod={handleAddMethod}
       />
       <Container
-        showFilters={!isRequest ? showFilters : showRequestsFilters}
+        showFilters={showFilters}
         title="Terminals"
-        setFilterValues={!isRequest ? setValues : setRequestValues}
-        isFetching={
-          !isRequest
-            ? isFetchingExistingTerrminals
-            : isFetchingTerrminalsRequests
-        }
+        setFilterValues={setValues}
+        isFetching={isFetchingExistingTerrminals}
       >
         <TabsPage.Tabs
           hideStatus
