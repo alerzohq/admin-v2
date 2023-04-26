@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
@@ -12,7 +12,7 @@ import NotesContent from './tab-content/notes'
 import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import Modal from '../../../../components/modal'
-
+import useRequeryTransactions from '../hooks/useRequeryTransactions'
 import { ResponseDiv } from './details.styles'
 
 const TabsContainer = () => {
@@ -21,7 +21,7 @@ const TabsContainer = () => {
   //states
   const [fetchUser, setFetchUser] = useState(false)
   const [openModal, setOpenModal] = useState(false)
-
+  
   const location = useLocation()
   const thePath = location.pathname
   var result = thePath.split('/')
@@ -32,6 +32,9 @@ const TabsContainer = () => {
   const getTransactions = () => {
     return getResource(`transactions?id=${id}`)
   }
+
+  // adding transaction id to an array to pass into useRequeryTransactions
+  const transactionId = [id]
 
   const { isLoading, data, isError, isFetching } = useQuery(
     'transactions',
@@ -75,12 +78,33 @@ const TabsContainer = () => {
     }
   }
 
-  const status: string = data?.data[0]?.status
+  const {
+    mutate: requery,
+    isLoading: isRequerying,
+  } = useRequeryTransactions(transactionId)
 
+  
+  const status: string = data?.data[0]?.status
+  
   const lastItemIndex = data?.data?.[0]?.runs?.length - 1
   const billerResponse = data?.data?.[0]?.runs?.[lastItemIndex]?.data
-  
+
   const isBillerResponse = Object.keys(billerResponse ?? {})?.length > 0
+
+
+  //Filters
+  const showfilters = {
+    ...(status === 'pending' && {
+      buttons: [
+        {
+          label: 'Retry Transaction',
+          onClick: () => requery(),
+          buttonClass: 'add-button transparent-button',
+          isLoading: isRequerying,
+        },
+      ].filter(Boolean)
+    })
+  }
 
   return (
     <>
@@ -99,6 +123,7 @@ const TabsContainer = () => {
         routePath="/dashboard/transactions"
         btnHandler={() => setOpenModal(true)}
         btnLabel="Biller Response"
+        showfilters={showfilters}
       />
 
       <Modal
