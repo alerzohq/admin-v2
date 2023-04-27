@@ -229,7 +229,7 @@ const Employees = () => {
             date: false,
             selects: [
               {
-                query: 'active',
+                query: 'disabled',
                 placeholder: 'Status',
                 values: employeeOptions,
                 value: '',
