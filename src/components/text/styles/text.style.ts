@@ -21,7 +21,7 @@ type textProps = {
   height?: string
   flexDirection?: string
   gap?: string
- textTransform?:string
+  textTransform?: string
   alignItems?: string
 }
 

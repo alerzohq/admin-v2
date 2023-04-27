@@ -55,8 +55,15 @@ export const transformData = ({ item, name }: props) => {
     return { reference, amount, type, action, displayName, status, created_at }
   }
   if (item && name === 'business') {
-    const { name, business_owner, kyc_level, created_at, is_live } = item
-    let phoneNumber = business_owner?.phone_number || ''
+    const {
+      name,
+      business_owner,
+      phone_number,
+      kyc_level,
+      created_at,
+      is_live,
+    } = item
+    let phoneNumber = phone_number || ''
     let email = business_owner?.email || ''
     let status = is_live ? 'Active' : 'Inactive'
     return { name, phoneNumber, email, kyc_level, status, created_at }
@@ -89,9 +96,11 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'products') {
-    const { displayName, fallbackBillerSlug, billerSlug } = item
+    const { displayName, fallbackBillerSlug, billerSlug, disabled } = item
 
-    return { name: displayName, biller: billerSlug, fallbackBillerSlug }
+    let status = disabled ? 'Inactive' : 'Active'
+
+    return { name: displayName, biller: billerSlug, status, fallbackBillerSlug }
   }
   if (item && name === 'product-billers') {
     const { displayName, commission, createdAt } = item
@@ -103,12 +112,19 @@ export const transformData = ({ item, name }: props) => {
   }
 
   if (item && name === 'business-products') {
-    const { displayName, commission, createdAt, disabled } = item
-    const type = commission?.rate?.type
-    const percentage = commission?.rate?.percentage
-    const cap = commission?.splits[0]?.rate.amount
-    const rates = generateCommission(type, percentage, cap)
-    let status = disabled ? 'Inactive' : 'Active'
+    const { product, commissionRates, createdAt, adminDisabled } = item
+    const type = commissionRates?.[0]?.rate?.type
+    const percentage = commissionRates?.[0]?.rate?.percentage
+    const flat = commissionRates?.[0]?.rate?.amount
+    const cap = commissionRates?.[0]?.rate?.amount
+    const rates = generateCommission(
+      type,
+      type === 'percentage' ? percentage : flat,
+      cap
+    )
+    let status = adminDisabled ? 'Inactive' : 'Active'
+    const displayName = product?.displayName
+
     return { displayName, type, rates, status, createdAt }
   }
 

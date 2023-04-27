@@ -71,6 +71,7 @@ const ReassignTerminalModal = ({
       >
         Select New Business
       </Text>
+
       <SelectInput
         placeholder="Enter to search for business"
         onChange={(e: any) => {
@@ -93,12 +94,7 @@ const ReassignTerminalModal = ({
                   options: [{ label: '', value: '' }],
                 },
               ]
-            : [
-                {
-                  label: 'Enter to search for business',
-                  options: mappedBusinesses || [{ label: '', value: '' }],
-                },
-              ]
+            : mappedBusinesses
         }
       />
       {triggerSubmit && !value?.businessId && (

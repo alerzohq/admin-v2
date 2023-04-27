@@ -1,8 +1,8 @@
-export type ConfirmationProps={
+export type ConfirmationProps = {
   showModal: boolean
   showStatus: boolean
-  title?:string
+  title?: string
   setShowStatus: Dispatch<SetStateAction<boolean>>
   handleShow: Dispatch<SetStateAction<boolean>>
-  handleChange?:()=>{}
+  handleChange?: () => {}
 }

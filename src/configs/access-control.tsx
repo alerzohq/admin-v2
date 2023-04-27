@@ -54,6 +54,8 @@ const AllPermissions = () => {
     isHasPermission.includes('set_biller_threshold') || adminAccess
   const KYCAccess =
     isHasPermission.includes('view_KYC_verification_requests') || adminAccess
+  const businessProductDetailAccess =
+    isHasPermission.includes('view_business_product') || adminAccess
 
   return {
     adminAccess,
@@ -77,6 +79,7 @@ const AllPermissions = () => {
     createTerminalAccess,
     historyStatisticAccess,
     KYCAccess,
+    businessProductDetailAccess,
   }
 }
 

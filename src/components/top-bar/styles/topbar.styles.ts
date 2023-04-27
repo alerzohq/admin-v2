@@ -57,6 +57,11 @@ export const TopbarFilters = styled.div`
     cursor: pointer;
     margin-left: auto;
   }
+  .transparent-button {
+    background: transparent;
+    border: 1px solid ${Color.alerzoBlue};
+    color: ${Color.alerzoBlue};
+  }
   ::-webkit-scrollbar {
     width: 0;
     height: 0;

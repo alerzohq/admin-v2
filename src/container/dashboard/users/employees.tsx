@@ -1,6 +1,7 @@
 import { AxiosError, AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
+import { filterProps } from '../../../@types'
 import { InviteSent } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
@@ -9,26 +10,35 @@ import {
   Form,
   Jumbotron,
   Loader,
+  Pagination,
   SelectInput,
   Table,
   Text,
 } from '../../../components'
 import Modal from '../../../components/modal'
 import { axiosInstance } from '../../../configs/axios-instance'
+import { useAppContext } from '../../../context'
+import { filterValue } from '../../../data/filter-data'
 import { employeesHeader } from '../../../data/table-headers'
-import { getResource } from '../../../utils/apiRequest'
+import { employeFilterOptions } from '../../../helper/filter-helper'
+import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import { validEmail } from '../../../utils/formatValue'
 import { errorMessage } from '../../../utils/message'
 
 const Employees = () => {
+  const {
+    state: { appFilters },
+  } = useAppContext()
+
   const [isShown, setIsShown] = useState(false)
   const [showSuucessInvite, setShowSuucessInvite] = useState(false)
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+  const [filters, setFilters] = useState(filterValue)
   const [values, setValues] = useState({
     email: '',
     role: '',
   })
-
+  let employeeOptions = employeFilterOptions(appFilters?.['employees'])
   const mutation = useMutation<
     AxiosResponse<any, any>,
     any,
@@ -45,17 +55,19 @@ const Employees = () => {
       },
     }
   )
-  const getEmployees = () => {
-    return getResource('members')
+
+  const getEmployees = (filterValue: filterProps) => {
+    return getNewFilterResource(`members`, filterValue)
   }
   const getRoles = () => {
     return getResource('roles')
   }
 
-  const { isLoading, isError, data, refetch, error } = useQuery(
-    'employees',
-    getEmployees
+  const { isLoading, isError, data, refetch, error, isFetching } = useQuery(
+    ['employees', filters],
+    () => getEmployees(filters)
   )
+
   const { isLoading: isLoadingRoles, data: roles } = useQuery('roles', getRoles)
   let component
   if (isLoading) {
@@ -65,7 +77,7 @@ const Employees = () => {
       <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
     )
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'No Employees list available yet.'} />
+    component = <FallBack title={' Employee not available'} />
   } else {
     component = (
       <Table
@@ -208,7 +220,7 @@ const Employees = () => {
       </Modal>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
         <Filter
-          setFilterValues={setValues}
+          setFilterValues={setFilters}
           showFilters={{
             search: {
               placeholder: 'Search',
@@ -217,11 +229,10 @@ const Employees = () => {
             date: false,
             selects: [
               {
+                query: 'active',
                 placeholder: 'Status',
-                values: [],
+                values: employeeOptions,
                 value: '',
-                onChange: () => {},
-                query: 'status',
               },
             ],
             buttons: [
@@ -232,9 +243,11 @@ const Employees = () => {
               },
             ],
           }}
+          isFetching={isFetching}
         />
         {component}
       </Jumbotron>
+      <Pagination data={data} setPageNumber={setFilters} />
     </>
   )
 }

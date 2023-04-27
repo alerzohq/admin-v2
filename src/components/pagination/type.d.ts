@@ -2,7 +2,7 @@
 
 export type PaginationProps = {
   data: { [key: string]: any }
-initialPageCount?:number
+  initialPageCount?: number
   setPageNumber: React.Dispatch<
     React.SetStateAction<{
       count: number

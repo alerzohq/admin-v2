@@ -44,16 +44,18 @@ const CardWidget = ({
         text={labels?.card2 || ' Total Amount Withdrawn'}
         value={
           historyStatisticAccess
-            ? statistics?.card2 ||
-              `₦${
-                stats?.totalAmountWithdrawn
-                  ? amountConverter(stats?.totalAmountWithdrawn)
-                  : '0'
-              }`
+            ? stats
+              ? `₦${
+                  stats?.totalAmountWithdrawn
+                    ? amountConverter(stats?.totalAmountWithdrawn)
+                    : '0'
+                }`
+              : statistics?.card2 || 0
             : '******'
         }
         loading={loading}
       />
+
       <CardWidgetBox
         Icon={icons?.card3 || TransCountIcon}
         text={labels?.card3 || 'Total Number of Transactions'}

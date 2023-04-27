@@ -1,13 +1,26 @@
 import { Fragment } from 'react'
 import { Color } from '../../../../assets/theme'
-import { FlexTableWrapper, Text } from '../../../../components'
-import { TabContentContainer } from '../../transactions/details/tab-content/styles/tab-content.styles'
+import { Button, FlexTableWrapper, Text } from '../../../../components'
+import {
+  TabContentContainer,
+  HeaderContainer,
+} from '../../transactions/details/tab-content/styles/tab-content.styles'
+import useUpgradeUser from '../../businesses/hooks/useUpgradeUser'
 
 const DetailsContentWidget = ({
   resolvedData,
+  phoneNumber,
+  documentNumber,
 }: {
   resolvedData: { [key: string]: any }[]
+  phoneNumber?: any
+  documentNumber?: any
 }) => {
+  const { mutate, isLoading } = useUpgradeUser(phoneNumber, documentNumber)
+
+  const onSubmit = () => {
+    mutate()
+  }
   return (
     <>
       {resolvedData?.map((item, index) => {
@@ -24,17 +37,33 @@ const DetailsContentWidget = ({
               </TabContentContainer>
             ) : (
               <>
-                {item?.title && (
-                  <Text
-                    as="p"
-                    padding="1.5em 0 0 0"
-                    color={Color.alerzoBlack}
-                    weight="600"
-                    align="center"
-                  >
-                    {item?.title}
-                  </Text>
-                )}
+                <HeaderContainer>
+                  {item?.title && (
+                    <Text
+                      as="p"
+                      padding="1.5em 0 0 0"
+                      color={Color.alerzoBlack}
+                      weight="600"
+                      align="center"
+                    >
+                      {item?.title}
+                    </Text>
+                  )}
+                  {item?.button && item?.bvnVerified && (
+                    <Button
+                      onClick={onSubmit}
+                      height={'45px'}
+                      width="130px"
+                      borderSize="1px"
+                      color={Color.alerzoBlue}
+                      variant="transparent"
+                      borderColor={Color.alerzoBlue}
+                      loading={isLoading}
+                    >
+                      {'Verify'}
+                    </Button>
+                  )}
+                </HeaderContainer>
                 <FlexTableWrapper.Row
                   key={index}
                   data={item?.data}

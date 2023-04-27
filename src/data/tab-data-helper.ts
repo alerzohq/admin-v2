@@ -5,6 +5,7 @@ import {
   DETAILSTABLE1,
   DETAILSTABLE2,
   DETAILSTABLE3,
+  BILLERRESPONSETABLE,
 } from './tab-data'
 export const detailsHelper = (
   data: any,
@@ -48,11 +49,11 @@ export const detailsHelper = (
       return { [key]: val?.value }
     }
   )
-  var resultObject = metaDataArr?.reduce(function (
+  let resultObject = metaDataArr?.reduce(function (
     result: any,
     currentObject: any
   ) {
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
         let val = currentObject[key]
         if (key === 'amount' || key === 'balance' || key === 'total') {
@@ -138,11 +139,11 @@ export const otherHelper = (data: any) => {
       return { [key]: val?.value }
     }
   )
-  var resultObject = metaDataArr?.reduce(function (
+  let resultObject = metaDataArr?.reduce(function (
     result: any,
     currentObject: any
   ) {
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
         let val = currentObject[key]
         if (key === 'amount' || key === 'balance' || key === 'total') {
@@ -163,15 +164,25 @@ export const otherHelper = (data: any) => {
       header: metaHeaders,
       data: resultObject,
     },
-    {
-      spacing: false,
-      header: CUSTOMERMORETABLE,
-      data: {
-        segment: data?.segment,
-        customerType: data?.user_type,
-        kyc: data?.kyc,
-        status: data?.status,
-      },
-    },
+    // {
+    //   spacing: false,
+    //   header: CUSTOMERMORETABLE,
+    //   data: {
+    //     segment: data?.segment,
+    //     customerType: data?.user_type,
+    //     kyc: data?.kyc,
+    //     status: data?.status,
+    //   },
+    // },
+    // {
+    //   spacing: false,
+    //   header: BILLERRESPONSETABLE,
+    //   data: {
+    //     segment: data?.segment,
+    //     customerType: data?.user_type,
+    //     kyc: data?.kyc,
+    //     status: data?.status,
+    //   },
+    // },
   ]
 }
