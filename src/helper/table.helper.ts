@@ -85,13 +85,13 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'employees') {
-    const { firstName, lastName, phoneNumber, email, roleName, disabled } = item
+    const { firstName, lastName, phoneNumber, email, adminRoleName, disabled } = item
     let statusVal = disabled ? 'Inactive' : 'Active'
     return {
       name: `${firstName} ${lastName}`,
       email: email.toLowerCase(),
       phoneNumber,
-      roleName,
+      adminRoleName,
       statusVal,
     }
   }
