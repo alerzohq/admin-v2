@@ -143,3 +143,14 @@ export const PopUpStack = styled.div`
     cursor: pointer;
   }
 `
+
+export const ActionButton=styled.button`
+border:1px solid ${Color.alerzoBlueBorder};
+cursor:pointer;
+color:${Color.alerzoDeepBlue};
+background: ${Color.alerzoBlue7};
+border-radius: 3px;
+padding:8px 10px;
+
+`
+

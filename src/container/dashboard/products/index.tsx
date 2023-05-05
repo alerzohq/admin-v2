@@ -106,7 +106,7 @@ const ProductsContainer = () => {
             name="products"
             selectIndex={3}
             tableData={dataArr}
-            handleSelectChange={setNewBiller}
+            handleChange={setNewBiller}
             options={
               loadingBillers || isRefetching
                 ? [
