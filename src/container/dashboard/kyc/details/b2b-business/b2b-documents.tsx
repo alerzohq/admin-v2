@@ -1,14 +1,25 @@
+import { useState } from 'react'
+import { Document, Page } from 'react-pdf'
+
 import { Color } from '../../../../../assets/theme'
 import { Stack, Text } from '../../../../../components'
+import { checkPdfUrl } from '../../../../../utils/formatValue'
 
 const B2BDocuments = ({ state }: any) => {
+  const options = {
+    cMapUrl: 'cmaps/',
+    standardFontDataUrl: 'standard_fonts/',
+  }
   let documentNumber = state?.documents?.find(
-    (v: any) => v?.key === 'documentNumber'
+    (v: Record<string, string>) => v?.key === 'documentNumber'
   )
   let businessCAC = state?.documents?.find((v: any) => v?.key === 'businessCAC')
   let documentPhotos = state?.documents?.find(
-    (v: any) => v?.key === 'documentPhotos'
+    (v: Record<string, string>) => v?.key === 'documentPhotos'
   )
+
+  const isPdf = checkPdfUrl(businessCAC?.value)
+
   return (
     <Stack
       width="auto"
@@ -41,7 +52,11 @@ const B2BDocuments = ({ state }: any) => {
           </Stack>
         </Stack>
         <Stack pt="1rem">
-          <img width="100%" alt="business-CAC" src={businessCAC?.value} />
+          {isPdf ? (
+            <Document file={businessCAC?.value} options={options} />
+          ) : (
+            <img width="100%" alt="business-CAC" src={businessCAC?.value} />
+          )}
         </Stack>
       </Stack>
       <Stack padding="1rem 0">
@@ -72,7 +87,7 @@ const B2BDocuments = ({ state }: any) => {
         <Stack pt="1rem">
           {documentPhotos?.value?.map((value: string, i: number) => (
             <Stack key={i} padding=".5rem 0">
-              <img width="100%" alt="document-photos" src={value} />
+              {value && <img width="100%" alt="document-photos" src={value} />}
             </Stack>
           ))}
         </Stack>
