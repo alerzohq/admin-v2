@@ -22,12 +22,12 @@ interface Role {
 const EditEmployees = ({ data }: any) => {
   const [isEditing, setIsEditing] = useState(false)
   const role = {
-    value: data?.roleName,
-    label: data?.roleName,
+    value: data?.adminRoleName,
+    label: data?.adminRoleName,
   }
   const [updatedRole, setUpdatedRole] = useState<Role | undefined>({
-    value: data?.roleName,
-    label: data?.roleName,
+    value: data?.adminRoleName,
+    label: data?.adminRoleName,
   })
 
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
