@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Modal from '../../../../../../components/modal'
 import { Button, Form, SelectInput, Text } from '../../../../../../components'
 import SuccessModal from '../../../../../../components/success-modal/success-modal'
@@ -69,7 +68,18 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    mutate(payload)
+    setIsTriggerSubmit(true)
+    if (type?.value === Rate.percentage) {
+      if (percentage && cap && percentage && Number(percentage) <= 100) {
+        setIsTriggerSubmit(false)
+        mutate(payload)
+      }
+    } else if (type?.value === Rate.flat) {
+      if (amount) {
+        setIsTriggerSubmit(false)
+        mutate(payload)
+      }
+    }
   }
 
   return (
@@ -107,26 +117,10 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
 
               {isTriggerSubmit && (
                 <Text as="small" weight="500" color={Color.alerzoDanger}>
-                  {isTriggerSubmit && values?.amount === ''
+                  {isTriggerSubmit && percentage === ''
                     ? 'Percentage is required*'
-                    : ''}
-                </Text>
-              )}
-            </Form.Control>
-          )}
-          {type.value === Rate.flat && (
-            <Form.Control pb="1rem">
-              <Form.Label>Commission Amount</Form.Label>
-              <Form.Input
-                type="number"
-                placeholder="Enter Comission Amount"
-                value={amount || ''}
-                onChange={handleChange('amount')}
-              />
-              {isTriggerSubmit && (
-                <Text as="small" weight="500" color={Color.alerzoDanger}>
-                  {isTriggerSubmit && amount === ''
-                    ? 'Amount is required*'
+                    : percentage && Number(percentage) > 100
+                    ? 'Commission should not be more than 100% *'
                     : ''}
                 </Text>
               )}
@@ -149,6 +143,25 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
               )}
             </Form.Control>
           )}
+          {type.value === Rate.flat && (
+            <Form.Control pb="1rem">
+              <Form.Label>Commission Amount</Form.Label>
+              <Form.Input
+                type="number"
+                placeholder="Enter Comission Amount"
+                value={amount || ''}
+                onChange={handleChange('amount')}
+              />
+              {isTriggerSubmit && (
+                <Text as="small" weight="500" color={Color.alerzoDanger}>
+                  {isTriggerSubmit && amount === ''
+                    ? 'Amount is required*'
+                    : ''}
+                </Text>
+              )}
+            </Form.Control>
+          )}
+
           <Form.Control pb="1rem">
             <Button.Group align="center">
               <Button
