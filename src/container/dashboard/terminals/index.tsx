@@ -145,7 +145,7 @@ const TransactionContainer = () => {
         title={`${errorMessage(terminsalsRequestsError)}`}
       />
     )
-  } else if (terrminalsRequestsData?.data?.terminalRequests?.length < 1) {
+  } else if (terrminalsRequestsData?.data?.length < 1) {
     requestsTerrminals = (
       <FallBack
         title="You have no requested terminals yet. "
@@ -183,6 +183,9 @@ const TransactionContainer = () => {
       search: {
         placeholder: 'Search',
       },
+    }),
+    ...(isRequest && {
+      date: true,
     }),
     ...(isExisting && {
       selects: TerminalSelects,
