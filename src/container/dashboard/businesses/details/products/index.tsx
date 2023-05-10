@@ -7,7 +7,6 @@ import {
   Jumbotron,
   Loader,
   Pagination,
-  Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { businessProductsHeader } from '../../../../../data/table-headers'
@@ -16,12 +15,17 @@ import { errorMessage } from '../../../../../utils/message'
 import { filterProps } from '../../../../../@types'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
+import CustomTableData from '../../../../../components/table/table-data/custom-table-data'
+import TableHeader from '../../../../../components/table/table-headers'
+import { DataTable } from '../../../../../components/table/styles/table.styles'
+import CommissionModal from './modal/set-commission-modal'
 
 const Products = (isB2B: any) => {
-  const [values, setValues] = useState(filterValue)
-  const { dispatch } = useAppContext()
-
   const { businessId } = useParams()
+  const [values, setValues] = useState(filterValue)
+  const [product, setProduct] = useState({})
+  const [showModal, setShowModal] = useState(false)
+  const { dispatch } = useAppContext()
 
   const navigate = useNavigate()
 
@@ -52,6 +56,11 @@ const Products = (isB2B: any) => {
     }
   }
 
+  const handleSetCommission = (item: Record<string, string>) => {
+    setShowModal(true)
+    setProduct(item)
+  }
+
   let component
   if (isLoading) {
     component = <Loader />
@@ -63,14 +72,17 @@ const Products = (isB2B: any) => {
     component = <FallBack title={'You have no products yet. '} />
   } else {
     component = (
-      <Table
-        headerbgColor={'transparent'}
-        tableName="business-products"
-        tableData={data?.data}
-        tableHeaders={businessProductsHeader}
-        dateFormat="YYYY-MM-DD HH:mm:ss"
-        handleRouthPath={handleRoute}
-      />
+      <DataTable bgColor="transparent" layout="fixed">
+        <TableHeader headers={businessProductsHeader} />
+        <CustomTableData
+          name="business-products"
+          tableData={data?.data}
+          handleChange={handleSetCommission}
+          actionBtn={true}
+          dateFormat="YYYY-MM-DD HH:mm:ss"
+          handleRouthPath={handleRoute}
+        />
+      </DataTable>
     )
   }
 
@@ -85,22 +97,26 @@ const Products = (isB2B: any) => {
               type: 'text',
             },
             date: true,
-            selects: [
-              {
-                placeholder: 'Status',
-                values: [],
-                value: '',
-                onChange: () => {},
-                query: 'status',
-              },
-            ],
+            // selects: [
+            //   {
+            //     placeholder: 'Status',
+            //     values: [],
+            //     value: '',
+            //     onChange: () => {},
+            //     query: 'status',
+            //   },
+            // ],
           }}
         />
 
         {component}
       </Jumbotron>
-
       {data?.data && <Pagination data={data} setPageNumber={setValues} />}
+      <CommissionModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        product={product}
+      />
     </>
   )
 }

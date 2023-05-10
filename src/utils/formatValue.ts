@@ -142,3 +142,10 @@ export const convertPhoneNumber = (number: string) => {
     return number
   }
 }
+export const checkPdfUrl=(url:string):boolean => {
+if (url.endsWith('.pdf')) {
+ return true
+} else {
+ return false
+}
+}

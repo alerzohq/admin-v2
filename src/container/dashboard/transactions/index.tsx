@@ -42,6 +42,7 @@ const TransactionContainer = () => {
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
+  /*TODO REFACTOR*/
   let actionOptions = [
     historyDownloadAccess && {
       label: 'Download CSV Report',
@@ -59,7 +60,9 @@ const TransactionContainer = () => {
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
 
-  //TODO REFACTOR
+  /** TODO REFACTOR
+   * MAKE THIS HOOK
+   */
 
   useEffect(() => {
     if (value) {

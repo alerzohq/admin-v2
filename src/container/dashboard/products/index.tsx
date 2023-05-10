@@ -107,7 +107,7 @@ const ProductsContainer = () => {
           <CustomTableData
             name="products"
             tableData={dataArr}
-            handleSelectChange={setNewBiller}
+            handleChange={setNewBiller}
             options={
               loadingBillers || isRefetching
                 ? [
