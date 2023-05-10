@@ -106,6 +106,7 @@ const ProductsContainer = () => {
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
             name="products"
+            hideDate
             tableData={dataArr}
             handleChange={setNewBiller}
             options={
