@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useQuery } from 'react-query'
+
 import {
   FallBack,
   Jumbotron,
@@ -10,10 +13,7 @@ import {
 import { Container } from '../../../components/layout'
 import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
-import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import { TerminalSelects } from './config'
-import { useLocation } from 'react-router-dom'
 import {
   terminalHeader,
   terminalRequestHeader,
@@ -38,6 +38,7 @@ import AddTerminalModal from './modals/add-terminal-form'
 import { errorMessage } from '../../../utils/message'
 import BulkTerminalModal from './modals/bulk-terminal-upload'
 import AllPermissions from '../../../configs/access-control'
+import { TerminalSelects } from '../../../data/select-data'
 
 const TransactionContainer = () => {
   const search = useLocation().search
@@ -78,7 +79,6 @@ const TransactionContainer = () => {
     isLoading: isLoadingTerrminalsRequests,
     data: terrminalsRequestsData,
     isError: isErrorTerrminalsRequests,
-    isFetching: isFetchingTerrminalsRequests,
     refetch: refetchTerminalRequests,
     error: terminsalsRequestsError,
   } = useQuery(
