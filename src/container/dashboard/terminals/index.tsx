@@ -11,7 +11,6 @@ import {
   TabsPage,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { filterValue } from '../../../data/filter-data'
 import {
@@ -30,6 +29,7 @@ import {
 } from '../../../data/terminal-data'
 import {
   getRequestTerminalStats,
+  getTerminalRequestHandler,
   getTerminalsHandler,
   getTerminalStats,
 } from './utils'
@@ -77,9 +77,6 @@ const TransactionContainer = () => {
   const Statistics = stats?.data
   const requestStatistics = requestStats?.data
 
-  const getTerminalsRequestsHandler = (requestValues: any) => {
-    return getTerminalsRequestsData(`terminals/requests`, requestValues)
-  }
   const {
     isLoading: isLoadingExistingTerminals,
     data: existingTerminalsData,
@@ -100,7 +97,7 @@ const TransactionContainer = () => {
     error: terminsalsRequestsError,
   } = useQuery(
     ['requestsTerminals', requestValues],
-    () => getTerminalsRequestsHandler(requestValues),
+    () => getTerminalRequestHandler(requestValues),
     { keepPreviousData: true }
   )
 
@@ -215,7 +212,7 @@ const TransactionContainer = () => {
       <Container
         showFilters={showFilters}
         title="Terminals"
-        setFilterValues={setValues}
+        setFilterValues={isExisting ? setValues : setRequestValues}
         isFetching={isFetchingExistingTerminals || isFetchingTerminalRequests}
       >
         <TabsPage.Tabs
