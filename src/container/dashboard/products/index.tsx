@@ -104,7 +104,7 @@ const ProductsContainer = () => {
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
             name="products"
-            selectIndex={3}
+            hideDate
             tableData={dataArr}
             handleChange={setNewBiller}
             options={
