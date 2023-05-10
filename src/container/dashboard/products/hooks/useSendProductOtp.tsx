@@ -9,7 +9,6 @@ type ISendOTPProps = {
 }
 
 const useSendProductOTPMutation = ({ productSlug }: ISendOTPProps) => {
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL
   const [newOtpToken, setNewOtpToken] = useState('')
   const { minutes, seconds, resetTimer } = useCountdownTimer()
 
