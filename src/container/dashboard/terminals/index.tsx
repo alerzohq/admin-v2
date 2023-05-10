@@ -77,7 +77,7 @@ const TransactionContainer = () => {
   const Statistics = stats?.data
   const requestStatistics = requestStats?.data
 
-  const getTerminalsRequestsHandler = () => {
+  const getTerminalsRequestsHandler = (requestValues: any) => {
     return getTerminalsRequestsData(`terminals/requests`, requestValues)
   }
   const {
@@ -100,7 +100,7 @@ const TransactionContainer = () => {
     error: terminsalsRequestsError,
   } = useQuery(
     ['requestsTerminals', requestValues],
-    () => getTerminalsRequestsHandler(),
+    () => getTerminalsRequestsHandler(requestValues),
     { keepPreviousData: true }
   )
 
@@ -157,7 +157,7 @@ const TransactionContainer = () => {
     requestsTerrminals = (
       <Table
         tableName="requestsTerrminals"
-        tableData={terrminalsRequestsData?.data?.terminalRequests}
+        tableData={terrminalsRequestsData?.data}
         tableHeaders={terminalRequestHeader}
         routePath="dashboard/terminals/requests"
       />
@@ -236,7 +236,6 @@ const TransactionContainer = () => {
             <Pagination
               data={terrminalsRequestsData}
               setPageNumber={setRequestValues}
-              initialPageCount={1}
             />
           </>
         ) : (
