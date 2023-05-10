@@ -17,18 +17,20 @@ import { mapBillers } from '../../../utils/formatValue'
 import { errorMessage } from '../../../utils/message'
 import ConfirmBillerChange from './details/modal/confirmation-modal'
 
+type StateProp = Record<string, any>
+
 const ProductsContainer = () => {
   const [slug, setSlug] = useState()
   const [showModal, setShowModal] = useState(false)
   const [showStatus, setShowStatus] = useState(false)
   const [values, setValues] = useState(filterValue)
-  const [newBiller, setNewBiller] = useState<{ [key: string]: any }>()
+  const [newBiller, setNewBiller] = useState<Record<string, any>>()
   const location = useLocation()
   const [options, setOptions] = useState([
     { label: '', options: { label: '', value: '' } },
   ])
 
-  const stateValue: any = location.state
+  const stateValue = location.state as StateProp
 
   const getProducts = () => {
     return getResource('products')
@@ -104,7 +106,6 @@ const ProductsContainer = () => {
           <TableHeader headers={productsHeaderList} />
           <CustomTableData
             name="products"
-            selectIndex={3}
             tableData={dataArr}
             handleChange={setNewBiller}
             options={

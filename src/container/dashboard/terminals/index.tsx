@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useQuery } from 'react-query'
+
 import {
   FallBack,
   Jumbotron,
@@ -10,10 +13,7 @@ import {
 import { Container } from '../../../components/layout'
 import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
-import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import { TerminalSelects } from './config'
-import { useLocation } from 'react-router-dom'
 import {
   terminalHeader,
   terminalRequestHeader,
@@ -40,6 +40,7 @@ import BulkTerminalModal from './modals/bulk-terminal-upload'
 import AllPermissions from '../../../configs/access-control'
 import { terminalReqFilterOptions } from '../../../helper/filter-helper'
 import { useAppContext } from '../../../context'
+import { TerminalSelects } from '../../../data/select-data'
 
 const TransactionContainer = () => {
   /** TODO:
