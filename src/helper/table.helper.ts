@@ -85,13 +85,13 @@ export const transformData = ({ item, name }: props) => {
     }
   }
   if (item && name === 'employees') {
-    const { firstName, lastName, phoneNumber, email, roleName, disabled } = item
+    const { firstName, lastName, phoneNumber, email, adminRoleName, disabled } = item
     let statusVal = disabled ? 'Inactive' : 'Active'
     return {
       name: `${firstName} ${lastName}`,
       email: email.toLowerCase(),
       phoneNumber,
-      roleName,
+      adminRoleName,
       statusVal,
     }
   }
@@ -116,7 +116,7 @@ export const transformData = ({ item, name }: props) => {
     const type = commissionRates?.[0]?.rate?.type
     const percentage = commissionRates?.[0]?.rate?.percentage
     const flat = commissionRates?.[0]?.rate?.amount
-    const cap = commissionRates?.[0]?.rate?.amount
+    const cap = commissionRates?.[0]?.rate?.cap
     const rates = generateCommission(
       type,
       type === 'percentage' ? percentage : flat,

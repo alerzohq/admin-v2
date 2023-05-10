@@ -18,7 +18,7 @@ const useUpdateBusinessOwnerInfo = (otp: string, inputValues: any) => {
 
   return useMutation(updateBusinessOwnerInfo, {
     onSuccess: () => {
-      queryClient.invalidateQueries('update-business-owner-info')
+      queryClient.invalidateQueries('businesses-detail')
     },
     onError: (error) => {
       toast.error(errorMessage(error))

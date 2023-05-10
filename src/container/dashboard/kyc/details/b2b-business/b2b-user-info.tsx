@@ -1,3 +1,4 @@
+import { Color } from '../../../../../assets/theme'
 import { Stack, Text } from '../../../../../components'
 import {
   formatDate,
@@ -5,19 +6,23 @@ import {
   removeHyphen,
 } from '../../../../../utils/formatValue'
 
-const KYCB2bUser = ({ state }: any) => {
-  let selfie = state?.documents?.find((v: any) => v?.key === 'selfie')
-  let businessRC = state?.documents?.find((v: any) => v?.key === 'businessRC')
-  let businessWebsite = state?.documents?.find(
-    (v: any) => v?.key === 'businessWebsite'
+enum KYCB2BKey {
+  selfie = 'selfie',
+  businessRC = 'businessRC',
+  documentType = 'documentType',
+}
+
+const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
+  const selfie = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === KYCB2BKey.selfie
   )
-  let businessNature = state?.documents?.find(
-    (v: any) => v?.key === 'businessNature'
+  const businessRC = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === KYCB2BKey.businessRC
   )
-  let documentType = state?.documents?.find(
-    (v: any) => v?.key === 'documentType'
+  const documentType = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === KYCB2BKey.documentType
   )
-  let address = state?.documents?.find((v: any) => v?.key === 'address')
+
   return (
     <div>
       <div
@@ -52,14 +57,6 @@ const KYCB2bUser = ({ state }: any) => {
         <Text as="h3">{state?.fullName}</Text>
       </div>
       <div style={{ padding: '1rem 0 0 0' }}>
-        {/* <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
-            Business Name
-          </Text>
-          <Text as="p" weight="600" color="#374B58">
-            Gracious Pharmacies
-          </Text>
-        </Stack> */}
         <Stack
           borderBottom="1px solid #E8EBEE"
           padding="1rem 0"
@@ -69,42 +66,53 @@ const KYCB2bUser = ({ state }: any) => {
             <Text as="p" color="#A5B0B7">
               Business Nature
             </Text>
-            <Text as="p" weight="600" color="#374B58">
-              {formatUnderScore(businessNature?.value) ?? 'N/A'}
+            <Text as="p" weight="600" color={Color.alerzoDarkGray}>
+              {formatUnderScore(state?.sector) ?? 'N/A'}
             </Text>
           </Stack>
-          <Stack width="50%" borderLeft="1px solid #E8EBEE" pl="1rem">
+          <Stack
+            width="50%"
+            borderLeft={`1px solid ${Color.alerzoGrayBorder}`}
+            pl="1rem"
+          >
             <Text as="p" color="#A5B0B7">
               Business RC Number
             </Text>
-            <Text as="p" weight="600" color="#374B58">
-              {businessRC?.value ? `RC${businessRC?.value}` : 'N/A'}
+            <Text as="p" weight="600" color={Color.alerzoDarkGray}>
+              {businessRC?.value ? `${businessRC?.value}` : 'N/A'}
             </Text>
           </Stack>
         </Stack>
-        <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
+        <Stack
+          borderBottom={`1px solid ${Color.alerzoGrayBorder}`}
+          padding="1rem 0"
+        >
+          <Text as="p" color={Color.alerzoGray2}>
             Business Website
           </Text>
-          <Text as="p" weight="600" color="#374B58">
-            {businessWebsite?.value ?? 'N/A'}
+          <Text as="p" weight="600" color={Color.alerzoDarkGray}>
+            {state?.website ?? 'N/A'}
           </Text>
         </Stack>
         <Stack
-          borderBottom="1px solid #E8EBEE"
+          borderBottom={`1px solid ${Color.alerzoGrayBorder}`}
           padding="1rem 0"
           direction="row"
         >
           <Stack width="50%">
-            <Text as="p" color="#A5B0B7">
+            <Text as="p" color={Color.alerzoGray2}>
               CAC Type
             </Text>
-            <Text as="p" weight="600" color="#374B58">
+            <Text as="p" weight="600" color={Color.alerzoDarkGray}>
               {removeHyphen(documentType?.value) ?? 'N/A'}
             </Text>
           </Stack>
-          <Stack width="50%" borderLeft="1px solid #E8EBEE" pl="1rem">
-            <Text as="p" color="#A5B0B7">
+          <Stack
+            width="50%"
+            borderLeft={`1px solid ${Color.alerzoGrayBorder}`}
+            pl="1rem"
+          >
+            <Text as="p" color={Color.alerzoGray2}>
               Company Status
             </Text>
             <Text
@@ -139,7 +147,7 @@ const KYCB2bUser = ({ state }: any) => {
             Company Address
           </Text>
           <Text as="p" weight="600" color="#374B58">
-            {address?.value ?? 'N/A'}
+            {state?.address ?? 'N/A'}
           </Text>
         </Stack>
         {/* <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">

@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react'
 import { amountHelper, formatDate } from '../utils/formatValue'
 import {
-  CUSTOMERMORETABLE,
+  // CUSTOMERMORETABLE,
   DETAILSTABLE1,
   DETAILSTABLE2,
   DETAILSTABLE3,
-  BILLERRESPONSETABLE,
+  // BILLERRESPONSETABLE,
 } from './tab-data'
 export const detailsHelper = (
   data: any,

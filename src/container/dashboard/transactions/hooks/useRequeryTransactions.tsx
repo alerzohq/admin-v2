@@ -16,7 +16,7 @@ const useRequeryTransactions = (payload: string[]) => {
 
   return useMutation(requeryTransactions, {
     onSuccess: () => {
-      queryClient.invalidateQueries('requery-transactions')
+      queryClient.invalidateQueries('transactions')
     },
     onError: (error) => {
       toast.error(errorMessage(error))

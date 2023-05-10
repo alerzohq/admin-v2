@@ -209,8 +209,8 @@ const Employees = () => {
           {mutation.isError && (
             <Text
               padding="8px"
-              as={'small'}
-              weight={'500'}
+              as="small"
+              weight="500"
               color={Color.alerzoDanger}
             >
               {mutation.error.response.data.message as string}
@@ -218,7 +218,7 @@ const Employees = () => {
           )}
         </>
       </Modal>
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+      <Jumbotron padding=".5rem 1rem" direction="column">
         <Filter
           setFilterValues={setFilters}
           showFilters={{
@@ -229,7 +229,7 @@ const Employees = () => {
             date: false,
             selects: [
               {
-                query: 'active',
+                query: 'disabled',
                 placeholder: 'Status',
                 values: employeeOptions,
                 value: '',
