@@ -36,8 +36,8 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
     commissionRate: {
       type: type?.value,
       ...(type?.value === Rate.percentage && { percentage }),
-      ...(type?.value === Rate.percentage && { cap }),
-      ...(type?.value === Rate.flat && { amount }),
+      ...(type?.value === Rate.percentage && { cap: parseInt(cap) * 100 }),
+      ...(type?.value === Rate.flat && { amount: parseInt(amount) * 100 }),
     },
   }
   const { mutate, isLoading } = useSetCommission(
