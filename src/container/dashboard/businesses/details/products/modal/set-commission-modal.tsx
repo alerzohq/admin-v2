@@ -184,7 +184,7 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
           setShowSuccess={setShowSuccess}
           message="Commission set successfully"
           btnText="Back To Products"
-          title="Commission Set "
+          title="Commission Set"
           onClick={() => setShowSuccess(false)}
         />
       )}
