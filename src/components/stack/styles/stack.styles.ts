@@ -22,6 +22,11 @@ type stackProps = {
   borderRight?: string
   border?: string
   borderRadius?: string
+  boxShadow?:string
+  cursor?:string
+  transition?:string
+  overflow?:string
+  height?:string
 }
 
 export const StackWrapper = styled.div<stackProps>`
@@ -45,8 +50,12 @@ export const StackWrapper = styled.div<stackProps>`
   border-right: ${({ borderRight }) => borderRight};
   border: ${({ border }) => border};
   border-radius: ${({ borderRadius }) => borderRadius};
+  box-shadow: ${({ boxShadow }) => boxShadow};
   background: ${({ bgColor }) => bgColor};
-
+  cursor: ${({ cursor }) => cursor};
+  transition: ${({ transition }) => transition};
+  overflow: ${({ overflow }) => overflow};
+  height: ${({ height }) => height};
   @media (max-width: 768px) {
     h1 {
       font-size: 1.3rem;
