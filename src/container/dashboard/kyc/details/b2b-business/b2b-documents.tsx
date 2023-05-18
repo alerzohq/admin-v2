@@ -7,14 +7,21 @@ import { DocFile } from './doc-file'
 
 const B2BDocuments = ({ state }: any) => {
   const [show, setShow] = useState<number | null>()
-  let documentNumber = state?.documents?.find(
+  const documentNumber = state?.documents?.find(
     (v: Record<string, string>) => v?.key === 'documentNumber'
   )
-  let businessCAC = state?.documents?.find((v: any) => v?.key === 'businessCAC')
-  let documentPhotos = state?.documents?.find(
+  const businessCAC = state?.documents?.find(
+    (v: any) => v?.key === 'businessCAC'
+  )
+  const documentPhotos = state?.documents?.find(
     (v: Record<string, string>) => v?.key === 'documentPhotos'
   )
-  const isPdf = checkPdfUrl(businessCAC?.value)
+  const businessLicense = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === 'business License'
+  )
+  const businessProofOfAddress = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === 'businessProofOfAddress'
+  )
 
   const toggle = (index: number) => {
     if (show === index) {
@@ -25,14 +32,24 @@ const B2BDocuments = ({ state }: any) => {
 
   const documents = [
     {
-      docType: 'Business CAC',
-      documentNumber: documentNumber?.value,
+      docType: 'CAC',
+      documentNumber: '',
       file: businessCAC?.value,
     },
     {
-      docType: 'Utility Bill',
+      docType: 'Valid ID',
       documentNumber: documentNumber?.value,
       file: documentPhotos?.value,
+    },
+    {
+      docType: 'Operating License',
+      documentNumber: documentNumber?.value,
+      file: businessLicense?.value,
+    },
+    {
+      docType: 'Proof of Address',
+      documentNumber: documentNumber?.value,
+      file: businessProofOfAddress?.value,
     },
   ]
 
@@ -71,10 +88,12 @@ const B2BDocuments = ({ state }: any) => {
                 padding=".5rem"
                 width="50%"
               >
-                <Text as="p" size="14px" color={Color.alerzoGrayishBlue2}>
-                  Doc. Number:{' '}
-                  <strong> {document?.documentNumber ?? 'N/A'}</strong>
-                </Text>
+                {document?.documentNumber && (
+                  <Text as="p" size="14px" color={Color.alerzoGrayishBlue2}>
+                    Doc. Number:
+                    <strong> {document?.documentNumber}</strong>
+                  </Text>
+                )}
               </Stack>
             </Stack>
             <Stack
@@ -83,11 +102,7 @@ const B2BDocuments = ({ state }: any) => {
               overflow="hidden"
             >
               <Stack pt="1rem">
-                <DocFile
-                  doc={document?.file}
-                  docType={document?.docType}
-                  isPdf={isPdf}
-                />
+                <DocFile doc={document?.file} docType={document?.docType} />
               </Stack>
             </Stack>
             <Stack

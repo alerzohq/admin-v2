@@ -101,7 +101,7 @@ const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
         >
           <Stack width="50%">
             <Text as="p" color={Color.alerzoGray2}>
-              CAC Type
+              Valid ID Type
             </Text>
             <Text as="p" weight="600" color={Color.alerzoDarkGray}>
               {removeHyphen(documentType?.value) ?? 'N/A'}
