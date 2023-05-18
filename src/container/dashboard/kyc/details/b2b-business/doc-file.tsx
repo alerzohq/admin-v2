@@ -1,15 +1,14 @@
-import { Document } from 'react-pdf'
-import { Stack } from '../../../../../components'
+import { Stack, PDFViewer } from '../../../../../components'
+import { checkPdfUrl } from '../../../../../utils/formatValue'
 
 export const DocFile = ({
   doc,
   docType,
-  isPdf,
 }: {
   doc: [] | string
   docType: string
-  isPdf: boolean
 }) => {
+  let isPdf = true
   return (
     <>
       {Array.isArray(doc) ? (
@@ -22,8 +21,8 @@ export const DocFile = ({
         </>
       ) : (
         <>
-          {isPdf ? (
-            <Document file={doc} />
+          {doc && checkPdfUrl(doc) ? (
+            <PDFViewer url={doc} />
           ) : (
             <img width="100%" alt={docType} src={doc} />
           )}
