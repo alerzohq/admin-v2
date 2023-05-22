@@ -1,96 +1,125 @@
-import { useState } from 'react'
-import { Document, Page } from 'react-pdf'
+import { Fragment, useState } from 'react'
 
 import { Color } from '../../../../../assets/theme'
 import { Stack, Text } from '../../../../../components'
 import { checkPdfUrl } from '../../../../../utils/formatValue'
+import { DocFile } from './doc-file'
 
 const B2BDocuments = ({ state }: any) => {
-  const options = {
-    cMapUrl: 'cmaps/',
-    standardFontDataUrl: 'standard_fonts/',
-  }
-  let documentNumber = state?.documents?.find(
+  const [show, setShow] = useState<number | null>()
+  const documentNumber = state?.documents?.find(
     (v: Record<string, string>) => v?.key === 'documentNumber'
   )
-  let businessCAC = state?.documents?.find((v: any) => v?.key === 'businessCAC')
-  let documentPhotos = state?.documents?.find(
+  const businessCAC = state?.documents?.find(
+    (v: any) => v?.key === 'businessCAC'
+  )
+  const documentPhotos = state?.documents?.find(
     (v: Record<string, string>) => v?.key === 'documentPhotos'
   )
+  const businessLicense = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === 'business License'
+  )
+  const businessProofOfAddress = state?.documents?.find(
+    (v: Record<string, string>) => v?.key === 'businessProofOfAddress'
+  )
 
-  const isPdf = checkPdfUrl(businessCAC?.value)
+  const toggle = (index: number) => {
+    if (show === index) {
+      return setShow(null)
+    }
+    setShow(index)
+  }
+
+  const documents = [
+    {
+      docType: 'CAC',
+      documentNumber: '',
+      file: businessCAC?.value,
+    },
+    {
+      docType: 'Valid ID',
+      documentNumber: documentNumber?.value,
+      file: documentPhotos?.value,
+    },
+    {
+      docType: 'Operating License',
+      documentNumber: documentNumber?.value,
+      file: businessLicense?.value,
+    },
+    {
+      docType: 'Proof of Address',
+      documentNumber: documentNumber?.value,
+      file: businessProofOfAddress?.value,
+    },
+  ]
 
   return (
-    <Stack
-      width="auto"
-      borderLeft="1px solid #E8EBEE"
-      borderRight="1px solid #E8EBEE"
-    >
-      <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          bgColor="rgba(199, 225, 255, 0.3)"
-          padding="0 1rem"
-          borderRadius="8px"
-          width="auto"
-        >
-          <Stack justifyContent="center" padding=".5rem" width="50%">
-            <Text as="p" padding="0" size="14px" color="#475E80">
-              Doc. Type: <strong> Business CAC</strong>
-            </Text>
-          </Stack>
-          <Stack
-            justifyContent="center"
-            borderLeft="1px solid #D6E9FF"
-            padding=".5rem"
-            width="50%"
-          >
-            <Text as="p" color="#475E80" size="14px">
-              Doc. Number: <strong>{documentNumber?.value ?? 'N/A'}</strong>
-            </Text>
-          </Stack>
-        </Stack>
-        <Stack pt="1rem">
-          {isPdf ? (
-            <Document file={businessCAC?.value} options={options} />
-          ) : (
-            <img width="100%" alt="business-CAC" src={businessCAC?.value} />
-          )}
-        </Stack>
-      </Stack>
-      <Stack padding="1rem 0">
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          bgColor="rgba(199, 225, 255, 0.3)"
-          padding="0 1rem"
-          borderRadius="8px"
-          width="auto"
-        >
-          <Stack justifyContent="center" padding=".5rem" width="50%">
-            <Text as="p" size="14px" padding="0" color="#475E80">
-              Doc. Type: <strong> Utility Bill</strong>
-            </Text>
-          </Stack>
-          <Stack
-            justifyContent="center"
-            borderLeft="1px solid #D6E9FF"
-            padding=".5rem"
-            width="50%"
-          >
-            <Text as="p" size="14px" color={Color.alerzoGrayishBlue2}>
-              Doc. Number: <strong>{documentNumber?.value ?? 'N/A'}</strong>
-            </Text>
-          </Stack>
-        </Stack>
-        <Stack pt="1rem">
-          {documentPhotos?.value?.map((value: string, i: number) => (
-            <Stack key={i} padding=".5rem 0">
-              {value && <img width="100%" alt="document-photos" src={value} />}
+    <Stack width="auto" border={`0 1px solid ${Color.alerzoGrayBorder}`}>
+      <Stack
+        marginTop="1rem"
+        borderRadius="10px"
+        width="auto"
+        boxShadow="0px 5px 8px rgba(193, 202, 207, 0.3)"
+      >
+        {documents?.map((document, index) => (
+          <Fragment key={index}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              bgColor="rgba(199, 225, 255, 0.3)"
+              borderRadius="10px 10px 0 0"
+              width="auto"
+              boxShadow="0px 5px 8px rgba(193, 202, 207, 0.3)"
+            >
+              <Stack justifyContent="center" padding=" .5rem" width="50%">
+                <Text
+                  as="p"
+                  size="14px"
+                  padding="0"
+                  color={Color.alerzoGrayishBlue2}
+                >
+                  Doc. Type:
+                  <strong>{document?.docType}</strong>
+                </Text>
+              </Stack>
+              <Stack
+                justifyContent="center"
+                borderLeft="1px solid #D6E9FF"
+                padding=".5rem"
+                width="50%"
+              >
+                {document?.documentNumber && (
+                  <Text as="p" size="14px" color={Color.alerzoGrayishBlue2}>
+                    Doc. Number:
+                    <strong> {document?.documentNumber}</strong>
+                  </Text>
+                )}
+              </Stack>
             </Stack>
-          ))}
-        </Stack>
+            <Stack
+              height={show === index ? 'auto' : '150px'}
+              transition="height 1s ease-in-out"
+              overflow="hidden"
+            >
+              <Stack pt="1rem">
+                <DocFile doc={document?.file} docType={document?.docType} />
+              </Stack>
+            </Stack>
+            <Stack
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              width="100%"
+              padding=".5rem 0"
+              cursor="pointer"
+              onClick={() => toggle(index)}
+            >
+              <Text as="h4" color={Color.alerzoBlue}>
+                {show === index ? 'Show Less' : 'Show More'}
+              </Text>
+            </Stack>
+          </Fragment>
+        ))}
       </Stack>
     </Stack>
   )
