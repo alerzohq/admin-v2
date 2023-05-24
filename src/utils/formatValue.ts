@@ -136,7 +136,7 @@ export const formatUnderScore = (value?: string | number): string => {
 }
 
 export const convertPhoneNumber = (number: string) => {
-  if (number.startsWith('+234')) {
+  if (number?.startsWith('+234')) {
     return '0' + number.slice(4)
   } else {
     return number
@@ -148,4 +148,30 @@ if (url.endsWith('.pdf')) {
 } else {
  return false
 }
+}
+
+ // check email validity
+    export const isEmailValid = (value:string) => {
+      const emailRegex = /\S+@\S+\.\S+/
+      return emailRegex.test(value)
+    }
+
+    // check website validity
+    export const isWebsiteValid = (value:string) => {
+      const websiteRegex =
+        /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z0-9-.]+)$/
+      return websiteRegex.test(value)
+    }
+
+ // check if fields in inputValues are not empty strings
+export const formValidator =(values:Object)=>{
+ let hasValues = false
+    for (const value of Object.values(values)) {
+      if (value.trim() !== '') {
+        hasValues = true
+        break
+      }
+    }
+
+    return hasValues
 }
