@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Color } from '../../../../../assets/theme'
-import { Button, Form, Text } from '../../../../../components'
+import { Button, Form } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import VerificationPinModal from '../../../widget/verification-pin-modal/verification-pin-modal'
 import { ModalForm, InputError } from './styles/modals.styles'
@@ -8,7 +7,20 @@ import useSendBusinessOTP from '../../hooks/useSendBusinessInfoOtp'
 import useUpdateBusinessInfo from '../../hooks/useUpdateBusinessInfo'
 import SuccessModal from '../../../../../components/success-modal/success-modal'
 import useResendBusinessInfoOTP from '../../hooks/useResendBusinessInfoOtp'
-
+import {
+  formValidator,
+  isEmailValid,
+  isWebsiteValid,
+} from '../../../../../utils/formatValue'
+const defaultValues = {
+  businessName: '',
+  businessAddress: '',
+  businessPhoneNumber: '',
+  businessEmail: '',
+  businessWebsite: '',
+  state: '',
+  city: '',
+}
 const UpdateBusinessDetails = ({
   showUpdateBusiness,
   setShowUpdateBusiness,
@@ -16,22 +28,8 @@ const UpdateBusinessDetails = ({
   businessId,
   refetch,
 }: any) => {
-  const [inputValues, setInputValues] = useState({
-    businessName: '',
-    businessAddress: '',
-    businessPhoneNumber: '',
-    businessEmail: '',
-    businessWebsite: '',
-    state: '',
-    city: '',
-  })
+  const [inputValues, setInputValues] = useState(defaultValues)
 
-  // mutations
-  const { handleSendOTP } = useSendBusinessOTP()
-
-  const { handleResendOTP } = useResendBusinessInfoOTP()
-
-  // states
   const [showVerification, setShowVerification] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [otp, setOtp] = useState('')
@@ -40,40 +38,27 @@ const UpdateBusinessDetails = ({
   const [phoneNumberError, setPhoneNumberError] = useState(false)
   const [websiteError, setWebsiteError] = useState(false)
 
+  const { handleSendOTP } = useSendBusinessOTP()
+  const { handleResendOTP } = useResendBusinessInfoOTP()
+
   const handleOpenPinModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-
-    // check if fields in inputValues are not empty strings
-    let hasValues = false
-    for (const value of Object.values(inputValues)) {
-      if (value.trim() !== '') {
-        hasValues = true
-        break
-      }
-    }
-
-    // check email validity
-    const isEmailValid = () => {
-      const emailRegex = /\S+@\S+\.\S+/
-      return emailRegex.test(inputValues.businessEmail)
-    }
-
-    // check website validity
-    const isWebsiteValid = () => {
-      const websiteRegex =
-        /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z0-9-.]+)$/
-      return websiteRegex.test(inputValues.businessWebsite)
-    }
-
+    const hasValues = formValidator(inputValues)
     if (hasValues) {
-      if (inputValues.businessEmail?.length > 0 && !isEmailValid()) {
+      if (
+        inputValues.businessEmail?.length > 0 &&
+        !isEmailValid(inputValues.businessEmail)
+      ) {
         setEmailError(true)
       } else if (
         inputValues.businessPhoneNumber?.length > 0 &&
         inputValues.businessPhoneNumber?.length < 11
       ) {
         setPhoneNumberError(true)
-      } else if (inputValues.businessWebsite?.length > 0 && !isWebsiteValid()) {
+      } else if (
+        inputValues.businessWebsite?.length > 0 &&
+        !isWebsiteValid(inputValues.businessWebsite)
+      ) {
         setWebsiteError(true)
       } else {
         handleSendOTP()
@@ -100,6 +85,7 @@ const UpdateBusinessDetails = ({
       setShowVerification(false)
       setShowSuccess(true)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, isSuccess])
 
   const handleChange = (name: string, value: string) =>
@@ -120,20 +106,11 @@ const UpdateBusinessDetails = ({
   }
 
   const resetForm = () => {
-    setInputValues({
-      businessName: '',
-      businessAddress: '',
-      businessPhoneNumber: '',
-      businessEmail: '',
-      businessWebsite: '',
-      state: '',
-      city: '',
-    })
+    setInputValues(defaultValues)
   }
 
   const toggleModal = () => {
     setShowUpdateBusiness(!showUpdateBusiness)
-    resetForm()
   }
 
   const closeVerificationModal = () => {
@@ -145,16 +122,29 @@ const UpdateBusinessDetails = ({
     resetForm()
     setShowSuccess(false)
   }
+  useEffect(() => {
+    if (data) {
+      setInputValues({
+        ...inputValues,
+        businessName: data?.[0]?.name,
+        businessAddress: data?.[0]?.address,
+        businessPhoneNumber: data?.[0]?.phone_number,
+        businessEmail: data?.[0]?.email,
+        businessWebsite: data?.[0]?.website,
+        state: data?.[0]?.state,
+        city: data?.[0]?.city,
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.[0]?.email])
 
   return (
     <>
       <Modal
         showModal={showUpdateBusiness}
-        modalWidth={'800px'}
+        modalWidth="600px"
         title="Update Business Details"
         setShowModal={toggleModal}
-        // loading={resetting}
-        handleSubmit={() => {}}
       >
         <ModalForm>
           <Form className="form">
@@ -165,7 +155,7 @@ const UpdateBusinessDetails = ({
                 onChange={(e) =>
                   handleChange('businessEmail', e.target.value.trim())
                 }
-                placeholder={data?.[0]?.email}
+                placeholder="Business Email"
                 value={inputValues.businessEmail}
               />
               {emailError ? (
@@ -179,7 +169,7 @@ const UpdateBusinessDetails = ({
                 onChange={(e) =>
                   handleChange('businessAddress', e.target.value)
                 }
-                placeholder={data?.[0]?.address}
+                placeholder="Business Address"
                 value={inputValues.businessAddress}
               />
             </Form.Control>
@@ -188,25 +178,25 @@ const UpdateBusinessDetails = ({
               <Form.Input
                 type="text"
                 onChange={(e) => handleChange('businessName', e.target.value)}
-                placeholder={data?.[0]?.name}
+                placeholder="Business Name"
                 value={inputValues.businessName}
               />
             </Form.Control>
-            <Form.Control pb={'1rem'}>
+            <Form.Control pb="1rem">
               <Form.Label>Business Website</Form.Label>
               <Form.Input
                 type="text"
                 onChange={(e) =>
                   handleChange('businessWebsite', e.target.value)
                 }
-                placeholder={data?.[0]?.website}
+                placeholder="Business Website"
                 value={inputValues.businessWebsite}
               />
               {websiteError ? (
                 <InputError>Please enter a valid website</InputError>
               ) : null}
             </Form.Control>
-            <Form.Control pb={'1rem'}>
+            <Form.Control pb="1rem">
               <Form.Label>Phone Number</Form.Label>
               <Form.Input
                 type="text"
@@ -217,7 +207,7 @@ const UpdateBusinessDetails = ({
                     e.target.value.replace(/\D/g, '')
                   )
                 }
-                placeholder={data?.[0]?.phone_number}
+                placeholder="Phone Number"
                 value={inputValues.businessPhoneNumber}
               />
               {phoneNumberError ? (
@@ -234,7 +224,7 @@ const UpdateBusinessDetails = ({
                     e.target.value.replace(/[^a-zA-Z\s-]/g, '')
                   )
                 }
-                placeholder={data?.[0]?.state}
+                placeholder="State"
                 value={inputValues.state}
               />
             </Form.Control>
@@ -248,13 +238,13 @@ const UpdateBusinessDetails = ({
                     e.target.value.replace(/[^a-zA-Z\s-]/g, '')
                   )
                 }
-                placeholder={data?.[0]?.city}
+                placeholder="City"
                 value={inputValues.city}
               />
             </Form.Control>
           </Form>
           <Button
-            width={'100%'}
+            width="100%"
             radius="10px"
             fontSize="14px"
             weight="500"
@@ -280,9 +270,9 @@ const UpdateBusinessDetails = ({
         <SuccessModal
           showSuccess={showSuccess}
           setShowSuccess={setShowSuccess}
-          message={'You have successfully updated business details'}
-          btnText={'Continue'}
-          title={'Business Details Updated'}
+          message="You have successfully updated business details"
+          btnText="Continue"
+          title="Business Details Updated"
           onClick={closeSuccessModal}
         />
       )}

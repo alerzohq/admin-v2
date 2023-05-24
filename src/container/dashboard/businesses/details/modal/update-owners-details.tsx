@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Text } from '../../../../../components'
+import { Button, Form } from '../../../../../components'
 import Modal from '../../../../../components/modal'
 import VerificationPinModal from '../../../widget/verification-pin-modal/verification-pin-modal'
 import { ModalForm, InputError } from './styles/modals.styles'
 import useSendBusinessOwnerOTP from '../../hooks/useSendBusinessOwnerOtp'
 import useUpdateBusinessOwnerInfo from '../../hooks/useUpdateBusinessOwnerInfo'
 import SuccessModal from '../../../../../components/success-modal/success-modal'
-import { convertPhoneNumber } from '../../../../../utils/formatValue'
+import {
+  convertPhoneNumber,
+  formValidator,
+} from '../../../../../utils/formatValue'
 import useResendBusinessOwnerOTP from '../../hooks/useResendBusinessOwnerOtp'
 
+const defaultValues = {
+  firstName: '',
+  lastName: '',
+  phoneNumber: '',
+}
 const UpdateOwnersDetails = ({
   showUpdateOwner,
   setShowUpdateOwner,
@@ -16,36 +24,19 @@ const UpdateOwnersDetails = ({
   businessId,
   refetch,
 }: any) => {
-  const [inputValues, setInputValues] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-  })
-
-  // mutations
-  const { handleSendOTP } = useSendBusinessOwnerOTP()
-
-  const { handleResendOTP } = useResendBusinessOwnerOTP()
-
-  // states
+  const [inputValues, setInputValues] = useState(defaultValues)
   const [showVerification, setShowVerification] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
   const [phoneNumberError, setPhoneNumberError] = useState(false)
 
+  const { handleSendOTP } = useSendBusinessOwnerOTP()
+  const { handleResendOTP } = useResendBusinessOwnerOTP()
+
   const handleOpenPinModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-
-    // check if fields in inputValues are not empty strings
-    let hasValues = false
-    for (const value of Object.values(inputValues)) {
-      if (value.trim() !== '') {
-        hasValues = true
-        break
-      }
-    }
-
+    const hasValues = formValidator(inputValues)
     if (hasValues) {
       if (
         inputValues.phoneNumber?.length > 0 &&
@@ -77,7 +68,20 @@ const UpdateOwnersDetails = ({
       setShowVerification(false)
       setShowSuccess(true)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, isSuccess])
+
+  useEffect(() => {
+    if (data) {
+      setInputValues({
+        ...inputValues,
+        firstName: data?.[0]?.business_owner?.first_name,
+        lastName: data?.[0]?.business_owner?.last_name,
+        phoneNumber: data?.[0]?.business_owner?.phone_number,
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.[0]?.business_owner?.first_name])
 
   const handleChange = (name: string, value: string) =>
     setInputValues({
@@ -97,16 +101,11 @@ const UpdateOwnersDetails = ({
   }
 
   const resetForm = () => {
-    setInputValues({
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
-    })
+    setInputValues(defaultValues)
   }
 
   const toggleModal = () => {
     setShowUpdateOwner(!showUpdateOwner)
-    resetForm()
   }
 
   const closeVerificationModal = () => {
@@ -126,7 +125,6 @@ const UpdateOwnersDetails = ({
         modalWidth={'500px'}
         title="Update Business Owner Details"
         setShowModal={toggleModal}
-        handleSubmit={() => {}}
       >
         <ModalForm>
           <Form>
@@ -134,13 +132,8 @@ const UpdateOwnersDetails = ({
               <Form.Label>First Name</Form.Label>
               <Form.Input
                 type="text"
-                onChange={(e) =>
-                  handleChange(
-                    'firstName',
-                    e.target.value.replace(/[^a-zA-Z]/g, '')
-                  )
-                }
-                placeholder={data?.[0]?.business_owner?.first_name}
+                onChange={(e) => handleChange('firstName', e.target.value)}
+                placeholder="First Name"
                 value={inputValues.firstName}
               />
             </Form.Control>
@@ -148,13 +141,8 @@ const UpdateOwnersDetails = ({
               <Form.Label>Last Name</Form.Label>
               <Form.Input
                 type="text"
-                onChange={(e) =>
-                  handleChange(
-                    'lastName',
-                    e.target.value.replace(/[^a-zA-Z]/g, '')
-                  )
-                }
-                placeholder={data?.[0]?.business_owner?.last_name}
+                onChange={(e) => handleChange('lastName', e.target.value)}
+                placeholder="Last Name"
                 value={inputValues.lastName}
               />
             </Form.Control>
@@ -166,7 +154,7 @@ const UpdateOwnersDetails = ({
                 onChange={(e) =>
                   handleChange('phoneNumber', e.target.value.replace(/\D/g, ''))
                 }
-                placeholder={data?.[0]?.business_owner?.phone_number}
+                placeholder="Phone Number"
                 value={convertPhoneNumber(inputValues.phoneNumber)}
               />
             </Form.Control>
