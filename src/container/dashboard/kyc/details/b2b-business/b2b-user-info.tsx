@@ -150,14 +150,7 @@ const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
             {state?.address ?? 'N/A'}
           </Text>
         </Stack>
-        {/* <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
-            Company Email
-          </Text>
-          <Text as="p" weight="600" color="#374B58">
-            support@graciouspharmacies.com
-          </Text>
-        </Stack> */}
+
         <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
           <Text as="p" color="#A5B0B7">
             Metamap Status
