@@ -10,9 +10,9 @@ import { KycContainer, KYCLogs } from '../styles/kyc.styles'
 import { IStateProps, ValueProps } from '../type'
 import KYCB2bUser from './b2b-business/b2b-user-info'
 import B2BDocuments from './b2b-business/b2b-documents'
-import { KYCDocuments } from './kyc-documents'
-import { KYCUser } from './kyc-user'
-import UpdateKYCModal from './update-kyc-modal'
+import { KYCDocuments } from './digital/kyc-documents'
+import { KYCUser } from './digital/kyc-user'
+import UpdateKYCModal from './digital/update-kyc-modal'
 import useUpdateKYC from '../hooks/useUpdateKYC'
 
 //TODO REFACTOR

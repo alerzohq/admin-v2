@@ -1,7 +1,7 @@
-import { Color } from '../../../../assets/theme'
-import { SelectInput, Text } from '../../../../components'
-import Modal from '../../../../components/modal'
-import { TextArea } from '../../../../components/modal/styles/modal.styles'
+import { Color } from '../../../../../assets/theme'
+import { SelectInput, Text } from '../../../../../components'
+import Modal from '../../../../../components/modal'
+import { TextArea } from '../../../../../components/modal/styles/modal.styles'
 type Props = {
   isShown: boolean
   loading?: boolean
