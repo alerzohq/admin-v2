@@ -5,6 +5,11 @@ import {
   formatUnderScore,
   removeHyphen,
 } from '../../../../../utils/formatValue'
+import {
+  KYCB2bContainer,
+  KYCB2BImageBox,
+  KYCB2BImageRounded,
+} from '../../styles/kyc.styles'
 
 enum KYCB2BKey {
   selfie = 'selfie',
@@ -24,46 +29,35 @@ const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
   )
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          background: '#F8FAFD',
-          height: '350px',
-          borderRadius: 20,
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <div
-          style={{
-            width: '200px',
-            height: '200px',
-            borderRadius: '50%',
-            background: '#fff',
-            marginBottom: '1rem',
-            border: '1px solid #E8EBEE',
-          }}
-        >
-          <img
-            width="200px"
-            height="200px"
-            alt="selfie"
-            src={selfie?.value}
-            style={{ borderRadius: '50%', objectFit: 'cover' }}
-          />
-        </div>
+    <KYCB2bContainer>
+      <KYCB2BImageBox>
+        <KYCB2BImageRounded>
+          <img width="200px" height="200px" alt="selfie" src={selfie?.value} />
+        </KYCB2BImageRounded>
         <Text as="h3">{state?.fullName}</Text>
-      </div>
-      <div style={{ padding: '1rem 0 0 0' }}>
+      </KYCB2BImageBox>
+      <Stack padding="1rem 0 0 0">
         <Stack
-          borderBottom="1px solid #E8EBEE"
+          borderBottom={`1px solid ${Color.alerzoGrayBorder}`}
+          padding="1rem 0"
+          direction="row"
+        >
+          <Stack width="100%">
+            <Text as="p" color={Color.alerzoGray2}>
+              Verification ID
+            </Text>
+            <Text as="p" weight="600" color={Color.alerzoDarkGray}>
+              {state?.verificationId ?? 'N/A'}
+            </Text>
+          </Stack>
+        </Stack>
+        <Stack
+          borderBottom={`1px solid ${Color.alerzoGrayBorder}`}
           padding="1rem 0"
           direction="row"
         >
           <Stack width="50%">
-            <Text as="p" color="#A5B0B7">
+            <Text as="p" color={Color.alerzoGray2}>
               Business Nature
             </Text>
             <Text as="p" weight="600" color={Color.alerzoDarkGray}>
@@ -75,7 +69,7 @@ const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
             borderLeft={`1px solid ${Color.alerzoGrayBorder}`}
             pl="1rem"
           >
-            <Text as="p" color="#A5B0B7">
+            <Text as="p" color={Color.alerzoGray2}>
               Business RC Number
             </Text>
             <Text as="p" weight="600" color={Color.alerzoDarkGray}>
@@ -134,25 +128,23 @@ const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
             </Text>
           </Stack>
         </Stack>
-        {/* <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
-            Company Name
-          </Text>
-          <Text as="p" weight="600" color="#374B58">
-            Gracious Pharmacies
-          </Text>
-        </Stack> */}
-        <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
+
+        <Stack
+          borderBottom={`1px solid ${Color.alerzoGrayBorder}`}
+          padding="1rem 0"
+        >
+          <Text as="p" color={Color.alerzoGray2}>
             Company Address
           </Text>
-          <Text as="p" weight="600" color="#374B58">
+          <Text as="p" weight="600" color={Color.alerzoDarkGray}>
             {state?.address ?? 'N/A'}
           </Text>
         </Stack>
-
-        <Stack borderBottom="1px solid #E8EBEE" padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
+        <Stack
+          borderBottom={`1px solid ${Color.alerzoGrayBorder}`}
+          padding="1rem 0"
+        >
+          <Text as="p" color={Color.alerzoGray2}>
             Metamap Status
           </Text>
           <Text
@@ -173,15 +165,15 @@ const KYCB2bUser = ({ state }: { state: Record<string, any> }) => {
           </Text>
         </Stack>
         <Stack padding="1rem 0">
-          <Text as="p" color="#A5B0B7">
+          <Text as="p" color={Color.alerzoGray2}>
             Metamap Registration Date
           </Text>
-          <Text as="p" weight="600" color="#374B58">
+          <Text as="p" weight="600" color={Color.alerzoDarkGray}>
             {formatDate(state.createdAt, 'YYYY-MM-DD HH:mm:ss')}
           </Text>
         </Stack>
-      </div>
-    </div>
+      </Stack>
+    </KYCB2bContainer>
   )
 }
 

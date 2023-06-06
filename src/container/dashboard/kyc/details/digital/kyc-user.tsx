@@ -1,8 +1,8 @@
-import { Stack, Text } from '../../../../components'
-import { KycUser, KycUserDetails, KycUserImg } from '../styles/kyc.styles'
-import { IStateProps } from '../type'
-import { Color } from '../../../../assets/theme'
-import { formatDate } from '../../../../utils/formatValue'
+import { Stack, Text } from '../../../../../components'
+import { KycUser, KycUserDetails, KycUserImg } from '../../styles/kyc.styles'
+import { IStateProps } from '../../type'
+import { Color } from '../../../../../assets/theme'
+import { formatDate } from '../../../../../utils/formatValue'
 
 export const KYCUser = ({ state }: { state: IStateProps }) => {
   return (
