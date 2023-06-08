@@ -124,10 +124,10 @@ export const businessDetailsHelper = (data: any) => {
       bvnVerified: !!data?.bvn_verification,
       header: BVNTABLE,
       data: {
-        firstName: data?.bvn_verification?.first_name || '',
-        surname: data?.bvn_verification?.last_name,
-        middleName: data?.bvn_verification?.middle_name,
-        phoneNumber: data?.bvn_verification?.phone_number,
+        firstName: data?.bvn_verification?.first_name || 'N/A',
+        surname: data?.bvn_verification?.last_name || 'N/A',
+        middleName: data?.bvn_verification?.middle_name || 'N/A',
+        phoneNumber: data?.bvn_verification?.phone_number || 'N/A',
       },
     },
   ]

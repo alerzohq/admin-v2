@@ -1,13 +1,13 @@
 import React from 'react'
-import { Stack, Text } from '../../../../components'
+import { Stack, Text } from '../../../../../components'
 import {
   AddressVerificationDocs,
   IDVerificationDocs,
   ImageContainer,
   KycDocuments,
-} from '../styles/kyc.styles'
-import { Color } from '../../../../assets/theme'
-import { IStateProps } from '../type'
+} from '../../styles/kyc.styles'
+import { Color } from '../../../../../assets/theme'
+import { IStateProps } from '../../type'
 
 export const KYCDocuments = ({ state }: { state: IStateProps }) => {
   return (

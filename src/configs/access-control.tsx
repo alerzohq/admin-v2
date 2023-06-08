@@ -53,7 +53,7 @@ const AllPermissions = () => {
   const setBillerThresholdAccess =
     isHasPermission.includes('set_biller_threshold') || adminAccess
   const KYCAccess =
-    isHasPermission.includes('view_KYC_verification_requests') || adminAccess
+    isHasPermission.includes('view_kyc_verification_request') || adminAccess
   const businessProductDetailAccess =
     isHasPermission.includes('view_business_product') || adminAccess
 
