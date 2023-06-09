@@ -84,3 +84,23 @@ export const KYCLogs = styled.div`
   display: flex;
   flex-direction: column;
 `
+export const KYCB2bContainer=styled.div``
+
+export const KYCB2BImageBox=styled.div`
+      display: flex;
+      justify-content: center;
+      background: #F8FAFD;
+      height: 350px;
+      border-radius: 20;
+      flex-direction: column;
+      align-items: center;
+`
+export const KYCB2BImageRounded=styled.div`
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background:${Color.alerzoWhite};
+    margin-bottom: 1rem;
+    border: 1px solid ${Color.alerzoGrayBorder};
+img{border-radius: 50%; object-fit: cover;}
+`
