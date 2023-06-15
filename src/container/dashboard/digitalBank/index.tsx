@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { filterProps } from '../../../@types'
+import { FilterValueProps } from '../../../@types/global'
 import { FallBack, Jumbotron, Loader, Pagination } from '../../../components'
 import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
@@ -17,7 +17,7 @@ const DigitalBankContainer = () => {
 
   const [values, setValues] = useState(filterValue)
 
-  const getDigitalBanksHandler = (filterValue: filterProps) => {
+  const getDigitalBanksHandler = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`customers`, filterValue)
   }
 

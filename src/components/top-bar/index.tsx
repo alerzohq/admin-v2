@@ -6,7 +6,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { ArrowBackIcon } from '../../assets/icons'
 import DateRange from '../date-range'
 import Stack from '../stack'
-import { SelectInputProps } from '../../@types'
+import { SelectInputProps } from '../../@types/global'
 import SelectInput from '../select-input'
 import Button from '../button'
 
@@ -44,12 +44,12 @@ const TopBar = ({
   useEffect(() => {
     if (showFilters && status !== null) {
       if (filterValue) {
-        return setFilterValues((prev: any) => ({ ...prev, status }))
+        return setFilterValues((prev: {}) => ({ ...prev, status }))
       }
     }
     if (showFilters) {
       if (filterValue) {
-        setFilterValues((prev: any) => ({ ...prev, query: search }))
+        setFilterValues((prev: {}) => ({ ...prev, query: search }))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +57,7 @@ const TopBar = ({
 
   useEffect(() => {
     if (Object.keys(newObj).length > 0) {
-      filterValue && setFilterValues((prev: any) => ({ ...prev, ...newObj }))
+      filterValue && setFilterValues((prev: {}) => ({ ...prev, ...newObj }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])

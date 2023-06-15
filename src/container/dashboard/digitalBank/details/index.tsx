@@ -114,7 +114,7 @@ const DigitalBankDetailContainer = () => {
         isError={isError}
         title={title}
         showfilters={showfilters}
-        errorMessage={error && errorMessage(error)}
+        errorMessage={errorMessage(error)}
         currentValue={found?.value || 'details'}
         renderSwitch={renderSwitch}
         tabs={TABS}
