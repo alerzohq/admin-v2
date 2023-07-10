@@ -30,6 +30,8 @@ import TerminalRequestDetails from '../container/dashboard/terminals/details/req
 import KYC from '../pages/dashboard/KYC'
 import KYCDetails from '../pages/dashboard/KYC/details'
 import BusinessProductDetails from '../pages/dashboard/businessess/business-detail/business-product-details'
+import Biller from '../pages/dashboard/biller'
+import BillerDetail from '../pages/dashboard/biller/biller-detail'
 
 function App() {
   const navigate = useNavigate()
@@ -89,12 +91,14 @@ function App() {
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
               <Route path={Path.AUDIT} element={<Audit />} />
               <Route path={Path.KYC} element={<KYC />} />
-              <Route path={Path.KYCView} element={<KYCDetails />} />
+              <Route path={Path.KYCDETAIL} element={<KYCDetails />} />
+              <Route path={Path.BILLER} element={<Biller />} />
+              <Route path={Path.BILLERDETAIL} element={<BillerDetail />} />
             </Route>
           </Route>
 
           {/* replace with not found component */}
-          {/* <Route path="*" element={<NotFound user={user} />} /> */}
+          <Route path="*" element={<NotFound user={user} />} />
         </Routes>
       </ErrorBoundary>
     </>

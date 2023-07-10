@@ -7,6 +7,7 @@ import {
   AuthContent,
   AuthImage,
   AuthInner,
+  AuthLogo,
 } from './styles/layout.styles'
 import authImage from '../../../assets/images/svgs/auth-img.svg'
 import { Text } from '../../../components'
@@ -18,7 +19,9 @@ const AuthLayout = ({
   return (
     <AuthContainer p={p}>
       <AuthColumn bgColor={Color.alerzoBlue} hideOnMobile>
+      <AuthLogo>
         <AlerzoLogo className={'logo-svg'} />
+      </AuthLogo>
         <AuthContent>
           <AuthInner>
             <AuthImage>

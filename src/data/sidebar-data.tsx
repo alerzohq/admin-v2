@@ -16,6 +16,8 @@ import {
   AuditIcon,
   ActiveAuditIcon,
   ActiveKYCIcon,
+  BillerIcon,
+  ActiveBillerIcon
 } from '../assets/icons'
 import { KYCVerification } from '../assets/icons/KYC/KYC'
 import { Color } from '../assets/theme'
@@ -75,16 +77,24 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.USERS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    productsAccess && {
+    rolesAccess && {
       id: 6,
-      title: 'Product',
+      title: 'Billers',
+      InActiveIcon: BillerIcon,
+      ActiveIcon: <ActiveBillerIcon />,
+      path: `/${Path.DASHBOARD}/${Path.BILLER}`,
+      activeIconColor: Color.alerzoBlue,
+    },
+    productsAccess && {
+      id: 7,
+      title: 'Products',
       InActiveIcon: ProductIcon,
       ActiveIcon: <ActiveProductIcon />,
       path: `/${Path.DASHBOARD}/${Path.PRODUCTS}`,
       activeIconColor: Color.alerzoBlue,
     },
     terminalAccess && {
-      id: 7,
+      id: 8,
       title: 'Terminals',
       InActiveIcon: TerminalIcon,
       ActiveIcon: <ActiveTerminalIcon />,
@@ -92,7 +102,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.TERMINALS}`,
     },
     adminAccess && {
-      id: 8,
+      id: 9,
       title: 'Audit Trail',
       InActiveIcon: AuditIcon,
       ActiveIcon: <ActiveAuditIcon />,
@@ -100,7 +110,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.AUDIT}`,
     },
     KYCAccess && {
-      id: 9,
+      id: 10,
       title: 'KYC',
       path: `/${Path.DASHBOARD}/${Path.KYC}`,
       ActiveIcon: <ActiveKYCIcon />,
