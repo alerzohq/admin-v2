@@ -86,7 +86,7 @@ const ProductsContainer = () => {
 
   useEffect(() => {
     if (isBillerError) {
-      toast.error(`${errorMessage(billerError)}`)
+      toast.error(`${errorMessage(billerError as ErrorType)}`)
     }
   }, [isBillerError, error, billerError])
 
@@ -95,7 +95,11 @@ const ProductsContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No products list available.'} />

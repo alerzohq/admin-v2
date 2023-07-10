@@ -22,7 +22,7 @@ const useActivateBusiness = (
       setShow(false)
     },
     onError: (error) => {
-      toast.error(errorMessage(error))
+      toast.error(errorMessage(error as ErrorType))
     },
   })
 }

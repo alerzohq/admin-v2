@@ -15,7 +15,6 @@ export type ButtonProps = {
   position?: string
   noborder?: boolean
   margin?: string
-  fontWeight?: string
   default?: string
   padding?: string
   borderColor?: string

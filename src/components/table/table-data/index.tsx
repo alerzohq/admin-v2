@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
-import { TableItemDiv } from './table.style'
+import { TableButton, TableItemDiv } from './table.style'
 import { useAppContext } from '../../../context'
 import { Action } from '../../../context/actions'
 
@@ -22,6 +22,8 @@ type dataProps = {
   routePath?: string
   noSlug?: boolean
   handleRouthPath?: (item: { [key: string]: any }) => void
+  handleAction?:(item: { [key: string]: any }) => void
+  actionBtnLable?: string;
 }
 type dataList = string[] | undefined
 
@@ -37,7 +39,9 @@ const TableData = ({
   notClickable,
   routePath,
   noSlug,
+  actionBtnLable,
   handleRouthPath,
+  handleAction
 }: dataProps) => {
   const { dispatch } = useAppContext()
   const navigate = useNavigate()
@@ -53,9 +57,9 @@ const TableData = ({
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
         return (
-          <tr key={index}>
+<tr key={index}>
             {dataList?.map((data, i) => (
-              <td key={i} id="td-hover">
+    <td key={i} id="td-hover">
                 <TableItemDiv
                   onClick={
                     !!handleRouthPath
@@ -101,31 +105,31 @@ const TableData = ({
                         }
                   }
                   //TODO REFACTOR
-                  className={
-                    data === 'successful' ||
-                    data === 'Active' ||
-                    data === 'approved' ||
-                    data === 'shipping' ||
-                    data === 'verified' ||
-                    data === 'delivered'
-                      ? 'success'
-                      : data === 'Unassigned'
-                      ? 'unassigned'
-                      : data === 'pending' || data === 'processing'
-                      ? 'pending'
-                      : data === 'failed' ||
-                        data === 'Inactive' ||
-                        data === 'rejected'
-                      ? 'failed'
-                      : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
-                        data
-                      ? 'successText'
-                      : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
-                        data
-                      ? 'dangerText'
-                      : data === 'Session ongoing'
-                      ? 'pendingText'
-                      : '' + (i === 0 && !hideActive && 'tableLink')
+                  className={data === 'successful' ||
+                  data === 'Active' ||
+                  data === 'approved' ||
+                  data === 'shipping' ||
+                  data === 'verified' ||
+                  data === 'delivered'
+                    ? 'success'
+                    : data === 'Unassigned'
+                    ? 'unassigned'
+                    : data === 'pending' || data === 'processing'
+                    ? 'pending'
+                    : data === 'failed' ||
+                      data === 'Inactive' ||
+                      data === 'rejected'
+                    ? 'failed'
+                    : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
+                      data
+                    ? 'successText'
+                    : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
+                      data
+                    ? 'dangerText'
+                    : data === 'Session ongoing'
+                    ? 'pendingText'
+                    : '' + (i === 0 && !hideActive && 'tableLink')
+
                   }
                 >
                   {lastItem && lastItem === data && !hideDate
@@ -133,9 +137,11 @@ const TableData = ({
                     : i === amountIndex
                     ? `₦${amountConverter(data)}`
                     : data}
+
                 </TableItemDiv>
               </td>
             ))}
+          {handleAction &&(<TableButton onClick={()=>handleAction(item)}>{actionBtnLable??'Edit'}</TableButton>)}
           </tr>
         )
       })}

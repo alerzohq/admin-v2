@@ -1,13 +1,12 @@
 import React from 'react'
 import { Button, Stack } from '../'
 import { Text } from '../'
-import { fallbackProps } from './type'
-
+import { FallbackProps } from './type'
 import { Wrapper } from './styles/fallback.styles'
 import { Color } from '../../assets/theme'
 import { InfoIcon } from '../../assets/icons'
 
-const FallBack: React.FC<fallbackProps> = ({
+const FallBack: React.FC<FallbackProps> = ({
   title,
   description,
   refetch,
@@ -16,24 +15,24 @@ const FallBack: React.FC<fallbackProps> = ({
   return (
     <Wrapper>
       <InfoIcon color={error ? Color.alerzoDanger : Color.alerzoOrange} />
-      <Stack padding={'1rem 0'} alignItems={'center'}>
-        <Text as={'h4'} color={Color.alerzoBlack} align={'center'}>
+      <Stack padding="1rem 0" alignItems="center">
+        <Text as="h4" color={Color.alerzoBlack} align="center">
           {title}
         </Text>
         {description && (
           <Text
-            as={'p'}
-            size={'.8rem'}
-            width={'400px'}
-            padding={'.3rem'}
+            as="p"
+            size=".8rem"
+            width="400px"
+            padding=".3rem"
             color={Color.alerzoDanger}
-            align={'center'}
+            align="center"
           >
             {description}
           </Text>
         )}
         {refetch && (
-          <Button onClick={refetch} width={'180px'}>
+          <Button onClick={refetch} width="180px">
             Retry
           </Button>
         )}

@@ -54,7 +54,11 @@ const ProductDetailsContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = (

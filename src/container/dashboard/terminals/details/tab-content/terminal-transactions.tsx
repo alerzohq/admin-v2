@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 import {
   FallBack,
   Filter,
@@ -17,7 +17,7 @@ import { errorMessage } from '../../../../../utils/message'
 const TerminalTransactions = ({ terminalId }: { terminalId: string }) => {
   const [values, setValues] = useState(filterValue)
 
-  const getTransactions = (filterValue: filterProps) => {
+  const getTransactions = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
       `terminals/${terminalId}/transactions`,
       filterValue

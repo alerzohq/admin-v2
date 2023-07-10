@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AlerzoLogo, FavIcon, LogoutIcon } from '../../assets/icons'
 import { Color } from '../../assets/theme'
 import { SideBarMenus } from '../../data/sidebar-data'
@@ -59,10 +59,10 @@ const Sidebar = ({
             <FavIcon onClick={collapseBar} />
           ) : (
             <AlerzoLogo
-              className={'logo'}
+              className="logo"
               onClick={collapseBar}
-              height={'25'}
-              width={'150'}
+              height="25"
+              width="150"
               color={Color.alerzoBlue}
             />
           )}
@@ -86,17 +86,17 @@ const Sidebar = ({
               >
                 <Link to={path}>
                   <Stack
-                    direction={'row'}
-                    gap={'10px'}
-                    alignItems={'center'}
+                    direction="row"
+                    gap="10px"
+                    alignItems="center"
                     onClick={() => {
                       handleToggle(i)
                     }}
                   >
                     <Stack
-                      justifyContent={'center'}
-                      width={'auto'}
-                      alignItems={'center'}
+                      justifyContent="center"
+                      width="auto"
+                      alignItems="center"
                     >
                       {path === location.pathname ? (
                         <>{ActiveIcon && ActiveIcon}</>
@@ -104,7 +104,7 @@ const Sidebar = ({
                         <>{InActiveIcon && <InActiveIcon />}</>
                       )}
                     </Stack>{' '}
-                    {!isCollapsed && <Text as={'p'}>{title}</Text>}
+                    {!isCollapsed && <Text as="p">{title}</Text>}
                   </Stack>
                 </Link>
                 {subMenu?.map(
@@ -127,18 +127,10 @@ const Sidebar = ({
               {user?.data?.lastName?.charAt(0)}
             </Profile>
 
-            <Stack
-              onClick={handleLogout}
-              direction={'row'}
-              alignItems={'center'}
-            >
-              <Stack
-                justifyContent={'center'}
-                width={'auto'}
-                alignItems={'center'}
-              >
+            <Stack onClick={handleLogout} direction="row" alignItems="center">
+              <Stack justifyContent="center" width="auto" alignItems="center">
                 <LogoutIcon />
-              </Stack>{' '}
+              </Stack>
               {!isCollapsed && <Text as={'p'}>Log out</Text>}
             </Stack>
           </SidebarItem>
