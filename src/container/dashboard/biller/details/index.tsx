@@ -7,7 +7,7 @@ const BillerDetailContainer = () => {
   return (
     <Container
       isFetching={false}
-      title={ 'Manager Biller'}
+      title={ 'Manage Biller'}
       withParams={true}
       routePath="/dashboard/biller"
       filterValue={false}
