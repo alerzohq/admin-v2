@@ -72,6 +72,7 @@ export const DataTable = styled.table<Props>`
       border: 0.8px solid ${Color.alerzoGrayBorder};
       border-right: none;
       border-left: 0;
+      border-bottom:none;
       height: 60px;
 
       color: #373737;
