@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AccordionBody,AccordionContainer, AccordionHeader,  AccordionTitle, } from './styles/accordion.styles';
+import { AccordionBody,AccordionContainer, AccordionItem,  AccordionTitle, } from './styles/accordion.styles';
 import { IconContext } from 'react-icons';
 import { Color } from '../../assets/theme';
 import { AccordionProps, DataProps } from './type';
@@ -20,7 +20,7 @@ export const Accordion = ({ data }: AccordionProps) => {
 <IconContext.Provider value={{ color: Color.alerzoGray, size: '25px' }}>
     <AccordionContainer>
       {data.map((data: DataProps, index: number) => (
-        <AccordionHeader key={index}>
+        <AccordionItem key={index}>
           <AccordionTitle
             onClick={() => toggle(index)}
             key={index}
@@ -37,7 +37,7 @@ export const Accordion = ({ data }: AccordionProps) => {
             <ArrowUpIcon />
           </AccordionTitle>
           <AccordionBody isShown={show === index}>{data?.component}</AccordionBody>
-        </AccordionHeader>
+        </AccordionItem>
       ))}
     </AccordionContainer>
   </IconContext.Provider>)

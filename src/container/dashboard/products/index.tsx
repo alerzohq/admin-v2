@@ -160,13 +160,6 @@ const ProductsContainer = () => {
             },
             date: false,
             selects: [],
-            // buttons: [
-            //   {
-            //     label: 'Add New Products',
-            //     onClick: () => {},
-            //     buttonClass: 'add-button',
-            //   },
-            // ],
           }}
         />
         {component}

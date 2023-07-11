@@ -41,7 +41,7 @@ const navigate = useNavigate()
   )
 
 const handleManageBillers=(biller:Record<string,string>) =>{
-    // navigate(`${biller?.id}`)
+    navigate(`${biller?.id}`)
 }
 
   let component
