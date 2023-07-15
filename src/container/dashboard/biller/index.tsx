@@ -15,7 +15,7 @@ import { billerHeaderList } from '../../../data/table-headers'
 import { FilterValueProps } from '../../../@types/global'
 import { filterValue } from '../../../data/filter-data'
 import { errorMessage } from '../../../utils/message'
-import { billerIcons, billerLabels } from '../../../data/biller-data'
+import { billerIcons, billerLabels, billerMockData } from '../../../data/biller-data'
 
 const BillerContainer = () => {
 const navigate = useNavigate()
@@ -60,8 +60,8 @@ const handleManageBillers=(biller:Record<string,string>) =>{
   } else {
     component = (
       <Table
-        tableName="business"
-        tableData={data?.data}
+        tableName="billers"
+        tableData={billerMockData.data}
         tableHeaders={billerHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         actionBtnLabel='Manage Biller'

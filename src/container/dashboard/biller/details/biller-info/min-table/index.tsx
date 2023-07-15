@@ -1,28 +1,36 @@
-import React from 'react'
 import { MinTable } from './styles/min-table.styles'
 
-const MinDataTable = () => {
+const MinDataTable = ({
+  tableHeaders,
+  data,
+}: {
+  data: Record<string, any>
+  tableHeaders: string[]
+}) => {
   return (
-    <MinTable><thead > <tr>
-    <th>Biller Name</th>
-    <th>Email Address</th>
-    <th>Phone Number</th>
-    <th>Status</th>
-    <th>Date Added</th>
-    <th>Date Updated</th>
-  </tr></thead>
-
-  <tbody>
-    <tr>
-        <td>NIBBS</td>
-        <td>info@nibbs.gov.ng</td>
-        <td>08164020859</td>
-        <td><div className='success'>Active</div></td>
-        <td>2022-01-19 03:14:07</td>
-        <td>2023-03-19 03:14:07</td>
-   </tr>
- </tbody>
-</MinTable>
+    <MinTable>
+      <thead>
+        <tr>
+          {tableHeaders.map((title, i) => (
+            <th key={i}>{title}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{data?.displayName}</td>
+          <td>{data?.email}</td>
+          <td>{data?.phoneNumber}</td>
+          <td>
+            <div className={data?.status ? 'success' : 'failed'}>
+              {data?.status ? 'Active' : 'Inactive'}
+            </div>
+          </td>
+          <td>{data?.created_at}</td>
+          <td>{data?.updated_at}</td>
+        </tr>
+      </tbody>
+    </MinTable>
   )
 }
 

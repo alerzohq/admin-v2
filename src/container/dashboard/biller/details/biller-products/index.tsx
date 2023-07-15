@@ -1,21 +1,26 @@
-import React from 'react'
 import Heading from '../../../widget/heading'
-import { Accordion } from '../../../../../components'
+import { Accordion, Jumbotron } from '../../../../../components'
+import CustomTable from '../../../../../components/table/table-data/custom-table'
+import { accordionTableHeaders, billerMockData } from '../../../../../data/biller-data'
 
 const BillerProducts = () => {
 
-  const data=[
-  { title:'Electricity',component:<div>Electricity Table</div>},
-  { title:'Airtime',component:<div>Airtime Table</div>},
-  { title:'Data',component:<div>Data Table</div>},
-  { title:'Betting',component:<div>Electricity Table</div>},
-  { title:'Cable Subscription',component:<div>Cable Subscription Table</div>},
-  { title:'Internet Subscription',component:<div>Internet Subscription Table</div>},
-]
+ const accordionData= billerMockData?.data[0]?.productList?.map((biller)=>{return {
+  title:biller.category,
+  component:<Jumbotron padding='0' mt='1rem'>
+  <CustomTable
+   tableData={biller.products}
+   headers={accordionTableHeaders}
+   name='biller-products'
+   actionBtn
+   actionPlaceholder='Change Rate'
+   />
+  </Jumbotron>}})
+
   return (
     <>
     <Heading text='Product List'/>
-    <Accordion data={data}/>
+    <Accordion data={accordionData}/>
     </>
   )
 }
