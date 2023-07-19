@@ -56,7 +56,7 @@ const handleManageBillers=(biller:Record<string,string>) =>{
       />
     )
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'No Business Found.'} refetch={refetch} />
+    component = <FallBack title={'No Biller Found.'} refetch={refetch} />
   } else {
     component = (
       <Table

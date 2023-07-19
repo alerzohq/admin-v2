@@ -9,6 +9,7 @@ function AlerzoLogo({ color, height, width, className, onClick }: IconProps) {
       height="21"
       fill="none"
       viewBox="0 0 128 21"
+      className={className}
     >
       <path
         fill="#007BFF"
