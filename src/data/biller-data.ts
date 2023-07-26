@@ -14,6 +14,16 @@ export const billerLabels = {
 
   }
 
+  export const billerStats = (Statistics: { [key: string]: number }) => {
+    const statistics = {
+      card1: Statistics?.totalBillers,
+      card2: Statistics?.totalProducts,
+      card3: Statistics?.activeBillers,
+      card4: Statistics?.inactiveBillers,
+    }
+    return statistics
+  }
+
 export const billerTableHeaders=[
   'Biller Name',
   'Email Address',

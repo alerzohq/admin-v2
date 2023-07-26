@@ -15,33 +15,34 @@ import { billerHeaderList } from '../../../data/table-headers'
 import { FilterValueProps } from '../../../@types/global'
 import { filterValue } from '../../../data/filter-data'
 import { errorMessage } from '../../../utils/message'
-import { billerIcons, billerLabels, billerMockData } from '../../../data/biller-data'
+import { billerIcons, billerLabels, billerStats } from '../../../data/biller-data'
 
 const BillerContainer = () => {
 const navigate = useNavigate()
   const [values, setValues] = useState(filterValue)
 
-  const getBusinesses = (filterValue: FilterValueProps) => {
-    return getNewFilterResource(`businesses`, filterValue)
+  const getBillers = (filterValue: FilterValueProps) => {
+    return getNewFilterResource(`billers`, filterValue)
   }
 
-  const getTranStats = () => {
-    return getResource(`businesses/statistics`)
+  const getBillerStats = () => {
+    return getResource(`billers/statistics`)
   }
   const { isLoading: loading, data: Stats } = useQuery(
-    'business-stats',
-    getTranStats
+    'biller-stats',
+    getBillerStats
   )
-  const Statistics = Stats?.data
+  const Statistics = billerStats(Stats?.data)
 
   const { isLoading, data, isError, isFetching, refetch, error } = useQuery(
-    ['businesses', values],
-    () => getBusinesses(values),
+    ['billers-data', values],
+    () => getBillers(values),
     { keepPreviousData: true }
   )
 
+
 const handleManageBillers=(biller:Record<string,string>) =>{
-    navigate(`${biller?.id}`)
+    navigate(`${biller?.slug}`)
 }
 
   let component
@@ -61,7 +62,7 @@ const handleManageBillers=(biller:Record<string,string>) =>{
     component = (
       <Table
         tableName="billers"
-        tableData={billerMockData.data}
+        tableData={data.data}
         tableHeaders={billerHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         actionBtnLabel='Manage Biller'
@@ -92,7 +93,7 @@ const handleManageBillers=(biller:Record<string,string>) =>{
       isFetching={isFetching}
     >
       <CardWidget
-        stats={Statistics}
+        statistics={Statistics}
         loading={loading}
         labels={billerLabels}
         icons={billerIcons}

@@ -138,10 +138,14 @@ export const transformData = ({ item, name }: props) => {
 //Billers Table Data
 
   if (item && name === 'billers') {
-    const {id,email, displayName, phoneNumber,status, created_at,updated_at } = item
-    const billerStatus=status===true?'Active':'Inactive'
+    const {balance, displayName, slug,disabled, createdAt
+      ,updatedAt } = item
+    const billerStatus=disabled===true?'Inactive':'Active'
+    const createdDate = formatDate(createdAt, 'YYYY-MM-DD HH:mm:ss')
+    const updatedDate = updatedAt ? formatDate(updatedAt, 'YYYY-MM-DD HH:mm:ss'):''
+    const billerBalance = amountHelper(balance)
 
-    return {id, displayName,email, phoneNumber,billerStatus, created_at,updated_at }
+    return { displayName,slug ,billerBalance, billerStatus, createdDate,updatedDate }
   }
 
 //Billers Products Table Data
