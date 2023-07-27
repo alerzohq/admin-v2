@@ -14,7 +14,7 @@ const handleChange=(item:{}) => {
  const accordionData= products?.map((biller)=>{
   return {
   title:biller?.product_category,
-  component:<Jumbotron padding='0' mt='1rem'>
+  component:<Jumbotron padding='0' mt='1rem' minHeight='100px'>
   <CustomTable
    tableData={biller.products}
    headers={accordionTableHeaders}
