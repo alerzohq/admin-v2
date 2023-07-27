@@ -4,12 +4,12 @@ import {
   generateCommission,
 } from '../utils/formatValue'
 
-type props = {
+type TableHelperProps = {
   item: { [key: string]: any } | null
   name?: string
 }
 
-export const transformData = ({ item, name }: props) => {
+export const transformData = ({ item, name }: TableHelperProps) => {
 
 //Transactions Table Data
   if (item && name === 'transaction') {
@@ -138,22 +138,28 @@ export const transformData = ({ item, name }: props) => {
 //Billers Table Data
 
   if (item && name === 'billers') {
-    const {id,email, displayName, phoneNumber,status, created_at,updated_at } = item
-    const billerStatus=status===true?'Active':'Inactive'
+    const { display_name, phone_number,email,
+      disabled, created_at,updated_at } = item
 
-    return {id, displayName,email, phoneNumber,billerStatus, created_at,updated_at }
+    const billerStatus=disabled===true?'Inactive':'Active'
+    const createdDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
+    const updatedDate = updated_at ? formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'):''
+    const phoneNumber=phone_number??'N/A'
+    const emailAddress=email??'N/A'
+
+    return { display_name,emailAddress, phoneNumber,billerStatus, createdDate,updatedDate }
   }
 
 //Billers Products Table Data
 
 if (item && name === 'biller-products') {
-  const { displayName,type, commission,stakeholderRate,merchantRate,status } = item
+  const { product_name,rate,splits,disabled } = item
+  const status=disabled===true?'Inactive':'Active'
+  const type = rate?.type ||''
+  const percentage =generateCommission(type, rate?.percentage, rate?.cap)
+  const merchantRate = generateCommission(type, splits[0]?.rate?.percentage, splits[0]?.rate?.cap)
 
-  // const type = commission?.rate?.type||''
-  // const percentage = commission?.rate?.percentage
-  // const cap = commission?.splits[0]?.rate.amount
-  // const rates = generateCommission(type, percentage, cap)
-  return { displayName, type, commission, stakeholderRate,merchantRate,status}
+  return { product_name, type, percentage, merchantRate,status}
 }
 
   //Business Products Table Data

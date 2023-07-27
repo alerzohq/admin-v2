@@ -60,7 +60,7 @@ const DetailsContentWidget = ({
                       borderColor={Color.alerzoBlue}
                       loading={isLoading}
                     >
-                      {'Verify'}
+                      Verify
                     </Button>
                   )}
                 </HeaderContainer>

@@ -1,7 +1,7 @@
 export type DataProps={
-    title:string;
-    component:React.ReactNode;
+    title?:string;
+    component?:React.ReactNode;
  }
 export type AccordionProps={
-    data:DataProps[]
+    data?:DataProps[]
 }

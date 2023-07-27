@@ -93,10 +93,9 @@ export const businessProductsHeader = [
 ]
 
 export const billerHeaderList = [
-  'Biller ID',
   'Biller Name',
+  'Email',
   'Phone Number',
-  'Email Address',
   'Status',
   'Date Added',
   'Date Updated',

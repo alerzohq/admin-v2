@@ -19,7 +19,7 @@ export const Accordion = ({ data }: AccordionProps) => {
     return(
 <IconContext.Provider value={{ color: Color.alerzoGray, size: '25px' }}>
     <AccordionContainer>
-      {data.map((data: DataProps, index: number) => (
+      {data?.map((data: DataProps, index: number) => (
         <AccordionItem key={index}>
           <AccordionTitle
             onClick={() => toggle(index)}
@@ -32,7 +32,7 @@ export const Accordion = ({ data }: AccordionProps) => {
               align='center'
               gap='20px'
             >
-             <Text as='h4'>{data?.title}</Text>
+             <Text as='h4'>{data?.title || '-'}</Text>
             </Stack>
             <ArrowUpIcon />
           </AccordionTitle>
