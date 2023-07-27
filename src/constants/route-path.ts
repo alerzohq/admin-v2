@@ -22,5 +22,5 @@ export enum Path {
   KYC = 'kyc',
   KYCDETAIL = 'kyc/:id',
   BILLER='biller',
-  BILLERDETAIL = 'biller/:id',
+  BILLERDETAIL = 'biller/:slug',
 }

@@ -1,3 +1,4 @@
+import { formatDate } from '../../../../../../utils/formatValue'
 import { MinTable } from './styles/min-table.styles'
 
 const MinDataTable = ({
@@ -19,15 +20,15 @@ const MinDataTable = ({
       <tbody>
         <tr>
           <td>{data?.displayName}</td>
-          <td>{data?.email}</td>
-          <td>{data?.phoneNumber}</td>
+          <td>{data?.email || 'N/A'}</td>
+          <td>{data?.phoneNumber || 'N/A'}</td>
           <td>
-            <div className={data?.status ? 'success' : 'failed'}>
-              {data?.status ? 'Active' : 'Inactive'}
+            <div className={data?.disabled ? 'failed':'success'}>
+              {data?.disabled ? 'Inactive':'Active' }
             </div>
           </td>
-          <td>{data?.created_at}</td>
-          <td>{data?.updated_at}</td>
+          <td>{data?.created_at ? formatDate(data?.created_at, 'YYYY-MM-DD HH:mm:ss'):''}</td>
+          <td>{data?.updated_at ? formatDate(data?.updated_at, 'YYYY-MM-DD HH:mm:ss'):'N/A'}</td>
         </tr>
       </tbody>
     </MinTable>

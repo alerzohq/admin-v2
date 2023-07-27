@@ -4,6 +4,7 @@ import { formatDate, amountConverter } from '../../../utils/formatValue'
 import { TableButton, TableItemDiv } from './table.style'
 import { useAppContext } from '../../../context'
 import { Action } from '../../../context/actions'
+import { getClassNames } from './table-classnames'
 
 export type selectedDataType = {
   [key: string]: any
@@ -57,9 +58,9 @@ const TableData = ({
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
         return (
-<tr key={index}>
+        <tr key={index}>
             {dataList?.map((data, i) => (
-    <td key={i} id="td-hover">
+            <td key={i} id="td-hover">
                 <TableItemDiv
                   onClick={
                     !!handleRouthPath
@@ -104,33 +105,8 @@ const TableData = ({
                           )
                         }
                   }
-                  //TODO REFACTOR
-                  className={data === 'successful' ||
-                  data === 'Active' ||
-                  data === 'approved' ||
-                  data === 'shipping' ||
-                  data === 'verified' ||
-                  data === 'delivered'
-                    ? 'success'
-                    : data === 'Unassigned'
-                    ? 'unassigned'
-                    : data === 'pending' || data === 'processing'
-                    ? 'pending'
-                    : data === 'failed' ||
-                      data === 'Inactive' ||
-                      data === 'rejected'
-                    ? 'failed'
-                    : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
-                      data
-                    ? 'successText'
-                    : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
-                      data
-                    ? 'dangerText'
-                    : data === 'Session ongoing'
-                    ? 'pendingText'
-                    : '' + (i === 0 && !hideActive && 'tableLink')
 
-                  }
+                  className={getClassNames(data, item, i, hideActive)}
                 >
                   {lastItem && lastItem === data && !hideDate
                     ? formatDate(data, dateFormat || 'lll')

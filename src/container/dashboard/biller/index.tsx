@@ -22,7 +22,7 @@ const navigate = useNavigate()
   const [values, setValues] = useState(filterValue)
 
   const getBillers = (filterValue: FilterValueProps) => {
-    return getNewFilterResource(`billers`, filterValue)
+    return getNewFilterResource(`billers/commissions`, filterValue)
   }
 
   const getBillerStats = () => {
@@ -56,17 +56,18 @@ const handleManageBillers=(biller:Record<string,string>) =>{
         title={`${errorMessage(error as ErrorType)}`}
       />
     )
-  } else if (data?.data?.length < 1) {
+  } else if (data?.data?.billerProductCommissions?.length < 1) {
     component = <FallBack title={'No Biller Found.'} refetch={refetch} />
   } else {
     component = (
       <Table
         tableName="billers"
-        tableData={data.data}
+        tableData={data?.data?.billerProductCommissions}
         tableHeaders={billerHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         actionBtnLabel='Manage Biller'
         handleAction={handleManageBillers}
+        notClickable
       />
     )
   }
@@ -78,11 +79,11 @@ const handleManageBillers=(biller:Record<string,string>) =>{
         },
         selects: [
           {
-            searchQuery: 'isLive',
+            searchQuery: 'disabled',
             placeholder: 'Status',
             values: [
-              { label: 'Active', value: true },
-              { label: 'Inactive', value: false },
+              { label: 'Active', value: false },
+              { label: 'Inactive', value: true },
             ],
             value: '',
           },

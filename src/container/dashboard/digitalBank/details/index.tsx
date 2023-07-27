@@ -6,7 +6,6 @@ import DetailsContent from '../../widget/tabs/tab-content-details'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import TransactionHistory from './transaction-history'
 import CardsContainer from './user-accounts'
-import { errorMessage } from '../../../../utils/message'
 import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
 import { useEffect, useState } from 'react'
 import Modal from '../../../../components/modal'
@@ -79,6 +78,8 @@ const DigitalBankDetailContainer = () => {
     },
   ].filter(Boolean)
 
+  console.log({error})
+
   const showfilters = {
     selects: [
       {
@@ -114,7 +115,6 @@ const DigitalBankDetailContainer = () => {
         isError={isError}
         title={title}
         showfilters={showfilters}
-        errorMessage={errorMessage(error)}
         currentValue={found?.value || 'details'}
         renderSwitch={renderSwitch}
         tabs={TABS}
