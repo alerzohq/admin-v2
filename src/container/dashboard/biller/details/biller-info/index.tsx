@@ -3,31 +3,38 @@ import Heading from '../../../widget/heading'
 import { Color } from '../../../../../assets/theme'
 import MinDataTable from './min-table'
 import { billerTableHeaders } from '../../../../../data/biller-data'
+import UpdateBiller from '../../modal/update-biller'
+import { useState } from 'react'
 
-const BillerInfo = ({ data }: { data: Record<string, string> }) => {
-
-  const featureFlag = process.env.NODE_ENV ==='development'
+const BillerInfo = ({ data ,slug}: { data: Record<string, string>,slug?:string }) => {
+const[showModal,setShowModal] = useState(false)
 
   return (
     <>
       <Heading text="Biller Details">
-        {featureFlag && (
           <Button
-            onClick={() => {}}
+            onClick={() => setShowModal(true)}
             width="140px"
+           borderColor={Color.alerzoBlueTint}
             variant={
-              data?.disabled ? Color.alerzoDanger100 : Color.alerzoGreenBg
+              Color.alerzoWhite
             }
-            color={data?.disabled ? Color.alerzoDanger : Color.alerzoGreen}
+            color={ Color.alerzoBlueTint}
             weight="600"
           >
-            {data?.disabled ? 'Disabled' : 'Enabled'}
+            Update
           </Button>
-        )}
       </Heading>
       <Jumbotron padding="0" mt="1rem" mb="2rem" minHeight="150px">
         <MinDataTable data={data} tableHeaders={billerTableHeaders} />
       </Jumbotron>
+
+      <UpdateBiller
+       data={data}
+       slug={slug!}
+       showModal={showModal}
+       setShowModal={setShowModal}
+       />
     </>
   )
 }

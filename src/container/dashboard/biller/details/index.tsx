@@ -39,7 +39,7 @@ const BillerDetailContainer = () => {
         <Loader />
       ) : (
         <>
-          <BillerInfo data={biller} />
+          <BillerInfo data={biller} slug={slug} />
           <BillerProducts products={billerData?.product_list} />
         </>
       )}

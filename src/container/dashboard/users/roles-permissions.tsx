@@ -27,7 +27,6 @@ const RolesPermissions = ({
     getRoles
   )
 
-console.log({data})
   let component
   if (isLoading) {
     component = <Loader />
