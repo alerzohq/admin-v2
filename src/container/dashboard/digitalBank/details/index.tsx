@@ -39,7 +39,7 @@ const DigitalBankDetailContainer = () => {
     setSuccess,
     setShowResetQst
   )
-  const { isLoading, isError, data, isFetching, error } = useQuery(
+  const { isLoading, isError, data, isFetching,  } = useQuery(
     'customer-detail',
     getBusinessDetails
   )
@@ -77,8 +77,6 @@ const DigitalBankDetailContainer = () => {
       value: 'Reset Security Question',
     },
   ].filter(Boolean)
-
-  console.log({error})
 
   const showfilters = {
     selects: [
