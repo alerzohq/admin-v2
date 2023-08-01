@@ -34,6 +34,7 @@ export const SideBarMenus = () => {
     rolesAccess,
     terminalAccess,
     KYCAccess,
+    viewBillersAccess
   } = AllPermissions()
 
   const sideBarData = [
@@ -77,7 +78,7 @@ export const SideBarMenus = () => {
       path: `/${Path.DASHBOARD}/${Path.USERS}`,
       activeIconColor: Color.alerzoBlue,
     },
-    rolesAccess && {
+    viewBillersAccess && {
       id: 6,
       title: 'Billers',
       InActiveIcon: BillerIcon,

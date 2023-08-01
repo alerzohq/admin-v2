@@ -4,8 +4,8 @@ import { Path } from '../../../constants/route-path'
 import { BillerContainer } from '../../../container/dashboard'
 
 const Biller = () => {
-  const { businessesAccess } = AllPermissions()
-  if (!businessesAccess) {
+  const { viewBillersAccess } = AllPermissions()
+  if (!viewBillersAccess) {
     return <Navigate to={`/${Path.DASHBOARD}`} replace />
   }
 
