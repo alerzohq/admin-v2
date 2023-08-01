@@ -14,11 +14,14 @@ import { useQuery } from 'react-query'
 import { billerHeaderList } from '../../../data/table-headers'
 import { FilterValueProps } from '../../../@types/global'
 import { filterValue } from '../../../data/filter-data'
-import { errorMessage } from '../../../utils/message'
+import { errorMessage, unauthorizedMessage } from '../../../utils/message'
 import { billerIcons, billerLabels, billerStats } from '../../../data/biller-data'
+import AllPermissions from '../../../configs/access-control'
+import { toast } from 'react-hot-toast'
 
 const BillerContainer = () => {
 const navigate = useNavigate()
+const { viewBillerDetailAccess } = AllPermissions()
   const [values, setValues] = useState(filterValue)
 
   const getBillers = (filterValue: FilterValueProps) => {
@@ -42,7 +45,11 @@ const navigate = useNavigate()
 
 
 const handleManageBillers=(biller:Record<string,string>) =>{
-    navigate(`${biller?.slug}`)
+if(!viewBillerDetailAccess){
+  return toast.error(unauthorizedMessage)
+}else{
+  navigate(`${biller?.slug}`)
+}
 }
 
   let component

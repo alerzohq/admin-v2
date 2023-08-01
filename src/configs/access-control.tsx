@@ -50,6 +50,10 @@ const AllPermissions = () => {
     isHasPermission.includes('process_reversals') || adminAccess
   const viewBillersAccess =
     isHasPermission.includes('view_billers') || adminAccess
+  const viewBillerDetailAccess =
+  isHasPermission.includes('view_biller') || adminAccess
+  const updateBillerAccess =
+  isHasPermission.includes('update_biller') || adminAccess
   const setBillerThresholdAccess =
     isHasPermission.includes('set_biller_threshold') || adminAccess
   const KYCAccess =
@@ -75,11 +79,13 @@ const AllPermissions = () => {
     terminalDetailAccess,
     processReversals,
     viewBillersAccess,
+    viewBillerDetailAccess,
     historyDownloadAccess,
     createTerminalAccess,
     historyStatisticAccess,
     KYCAccess,
     businessProductDetailAccess,
+    updateBillerAccess
   }
 }
 
