@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json /app
 RUN npm install
 
-COPY ./ /app
+COPY . /app
 
 ARG REACT_APP_API_BASE_URL
 ARG REACT_APP_API_TEMP_URL
