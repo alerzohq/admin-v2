@@ -2,7 +2,7 @@ FROM node:16.11.1-stretch as build
 
 WORKDIR /app
 
-COPY ./package*.json /app
+COPY ./package*.json /app/
 RUN npm install
 
 COPY . /app
