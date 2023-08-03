@@ -1,26 +1,30 @@
 stages:
-  - lint
   - test
-  - build-check
+  - buildenv
+  - build
+  - deploy
 
 lint:
   tags:
-    - ap-ce-runner
+    - veedezpay-stg-k8s
   image: node:16.20.1
-  stage: lint
+  stage: test
   script:
     - npm ci --legacy-peer-deps
     - npm run lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 test:
   tags:
-    - ap-ce-runner
+    - veedezpay-stg-k8s
   image: node:16.20.1
-  environment: ${CI_COMMIT_REF_SLUG}
   stage: test
   script:
     - npm ci --legacy-peer-deps
     - npm run test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 include:
   - project: 'ci-cd/vdz-pay-helm-ci-cd'
