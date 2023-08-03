@@ -1,0 +1,28 @@
+stages:
+  - lint
+  - test
+  - build-check
+
+lint:
+  tags:
+    - ap-ce-runner
+  image: node:16.20.1
+  stage: lint
+  script:
+    - npm ci --legacy-peer-deps
+    - npm run lint
+
+test:
+  tags:
+    - ap-ce-runner
+  image: node:16.20.1
+  environment: ${CI_COMMIT_REF_SLUG}
+  stage: test
+  script:
+    - npm ci --legacy-peer-deps
+    - npm run test
+
+include:
+  - project: 'ci-cd/vdz-pay-helm-ci-cd'
+    ref: main
+    file: '/gitlab-ci-template/kaniko-helmfile-gitlab-ci-admin-web-v2.yml'
