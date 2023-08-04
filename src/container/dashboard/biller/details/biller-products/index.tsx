@@ -3,11 +3,15 @@ import { Accordion, FallBack, Jumbotron } from '../../../../../components'
 import CustomTable from '../../../../../components/table/table-data/custom-table'
 import { accordionTableHeaders} from '../../../../../data/biller-data'
 import { useState } from 'react'
+import UpdateCommission from '../../modal/update-commission'
 
 const BillerProducts = ({products}:{products:Record<string,any>[]|null}) => {
-const[,setProductName]=useState('')
+const[product,setProduct]=useState<Record<string,any>>({})
+const[showModal,setShowModal] = useState(false)
 
-const handleChange=(item:{}) => {
+const handleChange=(item:Object) => {
+setProduct(item)
+setShowModal(true)
 
 }
 
@@ -21,8 +25,7 @@ const handleChange=(item:{}) => {
    name='biller-products'
    actionBtn
    actionPlaceholder='Change Rate'
-   handleChange={(item)=>{handleChange(item);
-    setProductName(biller.category)}}
+   handleChange={(item)=>{handleChange(item)}}
    />
   </Jumbotron>}})
 
@@ -34,6 +37,13 @@ const handleChange=(item:{}) => {
      :<Jumbotron>
          <FallBack title='No Biller products' />
       </Jumbotron>}
+      <UpdateCommission
+       data={{}}
+       slug={''}
+       modalTitle={product?.product_name}
+       showModal={showModal}
+       setShowModal={setShowModal}
+       />
 
     </>
   )

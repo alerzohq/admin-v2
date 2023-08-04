@@ -21,7 +21,7 @@ color:${Color.alerzoDarkGray};
 background:${Color.alerzoGray3};
 border: none;
 padding: 2px 8px;
-margin: auto;
+/* margin: auto; */
 margin-top: 0.8rem;
 cursor: pointer;
 max-width: 120px;
