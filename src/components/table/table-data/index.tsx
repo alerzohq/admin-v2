@@ -1,3 +1,4 @@
+import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
@@ -24,7 +25,7 @@ type dataProps = {
   noSlug?: boolean
   handleRouthPath?: (item: { [key: string]: any }) => void
   handleAction?:(item: { [key: string]: any }) => void
-  actionBtnLable?: string;
+  actionBtnLabel?: string;
 }
 type dataList = string[] | undefined
 
@@ -40,7 +41,7 @@ const TableData = ({
   notClickable,
   routePath,
   noSlug,
-  actionBtnLable,
+  actionBtnLabel,
   handleRouthPath,
   handleAction
 }: dataProps) => {
@@ -117,7 +118,7 @@ const TableData = ({
                 </TableItemDiv>
               </td>
             ))}
-          {handleAction &&(<TableButton onClick={()=>handleAction(item)}>{actionBtnLable??'Edit'}</TableButton>)}
+           {handleAction &&(<td><TableButton onClick={()=>handleAction(item)}>{actionBtnLabel??'Edit'}</TableButton></td>)}
           </tr>
         )
       })}

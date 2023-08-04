@@ -67,7 +67,7 @@ const DetailsContentWidget = ({
                 <FlexTableWrapper.Row
                   key={index}
                   data={item?.data}
-                  header={item.header}
+                  header={item?.header}
                   bgBottomColor={Color.alerzoWhite}
                   clickable={item?.clickable}
                 />

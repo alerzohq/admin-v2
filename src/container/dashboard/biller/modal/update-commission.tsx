@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Modal from '../../../../components/modal'
 import { Button, Form } from '../../../../components'
-import { convertPhoneNumber, isEmailValid } from '../../../../utils/formatValue'
+import { isEmailValid } from '../../../../utils/formatValue'
 import SuccessModal from '../../../../components/success-modal/success-modal'
 import useUpdateBiller from '../hooks'
 
-type UpdateBillerProps = {
+type UpdateCommissionProps = {
   data: Record<string, string>
   showModal: boolean
   slug: string
+  modalTitle:string
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 const defaultValues = {
@@ -16,12 +17,13 @@ const defaultValues = {
   email: '',
   phoneNumber: '',
 }
-const UpdateBiller = ({
+const UpdateCommission = ({
   data,
   showModal,
   slug,
+  modalTitle,
   setShowModal,
-}: UpdateBillerProps) => {
+}: UpdateCommissionProps) => {
   const [inputValues, setInputValues] = useState(defaultValues)
   const [showSuccess, setShowSuccess] = useState(false)
   const [emailError, setEmailError] = useState('')
@@ -37,8 +39,7 @@ const UpdateBiller = ({
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.email,showModal])
-
+  }, [data?.displayName])
 
   const handleChange = (name: string, value: string) => {
     setInputValues({
@@ -70,44 +71,41 @@ const UpdateBiller = ({
         showModal={showModal}
         titleSize="25px"
         modalWidth="450px"
-        title="Update Biller"
+        title={modalTitle??"Update Rate"}
         contentPadding="0 2rem"
-        subTitle="Update biller information"
+        subTitle="Change Rate for this product"
         setShowModal={() => setShowModal(false)}
       >
         <Form>
           <Form.Control pb={'1rem'}>
-            <Form.Label>Biller</Form.Label>
+            <Form.Label>Rate Type</Form.Label>
             <Form.Input
               type="text"
-              disabled
               onChange={(e) => handleChange('biller', e.target.value)}
-              placeholder="Biller"
+              placeholder="Rate Type"
               value={inputValues.displayName}
             />
           </Form.Control>
           <Form.Control pb={'1rem'}>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Commission</Form.Label>
             <Form.Input
-              type="text"
+              type="number"
               onChange={(e) => handleChange('email', e.target.value)}
-              placeholder="Email"
+              placeholder="Commission"
               value={inputValues.email}
             />
             {emailError && <Form.Error>{emailError}</Form.Error>}
           </Form.Control>
 
           <Form.Control pb={'1rem'}>
-            <Form.Label>Phone Number</Form.Label>
+            <Form.Label>Merchants Rate</Form.Label>
             <Form.Input
-              type="text"
-              disabled
-              maxLength={11}
+              type="number"
               onChange={(e) =>
-                handleChange('phoneNumber', e.target.value.replace(/\D/g, ''))
+                handleChange('phoneNumber', e.target.value)
               }
-              placeholder="Phone Number"
-              value={convertPhoneNumber(inputValues.phoneNumber)}
+              placeholder="Merchants Rate"
+              value={inputValues.phoneNumber}
             />
           </Form.Control>
         </Form>
@@ -138,4 +136,4 @@ const UpdateBiller = ({
   )
 }
 
-export default UpdateBiller
+export default UpdateCommission

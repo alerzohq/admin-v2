@@ -84,6 +84,7 @@ if(!viewBillerDetailAccess){
         search: {
           placeholder: 'Search Biller...',
         },
+        date: true,
         selects: [
           {
             searchQuery: 'disabled',

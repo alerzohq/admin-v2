@@ -40,7 +40,7 @@ const Table = ({
             routePath={routePath}
             noSlug={noSlug}
             handleRouthPath={handleRouthPath}
-            actionBtnLable={actionBtnLabel}
+            actionBtnLabel={actionBtnLabel}
             handleAction={handleAction}
           />
         </DataTable>

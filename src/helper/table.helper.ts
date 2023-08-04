@@ -130,7 +130,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     const { displayName, commission, createdAt } = item
     const type = commission?.rate?.type
     const percentage = commission?.rate?.percentage
-    const cap = commission?.splits[0]?.rate.amount
+    const cap = commission?.splits?.[0]?.rate?.amount || 0
     const rates = generateCommission(type, percentage, cap)
     return { displayName, rates, createdAt }
   }
