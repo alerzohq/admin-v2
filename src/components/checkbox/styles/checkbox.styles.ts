@@ -1,7 +1,12 @@
 import styled from 'styled-components'
-import { Color } from '../../assets/theme'
+import { Color } from '../../../assets/theme'
 
-export const CheckboxContainer = styled.div`
+type Props={
+  position?:string;
+}
+
+export const CheckboxContainer = styled.div<Props>`
+position:${({position})=>position};
   input {
     position: absolute;
     opacity: 0;
@@ -13,7 +18,9 @@ export const CheckboxContainer = styled.div`
     height: 25px;
     width: 25px;
   }
-
+  small{
+  padding-left:1.8rem;
+  }
   .checkmark {
     position: absolute;
     top: 50%;

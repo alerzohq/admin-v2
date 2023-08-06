@@ -3,7 +3,7 @@ import Modal from '../../../../components/modal'
 import { Button, Form } from '../../../../components'
 import { convertPhoneNumber, isEmailValid } from '../../../../utils/formatValue'
 import SuccessModal from '../../../../components/success-modal/success-modal'
-import useUpdateBiller from '../hooks'
+import useUpdateBiller from '../hooks/useUpdateBiller'
 
 type UpdateBillerProps = {
   data: Record<string, string>

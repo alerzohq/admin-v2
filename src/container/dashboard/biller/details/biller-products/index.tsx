@@ -5,7 +5,7 @@ import { accordionTableHeaders} from '../../../../../data/biller-data'
 import { useState } from 'react'
 import UpdateCommission from '../../modal/update-commission'
 
-const BillerProducts = ({products}:{products:Record<string,any>[]|null}) => {
+const BillerProducts = ({products,slug}:{products:Record<string,any>[]|null, slug:string}) => {
 const[product,setProduct]=useState<Record<string,any>>({})
 const[showModal,setShowModal] = useState(false)
 
@@ -38,8 +38,8 @@ setShowModal(true)
          <FallBack title='No Biller products' />
       </Jumbotron>}
       <UpdateCommission
-       data={{}}
-       slug={''}
+       data={product}
+       slug={slug}
        modalTitle={product?.product_name}
        showModal={showModal}
        setShowModal={setShowModal}
