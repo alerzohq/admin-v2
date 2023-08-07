@@ -175,3 +175,14 @@ export const formValidator =(values:Object)=>{
 
     return hasValues
 }
+
+export const convertToKobo=(value='0'):number=>{
+return Number(value)*100
+}
+
+export const convertToNaira=(value='0'):number=>{
+  if(value==='0'){
+    return 0
+  }
+  return Number(value)/100
+  }

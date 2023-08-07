@@ -40,7 +40,7 @@ const BillerDetailContainer = () => {
       ) : (
         <>
           <BillerInfo data={biller} slug={slug} />
-          <BillerProducts products={billerData?.product_list} />
+          <BillerProducts products={billerData?.product_list} slug={slug!}/>
         </>
       )}
     </Container>
