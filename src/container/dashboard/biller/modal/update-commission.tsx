@@ -47,7 +47,7 @@ const UpdateCommission = ({
     slug,
     data?.product_slug
   )
-console.log({data})
+
 
   let isPercentage = inputValues.rate?.value === 'percentage'
 
