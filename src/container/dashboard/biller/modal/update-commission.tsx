@@ -44,8 +44,10 @@ const UpdateCommission = ({
   const { mutate, isLoading } = useUpdateCommission(
     setShowSuccess,
     setShowModal,
-    slug
+    slug,
+    data?.product_slug
   )
+
 
   let isPercentage = inputValues.rate?.value === 'percentage'
 
@@ -54,7 +56,7 @@ const UpdateCommission = ({
     rate: {
       type: inputValues.rate?.value,
       ...(!isPercentage && { amount: convertToKobo(inputValues?.commission)}),
-      ...(isPercentage && { percentage: inputValues?.commission }),
+      ...(isPercentage && { percentage: Number(inputValues?.commission) }),
       ...(isPercentage && inputValues?.cap && { cap: convertToKobo(inputValues?.cap)}),
     },
     splits: [
@@ -63,14 +65,13 @@ const UpdateCommission = ({
         rate: {
           type: inputValues.rate?.value,
           ...(!isPercentage && { amount: convertToKobo(inputValues?.merchantCommission)}),
-          ...(isPercentage && { percentage: inputValues?.merchantCommission }),
+          ...(isPercentage && { percentage: Number(inputValues?.merchantCommission) }),
           ...(isPercentage &&
             inputValues?.merchantCap && { cap: convertToKobo(inputValues?.merchantCap)}),
         },
       },
     ],
   }
-
 
   useEffect(() => {
     if (data) {
@@ -140,7 +141,7 @@ const UpdateCommission = ({
             />
           </Form.Control>
 
-          <Form.Control pb={'0.5rem'}>
+          <Form.Control pb='0.5rem'>
             <Form.Label>Commission</Form.Label>
             <Form.Input
               type="number"
@@ -161,7 +162,7 @@ const UpdateCommission = ({
             </Form.Control>
           )}
           {isPercentage && commissionCap && (
-            <Form.Control pb={'1rem'}>
+            <Form.Control pb='1rem'>
               <Form.Label>Commission Capped @</Form.Label>
               <Form.Input
                 type="number"
@@ -173,7 +174,7 @@ const UpdateCommission = ({
             </Form.Control>
           )}
 
-          <Form.Control pb={'0.5rem'}>
+          <Form.Control pb='0.5rem'>
             <Form.Label>Merchants Rate</Form.Label>
             <Form.Input
               type="number"
@@ -194,7 +195,7 @@ const UpdateCommission = ({
             </Form.Control>
           )}
           {isPercentage && isMerchantCap && (
-            <Form.Control pb={'1rem'}>
+            <Form.Control pb='1rem'>
               <Form.Label>Merchants Rate Capped @</Form.Label>
               <Form.Input
                 type="number"

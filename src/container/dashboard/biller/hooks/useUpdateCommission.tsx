@@ -7,14 +7,15 @@ import { errorMessage } from '../../../../utils/message'
 const useUpdateCommission = (
   setShow: React.Dispatch<React.SetStateAction<boolean>>,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
-  billerSlug:string
+  billerSlug:string,
+  productSlug:string
 ) => {
   const queryClient = useQueryClient()
 
   const updateBiller = (payload:Record<string,any>) => {
     return postRequest({
-      pathUrl: `products/${billerSlug}/commissions?billerSlug=${billerSlug}`,
-      methodType: 'patch',
+      pathUrl: `products/${productSlug}/commissions?billerSlug=${billerSlug}`,
+      methodType: 'put',
       payload
     })
   }
