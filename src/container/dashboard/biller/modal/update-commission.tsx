@@ -77,8 +77,8 @@ const UpdateCommission = ({
     if (data) {
       setInputValues({
         ...inputValues,
-        cap: data?.rate?.cap,
-        merchantCap:data?.splits?.[0]?.rate?.cap,
+        cap: convertToNaira(data?.rate?.cap),
+        merchantCap:convertToNaira(data?.splits?.[0]?.rate?.cap),
         commission: data?.rate?.percentage || convertToNaira(data?.rate?.amount || '0'),
         merchantCommission: data?.splits?.[0]?.rate?.percentage ||
         convertToNaira(data?.splits?.[0]?.rate?.amount || '0'),

@@ -15,7 +15,7 @@ export const validateForm = (
 
   if (!inputValues.commission) {
     error.commission = 'Please enter a commission'
-  } else if (isPercentage && inputValues.commission > 100) {
+  } else if (isPercentage && Number(inputValues.commission) > 100) {
     error.commission = 'Commission should be 100% or less'
   }
 
@@ -27,7 +27,7 @@ export const validateForm = (
     error.merchantCommission = 'Please enter a merchant commission'
   }
 
-  if (isPercentage && inputValues.commission < inputValues.merchantCommission) {
+  if (isPercentage && Number(inputValues.commission) < Number(inputValues.merchantCommission)) {
     error.merchantCommission =
       'Merchant commission cannot be greater than commission value'
   }
@@ -40,7 +40,7 @@ export const validateForm = (
     error.merchantCap = 'Please enter a Merchant capped'
   }
 
-  if (inputValues.merchantCap > inputValues.cap) {
+  if (Number(inputValues.merchantCap) > Number(inputValues.cap)) {
     error.merchantCap =
       'Merchant capped cannot be greater than commission capped value'
   }
