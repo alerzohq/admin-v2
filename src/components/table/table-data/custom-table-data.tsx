@@ -19,6 +19,7 @@ export type DataProps = {
   actionBtn?: boolean
   hideDate?: boolean
   setParams?: boolean
+  notClickable?:boolean
   selectIndex?: number
   buttonTitle?: string
   actionPlaceholder?:string
@@ -36,6 +37,7 @@ const CustomTableData = ({
   dateFormat,
   actionPlaceholder,
   hideDate,
+  notClickable,
   options,
   actionBtn,
   buttonTitle,
@@ -62,7 +64,7 @@ const CustomTableData = ({
                       ? () => {
                           handleRouthPath?.(item)
                         }
-                      : i === 0
+                      : i === 0 && !notClickable
                       ? () => {
                           navigate(`${item?.slug}`, {
                             state: { detail: item },

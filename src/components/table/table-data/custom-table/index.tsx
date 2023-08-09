@@ -8,6 +8,7 @@ const CustomTable = ({
   actionPlaceholder,
   options,
   tableData,
+  notClickable,
   actionBtn,
   handleChange,
 }: DataProps & { headers: string[] }) => {
@@ -16,6 +17,7 @@ const CustomTable = ({
       <DataTable bgColor="transparent" layout="fixed">
         <TableHeader headers={headers} />
         <CustomTableData
+          notClickable={notClickable}
           name={name}
           actionPlaceholder={actionPlaceholder}
           hideDate

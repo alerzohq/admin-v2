@@ -24,6 +24,7 @@ setShowModal(true)
    headers={accordionTableHeaders}
    name='biller-products'
    actionBtn
+   notClickable
    actionPlaceholder='Change Rate'
    handleChange={(item)=>{handleChange(item)}}
    />
