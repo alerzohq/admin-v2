@@ -180,9 +180,10 @@ export const convertToKobo=(value='0'):number=>{
 return Number(value)*100
 }
 
-export const convertToNaira=(value='0'):number=>{
+export const convertToNaira=(value='0'):string=>{
   if(value==='0'){
-    return 0
+    return '0'
   }
-  return Number(value)/100
+let newVal=Number(value)/100
+  return newVal.toString()
   }
