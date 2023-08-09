@@ -13,17 +13,6 @@ type props = {
   textAreaBottomMargin?: string
 }
 
-export const ModalWrapper = styled.div<props>`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  width: inherit;
-  outline: 0;
-  width: 100%;
-  display: ${({ isShown }) => (isShown ? 'block' : 'none')};
-`
 export const BackDrop = styled.div<props>`
   position: ${({ isShown }) => (isShown ? 'fixed' : null)};
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
@@ -34,7 +23,26 @@ export const BackDrop = styled.div<props>`
   background: rgba(38, 40, 62, 0.6);
   backdrop-filter: blur(6px);
   z-index: 9999;
+  overflow-y:auto;
 `
+
+export const ModalWrapper = styled.div<props>`
+
+  display: ${({ isShown }) => (isShown ? 'flex' : 'none')};
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 9999;
+  width: inherit;
+  outline: 0;
+  width: 100%;
+ /* position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  /* display: flex; */
+
+`
+
 export const Header = styled.div`
   border-radius: 8px 8px 0 0;
   display: flex;
