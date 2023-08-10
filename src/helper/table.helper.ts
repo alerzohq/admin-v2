@@ -157,7 +157,7 @@ if (item && name === 'biller-products') {
   const status=disabled===true?'Inactive':'Active'
   const type = rate?.type ||''
   const percentage =generateCommission(type, rate?.amount || rate?.percentage, rate?.cap)
-  const merchantRate = generateCommission(type, splits?.[0]?.rate?.percentage, splits?.[0]?.rate?.cap)
+  const merchantRate = generateCommission(type, splits?.[0]?.rate?.amount || splits?.[0]?.rate?.percentage, splits?.[0]?.rate?.cap)
 
   return { product_name, type, percentage, merchantRate,status}
 }
