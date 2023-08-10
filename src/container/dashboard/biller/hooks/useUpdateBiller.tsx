@@ -10,11 +10,12 @@ const useUpdateBiller = (
 ) => {
   const queryClient = useQueryClient()
 
-  const updateBiller = (payload: {email:string,slug:string}) => {
+  const updateBiller = (payload: {email:string,phoneNumber:string,slug:string}) => {
     return postRequest({
       pathUrl: `biller/${payload.slug}`,
       methodType: 'patch',
-      payload:{email:payload?.email}
+      payload:{email:payload?.email,
+        phoneNumber:payload?.phoneNumber}
     })
   }
 
