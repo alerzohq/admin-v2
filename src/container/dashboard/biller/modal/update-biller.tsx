@@ -25,6 +25,7 @@ const UpdateBiller = ({
   const [inputValues, setInputValues] = useState(defaultValues)
   const [showSuccess, setShowSuccess] = useState(false)
   const [emailError, setEmailError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
   const { mutate, isLoading } = useUpdateBiller(setShowSuccess, setShowModal)
 
   useEffect(() => {
@@ -46,15 +47,19 @@ const UpdateBiller = ({
       [name]: value,
     })
     setEmailError('')
+    setPhoneError('')
   }
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!isEmailValid(inputValues?.email)) {
       setEmailError('Please enter a valid email')
-    } else {
+    } else if(inputValues?.phoneNumber?.length < 11){
+      setPhoneError('Phone number must be 11 characters')
+    }else {
       mutate({
         email: inputValues?.email,
+        phoneNumber:inputValues?.phoneNumber,
         slug,
       })
     }
@@ -101,7 +106,6 @@ const UpdateBiller = ({
             <Form.Label>Phone Number</Form.Label>
             <Form.Input
               type="text"
-              disabled
               maxLength={11}
               onChange={(e) =>
                 handleChange('phoneNumber', e.target.value.replace(/\D/g, ''))
@@ -109,6 +113,7 @@ const UpdateBiller = ({
               placeholder="Phone Number"
               value={convertPhoneNumber(inputValues.phoneNumber)}
             />
+           {phoneError && <Form.Error>{phoneError}</Form.Error>}
           </Form.Control>
         </Form>
         <Button
