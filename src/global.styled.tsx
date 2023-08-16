@@ -74,6 +74,7 @@ const GlobalStyle = createGlobalStyle`
 .select-wrap{
   display:flex;
   justify-content:end;
+  margin-right:1rem;
 }
 .active{
   background: #34a8531a;

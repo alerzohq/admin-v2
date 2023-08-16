@@ -32,7 +32,7 @@ const useUpdateKYC = (
       queryClient.invalidateQueries('kyc-detail')
       setValue(initialState)
     },
-    onError: (err: any) => {
+    onError: (err: ErrorType) => {
       toggle()
       toast.error(`${errorMessage(err)}`)
       setValue(initialState)

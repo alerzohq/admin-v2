@@ -1,4 +1,3 @@
-import React from 'react'
 import { Color } from '../../assets/theme'
 import Loader from '../loader'
 

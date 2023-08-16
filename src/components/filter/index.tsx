@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FilterProps } from './type'
 import DateRange from '../date-range'
 import Stack from '../stack'
-import { SelectInputProps } from '../../@types'
+import { SelectInputProps } from '../../@types/global'
 import SelectInput from '../select-input'
 import { FilterInput, FilterItems, FilterWrapper } from './styles/filter.styles'
 
@@ -22,7 +22,7 @@ const Filter = ({
 
   useEffect(() => {
     if (showFilters) {
-      setFilterValues?.((prev: any) => ({
+      setFilterValues?.((prev: {}) => ({
         ...prev,
         query: search,
       }))

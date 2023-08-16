@@ -1,4 +1,4 @@
-export type fallbackProps = {
+export type FallbackProps = {
   title: string
   error?: boolean
   hideBtn?: boolean

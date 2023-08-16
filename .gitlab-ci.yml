@@ -1,0 +1,32 @@
+stages:
+  - test
+  - buildenv
+  - build
+  - deploy
+
+lint:
+  tags:
+    - veedezpay-stg-k8s
+  image: node:16.20.1
+  stage: test
+  script:
+    - npm ci --legacy-peer-deps
+    - npm run lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+test:
+  tags:
+    - veedezpay-stg-k8s
+  image: node:16.20.1
+  stage: test
+  script:
+    - npm ci --legacy-peer-deps
+    - npm run test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+include:
+  - project: 'ci-cd/vdz-pay-helm-ci-cd'
+    ref: main
+    file: '/gitlab-ci-template/kaniko-helmfile-gitlab-ci-admin-web-v2.yml'

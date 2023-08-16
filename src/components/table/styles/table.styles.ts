@@ -30,6 +30,7 @@ export const TableWrapper = styled.div<Props>`
     z-index:1;
     background:rgba(255,255,255, 0.5) ;
   } */
+
 `
 export const DataTable = styled.table<Props>`
   width: 100%;
@@ -50,6 +51,7 @@ export const DataTable = styled.table<Props>`
         font-weight: 600;
         &:first-child {
           border-top-left-radius: 20px;
+          padding-left:2rem;
         }
         &:last-child {
           border-top-right-radius: 20px;
@@ -72,6 +74,7 @@ export const DataTable = styled.table<Props>`
       border: 0.8px solid ${Color.alerzoGrayBorder};
       border-right: none;
       border-left: 0;
+      border-bottom:none;
       height: 60px;
 
       color: #373737;
@@ -80,6 +83,9 @@ export const DataTable = styled.table<Props>`
         font-size: 0.9rem;
         font-weight: 500;
         padding: 0.5rem 1rem;
+        &:first-child {
+          padding-left:2rem;
+        }
       }
     }
   }
@@ -149,8 +155,8 @@ border:1px solid ${Color.alerzoBlueBorder};
 cursor:pointer;
 color:${Color.alerzoDeepBlue};
 background: ${Color.alerzoBlue7};
-border-radius: 3px;
-padding:8px 10px;
+border-radius: 5px;
+padding:8px 12px;
 
 `
 

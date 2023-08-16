@@ -81,7 +81,8 @@ export const generateCommission = (
 
   if (type === 'percentage') {
     const capToNaira = amountConverter(cap!)
-    return `${commission}% @ ₦${capToNaira}`
+   let commissionValue=cap?`${commission}% @ ₦${capToNaira}`:`${commission}%`
+    return `${commissionValue}`
   }
   if (type === 'flat') {
     return `₦${amountConverter(commission)} FLAT`
@@ -175,3 +176,15 @@ export const formValidator =(values:Object)=>{
 
     return hasValues
 }
+
+export const convertToKobo=(value='0'):number=>{
+return Number(value)*100
+}
+
+export const convertToNaira=(value='0'):string=>{
+  if(value==='0'){
+    return '0'
+  }
+  let newVal=Number(value)/100
+  return newVal.toString()
+  }

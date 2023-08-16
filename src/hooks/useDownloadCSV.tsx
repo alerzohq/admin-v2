@@ -3,11 +3,10 @@ import toast from 'react-hot-toast'
 import queryString from 'query-string'
 
 import { axiosInstance } from '../configs/axios-instance'
-import { filterProps } from '../@types'
 
 const useDownloadCSV = (
   url: string,
-  filters: filterProps & { [key in string]?: string | number },
+  filters: FilterProps & { [key in string]?: string | number },
   name?: string
 ) => {
   const [isDownloading, setIsDownloading] = useState(false)

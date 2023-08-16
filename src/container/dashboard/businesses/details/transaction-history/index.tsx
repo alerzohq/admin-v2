@@ -12,7 +12,7 @@ import { filterValue } from '../../../../../data/filter-data'
 import { transHeaderList } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 import useDownloadCSV from '../../../../../hooks/useDownloadCSV'
@@ -34,7 +34,7 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
 
   let statusOptions = statusFilterOptions(appFilters?.['transactions'])
 
-  const getTransactionsHistory = (filterValue: filterProps) => {
+  const getTransactionsHistory = (filterValue: FilterValueProps) => {
     return getNewFilterResource('transactions', {
       ...filterValue,
       walletId: walletId,
@@ -59,7 +59,11 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No transaction found. '} />

@@ -23,7 +23,7 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
 
   const handleClear = () => {
     setSelectionRange(initialState)
-    filterDate((prev: any) => ({ ...prev, from: '', to: '' }))
+    filterDate((prev: {}) => ({ ...prev, from: '', to: '' }))
     setDateValue('')
   }
   const [selectionRange, setSelectionRange] = useState(initialState)
@@ -43,7 +43,7 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
     let startD = formatDate(selection?.startDate)
     let endD = formatDate(endDateVal)
 
-    filterDate((prev: any) => ({ ...prev, from: startD, to: endD }))
+    filterDate((prev: {}) => ({ ...prev, from: startD, to: endD }))
   }
   return (
     <OutsideClickHandler
@@ -60,7 +60,7 @@ const DateRange = ({ filterDate, isTop, right }: any) => {
             </Text>
           </button>
         ) : (
-          <button className={'btn'} onClick={() => setShow(!show)}>
+          <button className="btn" onClick={() => setShow(!show)}>
             {dateValue ? dateValue : 'Select Date '}
             <CalenderIcon />
           </button>
