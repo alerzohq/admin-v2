@@ -35,7 +35,7 @@ const UpdateKYCModal = ({
       showModal={isShown}
       setShowModal={toggleModal}
       buttonText="Submit"
-      title="Accout Upgrade Request"
+      title="Account Upgrade Request"
       disabled={
         !value?.status || (value?.status === 'rejected' && !value?.reason)
       }
