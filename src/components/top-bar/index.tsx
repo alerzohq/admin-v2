@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import { TopBarProps } from './type'
 import Text from '../text'
 import { TopbarWrapper, TopbarFilters, Filter } from './styles/topbar.styles'
@@ -37,10 +37,7 @@ const TopBar = ({
   })
 
   const { search } = values
-  const ref = useRef<HTMLDivElement>(null)
-  const rectVal = ref?.current?.getBoundingClientRect()?.left
-  const position = rectVal && rectVal >= 600 && '20px'
-
+  const position = showFilters?.selects?.length <=3?'20px':''
   useEffect(() => {
     if (showFilters && status !== null) {
       if (filterValue) {
@@ -99,7 +96,7 @@ const TopBar = ({
             )}
 
             {showFilters?.date && (
-              <div ref={ref}>
+              <div style={{position:showFilters?.selects?.length > 3 ?'relative':'initial'}}>
                 <DateRange right={position} filterDate={setFilterValues} />
               </div>
             )}
