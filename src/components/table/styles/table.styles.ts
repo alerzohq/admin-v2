@@ -8,6 +8,7 @@ type Props = {
   bgColor?: string
   wrapperPb?: string
   layout?: string
+  borderBottom?:boolean
 }
 
 export const TableWrapper = styled.div<Props>`
@@ -22,15 +23,6 @@ export const TableWrapper = styled.div<Props>`
     width: 0;
     height: 0;
   }
-  /* &:before{
-    content: "";
-    height:100%;
-    width: 100%;
-    position: absolute;
-    z-index:1;
-    background:rgba(255,255,255, 0.5) ;
-  } */
-
 `
 export const DataTable = styled.table<Props>`
   width: 100%;
@@ -74,7 +66,7 @@ export const DataTable = styled.table<Props>`
       border: 0.8px solid ${Color.alerzoGrayBorder};
       border-right: none;
       border-left: 0;
-      border-bottom:none;
+      border-bottom:${({borderBottom})=>borderBottom?`0.8px solid ${Color.alerzoGrayBorder}`:`none`};
       height: 60px;
 
       color: #373737;
