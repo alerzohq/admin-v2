@@ -111,7 +111,7 @@ export const Content = styled.div<props>`
   flex-direction: column;
   align-items: center;
   padding: ${({ contentPadding }) =>
-    contentPadding ? contentPadding : '2em 3.5em'};
+    contentPadding ? contentPadding : '2rem 1.5rem'};
   justify-content: start;
   @media (max-width: 480px) {
     padding: 0.5em 1.5em;
