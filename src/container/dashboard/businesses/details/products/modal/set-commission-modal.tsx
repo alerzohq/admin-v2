@@ -70,7 +70,7 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
     e.preventDefault()
     setIsTriggerSubmit(true)
     if (type?.value === Rate.percentage) {
-      if (percentage && cap && percentage && Number(percentage) <= 100) {
+      if ( percentage && Number(percentage) <= 100) {
         setIsTriggerSubmit(false)
         mutate(payload)
       }
@@ -135,12 +135,6 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
                 value={cap || ''}
                 onChange={handleChange('cap')}
               />
-
-              {isTriggerSubmit && (
-                <Text as="small" weight="500" color={Color.alerzoDanger}>
-                  {isTriggerSubmit && cap === '' ? 'Cap is required*' : ''}
-                </Text>
-              )}
             </Form.Control>
           )}
           {type.value === Rate.flat && (
