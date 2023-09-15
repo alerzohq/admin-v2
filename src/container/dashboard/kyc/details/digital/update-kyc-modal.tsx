@@ -30,12 +30,12 @@ const UpdateKYCModal = ({
   return (
     <Modal
       subTitle="Provide an action to this user's Account Upgrade Request"
-      contentPadding={'0 0 2rem 0'}
+      contentPadding='0 0 2rem 0'
       modalHeight="auto"
       showModal={isShown}
       setShowModal={toggleModal}
       buttonText="Submit"
-      title="Accout Upgrade Request"
+      title="Account Upgrade Request"
       disabled={
         !value?.status || (value?.status === 'rejected' && !value?.reason)
       }
