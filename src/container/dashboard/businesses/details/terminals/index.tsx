@@ -10,7 +10,7 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { businessTerminalHeader } from '../../../../../data/table-headers'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import MapTerminalModal from '../modal/map-terminal'
@@ -18,7 +18,7 @@ import MapTerminalModal from '../modal/map-terminal'
 const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
   const [values, setValues] = useState(filterValue)
   const [show, setShow] = useState(false)
-  const getBusinesses = (filterValue: filterProps) => {
+  const getBusinesses = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`terminals`, filterValue)
   }
 
@@ -33,7 +33,11 @@ const BusinessTerminalContainer = ({ businessId }: { businessId: string }) => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = (

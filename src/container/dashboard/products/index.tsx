@@ -4,18 +4,13 @@ import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { FallBack, Filter, Jumbotron, Loader } from '../../../components'
 import { Container } from '../../../components/layout'
-import {
-  DataTable,
-  TableWrapper,
-} from '../../../components/table/styles/table.styles'
-import CustomTableData from '../../../components/table/table-data/custom-table-data'
-import TableHeader from '../../../components/table/table-headers'
 import { filterValue } from '../../../data/filter-data'
 import { productsHeaderList } from '../../../data/table-headers'
 import { getResource } from '../../../utils/apiRequest'
 import { mapBillers } from '../../../utils/formatValue'
 import { errorMessage } from '../../../utils/message'
 import ConfirmBillerChange from './details/modal/confirmation-modal'
+import CustomTable from '../../../components/table/table-data/custom-table'
 
 type StateProp = Record<string, any>
 
@@ -86,7 +81,7 @@ const ProductsContainer = () => {
 
   useEffect(() => {
     if (isBillerError) {
-      toast.error(`${errorMessage(billerError)}`)
+      toast.error(`${errorMessage(billerError as ErrorType)}`)
     }
   }, [isBillerError, error, billerError])
 
@@ -95,38 +90,38 @@ const ProductsContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No products list available.'} />
   } else {
     component = (
-      <TableWrapper wrapperPb="5rem">
-        <DataTable bgColor={'transparent'} layout="fixed">
-          <TableHeader headers={productsHeaderList} />
-          <CustomTableData
-            name="products"
-            hideDate
-            tableData={dataArr}
-            handleChange={setNewBiller}
-            options={
-              loadingBillers || isRefetching
-                ? [
-                    {
-                      label: 'Loading...',
-                      options: [{ label: '', value: '' }],
-                    },
-                  ]
-                : [
-                    {
-                      label: 'Select New Biller',
-                      options: options || [{ label: '', value: '' }],
-                    },
-                  ]
-            }
-          />
-        </DataTable>
-      </TableWrapper>
+      <CustomTable
+        headers={productsHeaderList}
+        name="products"
+        hideDate
+        tableData={dataArr}
+        handleChange={setNewBiller}
+        options={
+          loadingBillers || isRefetching
+            ? [
+                {
+                  label: 'Loading...',
+                  options: [{ label: '', value: '' }],
+                },
+              ]
+            : [
+                {
+                  label: 'Select New Biller',
+                  options: options || [{ label: '', value: '' }],
+                },
+              ]
+        }
+      />
     )
   }
   return (
@@ -146,7 +141,7 @@ const ProductsContainer = () => {
         slug={slug || ''}
         setBiller={setNewBiller}
       />
-      <Jumbotron padding={'.5rem 1rem'} direction={'column'}>
+      <Jumbotron padding='.5rem 1rem' direction='column' mb='2rem'>
         <Filter
           setFilterValues={setValues}
           showFilters={{
@@ -156,13 +151,6 @@ const ProductsContainer = () => {
             },
             date: false,
             selects: [],
-            // buttons: [
-            //   {
-            //     label: 'Add New Products',
-            //     onClick: () => {},
-            //     buttonClass: 'add-button',
-            //   },
-            // ],
           }}
         />
         {component}

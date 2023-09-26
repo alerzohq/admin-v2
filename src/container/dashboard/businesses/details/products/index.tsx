@@ -12,7 +12,7 @@ import { filterValue } from '../../../../../data/filter-data'
 import { businessProductsHeader } from '../../../../../data/table-headers'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 import CustomTableData from '../../../../../components/table/table-data/custom-table-data'
@@ -29,7 +29,7 @@ const Products = (isB2B: any) => {
 
   const navigate = useNavigate()
 
-  const getBusinessProducts = (filterValue: filterProps) => {
+  const getBusinessProducts = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
       `business/${businessId}/products`,
       filterValue,
@@ -66,7 +66,11 @@ const Products = (isB2B: any) => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no products yet. '} />

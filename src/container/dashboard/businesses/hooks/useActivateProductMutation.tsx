@@ -1,5 +1,6 @@
 import { toast } from 'react-hot-toast'
 import { useMutation, useQueryClient } from 'react-query'
+
 import { postRequest } from '../../../../utils/apiRequest'
 import { errorMessage } from '../../../../utils/message'
 
@@ -23,7 +24,7 @@ const useActivateBusinessProduct = (
       setShow(false)
     },
     onError: (error) => {
-      toast.error(errorMessage(error))
+      toast.error(errorMessage(error as ErrorType))
     },
   })
 }

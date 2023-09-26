@@ -20,5 +20,7 @@ export enum Path {
   AUDITLOGS = 'audit/:id',
   TERMINALREQUESTDETAIL = 'terminals/requests/:requestId',
   KYC = 'kyc',
-  KYCView = 'kyc/:id',
+  KYCDETAIL = 'kyc/:id',
+  BILLER='biller',
+  BILLERDETAIL = 'biller/:slug',
 }

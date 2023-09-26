@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Color } from '../../../../assets/theme'
 import { Button, Form, Loader, Stack, Text } from '../../../../components'
@@ -35,12 +35,13 @@ const VerificationPinModal = ({
 
   const { businessId, slug: productSlug } = useParams()
 
-  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
-    useResendOTPMutation({
+  const { handleResendOTP, minutes, seconds, isLoading } = useResendOTPMutation(
+    {
       userOtp,
       businessId,
       productSlug,
-    })
+    }
+  )
 
   // convert time to milliseconds
   const timeToMilliseconds = () => {
@@ -67,10 +68,10 @@ const VerificationPinModal = ({
     setOtp(otp)
   }
 
-  const closeModal = () => {
-    setOtp('')
-    close()
-  }
+  // const closeModal = () => {
+  //   setOtp('')
+  //   close()
+  // }
 
   useEffect(() => {
     if (!userOtp) {

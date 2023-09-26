@@ -1,7 +1,8 @@
 import { AxiosError, AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { filterProps } from '../../../@types'
+import { FilterValueProps } from '../../../@types/global'
+
 import { InviteSent } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
@@ -56,7 +57,7 @@ const Employees = () => {
     }
   )
 
-  const getEmployees = (filterValue: filterProps) => {
+  const getEmployees = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`members`, filterValue)
   }
   const getRoles = () => {

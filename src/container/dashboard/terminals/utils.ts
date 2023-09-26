@@ -1,5 +1,6 @@
+import { FilterValueProps } from '../../../@types/global'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
-import { filterProps } from '../../../@types'
+
 
 export const getTerminalsSpecs = () => {
   return getResource(`terminal/specifications`)
@@ -10,10 +11,10 @@ export const getTerminalStats = () => {
 export const getRequestTerminalStats = () => {
   return getResource(`terminal-request/statistics`)
 }
-export const getTerminalsHandler = (filterValue: filterProps) => {
+export const getTerminalsHandler = (filterValue: FilterValueProps) => {
   return getNewFilterResource(`terminals`, filterValue)
 }
 
-export const getTerminalRequestHandler = (filterValue: filterProps) => {
+export const getTerminalRequestHandler = (filterValue: FilterValueProps) => {
   return getNewFilterResource(`terminals/requests`, filterValue)
 }

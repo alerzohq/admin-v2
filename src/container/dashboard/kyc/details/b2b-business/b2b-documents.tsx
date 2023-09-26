@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react'
 
 import { Color } from '../../../../../assets/theme'
 import { Stack, Text } from '../../../../../components'
-import { checkPdfUrl } from '../../../../../utils/formatValue'
 import { DocFile } from './doc-file'
 
 const B2BDocuments = ({ state }: any) => {

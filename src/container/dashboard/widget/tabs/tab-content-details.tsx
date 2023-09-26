@@ -60,14 +60,14 @@ const DetailsContentWidget = ({
                       borderColor={Color.alerzoBlue}
                       loading={isLoading}
                     >
-                      {'Verify'}
+                      Verify
                     </Button>
                   )}
                 </HeaderContainer>
                 <FlexTableWrapper.Row
                   key={index}
                   data={item?.data}
-                  header={item.header}
+                  header={item?.header}
                   bgBottomColor={Color.alerzoWhite}
                   clickable={item?.clickable}
                 />

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import { TopBarProps } from './type'
 import Text from '../text'
 import { TopbarWrapper, TopbarFilters, Filter } from './styles/topbar.styles'
@@ -6,7 +6,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { ArrowBackIcon } from '../../assets/icons'
 import DateRange from '../date-range'
 import Stack from '../stack'
-import { SelectInputProps } from '../../@types'
+import { SelectInputProps } from '../../@types/global'
 import SelectInput from '../select-input'
 import Button from '../button'
 
@@ -37,19 +37,16 @@ const TopBar = ({
   })
 
   const { search } = values
-  const ref = useRef<HTMLDivElement>(null)
-  const rectVal = ref?.current?.getBoundingClientRect()?.left
-  const position = rectVal && rectVal >= 600 && '20px'
-
+  const position = showFilters?.selects?.length <=3?'20px':''
   useEffect(() => {
     if (showFilters && status !== null) {
       if (filterValue) {
-        return setFilterValues((prev: any) => ({ ...prev, status }))
+        return setFilterValues((prev: {}) => ({ ...prev, status }))
       }
     }
     if (showFilters) {
       if (filterValue) {
-        setFilterValues((prev: any) => ({ ...prev, query: search }))
+        setFilterValues((prev: {}) => ({ ...prev, query: search }))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +54,7 @@ const TopBar = ({
 
   useEffect(() => {
     if (Object.keys(newObj).length > 0) {
-      filterValue && setFilterValues((prev: any) => ({ ...prev, ...newObj }))
+      filterValue && setFilterValues((prev: {}) => ({ ...prev, ...newObj }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newObj])
@@ -99,7 +96,7 @@ const TopBar = ({
             )}
 
             {showFilters?.date && (
-              <div ref={ref}>
+              <div style={{position:showFilters?.selects?.length > 3 ?'relative':'initial'}}>
                 <DateRange right={position} filterDate={setFilterValues} />
               </div>
             )}

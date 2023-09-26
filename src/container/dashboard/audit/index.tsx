@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 // import ReactPaginate from 'react-paginate'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { filterProps } from '../../../@types'
+import { FilterValueProps } from '../../../@types/global'
 // import { TimelineIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
@@ -45,7 +45,7 @@ const Audit = () => {
     }
   }, [state?.detail.id])
 
-  const getSessions = (filterAudit: filterProps) => {
+  const getSessions = (filterAudit: FilterValueProps) => {
     return getNewFilterResource(`sessions`, filterAudit)
   }
   const { isLoading, isError, data, refetch, error, isFetching } = useQuery(

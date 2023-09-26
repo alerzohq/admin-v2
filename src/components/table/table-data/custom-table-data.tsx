@@ -9,7 +9,7 @@ export type selectedDataType = {
   [key: string]: any
 }
 
-type dataProps = {
+export type DataProps = {
   tableData: selectedDataType[]
   name: string
   amountIndex?: number
@@ -19,13 +19,15 @@ type dataProps = {
   actionBtn?: boolean
   hideDate?: boolean
   setParams?: boolean
+  notClickable?:boolean
   selectIndex?: number
   buttonTitle?: string
+  actionPlaceholder?:string
   options?: any[]
   handleChange?: (item: Record<string, string>) => void
   handleRouthPath?: (item: Record<string, string>) => void
 }
-type dataList = string[] | undefined
+type DataList = string[] | undefined
 
 const CustomTableData = ({
   tableData,
@@ -33,13 +35,15 @@ const CustomTableData = ({
   amountIndex,
   hideActive,
   dateFormat,
+  actionPlaceholder,
   hideDate,
+  notClickable,
   options,
   actionBtn,
   buttonTitle,
   handleRouthPath,
   handleChange,
-}: dataProps) => {
+}: DataProps) => {
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
@@ -48,7 +52,7 @@ const CustomTableData = ({
     <tbody>
       {tableData?.map((item, index) => {
         let newObj = transformData({ item, name })
-        let dataList: dataList = newObj && Object.values(newObj)
+        let dataList: DataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
         return (
           <tr key={index}>
@@ -60,7 +64,7 @@ const CustomTableData = ({
                       ? () => {
                           handleRouthPath?.(item)
                         }
-                      : i === 0
+                      : i === 0 && !notClickable
                       ? () => {
                           navigate(`${item?.slug}`, {
                             state: { detail: item },
@@ -100,7 +104,7 @@ const CustomTableData = ({
               >
                 {options && (
                   <SelectInput
-                    placeholder="Change Biller"
+                    placeholder={actionPlaceholder??"Change Biller"}
                     onChange={(e) => {
                       handleChange?.({
                         newBiller: e.value,

@@ -22,7 +22,7 @@ const useActivateProduct = (
       queryClient.invalidateQueries('product-detail')
       setShow(false)
     },
-    onError: (error) => {
+    onError: (error: ErrorType) => {
       toast.error(errorMessage(error))
     },
   })
