@@ -166,6 +166,7 @@ if (item && name === 'biller-products') {
 
   if (item && name === 'business-products') {
     const { product, commissionRates, createdAt, adminDisabled } = item
+    
     const type = commissionRates?.[0]?.rate?.type
     const percentage = commissionRates?.[0]?.rate?.percentage
     const flat = commissionRates?.[0]?.rate?.amount
@@ -176,7 +177,7 @@ if (item && name === 'biller-products') {
       cap
     )
     let status = adminDisabled ? 'Inactive' : 'Active'
-    const displayName = product?.displayName
+    const displayName = item?.displayName
 
     return { displayName, type, rates, status, createdAt }
   }
