@@ -28,10 +28,10 @@ const Products = (isB2B: any) => {
   const { dispatch } = useAppContext()
 
   const navigate = useNavigate()
-
+  // https://api.develop.alerzopay.com/v2/admin/business/:{{businessId}}/available-products?pageNumber=1&count=20
   const getBusinessProducts = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
-      `business/${businessId}/products`,
+      `business/${businessId}/available-products`,
       filterValue,
       false
     )
@@ -58,7 +58,7 @@ const Products = (isB2B: any) => {
 
   const handleSetCommission = (item: Record<string, string>) => {
     setShowModal(true)
-    setProduct(item)
+    setProduct({...item, businessId, productSlug: item?.slug })
   }
 
   let component
