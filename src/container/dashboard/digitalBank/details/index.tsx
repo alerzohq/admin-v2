@@ -39,7 +39,7 @@ const DigitalBankDetailContainer = () => {
     setSuccess,
     setShowResetQst
   )
-  const { isLoading, isError, data, isFetching,  } = useQuery(
+  const { isLoading, isError, data, isFetching } = useQuery(
     'customer-detail',
     getBusinessDetails
   )

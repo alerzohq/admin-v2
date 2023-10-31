@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Modal from '../../../../components/modal'
 import { Button, Form, SelectInput } from '../../../../components'
-import { capitalize, convertToKobo, convertToNaira } from '../../../../utils/formatValue'
+import {
+  capitalize,
+  convertToKobo,
+  convertToNaira,
+} from '../../../../utils/formatValue'
 import SuccessModal from '../../../../components/success-modal/success-modal'
 import { COMMISSION_OPTIONS } from '../../../../data/product-data'
 import Checkbox from '../../../../components/checkbox'
@@ -48,26 +52,32 @@ const UpdateCommission = ({
     data?.product_slug
   )
 
-
   let isPercentage = inputValues.rate?.value === 'percentage'
 
   let payload = {
     billerSlug: slug,
     rate: {
       type: inputValues.rate?.value,
-      ...(!isPercentage && { amount: convertToKobo(inputValues?.commission)}),
+      ...(!isPercentage && { amount: convertToKobo(inputValues?.commission) }),
       ...(isPercentage && { percentage: Number(inputValues?.commission) }),
-      ...(isPercentage && inputValues?.cap && { cap: convertToKobo(inputValues?.cap)}),
+      ...(isPercentage &&
+        inputValues?.cap && { cap: convertToKobo(inputValues?.cap) }),
     },
     splits: [
       {
         target: 'business',
         rate: {
           type: inputValues.rate?.value,
-          ...(!isPercentage && { amount: convertToKobo(inputValues?.merchantCommission)}),
-          ...(isPercentage && { percentage: Number(inputValues?.merchantCommission) }),
+          ...(!isPercentage && {
+            amount: convertToKobo(inputValues?.merchantCommission),
+          }),
+          ...(isPercentage && {
+            percentage: Number(inputValues?.merchantCommission),
+          }),
           ...(isPercentage &&
-            inputValues?.merchantCap && { cap: convertToKobo(inputValues?.merchantCap)}),
+            inputValues?.merchantCap && {
+              cap: convertToKobo(inputValues?.merchantCap),
+            }),
         },
       },
     ],
@@ -78,15 +88,17 @@ const UpdateCommission = ({
       setInputValues({
         ...inputValues,
         cap: convertToNaira(data?.rate?.cap),
-        merchantCap:convertToNaira(data?.splits?.[0]?.rate?.cap),
-        commission: data?.rate?.percentage || convertToNaira(data?.rate?.amount || '0'),
-        merchantCommission: data?.splits?.[0]?.rate?.percentage ||
-        convertToNaira(data?.splits?.[0]?.rate?.amount || '0'),
+        merchantCap: convertToNaira(data?.splits?.[0]?.rate?.cap),
+        commission:
+          data?.rate?.percentage || convertToNaira(data?.rate?.amount || '0'),
+        merchantCommission:
+          data?.splits?.[0]?.rate?.percentage ||
+          convertToNaira(data?.splits?.[0]?.rate?.amount || '0'),
         rate: { label: capitalize(data?.rate?.type), value: data?.rate?.type },
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.rate?.type,showModal])
+  }, [data?.rate?.type, showModal])
 
   const handleChange = (name: string, value: string) => {
     setInputValues({
@@ -103,12 +115,17 @@ const UpdateCommission = ({
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    const error = validateForm(inputValues, isPercentage, commissionCap, isMerchantCap);
+    const error = validateForm(
+      inputValues,
+      isPercentage,
+      commissionCap,
+      isMerchantCap
+    )
 
     if (Object.keys(error).length > 0) {
-      setError(error);
+      setError(error)
     } else {
-      mutate(payload);
+      mutate(payload)
     }
   }
 
@@ -141,7 +158,7 @@ const UpdateCommission = ({
             />
           </Form.Control>
 
-          <Form.Control pb='0.5rem'>
+          <Form.Control pb="0.5rem">
             <Form.Label>Commission</Form.Label>
             <Form.Input
               type="number"
@@ -162,7 +179,7 @@ const UpdateCommission = ({
             </Form.Control>
           )}
           {isPercentage && commissionCap && (
-            <Form.Control pb='1rem'>
+            <Form.Control pb="1rem">
               <Form.Label>Commission Capped @</Form.Label>
               <Form.Input
                 type="number"
@@ -174,15 +191,17 @@ const UpdateCommission = ({
             </Form.Control>
           )}
 
-          <Form.Control pb='0.5rem'>
+          <Form.Control pb="0.5rem">
             <Form.Label>Merchants Rate</Form.Label>
             <Form.Input
               type="number"
-              onChange={(e) => handleChange('merchantCommission', e.target.value)}
+              onChange={(e) =>
+                handleChange('merchantCommission', e.target.value)
+              }
               placeholder="Merchants Rate"
               value={inputValues.merchantCommission}
             />
-              {error && <Form.Error>{error.merchantCommission}</Form.Error>}
+            {error && <Form.Error>{error.merchantCommission}</Form.Error>}
           </Form.Control>
           {isPercentage && (
             <Form.Control pb="1rem">
@@ -195,7 +214,7 @@ const UpdateCommission = ({
             </Form.Control>
           )}
           {isPercentage && isMerchantCap && (
-            <Form.Control pb='1rem'>
+            <Form.Control pb="1rem">
               <Form.Label>Merchants Rate Capped @</Form.Label>
               <Form.Input
                 type="number"

@@ -22,11 +22,11 @@ type stackProps = {
   borderRight?: string
   border?: string
   borderRadius?: string
-  boxShadow?:string
-  cursor?:string
-  transition?:string
-  overflow?:string
-  height?:string
+  boxShadow?: string
+  cursor?: string
+  transition?: string
+  overflow?: string
+  height?: string
 }
 
 export const StackWrapper = styled.div<stackProps>`
