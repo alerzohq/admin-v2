@@ -24,6 +24,6 @@ export const productHelper = (data: any) => {
 }
 
 export const COMMISSION_OPTIONS = [
-    { label: 'Percentage', value: 'percentage' },
-    { label: 'Flat', value: 'flat' },
-  ]
+  { label: 'Percentage', value: 'percentage' },
+  { label: 'Flat', value: 'flat' },
+]

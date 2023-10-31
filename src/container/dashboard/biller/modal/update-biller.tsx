@@ -38,8 +38,7 @@ const UpdateBiller = ({
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.email,showModal])
-
+  }, [data?.email, showModal])
 
   const handleChange = (name: string, value: string) => {
     setInputValues({
@@ -54,12 +53,12 @@ const UpdateBiller = ({
     e.preventDefault()
     if (!isEmailValid(inputValues?.email)) {
       setEmailError('Please enter a valid email')
-    } else if(inputValues?.phoneNumber?.length < 11){
+    } else if (inputValues?.phoneNumber?.length < 11) {
       setPhoneError('Phone number must be 11 characters')
-    }else {
+    } else {
       mutate({
         email: inputValues?.email,
-        phoneNumber:inputValues?.phoneNumber,
+        phoneNumber: inputValues?.phoneNumber,
         slug,
       })
     }
@@ -113,7 +112,7 @@ const UpdateBiller = ({
               placeholder="Phone Number"
               value={convertPhoneNumber(inputValues.phoneNumber)}
             />
-           {phoneError && <Form.Error>{phoneError}</Form.Error>}
+            {phoneError && <Form.Error>{phoneError}</Form.Error>}
           </Form.Control>
         </Form>
         <Button

@@ -38,18 +38,16 @@ const Modal = ({
   subTitleWhiteSpace,
   footer,
 }: ModalProps) => {
-
- useEffect(() => {
+  useEffect(() => {
     if (showModal) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'
     }
-  }, [showModal]);
+  }, [showModal])
 
   return (
-
-      <BackDrop isShown={showModal}>
+    <BackDrop isShown={showModal}>
       <ModalWrapper isShown={showModal}>
         <StyledModal
           isShown={showModal}
@@ -130,7 +128,7 @@ const Modal = ({
           )}
         </StyledModal>
       </ModalWrapper>
-     </BackDrop>
+    </BackDrop>
   )
 }
 export default Modal

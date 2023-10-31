@@ -58,11 +58,11 @@ const CustomTableData = ({
     switch (value) {
       case 1:
         return handleChange?.(item)
-        break;
+        break
       case 2:
         return handleOnClickSecondActionBtn?.(item)
       default:
-        break;
+        break
     }
   }
 
@@ -79,32 +79,32 @@ const CustomTableData = ({
                 <div
                   onClick={
                     !!handleRouthPath
-                      ? () => { 
-                        handleRouthPath?.(item)
-                      }
+                      ? () => {
+                          handleRouthPath?.(item)
+                        }
                       : i === 0 && !notClickable
-                        ? () => {
+                      ? () => {
                           navigate(`${item?.slug}`, {
                             state: { detail: item },
                           })
                         }
-                        : () => { }
+                      : () => {}
                   }
-                  className={ 
+                  className={
                     data === 'successful' || data === 'Active'
                       ? 'success'
                       : data === 'pending'
-                        ? 'pending'
-                        : data === 'failed' || data === 'Inactive'
-                          ? 'failed'
-                          : '' + (i === 0 && !hideActive && 'tableLink')
+                      ? 'pending'
+                      : data === 'failed' || data === 'Inactive'
+                      ? 'failed'
+                      : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
                   {lastItem && lastItem === data && !hideDate
                     ? formatDate(data, dateFormat || 'lll')
                     : i === amountIndex
-                      ? `₦${amountConverter(data)}`
-                      : data}
+                    ? `₦${amountConverter(data)}`
+                    : data}
                 </div>
               </td>
             ))}
@@ -122,7 +122,7 @@ const CustomTableData = ({
               >
                 {options && (
                   <SelectInput
-                    placeholder={actionPlaceholder ?? "Change Biller"}
+                    placeholder={actionPlaceholder ?? 'Change Biller'}
                     onChange={(e) => {
                       handleChange?.({
                         newBiller: e.value,
@@ -137,26 +137,30 @@ const CustomTableData = ({
                     hideValue
                   />
                 )}
-
-
-
-
               </div>
             </td>
-           {actionBtn && <td>
-              <>
-                <ActionButton onClick={() => handleChange?.(item)}>
-                  {buttonTitle ?? 'Change Rate'}
-                </ActionButton>
-              </>
-            </td>}
-           {showSecondBtn && <td>
-              <>
-                <ActionButton onClick={() => handleOnClickSecondActionBtn?.(item)}>
-                  {typeof secondActionBtnText === 'function' ? secondActionBtnText?.(item) : secondActionBtnText}
-                </ActionButton>
-              </>
-            </td>}
+            {actionBtn && (
+              <td>
+                <>
+                  <ActionButton onClick={() => handleChange?.(item)}>
+                    {buttonTitle ?? 'Change Rate'}
+                  </ActionButton>
+                </>
+              </td>
+            )}
+            {showSecondBtn && (
+              <td>
+                <>
+                  <ActionButton
+                    onClick={() => handleOnClickSecondActionBtn?.(item)}
+                  >
+                    {typeof secondActionBtnText === 'function'
+                      ? secondActionBtnText?.(item)
+                      : secondActionBtnText}
+                  </ActionButton>
+                </>
+              </td>
+            )}
           </tr>
         )
       })}

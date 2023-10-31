@@ -7,7 +7,6 @@ import {
   AuthContent,
   AuthImage,
   AuthInner,
-
 } from './styles/layout.styles'
 import authImage from '../../../assets/images/svgs/auth-img.svg'
 import { Text } from '../../../components'

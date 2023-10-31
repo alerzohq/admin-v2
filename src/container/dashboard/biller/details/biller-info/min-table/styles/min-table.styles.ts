@@ -1,10 +1,10 @@
-import styled from "styled-components/macro";
-import { Color } from "../../../../../../../assets/theme";
+import styled from 'styled-components/macro'
+import { Color } from '../../../../../../../assets/theme'
 
 export const MinTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  table-layout:  'auto';
+  table-layout: 'auto';
   thead {
     background: ${Color.alerzoGray3};
     color: #001928;
@@ -39,10 +39,9 @@ export const MinTable = styled.table`
   tbody {
     margin: 0 2rem;
     tr {
-
       border-right: none;
       border-left: 0;
-      border-bottom:none;
+      border-bottom: none;
       height: 60px;
 
       color: #373737;
@@ -52,18 +51,17 @@ export const MinTable = styled.table`
         font-weight: 500;
         padding: 0.5rem 1rem;
         position: relative;
-        &:first-child::before{
-            width:0px;
-        };
-        &:before{
-        content:'';
-        position: absolute;
-        height:80%;
-        width:1px;
-        background:${Color.alerzoGrayBorder};
-        top: 10%;
-        left: 0;
-
+        &:first-child::before {
+          width: 0px;
+        }
+        &:before {
+          content: '';
+          position: absolute;
+          height: 80%;
+          width: 1px;
+          background: ${Color.alerzoGrayBorder};
+          top: 10%;
+          left: 0;
         }
       }
     }

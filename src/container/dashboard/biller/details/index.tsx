@@ -18,13 +18,13 @@ const BillerDetailContainer = () => {
   )
 
   const billerData = data?.data?.billerProductCommissions?.[0]
-  const biller={
-    created_at:billerData?.created_at,
-    disabled:billerData?.disabled,
-    displayName:billerData?.display_name,
-    email:billerData?.email,
-    phoneNumber:billerData?.phone_number,
-    updated_at:billerData?.updated_at,
+  const biller = {
+    created_at: billerData?.created_at,
+    disabled: billerData?.disabled,
+    displayName: billerData?.display_name,
+    email: billerData?.email,
+    phoneNumber: billerData?.phone_number,
+    updated_at: billerData?.updated_at,
   }
 
   return (
@@ -40,7 +40,7 @@ const BillerDetailContainer = () => {
       ) : (
         <>
           <BillerInfo data={biller} slug={slug} />
-          <BillerProducts products={billerData?.product_list} slug={slug!}/>
+          <BillerProducts products={billerData?.product_list} slug={slug!} />
         </>
       )}
     </Container>

@@ -18,10 +18,9 @@ import { Action } from '../../../../../context/actions'
 import CustomTableData from '../../../../../components/table/table-data/custom-table-data'
 import TableHeader from '../../../../../components/table/table-headers'
 import { DataTable } from '../../../../../components/table/styles/table.styles'
-import CommissionModal from './modal/set-commission-modal' 
+import CommissionModal from './modal/set-commission-modal'
 import DeactivateProductModal from './modal/deactivate-product-modal'
 import ActivateProductModal from './modal/activate-product-modal'
-
 
 const Products = (isB2B: any) => {
   const { businessId } = useParams()
@@ -103,7 +102,9 @@ const Products = (isB2B: any) => {
           dateFormat="YYYY-MM-DD HH:mm:ss"
           handleRouthPath={handleRoute}
           showSecondBtn
-          secondActionBtnText={item => item?.disabled ? 'Enable Product' : 'Disable Product'}
+          secondActionBtnText={(item) =>
+            item?.disabled ? 'Enable Product' : 'Disable Product'
+          }
         />
       </DataTable>
     )
@@ -118,7 +119,7 @@ const Products = (isB2B: any) => {
         setShowModal={setShowDisableModal}
         showModal={showDisableModal}
       />
-      
+
       <ActivateProductModal
         businessId={businessId}
         productName={product?.name}
@@ -126,7 +127,7 @@ const Products = (isB2B: any) => {
         setShowModal={setShowEnableModal}
         showModal={showEnableModal}
       />
-      
+
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
         <Filter
           isFetching={isFetching}
