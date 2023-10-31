@@ -54,18 +54,6 @@ const CustomTableData = ({
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-  const handleSelectChange = (value: number, item: any) => {
-    switch (value) {
-      case 1:
-        return handleChange?.(item)
-        break
-      case 2:
-        return handleOnClickSecondActionBtn?.(item)
-      default:
-        break
-    }
-  }
-
   return (
     <tbody>
       {tableData?.map((item, index) => {
