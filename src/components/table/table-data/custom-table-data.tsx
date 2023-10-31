@@ -19,13 +19,16 @@ export type DataProps = {
   actionBtn?: boolean
   hideDate?: boolean
   setParams?: boolean
-  notClickable?:boolean
+  notClickable?: boolean
+  showSecondBtn?: boolean
   selectIndex?: number
   buttonTitle?: string
-  actionPlaceholder?:string
+  actionPlaceholder?: string
   options?: any[]
   handleChange?: (item: Record<string, string>) => void
+  handleOnClickSecondActionBtn?: (item: Record<string, string>) => void
   handleRouthPath?: (item: Record<string, string>) => void
+  secondActionBtnText?: string | ((item: Record<string, string>) => string)
 }
 type DataList = string[] | undefined
 
@@ -42,11 +45,26 @@ const CustomTableData = ({
   actionBtn,
   buttonTitle,
   handleRouthPath,
+  showSecondBtn,
+  handleOnClickSecondActionBtn,
+  secondActionBtnText,
   handleChange,
 }: DataProps) => {
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
+
+  const handleSelectChange = (value: number, item: any) => {
+    switch (value) {
+      case 1:
+        return handleChange?.(item)
+        break;
+      case 2:
+        return handleOnClickSecondActionBtn?.(item)
+      default:
+        break;
+    }
+  }
 
   return (
     <tbody>
@@ -61,32 +79,32 @@ const CustomTableData = ({
                 <div
                   onClick={
                     !!handleRouthPath
-                      ? () => {
-                          handleRouthPath?.(item)
-                        }
+                      ? () => { 
+                        handleRouthPath?.(item)
+                      }
                       : i === 0 && !notClickable
-                      ? () => {
+                        ? () => {
                           navigate(`${item?.slug}`, {
                             state: { detail: item },
                           })
                         }
-                      : () => {}
+                        : () => { }
                   }
-                  className={
+                  className={ 
                     data === 'successful' || data === 'Active'
                       ? 'success'
                       : data === 'pending'
-                      ? 'pending'
-                      : data === 'failed' || data === 'Inactive'
-                      ? 'failed'
-                      : '' + (i === 0 && !hideActive && 'tableLink')
+                        ? 'pending'
+                        : data === 'failed' || data === 'Inactive'
+                          ? 'failed'
+                          : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
                   {lastItem && lastItem === data && !hideDate
                     ? formatDate(data, dateFormat || 'lll')
                     : i === amountIndex
-                    ? `₦${amountConverter(data)}`
-                    : data}
+                      ? `₦${amountConverter(data)}`
+                      : data}
                 </div>
               </td>
             ))}
@@ -104,7 +122,7 @@ const CustomTableData = ({
               >
                 {options && (
                   <SelectInput
-                    placeholder={actionPlaceholder??"Change Biller"}
+                    placeholder={actionPlaceholder ?? "Change Biller"}
                     onChange={(e) => {
                       handleChange?.({
                         newBiller: e.value,
@@ -119,13 +137,26 @@ const CustomTableData = ({
                     hideValue
                   />
                 )}
-                {actionBtn && (
-                  <ActionButton onClick={() => handleChange?.(item)}>
-                    {buttonTitle ?? 'Change Rate'}
-                  </ActionButton>
-                )}
+
+
+
+
               </div>
             </td>
+           {actionBtn && <td>
+              <>
+                <ActionButton onClick={() => handleChange?.(item)}>
+                  {buttonTitle ?? 'Change Rate'}
+                </ActionButton>
+              </>
+            </td>}
+           {showSecondBtn && <td>
+              <>
+                <ActionButton onClick={() => handleOnClickSecondActionBtn?.(item)}>
+                  {typeof secondActionBtnText === 'function' ? secondActionBtnText?.(item) : secondActionBtnText}
+                </ActionButton>
+              </>
+            </td>}
           </tr>
         )
       })}
