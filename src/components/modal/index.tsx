@@ -36,7 +36,6 @@ const Modal = ({
   icon,
   withoutFooter,
   subTitleWhiteSpace,
-  footer,
 }: ModalProps) => {
   useEffect(() => {
     if (showModal) {
@@ -44,7 +43,11 @@ const Modal = ({
     } else {
       document.body.style.overflow = 'auto'
     }
+    return()=>{
+      document.body.style.overflow = 'auto'
+    }
   }, [showModal])
+
 
   return (
     <BackDrop isShown={showModal}>

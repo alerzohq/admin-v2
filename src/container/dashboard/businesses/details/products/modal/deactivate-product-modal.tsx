@@ -1,12 +1,11 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Modal from '../../../../../../components/modal'
 import { Button } from '../../../../../../components'
 import DangerWarning from '../../../../../../assets/icons/danger-warning'
 import { Color } from '../../../../../../assets/theme'
 import { useAppContext } from '../../../../../../context'
 import useSendOTPMutation from '../../../hooks/useSendOtpMutation'
-import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
+// import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
 import useDeactivateBusinessProduct from '../../../hooks/useDeactivateProductMutation'
 import VerificationPinModal from '../../../../widget/verification-pin-modal/verification-pin-modal'
 import SuccessModal from '../../../../../../components/success-modal/success-modal'
@@ -29,6 +28,11 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   const {
     state: { userOtp },
   } = useAppContext()
+  const [showVerification, setShowVerification] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [, setShow] = useState(false)
+  const [otp, setOtp] = useState('')
+  const [otpError, setOtpError] = useState(false)
 
   // mutations
   const { handleSendOTP } = useSendOTPMutation({
@@ -37,21 +41,14 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
     productSlug,
   })
 
-  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
-    useResendOTPMutation({
-      userOtp,
-      businessId,
-      productSlug,
-    })
+  // const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
+  //   useResendOTPMutation({
+  //     userOtp,
+  //     businessId,
+  //     productSlug,
+  //   })
 
   // states
-  const [showVerification, setShowVerification] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [show, setShow] = useState(false)
-  const [otp, setOtp] = useState('')
-  const [otpError, setOtpError] = useState(false)
-
-  const navigate = useNavigate()
 
   const handleCancel = () => {
     setShowModal(!showModal)
@@ -155,10 +152,10 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           productName={productName}
           showSuccess={showSuccess}
           setShowSuccess={setShowSuccess}
-          message={'You have successfully deactivated'}
-          btnText={'Back To Products'}
-          title={'Product Deactivated'}
-          onClick={() => navigate(-1)}
+          message='You have successfully deactivated'
+          btnText='Back To Products'
+          title='Product Deactivated'
+          onClick={() => setShowSuccess(false)}
         />
       )}
     </>

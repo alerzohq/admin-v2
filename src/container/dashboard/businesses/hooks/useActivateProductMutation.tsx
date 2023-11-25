@@ -6,11 +6,11 @@ import { errorMessage } from '../../../../utils/message'
 
 const useActivateBusinessProduct = (
   setShow: React.Dispatch<React.SetStateAction<boolean>>,
-  slug: string | any,
+  slug: string,
   otp: string
 ) => {
   const queryClient = useQueryClient()
-  const activateBusinessProduct = (id: string | any) => {
+  const activateBusinessProduct = (id: string) => {
     return postRequest({
       pathUrl: `business/${id}/products/${slug}/activate`,
       payload: { otp },
@@ -20,7 +20,7 @@ const useActivateBusinessProduct = (
 
   return useMutation(activateBusinessProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries('business-product-detail')
+      queryClient.invalidateQueries('business-products')
       setShow(false)
     },
     onError: (error) => {

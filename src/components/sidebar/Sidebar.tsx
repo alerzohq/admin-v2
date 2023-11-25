@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import getActiveTab from '../../../utils/getActiveTab'
+import getActiveTab from '../../utils/getActiveTab'
 import signoutlogout from '../../../assets/images/pngs/signout-logout.png'
 import styles from './sidenav.module.css'
 import { useLocation } from 'react-router-dom'

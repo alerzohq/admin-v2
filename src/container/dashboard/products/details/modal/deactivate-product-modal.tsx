@@ -36,7 +36,7 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
   // states
   const [showVerification, setShowVerification] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-  const [show, setShow] = useState(false)
+  const [, setShow] = useState(false)
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
 

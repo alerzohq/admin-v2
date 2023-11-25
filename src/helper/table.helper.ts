@@ -187,7 +187,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
   //Business Products Table Data
 
   if (item && name === 'business-products') {
-    const { product, commissionRates, createdAt, adminDisabled } = item
+    const { commissionRates, createdAt, adminDisabled } = item
 
     const type = commissionRates?.[0]?.rate?.type
     const percentage = commissionRates?.[0]?.rate?.percentage

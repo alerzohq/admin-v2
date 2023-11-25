@@ -20,7 +20,7 @@ const useDeactivateBusinessProduct = (
 
   return useMutation(deactivateBusinessProduct, {
     onSuccess: () => {
-      queryClient.invalidateQueries('business-product-detail')
+      queryClient.invalidateQueries('business-products')
       setShow(false)
     },
     onError: (error) => {
