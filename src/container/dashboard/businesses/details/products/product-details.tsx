@@ -29,7 +29,7 @@ const BusinessProductDetailsContainer = () => {
 
   const { businessId } = useParams()
 
-  const [values, setValues] = useState({})
+  const [, setValues] = useState({})
   const [value, setValue] = useState('')
   const [isDeactivateModal, setIsDeactivateModal] = useState(false)
   const [isActivateModal, setIsActivateModal] = useState(false)
@@ -37,18 +37,18 @@ const BusinessProductDetailsContainer = () => {
   const getProductBillers = (productSlug: string) => {
     return getResource(`products/${productSlug}/billers`)
   }
-  const getProductBillersDetails = (productSlug: string) => {
-    return getResource(`products/${productSlug}`)
-  }
+  // const getProductBillersDetails = (productSlug: string) => {
+  //   return getResource(`products/${productSlug}`)
+  // }
   const { isLoading, isRefetching, isError, refetch, data, error } = useQuery(
-    ['billers', state?.item?.productSlug],
+    ['business-product', state?.item?.productSlug],
     () => getProductBillers(state?.item?.productSlug)
   )
 
-  const { data: billerDetails } = useQuery(
-    ['billers-details', state?.item?.productSlug],
-    () => getProductBillersDetails(state?.item?.productSlug)
-  )
+  // const { data: billerDetails } = useQuery(
+  //   ['billers-details', state?.item?.productSlug],
+  //   () => getProductBillersDetails(state?.item?.productSlug)
+  // )
   const resp = data?.data?.[0]
 
   let component

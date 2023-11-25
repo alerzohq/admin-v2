@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
@@ -13,7 +13,7 @@ import Receipt from './tab-content/receipt'
 import TabsContentWidget from '../../widget/tabs/tab-content'
 import Modal from '../../../../components/modal'
 import useRequeryTransactions from '../hooks/useRequeryTransactions'
-import { ResponseDiv } from './details.styles'
+import { ResponseViewer } from './styles/details.styles'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
@@ -135,7 +135,7 @@ const TabsContainer = () => {
         }}
       >
         {isBillerResponse && (
-          <ResponseDiv>{JSON.stringify(billerResponse, null, 2)}</ResponseDiv>
+          <ResponseViewer>{JSON.stringify(billerResponse, null, 2)}</ResponseViewer>
         )}
       </Modal>
     </>

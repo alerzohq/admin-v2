@@ -4,10 +4,10 @@ import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { SelectInput } from '../../../../../components'
 import Modal from '../../../../../components/modal'
-import { ModalLabel } from '../../../../../components/modal-label/modal.styles'
 import { axiosInstance } from '../../../../../configs/axios-instance'
 import { errorMessage } from '../../../../../utils/message'
 import { TextArea } from '../../terminalmodal.styles'
+import { ModalLabel } from '../../../../../components/modal/styles/modal.styles'
 
 enum OrderStatus {
   rejected = 'rejecting',
@@ -66,7 +66,7 @@ export const StatusModal = ({
       showModal={showModal}
       setShowModal={setShowModal}
       title="Update Terminal Status"
-      contentPadding={'0'}
+      contentPadding='0'
       children={
         <>
           <ModalLabel>Order Status</ModalLabel>

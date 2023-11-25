@@ -59,6 +59,13 @@ export const HeaderText = styled.div`
   text-align: center;
   align-items: center;
 `
+export const ModalLabel = styled.span`
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: start;
+  width: 100%;
+`
+
 
 export const CloseButton = styled.div`
   align-self: end;
