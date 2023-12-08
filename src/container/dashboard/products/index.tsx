@@ -141,7 +141,7 @@ const ProductsContainer = () => {
         slug={slug || ''}
         setBiller={setNewBiller}
       />
-      <Jumbotron padding='.5rem 1rem' direction='column' mb='2rem'>
+      <Jumbotron padding=".5rem 1rem" direction="column" mb="2rem">
         <Filter
           setFilterValues={setValues}
           showFilters={{

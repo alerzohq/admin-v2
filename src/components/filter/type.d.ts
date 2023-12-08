@@ -12,7 +12,13 @@ export type FilterProps = {
       placeholder: string
       onChange?: () => void
       value: string | boolean
-      query?: 'search' | 'status' | 'allPlatform' | 'variant' | 'active'|'disabled'
+      query?:
+        | 'search'
+        | 'status'
+        | 'allPlatform'
+        | 'variant'
+        | 'active'
+        | 'disabled'
     }[]
     buttons?: {
       buttonClass: string

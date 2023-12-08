@@ -19,19 +19,23 @@ import CustomTableData from '../../../../../components/table/table-data/custom-t
 import TableHeader from '../../../../../components/table/table-headers'
 import { DataTable } from '../../../../../components/table/styles/table.styles'
 import CommissionModal from './modal/set-commission-modal'
+import DeactivateProductModal from './modal/deactivate-product-modal'
+import ActivateProductModal from './modal/activate-product-modal'
 
 const Products = (isB2B: any) => {
   const { businessId } = useParams()
   const [values, setValues] = useState(filterValue)
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState<any>({})
   const [showModal, setShowModal] = useState(false)
   const { dispatch } = useAppContext()
+  const [showDisableModal, setShowDisableModal] = useState(false)
+  const [showEnableModal, setShowEnableModal] = useState(false)
 
   const navigate = useNavigate()
-
+  // https://api.develop.alerzopay.com/v2/admin/business/:{{businessId}}/available-products?pageNumber=1&count=20
   const getBusinessProducts = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
-      `business/${businessId}/products`,
+      `business/${businessId}/available-products`,
       filterValue,
       false
     )
@@ -58,7 +62,18 @@ const Products = (isB2B: any) => {
 
   const handleSetCommission = (item: Record<string, string>) => {
     setShowModal(true)
-    setProduct(item)
+    setProduct({ ...item, businessId, productSlug: item?.slug })
+  }
+
+  const handleManageProduct = (item: Record<string, string>) => {
+    setProduct({ ...item, businessId, productSlug: item?.slug })
+    if (item?.disabled) {
+      setShowEnableModal(true)
+    } else {
+      setShowDisableModal(true)
+    }
+
+    // setShowModal(true)
   }
 
   let component
@@ -82,9 +97,14 @@ const Products = (isB2B: any) => {
           name="business-products"
           tableData={data?.data}
           handleChange={handleSetCommission}
+          handleOnClickSecondActionBtn={handleManageProduct}
           actionBtn={true}
           dateFormat="YYYY-MM-DD HH:mm:ss"
           handleRouthPath={handleRoute}
+          showSecondBtn
+          secondActionBtnText={(item) =>
+            item?.disabled ? 'Enable Product' : 'Disable Product'
+          }
         />
       </DataTable>
     )
@@ -92,6 +112,22 @@ const Products = (isB2B: any) => {
 
   return (
     <>
+      <DeactivateProductModal
+        businessId={businessId}
+        productName={product?.name}
+        productSlug={product?.productSlug}
+        setShowModal={setShowDisableModal}
+        showModal={showDisableModal}
+      />
+
+      <ActivateProductModal
+        businessId={businessId}
+        productName={product?.name}
+        productSlug={product?.productSlug}
+        setShowModal={setShowEnableModal}
+        showModal={showEnableModal}
+      />
+
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
         <Filter
           isFetching={isFetching}

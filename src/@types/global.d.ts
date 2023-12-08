@@ -25,28 +25,25 @@ export type FilterValueProps = {
 }
 
 declare global {
+  interface FilterProps {
+    count: number
+    pageNumber: number
+    status?: string
+    from?: string
+    to?: string
+    query?: string
+    channel?: string
+    userId?: string
+    billerSlug?: string
+    productSlug?: string
+  }
 
-interface FilterProps {
-  count: number
-  pageNumber: number
-  status?: string
-  from?: string
-  to?: string
-  query?: string
-  channel?: string
-  userId?: string
-  billerSlug?: string
-  productSlug?: string
-}
-
-
-interface ResponseType {
+  interface ResponseType {
     data: Record<string, string>
     status: number
-}
-interface ErrorType {
-    message: string,
+  }
+  interface ErrorType {
+    message: string
     response: ResponseType
-}
-
+  }
 }

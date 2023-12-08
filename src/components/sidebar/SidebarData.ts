@@ -1,18 +1,18 @@
-import Historysvg from '../../../assets/images/svgs/historySvg'
+import Historysvg from '../../assets/images/svgs/historySvg'
 // import Notificationsvg from "./Animations/assets/notificationSvg";
-import UsersSvg from '../../../assets/images/svgs/usersSvg'
+import UsersSvg from '../../assets/images/svgs/usersSvg'
 // import ProductSvg from "./Animations/assets/productSvg";
-import ActiveUserSvg from '../../../assets/images/svgs/ActiveUserSvg'
+import ActiveUserSvg from '../../assets/images/svgs/ActiveUserSvg'
 // import ActiveNotificationsSvg from "./Animations/assets/ActiveNotificationsSvg";
-import ActiveHistory from '../../../assets/images/svgs/ActiveHistory'
-import Dashboard from '../../../assets/images/svgs/Dashboad'
-import ActiveDashboard from '../../../assets/images/svgs/ActiveDashboard'
-import ActiveBillers from '../../../assets/images/svgs/ActiveBiller'
-import BillerSvg from '../../../assets/images/svgs/billerSvg'
-import MerchantSvg from '../../../assets/images/svgs/merchantSvg'
-import ActiveMerchant from '../../../assets/images/svgs/ActiveMerchant'
-import ActiveTerminal from '../../../assets/images/svgs/ActiveTerminal'
-import TerminalSvg from '../../../assets/images/svgs/terminalSvg'
+import ActiveHistory from '../../assets/images/svgs/ActiveHistory'
+import Dashboard from '../../assets/images/svgs/Dashboad'
+import ActiveDashboard from '../../assets/images/svgs/ActiveDashboard'
+import ActiveBillers from '../../assets/images/svgs/ActiveBiller'
+import BillerSvg from '../../assets/images/svgs/billerSvg'
+import MerchantSvg from '../../assets/images/svgs/merchantSvg'
+import ActiveMerchant from '../../assets/images/svgs/ActiveMerchant'
+import ActiveTerminal from '../../assets/images/svgs/ActiveTerminal'
+import TerminalSvg from '../../assets/images/svgs/terminalSvg'
 
 const SideBarList = () => {
   const SidebarData = [

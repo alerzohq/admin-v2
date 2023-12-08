@@ -24,8 +24,8 @@ type dataProps = {
   routePath?: string
   noSlug?: boolean
   handleRouthPath?: (item: { [key: string]: any }) => void
-  handleAction?:(item: { [key: string]: any }) => void
-  actionBtnLabel?: string;
+  handleAction?: (item: { [key: string]: any }) => void
+  actionBtnLabel?: string
 }
 type dataList = string[] | undefined
 
@@ -43,7 +43,7 @@ const TableData = ({
   noSlug,
   actionBtnLabel,
   handleRouthPath,
-  handleAction
+  handleAction,
 }: dataProps) => {
   const { dispatch } = useAppContext()
   const navigate = useNavigate()
@@ -59,9 +59,9 @@ const TableData = ({
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
         return (
-        <tr key={index}>
+          <tr key={index}>
             {dataList?.map((data, i) => (
-            <td key={i} id="td-hover">
+              <td key={i} id="td-hover">
                 <TableItemDiv
                   onClick={
                     !!handleRouthPath
@@ -106,7 +106,6 @@ const TableData = ({
                           )
                         }
                   }
-
                   className={getClassNames(data, item, i, hideActive)}
                 >
                   {lastItem && lastItem === data && !hideDate
@@ -114,11 +113,16 @@ const TableData = ({
                     : i === amountIndex
                     ? `₦${amountConverter(data)}`
                     : data}
-
                 </TableItemDiv>
               </td>
             ))}
-           {handleAction &&(<td><TableButton onClick={()=>handleAction(item)}>{actionBtnLabel??'Edit'}</TableButton></td>)}
+            {handleAction && (
+              <td>
+                <TableButton onClick={() => handleAction(item)}>
+                  {actionBtnLabel ?? 'Edit'}
+                </TableButton>
+              </td>
+            )}
           </tr>
         )
       })}

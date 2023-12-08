@@ -8,7 +8,7 @@ type Props = {
   bgColor?: string
   wrapperPb?: string
   layout?: string
-  borderBottom?:boolean
+  borderBottom?: boolean
 }
 
 export const TableWrapper = styled.div<Props>`
@@ -43,7 +43,7 @@ export const DataTable = styled.table<Props>`
         font-weight: 600;
         &:first-child {
           border-top-left-radius: 20px;
-          padding-left:2rem;
+          padding-left: 2rem;
         }
         &:last-child {
           border-top-right-radius: 20px;
@@ -66,7 +66,8 @@ export const DataTable = styled.table<Props>`
       border: 0.8px solid ${Color.alerzoGrayBorder};
       border-right: none;
       border-left: 0;
-      border-bottom:${({borderBottom})=>borderBottom?`0.8px solid ${Color.alerzoGrayBorder}`:`none`};
+      border-bottom: ${({ borderBottom }) =>
+        borderBottom ? `0.8px solid ${Color.alerzoGrayBorder}` : `none`};
       height: 60px;
 
       color: #373737;
@@ -76,7 +77,7 @@ export const DataTable = styled.table<Props>`
         font-weight: 500;
         padding: 0.5rem 1rem;
         &:first-child {
-          padding-left:2rem;
+          padding-left: 2rem;
         }
       }
     }
@@ -142,13 +143,11 @@ export const PopUpStack = styled.div`
   }
 `
 
-export const ActionButton=styled.button`
-border:1px solid ${Color.alerzoBlueBorder};
-cursor:pointer;
-color:${Color.alerzoDeepBlue};
-background: ${Color.alerzoBlue7};
-border-radius: 5px;
-padding:8px 12px;
-
+export const ActionButton = styled.button`
+  border: 1px solid ${Color.alerzoBlueBorder};
+  cursor: pointer;
+  color: ${Color.alerzoDeepBlue};
+  background: ${Color.alerzoBlue7};
+  border-radius: 5px;
+  padding: 8px 12px;
 `
-
