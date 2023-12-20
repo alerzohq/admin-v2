@@ -4,9 +4,7 @@ export const TABS = [
     value: 'details',
     title: 'Transaction Details',
   },
-  { label: 'Other Information', value: 'other', title: 'Customer Details' },
-  // { label: 'Transaction Receipt', value: 'receipt', title: '' },
-  // { label: 'Staff Notes', value: 'notes', title: '' },
+  { label: 'Other Information', value: 'other' },
 ]
 export const DETAILSTABLE1 = [
   { label: 'User ID', value: 'user_id', columnWidth: 'small' },
@@ -46,6 +44,12 @@ export const CUSTOMERTABLE = [
   { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
 export const CUSTOMERMORETABLE = [
+  { label: 'Segment', value: 'segment', columnWidth: 'small' },
+  { label: 'Customer Type', value: 'customerType', columnWidth: 'small' },
+  { label: 'KYC', value: 'kyc', columnWidth: 'small' },
+  { label: 'Status', value: 'status', columnWidth: 'large' },
+]
+export const BILLERRESPONSETABLE = [
   { label: 'Segment', value: 'segment', columnWidth: 'small' },
   { label: 'Customer Type', value: 'customerType', columnWidth: 'small' },
   { label: 'KYC', value: 'kyc', columnWidth: 'small' },

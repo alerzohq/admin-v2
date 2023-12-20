@@ -21,6 +21,11 @@ type TextOwnProps<E extends React.ElementType> = {
   alignSelf?: string
   as?: E
   height?: string
+  className?: string
+  flexDirection?: string
+  gap?: string
+  alignItems?: string
+  onClick?: () => void
 }
 
 export type TextProps<E extends React.ElementType> = TextOwnProps<E> &

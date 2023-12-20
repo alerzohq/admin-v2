@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro'
 import { Color } from '../../../assets/theme'
 
+type Props = {
+  maxWidth?: string
+}
+
 export const TopbarWrapper = styled.div`
   height: 90px;
   background: ${Color.alerzoWhite};
@@ -10,7 +14,7 @@ export const TopbarWrapper = styled.div`
   border-bottom: 0.8px solid #e8ebee;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 999;
   svg {
     cursor: pointer;
   }
@@ -27,31 +31,11 @@ export const TopbarWrapper = styled.div`
 `
 export const TopbarFilters = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10px;
   overflow-y: visible;
   overflow-x: clip;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  .download-btn {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    white-space: nowrap;
-    background: ${Color.alerzoWhite};
-    border: 1px solid ${Color.alerzoBlue};
-    border-radius: 10px;
-    height: 45px;
-    padding: 0 1rem;
-    width: 200px;
-    text-align: center;
-    font-family: 'Gilmer';
-    font-style: normal;
-    font-size: 14px;
-    line-height: 17px;
-    color: ${Color.alerzoBlue};
-    font-weight: 500;
-    cursor: pointer;
-  }
   .add-button {
     align-items: center;
     display: flex;
@@ -73,6 +57,11 @@ export const TopbarFilters = styled.div`
     cursor: pointer;
     margin-left: auto;
   }
+  .transparent-button {
+    background: transparent;
+    border: 1px solid ${Color.alerzoBlue};
+    color: ${Color.alerzoBlue};
+  }
   ::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -83,13 +72,14 @@ export const TopbarFilters = styled.div`
     overflow: scroll;
   }
 `
-export const Filter = styled.input`
+export const Filter = styled.input<Props>`
   background: ${Color.alerzoWhite};
   border: 1px solid rgba(193, 202, 207, 0.5);
   border-radius: 10px;
   height: 45px;
   padding: 0 1rem;
   width: 250px;
+  max-width: ${({ maxWidth }) => maxWidth};
   ::placeholder {
     font-family: 'Gilmer';
     font-style: normal;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -9,20 +9,50 @@ import {
   Table,
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
-import { optionsAllPlatform } from '../../../../../data/select-data'
 import { transHeaderList } from '../../../../../data/table-headers'
-import { getResource } from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
+import { FilterValueProps } from '../../../../../@types/global'
+import { useAppContext } from '../../../../../context'
+import { Action } from '../../../../../context/actions'
+import useDownloadCSV from '../../../../../hooks/useDownloadCSV'
+import { statusFilterOptions } from '../../../../../helper/filter-helper'
 
 const TransactionHistory = ({ walletId }: { walletId: string }) => {
-  const getTransactionsHistory = () => {
-    return getResource(`transactions?walletId=${walletId}`)
+  const [values, setValues] = useState(filterValue)
+
+  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+    `transactions?walletId=${walletId}&`,
+    values,
+    'history'
+  )
+
+  const {
+    state: { appFilters },
+    dispatch,
+  } = useAppContext()
+
+  let statusOptions = statusFilterOptions(appFilters?.['transactions'])
+
+  const getTransactionsHistory = (filterValue: FilterValueProps) => {
+    return getNewFilterResource('transactions', {
+      ...filterValue,
+      walletId: walletId,
+    })
   }
 
-  const [, setValues] = useState(filterValue)
-  const { isLoading, isError, data, refetch } = useQuery(
-    'transaction-history',
-    getTransactionsHistory
+  const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
+    [`transaction-history`, values],
+    () => getTransactionsHistory(values),
+    { keepPreviousData: true }
   )
+
+  useEffect(() => {
+    dispatch({
+      type: Action.IS_FETCHING,
+      payload: isFetching,
+    })
+  }, [isFetching, dispatch])
 
   let component
   if (isLoading) {
@@ -32,11 +62,11 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
       <FallBack
         error
         refetch={refetch}
-        title={'Failed to load businesses history. '}
+        title={`${errorMessage(error as ErrorType)}`}
       />
     )
   } else if (data?.data?.length < 1) {
-    component = <FallBack title={'You have no business history yet. '} />
+    component = <FallBack title={'No transaction found. '} />
   } else {
     component = (
       <Table
@@ -45,9 +75,9 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
         tableData={data?.data}
         tableHeaders={transHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        amountIndex={2}
+        amountIndex={3}
+        routePath="dashboard/transactions"
         withSlug
-        notClickable
       />
     )
   }
@@ -56,35 +86,30 @@ const TransactionHistory = ({ walletId }: { walletId: string }) => {
     <>
       <Jumbotron padding={'.5rem 1rem'} direction={'column'} width="auto">
         <Filter
+          isFetching={isFetching}
           showFilters={{
             search: {
               placeholder: 'Search',
               type: 'text',
             },
             date: true,
+
             selects: [
               {
-                placeholder: 'All Platform',
-                values: optionsAllPlatform,
-                value: '',
-                onChange: () => {},
-                query: 'allPlatform',
-              },
-              {
                 placeholder: 'Status',
-                values: [],
                 value: '',
-                onChange: () => {},
+                values: statusOptions,
                 query: 'status',
               },
-              // {
-              //   placeholder: 'Download CSV',
-              //   values: [],
-              //   value: '',
-              //   onChange: () => {},
-              // },
+            ],
+            buttons: [
+              {
+                label: isDownloading ? 'Download...' : 'Download CSV',
+                onClick: () => downloadBulkCSV(),
+              },
             ],
           }}
+          setFilterValues={setValues}
         />
 
         {component}

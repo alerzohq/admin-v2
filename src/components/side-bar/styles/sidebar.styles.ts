@@ -43,6 +43,10 @@ export const Inner = styled.div<sidebarStyleProps>`
 `
 export const LogoBox = styled.div`
   display: flex;
+img{
+width:30px;
+margin:0 auto;
+}
 `
 
 export const SidebarList = styled.div`
@@ -88,7 +92,7 @@ export const SidebarItem = styled.div<sidebarStyleProps>`
     background: ${Color.alerzoBlue4};
     border-radius: 10px;
     flex-direction: column;
-   
+
 `}
 `
 export const SidebarDropdown = styled.div<sidebarStyleProps>`

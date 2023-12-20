@@ -1,8 +1,10 @@
 import { Color } from '../../../../assets/theme'
 import {
+  Button,
   FallBack,
   Loader,
   Notification,
+  Stack,
   TabsPage,
   Text,
 } from '../../../../components'
@@ -21,17 +23,24 @@ const TabsContentWidget = ({
   errorMessage,
   isError,
   type,
+  showfilters,
+  borderRadius,
   hideStatus,
   containerTitle,
   renderSwitch,
+  btnLabel,
+  btnVariant,
+  btnHandler,
 }: TabWidgetItemProps) => {
   let colors = resolveColor(status)
+
   return (
     <Container
-      showFilters={false}
+      showFilters={showfilters ?? false}
       isFetching={isFetching}
       title={containerTitle}
       routePath={routePath}
+      filterValue={false}
     >
       {!hideStatus && !isLoading && (
         <Notification
@@ -50,17 +59,31 @@ const TabsContentWidget = ({
             color={Color.alerzoBlack}
             tabs={tabs}
             currentValue={currentValue}
+            borderRadius={borderRadius}
           />
           {title && (
-            <Text
-              as={'p'}
-              padding={'.8em 0 0 0'}
-              color={Color.alerzoBlack}
-              weight="600"
-              align={'center'}
-            >
-              {title}
-            </Text>
+            <Stack direction="row" justifyContent="space-between">
+              <Text
+                as={'p'}
+                padding={'.8em 0 0 0'}
+                color={Color.alerzoBlack}
+                weight="600"
+                align={'center'}
+              >
+                {title}
+              </Text>
+              {btnHandler && (
+                <Button
+                  onClick={btnHandler}
+                  width="130px"
+                  variant="transparent"
+                  color={btnVariant ?? Color.alerzoBlue}
+                  borderColor={btnVariant ?? Color.alerzoBlue}
+                >
+                  {btnLabel ?? 'Add label'}
+                </Button>
+              )}
+            </Stack>
           )}
           {isError ? (
             <FallBack

@@ -1,12 +1,8 @@
 import React from 'react'
-import { RegistrationInvite } from '../../container/registration'
+import { RegistrationInvite } from '../../container/onboarding/registration'
 
 const Login: React.FC = () => {
-  return (
-    <>
-      <RegistrationInvite />
-    </>
-  )
+  return <RegistrationInvite />
 }
 
 export default Login

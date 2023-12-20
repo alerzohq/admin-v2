@@ -2,19 +2,53 @@ import {
   ActiveTerminalsIcon,
   DefectiveTerminalsIcon,
   InactiveTerminalsIcon,
+  TerminalsRequestsIcon,
   UnassignedTerminalsIcon,
 } from '../assets/icons'
+import TerminalsPendingRequestsIcon from '../assets/icons/pending-terminals-requests'
 import { formatDate } from '../utils/formatValue'
 
 export const TABS = [
   { label: 'Terminal Details', value: 'details', title: 'Terminal Details' },
   { label: 'Business Details', value: 'merchant', title: 'Business Details' },
   // { label: 'Terminal Status History', value: 'stats-history', title: '' },
-  // { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
+  { label: 'Terminal Transaction History', value: 'trans-history', title: '' },
+  {
+    label: 'Terminal Log History',
+    value: 'log-history',
+    title: 'Terminal Log History',
+  },
 ]
 export const TERMINALTABS = [
   { label: 'Existing Terminals', value: 'existing', title: '' },
   { label: 'Terminal Requests', value: 'requests', title: '' },
+]
+export const TERMINALREQUESTTABS = [
+  { label: 'Request Details', value: 'details', title: 'Request Details' },
+  {
+    label: 'Terminal Order Process',
+    value: 'order-process',
+    title: 'Terminal Order Process',
+  },
+]
+export const TERMINALREQMERCHANTTABLE = [
+  { label: 'Business ID', value: 'id', columnWidth: 'small' },
+  { label: 'Business Name', value: 'name', columnWidth: 'small' },
+  { label: 'Business Address', value: 'address', columnWidth: 'small' },
+  { label: 'Phone Number', value: 'phone', columnWidth: 'small' },
+  { label: 'Date Registered', value: 'date', columnWidth: 'large' },
+  { label: 'Email Address', value: 'email', columnWidth: 'large' },
+]
+export const TERMINALREQDETAILTABLE = [
+  { label: 'Request ID', value: 'requestId', columnWidth: 'small' },
+  { label: 'Status', value: 'status', columnWidth: 'small' },
+  { label: 'Request Date', value: 'date', columnWidth: 'small' },
+  { label: 'Location', value: 'location', columnWidth: 'small' },
+  {
+    label: 'Delivery Location',
+    value: 'deliveryLocation',
+    columnWidth: 'large',
+  },
 ]
 export const DETAILSTABLE = [
   { label: 'Terminal ID', value: 'tid', columnWidth: 'small' },
@@ -31,28 +65,13 @@ export const OTHERDETAILSTABLE = [
 ]
 
 export const MERCHANTDETAILSTABLE = [
-  // { label: 'Merchant  ID', value: 'mid', columnWidth: 'small' },
   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
   { label: 'Location', value: 'location', columnWidth: 'small' },
   { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
   { label: 'Passcode', value: 'passcodeStatus', columnWidth: 'small' },
   { label: 'BVN', value: 'BVNStatus', columnWidth: 'small' },
   { label: 'Business Adress', value: 'businessAdress', columnWidth: 'large' },
-  // { label: 'Date Updated', value: 'updatedAt', columnWidth: 'small' },
-  // { label: 'Email Address', value: 'email', columnWidth: 'large' },
 ]
-// export const MERCHANTBUSINESSTABLE = [
-//   { label: 'Business Name', value: 'businessName', columnWidth: 'small' },
-//   { label: 'Location', value: 'location', columnWidth: 'small' },
-//   { label: 'Transaction PIN', value: 'pinStatus', columnWidth: 'small' },
-//   { label: 'Passscode', value: 'passcodeStatus', columnWidth: 'small' },
-//   { label: 'BVN', value: 'bvnStatus', columnWidth: 'small' },
-//   { label: 'Business Address', value: 'businessAddress', columnWidth: 'large' },
-// ]
-// export const MERCHANTCUSTOMERTABLE = [
-//   { label: 'Customer Segment', value: 'customerSegment', columnWidth: 'small' },
-//   { label: 'Gender', value: 'gender', columnWidth: 'large' },
-// ]
 
 export const merchant = {
   status: true,
@@ -120,25 +139,6 @@ export const merchantHelper = (data: any) => {
         businessAdress: data?.address,
       },
     },
-    // {
-    //   spacing: false,
-    //   header: MERCHANTBUSINESSTABLE,
-    //   data: {
-    //     businessName: data?.name,
-    //     location: data?.state,
-    //     pinStatus: data?.business_owner?.business?.pin,
-    //     bvnStatus: data?.business_owner?.business?.bvn,
-    //     businessAddress: data?.address,
-    //   },
-    // },
-    // {
-    //   spacing: false,
-    //   header: MERCHANTCUSTOMERTABLE,
-    //   data: {
-    //     customerSegment: data?.business_owner?.customer?.customerSegment,
-    //     gender: data?.business_owner?.gender,
-    //   },
-    // },
   ]
 }
 
@@ -154,3 +154,70 @@ export const terminalIcons = {
   card3: DefectiveTerminalsIcon,
   card4: UnassignedTerminalsIcon,
 }
+
+export const terminalStats = (Statistics: { [key: string]: number }) => {
+  const statistics = {
+    card1: Statistics?.activeTerminals,
+    card2: Statistics?.inactiveTerminals,
+    card3: Statistics?.defectiveTerminals,
+    card4: Statistics?.unassignedTerminals,
+  }
+  return statistics
+}
+
+export const terminalsRequestsLabels = {
+  card1: 'All Terminal Requests',
+  card2: 'Rejected Terminal Requests',
+  card3: 'Pending Terminal Requests',
+  card4: 'Approved Terminal Requests',
+}
+export const requestTerminalIcons = {
+  card1: TerminalsRequestsIcon,
+  card2: InactiveTerminalsIcon,
+  card3: TerminalsPendingRequestsIcon,
+  card4: ActiveTerminalsIcon,
+}
+export const terminalRequestsStats = (stats: { [key: string]: any }) => {
+  const statistics = {
+    card1: stats?.totalDelivered,
+    card2: stats?.totalRejected,
+    card3: stats?.totalProcessing,
+    card4: stats?.totalApproved,
+  }
+  return statistics
+}
+
+export const terminalRequestHelper = (data: any) => {
+  const business = data?.business
+  const createdDate = data?.status[0]?.timestamp
+  return [
+    {
+      spacing: false,
+      header: TERMINALREQMERCHANTTABLE,
+      data: {
+        id: business?.id,
+        name: business?.name,
+        address: business?.address,
+        phone: business?.phoneNumber,
+        date: formatDate(business?.createdAt, 'YYYY-MM-DD HH:mm:ss'),
+        email: business?.email,
+      },
+    },
+    {
+      spacing: false,
+      header: TERMINALREQDETAILTABLE,
+      data: {
+        requestId: data?.id,
+        status: data?.status[data?.status?.length - 1]?.status,
+        date: formatDate(createdDate, 'YYYY-MM-DD HH:mm:ss'),
+        location: data?.data?.location,
+        deliveryLocation: data?.data?.address,
+      },
+    },
+  ]
+}
+
+export const TerminalProviders = [
+  { label: 'GA', value: 'ga' },
+  { label: '3line', value: '3line' },
+]

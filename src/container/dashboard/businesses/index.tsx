@@ -11,13 +11,14 @@ import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useQuery } from 'react-query'
 import { busHeaderList } from '../../../data/table-headers'
-import { filterProps } from '../../../@types'
+import { FilterValueProps } from '../../../@types/global'
 import { filterValue } from '../../../data/filter-data'
+import { errorMessage } from '../../../utils/message'
 
 const BusinessContainer = () => {
   const [values, setValues] = useState(filterValue)
 
-  const getBusinesses = (filterValue: filterProps) => {
+  const getBusinesses = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`businesses`, filterValue)
   }
 
@@ -25,12 +26,12 @@ const BusinessContainer = () => {
     return getResource(`businesses/statistics`)
   }
   const { isLoading: loading, data: Stats } = useQuery(
-    'trans-stats',
+    'business-stats',
     getTranStats
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, isFetching, refetch } = useQuery(
+  const { isLoading, data, isError, isFetching, refetch, error } = useQuery(
     ['businesses', values],
     () => getBusinesses(values),
     { keepPreviousData: true }
@@ -41,12 +42,14 @@ const BusinessContainer = () => {
     component = <Loader />
   } else if (isError) {
     component = (
-      <FallBack error title={'Failed to load businesses. '} refetch={refetch} />
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(error as ErrorType)}`}
+      />
     )
   } else if (data?.data?.length < 1) {
-    component = (
-      <FallBack title={'You have no business yet.'} refetch={refetch} />
-    )
+    component = <FallBack title={'No Business Found.'} refetch={refetch} />
   } else {
     component = (
       <Table

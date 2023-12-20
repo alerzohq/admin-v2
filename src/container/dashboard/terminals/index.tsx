@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useQuery } from 'react-query'
+
 import {
   FallBack,
   Jumbotron,
@@ -8,48 +11,79 @@ import {
   TabsPage,
 } from '../../../components'
 import { Container } from '../../../components/layout'
-import { getTerminalsRequestsData } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
-import { useQuery } from 'react-query'
 import { filterValue } from '../../../data/filter-data'
-import DynamicTable from '../../../components/react-table'
-import { TerminalSelects, terminalsTableMapper } from './config'
-import { useLocation } from 'react-router-dom'
-import { terminalHeader } from '../../../data/table-headers'
+import {
+  terminalHeader,
+  terminalRequestHeader,
+} from '../../../data/table-headers'
 import { Color } from '../../../assets/theme'
 import {
+  requestTerminalIcons,
   terminalIcons,
   terminalLabels,
+  terminalRequestsStats,
+  terminalsRequestsLabels,
+  terminalStats,
   TERMINALTABS,
 } from '../../../data/terminal-data'
-import { getTerminalsHandler, getTerminalStats } from './utils'
+import {
+  getRequestTerminalStats,
+  getTerminalRequestHandler,
+  getTerminalsHandler,
+  getTerminalStats,
+} from './utils'
 import AddMethodModal from './modals/add-method'
 import AddTerminalModal from './modals/add-terminal-form'
+import { errorMessage } from '../../../utils/message'
+import BulkTerminalModal from './modals/bulk-terminal-upload'
+import AllPermissions from '../../../configs/access-control'
+import { terminalReqFilterOptions } from '../../../helper/filter-helper'
+import { useAppContext } from '../../../context'
+import { TerminalSelects } from '../../../data/select-data'
 
 const TransactionContainer = () => {
+  /** TODO:
+   * REFACTOR COMPONENT
+   * CLEAN UP AND MAKE IT READABLE
+   * TERMINALREQUEST AND  EXISTING SHOULD BE MOVE TO DIFFERENT FOLDER
+   * */
   const search = useLocation().search
   const queryParam = new URLSearchParams(search).get('status')
-
+  const {
+    state: { appFilters },
+  } = useAppContext()
   const found = TERMINALTABS.find((element) => element.value === queryParam)
+  const { createTerminalAccess } = AllPermissions()
   const [values, setValues] = useState(filterValue)
+  const [requestValues, setRequestValues] = useState(filterValue)
   const [isShown, setIsShown] = useState(false)
   const [addMethod, setAddMethod] = useState<'manual' | 'excel' | ''>('')
 
-  const { isLoading: loading, data: Stats } = useQuery(
+  /* Get terminalRequest filter options from appFilter state */
+  let terminalReqOptions = terminalReqFilterOptions(
+    appFilters?.['terminalRequest']
+  )
+
+  const { isLoading: loading, data: stats } = useQuery(
     'terminal-stats',
     getTerminalStats
   )
-  const Statistics = Stats?.data
 
-  const getTerminalsRequestsHandler = (count: number) => {
-    return getTerminalsRequestsData(`terminals/requests`, filterValue.count)
-  }
+  const { isLoading: requestLoading, data: requestStats } = useQuery(
+    'terminal-request',
+    getRequestTerminalStats
+  )
+  const Statistics = stats?.data
+  const requestStatistics = requestStats?.data
+
   const {
-    isLoading: isLoadingExistingTerrminals,
-    data: existingTerrminalsData,
-    isError: isErrorExistingTerrminals,
-    isFetching: isFetchingExistingTerrminals,
+    isLoading: isLoadingExistingTerminals,
+    data: existingTerminalsData,
+    isError: isErrorExistingTerminals,
+    isFetching: isFetchingExistingTerminals,
     refetch,
+    error: existingRequestsError,
   } = useQuery(['terminals', values], () => getTerminalsHandler(values), {
     keepPreviousData: true,
   })
@@ -58,56 +92,73 @@ const TransactionContainer = () => {
     isLoading: isLoadingTerrminalsRequests,
     data: terrminalsRequestsData,
     isError: isErrorTerrminalsRequests,
-    isFetching: isFetchingTerrminalsRequests,
+    isFetching: isFetchingTerminalRequests,
+    refetch: refetchTerminalRequests,
+    error: terminsalsRequestsError,
   } = useQuery(
-    ['requestsTerminals', values.count],
-    () => getTerminalsRequestsHandler(values.count),
+    ['requestsTerminals', requestValues],
+    () => getTerminalRequestHandler(requestValues),
     { keepPreviousData: true }
   )
 
-  let existingTerrminals
-  if (isLoadingExistingTerrminals) {
-    existingTerrminals = <Loader />
-  } else if (isErrorExistingTerrminals) {
-    existingTerrminals = (
-      <FallBack error title={'Failed to load terminals. '} refetch={refetch} />
+  /* Check if activetab is existingTerminal*/
+  let isExisting = queryParam !== 'requests'
+  /* Check if activetab is requestTerminal*/
+  let isRequest = queryParam === 'requests'
+
+  let existingTerminals
+  if (isLoadingExistingTerminals) {
+    existingTerminals = <Loader />
+  } else if (isErrorExistingTerminals) {
+    existingTerminals = (
+      <FallBack
+        error
+        refetch={refetch}
+        title={`${errorMessage(existingRequestsError)}`}
+      />
     )
-  } else if (existingTerrminalsData?.data?.length < 1) {
-    existingTerrminals = (
-      <FallBack title={'You have no terminals yet.'} refetch={refetch} />
+  } else if (existingTerminalsData?.data?.length < 1) {
+    existingTerminals = (
+      <FallBack title="You have no terminals yet." refetch={refetch} />
     )
   } else {
-    existingTerrminals = (
+    existingTerminals = (
       <Table
         tableName="existTerminal"
-        tableData={existingTerrminalsData?.data}
+        tableData={existingTerminalsData?.data}
         tableHeaders={terminalHeader}
         dateFormat="YYYY-MM-DD HH:mm:ss"
       />
     )
   }
+
   let requestsTerrminals
   if (isLoadingTerrminalsRequests) {
     requestsTerrminals = <Loader />
   } else if (isErrorTerrminalsRequests) {
-    existingTerrminals = <FallBack error title={'Failed to load terminals. '} />
+    existingTerminals = (
+      <FallBack
+        error
+        refetch={refetchTerminalRequests}
+        title={`${errorMessage(terminsalsRequestsError)}`}
+      />
+    )
   } else if (terrminalsRequestsData?.data?.length < 1) {
     requestsTerrminals = (
-      <FallBack title={'You have no requested terminals yet. '} />
+      <FallBack
+        title="You have no requested terminals yet. "
+        refetch={refetchTerminalRequests}
+      />
     )
   } else {
     requestsTerrminals = (
-      <DynamicTable
-        data={terrminalsRequestsData?.data}
-        mappers={terminalsTableMapper}
+      <Table
+        tableName="requestsTerrminals"
+        tableData={terrminalsRequestsData?.data}
+        tableHeaders={terminalRequestHeader}
+        routePath="dashboard/terminals/requests"
       />
     )
-  }
-  const statistics = {
-    card1: Statistics?.activeTerminals,
-    card2: Statistics?.inactiveTerminals,
-    card3: Statistics?.defectiveTerminals,
-    card4: Statistics?.unassignedTerminals,
   }
 
   const toggle = () => {
@@ -119,36 +170,50 @@ const TransactionContainer = () => {
     setAddMethod(method)
   }
 
+  /*TODO: REFACTOR Filters*/
+  const showFilters = {
+    ...(isExisting && {
+      search: {
+        placeholder: 'Search',
+      },
+    }),
+    ...(isRequest && {
+      search: {
+        placeholder: 'Search',
+      },
+    }),
+    ...(isRequest && {
+      date: true,
+    }),
+    ...(isExisting && {
+      selects: TerminalSelects,
+    }),
+    ...(isRequest && {
+      selects: [
+        {
+          searchQuery: 'status',
+          placeholder: 'Status',
+          values: terminalReqOptions,
+          value: '',
+        },
+      ],
+    }),
+    buttons: [
+      createTerminalAccess && {
+        label: 'Register New Terminal',
+        onClick: () => toggle(),
+        buttonClass: 'add-button',
+      },
+    ].filter(Boolean),
+  }
+
   return (
     <>
-      <AddMethodModal
-        isShown={isShown}
-        toggle={toggle}
-        handleAddMethod={handleAddMethod}
-      />
-      <AddTerminalModal
-        addMethod={addMethod}
-        handleAddMethod={handleAddMethod}
-      />
       <Container
-        showFilters={{
-          search: {
-            placeholder: 'Search',
-          },
-          selects: TerminalSelects,
-          buttons: [
-            {
-              label: 'Register New Terminal',
-              onClick: () => toggle(),
-              buttonClass: 'add-button',
-            },
-          ],
-        }}
+        showFilters={showFilters}
         title="Terminals"
-        setFilterValues={setValues}
-        isFetching={
-          isFetchingExistingTerrminals || isFetchingTerrminalsRequests
-        }
+        setFilterValues={isExisting ? setValues : setRequestValues}
+        isFetching={isFetchingExistingTerminals || isFetchingTerminalRequests}
       >
         <TabsPage.Tabs
           hideStatus
@@ -158,29 +223,48 @@ const TransactionContainer = () => {
         />
         {queryParam === 'requests' ? (
           <>
-            <CardWidget />
-            <Jumbotron padding={'0'}>{requestsTerrminals}</Jumbotron>
+            <CardWidget
+              statistics={terminalRequestsStats(requestStatistics)}
+              loading={requestLoading}
+              labels={terminalsRequestsLabels}
+              icons={requestTerminalIcons}
+            />
+            <Jumbotron padding="0">{requestsTerrminals}</Jumbotron>
             <Pagination
               data={terrminalsRequestsData}
-              setPageNumber={setValues}
+              setPageNumber={setRequestValues}
             />
           </>
         ) : (
           <>
             <CardWidget
-              statistics={statistics}
+              statistics={terminalStats(Statistics)}
               loading={loading}
               labels={terminalLabels}
               icons={terminalIcons}
             />
-            <Jumbotron padding={'0'}>{existingTerrminals}</Jumbotron>
+            <Jumbotron padding="0">{existingTerminals}</Jumbotron>
             <Pagination
-              data={existingTerrminalsData}
+              data={existingTerminalsData}
               setPageNumber={setValues}
             />
           </>
         )}
       </Container>
+      <AddMethodModal
+        isShown={isShown}
+        toggle={toggle}
+        handleAddMethod={handleAddMethod}
+        setIsShown={setIsShown}
+      />
+      <AddTerminalModal
+        addMethod={addMethod}
+        handleAddMethod={handleAddMethod}
+      />
+      <BulkTerminalModal
+        addMethod={addMethod}
+        handleAddMethod={handleAddMethod}
+      />
     </>
   )
 }

@@ -22,6 +22,13 @@ const Text = <E extends React.ElementType = 'div'>({
   lineHeight,
   alignSelf,
   height,
+  className,
+  flexDirection,
+  gap,
+  alignItems,
+  textTransform,
+  cursor,
+  onClick,
 }: TextProps<E>) => {
   let Component = as || 'div'
   return (
@@ -37,11 +44,18 @@ const Text = <E extends React.ElementType = 'div'>({
       width={width}
       align={align}
       size={size}
+      cursor={cursor}
       bgColor={bgColor}
       weight={weight}
       padding={padding}
       alignSelf={alignSelf}
       height={height}
+      className={className}
+      flexDirection={flexDirection}
+      gap={gap}
+      onClick={onClick}
+      alignItems={alignItems}
+      textTransform={textTransform}
     >
       <Component>{children}</Component>
     </TextStyle>

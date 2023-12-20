@@ -11,14 +11,16 @@ export type ButtonProps = {
   fontSize?: string
   borderSize?: string
   color?: string
+  backgroundColor?: string
   position?: string
   noborder?: boolean
   margin?: string
-  fontWeight?: string
   default?: string
   padding?: string
   borderColor?: string
   loading?: boolean
+  disabledBgColor?: string
+  disabledColor?: string
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
   onMouseOver?: (e: React.MouseEvent<HTMLButtonElement>) => void
   onMouseOut?: (e: React.MouseEvent<HTMLButtonElement>) => void

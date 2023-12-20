@@ -19,11 +19,15 @@ type textProps = {
   lineHeight?: string
   alignSelf?: string
   height?: string
+  flexDirection?: string
+  gap?: string
+  textTransform?: string
+  alignItems?: string
 }
 
 export const TextStyle = styled.div<textProps>`
   display: flex;
-  align-items: center;
+  align-items: ${({ alignItems }) => alignItems ?? 'center'};
   color: ${({ color }) => color};
   white-space: ${({ whiteSpace }) => whiteSpace};
   font-size: ${({ size }) => size};
@@ -42,4 +46,6 @@ export const TextStyle = styled.div<textProps>`
   line-height: ${({ lineHeight }) => lineHeight};
   justify-content: ${({ justifyContent }) => justifyContent};
   height: ${({ height }) => height};
+  flex-direction: ${({ flexDirection }) => flexDirection};
+  gap: ${({ gap }) => gap};
 `

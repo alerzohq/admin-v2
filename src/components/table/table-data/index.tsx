@@ -2,6 +2,10 @@ import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
+import { TableButton, TableItemDiv } from './table.style'
+import { useAppContext } from '../../../context'
+import { Action } from '../../../context/actions'
+import { getClassNames } from './table-classnames'
 
 export type selectedDataType = {
   [key: string]: any
@@ -17,6 +21,11 @@ type dataProps = {
   hideDate?: boolean
   setParams?: boolean
   notClickable?: boolean
+  routePath?: string
+  noSlug?: boolean
+  handleRouthPath?: (item: { [key: string]: any }) => void
+  handleAction?:(item: { [key: string]: any }) => void
+  actionBtnLabel?: string;
 }
 type dataList = string[] | undefined
 
@@ -30,10 +39,19 @@ const TableData = ({
   hideDate,
   setParams,
   notClickable,
+  routePath,
+  noSlug,
+  actionBtnLabel,
+  handleRouthPath,
+  handleAction
 }: dataProps) => {
+  const { dispatch } = useAppContext()
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
+
+  //TODO REFACTOR
+
   return (
     <tbody>
       {tableData?.map((item, index) => {
@@ -41,18 +59,16 @@ const TableData = ({
         let dataList: dataList = newObj && Object.values(newObj)
         const lastItem = dataList?.at(-1)
         return (
-          <tr key={index}>
+        <tr key={index}>
             {dataList?.map((data, i) => (
-              <td key={i} id="td-hover">
-                <div
-                  style={{
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    maxWidth: '350px',
-                    whiteSpace: 'nowrap',
-                  }}
+            <td key={i} id="td-hover">
+                <TableItemDiv
                   onClick={
-                    notClickable
+                    !!handleRouthPath
+                      ? () => {
+                          handleRouthPath?.(item)
+                        }
+                      : notClickable
                       ? () => {}
                       : setParams
                       ? () => {
@@ -61,6 +77,22 @@ const TableData = ({
                             {
                               state: { detail: item },
                             }
+                          )
+                        }
+                      : routePath
+                      ? () => {
+                          name === 'requestsTerrminals' &&
+                            dispatch({
+                              type: Action.SAVETERMINALREQ,
+                              payload: item,
+                            })
+                          navigate(
+                            withSlug
+                              ? `/${routePath}/${item?.id}/${item?.product?.slug}`
+                              : noSlug
+                              ? `/${routePath}`
+                              : `/${routePath}/${item?.id}`,
+                            { replace: true, state: item }
                           )
                         }
                       : () => {
@@ -74,36 +106,19 @@ const TableData = ({
                           )
                         }
                   }
-                  className={
-                    data === 'successful' || data === 'Active'
-                      ? 'success'
-                      : data === 'Unassigned'
-                      ? 'unassigned'
-                      : data === 'pending'
-                      ? 'pending'
-                      : data === 'failed' || data === 'Inactive'
-                      ? 'failed'
-                      : formatDate(
-                          item?.sessionStartedAt,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ) === data
-                      ? 'successText'
-                      : formatDate(
-                          item?.sessionEndedAt,
-                          'YYYY-MM-DD HH:mm:ss'
-                        ) === data
-                      ? 'dangertext'
-                      : '' + (i === 0 && !hideActive && 'tableLink')
-                  }
+
+                  className={getClassNames(data, item, i, hideActive)}
                 >
                   {lastItem && lastItem === data && !hideDate
                     ? formatDate(data, dateFormat || 'lll')
                     : i === amountIndex
                     ? `₦${amountConverter(data)}`
                     : data}
-                </div>
+
+                </TableItemDiv>
               </td>
             ))}
+           {handleAction &&(<td><TableButton onClick={()=>handleAction(item)}>{actionBtnLabel??'Edit'}</TableButton></td>)}
           </tr>
         )
       })}

@@ -1,4 +1,4 @@
-import { filterProps } from '../@types'
+
 import {
   axiosInstance,
   axiosInstanceWithoutToken,
@@ -8,8 +8,9 @@ type Methods = 'put' | 'post' | 'patch' | 'delete'
 type useMutationProps = {
   pathUrl: string
   methodType: Methods
-  payload: { [key: string]: any }
+  payload?: { [key: string]: any }
 }
+
 export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
   const { data } = withoutToken
     ? await axiosInstanceWithoutToken.get(`/${pathUrl}`)
@@ -18,31 +19,19 @@ export const getResource = async (pathUrl: string, withoutToken?: boolean) => {
 }
 export const getNewFilterResource = async (
   pathUrl: string,
-  filterValue: filterProps,
+  filterValue: FilterProps & { [key in string]?: string | number },
   hasArg?: boolean
 ) => {
   const filterQuery = queryString.stringify(filterValue, {
     skipNull: true,
     skipEmptyString: true,
   })
+  const formatedFilter =
+    filterQuery.indexOf('%20') === filterQuery.length - 3
+      ? filterQuery.replace(/%20/g, '')
+      : filterQuery
   const { data } = await axiosInstance.get(
-    `/${pathUrl}${hasArg ? '' : '?'}${filterQuery}`
-  )
-  return data
-}
-export const getFilterResource = async (
-  pathUrl: string,
-  filterValue: filterProps
-) => {
-  const { data } = await axiosInstance.get(
-    `/${pathUrl}?count=${filterValue.count}&pageNumber=${
-      filterValue.pageNumber
-    }${filterValue?.query !== '' ? `&query=${filterValue?.query}` : ''}${
-      filterValue?.status !== '' ? `&status=${filterValue?.status}` : ''
-    }${filterValue?.from !== '' ? `&from=${filterValue?.from}` : ''}${
-      filterValue?.to !== '' ? `&to=${filterValue?.to}` : ''
-    }
-    `
+    `/${pathUrl}${hasArg ? '' : '?'}${formatedFilter}`
   )
   return data
 }
@@ -54,9 +43,13 @@ export const getTerminalsData = async (pathUrl: string, count: number) => {
 
 export const getTerminalsRequestsData = async (
   pathUrl: string,
-  count: number
+  filterValue: FilterProps & { [key in string]?: string | number }
 ) => {
-  const { data } = await axiosInstance.get(`/${pathUrl}?count=${count}&cursor`)
+  const { data }: any = await axiosInstance.get(
+    `/${pathUrl}?count=${filterValue.count}&cursor=&pageNumber=${
+      filterValue.pageNumber + 1
+    }`
+  )
   return data
 }
 
@@ -65,6 +58,6 @@ export const postRequest = async ({
   payload,
   methodType,
 }: useMutationProps) => {
-  const { data } = await axiosInstance[methodType](pathUrl, payload)
+  const { data } = await axiosInstance[methodType](pathUrl, payload && payload)
   return data
 }

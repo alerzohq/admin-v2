@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import {
   FallBack,
@@ -10,20 +10,38 @@ import {
 } from '../../../../../components'
 import { filterValue } from '../../../../../data/filter-data'
 import { busUserList } from '../../../../../data/table-headers'
-import { getResource } from '../../../../../utils/apiRequest'
+import { getNewFilterResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
+import { statusFilterOptions } from '../../../../../helper/filter-helper'
+import { useAppContext } from '../../../../../context'
+import { FilterValueProps } from '../../../../../@types/global'
 
 const Members = ({ businessId }: { businessId: string }) => {
-  const getMembers = () => {
-    return getResource(`business-users?query=${businessId}`)
+  const [values, setValues] = useState({ ...filterValue })
+  const {
+    state: { appFilters },
+  } = useAppContext()
+
+  let statusOptions = statusFilterOptions(appFilters?.['businessMembers'])
+
+  const getMembers = (filterValue: FilterValueProps) => {
+    return getNewFilterResource(`business-users`, {
+      ...filterValue,
+      query: businessId,
+    })
   }
 
-  const [, setValues] = useState(filterValue)
-  const { isLoading, isError, data } = useQuery('members', getMembers)
+  const { isLoading, isError, data, refetch, error } = useQuery(
+    ['members', values],
+    () => getMembers(values)
+  )
   let component
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = <FallBack error title={'Failed to load businesses history. '} />
+    component = (
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+    )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'You have no business history yet. '} />
   } else {
@@ -50,21 +68,14 @@ const Members = ({ businessId }: { businessId: string }) => {
             date: true,
             selects: [
               {
-                placeholder: 'All Platform',
-                values: [],
-                value: '',
-                onChange: () => {},
-                query: 'allPlatform',
-              },
-              {
                 placeholder: 'Status',
-                values: [],
                 value: '',
-                onChange: () => {},
-                query: 'status',
+                values: statusOptions,
+                query: 'active',
               },
             ],
           }}
+          setFilterValues={setValues}
         />
         {component}
       </Jumbotron>

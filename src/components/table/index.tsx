@@ -16,11 +16,17 @@ const Table = ({
   setParams,
   notClickable,
   layout,
+  routePath,
+  noSlug,
+  handleAction,
+  actionBtnLabel,
+  handleRouthPath,
 }: TableProps) => {
   return (
     <>
       <TableWrapper>
-        <DataTable bgColor={headerbgColor} layout={layout}>
+        <DataTable bgColor={headerbgColor} layout={layout}
+         borderBottom={tableData?.length <=10}>
           <TableHeader headers={tableHeaders} />
           <TableData
             notClickable={notClickable}
@@ -32,6 +38,11 @@ const Table = ({
             hideActive={notClickable}
             hideDate={hideDate}
             setParams={setParams}
+            routePath={routePath}
+            noSlug={noSlug}
+            handleRouthPath={handleRouthPath}
+            actionBtnLabel={actionBtnLabel}
+            handleAction={handleAction}
           />
         </DataTable>
       </TableWrapper>

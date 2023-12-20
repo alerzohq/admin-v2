@@ -12,7 +12,7 @@ export enum Color {
 
   alerzoLight = '#fafafa99',
   alerzoDanger = '#EA4336',
-  alerzoSuccess = '#EA4336',
+  alerzoDanger100 = '#FDECEB',
   alerzoBlack = '#001928',
   alerzoBlueTint = '#0077FF',
   alerzoGreyTint = '#879AA5',
@@ -38,6 +38,7 @@ export enum Color {
   alerzoBlue7 = '#F2FAFF',
   alerzoBlue8 = '#007BFF',
   alerzoBlue9 = '#EFF7FF',
+  alerzoDeepBlue = '#7890B5',
   alerzoLightBlue2 = 'rgba(232, 243, 255, 0.4)',
   alerzoLightGray4 = '#e8e8e8',
   alerzoLightGray5 = '#9CA8AF',
@@ -45,4 +46,6 @@ export enum Color {
   alerzoBlackishBlue = '#D7E2E9',
   alerzoGrayishBlue = '#5976A1',
   alerzoGrayishBlue2 = '#475E80',
+  alerzoDisabledBg = '#F0F5F8',
+  alerzoDisabled = '#A1A8B7',
 }

@@ -11,6 +11,8 @@ interface Props {
   accountNumber?: string
   bank?: string
 }
+
+//all types or interface should be move to a type file
 const UserAccount = ({ accountNumber, accountName, bank }: Props) => {
   return (
     <Card>

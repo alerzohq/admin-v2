@@ -9,7 +9,7 @@ const TableHeader = ({ headers }: HeaderProps) => {
     <thead>
       <tr>
         {headers?.map((header, i) => (
-          <th key={i}>{header}</th>
+          <th key={`${header}` + i}>{header}</th>
         ))}
       </tr>
     </thead>

@@ -4,7 +4,6 @@ import { Button, Loader } from '../../../../../components'
 import { terminalHelper } from '../../../../../data/terminal-data'
 import DetailsContentWidget from '../../../widget/tabs/tab-content-details'
 import ReassignTerminalWidget from '../../../widget/terminal-modal-content/reassign'
-// import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
 import {
   ButtonWrapper,
   TerminalDetailWrapper,
@@ -14,6 +13,7 @@ import { getResource, postRequest } from '../../../../../utils/apiRequest'
 import { toast } from 'react-hot-toast'
 import { ValueProps } from '../type'
 import EnableTerminalWidget from '../../../widget/terminal-modal-content/enable'
+import { useDebounce } from '../../../../../hooks/useDebounce'
 
 const TerminalDetails = ({ data }: any) => {
   const queryClient = useQueryClient()
@@ -37,9 +37,14 @@ const TerminalDetails = ({ data }: any) => {
   const toggle = (type?: 'assign') => {
     type === 'assign' ? setIsAssigned(!assigned) : setIsEnabled(!enabled)
   }
-
-  const getMerchants = () => {
-    return getResource('business-users')
+  const [query, setQuery] = useState('')
+  const debouncedSearchTerm = useDebounce(query, 1000)
+  const getBusinesses = () => {
+    return getResource(
+      query
+        ? `businesses?query=${debouncedSearchTerm}`
+        : 'businesses?count=50&pageNumber=0'
+    )
   }
   const useAssignMutation = () =>
     useMutation((payload: { [key: string]: any }) =>
@@ -56,9 +61,9 @@ const TerminalDetails = ({ data }: any) => {
 
   const {
     isLoading,
-    data: merchants,
+    data: businesses,
     isFetching,
-  } = useQuery('merchants', getMerchants)
+  } = useQuery(['businesses', debouncedSearchTerm], getBusinesses)
   const { isLoading: loadingEnable, mutate: enableTerminal } =
     useEnableTermMutation()
   const { isLoading: loadingAssign, mutate } = useAssignMutation()
@@ -80,6 +85,7 @@ const TerminalDetails = ({ data }: any) => {
       }
     )
   }
+
   const handleReassign = () => {
     if (
       data?.user_id !== null &&
@@ -130,6 +136,7 @@ const TerminalDetails = ({ data }: any) => {
       )
     }
   }
+
   return (
     <TerminalDetailWrapper>
       <ReassignTerminalWidget
@@ -137,12 +144,13 @@ const TerminalDetails = ({ data }: any) => {
         triggerSubmit={isTriggerSubmit}
         isShown={assigned}
         loadingOptions={isLoading || isFetching}
+        setQuery={setQuery}
         loading={loadingAssign}
         handleSubmit={async () => {
           setIsTriggerSubmit(true)
           handleReassign()
         }}
-        merchants={merchants?.data}
+        businesses={businesses?.data}
         toggleModal={() => {
           setValue({
             reassignmentReason: '',

@@ -22,7 +22,7 @@ export function ActiveDigitalBankIcon({
         x2="5"
         y2="15.3027"
         stroke={color ? color : '#005FCB'}
-        stroke-width="2"
+        strokeWidth="2"
         strokeLinecap="square"
         strokeLinejoin="round"
       />
@@ -32,7 +32,7 @@ export function ActiveDigitalBankIcon({
         x2="10"
         y2="15.3027"
         stroke={color ? color : '#005FCB'}
-        stroke-width="2"
+        strokeWidth="2"
         strokeLinecap="square"
         strokeLinejoin="round"
       />
@@ -42,7 +42,7 @@ export function ActiveDigitalBankIcon({
         x2="15"
         y2="15.3027"
         stroke={color ? color : '#005FCB'}
-        stroke-width="2"
+        strokeWidth="2"
         strokeLinecap="square"
         strokeLinejoin="round"
       />

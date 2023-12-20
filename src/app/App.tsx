@@ -26,6 +26,12 @@ import NotFound from '../pages/404'
 import Audit from '../pages/dashboard/audit'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorFallback } from '../components/common/error-boundary'
+import TerminalRequestDetails from '../container/dashboard/terminals/details/request-detail'
+import KYC from '../pages/dashboard/KYC'
+import KYCDetails from '../pages/dashboard/KYC/details'
+import BusinessProductDetails from '../pages/dashboard/businessess/business-detail/business-product-details'
+import Biller from '../pages/dashboard/biller'
+import BillerDetail from '../pages/dashboard/biller/biller-detail'
 
 function App() {
   const navigate = useNavigate()
@@ -66,8 +72,16 @@ function App() {
               />
               <Route path={Path.TERMINALS} element={<Terminals />} />
               <Route path={Path.TERMINALDETAIL} element={<TerminalDetails />} />
+              <Route
+                path={Path.TERMINALREQUESTDETAIL}
+                element={<TerminalRequestDetails />}
+              />
               <Route path={Path.BUSINESSES} element={<Businesses />} />
               <Route path={Path.BUSINESSDETAIL} element={<BusinessDetails />} />
+              <Route
+                path={Path.BUSINESSPRODUCTDETAIL}
+                element={<BusinessProductDetails />}
+              />
               <Route path={Path.DIGITALBANK} element={<DigitalBank />} />
               <Route
                 path={Path.DIGITALBANKDETAIL}
@@ -76,6 +90,10 @@ function App() {
               <Route path={Path.PRODUCTS} element={<Products />} />
               <Route path={Path.PRODUCTDETAIL} element={<ProductDetails />} />
               <Route path={Path.AUDIT} element={<Audit />} />
+              <Route path={Path.KYC} element={<KYC />} />
+              <Route path={Path.KYCDETAIL} element={<KYCDetails />} />
+              <Route path={Path.BILLER} element={<Biller />} />
+              <Route path={Path.BILLERDETAIL} element={<BillerDetail />} />
             </Route>
           </Route>
 

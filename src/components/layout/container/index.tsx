@@ -13,6 +13,7 @@ const Container: React.FC<ContainerProps> = ({
   title,
   isFetching,
   setFilterValues,
+  filterValue,
   showFilters,
   routePath,
   children,
@@ -24,12 +25,6 @@ const Container: React.FC<ContainerProps> = ({
     state: { fetching },
     dispatch,
   } = useAppContext()
-
-  // const getPermissions = () => {
-  //   return getResource(`permissions`)
-  // }
-
-  // const { data:permissions } = useQuery('app-filters', getPermissions);
 
   const getFilters = () => {
     return getResource(`filters`)
@@ -56,6 +51,7 @@ const Container: React.FC<ContainerProps> = ({
         showFilters={showFilters}
         routePath={routePath}
         setFilterValues={setFilterValues}
+        filterValue={filterValue}
         whiteSpace={whiteSpace}
         {...restProps}
       />

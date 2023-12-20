@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { filterProps } from '../../../@types'
+import { FilterValueProps } from '../../../@types/global'
 import { FallBack, Jumbotron, Loader, Pagination } from '../../../components'
 import { Container } from '../../../components/layout'
 import DynamicTable from '../../../components/react-table'
 import { TableWrapper } from '../../../components/table/styles/table.styles'
 import { filterValue } from '../../../data/filter-data'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
+import { errorMessage } from '../../../utils/message'
 import CardWidget from '../widget/card'
-import { digitalBankTableMapper } from './tableConfig'
+import { digitalBankTableMapper } from './table-config'
 
 const DigitalBankContainer = () => {
   const navigate = useNavigate()
 
   const [values, setValues] = useState(filterValue)
 
-  const getDigitalBanksHandler = (filterValue: filterProps) => {
+  const getDigitalBanksHandler = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`customers`, filterValue)
   }
 
@@ -25,12 +26,12 @@ const DigitalBankContainer = () => {
   }
 
   const { isLoading: loading, data: Stats } = useQuery(
-    'trans-stats',
+    'dbank-stats',
     getTranStats
   )
   const Statistics = Stats?.data
 
-  const { isLoading, data, isError, isFetching } = useQuery(
+  const { isLoading, data, isError, error, isFetching } = useQuery(
     ['digital-bank', values],
     () => getDigitalBanksHandler(values),
     { keepPreviousData: true }
@@ -41,9 +42,7 @@ const DigitalBankContainer = () => {
   if (isLoading) {
     digitalBankComponent = <Loader />
   } else if (isError) {
-    digitalBankComponent = (
-      <FallBack error title={'Failed to load transactions. '} />
-    )
+    digitalBankComponent = <FallBack error title={`${errorMessage(error)}`} />
   } else if (data?.data?.length < 1) {
     digitalBankComponent = (
       <FallBack

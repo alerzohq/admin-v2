@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { Color } from '../../../../assets/theme'
 
 type Props = {
   bgColor?: string
@@ -82,3 +83,12 @@ export const AuthImage = styled.div`
     height: 400px;
   }
 `
+export const AuthLogo=styled.div`
+svg{
+width: 150px;
+background: ${Color.alerzoWhite};
+height: 25px;
+padding: 1rem;
+border-radius: 0px 0px 30px 0px;
+}
+    `

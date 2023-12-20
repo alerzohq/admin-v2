@@ -13,8 +13,9 @@ import { Text } from '../../../../components'
 const AddMethodModal: React.FC<{
   isShown: boolean
   toggle: () => void
+  setIsShown: (value: boolean) => void
   handleAddMethod: (method: 'manual' | 'excel' | '') => void
-}> = ({ isShown, toggle, handleAddMethod }) => {
+}> = ({ isShown, toggle, handleAddMethod, setIsShown }) => {
   return (
     <Modal
       showModal={isShown}
@@ -40,14 +41,17 @@ const AddMethodModal: React.FC<{
         </TerminalModalChild>
         <TerminalModalChild
           onClick={() => {
-            handleAddMethod('manual')
+            handleAddMethod('excel')
           }}
-          className={'disabled'}
         >
           <div className="svg-container ">
             <TerminalBulkAdd width="100%" />
+            {/* {isLoading ? (
+                <Loader isUpload />
+              ) : ( */}
             <Upload className="svg-icon" />
           </div>
+
           <Text
             width="100%"
             justifyContent="center"

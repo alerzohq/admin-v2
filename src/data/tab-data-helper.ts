@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction } from 'react'
 import { amountHelper, formatDate } from '../utils/formatValue'
 import {
-  CUSTOMERMORETABLE,
+  // CUSTOMERMORETABLE,
   DETAILSTABLE1,
   DETAILSTABLE2,
   DETAILSTABLE3,
+  // BILLERRESPONSETABLE,
 } from './tab-data'
 export const detailsHelper = (
   data: any,
@@ -16,7 +17,7 @@ export const detailsHelper = (
     action,
     channel,
     charge,
-    commission,
+    commissions,
     created_at,
     updated_at,
     summary,
@@ -33,7 +34,9 @@ export const detailsHelper = (
     balance,
     reference,
     biller,
-  } = data
+  } = data || {}
+  const shouldFetch = user_type?.toLowerCase() === 'business-user'
+
   const metaDataArr = metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -46,11 +49,11 @@ export const detailsHelper = (
       return { [key]: val?.value }
     }
   )
-  var resultObject = metaDataArr?.reduce(function (
+  let resultObject = metaDataArr?.reduce(function (
     result: any,
     currentObject: any
   ) {
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
         let val = currentObject[key]
         if (key === 'amount' || key === 'balance' || key === 'total') {
@@ -77,24 +80,27 @@ export const detailsHelper = (
     action,
     channel,
     charge: amountHelper(charge),
-    commission: amountHelper(commission),
+    commission: commissions?.['0']
+      ? amountHelper(commissions?.['0']?.value)
+      : amountHelper(commissions),
     created_at: formatDate(created_at, 'YYYY-MM-DD HH:mm:ss'),
     updated_at: formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'),
-    product: product?.display_name,
+    product: product?.display_name || '',
     summary,
     total: amountHelper(total),
   }
+
   return [
     {
       spacing: false,
       clickable: {
-        url: `/dashboard/digital-bank/${user_id}`,
+        url:
+          user_type === 'business'
+            ? `/dashboard/businesses/${user_id}`
+            : `/dashboard/digital-bank/${user_id}`,
         index: 0,
         setFetch,
-        shouldFetch:
-          user_type === null ||
-          user_type === null ||
-          user_type === 'business-user',
+        shouldFetch: shouldFetch,
       },
       header: DETAILSTABLE1,
       data: tableData,
@@ -119,12 +125,8 @@ export const detailsHelper = (
 }
 
 export const otherHelper = (data: any) => {
+  const userType = data?.user_type
   let metaHeaders: { [key: string]: any }[] = []
-  // const recipientObject = data?.metadata?.reduce(
-  //   (o: any, { key, value }: { key: number; value: string }) =>
-  //     (o[key] = value),
-  //   {}
-  // )
   const metaDataArr = data?.metadata?.map(
     (val: { [key: string]: any }, i: number) => {
       const key = val?.key
@@ -137,11 +139,11 @@ export const otherHelper = (data: any) => {
       return { [key]: val?.value }
     }
   )
-  var resultObject = metaDataArr?.reduce(function (
+  let resultObject = metaDataArr?.reduce(function (
     result: any,
     currentObject: any
   ) {
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (currentObject.hasOwnProperty(key)) {
         let val = currentObject[key]
         if (key === 'amount' || key === 'balance' || key === 'total') {
@@ -155,19 +157,32 @@ export const otherHelper = (data: any) => {
   {})
   return [
     {
+      title: userType?.toLowerCase()?.includes('business')
+        ? 'Business Details'
+        : 'Customer Details',
       spacing: false,
       header: metaHeaders,
       data: resultObject,
     },
-    {
-      spacing: false,
-      header: CUSTOMERMORETABLE,
-      data: {
-        segment: data?.segment,
-        customerType: data?.user_type,
-        kyc: data?.kyc,
-        status: data?.status,
-      },
-    },
+    // {
+    //   spacing: false,
+    //   header: CUSTOMERMORETABLE,
+    //   data: {
+    //     segment: data?.segment,
+    //     customerType: data?.user_type,
+    //     kyc: data?.kyc,
+    //     status: data?.status,
+    //   },
+    // },
+    // {
+    //   spacing: false,
+    //   header: BILLERRESPONSETABLE,
+    //   data: {
+    //     segment: data?.segment,
+    //     customerType: data?.user_type,
+    //     kyc: data?.kyc,
+    //     status: data?.status,
+    //   },
+    // },
   ]
 }

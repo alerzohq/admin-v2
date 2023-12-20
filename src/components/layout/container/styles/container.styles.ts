@@ -4,7 +4,7 @@ type containerProps = {
 }
 
 export const ContainerWrapper = styled.div<containerProps>`
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   animation: fadeIn 1s;
   @keyframes fadeIn {

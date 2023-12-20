@@ -1,5 +1,5 @@
 import React from 'react'
-import { AlerzoLogo } from '../../../assets/icons'
+import { AlerzoLogoWhite } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
 import {
   AuthColumn,
@@ -7,6 +7,7 @@ import {
   AuthContent,
   AuthImage,
   AuthInner,
+
 } from './styles/layout.styles'
 import authImage from '../../../assets/images/svgs/auth-img.svg'
 import { Text } from '../../../components'
@@ -18,7 +19,7 @@ const AuthLayout = ({
   return (
     <AuthContainer p={p}>
       <AuthColumn bgColor={Color.alerzoBlue} hideOnMobile>
-        <AlerzoLogo className={'logo-svg'} />
+        <AlerzoLogoWhite className={'logo-svg'} />
         <AuthContent>
           <AuthInner>
             <AuthImage>

@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { Color } from '../../assets/theme'
 import { TabLink, Tabs } from './styles/tab.styles'
 import { TabsProps, TabsTitleProps, TabsPageProps } from './type.d'
+
 const TabPage = ({ children }: TabsPageProps) => {
   return <Tabs>{children}</Tabs>
 }
@@ -31,11 +32,13 @@ TabPage.Tabs = function TabList({
   color,
   currentValue,
   hideStatus,
+  borderRadius,
 }: TabsProps) {
   const [, setQueryParams] = useSearchParams()
+
   return (
     <>
-      <Tabs hideStatus={hideStatus}>
+      <Tabs hideStatus={hideStatus} borderRadius={borderRadius}>
         {tabs.map((item, index) => {
           return (
             <TabPage.Link

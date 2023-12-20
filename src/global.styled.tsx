@@ -74,6 +74,7 @@ const GlobalStyle = createGlobalStyle`
 .select-wrap{
   display:flex;
   justify-content:end;
+  margin-right:1rem;
 }
 .active{
   background: #34a8531a;
@@ -90,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
   cursor: pointer;
   color:${Color.alerzoBlue};
   font-weight:600;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 
 }
 #td-hover{
@@ -104,7 +105,7 @@ const GlobalStyle = createGlobalStyle`
   width: 50% !important
 }
 .successText{
-  color:#34A853;
+  color:#34A853 !important;
 }
 .center{
   text-align: center;
@@ -112,8 +113,11 @@ const GlobalStyle = createGlobalStyle`
 .end{
   text-align: end;
 }
-.dangertext{
-  color:#EA4336;
+.dangerText{
+  color:#EA4336 !important;
+}
+.pendingText{
+  color:#F1A85A !important;
 }
 .download-btn {
   align-items: center;
@@ -125,7 +129,7 @@ const GlobalStyle = createGlobalStyle`
   border-radius: 10px;
   height: 45px !important;
   padding: 0 1rem;
-  width: 200px !important;
+  width: 150px !important;
   text-align: center;
   font-family: 'Gilmer';
   font-style: normal;
@@ -134,6 +138,13 @@ const GlobalStyle = createGlobalStyle`
   color: ${Color.alerzoBlue} !important;
   font-weight: 500;
   cursor: pointer;
+
+}
+.btn-disabled{
+  cursor:not-allowed !important;
+  background: ${Color.alerzoLightBlue} !important;
+  width: 150px !important;
+  padding: 0 1rem;
 }
 .mt-3{
   margin-top:3em
@@ -182,9 +193,28 @@ input:checked ~ .checkmark:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+input{
+  font-family:Gilmer;
+  ::placeholder{
+      font-family:Gilmer;
+      color:#A5B0B7;
+    }
+}
 .btn-blue{
   background: ${Color.alerzoBlue} !important;
   color: ${Color.alerzoBgColor} !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.bold{
+  font-weight:700;
+  color:   #001928;
 }
 `
 

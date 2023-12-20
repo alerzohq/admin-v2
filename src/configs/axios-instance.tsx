@@ -1,9 +1,8 @@
 import axios from 'axios'
 import dayjs from 'dayjs'
 import jwt_decode from 'jwt-decode'
-import { getStorageItem, logOut } from '../utils/session-storage'
 
-// AxiosRequestConfig<any>
+import { getStorageItem, logOut } from '../utils/session-storage'
 
 let baseURL = process.env.REACT_APP_API_BASE_URL
 let token = getStorageItem('user') ? getStorageItem('user')?.data?.token : null
@@ -15,7 +14,7 @@ export const axiosInstance = axios.create({
 export const axiosInstanceWithoutToken = axios.create({
   baseURL,
 })
-
+export const axiosInstanceUniqueUrl = axios.create()
 axiosInstance.interceptors.request.use(
   async (req: any) => {
     token = getStorageItem('user')?.data?.token ?? null
@@ -31,6 +30,14 @@ axiosInstance.interceptors.request.use(
     logOut(() => {
       window.location.href = '/'
     })
+
+    //  const {data} = await axios.post(`${baseURL}/logout`, {headers:{ Authorization: `Bearer ${token}`}})
+    //   if(data){
+    //     logOut(() => {
+    //       window.location.href = '/'
+    //     })
+    //   }
+
     // const {data} = await axios.post(`${baseURL}/user/token/refresh`,{refresh:token.refreshToken})
     //   localStorage.getItem('token',JSON.stringify(data.token))
     // req.headers.Authorization = data?.access_token;

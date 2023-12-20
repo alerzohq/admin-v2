@@ -1,49 +1,70 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { SelectInput } from '../..'
 import { transformData } from '../../../helper/table.helper'
+import { amountConverter, formatDate } from '../../../utils/formatValue'
 import { selectStyles } from '../../select-input/styles/select-input.styes'
+import { ActionButton } from '../styles/table.styles'
 
 export type selectedDataType = {
   [key: string]: any
 }
 
-type dataProps = {
+export type DataProps = {
   tableData: selectedDataType[]
   name: string
   amountIndex?: number
   withSlug?: boolean
   dateFormat?: string
   hideActive?: boolean
+  actionBtn?: boolean
   hideDate?: boolean
   setParams?: boolean
+  notClickable?:boolean
   selectIndex?: number
+  buttonTitle?: string
+  actionPlaceholder?:string
   options?: any[]
-  handleSelectChange?: (e: string) => void
+  handleChange?: (item: Record<string, string>) => void
+  handleRouthPath?: (item: Record<string, string>) => void
 }
-type dataList = string[] | undefined
+type DataList = string[] | undefined
 
 const CustomTableData = ({
   tableData,
   name,
+  amountIndex,
   hideActive,
+  dateFormat,
+  actionPlaceholder,
+  hideDate,
+  notClickable,
   options,
-  handleSelectChange,
-}: dataProps) => {
+  actionBtn,
+  buttonTitle,
+  handleRouthPath,
+  handleChange,
+}: DataProps) => {
   const navigate = useNavigate()
   const [searchParams, setQueryParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
+
   return (
     <tbody>
       {tableData?.map((item, index) => {
         let newObj = transformData({ item, name })
-        let dataList: dataList = newObj && Object.values(newObj)
+        let dataList: DataList = newObj && Object.values(newObj)
+        const lastItem = dataList?.at(-1)
         return (
           <tr key={index}>
             {dataList?.map((data, i) => (
               <td key={i} id="td-hover">
                 <div
                   onClick={
-                    i === 0
+                    !!handleRouthPath
+                      ? () => {
+                          handleRouthPath?.(item)
+                        }
+                      : i === 0 && !notClickable
                       ? () => {
                           navigate(`${item?.slug}`, {
                             state: { detail: item },
@@ -61,7 +82,11 @@ const CustomTableData = ({
                       : '' + (i === 0 && !hideActive && 'tableLink')
                   }
                 >
-                  {data}
+                  {lastItem && lastItem === data && !hideDate
+                    ? formatDate(data, dateFormat || 'lll')
+                    : i === amountIndex
+                    ? `₦${amountConverter(data)}`
+                    : data}
                 </div>
               </td>
             ))}
@@ -77,17 +102,28 @@ const CustomTableData = ({
                 }}
                 className="select-wrap"
               >
-                <SelectInput
-                  placeholder="Change Biller"
-                  onChange={(e) => {
-                    handleSelectChange?.(e.value)
-                  }}
-                  value={'Change Biller'}
-                  styles={selectStyles(true)}
-                  options={options}
-                  isClearable={false}
-                  hideValue
-                />
+                {options && (
+                  <SelectInput
+                    placeholder={actionPlaceholder??"Change Biller"}
+                    onChange={(e) => {
+                      handleChange?.({
+                        newBiller: e.value,
+                        oldBiller: item?.billerSlug,
+                        displayName: item?.displayName,
+                      })
+                    }}
+                    value={'Change Biller'}
+                    styles={selectStyles(true)}
+                    options={options}
+                    isClearable={false}
+                    hideValue
+                  />
+                )}
+                {actionBtn && (
+                  <ActionButton onClick={() => handleChange?.(item)}>
+                    {buttonTitle ?? 'Change Rate'}
+                  </ActionButton>
+                )}
               </div>
             </td>
           </tr>

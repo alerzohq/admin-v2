@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 import {
   FallBack,
   Filter,
@@ -13,13 +13,20 @@ import { useAppContext } from '../../../../../context'
 import { Action } from '../../../../../context/actions'
 import { filterValue } from '../../../../../data/filter-data'
 import { DBtransHeaderList } from '../../../../../data/table-headers'
+import useDownloadCSV from '../../../../../hooks/useDownloadCSV'
 import { getNewFilterResource } from '../../../../../utils/apiRequest'
+import { errorMessage } from '../../../../../utils/message'
 
 const TransactionHistory = ({ userId }: { userId: string }) => {
   const [values, setValues] = useState(filterValue)
   const { dispatch } = useAppContext()
 
-  const getTransactionsHistory = (filterValue: filterProps) => {
+  const { downloadBulkCSV, isDownloading } = useDownloadCSV(
+    `transactions?userId=${userId}&`,
+    values,
+    'history'
+  )
+  const getTransactionsHistory = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
       `transactions?userId=${userId}&`,
       filterValue,
@@ -27,7 +34,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
     )
   }
 
-  const { isLoading, isError, data, isFetching } = useQuery(
+  const { isLoading, isError, data, isFetching, error, refetch } = useQuery(
     ['user-transaction-history', values],
     () => getTransactionsHistory(values),
     { keepPreviousData: true }
@@ -44,7 +51,9 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
   if (isLoading) {
     component = <Loader />
   } else if (isError) {
-    component = <FallBack error title={'Failed to load businesses history. '} />
+    component = (
+      <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+    )
   } else if (data?.data?.length < 1) {
     component = <FallBack title={'No transaction Found. '} />
   } else {
@@ -56,7 +65,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
         tableHeaders={DBtransHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
         withSlug
-        notClickable
+        routePath="dashboard/transactions"
       />
     )
   }
@@ -85,6 +94,13 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
                 ],
                 value: '',
                 query: 'status',
+              },
+            ],
+
+            buttons: [
+              {
+                label: isDownloading ? 'Download...' : 'Download CSV',
+                onClick: () => downloadBulkCSV(),
               },
             ],
           }}

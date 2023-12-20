@@ -85,7 +85,7 @@ export const Input = styled.div<inputProps>`
     height: 45px;
     border: 1px solid rgba(193, 202, 207, 0.5);
     color: #001928;
-    border-radius: 6px;
+    border-radius: 10px;
     padding: ${({ inputPadding }) => inputPadding || '0 1rem'};
     outline: none;
     width: 100%;
@@ -100,12 +100,17 @@ export const Input = styled.div<inputProps>`
     margin: 0 !important;
   }
 `
-export const Error = styled.p``
+export const Error = styled.p`
+color:${Color.alerzoDanger};
+font-size:.8rem;
+`
 export const Footer = styled.div`
   display: flex;
   justify-content: center;
+  padding: 1rem 0;
   a {
     color: ${Color.alerzoBlue};
+    padding: 0;
   }
 `
 export const Tags = styled.div`
@@ -142,4 +147,21 @@ export const Select = styled.div`
     background: transparent;
     color: ${Color.alerzoGray2};
   }
+`
+export const FileUpload = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  left: 0%;
+  right: 0%;
+  top: 0px;
+  background: #ffffff;
+  border: 2px dashed #000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  outline: none;
+  padding: 0 1rem;
+  cursor: pointer;
 `

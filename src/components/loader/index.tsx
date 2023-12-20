@@ -3,9 +3,9 @@ import { LoaderWrapper, LoaderIndicator } from './styles/loader.styles'
 import { LoaderProps } from './type'
 import Text from '../text'
 
-const Loader = ({ color, text }: LoaderProps) => {
+const Loader = ({ color, text, isUpload }: LoaderProps) => {
   return (
-    <LoaderWrapper>
+    <LoaderWrapper isUpload={isUpload}>
       {text && (
         <Text as={'h4'} padding={'0 0 .5rem 0'}>
           {text}

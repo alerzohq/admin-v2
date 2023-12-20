@@ -4,9 +4,9 @@ import { Path } from '../../../../constants/route-path'
 import Details from '../../../../container/dashboard/terminals/details'
 
 const TerminalDetails = () => {
-  const { adminAccess } = AllPermissions()
+  const { terminalDetailAccess } = AllPermissions()
 
-  if (!adminAccess) {
+  if (!terminalDetailAccess) {
     return <Navigate to={`/${Path.DASHBOARD}`} replace />
   }
 
