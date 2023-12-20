@@ -81,7 +81,10 @@ export const generateCommission = (
 
   if (type === 'percentage') {
     const capToNaira = amountConverter(cap!)
-    return `${commission}% @ ₦${capToNaira}`
+    let commissionValue = cap
+      ? `${commission}% @ ₦${capToNaira}`
+      : `${commission}%`
+    return `${commissionValue}`
   }
   if (type === 'flat') {
     return `₦${amountConverter(commission)} FLAT`
@@ -104,9 +107,9 @@ export const mapBillers = (arr: any) =>
     value: obj?.slug,
   }))
 export const mapBusinesses = (arr: any) =>
-  arr?.map((obj: any) => ({
-    label: obj.name,
-    value: obj?.id,
+  arr?.map((business: any) => ({
+    label: `${business.name} - ${business.phone_number}`,
+    value: business?.id,
   }))
 
 export const sumOfValue = (
@@ -119,19 +122,71 @@ export const sumOfValue = (
   }, 0)
 }
 
-
 export const capitalize = (value?: string) => {
-  if (typeof value !== 'string') return '';
-  const words = value?.toLocaleLowerCase().trim().split(' ');
+  if (typeof value !== 'string') return ''
+  const words = value?.toLocaleLowerCase().trim().split(' ')
   return words
     .map((word) =>
       word?.length === 0 ? word : word[0].toUpperCase() + word.substring(1)
     )
-    .join(' ');
-};
+    .join(' ')
+}
 
 export const formatUnderScore = (value?: string | number): string => {
   let data = value?.toString()
-  let newvalue = data!?.replaceAll('_', ' ');
-  return capitalize(newvalue);
-};
+  let newvalue = data!?.replaceAll('_', ' ')
+  return capitalize(newvalue)
+}
+
+export const convertPhoneNumber = (number: string) => {
+  if (number?.startsWith('+234')) {
+    return '0' + number.slice(4)
+  } else {
+    return number
+  }
+}
+export const checkPdfUrl = (url: string): boolean => {
+  if (url.endsWith('.pdf')) {
+    return true
+  } else {
+    return false
+  }
+}
+
+// check email validity
+export const isEmailValid = (value: string) => {
+  const emailRegex = /\S+@\S+\.\S+/
+  return emailRegex.test(value)
+}
+
+// check website validity
+export const isWebsiteValid = (value: string) => {
+  const websiteRegex =
+    /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z0-9-.]+)$/
+  return websiteRegex.test(value)
+}
+
+// check if fields in inputValues are not empty strings
+export const formValidator = (values: Object) => {
+  let hasValues = false
+  for (const value of Object.values(values)) {
+    if (value.trim() !== '') {
+      hasValues = true
+      break
+    }
+  }
+
+  return hasValues
+}
+
+export const convertToKobo = (value = '0'): number => {
+  return Number(value) * 100
+}
+
+export const convertToNaira = (value = '0'): string => {
+  if (value === '0') {
+    return '0'
+  }
+  let newVal = Number(value) / 100
+  return newVal.toString()
+}

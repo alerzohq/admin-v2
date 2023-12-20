@@ -100,7 +100,10 @@ export const Input = styled.div<inputProps>`
     margin: 0 !important;
   }
 `
-export const Error = styled.p``
+export const Error = styled.p`
+  color: ${Color.alerzoDanger};
+  font-size: 0.8rem;
+`
 export const Footer = styled.div`
   display: flex;
   justify-content: center;

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 
 export type ModalProps = {
   children?: React.ReactNode
-  showModal: bool
+  showModal: boolean
   loading?: boolean
   title: React.ReactNode
   buttonText?: string
@@ -19,7 +19,7 @@ export type ModalProps = {
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   icon?: ReactNode
   withoutFooter?: boolean
-  hideContent?:boolean
+  hideContent?: boolean
   disabled?: boolean
   subTitleWhiteSpace?: string
   footer?: React.ReactNode

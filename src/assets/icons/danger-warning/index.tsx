@@ -22,4 +22,5 @@ export function DangerWarning({
     </svg>
   )
 }
+
 export default DangerWarning

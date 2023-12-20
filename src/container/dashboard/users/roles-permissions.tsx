@@ -26,6 +26,7 @@ const RolesPermissions = ({
     'roles-permissions',
     getRoles
   )
+
   let component
   if (isLoading) {
     component = <Loader />

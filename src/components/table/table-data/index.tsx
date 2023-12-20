@@ -1,9 +1,11 @@
+import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { transformData } from '../../../helper/table.helper'
 import { formatDate, amountConverter } from '../../../utils/formatValue'
-import { TableItemDiv } from './table.style'
+import { TableButton, TableItemDiv } from './table.style'
 import { useAppContext } from '../../../context'
 import { Action } from '../../../context/actions'
+import { getClassNames } from './table-classnames'
 
 export type selectedDataType = {
   [key: string]: any
@@ -20,6 +22,10 @@ type dataProps = {
   setParams?: boolean
   notClickable?: boolean
   routePath?: string
+  noSlug?: boolean
+  handleRouthPath?: (item: { [key: string]: any }) => void
+  handleAction?: (item: { [key: string]: any }) => void
+  actionBtnLabel?: string
 }
 type dataList = string[] | undefined
 
@@ -34,6 +40,10 @@ const TableData = ({
   setParams,
   notClickable,
   routePath,
+  noSlug,
+  actionBtnLabel,
+  handleRouthPath,
+  handleAction,
 }: dataProps) => {
   const { dispatch } = useAppContext()
   const navigate = useNavigate()
@@ -54,7 +64,11 @@ const TableData = ({
               <td key={i} id="td-hover">
                 <TableItemDiv
                   onClick={
-                    notClickable
+                    !!handleRouthPath
+                      ? () => {
+                          handleRouthPath?.(item)
+                        }
+                      : notClickable
                       ? () => {}
                       : setParams
                       ? () => {
@@ -75,6 +89,8 @@ const TableData = ({
                           navigate(
                             withSlug
                               ? `/${routePath}/${item?.id}/${item?.product?.slug}`
+                              : noSlug
+                              ? `/${routePath}`
                               : `/${routePath}/${item?.id}`,
                             { replace: true, state: item }
                           )
@@ -90,33 +106,7 @@ const TableData = ({
                           )
                         }
                   }
-                  //TODO REFACTOR
-                  className={
-                    data === 'successful' ||
-                    data === 'Active' ||
-                    data === 'approved' ||
-                    data === 'shipping' ||
-                    data === 'verified' ||
-                    data === 'delivered'
-                      ? 'success'
-                      : data === 'Unassigned'
-                      ? 'unassigned'
-                      : data === 'pending' || data === 'processing'
-                      ? 'pending'
-                      : data === 'failed' ||
-                        data === 'Inactive' ||
-                        data === 'rejected'
-                      ? 'failed'
-                      : formatDate(item?.loginDate, 'YYYY-MM-DD HH:mm:ss') ===
-                        data
-                      ? 'successText'
-                      : formatDate(item?.logoutDate, 'YYYY-MM-DD HH:mm:ss') ===
-                        data
-                      ? 'dangerText'
-                      : data === 'Session ongoing'
-                      ? 'pendingText'
-                      : '' + (i === 0 && !hideActive && 'tableLink')
-                  }
+                  className={getClassNames(data, item, i, hideActive)}
                 >
                   {lastItem && lastItem === data && !hideDate
                     ? formatDate(data, dateFormat || 'lll')
@@ -126,6 +116,13 @@ const TableData = ({
                 </TableItemDiv>
               </td>
             ))}
+            {handleAction && (
+              <td>
+                <TableButton onClick={() => handleAction(item)}>
+                  {actionBtnLabel ?? 'Edit'}
+                </TableButton>
+              </td>
+            )}
           </tr>
         )
       })}

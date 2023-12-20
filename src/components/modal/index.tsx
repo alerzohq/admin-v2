@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Button, Text } from '..'
 import CloseIcon from '../../assets/icons/close-icon'
 import { Color } from '../../assets/theme'
@@ -35,11 +36,21 @@ const Modal = ({
   icon,
   withoutFooter,
   subTitleWhiteSpace,
-  footer,
 }: ModalProps) => {
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+    return()=>{
+      document.body.style.overflow = 'auto'
+    }
+  }, [showModal])
+
+
   return (
-    <>
-      <BackDrop isShown={showModal} />
+    <BackDrop isShown={showModal}>
       <ModalWrapper isShown={showModal}>
         <StyledModal
           isShown={showModal}
@@ -120,7 +131,7 @@ const Modal = ({
           )}
         </StyledModal>
       </ModalWrapper>
-    </>
+    </BackDrop>
   )
 }
 export default Modal

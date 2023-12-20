@@ -10,6 +10,7 @@ export enum Path {
   TERMINALDETAIL = 'terminals/:terminalId',
   BUSINESSES = 'businesses',
   BUSINESSDETAIL = 'businesses/:businessId',
+  BUSINESSPRODUCTDETAIL = 'businesses/:businessId/:slug',
   DIGITALBANK = 'digital-bank',
   DIGITALBANKDETAIL = 'digital-bank/:dbId',
   PRODUCTS = 'products',
@@ -19,5 +20,7 @@ export enum Path {
   AUDITLOGS = 'audit/:id',
   TERMINALREQUESTDETAIL = 'terminals/requests/:requestId',
   KYC = 'kyc',
-  KYCView = 'kyc/:id',
+  KYCDETAIL = 'kyc/:id',
+  BILLER = 'biller',
+  BILLERDETAIL = 'biller/:slug',
 }

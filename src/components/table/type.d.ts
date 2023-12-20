@@ -16,7 +16,10 @@ export type TableProps = {
   notClickable?: boolean
   layout?: string
   routePath?: string
-
+  noSlug?: boolean
+  handleRouthPath?: (item?: { [key: string]: any }) => void
+  handleAction?: (item: { [key: string]: any }) => void
+  actionBtnLabel?: string
   onClick?: (item: {}) => void
 }
 

@@ -10,7 +10,6 @@ import {
 } from '../../../components'
 import { Container } from '../../../components/layout'
 import { transHeaderList } from '../../../data/table-headers'
-import { filterProps } from '../../../@types'
 import { filterValue } from '../../../data/filter-data'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
@@ -27,6 +26,7 @@ import SingleReversalModal from './modal/single-reversal-modal'
 import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 import AllPermissions from '../../../configs/access-control'
 import BulkReversalModal from './modal/bulk-reversal-modal'
+import { FilterValueProps } from '../../../@types/global'
 
 const TransactionContainer = () => {
   const {
@@ -42,6 +42,7 @@ const TransactionContainer = () => {
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
 
+  /*TODO REFACTOR*/
   let actionOptions = [
     historyDownloadAccess && {
       label: 'Download CSV Report',
@@ -59,7 +60,9 @@ const TransactionContainer = () => {
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
 
-  //TODO REFACTOR
+  /** TODO REFACTOR
+   * MAKE THIS HOOK
+   */
 
   useEffect(() => {
     if (value) {
@@ -78,7 +81,7 @@ const TransactionContainer = () => {
     }
   }, [value, downloadBulkCSV])
 
-  const getTransactions = (filterValue: filterProps) => {
+  const getTransactions = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`transactions`, filterValue)
   }
 

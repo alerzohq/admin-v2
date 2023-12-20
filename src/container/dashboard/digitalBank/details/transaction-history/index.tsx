@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 import {
   FallBack,
   Filter,
@@ -26,7 +26,7 @@ const TransactionHistory = ({ userId }: { userId: string }) => {
     values,
     'history'
   )
-  const getTransactionsHistory = (filterValue: filterProps) => {
+  const getTransactionsHistory = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
       `transactions?userId=${userId}&`,
       filterValue,

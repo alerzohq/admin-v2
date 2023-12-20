@@ -27,7 +27,11 @@ const BusinessAccounts = () => {
   const renderSwitch = () => {
     if (isError) {
       return (
-        <FallBack error refetch={refetch} title={`${errorMessage(error)}`} />
+        <FallBack
+          error
+          refetch={refetch}
+          title={`${errorMessage(error as ErrorType)}`}
+        />
       )
     }
     if (isLoading || isFetching) {

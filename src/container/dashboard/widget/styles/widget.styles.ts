@@ -41,3 +41,13 @@ export const CardWidgetItem = styled.div`
     flex: 0 0 100%;
   }
 `
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  background: ${Color.alerzoGray3};
+  padding: 0 1rem;
+  border-radius: 5px;
+  color: ${Color.alerzoBlue};
+`

@@ -14,7 +14,7 @@ import { getNewFilterResource } from '../../../../../utils/apiRequest'
 import { errorMessage } from '../../../../../utils/message'
 import { statusFilterOptions } from '../../../../../helper/filter-helper'
 import { useAppContext } from '../../../../../context'
-import { filterProps } from '../../../../../@types'
+import { FilterValueProps } from '../../../../../@types/global'
 
 const Members = ({ businessId }: { businessId: string }) => {
   const [values, setValues] = useState({ ...filterValue })
@@ -24,7 +24,7 @@ const Members = ({ businessId }: { businessId: string }) => {
 
   let statusOptions = statusFilterOptions(appFilters?.['businessMembers'])
 
-  const getMembers = (filterValue: filterProps) => {
+  const getMembers = (filterValue: FilterValueProps) => {
     return getNewFilterResource(`business-users`, {
       ...filterValue,
       query: businessId,

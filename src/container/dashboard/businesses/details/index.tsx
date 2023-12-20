@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {
   actionOptions,
   businessDetailsHelper,
@@ -21,6 +21,8 @@ import useGetBusinessDetails from '../hooks/useGetBusinessDetails'
 import { selectStyles } from '../../../../components/select-input/styles/select-input.styes'
 import useResetSecurityQst from '../hooks/useResetSecurityQst'
 import { SucccessAlert } from '../../../../components'
+import UpdateBusinessDetails from './modal/update-business-details'
+import UpdateOwnersDetails from './modal/update-owners-details'
 
 const BusinessDetailContainer = () => {
   const location = useLocation()
@@ -28,6 +30,8 @@ const BusinessDetailContainer = () => {
   const [show, setShow] = useState(false)
   const [success, setSuccess] = useState(false)
   const [showResetQst, setShowResetQst] = useState(false)
+  const [showUpdateBusiness, setShowUpdateBusiness] = useState(false)
+  const [showUpdateOwner, setShowUpdateOwner] = useState(false)
   const [reset, setReset] = useState('')
   const queryParam = new URLSearchParams(search).get('status')
   const found = TABS.find((element) => element.value === queryParam)
@@ -35,6 +39,7 @@ const BusinessDetailContainer = () => {
   const thePath = location.pathname
   var result = thePath.split('/')
   const id = result[3]
+  const { businessId } = useParams()
 
   const { mutate: activate, isLoading: isActivating } =
     useActivateBusiness(setShow)
@@ -46,10 +51,14 @@ const BusinessDetailContainer = () => {
     setShowResetQst
   )
 
-  const { isLoading, isError, data, isFetching } = useGetBusinessDetails(id)
+  const { isLoading, isError, data, isFetching, refetch } =
+    useGetBusinessDetails(id)
   let wallet = data?.data?.[0]?.wallet_details?.find(
     (wallet: { [key: string]: any }) => wallet?.wallet_type === 'main'
   )
+
+  // check if business is b2b
+  const isB2B = data?.data?.[0]?.channel === 'b2b'
 
   const walletId = wallet?.wallet_id
   const isCustomerActive = data?.data?.[0]
@@ -59,8 +68,18 @@ const BusinessDetailContainer = () => {
 
   useEffect(() => {
     if (reset) {
-      setShowResetQst(true)
-      setReset('')
+      if (reset === 'Reset Security Question') {
+        setShowResetQst(true)
+        setReset('')
+      }
+      if (reset === 'Edit Business Details') {
+        setShowUpdateBusiness(true)
+        setReset('')
+      }
+      if (reset === 'Edit Business Owner Details') {
+        setShowUpdateOwner(true)
+        setReset('')
+      }
     }
   }, [reset])
 
@@ -96,7 +115,7 @@ const BusinessDetailContainer = () => {
       case 'transaction':
         return <TransactionHistory walletId={walletId} />
       case 'products':
-        return <Products />
+        return <Products isB2B={isB2B} />
       case 'kyc':
         return <div>KYC</div>
       case 'terminals':
@@ -111,6 +130,8 @@ const BusinessDetailContainer = () => {
         return (
           <DetailsContent
             resolvedData={businessDetailsHelper(data?.data?.[0])!}
+            phoneNumber={data?.data?.[0]?.bvn_verification?.phone_number}
+            documentNumber={data?.data?.[0]?.bvn}
           />
         )
     }
@@ -178,6 +199,20 @@ const BusinessDetailContainer = () => {
         loading={resetting}
         handleSubmit={handleResetQst}
       ></Modal>
+      <UpdateBusinessDetails
+        showUpdateBusiness={showUpdateBusiness}
+        setShowUpdateBusiness={setShowUpdateBusiness}
+        data={data?.data}
+        businessId={businessId}
+        refetch={refetch}
+      />
+      <UpdateOwnersDetails
+        showUpdateOwner={showUpdateOwner}
+        setShowUpdateOwner={setShowUpdateOwner}
+        data={data?.data}
+        businessId={businessId}
+        refetch={refetch}
+      />
       <SucccessAlert
         showSuccess={success}
         setShowModal={setSuccess}

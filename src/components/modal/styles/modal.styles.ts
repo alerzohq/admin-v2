@@ -13,17 +13,6 @@ type props = {
   textAreaBottomMargin?: string
 }
 
-export const ModalWrapper = styled.div<props>`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  width: inherit;
-  outline: 0;
-  width: 100%;
-  display: ${({ isShown }) => (isShown ? 'block' : 'none')};
-`
 export const BackDrop = styled.div<props>`
   position: ${({ isShown }) => (isShown ? 'fixed' : null)};
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
@@ -34,7 +23,24 @@ export const BackDrop = styled.div<props>`
   background: rgba(38, 40, 62, 0.6);
   backdrop-filter: blur(6px);
   z-index: 9999;
+  overflow-y: auto;
 `
+
+export const ModalWrapper = styled.div<props>`
+  display: ${({ isShown }) => (isShown ? 'flex' : 'none')};
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 9999;
+  width: inherit;
+  outline: 0;
+  width: 100%;
+  /* position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  /* display: flex; */
+`
+
 export const Header = styled.div`
   border-radius: 8px 8px 0 0;
   display: flex;
@@ -53,6 +59,13 @@ export const HeaderText = styled.div`
   text-align: center;
   align-items: center;
 `
+export const ModalLabel = styled.span`
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: start;
+  width: 100%;
+`
+
 
 export const CloseButton = styled.div`
   align-self: end;
@@ -103,7 +116,7 @@ export const Content = styled.div<props>`
   flex-direction: column;
   align-items: center;
   padding: ${({ contentPadding }) =>
-    contentPadding ? contentPadding : '2em 3.5em'};
+    contentPadding ? contentPadding : '2rem 1.5rem'};
   justify-content: start;
   @media (max-width: 480px) {
     padding: 0.5em 1.5em;
@@ -114,7 +127,7 @@ export const TextArea = styled.textarea<props>`
   border: 1px solid rgba(193, 202, 207, 0.5);
   height: ${({ textAreaHeight }) =>
     textAreaHeight ? textAreaHeight : '300px'};
-  width: ${({ textAreaWidth }) => textAreaWidth??'100%'};
+  width: ${({ textAreaWidth }) => textAreaWidth ?? '100%'};
   border-radius: 0.6rem;
   margin-top: ${({ textAreaTopMargin }) =>
     textAreaTopMargin ? textAreaTopMargin : '1rem'};

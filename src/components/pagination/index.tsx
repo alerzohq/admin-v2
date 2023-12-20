@@ -6,7 +6,7 @@ import { useWindowResize } from '../../hooks'
 import SelectInput from '../select-input'
 import Text from '../text'
 import { options } from '../../data/filter-data'
-import { SelectOptions } from '../../@types'
+import { SelectOptions } from '../../@types/global'
 import { Color } from '../../assets/theme'
 import { BackIcon, NextIcon } from '../../assets/icons'
 
@@ -58,7 +58,6 @@ const Pagination = ({
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
             pageCount={data?.metadata?.pages ?? 1}
-            // previousLabel={width < mobileWidth ? <BackIcon /> :  <BackIcon />}
             previousLabel={<BackIcon />}
             containerClassName={'paginate'}
             pageClassName={'page-item'}
