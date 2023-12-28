@@ -137,9 +137,6 @@ const AddTerminalModal: React.FC<{
                 color={Color.alerzoDanger}
               >
                 {isTriggerSubmit && addValues.specification === ''
-<<<<<<< HEAD
-                  ? 'POS variant is required*'
-=======
                   ? 'POS Variant is required*'
                   : ''}
               </Text>
@@ -174,7 +171,6 @@ const AddTerminalModal: React.FC<{
               >
                 {isTriggerSubmit && addValues.provider === ''
                   ? 'Provider is required*'
->>>>>>> f3b732ebe81de0f958804e53701f8aa1f9c04514
                   : ''}
               </Text>
             )}
