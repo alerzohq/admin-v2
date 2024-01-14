@@ -16,7 +16,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     const {
       reference,
       amount,
-      channel,
+      recipient,
       customer_name,
       type,
       action,
@@ -25,11 +25,11 @@ export const transformData = ({ item, name }: TableHelperProps) => {
       created_at,
     } = item
     let displayName = biller?.display_name || ''
-    let actionChannel = channel ? channel?.toUpperCase() : ''
+    let destination = recipient ? recipient : ''
     return {
       reference,
       customer_name,
-      actionChannel,
+      destination,
       amount,
       type,
       action,
