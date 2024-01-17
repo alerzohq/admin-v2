@@ -143,14 +143,12 @@ export const RegistrationInvite = () => {
                       ? 'Password is required*'
                       : !strongPassword(values.password)
                       ? 'Password must contain 1 number, 1 uppercase letter, at least one special character (^+#_) and no spaces'
-                      : values.password !== '' && values.password.length < 8
-                      ? 'Password must be 8 characters long'
                       : ''}
                   </Text>
                 )}
                 {!isTriggerSubmit && (
                   <Text as='small' weight='500' color={Color.alerzoGray4}>
-                      Password must must be 8 characters long and must contain 1 number, 1 uppercase letter, at least one special character (^+#_) and no spaces
+                      Password must be 8 characters long and must contain 1 number, 1 uppercase letter, at least one special character (^+#_) and no spaces
                   </Text>
                 )}
               </Form.Control>
