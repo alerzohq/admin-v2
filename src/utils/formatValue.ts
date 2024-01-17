@@ -81,7 +81,9 @@ export const generateCommission = (
 
   if (type === 'percentage') {
     const capToNaira = amountConverter(cap!)
-   let commissionValue=cap?`${commission}% @ ₦${capToNaira}`:`${commission}%`
+    let commissionValue = cap
+      ? `${commission}% @ ₦${capToNaira}`
+      : `${commission}%`
     return `${commissionValue}`
   }
   if (type === 'flat') {
@@ -143,12 +145,12 @@ export const convertPhoneNumber = (number: string) => {
     return number
   }
 }
-export const checkPdfUrl=(url:string):boolean => {
-if (url.endsWith('.pdf')) {
- return true
-} else {
- return false
-}
+export const checkPdfUrl = (url: string): boolean => {
+  if (url.endsWith('.pdf')) {
+    return true
+  } else {
+    return false
+  }
 }
 
 // check email validity
@@ -166,27 +168,27 @@ if (url.endsWith('.pdf')) {
     return password.match( '^(?=.*[0-9])(?=.*[A-Z])(?=.*[!^+#_])[A-Za-z0-9!^+#_]{8,}$')
   }
 
- // check if fields in inputValues are not empty strings
-export const formValidator =(values:Object)=>{
- let hasValues = false
-    for (const value of Object.values(values)) {
-      if (value.trim() !== '') {
-        hasValues = true
-        break
-      }
+// check if fields in inputValues are not empty strings
+export const formValidator = (values: Object) => {
+  let hasValues = false
+  for (const value of Object.values(values)) {
+    if (value.trim() !== '') {
+      hasValues = true
+      break
     }
+  }
 
-    return hasValues
+  return hasValues
 }
 
-export const convertToKobo=(value='0'):number=>{
-return Number(value)*100
+export const convertToKobo = (value = '0'): number => {
+  return Number(value) * 100
 }
 
-export const convertToNaira=(value='0'):string=>{
-  if(value==='0'){
+export const convertToNaira = (value = '0'): string => {
+  if (value === '0') {
     return '0'
   }
-  let newVal=Number(value)/100
+  let newVal = Number(value) / 100
   return newVal.toString()
-  }
+}

@@ -51,9 +51,9 @@ const AllPermissions = () => {
   const viewBillersAccess =
     isHasPermission.includes('view_billers') || adminAccess
   const viewBillerDetailAccess =
-  isHasPermission.includes('view_biller') || adminAccess
+    isHasPermission.includes('view_biller') || adminAccess
   const updateBillerAccess =
-  isHasPermission.includes('update_biller') || adminAccess
+    isHasPermission.includes('update_biller') || adminAccess
   const setBillerThresholdAccess =
     isHasPermission.includes('set_biller_threshold') || adminAccess
   const KYCAccess =
@@ -85,7 +85,7 @@ const AllPermissions = () => {
     historyStatisticAccess,
     KYCAccess,
     businessProductDetailAccess,
-    updateBillerAccess
+    updateBillerAccess,
   }
 }
 

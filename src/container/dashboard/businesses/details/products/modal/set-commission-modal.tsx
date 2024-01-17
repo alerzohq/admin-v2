@@ -70,7 +70,7 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
     e.preventDefault()
     setIsTriggerSubmit(true)
     if (type?.value === Rate.percentage) {
-      if ( percentage && Number(percentage) <= 100) {
+      if (percentage && Number(percentage) <= 100) {
         setIsTriggerSubmit(false)
         mutate(payload)
       }

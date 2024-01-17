@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 
 export type ModalProps = {
   children?: React.ReactNode
-  showModal: bool
+  showModal: boolean
   loading?: boolean
   title: React.ReactNode
   buttonText?: string

@@ -122,10 +122,9 @@ const UpdateOwnersDetails = ({
     <>
       <Modal
         showModal={showUpdateOwner}
-        modalWidth='500px'
+        modalWidth="500px"
         title="Update Business Owner Details"
         setShowModal={toggleModal}
-
       >
         <ModalForm>
           <Form>

@@ -101,8 +101,8 @@ export const Input = styled.div<inputProps>`
   }
 `
 export const Error = styled.p`
-color:${Color.alerzoDanger};
-font-size:.8rem;
+  color: ${Color.alerzoDanger};
+  font-size: 0.8rem;
 `
 export const Footer = styled.div`
   display: flex;

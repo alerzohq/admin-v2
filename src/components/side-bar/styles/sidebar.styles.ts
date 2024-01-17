@@ -43,10 +43,10 @@ export const Inner = styled.div<sidebarStyleProps>`
 `
 export const LogoBox = styled.div`
   display: flex;
-img{
-width:30px;
-margin:0 auto;
-}
+  img {
+    width: 30px;
+    margin: 0 auto;
+  }
 `
 
 export const SidebarList = styled.div`

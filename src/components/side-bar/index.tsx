@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AlerzoLogo,  LogoutIcon } from '../../assets/icons'
+import { AlerzoLogo, LogoutIcon } from '../../assets/icons'
 import { Color } from '../../assets/theme'
 import { SideBarMenus } from '../../data/sidebar-data'
 import {
@@ -56,7 +56,7 @@ const Sidebar = ({
       <Inner isCollapsed={isCollapsed}>
         <LogoBox>
           {isCollapsed ? (
-            <img src='/favicon.png' alt='favicon' onClick={collapseBar}/>
+            <img src="/favicon.png" alt="favicon" onClick={collapseBar} />
           ) : (
             <AlerzoLogo
               className="logo"

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ActiveBillerIcon() {
   return (
@@ -22,7 +22,7 @@ function ActiveBillerIcon() {
         clipRule="evenodd"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default ActiveBillerIcon;
+export default ActiveBillerIcon

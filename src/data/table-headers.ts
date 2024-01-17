@@ -99,5 +99,5 @@ export const billerHeaderList = [
   'Status',
   'Date Added',
   'Date Updated',
-  'Action'
+  'Action',
 ]

@@ -24,7 +24,7 @@ function BillerIcon() {
         clipRule="evenodd"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default BillerIcon;
+export default BillerIcon
