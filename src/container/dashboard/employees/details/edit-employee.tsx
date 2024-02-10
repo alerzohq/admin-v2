@@ -1,7 +1,5 @@
-import { AxiosError, AxiosResponse } from 'axios'
-import { useState } from 'react'
-import toast from 'react-hot-toast'
-import { useQuery, useMutation } from 'react-query'
+import React, { useState } from 'react'
+
 import { Color } from '../../../../assets/theme'
 import {
   Button,
@@ -11,82 +9,86 @@ import {
   Stack,
   Text,
 } from '../../../../components'
-import { axiosInstance } from '../../../../configs/axios-instance'
-import { getResource } from '../../../../utils/apiRequest'
+import useGetRoles from '../hooks/useGetRoles'
+import useUpdateRole from '../hooks/useUpdateRole'
+import useRequestPasswordReset from '../hooks/useRequestPasswordReset'
+import OTPFormModal from '../../../../components/otp-modal'
+import useResetPassword from '../hooks/useResetPassword'
 
-interface Role {
+type Role = {
   value: string
   label: string
 }
 
-const EditEmployees = ({ data }: any) => {
+type EmployeeProps = {
+  data?: Record<string, string>
+}
+
+const EditEmployee = ({ data }: EmployeeProps) => {
+  const [otp,setOtp] = useState('')
+  const [openModal,setOpenModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+
+  const [updatedRole, setUpdatedRole] = useState<Role | undefined>({
+    value: data?.adminRoleName || '',
+    label: data?.adminRoleName || '',
+  })
+
+ const { isLoading: isLoadingRoles, data: roles } = useGetRoles()
+ const { mutate:requestOTP }= useRequestPasswordReset(
+  {adminId:data?.id!}
+  )
+ const { mutate:resetPassword, isLoading} =useResetPassword(
+  {employeeId:data?.id!,
+  setOpenModal}
+  )
+
+const onSubmit=(e:React.MouseEvent<HTMLButtonElement>)=>{
+   e.preventDefault()
+  resetPassword({otp})
+}
+
+  const { mutate } = useUpdateRole({
+    setIsEditing: setIsEditing,
+    id: data?.id!,
+    role: updatedRole?.value!,
+  })
+
   const role = {
     value: data?.adminRoleName,
     label: data?.adminRoleName,
   }
-  const [updatedRole, setUpdatedRole] = useState<Role | undefined>({
-    value: data?.adminRoleName,
-    label: data?.adminRoleName,
-  })
 
-  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
-
-  const getRoles = () => {
-    return getResource('roles')
-  }
-  const { isLoading: isLoadingRoles, data: roles } = useQuery('roles', getRoles)
-
-  const mutation = useMutation<
-    AxiosResponse<any, any>,
-    any,
-    any,
-    AxiosError<any, any>
-  >(
-    (role) => {
-      return axiosInstance.patch(`/members/${data.id}`, {
-        roleName: updatedRole?.value,
-      })
-    },
-    {
-      onSuccess: () => {
-        setIsEditing(false)
-        toast.success('Role updated succesfully')
-      },
-    }
-  )
   return (
     <>
-      <Jumbotron width={'65%'} padding={'2rem'} direction={'column'}>
-        <Form wrap={'wrap'} width={'100%'} direction="row">
-          <Form.Control pr={'2rem'} pb={'1rem'} width="45%">
+      <Jumbotron width="65%" padding="2rem" direction="column">
+        <Form wrap="wrap" width="100%" direction="row">
+          <Form.Control pr="2rem" pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">First Name</Form.Label>
             <Form.Input
               type="text"
               value={data?.firstName}
-              onChange={() => {}}
               disabled
             />
           </Form.Control>
-          <Form.Control pb={'1rem'} width="45%">
+          <Form.Control pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Last Name</Form.Label>
             <Form.Input
               type="text"
               value={data?.lastName}
-              onChange={() => {}}
               disabled
             />
           </Form.Control>{' '}
-          <Form.Control pr={'2rem'} pb={'1rem'} width="45%">
+          <Form.Control pr="2rem" pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Email Address</Form.Label>
             <Form.Input
               type="text"
               value={data?.email}
-              onChange={() => {}}
               disabled
             />
           </Form.Control>
-          <Form.Control pb={'1rem'} width="45%">
+          <Form.Control pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Phone Number</Form.Label>
             <Form.Input
               type="text"
@@ -95,7 +97,7 @@ const EditEmployees = ({ data }: any) => {
               disabled
             />
           </Form.Control>
-          <Form.Control pb={'1rem'} width="45%">
+          <Form.Control pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Role Name</Form.Label>
             {!isLoadingRoles && roles && (
               <>
@@ -129,7 +131,7 @@ const EditEmployees = ({ data }: any) => {
                 {isTriggerSubmit && !updatedRole ? (
                   <Text
                     padding="8px"
-                    as={'small'}
+                    as='small'
                     weight={'500'}
                     color={Color.alerzoDanger}
                   >
@@ -141,8 +143,8 @@ const EditEmployees = ({ data }: any) => {
                 {isTriggerSubmit && updatedRole?.value === role.value ? (
                   <Text
                     padding="8px"
-                    as={'small'}
-                    weight={'500'}
+                    as="small"
+                    weight="500"
                     color={Color.alerzoDanger}
                   >
                     Admin already on this role
@@ -169,7 +171,7 @@ const EditEmployees = ({ data }: any) => {
           <Button
             onClick={() => {
               if (updatedRole?.value && updatedRole.value !== role.value) {
-                mutation.mutate(role)
+                mutate()
               } else {
                 setIsTriggerSubmit(true)
               }
@@ -185,7 +187,10 @@ const EditEmployees = ({ data }: any) => {
             borderColor={Color.alerzoBlue}
             color={Color.alerzoBlue}
             variant="transparent"
-            onClick={() => {}}
+            onClick={()=>{
+              requestOTP()
+              setOpenModal(true)}
+            }
             weight="600"
           >
             Reset Password
@@ -195,7 +200,16 @@ const EditEmployees = ({ data }: any) => {
           </Button>
         </Stack>
       )}
+      <OTPFormModal
+        open={openModal}
+        onClose={()=>setOpenModal(!openModal)}
+        onSubmit={onSubmit}
+        setOtp={setOtp}
+        multiSteps={false}
+        otp={otp}
+        loading={isLoading}
+      />
     </>
   )
 }
-export default EditEmployees
+export default EditEmployee

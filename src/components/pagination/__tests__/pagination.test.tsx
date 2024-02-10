@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react'
-import React from 'react'
 import Pagination from '..'
 
-describe('Pagination', () => {
+describe('<Pagination />', () => {
   let mockFilterValues = {
     count: 10,
     pageNumber: 0,

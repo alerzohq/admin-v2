@@ -6,7 +6,7 @@ import Transactions from '../pages/dashboard/transactions'
 import Dashboard from '../pages/dashboard'
 import Overview from '../pages/dashboard/overview'
 import { Path } from '../constants/route-path'
-import Users from '../pages/dashboard/users'
+import Users from '../pages/dashboard/employees'
 import { IsUserRedirect, ProtectedRoutes } from '../configs/private-route'
 
 import TransactionDetails from '../pages/dashboard/transactions/transaction-details'
@@ -32,6 +32,7 @@ import KYCDetails from '../pages/dashboard/KYC/details'
 import BusinessProductDetails from '../pages/dashboard/businessess/business-detail/business-product-details'
 import Biller from '../pages/dashboard/biller'
 import BillerDetail from '../pages/dashboard/biller/biller-detail'
+import PasswordReset from '../pages/password-reset'
 
 function App() {
   const navigate = useNavigate()
@@ -58,6 +59,10 @@ function App() {
           <Route
             path={Path.INVITATIONREGISTER}
             element={<RegisterInvitation />}
+          />
+         <Route
+            path={Path.PASSWORD_RESET}
+            element={<PasswordReset />}
           />
 
           <Route element={<ProtectedRoutes user={user} />}>

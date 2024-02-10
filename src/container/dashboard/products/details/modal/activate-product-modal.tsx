@@ -20,7 +20,6 @@ type DeactivateProductProps = {
 const ActivateProductModal: React.FC<DeactivateProductProps> = ({
   showModal,
   setShowModal,
-  setValue,
   productName,
   productSlug,
 }) => {
