@@ -23,4 +23,5 @@ export enum Path {
   KYCDETAIL = 'kyc/:id',
   BILLER = 'biller',
   BILLERDETAIL = 'biller/:slug',
+  PASSWORD_RESET='password-reset'
 }

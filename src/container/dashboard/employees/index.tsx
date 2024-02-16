@@ -10,7 +10,7 @@ import RolesPermissions from './roles-permissions'
 import EditEmployee from './details/edit-employee'
 import PendingInvites from './pending-invites'
 
-const UsersContainer = () => {
+const EmployeeContainer = () => {
   const [edit, setEdit] = useState(false)
   const [create, setCreate] = useState(false)
   const location = useLocation()
@@ -94,4 +94,4 @@ const UsersContainer = () => {
   )
 }
 
-export default UsersContainer
+export default EmployeeContainer

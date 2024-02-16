@@ -154,17 +154,19 @@ export const checkPdfUrl = (url: string): boolean => {
 }
 
 // check email validity
-export const isEmailValid = (value: string) => {
-  const emailRegex = /\S+@\S+\.\S+/
-  return emailRegex.test(value)
-}
+  export const isEmailValid = (value:string) => {
+    const emailRegex = /\S+@\S+\.\S+/
+    return emailRegex.test(value)
+  }
 
-// check website validity
-export const isWebsiteValid = (value: string) => {
-  const websiteRegex =
-    /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z0-9-.]+)$/
-  return websiteRegex.test(value)
-}
+  // check website validity
+  export const isWebsiteValid = (value:string) => {
+    const websiteRegex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z0-9-.]+)$/
+    return websiteRegex.test(value)
+  }
+  export const strongPassword = (password:string) => {
+    return password.match( '^(?=.*[0-9])(?=.*[A-Z])(?=.*[!^+#_])[A-Za-z0-9!^+#_]{8,}$')
+  }
 
 // check if fields in inputValues are not empty strings
 export const formValidator = (values: Object) => {

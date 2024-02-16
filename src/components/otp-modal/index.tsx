@@ -1,34 +1,41 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Color } from '../../../../assets/theme'
-import { Button, Form, Loader, Stack, Text } from '../../../../components'
-import { useAppContext } from '../../../../context'
 import OtpInput from 'react-otp-input'
-import { TimerIcon } from '../../../../assets/icons'
-import Modal from '../../../../components/modal'
-import useResendOTPMutation from '../../businesses/hooks/useResendOtpMutation'
 
-type VerificationModalProps = {
+import { useAppContext } from '../../context'
+import useResendOTPMutation from '../../container/dashboard/businesses/hooks/useResendOtpMutation'
+import Form from '../form'
+import { Color } from '../../assets/theme'
+import Stack from '../stack'
+import Button from '../button'
+import Modal from '../modal'
+import Text from '../text'
+import { TimerIcon } from '../../assets/icons'
+import Loader from '../loader'
+
+type OTPFormModalProps = {
   open: boolean
-  close: VoidFunction
-  callback?: VoidFunction | any
+  onClose: ()=>void
+  onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void
   resend?: () => void
   loading?: boolean
   otp?: string
-  setOtp?: any
-  otpError: boolean
+  setOtp?:(otp:string)=>void
+  otpError?: boolean
+  multiSteps?:boolean
 }
 
-const VerificationPinModal = ({
+const OTPFormModal = ({
   open,
-  close,
-  callback,
+  onClose,
+  onSubmit,
   resend,
   loading,
   otp,
   setOtp,
+  multiSteps,
   otpError,
-}: VerificationModalProps) => {
+}: OTPFormModalProps) => {
   const {
     state: { userOtp, user },
   } = useAppContext()
@@ -65,7 +72,7 @@ const VerificationPinModal = ({
   const userEmail = user?.data?.email
 
   const handleChange = (otp: string) => {
-    setOtp(otp)
+    setOtp?.(otp)
   }
 
   // const closeModal = () => {
@@ -88,22 +95,21 @@ const VerificationPinModal = ({
   return (
     <Modal
       showModal={open}
-      setShowModal={close}
+      setShowModal={onClose}
       modalWidth="500px"
       title=""
-      handleSubmit={() => {}}
     >
       <Stack
-        alignItems={'center'}
+        alignItems='center'
         style={{ marginTop: '-4rem', marginBottom: '-4rem' }}
         id="otp-verification"
       >
-        <Form width={'100%'}>
+        <Form width='100%'>
           <Text
-            margin={'auto'}
-            as={'h1'}
+            margin='auto'
+            as='h1'
             color={Color.alerzoDarkGray}
-            padding={'1rem 0'}
+            padding='1rem 0'
           >
             Enter OTP
           </Text>
@@ -119,7 +125,7 @@ const VerificationPinModal = ({
               your email adress and enter OTP below to authorise this action.
             </>
           </Text>
-          <Form.Control pb={'2rem'} pt={'2rem'}>
+          <Form.Control pb='2rem' pt='2rem'>
             <OtpInput
               value={otp}
               onChange={handleChange}
@@ -150,36 +156,36 @@ const VerificationPinModal = ({
           </Form.Control>
 
           <Stack
-            direction={'row'}
-            justifyContent={'center'}
-            gap={'5px'}
-            alignItems={'center'}
+            direction='row'
+            justifyContent='center'
+            gap='5px'
+            alignItems='center'
           >
             <TimerIcon />
-            <Text as={'small'} weight={'600'} color={'#7890B5'}>
+            <Text as='small' weight='600' color='#7890B5'>
               {' '}
               Expires In :
             </Text>
             <Stack width="50px">
-              <Text as={'small'} weight={'600'} color={'#7890B5'}>
+              <Text as='small' weight='600' color='#7890B5'>
                 {' '}
                 {minutes} : {seconds}
               </Text>
             </Stack>
           </Stack>
 
-          <Form.Control pt={'3rem'} pb={'2rem'}>
-            <Button onClick={callback}>
-              {loading ? <Loader color={Color.alerzoWhite} /> : 'Proceed'}
+          <Form.Control pt='3rem' pb='2rem'>
+            <Button onClick={onSubmit}>
+              {loading ? <Loader color={Color.alerzoWhite} /> : multiSteps?'Proceed':'Submit'}
             </Button>
           </Form.Control>
         </Form>
         <Stack
-          direction={'row'}
-          justifyContent={'center'}
-          alignItems={'center'}
+          direction='row'
+          justifyContent='center'
+          alignItems='center'
         >
-          <Text as={'p'} weight={'500'} color={'#7890B5'}>
+          <Text as='p' weight='500' color='#7890B5'>
             {' '}
             Didn’t get a code?
           </Text>
@@ -199,4 +205,4 @@ const VerificationPinModal = ({
   )
 }
 
-export default VerificationPinModal
+export default OTPFormModal
