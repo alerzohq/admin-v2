@@ -66,7 +66,7 @@ export const StatusModal = ({
       showModal={showModal}
       setShowModal={setShowModal}
       title="Update Terminal Status"
-      contentPadding='0'
+      contentPadding="0"
       children={
         <>
           <ModalLabel>Order Status</ModalLabel>

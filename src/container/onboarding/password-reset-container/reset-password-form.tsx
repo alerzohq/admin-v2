@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { Button, Form, Text } from '../../../components'
-import {  LockIcon } from '../../../assets/icons'
+import { LockIcon } from '../../../assets/icons'
 import { Color } from '../../../assets/theme'
-import { strongPassword} from '../../../utils/formatValue'
+import { strongPassword } from '../../../utils/formatValue'
 import { ResetPasswordProps } from '../type'
 
 const ResetPasswordForm = ({
@@ -55,10 +55,10 @@ const ResetPasswordForm = ({
           inputPadding="0 2.5rem"
         />
         {isTriggerSubmit && (
-          <Text as='small' weight='500' color={Color.alerzoDanger}>
+          <Text as="small" weight="500" color={Color.alerzoDanger}>
             {isTriggerSubmit && confirmPassword === ''
               ? 'Confirm password is required*'
-              : confirmPassword !== '' && password!==confirmPassword
+              : confirmPassword !== '' && password !== confirmPassword
               ? 'Password and confirm password must be the same'
               : ''}
           </Text>

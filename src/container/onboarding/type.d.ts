@@ -3,9 +3,9 @@ interface IFormProps {
   password: string
 }
 
-interface IPasswordProps{
+interface IPasswordProps {
   password: string
- confirmPassword:string
+  confirmPassword: string
 }
 
 export type LoginProps = {
@@ -18,7 +18,7 @@ export type LoginProps = {
 
 export type ResetPasswordProps = {
   isTriggerSubmit: boolean
-  values:IPasswordProps
+  values: IPasswordProps
   setValues: React.Dispatch<React.SetStateAction<IPasswordProps>>
   submitForm: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>
   loading: boolean

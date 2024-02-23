@@ -16,8 +16,9 @@ const AllPermissions = () => {
     userInfo?.data?.role === 'Super Admin' ||
     Boolean(user?.data?.role === 'Super Admin')
 
-  const businessesAccess =
-    Boolean(isHasPermission.includes('view_businesses') || adminAccess)
+  const businessesAccess = Boolean(
+    isHasPermission.includes('view_businesses') || adminAccess
+  )
   const businessDetailAccess =
     isHasPermission.includes('view_business') || adminAccess
   const customersAccess =

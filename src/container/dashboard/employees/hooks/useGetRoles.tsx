@@ -6,7 +6,7 @@ const useGetRoles = () => {
   const getRoles = () => {
     return getResource('roles')
   }
-  return( useQuery('roles', getRoles))
+  return useQuery('roles', getRoles)
 }
 
 export default useGetRoles

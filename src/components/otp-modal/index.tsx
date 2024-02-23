@@ -15,14 +15,14 @@ import Loader from '../loader'
 
 type OTPFormModalProps = {
   open: boolean
-  onClose: ()=>void
+  onClose: () => void
   onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void
   resend?: () => void
   loading?: boolean
   otp?: string
-  setOtp?:(otp:string)=>void
+  setOtp?: (otp: string) => void
   otpError?: boolean
-  multiSteps?:boolean
+  multiSteps?: boolean
 }
 
 const OTPFormModal = ({
@@ -93,31 +93,26 @@ const OTPFormModal = ({
   }
 
   return (
-    <Modal
-      showModal={open}
-      setShowModal={onClose}
-      modalWidth="500px"
-      title=""
-    >
+    <Modal showModal={open} setShowModal={onClose} modalWidth="500px" title="">
       <Stack
-        alignItems='center'
+        alignItems="center"
         style={{ marginTop: '-4rem', marginBottom: '-4rem' }}
         id="otp-verification"
       >
-        <Form width='100%'>
+        <Form width="100%">
           <Text
-            margin='auto'
-            as='h1'
+            margin="auto"
+            as="h1"
             color={Color.alerzoDarkGray}
-            padding='1rem 0'
+            padding="1rem 0"
           >
             Enter OTP
           </Text>
           <Text
-            as='p'
-            align='center'
-            weight='500'
-            size='14px'
+            as="p"
+            align="center"
+            weight="500"
+            size="14px"
             color={Color.alerzoBlack}
           >
             <>
@@ -125,7 +120,7 @@ const OTPFormModal = ({
               your email adress and enter OTP below to authorise this action.
             </>
           </Text>
-          <Form.Control pb='2rem' pt='2rem'>
+          <Form.Control pb="2rem" pt="2rem">
             <OtpInput
               value={otp}
               onChange={handleChange}
@@ -156,36 +151,38 @@ const OTPFormModal = ({
           </Form.Control>
 
           <Stack
-            direction='row'
-            justifyContent='center'
-            gap='5px'
-            alignItems='center'
+            direction="row"
+            justifyContent="center"
+            gap="5px"
+            alignItems="center"
           >
             <TimerIcon />
-            <Text as='small' weight='600' color='#7890B5'>
+            <Text as="small" weight="600" color="#7890B5">
               {' '}
               Expires In :
             </Text>
             <Stack width="50px">
-              <Text as='small' weight='600' color='#7890B5'>
+              <Text as="small" weight="600" color="#7890B5">
                 {' '}
                 {minutes} : {seconds}
               </Text>
             </Stack>
           </Stack>
 
-          <Form.Control pt='3rem' pb='2rem'>
+          <Form.Control pt="3rem" pb="2rem">
             <Button onClick={onSubmit}>
-              {loading ? <Loader color={Color.alerzoWhite} /> : multiSteps?'Proceed':'Submit'}
+              {loading ? (
+                <Loader color={Color.alerzoWhite} />
+              ) : multiSteps ? (
+                'Proceed'
+              ) : (
+                'Submit'
+              )}
             </Button>
           </Form.Control>
         </Form>
-        <Stack
-          direction='row'
-          justifyContent='center'
-          alignItems='center'
-        >
-          <Text as='p' weight='500' color='#7890B5'>
+        <Stack direction="row" justifyContent="center" alignItems="center">
+          <Text as="p" weight="500" color="#7890B5">
             {' '}
             Didn’t get a code?
           </Text>

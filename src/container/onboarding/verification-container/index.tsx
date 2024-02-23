@@ -64,22 +64,22 @@ const VerificationContainer = () => {
 
   return (
     <AuthLayout>
-      <Stack alignItems='center' id="otp-verification">
-        <Form width='65%'>
+      <Stack alignItems="center" id="otp-verification">
+        <Form width="65%">
           <Text
-            margin='auto'
-            as='h1'
+            margin="auto"
+            as="h1"
             color={Color.alerzoDarkGray}
-            padding='1rem 0'
+            padding="1rem 0"
           >
             Enter OTP
           </Text>
           <Text
-            as='p'
-            padding='0 1rem'
-            align='center'
-            weight='500'
-            size='14px'
+            as="p"
+            padding="0 1rem"
+            align="center"
+            weight="500"
+            size="14px"
             color={Color.alerzoBlack}
           >
             <>
@@ -87,7 +87,7 @@ const VerificationContainer = () => {
               check your email adress and enter OTP below
             </>
           </Text>
-          <Form.Control pb='2rem' pt='2rem'>
+          <Form.Control pb="2rem" pt="2rem">
             <OtpInput
               value={otp}
               onChange={handleChange}
@@ -118,36 +118,32 @@ const VerificationContainer = () => {
           </Form.Control>
 
           <Stack
-            direction='row'
-            justifyContent='center'
-            gap='5px'
-            alignItems='center'
+            direction="row"
+            justifyContent="center"
+            gap="5px"
+            alignItems="center"
           >
             <TimerIcon />
-            <Text as='small' weight='600' color='#7890B5'>
+            <Text as="small" weight="600" color="#7890B5">
               {' '}
               Expires In :
             </Text>
             <Stack width="50px">
-              <Text as='small' weight='600' color='#7890B5'>
+              <Text as="small" weight="600" color="#7890B5">
                 {' '}
                 {minutes} : {seconds}
               </Text>
             </Stack>
           </Stack>
 
-          <Form.Control pt='3rem' pb='2rem'>
+          <Form.Control pt="3rem" pb="2rem">
             <Button onClick={submitForm}>
               {loading ? <Loader color={Color.alerzoWhite} /> : 'Proceed'}
             </Button>
           </Form.Control>
 
-          <Stack
-            direction='row'
-            justifyContent='center'
-            alignItems='center'
-          >
-            <Text as='p' weight='500' color='#7890B5'>
+          <Stack direction="row" justifyContent="center" alignItems="center">
+            <Text as="p" weight="500" color="#7890B5">
               {' '}
               Didn’t get a code?
             </Text>

@@ -6,10 +6,10 @@ import { errorMessage } from '../../../../utils/message'
 
 type ResetPasswordProps = {
   employeeId: string
-  setOpenModal:(open:boolean)=>void
+  setOpenModal: (open: boolean) => void
 }
 
-const useResetPassword = ({ employeeId,setOpenModal }: ResetPasswordProps) => {
+const useResetPassword = ({ employeeId, setOpenModal }: ResetPasswordProps) => {
   const passwordReset = (payload: Object) => {
     return postRequest({
       pathUrl: `/members/${employeeId}/auth/reset`,

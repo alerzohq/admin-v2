@@ -25,8 +25,8 @@ type EmployeeProps = {
 }
 
 const EditEmployee = ({ data }: EmployeeProps) => {
-  const [otp,setOtp] = useState('')
-  const [openModal,setOpenModal] = useState(false)
+  const [otp, setOtp] = useState('')
+  const [openModal, setOpenModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
 
@@ -35,19 +35,17 @@ const EditEmployee = ({ data }: EmployeeProps) => {
     label: data?.adminRoleName || '',
   })
 
- const { isLoading: isLoadingRoles, data: roles } = useGetRoles()
- const { mutate:requestOTP }= useRequestPasswordReset(
-  {adminId:data?.id!}
-  )
- const { mutate:resetPassword, isLoading} =useResetPassword(
-  {employeeId:data?.id!,
-  setOpenModal}
-  )
+  const { isLoading: isLoadingRoles, data: roles } = useGetRoles()
+  const { mutate: requestOTP } = useRequestPasswordReset({ adminId: data?.id! })
+  const { mutate: resetPassword, isLoading } = useResetPassword({
+    employeeId: data?.id!,
+    setOpenModal,
+  })
 
-const onSubmit=(e:React.MouseEvent<HTMLButtonElement>)=>{
-   e.preventDefault()
-  resetPassword({otp})
-}
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    resetPassword({ otp })
+  }
 
   const { mutate } = useUpdateRole({
     setIsEditing: setIsEditing,
@@ -66,27 +64,15 @@ const onSubmit=(e:React.MouseEvent<HTMLButtonElement>)=>{
         <Form wrap="wrap" width="100%" direction="row">
           <Form.Control pr="2rem" pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">First Name</Form.Label>
-            <Form.Input
-              type="text"
-              value={data?.firstName}
-              disabled
-            />
+            <Form.Input type="text" value={data?.firstName} disabled />
           </Form.Control>
           <Form.Control pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Last Name</Form.Label>
-            <Form.Input
-              type="text"
-              value={data?.lastName}
-              disabled
-            />
+            <Form.Input type="text" value={data?.lastName} disabled />
           </Form.Control>{' '}
           <Form.Control pr="2rem" pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Email Address</Form.Label>
-            <Form.Input
-              type="text"
-              value={data?.email}
-              disabled
-            />
+            <Form.Input type="text" value={data?.email} disabled />
           </Form.Control>
           <Form.Control pb="1rem" width="45%">
             <Form.Label labelFontSize="1rem">Phone Number</Form.Label>
@@ -131,7 +117,7 @@ const onSubmit=(e:React.MouseEvent<HTMLButtonElement>)=>{
                 {isTriggerSubmit && !updatedRole ? (
                   <Text
                     padding="8px"
-                    as='small'
+                    as="small"
                     weight={'500'}
                     color={Color.alerzoDanger}
                   >
@@ -187,10 +173,10 @@ const onSubmit=(e:React.MouseEvent<HTMLButtonElement>)=>{
             borderColor={Color.alerzoBlue}
             color={Color.alerzoBlue}
             variant="transparent"
-            onClick={()=>{
+            onClick={() => {
               requestOTP()
-              setOpenModal(true)}
-            }
+              setOpenModal(true)
+            }}
             weight="600"
           >
             Reset Password
@@ -202,7 +188,7 @@ const onSubmit=(e:React.MouseEvent<HTMLButtonElement>)=>{
       )}
       <OTPFormModal
         open={openModal}
-        onClose={()=>setOpenModal(!openModal)}
+        onClose={() => setOpenModal(!openModal)}
         onSubmit={onSubmit}
         setOtp={setOtp}
         multiSteps={false}

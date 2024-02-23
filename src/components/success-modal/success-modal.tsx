@@ -11,7 +11,7 @@ type Success = {
   message: string
   btnText: string
   title: string
-  onClick:()=>void
+  onClick: () => void
 }
 
 const SuccessModal = ({
@@ -34,7 +34,7 @@ const SuccessModal = ({
       title={title}
       contentPadding="0"
       icon={<SuccessIcon />}
-      subTitleSize='16'
+      subTitleSize="16"
       subTitle={
         <span style={{ marginTop: '15px' }}>
           {message} <br />
@@ -44,12 +44,12 @@ const SuccessModal = ({
     >
       <Button
         onClick={onClick}
-        height='45px'
+        height="45px"
         borderSize="1px"
         color={Color.alerzoBlue}
         variant="transparent"
         borderColor={Color.alerzoBlue}
-        width='50%'
+        width="50%"
         radius="10px"
         fontSize="14px"
         weight="500"
