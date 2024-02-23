@@ -28,7 +28,6 @@ const ReverseCommModal = ({
   const [showSuccess, setShowSuccess] = useState(false)
   const [reversalModal, setReversalModal] = useState(false)
 
-
   const [addValues, setAddValues] = useState({
     reasonForReversal: '',
     references: '',
@@ -46,7 +45,9 @@ const ReverseCommModal = ({
     )
 
   const { isLoading: executingReversal, mutate } = useReversalMutation()
-  const { state: { user } } = useAppContext()
+  const {
+    state: { user },
+  } = useAppContext()
 
   const handleChange = (name: string, value: string) =>
     setAddValues({
@@ -65,7 +66,7 @@ const ReverseCommModal = ({
         reasonForReversal: addValues?.reasonForReversal,
         transactionIds: [`${addValues?.references}`],
         email: user?.data?.email,
-        otp
+        otp,
       },
       {
         onSuccess: (data) => {
@@ -76,14 +77,14 @@ const ReverseCommModal = ({
         onError: (error: any) => {
           toast.error(error?.response?.data?.message)
         },
-      })
+      }
+    )
   }
 
   const closeModal = () => {
     setValue('')
     setShowModal(false)
   }
-
 
   return (
     <>

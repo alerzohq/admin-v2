@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState} from 'react'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
@@ -135,7 +135,9 @@ const TabsContainer = () => {
         }}
       >
         {isBillerResponse && (
-          <ResponseViewer>{JSON.stringify(billerResponse, null, 2)}</ResponseViewer>
+          <ResponseViewer>
+            {JSON.stringify(billerResponse, null, 2)}
+          </ResponseViewer>
         )}
       </Modal>
     </>

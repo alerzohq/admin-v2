@@ -60,10 +60,7 @@ function App() {
             path={Path.INVITATIONREGISTER}
             element={<RegisterInvitation />}
           />
-         <Route
-            path={Path.PASSWORD_RESET}
-            element={<PasswordReset />}
-          />
+          <Route path={Path.PASSWORD_RESET} element={<PasswordReset />} />
 
           <Route element={<ProtectedRoutes user={user} />}>
             <Route path={Path.DASHBOARD} element={<Dashboard />}>

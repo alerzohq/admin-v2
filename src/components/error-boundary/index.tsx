@@ -8,7 +8,7 @@ import { useAppContext } from '../../context'
 
 type ErrorBoundaryProps = {
   error: Error
-  resetErrorBoundary: ()=>void
+  resetErrorBoundary: () => void
 }
 
 export function ErrorFallback({
@@ -21,15 +21,15 @@ export function ErrorFallback({
     <div role="alert">
       <ErrorContainer>
         <AlerzoLogo
-          className='logo'
+          className="logo"
           onClick={() => {}}
-          height='25'
-          width='150'
+          height="25"
+          width="150"
           color={Color.alerzoBlue}
         />
 
         <ErrorBoundaryIcon />
-        <Text as='h2' data-testid="errorboundary" className="error-desc">
+        <Text as="h2" data-testid="errorboundary" className="error-desc">
           You have run into an error while trying to perform this action
         </Text>
         <code>Error: {error?.message}</code>

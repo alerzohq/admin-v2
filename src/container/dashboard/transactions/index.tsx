@@ -11,7 +11,11 @@ import {
 import { Container } from '../../../components/layout'
 import { transHeaderList } from '../../../data/table-headers'
 import { filterValue } from '../../../data/filter-data'
-import { getNewFilterResource, getResource, postRequest } from '../../../utils/apiRequest'
+import {
+  getNewFilterResource,
+  getResource,
+  postRequest,
+} from '../../../utils/apiRequest'
 import CardWidget from '../widget/card'
 import { useAppContext } from '../../../context'
 import {
@@ -69,7 +73,7 @@ const TransactionContainer = () => {
     {
       label: 'Reverse Successful Trans',
       value: 'Reverse Successful Trans',
-    }
+    },
   ].filter(Boolean)
 
   const useInitiateReversalMutation = () =>
@@ -82,7 +86,8 @@ const TransactionContainer = () => {
     )
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
-  const { isLoading: loadingAssign, mutate: initiateMutate } = useInitiateReversalMutation()
+  const { isLoading: loadingAssign, mutate: initiateMutate } =
+    useInitiateReversalMutation()
 
   /** TODO REFACTOR
    * MAKE THIS HOOK
@@ -218,7 +223,6 @@ const TransactionContainer = () => {
         showModal={isBulkModal}
       />
       <Modal
-      
         showModal={showConfirm}
         setShowModal={() => setShowConfirm(!showConfirm)}
         titleSize="22px"
@@ -232,7 +236,7 @@ const TransactionContainer = () => {
         handleSubmit={() => {
           initiateMutate(
             {
-              email: user?.data?.email
+              email: user?.data?.email,
             },
             {
               onSuccess: (data) => {
@@ -247,7 +251,6 @@ const TransactionContainer = () => {
               },
             }
           )
-
         }}
         cancelBtnText="Cancel"
         buttonText="Reverse Transaction"

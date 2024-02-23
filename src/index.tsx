@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import './global.css'
 
-const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
+const twentyFourHoursInMs = 1000 * 60 * 60 * 24
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
       staleTime: twentyFourHoursInMs,
     },
   },
-});
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

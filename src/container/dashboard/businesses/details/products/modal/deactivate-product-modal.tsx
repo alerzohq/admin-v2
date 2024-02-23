@@ -152,9 +152,9 @@ const DeactivateProductModal: React.FC<DeactivateProductProps> = ({
           productName={productName}
           showSuccess={showSuccess}
           setShowSuccess={setShowSuccess}
-          message='You have successfully deactivated'
-          btnText='Back To Products'
-          title='Product Deactivated'
+          message="You have successfully deactivated"
+          btnText="Back To Products"
+          title="Product Deactivated"
           onClick={() => setShowSuccess(false)}
         />
       )}

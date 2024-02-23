@@ -113,10 +113,10 @@ const ActivateProductModal: React.FC<ActivateProductProps> = ({
         }
         handleSubmit={() => {}}
       >
-        <Button.Group align='center'>
+        <Button.Group align="center">
           <Button
             onClick={handleCancel}
-            height='45px'
+            height="45px"
             width="40%"
             borderSize="1px"
             color={Color.alerzoBlue}
@@ -152,9 +152,9 @@ const ActivateProductModal: React.FC<ActivateProductProps> = ({
           productName={productName}
           showSuccess={showSuccess}
           setShowSuccess={setShowSuccess}
-          message='You have successfully activated'
-          btnText='Back To Products'
-          title='Product Activated'
+          message="You have successfully activated"
+          btnText="Back To Products"
+          title="Product Activated"
           onClick={() => setShowSuccess(false)}
         />
       )}
