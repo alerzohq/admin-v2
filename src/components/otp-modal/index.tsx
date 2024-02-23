@@ -104,7 +104,7 @@ const OTPFormModal = ({
         style={{ marginTop: '-4rem', marginBottom: '-4rem' }}
         id="otp-verification"
       >
-        <Form width='100%'>
+        <Form  width='100%'>
           <Text
             margin='auto'
             as='h1'
