@@ -45,7 +45,7 @@ const TabsContainer = () => {
   const transactionId = [id]
 
   const { isLoading, data, isError, isFetching } = useQuery(
-   [ 'transactions', id],
+    ['transactions', id],
     getTransactions
   )
   const getBusinessUser = () => {
@@ -164,7 +164,7 @@ const TabsContainer = () => {
         btnLabel="Biller Response"
         showfilters={showfilters}
         secondBtnHandler={() => setShowConfirm(true)}
-        seconddBtnLabel='Reverse this transaction'
+        seconddBtnLabel="Reverse this transaction"
       />
       <Modal
         showModal={showConfirm}
@@ -181,7 +181,7 @@ const TabsContainer = () => {
         cancelBtnText="Cancel"
         buttonText="Reverse Transaction"
       />
-       <ReverseCommModal
+      <ReverseCommModal
         openPin={openPin}
         setOpenPin={setOpenPin}
         resendOTP={onSubmit}

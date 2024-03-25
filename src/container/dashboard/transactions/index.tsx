@@ -30,7 +30,7 @@ import SingleReversalModal from './modal/single-reversal-modal'
 import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 import AllPermissions from '../../../configs/access-control'
 import BulkReversalModal from './modal/bulk-reversal-modal'
-import { FilterValueProps } from '../../../@types/global' 
+import { FilterValueProps } from '../../../@types/global'
 
 const TransactionContainer = () => {
   const {
@@ -59,10 +59,8 @@ const TransactionContainer = () => {
     processReversals && {
       label: 'Perform Bulk Reversals',
       value: 'Perform Bulk Reversals',
-    }
+    },
   ].filter(Boolean)
-
- 
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
 
@@ -84,7 +82,6 @@ const TransactionContainer = () => {
         setIsBulkModal(true)
         return setValue('')
       }
-     
     }
   }, [value, downloadBulkCSV])
 
@@ -196,9 +193,6 @@ const TransactionContainer = () => {
         setShowModal={setIsBulkModal}
         showModal={isBulkModal}
       />
-    
-
-     
     </Container>
   )
 }

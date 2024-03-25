@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import Modal from '../../../../components/modal'
 import { Button, Form, Text } from '../../../../components'
 import { Color } from '../../../../assets/theme'
-import {useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { InviteSent } from '../../../../assets/icons'
 import { postRequest } from '../../../../utils/apiRequest'
 import { toast } from 'react-hot-toast'
@@ -15,7 +15,7 @@ interface Props {
   otp?: string
   transactionId: string[]
   openPin: boolean
-  setOpenPin: Dispatch<SetStateAction<boolean>>,
+  setOpenPin: Dispatch<SetStateAction<boolean>>
   resendOTP: () => void
 }
 const ReverseCommModal = ({
@@ -24,7 +24,7 @@ const ReverseCommModal = ({
   openPin,
   setOpenPin,
   transactionId,
-  resendOTP
+  resendOTP,
 }: Props) => {
   const queryClient = useQueryClient()
   const [showSuccess, setShowSuccess] = useState(false)
@@ -56,7 +56,6 @@ const ReverseCommModal = ({
       ...addValues,
       [name]: value,
     })
-
 
   const handleExecuteReversal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -111,7 +110,6 @@ const ReverseCommModal = ({
             setShowModal(false)
             setOpenPin(true)
           }
-
         }}
       >
         <>
@@ -138,8 +136,8 @@ const ReverseCommModal = ({
                 placeholder="Why do you want to reverse this transaction"
                 value={addValues.reasonForReversal}
               />
-              {
-                isTriggerSubmit && addValues.reasonForReversal?.length < 5 && <Text
+              {isTriggerSubmit && addValues.reasonForReversal?.length < 5 && (
+                <Text
                   padding="8px"
                   as={'small'}
                   weight={'500'}
@@ -147,7 +145,7 @@ const ReverseCommModal = ({
                 >
                   The reason for reversal must be more than 5 characters
                 </Text>
-              }
+              )}
             </Form.Control>
           </Form>
         </>

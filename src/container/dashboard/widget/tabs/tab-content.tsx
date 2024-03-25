@@ -33,7 +33,7 @@ const TabsContentWidget = ({
   btnHandler,
   secondBtnHandler,
   seconddBtnLabel,
-  seconddBtnVariant
+  seconddBtnVariant,
 }: TabWidgetItemProps) => {
   let colors = resolveColor(status)
 
@@ -65,7 +65,7 @@ const TabsContentWidget = ({
             borderRadius={borderRadius}
           />
           {title && (
-            <Stack direction="row" width='100%'  justifyContent="space-between">
+            <Stack direction="row" width="100%" justifyContent="space-between">
               <Text
                 as={'p'}
                 padding={'.8em 0 0 0'}
@@ -75,7 +75,7 @@ const TabsContentWidget = ({
               >
                 {title}
               </Text>
-              <div style={{display: 'flex'}}>
+              <div style={{ display: 'flex' }}>
                 {btnHandler && (
                   <Button
                     onClick={btnHandler}
