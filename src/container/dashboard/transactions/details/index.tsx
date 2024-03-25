@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 
-import { getResource } from '../../../../utils/apiRequest'
+import { getResource, postRequest } from '../../../../utils/apiRequest'
 import DetailsContent from '../../widget/tabs/tab-content-details'
 import { TABS } from '../../../../data/tab-data'
 import { detailsHelper, otherHelper } from '../../../../data/tab-data-helper'
@@ -14,6 +14,9 @@ import TabsContentWidget from '../../widget/tabs/tab-content'
 import Modal from '../../../../components/modal'
 import useRequeryTransactions from '../hooks/useRequeryTransactions'
 import { ResponseViewer } from './styles/details.styles'
+import DangerWarning from '../../../../assets/icons/danger-warning'
+import { useAppContext } from '../../../../context'
+import ReverseCommModal from '../modal/reverse-commission-modal'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
@@ -21,6 +24,11 @@ const TabsContainer = () => {
   //states
   const [fetchUser, setFetchUser] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [reversalModal, setReversalModal] = useState(false)
+  const [openPin, setOpenPin] = useState<boolean>(false)
+  const [otp, setOtp] = useState<string | undefined>()
+  const [value, setValue] = useState('')
 
   const location = useLocation()
   const thePath = location.pathname
@@ -37,7 +45,7 @@ const TabsContainer = () => {
   const transactionId = [id]
 
   const { isLoading, data, isError, isFetching } = useQuery(
-    'transactions',
+   [ 'transactions', id],
     getTransactions
   )
   const getBusinessUser = () => {
@@ -81,12 +89,27 @@ const TabsContainer = () => {
   const { mutate: requery, isLoading: isRequerying } =
     useRequeryTransactions(transactionId)
 
+  const {
+    state: { user },
+  } = useAppContext()
   const status: string = data?.data[0]?.status
 
   const lastItemIndex = data?.data?.[0]?.runs?.length - 1
   const billerResponse = data?.data?.[0]?.runs?.[lastItemIndex]?.data
 
   const isBillerResponse = Object.keys(billerResponse ?? {})?.length > 0
+
+  const useInitiateReversalMutation = () =>
+    useMutation((payload: { [key: string]: any }) =>
+      postRequest({
+        pathUrl: '/transactions/initiate-successful-reversal',
+        payload,
+        methodType: 'post',
+      })
+    )
+
+  const { isLoading: loadingAssign, mutate: initiateMutate } =
+    useInitiateReversalMutation()
 
   //Filters
   const showfilters = {
@@ -100,6 +123,26 @@ const TabsContainer = () => {
         },
       ].filter(Boolean),
     }),
+  }
+
+  const onSubmit = () => {
+    initiateMutate(
+      {
+        email: user?.data?.email,
+      },
+      {
+        onSuccess: (data) => {
+          toast.success(data?.message)
+          setReversalModal(true)
+          setShowConfirm(false)
+        },
+        onError: (error: any) => {
+          toast.error(error?.response?.data?.message)
+          setReversalModal(false)
+          setShowConfirm(false)
+        },
+      }
+    )
   }
 
   return (
@@ -120,8 +163,33 @@ const TabsContainer = () => {
         btnHandler={() => setOpenModal(true)}
         btnLabel="Biller Response"
         showfilters={showfilters}
+        secondBtnHandler={() => setShowConfirm(true)}
+        seconddBtnLabel='Reverse this transaction'
       />
-
+      <Modal
+        showModal={showConfirm}
+        setShowModal={() => setShowConfirm(!showConfirm)}
+        titleSize="22px"
+        modalWidth="320px"
+        title={`Are you sure? `}
+        contentPadding="0"
+        icon={<DangerWarning />}
+        subTitleSize={'16'}
+        loading={loadingAssign}
+        // subTitle={}
+        handleSubmit={onSubmit}
+        cancelBtnText="Cancel"
+        buttonText="Reverse Transaction"
+      />
+       <ReverseCommModal
+        openPin={openPin}
+        setOpenPin={setOpenPin}
+        resendOTP={onSubmit}
+        transactionId={transactionId}
+        otp={otp}
+        setShowModal={setReversalModal}
+        showModal={reversalModal}
+      />
       <Modal
         title={isBillerResponse ? 'Biller Response' : 'No biller response'}
         contentPadding={'0'}

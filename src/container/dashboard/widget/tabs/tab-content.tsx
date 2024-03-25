@@ -31,6 +31,9 @@ const TabsContentWidget = ({
   btnLabel,
   btnVariant,
   btnHandler,
+  secondBtnHandler,
+  seconddBtnLabel,
+  seconddBtnVariant
 }: TabWidgetItemProps) => {
   let colors = resolveColor(status)
 
@@ -62,7 +65,7 @@ const TabsContentWidget = ({
             borderRadius={borderRadius}
           />
           {title && (
-            <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" width='100%'  justifyContent="space-between">
               <Text
                 as={'p'}
                 padding={'.8em 0 0 0'}
@@ -72,17 +75,30 @@ const TabsContentWidget = ({
               >
                 {title}
               </Text>
-              {btnHandler && (
-                <Button
-                  onClick={btnHandler}
-                  width="130px"
-                  variant="transparent"
-                  color={btnVariant ?? Color.alerzoBlue}
-                  borderColor={btnVariant ?? Color.alerzoBlue}
-                >
-                  {btnLabel ?? 'Add label'}
-                </Button>
-              )}
+              <div style={{display: 'flex'}}>
+                {btnHandler && (
+                  <Button
+                    onClick={btnHandler}
+                    width="130px"
+                    variant="transparent"
+                    color={btnVariant ?? Color.alerzoBlue}
+                    borderColor={btnVariant ?? Color.alerzoBlue}
+                  >
+                    {btnLabel ?? 'Add label'}
+                  </Button>
+                )}
+                {secondBtnHandler && (
+                  <Button
+                    onClick={secondBtnHandler}
+                    width="130px"
+                    variant="transparent"
+                    color={seconddBtnVariant ?? Color.alerzoBlue}
+                    borderColor={seconddBtnVariant ?? Color.alerzoBlue}
+                  >
+                    {seconddBtnLabel ?? 'Add label'}
+                  </Button>
+                )}
+              </div>
             </Stack>
           )}
           {isError ? (

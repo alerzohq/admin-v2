@@ -14,9 +14,11 @@ const useRequeryTransactions = (payload: string[]) => {
     })
   }
 
-  return useMutation(requeryTransactions, {
+  return useMutation({
+    mutationFn: requeryTransactions,
+    mutationKey: ['transaction', payload.toString()],
     onSuccess: () => {
-      queryClient.invalidateQueries('transactions')
+      queryClient.invalidateQueries(['transaction', payload.toString()])
     },
     onError: (error) => {
       toast.error(errorMessage(error))

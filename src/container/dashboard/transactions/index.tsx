@@ -30,17 +30,11 @@ import SingleReversalModal from './modal/single-reversal-modal'
 import { selectStyles } from '../../../components/select-input/styles/select-input.styes'
 import AllPermissions from '../../../configs/access-control'
 import BulkReversalModal from './modal/bulk-reversal-modal'
-import { FilterValueProps } from '../../../@types/global'
-import ReverseCommModal from './modal/reverse-commission-modal'
-import ConfirmationModal from '../../../components/confirmation-modal'
-import Modal from '../../../components/modal'
-import DangerWarning from '../../../assets/icons/danger-warning'
-import toast from 'react-hot-toast'
-import OTPFormModal from '../../../components/otp-modal'
+import { FilterValueProps } from '../../../@types/global' 
 
 const TransactionContainer = () => {
   const {
-    state: { appFilters, user },
+    state: { appFilters },
   } = useAppContext()
   const { processReversals, historyDownloadAccess } = AllPermissions()
   let platformOptions = platformFiltersOptions(appFilters?.['transactions'])
@@ -49,12 +43,8 @@ const TransactionContainer = () => {
   let productOptions = productFilterOptions(appFilters?.['transactions'])
   const [showModal, setShowModal] = useState(false)
   const [isBulkModal, setIsBulkModal] = useState(false)
-  const [reversalModal, setReversalModal] = useState(false)
   const [value, setValue] = useState('')
   const [values, setValues] = useState(filterValue)
-  const [showConfirm, setShowConfirm] = useState(false)
-  const [openPin, setOpenPin] = useState<boolean>(false)
-  const [otp, setOtp] = useState<string | undefined>()
 
   /*TODO REFACTOR*/
   let actionOptions = [
@@ -69,25 +59,12 @@ const TransactionContainer = () => {
     processReversals && {
       label: 'Perform Bulk Reversals',
       value: 'Perform Bulk Reversals',
-    },
-    {
-      label: 'Reverse Successful Trans',
-      value: 'Reverse Successful Trans',
-    },
+    }
   ].filter(Boolean)
 
-  const useInitiateReversalMutation = () =>
-    useMutation((payload: { [key: string]: any }) =>
-      postRequest({
-        pathUrl: '/transactions/initiate-successful-reversal',
-        payload,
-        methodType: 'post',
-      })
-    )
+ 
 
   const { downloadBulkCSV } = useDownloadCSV('transactions?', values, 'history')
-  const { isLoading: loadingAssign, mutate: initiateMutate } =
-    useInitiateReversalMutation()
 
   /** TODO REFACTOR
    * MAKE THIS HOOK
@@ -107,10 +84,7 @@ const TransactionContainer = () => {
         setIsBulkModal(true)
         return setValue('')
       }
-      if (value === 'Reverse Successful Trans') {
-        setShowConfirm(true)
-        return setValue('')
-      }
+     
     }
   }, [value, downloadBulkCSV])
 
@@ -222,48 +196,9 @@ const TransactionContainer = () => {
         setShowModal={setIsBulkModal}
         showModal={isBulkModal}
       />
-      <Modal
-        showModal={showConfirm}
-        setShowModal={() => setShowConfirm(!showConfirm)}
-        titleSize="22px"
-        modalWidth="320px"
-        title={`Are you sure? `}
-        contentPadding="0"
-        icon={<DangerWarning />}
-        subTitleSize={'16'}
-        loading={loadingAssign}
-        // subTitle={}
-        handleSubmit={() => {
-          initiateMutate(
-            {
-              email: user?.data?.email,
-            },
-            {
-              onSuccess: (data) => {
-                toast.success(data?.message)
-                setReversalModal(true)
-                setShowConfirm(false)
-              },
-              onError: (error: any) => {
-                toast.error(error?.response?.data?.message)
-                setReversalModal(false)
-                setShowConfirm(false)
-              },
-            }
-          )
-        }}
-        cancelBtnText="Cancel"
-        buttonText="Reverse Transaction"
-      />
+    
 
-      <ReverseCommModal
-        openPin={openPin}
-        setOpenPin={setOpenPin}
-        setValue={setValue}
-        otp={otp}
-        setShowModal={setReversalModal}
-        showModal={reversalModal}
-      />
+     
     </Container>
   )
 }
