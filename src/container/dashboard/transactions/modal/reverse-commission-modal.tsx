@@ -13,16 +13,18 @@ interface Props {
   showModal: boolean
   setShowModal: Dispatch<SetStateAction<boolean>>
   otp?: string
-  setValue: Dispatch<SetStateAction<string>>
+  transactionId: string[]
   openPin: boolean
   setOpenPin: Dispatch<SetStateAction<boolean>>
+  resendOTP: () => void
 }
 const ReverseCommModal = ({
   showModal,
   setShowModal,
   openPin,
   setOpenPin,
-  setValue,
+  transactionId,
+  resendOTP,
 }: Props) => {
   const queryClient = useQueryClient()
   const [showSuccess, setShowSuccess] = useState(false)
@@ -55,16 +57,12 @@ const ReverseCommModal = ({
       [name]: value,
     })
 
-  const handleIsTriggerSubmit = (triggered: boolean) => {
-    setIsTriggerSubmit(triggered)
-  }
-
   const handleExecuteReversal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     mutate(
       {
         reasonForReversal: addValues?.reasonForReversal,
-        transactionIds: [`${addValues?.references}`],
+        transactionIds: transactionId,
         email: user?.data?.email,
         otp,
       },
@@ -82,7 +80,6 @@ const ReverseCommModal = ({
   }
 
   const closeModal = () => {
-    setValue('')
     setShowModal(false)
   }
 
@@ -95,6 +92,7 @@ const ReverseCommModal = ({
         onClose={() => setOpenPin(false)}
         onSubmit={handleExecuteReversal}
         loading={executingReversal}
+        resend={resendOTP}
       />
       <Modal
         showModal={showModal}
@@ -106,12 +104,11 @@ const ReverseCommModal = ({
         contentPadding={'0'}
         loading={executingReversal}
         disabled={executingReversal}
-        handleSubmit={async () => {
-          handleIsTriggerSubmit(true)
-          if (addValues.references) {
-            handleIsTriggerSubmit(false)
+        handleSubmit={() => {
+          setIsTriggerSubmit(true)
+          if (addValues.reasonForReversal?.length > 5) {
+            setShowModal(false)
             setOpenPin(true)
-            closeModal()
           }
         }}
       >
@@ -123,30 +120,32 @@ const ReverseCommModal = ({
                 type="text"
                 onChange={(e) => handleChange('references', e.target.value)}
                 placeholder="Enter Transaction ID"
-                value={addValues.references}
+                value={transactionId}
+                disabled
               />
-
-              {isTriggerSubmit && !addValues?.references && (
-                <Text
-                  padding="8px"
-                  as={'small'}
-                  weight={'500'}
-                  color={Color.alerzoDanger}
-                >
-                  Transaction ID is required*
-                </Text>
-              )}
             </Form.Control>
             <Form.Control pb={'1rem'}>
               <Form.Label>Reason For Reversal for Reversal</Form.Label>
               <Form.Input
                 type="text"
+                required
+                min={5}
                 onChange={(e) =>
                   handleChange('reasonForReversal', e.target.value)
                 }
                 placeholder="Why do you want to reverse this transaction"
                 value={addValues.reasonForReversal}
               />
+              {isTriggerSubmit && addValues.reasonForReversal?.length < 5 && (
+                <Text
+                  padding="8px"
+                  as={'small'}
+                  weight={'500'}
+                  color={Color.alerzoDanger}
+                >
+                  The reason for reversal must be more than 5 characters
+                </Text>
+              )}
             </Form.Control>
           </Form>
         </>
@@ -154,7 +153,6 @@ const ReverseCommModal = ({
       <Modal
         showModal={showSuccess}
         setShowModal={() => {
-          setValue('')
           setShowSuccess(!showSuccess)
           setAddValues({
             reasonForReversal: '',
@@ -177,7 +175,6 @@ const ReverseCommModal = ({
           borderColor={Color.alerzoBlue}
           color={Color.alerzoBlue}
           onClick={() => {
-            setValue('')
             setShowSuccess(!showSuccess)
             setAddValues({
               reasonForReversal: '',
