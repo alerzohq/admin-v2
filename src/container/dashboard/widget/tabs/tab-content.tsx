@@ -75,7 +75,7 @@ const TabsContentWidget = ({
               >
                 {title}
               </Text>
-              <Stack  direction="row" width="max-content" gap='20px'>
+              <Stack direction="row" width="max-content" gap="20px">
                 {btnHandler && (
                   <Button
                     onClick={btnHandler}
