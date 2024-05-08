@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Stack } from '../../../components'
 import AuthLayout from '../layout'
@@ -11,17 +11,17 @@ import { Path } from '../../../constants/route-path'
 
 const PasswordResetContainer = () => {
   const navigate = useNavigate()
-  const[searchParams]=useSearchParams()
+  const [searchParams] = useSearchParams()
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
   const [values, setValues] = useState({
     password: '',
     confirmPassword: '',
   })
-  const resetToken = searchParams.get('token');
+  const resetToken = searchParams.get('token')
   const { password, confirmPassword } = values
-  const {data} = useGetResetPassToken(resetToken!)
+  const { data } = useGetResetPassToken(resetToken!)
 
-  if(!resetToken){
+  if (!resetToken) {
     navigate(Path.LOGIN)
   }
 
@@ -33,11 +33,11 @@ const PasswordResetContainer = () => {
     setIsTriggerSubmit(true)
     if (strongPassword(password) && password === confirmPassword) {
       setIsTriggerSubmit(false)
-        mutate({
-          password,
-          adminId:data?.data?.data?.adminId,
-          token:data?.data?.data?.token
-        })
+      mutate({
+        password,
+        adminId: data?.data?.data?.adminId,
+        token: data?.data?.data?.token,
+      })
     }
   }
 

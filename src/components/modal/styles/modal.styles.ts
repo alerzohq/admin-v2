@@ -66,7 +66,6 @@ export const ModalLabel = styled.span`
   width: 100%;
 `
 
-
 export const CloseButton = styled.div`
   align-self: end;
   :hover {

@@ -120,7 +120,7 @@ export const RegistrationInvite = () => {
                   placeholder="Enter your mobile number"
                 />
                 {isTriggerSubmit && (
-                  <Text as='small' weight='500' color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.phoneNumber === ''
                       ? 'Phone number is required*'
                       : values.phoneNumber.length < 8 ||
@@ -138,7 +138,7 @@ export const RegistrationInvite = () => {
                   placeholder="Enter your password"
                 />
                 {isTriggerSubmit && (
-                  <Text as='small' weight='500' color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.password === ''
                       ? 'Password is required*'
                       : !strongPassword(values.password)
@@ -147,8 +147,10 @@ export const RegistrationInvite = () => {
                   </Text>
                 )}
                 {!isTriggerSubmit && (
-                  <Text as='small' weight='500' color={Color.alerzoGray4}>
-                      Password must be 8 characters long and must contain 1 number, 1 uppercase letter, at least one special character (^+#_) and no spaces
+                  <Text as="small" weight="500" color={Color.alerzoGray4}>
+                    Password must be 8 characters long and must contain 1
+                    number, 1 uppercase letter, at least one special character
+                    (^+#_) and no spaces
                   </Text>
                 )}
               </Form.Control>

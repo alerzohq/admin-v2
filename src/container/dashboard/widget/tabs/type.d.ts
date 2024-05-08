@@ -15,6 +15,9 @@ type TabWidgetItemProps = {
   borderRadius?: string
   btnLabel?: string
   btnVariant?: string
+  seconddBtnLabel?: string
+  seconddBtnVariant?: string
   btnHandler?: () => void
+  secondBtnHandler?: () => void
   showfilters?: { [key: string]: any }
 }

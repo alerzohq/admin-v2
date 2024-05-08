@@ -26,7 +26,7 @@ const LoginContainer = () => {
 
   return (
     <AuthLayout>
-      <Stack alignItems='center' id="login">
+      <Stack alignItems="center" id="login">
         <LoginForm
           submitForm={submitForm}
           values={values}

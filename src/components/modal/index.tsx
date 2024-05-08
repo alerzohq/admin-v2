@@ -43,11 +43,10 @@ const Modal = ({
     } else {
       document.body.style.overflow = 'auto'
     }
-    return()=>{
+    return () => {
       document.body.style.overflow = 'auto'
     }
   }, [showModal])
-
 
   return (
     <BackDrop isShown={showModal}>
