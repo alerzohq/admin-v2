@@ -75,7 +75,7 @@ const TabsContentWidget = ({
               >
                 {title}
               </Text>
-              <div style={{ display: 'flex' }}>
+              <Stack  direction="row" width="max-content" gap='20px'>
                 {btnHandler && (
                   <Button
                     onClick={btnHandler}
@@ -98,7 +98,7 @@ const TabsContentWidget = ({
                     {seconddBtnLabel ?? 'Add label'}
                   </Button>
                 )}
-              </div>
+              </Stack>
             </Stack>
           )}
           {isError ? (

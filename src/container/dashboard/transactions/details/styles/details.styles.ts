@@ -7,5 +7,6 @@ export const ResponseViewer = styled.pre`
   border-radius: 8px;
   height: 300px;
   overflow-y: scroll;
+  min-width:400px;
   max-width: 460px;
 `
