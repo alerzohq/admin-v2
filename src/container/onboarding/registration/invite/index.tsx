@@ -1,21 +1,30 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+
 import { Color } from '../../../../assets/theme'
 import { Button, Form, Loader, Stack, Text } from '../../../../components'
 import AuthLayout from '../../layout'
-import { useQuery, useMutation } from 'react-query'
-import { getResource } from '../../../../utils/apiRequest'
-import { AxiosResponse, AxiosError } from 'axios'
-import { axiosInstanceWithoutToken } from '../../../../configs/axios-instance'
-import toast from 'react-hot-toast'
 import { FormValue } from '../type'
+import useRegisterInvites from '../../hooks/useRegisterInvites'
+import useGetInvites from '../../hooks/useGetInvites'
+import { strongPassword } from '../../../../utils/formatValue'
 
 export const RegistrationInvite = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const id = location.pathname.split('/').pop()
+  const { isLoading, isError, data } = useGetInvites(id!)
+  const { mutate, isLoading: isLoadingInvites } = useRegisterInvites(id!)
 
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
+  const [values, setValues] = useState<FormValue>({
+    email: data?.data?.email,
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    password: '',
+    confirmPassword: '',
+  })
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -26,85 +35,39 @@ export const RegistrationInvite = () => {
         delete prevState.confirmPassword
         return prevState
       })
-      mutation.mutate(values)
+      mutate(values)
     }
   }
   const handleChange =
     (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [name]: e.target.value.trim() })
     }
-  const isValidInvite = (id?: string) => {
-    return getResource(`members/invites/${id}`, true)
-  }
-
-  const { isLoading, isError, data } = useQuery(
-    'isValidId',
-    () => isValidInvite(id),
-    {
-      enabled: !!id,
-      retry: 1,
-    }
-  )
   if (isError) {
     navigate('/')
   }
-  const [values, setValues] = useState<FormValue>({
-    email: data?.data?.email,
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    password: '',
-    confirmPassword: '',
-  })
-  const mutation = useMutation<
-    AxiosResponse<any, any>,
-    any,
-    any,
-    AxiosError<any, any>
-  >(
-    (inviteData: {
-      firstName: string
-      lastName: string
-      phoneNumber: string
-      password: string
-    }) => {
-      return axiosInstanceWithoutToken.post(
-        `members/invites/${id}/accept`,
-        values
-      )
-    },
-    {
-      onSuccess: () => {
-        navigate('/')
-      },
-      onError: (e) => {
-        toast.error(`${e}`)
-      },
-    }
-  )
 
   return (
     <>
-      {!isLoading && !isError && (
-        <AuthLayout p={'0'}>
-          <Stack alignItems={'center'} id="login">
-            <Form width={'65%'}>
+      {!isLoading && (
+        <AuthLayout p="0">
+          <Stack alignItems="center" id="login">
+            <Form width="65%">
               <Text
-                margin={'auto'}
-                as={'h1'}
+                margin="auto"
+                as="h1"
                 color={Color.alerzoDarkGray}
-                padding={'1rem 0'}
+                padding="1rem 0"
               >
-                {`Complete Account Setup`}
+                Complete Account Setup
               </Text>
               <Text
-                as={'p'}
-                padding={'0 1rem'}
-                align={'center'}
-                weight={'500'}
+                as="p"
+                padding="0 1rem"
+                align="center"
+                weight="500"
                 color={Color.alerzoDarkGray}
-                size={'14px'}
-                margin={'14px 0'}
+                size="14px"
+                margin="14px 0"
               >
                 {
                   'Complete the form below to create account and access  Dashboard'
@@ -119,7 +82,7 @@ export const RegistrationInvite = () => {
                   disabled
                 />
               </Form.Control>
-              <Form.Control pb={'1rem'}>
+              <Form.Control pb="1rem">
                 <Form.Label>First Name</Form.Label>
                 <Form.Input
                   type="text"
@@ -127,14 +90,14 @@ export const RegistrationInvite = () => {
                   placeholder="Enter your first name"
                 />
                 {isTriggerSubmit && (
-                  <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.firstName === ''
                       ? 'First name is required*'
                       : ''}
                   </Text>
                 )}
               </Form.Control>{' '}
-              <Form.Control pb={'1rem'}>
+              <Form.Control pb="1rem">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Input
                   type="text"
@@ -142,26 +105,24 @@ export const RegistrationInvite = () => {
                   placeholder="Enter your last name"
                 />
                 {isTriggerSubmit && (
-                  <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.lastName === ''
                       ? 'Last name is required*'
                       : ''}
                   </Text>
                 )}
               </Form.Control>
-              <Form.Control pb={'1rem'}>
+              <Form.Control pb="1rem">
                 <Form.Label>Mobile Number</Form.Label>
                 <Form.Input
-                  type="text"
+                  type="number"
                   onChange={handleChange('phoneNumber')}
                   placeholder="Enter your mobile number"
                 />
                 {isTriggerSubmit && (
-                  <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.phoneNumber === ''
                       ? 'Phone number is required*'
-                      : !values.phoneNumber.match('^[0-9]{8,11}$')
-                      ? 'Only numbers are allowed*'
                       : values.phoneNumber.length < 8 ||
                         values.phoneNumber.length > 11
                       ? 'Phone must be between 8 and 11 number'
@@ -169,7 +130,7 @@ export const RegistrationInvite = () => {
                   </Text>
                 )}
               </Form.Control>
-              <Form.Control pb={'1rem'}>
+              <Form.Control pb="1rem">
                 <Form.Label> Password</Form.Label>
                 <Form.Input
                   type="password"
@@ -177,16 +138,19 @@ export const RegistrationInvite = () => {
                   placeholder="Enter your password"
                 />
                 {isTriggerSubmit && (
-                  <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.password === ''
                       ? 'Password is required*'
-                      : !values.password.match(
-                          '^(?!.* )(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
-                        )
+                      : !strongPassword(values.password)
                       ? 'Password must contain 1 number, 1 uppercase letter, at least one special character (^+#_) and no spaces'
-                      : values.password !== '' && values.password.length < 8
-                      ? 'Password must be 8 characters long'
                       : ''}
+                  </Text>
+                )}
+                {!isTriggerSubmit && (
+                  <Text as="small" weight="500" color={Color.alerzoGray4}>
+                    Password must be 8 characters long and must contain 1
+                    number, 1 uppercase letter, at least one special character
+                    (^+#_) and no spaces
                   </Text>
                 )}
               </Form.Control>
@@ -198,7 +162,7 @@ export const RegistrationInvite = () => {
                   placeholder="Confirm Your Password"
                 />
                 {isTriggerSubmit && (
-                  <Text as={'small'} weight={'500'} color={Color.alerzoDanger}>
+                  <Text as="small" weight="500" color={Color.alerzoDanger}>
                     {isTriggerSubmit && values.confirmPassword === ''
                       ? 'Confirm password is required*'
                       : values.confirmPassword !== '' &&
@@ -211,7 +175,7 @@ export const RegistrationInvite = () => {
                 )}
               </Form.Control>
               <Form.Control>
-                <Button loading={mutation.isLoading} onClick={submitForm}>
+                <Button loading={isLoadingInvites} onClick={submitForm}>
                   {isLoading ? (
                     <Loader color={Color.alerzoWhite} />
                   ) : (

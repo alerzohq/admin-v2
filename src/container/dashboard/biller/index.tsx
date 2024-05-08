@@ -15,13 +15,17 @@ import { billerHeaderList } from '../../../data/table-headers'
 import { FilterValueProps } from '../../../@types/global'
 import { filterValue } from '../../../data/filter-data'
 import { errorMessage, unauthorizedMessage } from '../../../utils/message'
-import { billerIcons, billerLabels, billerStats } from '../../../data/biller-data'
+import {
+  billerIcons,
+  billerLabels,
+  billerStats,
+} from '../../../data/biller-data'
 import AllPermissions from '../../../configs/access-control'
 import { toast } from 'react-hot-toast'
 
 const BillerContainer = () => {
-const navigate = useNavigate()
-const { viewBillerDetailAccess } = AllPermissions()
+  const navigate = useNavigate()
+  const { viewBillerDetailAccess } = AllPermissions()
   const [values, setValues] = useState(filterValue)
 
   const getBillers = (filterValue: FilterValueProps) => {
@@ -43,14 +47,13 @@ const { viewBillerDetailAccess } = AllPermissions()
     { keepPreviousData: true }
   )
 
-
-const handleManageBillers=(biller:Record<string,string>) =>{
-if(!viewBillerDetailAccess){
-  return toast.error(unauthorizedMessage)
-}else{
-  navigate(`${biller?.slug}`)
-}
-}
+  const handleManageBillers = (biller: Record<string, string>) => {
+    if (!viewBillerDetailAccess) {
+      return toast.error(unauthorizedMessage)
+    } else {
+      navigate(`${biller?.slug}`)
+    }
+  }
 
   let component
   if (isLoading) {
@@ -72,7 +75,7 @@ if(!viewBillerDetailAccess){
         tableData={data?.data?.billerProductCommissions}
         tableHeaders={billerHeaderList}
         dateFormat="YYYY-MM-DD HH:mm:ss"
-        actionBtnLabel='Manage Biller'
+        actionBtnLabel="Manage Biller"
         handleAction={handleManageBillers}
         notClickable
       />

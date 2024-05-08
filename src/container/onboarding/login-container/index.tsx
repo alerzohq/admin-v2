@@ -6,7 +6,7 @@ import AuthLayout from '../layout'
 
 import { formValue } from './formValues'
 import LoginForm from './login-form'
-import useLogin from './widget/useLogin'
+import useLogin from '../hooks/useLogin'
 
 const LoginContainer = () => {
   const [isTriggerSubmit, setIsTriggerSubmit] = useState(false)
@@ -26,7 +26,7 @@ const LoginContainer = () => {
 
   return (
     <AuthLayout>
-      <Stack alignItems={'center'} id="login">
+      <Stack alignItems="center" id="login">
         <LoginForm
           submitForm={submitForm}
           values={values}

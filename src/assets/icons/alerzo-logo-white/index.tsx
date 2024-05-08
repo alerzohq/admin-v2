@@ -1,6 +1,12 @@
-import { IconProps } from "../types";
+import { IconProps } from '../types'
 
-function AlerzoLogoWhite({ color, height, width, className, onClick }: IconProps) {
+function AlerzoLogoWhite({
+  color,
+  height,
+  width,
+  className,
+  onClick,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +38,7 @@ function AlerzoLogoWhite({ color, height, width, className, onClick }: IconProps
         ></image>
       </defs>
     </svg>
-  );
+  )
 }
 
-export default AlerzoLogoWhite;
+export default AlerzoLogoWhite

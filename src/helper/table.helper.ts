@@ -10,13 +10,12 @@ type TableHelperProps = {
 }
 
 export const transformData = ({ item, name }: TableHelperProps) => {
-
-//Transactions Table Data
+  //Transactions Table Data
   if (item && name === 'transaction') {
     const {
       reference,
       amount,
-      channel,
+      recipient,
       customer_name,
       type,
       action,
@@ -25,11 +24,11 @@ export const transformData = ({ item, name }: TableHelperProps) => {
       created_at,
     } = item
     let displayName = biller?.display_name || ''
-    let actionChannel = channel ? channel?.toUpperCase() : ''
+    let destination = recipient ? recipient : ''
     return {
       reference,
       customer_name,
-      actionChannel,
+      destination,
       amount,
       type,
       action,
@@ -54,7 +53,6 @@ export const transformData = ({ item, name }: TableHelperProps) => {
       created_at,
     }
   }
-
 
   //Business TransactionTable Data
 
@@ -81,7 +79,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     return { name, phoneNumber, email, kyc_level, status, created_at }
   }
 
-//User Roles Permission Table Data
+  //User Roles Permission Table Data
 
   if (item && name === 'user-roles-permission') {
     const { name, permissions, numberOfMembers } = item
@@ -100,10 +98,11 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     }
   }
 
-//Employees Table Data
+  //Employees Table Data
 
   if (item && name === 'employees') {
-    const { firstName, lastName, phoneNumber, email, adminRoleName, disabled } = item
+    const { firstName, lastName, phoneNumber, email, adminRoleName, disabled } =
+      item
     let statusVal = disabled ? 'Inactive' : 'Active'
     return {
       name: `${firstName} ${lastName}`,
@@ -114,7 +113,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     }
   }
 
-//Products Table Data
+  //Products Table Data
 
   if (item && name === 'products') {
     const { displayName, fallbackBillerSlug, billerSlug, disabled } = item
@@ -124,7 +123,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     return { name: displayName, biller: billerSlug, status, fallbackBillerSlug }
   }
 
-//Product Billers Table Data
+  //Product Billers Table Data
 
   if (item && name === 'product-billers') {
     const { displayName, commission, createdAt } = item
@@ -135,37 +134,61 @@ export const transformData = ({ item, name }: TableHelperProps) => {
     return { displayName, rates, createdAt }
   }
 
-//Billers Table Data
+  //Billers Table Data
 
   if (item && name === 'billers') {
-    const { display_name, phone_number,email,
-      disabled, created_at,updated_at } = item
+    const {
+      display_name,
+      phone_number,
+      email,
+      disabled,
+      created_at,
+      updated_at,
+    } = item
 
-    const billerStatus=disabled===true?'Inactive':'Active'
+    const billerStatus = disabled === true ? 'Inactive' : 'Active'
     const createdDate = formatDate(created_at, 'YYYY-MM-DD HH:mm:ss')
-    const updatedDate = updated_at ? formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss'):''
-    const phoneNumber=phone_number??'N/A'
-    const emailAddress=email??'N/A'
+    const updatedDate = updated_at
+      ? formatDate(updated_at, 'YYYY-MM-DD HH:mm:ss')
+      : ''
+    const phoneNumber = phone_number ?? 'N/A'
+    const emailAddress = email ?? 'N/A'
 
-    return { display_name,emailAddress, phoneNumber,billerStatus, createdDate,updatedDate }
+    return {
+      display_name,
+      emailAddress,
+      phoneNumber,
+      billerStatus,
+      createdDate,
+      updatedDate,
+    }
   }
 
-//Billers Products Table Data
+  //Billers Products Table Data
 
-if (item && name === 'biller-products') {
-  const { product_name,rate,splits,disabled } = item
-  const status=disabled===true?'Inactive':'Active'
-  const type = rate?.type ||''
-  const percentage =generateCommission(type, rate?.amount || rate?.percentage, rate?.cap)
-  const merchantRate = generateCommission(type, splits?.[0]?.rate?.amount || splits?.[0]?.rate?.percentage, splits?.[0]?.rate?.cap)
+  if (item && name === 'biller-products') {
+    const { product_name, rate, splits, disabled } = item
+    const status = disabled === true ? 'Inactive' : 'Active'
+    const type = rate?.type || ''
+    const percentage = generateCommission(
+      type,
+      rate?.amount || rate?.percentage,
+      rate?.cap
+    )
+    const merchantRate = generateCommission(
+      type,
+      splits?.[0]?.rate?.amount || splits?.[0]?.rate?.percentage,
+      splits?.[0]?.rate?.cap
+    )
 
-  return { product_name, type, percentage, merchantRate,status}
-}
+    return { product_name, type, percentage, merchantRate, status }
+  }
 
   //Business Products Table Data
 
   if (item && name === 'business-products') {
-    const { product, commissionRates, createdAt, adminDisabled } = item
+    const { commissionRates, createdAt, adminDisabled } = item
+
     const type = commissionRates?.[0]?.rate?.type
     const percentage = commissionRates?.[0]?.rate?.percentage
     const flat = commissionRates?.[0]?.rate?.amount
@@ -176,12 +199,12 @@ if (item && name === 'biller-products') {
       cap
     )
     let status = adminDisabled ? 'Inactive' : 'Active'
-    const displayName = product?.displayName
+    const displayName = item?.displayName
 
     return { displayName, type, rates, status, createdAt }
   }
 
- //Exist Terminal Table Data
+  //Exist Terminal Table Data
 
   if (item && name === 'existTerminal') {
     const {
@@ -199,7 +222,7 @@ if (item && name === 'biller-products') {
     return { tid, serial_number, model, statusVal, updatedDate, updated_at }
   }
 
-//Business Terminal Table Data
+  //Business Terminal Table Data
 
   if (item && name === 'business-terminals') {
     const { serial_number, tid, variant, model, active, created_at } = item
@@ -252,8 +275,7 @@ if (item && name === 'biller-products') {
     }
   }
 
-
-//Invites Table Data
+  //Invites Table Data
 
   if (item && name === 'invites') {
     const { email, adminRoleName, createdAt, expiresIn, accepted, id } = item

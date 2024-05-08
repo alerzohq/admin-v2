@@ -16,8 +16,9 @@ const AllPermissions = () => {
     userInfo?.data?.role === 'Super Admin' ||
     Boolean(user?.data?.role === 'Super Admin')
 
-  const businessesAccess =
-    Boolean(isHasPermission.includes('view_businesses') || adminAccess)
+  const businessesAccess = Boolean(
+    isHasPermission.includes('view_businesses') || adminAccess
+  )
   const businessDetailAccess =
     isHasPermission.includes('view_business') || adminAccess
   const customersAccess =
@@ -51,9 +52,9 @@ const AllPermissions = () => {
   const viewBillersAccess =
     isHasPermission.includes('view_billers') || adminAccess
   const viewBillerDetailAccess =
-  isHasPermission.includes('view_biller') || adminAccess
+    isHasPermission.includes('view_biller') || adminAccess
   const updateBillerAccess =
-  isHasPermission.includes('update_biller') || adminAccess
+    isHasPermission.includes('update_biller') || adminAccess
   const setBillerThresholdAccess =
     isHasPermission.includes('set_biller_threshold') || adminAccess
   const KYCAccess =
@@ -85,7 +86,7 @@ const AllPermissions = () => {
     historyStatisticAccess,
     KYCAccess,
     businessProductDetailAccess,
-    updateBillerAccess
+    updateBillerAccess,
   }
 }
 

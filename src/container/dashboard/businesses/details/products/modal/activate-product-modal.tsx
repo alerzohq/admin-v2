@@ -1,12 +1,11 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Modal from '../../../../../../components/modal'
 import { Button } from '../../../../../../components'
 import DangerWarning from '../../../../../../assets/icons/danger-warning'
 import { Color } from '../../../../../../assets/theme'
 import { useAppContext } from '../../../../../../context'
 import useSendOTPMutation from '../../../hooks/useSendOtpMutation'
-import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
+// import useResendOTPMutation from '../../../hooks/useResendOtpMutation'
 import useActivateBusinessProduct from '../../../hooks/useActivateProductMutation'
 import VerificationPinModal from '../../../../widget/verification-pin-modal/verification-pin-modal'
 import SuccessModal from '../../../../../../components/success-modal/success-modal'
@@ -37,21 +36,19 @@ const ActivateProductModal: React.FC<ActivateProductProps> = ({
     productSlug,
   })
 
-  const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
-    useResendOTPMutation({
-      userOtp,
-      businessId,
-      productSlug,
-    })
+  // const { handleResendOTP, newOtpToken, minutes, seconds, isLoading } =
+  //   useResendOTPMutation({
+  //     userOtp,
+  //     businessId,
+  //     productSlug,
+  //   })
 
   // states
   const [showVerification, setShowVerification] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-  const [show, setShow] = useState(false)
+  const [, setShow] = useState(false)
   const [otp, setOtp] = useState('')
   const [otpError, setOtpError] = useState(false)
-
-  const navigate = useNavigate()
 
   const handleCancel = () => {
     setShowModal(!showModal)
@@ -116,17 +113,17 @@ const ActivateProductModal: React.FC<ActivateProductProps> = ({
         }
         handleSubmit={() => {}}
       >
-        <Button.Group align={'center'}>
+        <Button.Group align="center">
           <Button
             onClick={handleCancel}
-            height={'45px'}
+            height="45px"
             width="40%"
             borderSize="1px"
             color={Color.alerzoBlue}
             variant="transparent"
             borderColor={Color.alerzoBlue}
           >
-            {'Cancel'}
+            Cancel
           </Button>
           <Button
             onClick={handleOpenPinModal}
@@ -155,10 +152,10 @@ const ActivateProductModal: React.FC<ActivateProductProps> = ({
           productName={productName}
           showSuccess={showSuccess}
           setShowSuccess={setShowSuccess}
-          message={'You have successfully activated'}
-          btnText={'Back To Products'}
-          title={'Product Activated'}
-          onClick={() => navigate(-1)}
+          message="You have successfully activated"
+          btnText="Back To Products"
+          title="Product Activated"
+          onClick={() => setShowSuccess(false)}
         />
       )}
     </>

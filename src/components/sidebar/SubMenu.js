@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import IconClose from '../../../assets/images/svgs/IconClose'
-import IconOpen from '../../../assets/images/svgs/IconOpen'
+import IconClose from '../../assets/images/svgs/IconClose'
+import IconOpen from '../../assets/images/svgs/IconOpen'
 import { useNavigate } from 'react-router-dom'
 import styles from './sidenav.module.css'
 

@@ -21,6 +21,7 @@ export enum Path {
   TERMINALREQUESTDETAIL = 'terminals/requests/:requestId',
   KYC = 'kyc',
   KYCDETAIL = 'kyc/:id',
-  BILLER='biller',
+  BILLER = 'biller',
   BILLERDETAIL = 'biller/:slug',
+  PASSWORD_RESET = 'password-reset',
 }

@@ -2,10 +2,10 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { Path } from '../../../../constants/route-path'
-import { useAppContext } from '../../../../context'
-import { Action } from '../../../../context/actions'
-import { errorMessage } from '../../../../utils/message'
+import { Path } from '../../../constants/route-path'
+import { useAppContext } from '../../../context'
+import { Action } from '../../../context/actions'
+import { errorMessage } from '../../../utils/message'
 
 const useLogin = (email: string) => {
   const BASE_URL = process.env.REACT_APP_API_BASE_URL

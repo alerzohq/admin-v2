@@ -6,14 +6,14 @@ const Checkbox = ({
   onClick,
   checked,
   label,
-  position
+  position,
 }: {
   name?: string
   value?: string | number
   onClick: (value: string) => void
   checked: boolean
-  label?:string
-  position?:'relative'
+  label?: string
+  position?: 'relative'
 }) => {
   return (
     <>

@@ -20,7 +20,7 @@ const useReversalMutation = ({
   const queryClient = useQueryClient()
 
   return useMutation(
-    (payload: { [key: string]: any }) =>
+    (payload: Object) =>
       postRequest({
         pathUrl: '/reverse-transactions',
         payload,
@@ -38,7 +38,7 @@ const useReversalMutation = ({
           setShowModal(!showModal)
         }
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         toast.error(errorMessage(error))
       },
     }

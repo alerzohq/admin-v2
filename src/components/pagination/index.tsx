@@ -1,4 +1,3 @@
-import React from 'react'
 import { Inner, PaginationWrapper } from './styles/pagination.styles'
 import { PaginationProps } from './type'
 import ReactPaginate from 'react-paginate'
@@ -40,13 +39,13 @@ const Pagination = ({
           data-testid="paginate"
         >
           <Inner>
-            <Text as={'p'} color={Color.alerzoGray2}>
+            <Text as="p" color={Color.alerzoGray2}>
               Show
             </Text>
             <SelectInput
               onChange={(val) => handlePageCount(val)}
-              placeholder={'50'}
-              value={'50'}
+              placeholder="50"
+              value="50"
               options={options}
             />
           </Inner>
@@ -59,13 +58,13 @@ const Pagination = ({
             marginPagesDisplayed={1}
             pageCount={data?.metadata?.pages ?? 1}
             previousLabel={<BackIcon />}
-            containerClassName={'paginate'}
-            pageClassName={'page-item'}
-            pageLinkClassName={'page-link'}
-            activeClassName={'active-page'}
-            nextLinkClassName={'next-btn'}
-            previousLinkClassName={'previous-btn'}
-            disabledClassName={'pagination-disabled'}
+            containerClassName="paginate"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            activeClassName="active-page"
+            nextLinkClassName="next-btn"
+            previousLinkClassName="previous-btn"
+            disabledClassName="pagination-disabled"
           />
 
           <Inner>

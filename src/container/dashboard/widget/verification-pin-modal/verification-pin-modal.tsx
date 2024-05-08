@@ -105,13 +105,13 @@ const VerificationPinModal = ({
             color={Color.alerzoDarkGray}
             padding={'1rem 0'}
           >
-            {`Enter OTP`}
+            Enter OTP
           </Text>
           <Text
-            as={'p'}
-            align={'center'}
-            weight={'500'}
-            size={'14px'}
+            as="p"
+            align="center"
+            weight="500"
+            size="14px"
             color={Color.alerzoBlack}
           >
             <>

@@ -1,7 +1,6 @@
 import { FilterValueProps } from '../../../@types/global'
 import { getNewFilterResource, getResource } from '../../../utils/apiRequest'
 
-
 export const getTerminalsSpecs = () => {
   return getResource(`terminal/specifications`)
 }

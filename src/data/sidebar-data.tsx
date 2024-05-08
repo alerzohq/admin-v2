@@ -17,7 +17,7 @@ import {
   ActiveAuditIcon,
   ActiveKYCIcon,
   BillerIcon,
-  ActiveBillerIcon
+  ActiveBillerIcon,
 } from '../assets/icons'
 import { KYCVerification } from '../assets/icons/KYC/KYC'
 import { Color } from '../assets/theme'
@@ -34,7 +34,7 @@ export const SideBarMenus = () => {
     rolesAccess,
     terminalAccess,
     KYCAccess,
-    viewBillersAccess
+    viewBillersAccess,
   } = AllPermissions()
 
   const sideBarData = [

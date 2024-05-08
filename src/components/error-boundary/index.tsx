@@ -1,13 +1,14 @@
 import React from 'react'
-import { AlerzoLogo, ErrorBoundaryIcon } from '../../../assets/icons'
-import { Color } from '../../../assets/theme'
-import Button from '../../button'
+import { AlerzoLogo, ErrorBoundaryIcon } from '../../assets/icons'
+import { Color } from '../../assets/theme'
+import Button from '../button'
+import Text from '../text'
 import { ErrorContainer } from './styles/error-boundary.styles'
-import { useAppContext } from '../../../context'
+import { useAppContext } from '../../context'
 
 type ErrorBoundaryProps = {
-  error: any
-  resetErrorBoundary: any
+  error: Error
+  resetErrorBoundary: () => void
 }
 
 export function ErrorFallback({
@@ -20,17 +21,17 @@ export function ErrorFallback({
     <div role="alert">
       <ErrorContainer>
         <AlerzoLogo
-          className={'logo'}
+          className="logo"
           onClick={() => {}}
-          height={'25'}
-          width={'150'}
+          height="25"
+          width="150"
           color={Color.alerzoBlue}
         />
 
         <ErrorBoundaryIcon />
-        <h2 data-testid="errorboundary" className="error-desc">
+        <Text as="h2" data-testid="errorboundary" className="error-desc">
           You have run into an error while trying to perform this action
-        </h2>
+        </Text>
         <code>Error: {error?.message}</code>
         <Button
           radius="10px"

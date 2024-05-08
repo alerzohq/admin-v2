@@ -19,13 +19,16 @@ export type DataProps = {
   actionBtn?: boolean
   hideDate?: boolean
   setParams?: boolean
-  notClickable?:boolean
+  notClickable?: boolean
+  showSecondBtn?: boolean
   selectIndex?: number
   buttonTitle?: string
-  actionPlaceholder?:string
+  actionPlaceholder?: string
   options?: any[]
   handleChange?: (item: Record<string, string>) => void
+  handleOnClickSecondActionBtn?: (item: Record<string, string>) => void
   handleRouthPath?: (item: Record<string, string>) => void
+  secondActionBtnText?: string | ((item: Record<string, string>) => string)
 }
 type DataList = string[] | undefined
 
@@ -42,6 +45,9 @@ const CustomTableData = ({
   actionBtn,
   buttonTitle,
   handleRouthPath,
+  showSecondBtn,
+  handleOnClickSecondActionBtn,
+  secondActionBtnText,
   handleChange,
 }: DataProps) => {
   const navigate = useNavigate()
@@ -104,7 +110,7 @@ const CustomTableData = ({
               >
                 {options && (
                   <SelectInput
-                    placeholder={actionPlaceholder??"Change Biller"}
+                    placeholder={actionPlaceholder ?? 'Change Biller'}
                     onChange={(e) => {
                       handleChange?.({
                         newBiller: e.value,
@@ -119,13 +125,30 @@ const CustomTableData = ({
                     hideValue
                   />
                 )}
-                {actionBtn && (
+              </div>
+            </td>
+            {actionBtn && (
+              <td>
+                <>
                   <ActionButton onClick={() => handleChange?.(item)}>
                     {buttonTitle ?? 'Change Rate'}
                   </ActionButton>
-                )}
-              </div>
-            </td>
+                </>
+              </td>
+            )}
+            {showSecondBtn && (
+              <td>
+                <>
+                  <ActionButton
+                    onClick={() => handleOnClickSecondActionBtn?.(item)}
+                  >
+                    {typeof secondActionBtnText === 'function'
+                      ? secondActionBtnText?.(item)
+                      : secondActionBtnText}
+                  </ActionButton>
+                </>
+              </td>
+            )}
           </tr>
         )
       })}
