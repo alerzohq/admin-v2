@@ -17,10 +17,11 @@ import { ResponseViewer } from './styles/details.styles'
 import DangerWarning from '../../../../assets/icons/danger-warning'
 import { useAppContext } from '../../../../context'
 import ReverseCommModal from '../modal/reverse-commission-modal'
+import AllPermissions from '../../../../configs/access-control'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
-
+ const {reverseTransactionAccess}= AllPermissions()
   //states
   const [fetchUser, setFetchUser] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -154,7 +155,7 @@ const TabsContainer = () => {
         containerTitle="Transaction Details"
         title={found ? found?.title : TABS[0]?.title}
         type="Transaction!"
-        isError={isError}
+        isError={isError} 
         errorMessage="Failed to load transaction."
         currentValue={found?.value || 'details'}
         renderSwitch={renderSwitch}
@@ -163,7 +164,7 @@ const TabsContainer = () => {
         btnHandler={() => setOpenModal(true)}
         btnLabel="Biller Response"
         showfilters={showfilters}
-        secondBtnHandler={() => setShowConfirm(true)}
+        {...(reverseTransactionAccess ? {secondBtnHandler: () => setShowConfirm(true)} : {})}
         seconddBtnLabel="Reverse this transaction"
       />
       <Modal
@@ -171,10 +172,10 @@ const TabsContainer = () => {
         setShowModal={() => setShowConfirm(!showConfirm)}
         titleSize="22px"
         modalWidth="320px"
-        title={`Are you sure? `}
+        title="Are you sure?"
         contentPadding="0"
         icon={<DangerWarning />}
-        subTitleSize={'16'}
+        subTitleSize="16"
         loading={loadingAssign}
         // subTitle={}
         handleSubmit={onSubmit}
