@@ -45,6 +45,8 @@ const AllPermissions = () => {
     isHasPermission.includes('view_transaction') || adminAccess
   const historyStatisticAccess =
     isHasPermission.includes('view_transaction_statistics') || adminAccess
+  const reverseTransactionAccess =
+    isHasPermission.includes('reverse_successful_transaction') || adminAccess
   const historyDownloadAccess =
     isHasPermission.includes('download_transaction_report') || adminAccess
   const processReversals =
@@ -87,6 +89,7 @@ const AllPermissions = () => {
     KYCAccess,
     businessProductDetailAccess,
     updateBillerAccess,
+    reverseTransactionAccess
   }
 }
 
