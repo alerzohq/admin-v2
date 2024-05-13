@@ -199,7 +199,7 @@ export const transformData = ({ item, name }: TableHelperProps) => {
       cap
     )
     let status = adminDisabled ? 'Inactive' : 'Active'
-    const displayName = item?.displayName
+    const displayName = item?.product?.displayName
 
     return { displayName, type, rates, status, createdAt }
   }
