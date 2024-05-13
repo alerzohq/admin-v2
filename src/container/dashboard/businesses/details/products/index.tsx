@@ -35,7 +35,7 @@ const Products = (isB2B: any) => {
   // https://api.develop.alerzopay.com/v2/admin/business/:{{businessId}}/available-products?pageNumber=1&count=20
   const getBusinessProducts = (filterValue: FilterValueProps) => {
     return getNewFilterResource(
-      `business/${businessId}/available-products`,
+      `business/${businessId}/products`,
       filterValue,
       false
     )
