@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+
 import Modal from '../../../../../../components/modal'
 import { Button, Form, SelectInput, Text } from '../../../../../../components'
 import SuccessModal from '../../../../../../components/success-modal/success-modal'
@@ -32,7 +33,7 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
   const { percentage, cap, amount } = values
 
   let payload = {
-    productSlug: product?.productSlug,
+    productSlug: product?.product?.slug,
     commissionRate: {
       type: type?.value,
       ...(type?.value === Rate.percentage && { percentage }),
@@ -81,7 +82,7 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
       }
     }
   }
-
+  console.log({Slug:product?.product?.slug})
   return (
     <>
       <Modal
