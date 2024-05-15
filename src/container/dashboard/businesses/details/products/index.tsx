@@ -32,9 +32,13 @@ const Products = (isB2B: any) => {
   const [showEnableModal, setShowEnableModal] = useState(false)
 
   const navigate = useNavigate()
-
+  // https://api.develop.alerzopay.com/v2/admin/business/:{{businessId}}/available-products?pageNumber=1&count=20
   const getBusinessProducts = (filterValue: FilterValueProps) => {
-    return getNewFilterResource(`business/${businessId}`, filterValue, false)
+    return getNewFilterResource(
+      `business/${businessId}/products`,
+      filterValue,
+      false
+    )
   }
 
   const { isLoading, isFetching, data, isError, refetch, error } = useQuery(
