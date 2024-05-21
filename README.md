@@ -117,7 +117,7 @@ export default Overview
 
 ```
 
-# Data Fetching and Mutation Functions
+## Data Fetching and Mutation Functions
 
 **getResource:** Fetches data from a specified URL. It supports an optional parameter to determine whether authentication (token) is required.
 
@@ -128,6 +128,8 @@ export default Overview
 **getTerminalsRequestsData:** Similar to getTerminalsData, but with additional filter parameters.
 
 **postRequest:** Generic function for making POST requests, but can be adapted for other HTTP methods based on the methodType parameter.
+
+### Integration with React Query
 
 These functions can be integrated with React Query by defining them as query or mutation functions.
 
