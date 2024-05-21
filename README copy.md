@@ -68,6 +68,33 @@ Button.Group = function ButtonGroup({
 
 **Container:** This folder is dedicated to creating business logic that supports the UI components.
 
+```
+const OverviewContainer = () => {
+  const getTranStats = () => {
+    return getResource(`dashboard/statistics`)
+  }
+
+  const { isLoading: loading, data: Stats } = useQuery(
+    'overview-stats',
+    getTranStats
+  )
+  const Statistics = Stats?.data
+
+  return (
+    <>
+      <CardWidget
+        statistics={overviewStats(Statistics)}
+        labels={dashboardLabels}
+        icons={dashboardStatsIcons}
+        loading={loading}
+      />
+    </>
+  )
+}
+
+export default OverviewContainer
+```
+
 **Pages:** This folder primarily imports and assembles containers to form complete pages.
 
 
