@@ -12,13 +12,14 @@
 
 1.- Clone the repo and install deps: `git clone repo_url && npm install`
 
-2.- Once you're on the app folder, create your env file: `cp .env.example .env`. (Ask the administrator for the values)
+2.- Once you are in the app folder, create your environment file by copying the example provided: `cp .env.example .env`. 
+(Ask the administrator for the values)
 
- Sample Environment Variables
+** Sample Environment Variables**
 
- `REACT_APP_API_BASE_URL=`
+ `REACT_APP_API_BASE_URL=` (Specify the base URL for the API)
  
- `REACT_APP_ENCRYPTION_KEY=`
+ `REACT_APP_ENCRYPTION_KEY=` (Provide the encryption key)
 
 3.- Install deps: `npm install`
 
