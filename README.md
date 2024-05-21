@@ -27,7 +27,7 @@
 
 ## GitFlow
 
-Our base branch is `develop`, **all branches should branch of from this branch for any development** We also have `staging` branch, both branches are beign deployed to its own environment:
+Our base branch is `develop`, **all branches should branch of from this branch for any development** We also have `staging` branch, both branches are being deployed to its own environment:
 
 | Branch |        Environment         |
 | :----: | :------------------------: |
