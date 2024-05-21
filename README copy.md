@@ -37,8 +37,4 @@ With this hook, you can fetch the data on first render, additionally you can als
 In case you won't need to fetch on first render and instead make a lazy call using the lazy hook:
 
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
