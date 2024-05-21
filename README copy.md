@@ -1,47 +1,44 @@
-# Getting Started with Create React App
+# Admin Web - AlerzoPay
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements
 
-## Available Scripts
+| Tech |  Version   |
+| :--: | :--------: |
+| node | `v16.15.0` |
+| npm  |  `8.11.0`  |
 
-In the project directory, you can run:
+## Setup
+
+
+1.- Clone the repo and install deps: `git clone repo_url && npm install`
+
+2.- Once you're on the app folder, create your env file: `cp .env.example .env`. (Ask the administrator for the values)
+
+3.- Install deps: `npm install`
+
+4.- Run the app: `npm start`
+
+## GitFlow
+
+Our base branch is `develop`, **all branches should branch of from this branch for any development** We also have `staging` branch, both branches are beign deployed to its own environment:
+
+| Branch |        Environment         |
+| :----: | :------------------------: |
+| `develop`  | https://admin.develop.alerzopay.com/ |
+| `staging` | https://admin.staging.alerzopay.com/  |
+| `production` | https://admin.alerzopay.com/  |
+
+The git flow is really simple, just create your `feature/*`, `hotfix/*` or `bug/*` branch from the correct branch, and once you're done with your changes open a MR
+
+
+
+With this hook, you can fetch the data on first render, additionally you can also use `refetch` function to make a fetch again.
+
+In case you won't need to fetch on first render and instead make a lazy call using the lazy hook:
+
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
 
