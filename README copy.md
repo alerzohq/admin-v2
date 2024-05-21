@@ -96,6 +96,21 @@ export default OverviewContainer
 ```
 
 **Pages:** This folder primarily imports and assembles containers to form complete pages.
+```
+import { OverviewContainer } from '../../../container/dashboard'
+
+const Overview = () => {
+  return (
+    <Container title='Dashboard'>
+      <OverviewContainer />
+    </Container>
+  )
+}
+
+export default Overview
+
+
+```
 
 
 
