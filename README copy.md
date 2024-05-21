@@ -47,7 +47,7 @@ In case you won't need to fetch on first render and instead make a lazy call usi
 
 This project adopts the container-presentational design pattern. Below is an overview of the folder structure and their respective roles:
 
-**Components:** This folder contains shared components that are reused across different parts of the application.
+**Components:** This folder contains shared components that are reused across different parts of the application. These components utilize the compound component design pattern to manage complex structures as flexible and scalable units.
 ```
 import { ButtonContainer, Group } from './styles/button.style'
 import { ButtonGroupProps, ButtonProps } from './type'
