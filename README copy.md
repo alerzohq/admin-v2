@@ -15,7 +15,7 @@
 2.- Once you are in the app folder, create your environment file by copying the example provided: `cp .env.example .env`. 
 (Ask the administrator for the values)
 
-** Sample Environment Variables**
+**Sample Environment Variables**
 
  `REACT_APP_API_BASE_URL=` (Specify the base URL for the API)
  
