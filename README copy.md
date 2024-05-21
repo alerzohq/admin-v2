@@ -42,9 +42,6 @@ This project adopts the container-presentational design pattern. Below is an ove
 
 **Components:** This folder contains shared components that are reused across different parts of the application.
 ```
-import { Color } from '../../assets/theme'
-import Loader from '../loader'
-
 import { ButtonContainer, Group } from './styles/button.style'
 import { ButtonGroupProps, ButtonProps } from './type'
 
