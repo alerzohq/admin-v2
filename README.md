@@ -38,11 +38,6 @@ Our base branch is `develop`, **all branches should branch of from this branch f
 The git flow is really simple, just create your `feature/*`, `hotfix/*` or `bug/*` branch from the correct branch, and once you're done with your changes open a MR
 
 
-
-With this hook, you can fetch the data on first render, additionally you can also use `refetch` function to make a fetch again.
-
-In case you won't need to fetch on first render and instead make a lazy call using the lazy hook:
-
 ## Folder Structure
 
 This project adopts the container-presentational design pattern. Below is an overview of the folder structure and their respective roles:
