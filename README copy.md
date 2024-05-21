@@ -36,5 +36,15 @@ With this hook, you can fetch the data on first render, additionally you can als
 
 In case you won't need to fetch on first render and instead make a lazy call using the lazy hook:
 
+## Folder Structure
+
+This project adopts the container-presentational design pattern. Below is an overview of the folder structure and their respective roles:
+
+**Components:** This folder contains shared components that are reused across different parts of the application.
+
+**Container:** This folder is dedicated to creating business logic that supports the UI components.
+
+**Pages:** This folder primarily imports and assembles containers to form complete pages.
+
 
 
