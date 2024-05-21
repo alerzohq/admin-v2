@@ -26,7 +26,7 @@ Our base branch is `develop`, **all branches should branch of from this branch f
 | :----: | :------------------------: |
 | `develop`  | https://admin.develop.alerzopay.com/ |
 | `staging` | https://admin.staging.alerzopay.com/  |
-| `production` | https://admin.alerzopay.com/  |
+| `production`|https://admin.alerzopay.com/  |
 
 The git flow is really simple, just create your `feature/*`, `hotfix/*` or `bug/*` branch from the correct branch, and once you're done with your changes open a MR
 
