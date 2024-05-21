@@ -41,6 +41,33 @@ In case you won't need to fetch on first render and instead make a lazy call usi
 This project adopts the container-presentational design pattern. Below is an overview of the folder structure and their respective roles:
 
 **Components:** This folder contains shared components that are reused across different parts of the application.
+```
+import { Color } from '../../assets/theme'
+import Loader from '../loader'
+
+import { ButtonContainer, Group } from './styles/button.style'
+import { ButtonGroupProps, ButtonProps } from './type'
+
+const Button = ({ loading, children, ...restProps }: ButtonProps) => {
+  return (
+    <ButtonContainer {...restProps}>
+      {loading ? <Loader color={Color.alerzoWhite} /> : children}
+    </ButtonContainer>
+  )
+}
+
+export default Button
+
+Button.Group = function ButtonGroup({
+  children,
+  ...restProps
+}: ButtonGroupProps) {
+  return <Group {...restProps}>{children}</Group>
+}
+
+
+
+```
 
 **Container:** This folder is dedicated to creating business logic that supports the UI components.
 
