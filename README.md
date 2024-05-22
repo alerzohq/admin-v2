@@ -1,4 +1,4 @@
-# Admin Web - AlerzoPay
+# Admin - AlerzoPay
 
 ## Requirements
 
