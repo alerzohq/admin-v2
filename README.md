@@ -114,15 +114,15 @@ export default Overview
 
 ## Data Fetching and Mutation Functions
 
-**getResource:** Fetches data from a specified URL. It supports an optional parameter to determine whether authentication (token) is required.
+`getResource:` Fetches data from a specified URL. It supports an optional parameter to determine whether authentication (token) is required.
 
-**getNewFilterResource:** Retrieves data based on filtering criteria. It constructs a query string from the filters and appends it to the URL.
+`getNewFilterResource:` Retrieves data based on filtering criteria. It constructs a query string from the filters and appends it to the URL.
 
-**getTerminalsData:** Fetches terminal data, allowing pagination through a count and cursor system.
+`getTerminalsData:` Fetches terminal data, allowing pagination through a count and cursor system.
 
-**getTerminalsRequestsData:** Similar to getTerminalsData, but with additional filter parameters.
+`getTerminalsRequestsData:` Similar to getTerminalsData, but with additional filter parameters.
 
-**postRequest:** Generic function for making POST requests, but can be adapted for other HTTP methods based on the methodType parameter.
+`postRequest:` Generic function for making POST requests, but can be adapted for other HTTP methods based on the methodType parameter.
 
 ### Integration with React Query:
 
