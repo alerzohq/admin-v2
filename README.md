@@ -12,7 +12,7 @@
 
 1.- Clone the repo and install deps: `git clone repo_url && npm install`
 
-2.- Once you are in the app folder, create your environment file by copying the example provided: `cp .env.example .env`. 
+2.- Once you are in the app folder, create your environment file by copying the example provided: `cp .env.sample .env`. 
 (Ask the administrator for the values)
 
 **Sample Environment Variables**
