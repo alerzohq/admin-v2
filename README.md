@@ -133,5 +133,5 @@ These functions can be integrated with React Query by defining them as query or 
 ```
 import { useQuery } from 'react-query';
 
-const { data, isLoading, error } = useQuery('resource', () => getResource('/api/data'));
+const { data, isLoading, error } = useQuery('resource', () => getResource('api/data'));
 ```
