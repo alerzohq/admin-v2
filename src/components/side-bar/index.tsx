@@ -56,15 +56,16 @@ const Sidebar = ({
       <Inner isCollapsed={isCollapsed}>
         <LogoBox>
           {isCollapsed ? (
-            <img src="/favicon.png" alt="favicon" onClick={collapseBar} />
+            <img src="/shagofavicon.png" alt="favicon" width='25px' className='logo-fav' onClick={collapseBar} />
           ) : (
-            <AlerzoLogo
-              className="logo"
-              onClick={collapseBar}
-              height="25"
-              width="150"
-              color={Color.alerzoBlue}
-            />
+            // <AlerzoLogo
+            //   className="logo"
+            //   onClick={collapseBar}
+            //   height="25"
+            //   width="150"
+            //   color={Color.alerzoBlue}
+            // />
+            <img src="/shago-logo.bmp" width='120px' height='50px' alt="logo" className='full-logo' onClick={collapseBar} />
           )}
         </LogoBox>
         <SidebarList>
