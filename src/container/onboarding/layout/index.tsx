@@ -18,25 +18,26 @@ const AuthLayout = ({
   return (
     <AuthContainer p={p}>
       <AuthColumn bgColor={Color.alerzoBlue} hideOnMobile>
-        <AlerzoLogoWhite className={'logo-svg'} />
+        <img src="/shago-logo-white.png" alt='logo' width={120}/>
+        {/* <AlerzoLogoWhite className='logo-svg' /> */}
         <AuthContent>
           <AuthInner>
             <AuthImage>
               <img
                 src={authImage}
-                alt={'auth-img'}
-                width={'100%'}
-                height={'100%'}
+                alt='auth-img'
+                width='100%'
+                height='100%'
               />
             </AuthImage>
             <Text
-              as={'h2'}
-              size={'1.1rem'}
-              padding={'1.5rem 5rem'}
+              as='h2'
+              size='1.1rem'
+              padding='1.5rem 5rem'
               textAlign={'center'}
               color={Color.alerzoWhite}
             >
-              {'Manage all transactions in one secured place'}
+              Manage all transactions in one secured place
             </Text>
           </AuthInner>
         </AuthContent>
