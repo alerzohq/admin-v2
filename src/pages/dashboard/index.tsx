@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Sidebar } from '../../components'
+import { CBNPolicy, Sidebar} from '../../components'
 import Content from '../../components/dashboard-contents'
 import SessionTimeout from '../../configs/session-timeout'
 
@@ -17,6 +17,7 @@ const Dashboard: React.FC = () => {
       <Content isCollapsed={isCollapsed}>
         <SessionTimeout>
           <Outlet />
+          <CBNPolicy/>
         </SessionTimeout>
       </Content>
     </>
