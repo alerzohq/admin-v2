@@ -18,22 +18,17 @@ const AuthLayout = ({
   return (
     <AuthContainer p={p}>
       <AuthColumn bgColor={Color.alerzoBlue} hideOnMobile>
-        <img src="/shago-logo-white.png" alt='logo' width={120}/>
-        {/* <AlerzoLogoWhite className='logo-svg' /> */}
+        {/* <img src="/shago-logo-white.png" alt="logo" width={120} /> */}
+        <AlerzoLogoWhite className='logo-svg' />
         <AuthContent>
           <AuthInner>
             <AuthImage>
-              <img
-                src={authImage}
-                alt='auth-img'
-                width='100%'
-                height='100%'
-              />
+              <img src={authImage} alt="auth-img" width="100%" height="100%" />
             </AuthImage>
             <Text
-              as='h2'
-              size='1.1rem'
-              padding='1.5rem 5rem'
+              as="h2"
+              size="1.1rem"
+              padding="1.5rem 5rem"
               textAlign={'center'}
               color={Color.alerzoWhite}
             >
