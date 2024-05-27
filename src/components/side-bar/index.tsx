@@ -45,7 +45,7 @@ const Sidebar = ({
 
   const handleLogout = () => {
     mutate()
-  }
+  } 
 
   return (
     <SidebarWrapper
@@ -55,17 +55,25 @@ const Sidebar = ({
     >
       <Inner isCollapsed={isCollapsed}>
         <LogoBox>
+       
           {isCollapsed ? (
-            <img src="/shagofavicon.png" alt="favicon" width='25px' className='logo-fav' onClick={collapseBar} />
+                <img src="/favicon.png" alt="favicon" className="logo-fav" width="25px" onClick={collapseBar} />
           ) : (
-            // <AlerzoLogo
-            //   className="logo"
+            <AlerzoLogo
+              className="logo"
+              onClick={collapseBar} 
+              height="25"
+              width="150"
+              color={Color.alerzoBlue}
+            />
+            // <img
+            //   src="/shago-logo.bmp"
+            //   width="120px"
+            //   height="50px"
+            //   alt="logo"
+            //   className="full-logo"
             //   onClick={collapseBar}
-            //   height="25"
-            //   width="150"
-            //   color={Color.alerzoBlue}
             // />
-            <img src="/shago-logo.bmp" width='120px' height='50px' alt="logo" className='full-logo' onClick={collapseBar} />
           )}
         </LogoBox>
         <SidebarList>
@@ -127,12 +135,13 @@ const Sidebar = ({
               {user?.data?.firstName?.charAt(0)}
               {user?.data?.lastName?.charAt(0)}
             </Profile>
-
+             <Stack>
             <Stack onClick={handleLogout} direction="row" alignItems="center">
               <Stack justifyContent="center" width="auto" alignItems="center">
                 <LogoutIcon />
               </Stack>
-              {!isCollapsed && <Text as={'p'}>Log out</Text>}
+              {!isCollapsed && <Text as='p'>Log out</Text>}
+            </Stack>
             </Stack>
           </SidebarItem>
         </SidebarFooter>
