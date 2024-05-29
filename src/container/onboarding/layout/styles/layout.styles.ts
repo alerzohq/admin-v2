@@ -50,7 +50,7 @@ export const AuthContainer = styled.div<Props>`
 
 export const AuthColumn = styled.div<Props>`
   width: 50%;
-  padding:1rem;
+  padding: 1rem;
   background: ${({ bgColor }) => bgColor};
   justify-content: center;
   @media (max-width: 992px) {

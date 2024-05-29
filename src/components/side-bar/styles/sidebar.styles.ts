@@ -44,12 +44,12 @@ export const Inner = styled.div<sidebarStyleProps>`
 export const LogoBox = styled.div`
   display: flex;
   .logo-fav {
-      width: 30px;
-      margin: 0 auto;
+    width: 30px;
+    margin: 0 auto;
   }
- .full-logo {
+  .full-logo {
     width: 120px;
-    margin:0 0 0 2px;
+    margin: 0 0 0 2px;
   }
 `
 

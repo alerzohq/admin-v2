@@ -89,7 +89,7 @@ const AllPermissions = () => {
     KYCAccess,
     businessProductDetailAccess,
     updateBillerAccess,
-    reverseTransactionAccess
+    reverseTransactionAccess,
   }
 }
 
