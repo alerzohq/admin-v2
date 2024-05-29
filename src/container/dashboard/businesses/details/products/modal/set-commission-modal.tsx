@@ -82,7 +82,7 @@ const CommissionModal: React.FC<SetCommissionProps> = ({
       }
     }
   }
-  console.log({Slug:product?.product?.slug})
+  console.log({ Slug: product?.product?.slug })
   return (
     <>
       <Modal

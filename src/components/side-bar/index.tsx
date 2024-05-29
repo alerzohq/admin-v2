@@ -45,7 +45,7 @@ const Sidebar = ({
 
   const handleLogout = () => {
     mutate()
-  } 
+  }
 
   return (
     <SidebarWrapper
@@ -55,13 +55,18 @@ const Sidebar = ({
     >
       <Inner isCollapsed={isCollapsed}>
         <LogoBox>
-       
           {isCollapsed ? (
-                <img src="/favicon.png" alt="favicon" className="logo-fav" width="25px" onClick={collapseBar} />
+            <img
+              src="/favicon.png"
+              alt="favicon"
+              className="logo-fav"
+              width="25px"
+              onClick={collapseBar}
+            />
           ) : (
             <AlerzoLogo
               className="logo"
-              onClick={collapseBar} 
+              onClick={collapseBar}
               height="25"
               width="150"
               color={Color.alerzoBlue}
@@ -135,13 +140,13 @@ const Sidebar = ({
               {user?.data?.firstName?.charAt(0)}
               {user?.data?.lastName?.charAt(0)}
             </Profile>
-             <Stack>
-            <Stack onClick={handleLogout} direction="row" alignItems="center">
-              <Stack justifyContent="center" width="auto" alignItems="center">
-                <LogoutIcon />
+            <Stack>
+              <Stack onClick={handleLogout} direction="row" alignItems="center">
+                <Stack justifyContent="center" width="auto" alignItems="center">
+                  <LogoutIcon />
+                </Stack>
+                {!isCollapsed && <Text as="p">Log out</Text>}
               </Stack>
-              {!isCollapsed && <Text as='p'>Log out</Text>}
-            </Stack>
             </Stack>
           </SidebarItem>
         </SidebarFooter>

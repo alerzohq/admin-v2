@@ -21,7 +21,7 @@ import AllPermissions from '../../../../configs/access-control'
 
 const TabsContainer = () => {
   const navigate = useNavigate()
- const {reverseTransactionAccess}= AllPermissions()
+  const { reverseTransactionAccess } = AllPermissions()
   //states
   const [fetchUser, setFetchUser] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -155,7 +155,7 @@ const TabsContainer = () => {
         containerTitle="Transaction Details"
         title={found ? found?.title : TABS[0]?.title}
         type="Transaction!"
-        isError={isError} 
+        isError={isError}
         errorMessage="Failed to load transaction."
         currentValue={found?.value || 'details'}
         renderSwitch={renderSwitch}
@@ -164,7 +164,9 @@ const TabsContainer = () => {
         btnHandler={() => setOpenModal(true)}
         btnLabel="Biller Response"
         showfilters={showfilters}
-        {...(reverseTransactionAccess ? {secondBtnHandler: () => setShowConfirm(true)} : {})}
+        {...(reverseTransactionAccess
+          ? { secondBtnHandler: () => setShowConfirm(true) }
+          : {})}
         seconddBtnLabel="Reverse this transaction"
       />
       <Modal
